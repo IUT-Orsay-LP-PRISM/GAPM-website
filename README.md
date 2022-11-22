@@ -53,4 +53,4 @@ Normalement, tout est bon, NPM ne vous servira uniquement que si vous souhaitez 
 
 
 ## Utilisation
-On verra ça plus tard
+On verra ça plus tard.

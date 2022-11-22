@@ -1,3 +1,4 @@
 /vendor/
 /.idea/
 /GAPM.iml
+/assets/_dev/node_modules/

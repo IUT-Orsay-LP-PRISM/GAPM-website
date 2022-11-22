@@ -1,0 +1,9 @@
+// Import du style de toutes les pages
+@import "pages/home";
+
+// Import du style de tous les composants
+@import "components/buttons";
+
+// Import du style de tous outils (mixins, fonctions, variables)
+@import "tools/responsive";
+
