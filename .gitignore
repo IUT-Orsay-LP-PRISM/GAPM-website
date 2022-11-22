@@ -2,3 +2,4 @@
 /.idea/
 /GAPM.iml
 /assets/_dev/node_modules/
+/assets/_dev/package-lock.json
