@@ -1,0 +1,45 @@
+{
+    "name": "clfmjtev/gapm",
+    "description": "Projet 2 - G.A.P.M : Gestion d'activit\u0000 de Prestation M\u0000dicale",
+    "authors": [
+        {
+            "name": "Louis",
+            "email": "louis.lubineau@universite-paris-saclay.fr"
+        },
+        {
+            "name": "Christopher",
+            "email": "christopher.dent@universite-paris-saclay.fr"
+        },
+        {
+            "name": "Frédéric",
+            "email": "frederic.dabadie@universite-paris-saclay.fr"
+        },
+        {
+            "name": "Valentin",
+            "email": "valentin.chretien@universite-paris-saclay.fr"
+        },
+        {
+            "name": "Joel",
+            "email": "joel.<a_completer>@universite-paris-saclay.fr"
+        },
+        {
+            "name": "Enolah",
+            "email": "enolah.<a_completer>@universite-paris-saclay.fr"
+        },
+        {
+            "name": "Taisong",
+            "email": "taisong.ma@universite-paris-saclay.fr"
+        },
+        {
+            "name": "Mathieu",
+            "email": "mathieu.morgat@universite-paris-saclay.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {}
+}
