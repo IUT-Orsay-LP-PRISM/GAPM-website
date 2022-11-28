@@ -52,5 +52,22 @@ Une fois installé, pensez à redémarrer votre PC.
 Normalement, tout est bon, NPM ne vous servira uniquement que si vous souhaitez faire du CSS ou du JavaScript, sinon pour seulement du PHP il n'a aucun intérêt.
 
 
-## Utilisation
-On verra ça plus tard.
+## Utilisation de NodeJS - Webpack
+
+Après avoir installé NodeJS vous pouvez utiliser Webpack pour compiler les fichiers SCSS et JS.
+### Installation de Webpack
+```bash
+npm install
+```
+
+### Compilation des fichiers SCSS et JS
+#### Compilation en mode développement : Compile un fichier automatiquement, type "watch"
+```bash
+npm run dev 
+```
+#### Compilation en mode production : Compile tous les fichiers une seule fois, type "build"
+```bash
+npm run build
+```
+
+Vous pouvez désormais utiliser webpack.
