@@ -1,0 +1,87 @@
+
+
+/* Bouton par défaut */
+.btn {
+  text-decoration : none;
+  font-family     : 'Poppins', sans-serif;
+  font-weight     : 400;
+  font-size       : 18px;
+  line-height     : 33px;
+  color           : $black;
+  border-radius   : $borderRadius;
+  background-size : 200% 100%;
+  padding         : .79rem 1.48rem;
+  box-shadow      : $boxShadowOut;
+
+
+  /* Bouton Primaire - Bleu foncé vers bleu clair */
+  &.btn-primary {
+    border           : none;
+    color            : $white;
+    background-image : $gradientDarkToLight;
+    transition       : all .5s ease-in-out;
+
+    &:hover {
+      background-position : 100% 0;
+    }
+
+    &:focus {
+      outline    : none;
+      box-shadow : $boxShadowIn;
+    }
+  }
+
+  &.btn-primary-nb {
+    border           : none;
+    border-radius    : 10px;
+    color            : $white;
+    background-image : $gradientDarkToLight;
+    transition       : all .5s ease-in-out;
+
+    &:hover {
+      background-position : 100% 0;
+    }
+
+    &:focus {
+      outline    : none;
+      box-shadow : $boxShadowIn;
+    }
+  }
+
+  &.btn-secondary {
+    border           : none;
+    color            : $primaryDark;
+    background-image : $gradientSecondaryToLight;
+    transition       : all .5s ease-in-out;
+
+    &:hover {
+      background-position : 100% 0;
+    }
+
+    &:focus {
+      outline    : none;
+      box-shadow : $boxShadowIn;
+    }
+  }
+
+  &.btn-secondary-nb{
+    border           : none;
+    border-radius    : 10px;
+    color            : $primaryDark;
+    background-image : $gradientSecondaryToLight;
+    transition       : all .5s ease-in-out;
+
+    &:hover {
+      background-position : 100% 0;
+    }
+
+    &:focus {
+      outline    : none;
+      box-shadow : $boxShadowIn;
+    }
+  }
+
+  svg{
+    vertical-align : text-top;
+  }
+}
