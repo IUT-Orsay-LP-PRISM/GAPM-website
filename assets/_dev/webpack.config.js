@@ -1,4 +1,5 @@
 const miniCss = require("mini-css-extract-plugin");
+const path = require("path");
 
 module.exports = {
     mode: 'development',
@@ -10,7 +11,7 @@ module.exports = {
             ]
     },
     output: {
-        path: __dirname + "/dist/js/",
+        path: path.resolve(__dirname, '../prod/js'),
         filename: "[name].min.js"
     },
     module: {
