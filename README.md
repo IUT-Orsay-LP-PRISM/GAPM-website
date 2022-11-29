@@ -46,7 +46,7 @@ Cependant, vous ne pourrez faire du CSS. Pour cela il faut suivre les étapes su
 NPM est le gestionnaire de dépendances de NodeJS, il va nous permettre d'intégrer directement des bibliothèques JavaScript dans notre projet. Les futurs libs de Stats par exemple.
 
 ##### Installation de Node.JS
-Pour pouvoir utiliser NPM, il faut télécharger NodeJS, il faut aller sur leur site (lien plus haut), puis télécharger "Windows Installer" et l'installer : la version LTS.
+Pour pouvoir utiliser NPM, il faut télécharger NodeJS, il faut aller sur leur site (lien plus haut), puis télécharger le msi (`node-v14.21.1-x64.msi` **ou** `node-v14.21.1-x86.msi`) et l'installer.
 Une fois installé, pensez à redémarrer votre PC.
 
 Normalement, tout est bon, NPM ne vous servira uniquement que si vous souhaitez faire du CSS ou du JavaScript, sinon pour seulement du PHP il n'a aucun intérêt.
