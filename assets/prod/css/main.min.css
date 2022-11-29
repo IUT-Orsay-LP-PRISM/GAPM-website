@@ -63,29 +63,28 @@ table {
   background-size: 200% 100%;
   padding: .79rem 1.48rem;
   box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+  display: block;
+  width: fit-content;
+  transition: all .5s ease-in-out;
   /* Bouton Primaire - Bleu foncé vers bleu clair */ }
   .btn.btn-primary {
     border: none;
     color: #FFFFFF;
-    background-image: linear-gradient(90deg, #393BAA 0%, #5154EC 50%);
-    transition: all .5s ease-in-out; }
+    background-image: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
   .btn.btn-primary-nb {
     border: none;
     border-radius: 10px;
     color: #FFFFFF;
-    background-image: linear-gradient(90deg, #393BAA 0%, #5154EC 50%);
-    transition: all .5s ease-in-out; }
+    background-image: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
   .btn.btn-secondary {
     border: none;
     color: #393BAA;
-    background-image: linear-gradient(90deg, #FFFFFF 0%, #F1FAFB 50%);
-    transition: all .5s ease-in-out; }
+    background-image: linear-gradient(90deg, #FFFFFF 0%, #F1FAFB 50%); }
   .btn.btn-secondary-nb {
     border: none;
     border-radius: 10px;
     color: #393BAA;
-    background-image: linear-gradient(90deg, #FFFFFF 0%, #F1FAFB 50%);
-    transition: all .5s ease-in-out; }
+    background-image: linear-gradient(90deg, #FFFFFF 0%, #F1FAFB 50%); }
   .btn svg {
     vertical-align: text-top; }
   .btn:hover {
@@ -93,6 +92,48 @@ table {
   .btn:focus {
     outline: none;
     box-shadow: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+
+.input-container {
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+  border-radius: 10px;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  overflow: hidden;
+  padding-right: 1rem; }
+  .input-container i {
+    margin: 0 1rem; }
+  .input-container .input {
+    border: 0;
+    outline: none;
+    transition: .2s ease-in-out;
+    box-sizing: border-box;
+    width: fit-content;
+    height: 3rem;
+    font-size: 1rem; }
+    .input-container .input:valid + label, .input-container .input:focus + label {
+      color: #393BAA;
+      font-size: .8rem;
+      top: -15px;
+      pointer-events: none; }
+  .input-container .label {
+    top: 0;
+    left: calc(2rem + 25px);
+    right: 0;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    font-size: 1rem;
+    cursor: text;
+    transition: .2s ease-in-out;
+    box-sizing: border-box;
+    height: 3rem;
+    color: #787878; }
 
 h1 {
   font-family: "Poppins", sans-serif;
@@ -103,5 +144,5 @@ h1 {
 .list {
   margin: 3em 1em; }
   .list a {
-    margin: 0 1em; }
+    margin: 1em; }
 

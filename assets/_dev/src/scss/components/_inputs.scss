@@ -1,2 +1,52 @@
-.input {
+.input-container {
+  font-family     : 'Poppins', sans-serif;
+  position        : relative;
+  box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.38);
+  border-radius   : 10px;
+  width           : fit-content;
+  display         : flex;
+  flex-direction  : row;
+  align-items     : center;
+  justify-content : space-between;
+  font-size       : 18px;
+  overflow        : hidden;
+  padding-right   : 1rem;
+
+  i {
+    margin : 0 1rem;
+  }
+
+  .input {
+    border     : 0;
+    outline    : none;
+    transition : .2s ease-in-out;
+    box-sizing : border-box;
+    width      : fit-content;
+    height     : 3rem;
+    font-size  : 1rem;
+
+    &:valid +, &:focus + {
+      label {
+        color          : $primaryDark;
+        font-size      : .8rem;
+        top            : -15px;
+        pointer-events : none;
+      }
+    }
+  }
+
+  .label {
+    top         : 0;
+    left        : calc(2rem + 25px);
+    right       : 0;
+    display     : flex;
+    align-items : center;
+    position    : absolute;
+    font-size   : 1rem;
+    cursor      : text;
+    transition  : .2s ease-in-out;
+    box-sizing  : border-box;
+    height      : 3rem;
+    color       : $greyDark;
+  }
 }

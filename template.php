@@ -29,6 +29,14 @@
     <a href="#" class="btn btn-secondary-nb"><?php include "assets/svg/user_add.svg" ?>&nbsp;S'inscrire</a>
 </div>
 
+<h1 style="margin: 15px">Input</h1>
+<div class="list">
+    <div class="input-container">
+        <i><?php include "assets/svg/text_input.svg" ?></i>
+        <input id="name" class="input" type="text" required/>
+        <label class="label" for="name">Nom</label>
+    </div>
+</div>
 <script src="assets/prod/css/main.min.css"></script>
 </body>
 </html>

@@ -1,25 +1,28 @@
 /* Couleur Thème Visiteur*/
-$primaryLight: #5154EC;
-$primaryDark: #393BAA;
-$primaryWhite: #F1FAFB;
+$primaryLight             : #5154EC;
+$primaryDark              : #393BAA;
+$primaryWhite             : #F1FAFB;
 
-$secondary: #7EA6F4;
-$secondaryLight: #A0E4F1;
+$secondary                : #7EA6F4;
+$secondaryLight           : #A0E4F1;
 
-$white: #FFFFFF;
-$black: #1E1E3D;
+$white                    : #FFFFFF;
+$black                    : #1E1E3D;
+
+$greyDark                 : #787878;
+
 
 /* Dégradés */
-$gradientDarkToLight: linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
+$gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
 
-$gradientSecondaryToLight: linear-gradient(90deg, $white 0%, $primaryWhite 50%);
+$gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
 
 /* Shadow */
-$boxShadowOut: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
-$boxShadowIn: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+$boxShadowOut             : 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+$boxShadowIn              : inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
 
 /* Border radius */
-$borderRadius: 25px;
+$borderRadius             : 25px;
 
 
 

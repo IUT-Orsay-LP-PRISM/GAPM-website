@@ -10,14 +10,15 @@
   background-size : 200% 100%;
   padding         : .79rem 1.48rem;
   box-shadow      : $boxShadowOut;
-
+  display         : block;
+  width           : fit-content;
+  transition      : all .5s ease-in-out;
 
   /* Bouton Primaire - Bleu foncé vers bleu clair */
   &.btn-primary {
     border           : none;
     color            : $white;
     background-image : $gradientDarkToLight;
-    transition       : all .5s ease-in-out;
   }
 
   &.btn-primary-nb {
@@ -25,14 +26,12 @@
     border-radius    : 10px;
     color            : $white;
     background-image : $gradientDarkToLight;
-    transition       : all .5s ease-in-out;
   }
 
   &.btn-secondary {
     border           : none;
     color            : $primaryDark;
     background-image : $gradientSecondaryToLight;
-    transition       : all .5s ease-in-out;
   }
 
   &.btn-secondary-nb {
@@ -40,7 +39,6 @@
     border-radius    : 10px;
     color            : $primaryDark;
     background-image : $gradientSecondaryToLight;
-    transition       : all .5s ease-in-out;
   }
 
   svg {
