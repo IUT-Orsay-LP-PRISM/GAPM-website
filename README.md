@@ -21,7 +21,7 @@ git clone https://github.com/IUT-Orsay-LP-PRISM/GAPM-website.git
 ### Installer les dépendances
 Le projet utilise principalement **2** gestionnaires de dépendances :
 - [Composer](https://getcomposer.org/download/) pour PHP.
-- [NPM](https://nodejs.org/en/download/) pour NodeJS.
+- [NPM](https://nodejs.org/download/release/v14.21.1/) pour NodeJS `(ici v14.21.1).`
 
 #### Composer
 Composer est le gestionnaire des dépendances de PHP, il va nous permettre d'intégrer directement des bibliothèques dans notre projet. Comme, PHPMailer, un système d'envoi d'email. 
