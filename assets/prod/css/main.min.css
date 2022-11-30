@@ -54,6 +54,10 @@ table {
 /* Border radius */
 /* Fonts */
 /* Screen variables */
+*::selection {
+  background: #5154EC;
+  color: #FFFFFF; }
+
 h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
