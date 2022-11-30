@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;700&display=swap');
+
 /* Couleur Thème Visiteur*/
 $primaryLight             : #5154EC;
 $primaryDark              : #393BAA;
@@ -14,8 +16,8 @@ $greyDark                 : #787878;
 
 /* Dégradés */
 $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
-
 $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
+$gradientDarkToPrimary : linear-gradient(90deg, $black 0%, $primaryDark 100%);
 
 /* Shadow */
 $boxShadowOut             : 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
@@ -25,5 +27,13 @@ $boxShadowIn              : inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
 $borderRadius             : 25px;
 
 
+/* Fonts */
+$titleFont: "Poppins", sans-serif;
+$mainFont: "Open Sans", sans-serif;
 
-
+/* Screen variables */
+$screenXs: 480px;
+$screenSm: 768px;
+$screenMd: 992px;
+$screenLg: 1280px;
+$screenXl: 1440px;

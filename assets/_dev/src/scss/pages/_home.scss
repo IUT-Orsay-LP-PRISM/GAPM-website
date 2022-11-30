@@ -1,0 +1,87 @@
+.hp {
+  &__banner {
+    display         : flex;
+    justify-content : center;
+    width           : 100vw;
+    height          : 100vh;
+    align-items     : center;
+    margin-bottom   : 20em;
+
+    img {
+      position : absolute;
+      top      : 0;
+      left     : 0;
+      z-index  : -1;
+      width    : 100vw;
+      height   : 100vh;
+    }
+
+    &-text {
+      display               : grid;
+      grid-template-areas   : "title img";
+      grid-gap              : 5%;
+      grid-template-columns : 1fr 1fr;
+
+    }
+
+    &-title {
+      grid-area    : title;
+      align-self   : center;
+      padding-left : 2rem;
+
+      h1 {
+        font-size     : 5em;
+        font-weight   : 700;
+        color         : $white;
+        margin-bottom : 1.5rem;
+      }
+
+      p {
+        font-size   : 2em;
+        font-weight : 500;
+        line-height : 1.5;
+        color       : $white;
+        font-family : $titleFont;
+
+        @include max-width($screenLg) {
+          font-size : 1.5em;
+        }
+      }
+    }
+
+    &-img {
+      grid-area     : img;
+      padding-right : 2em;
+
+      @include max-width($screenLg) {
+        svg {
+          width : 500px;
+        }
+      }
+    }
+
+    &-inputs {
+      margin-top : 1.5rem;
+
+      &-list {
+        display : flex;
+      }
+
+      .input-container {
+        &:not(:last-child) {
+          margin-right : 1rem;
+        }
+
+        &:last-child {
+          width : 170px;
+        }
+      }
+
+      a {
+        margin-top : 1.5rem;
+      }
+    }
+  }
+
+
+}

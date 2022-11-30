@@ -1,20 +1,24 @@
 @import "tools/reset.css";
 @import "variables";
 
+// Import du style de tous outils (mixins, fonctions, variables)
+@import "tools/responsive";
+@import "tools/typos";
+
 // Import du style de toutes les pages
 @import "pages/home";
 
 // Import du style de tous les composants
 @import "components/buttons";
 @import "components/inputs";
+@import "components/header";
 
-// Import du style de tous outils (mixins, fonctions, variables)
-@import "tools/responsive";
-@import "tools/typos";
+
 
 // A supprimer : juste pour lister
 .list {
   margin : 3em 1em;
+  display: flex;
   a{
     margin : 1em;
   }

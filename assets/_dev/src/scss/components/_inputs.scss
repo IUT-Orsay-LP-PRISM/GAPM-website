@@ -1,16 +1,17 @@
 .input-container {
-  font-family     : 'Poppins', sans-serif;
-  position        : relative;
-  box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.38);
-  border-radius   : 10px;
-  width           : fit-content;
-  display         : flex;
-  flex-direction  : row;
-  align-items     : center;
-  justify-content : space-between;
-  font-size       : 18px;
-  overflow        : hidden;
-  padding-right   : 1rem;
+  font-family      : 'Poppins', sans-serif;
+  position         : relative;
+  box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+  border-radius    : 10px;
+  width            : fit-content;
+  display          : flex;
+  flex-direction   : row;
+  align-items      : center;
+  justify-content  : space-between;
+  font-size        : 18px;
+  overflow         : hidden;
+  padding-right    : 1rem;
+  background-color : $white;
 
   i {
     margin : 0 1rem;

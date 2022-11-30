@@ -1,0 +1,91 @@
+/* Header + Navbar */
+.header {
+  &__nav {
+    position         : fixed;
+    width            : 100%;
+    height           : 100px;
+    z-index          : 10;
+    background-color : $white;
+    display          : flex;
+    align-items      : center;
+    justify-content  : space-between;
+    box-shadow       : $boxShadowOut;
+
+    &.down {
+      background-color : transparent;
+      box-shadow       : none;
+
+      .menu-left {
+        li a {
+          color : $white !important;
+
+          &::after {
+            background-color : $white !important;
+          }
+        }
+      }
+    }
+  }
+
+  &__menu {
+    &.menu-left {
+      margin-left : 5em;
+      display     : flex;
+      @include max-width($screenLg) {
+        margin-left : 1em;
+      }
+
+      li {
+        a {
+          font-family     : $mainFont;
+          font-weight     : 600;
+          color           : $primaryDark;
+          text-decoration : none;
+          font-size       : 1em;
+          padding         : 1em;
+          position        : relative;
+          transition      : all .3s ease-in-out;
+
+          &::after {
+            content          : "";
+            position         : absolute;
+            bottom           : 0;
+            left             : 0;
+            right            : 0;
+            margin           : auto;
+            width            : 0;
+            height           : 2px;
+            background-color : $primaryLight;
+            transition       : width 0.3s ease;
+          }
+
+          &:hover::after {
+            width : 100%;
+          }
+
+          &:hover {
+            color : $primaryLight;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right : 1.5em;
+        }
+      }
+    }
+
+    &.menu-right {
+      margin-right : 5em;
+      display      : flex;
+      @include max-width($screenLg) {
+        margin-right : 1em;
+      }
+
+      li {
+        &:not(:last-child) {
+          margin-right : 2em;
+        }
+      }
+    }
+  }
+}
