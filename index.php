@@ -5,34 +5,34 @@ require 'vendor/autoload.php';
 
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=yes, initial-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/prod/css/main.min.css">
-    <title>Page d'accueil • GAPM</title>
-</head>
-<body>
-<header class="header">
-    <nav class="header__nav down">
-        <ul class="header__menu menu-left">
-            <li class="menu-item"><a href="#">Accueil</a></li>
-            <li class="menu-item"><a href="#">Besoin d'aide ?</a></li>
-            <li class="menu-item"><a href="#">A propos</a></li>
-        </ul>
-        <ul class="header__menu menu-right">
-            <li class="menu-item"><a href="#" class="btn btn-primary-nb">
-                    <?php include "assets/svg/user.svg" ?>&nbsp;Se
-                    connecter
-                </a></li>
-            <li class="menu-item"><a href="#" class="btn btn-secondary-nb">
-                    <?php include "assets/svg/user_add.svg" ?>
-                    &nbsp;S'inscrire
-                </a></li>
-        </ul>
-    </nav>
-</header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=yes, initial-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="assets/prod/css/main.min.css">
+        <title>Page d'accueil • GAPM</title>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="header__nav transparent">
+                <ul class="header__menu menu-left">
+                    <li class="menu-item"><a href="#" class="--active">Accueil</a></li>
+                    <li class="menu-item"><a href="#">Besoin d'aide ?</a></li>
+                    <li class="menu-item"><a href="#">A propos</a></li>
+                </ul>
+                <ul class="header__menu menu-right">
+                    <li class="menu-item"><a href="#" class="btn btn-primary-nb">
+                            <?php include "assets/svg/user.svg" ?>&nbsp;Se
+                            connecter
+                        </a></li>
+                    <li class="menu-item"><a href="#" class="btn btn-secondary-nb">
+                            <?php include "assets/svg/user_add.svg" ?>
+                            &nbsp;S'inscrire
+                        </a></li>
+                </ul>
+            </nav>
+        </header>
 
 <section class="hp__banner">
     <img src="assets/img/banner_gradient.png" alt="Banner">
@@ -105,5 +105,6 @@ require 'vendor/autoload.php';
         </section>
     </section>
 </section>
-</body>
+        <script src="assets/prod/js/main.min.js"></script>
+    </body>
 </html>

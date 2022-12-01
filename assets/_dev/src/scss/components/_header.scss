@@ -3,17 +3,20 @@
   &__nav {
     position         : fixed;
     width            : 100%;
-    height           : 100px;
     z-index          : 10;
     background-color : $white;
     display          : flex;
     align-items      : center;
     justify-content  : space-between;
     box-shadow       : $boxShadowOut;
+    transition       : all .3s ease-in-out;
+    height           : 100px;
 
-    &.down {
+
+    &.transparent {
       background-color : transparent;
       box-shadow       : none;
+      transition       : all .3s ease-in-out;
 
       .menu-left {
         li a {
@@ -24,6 +27,10 @@
           }
         }
       }
+    }
+
+    &.down {
+      height : 80px;
     }
   }
 
@@ -45,6 +52,20 @@
           padding         : 1em;
           position        : relative;
           transition      : all .3s ease-in-out;
+
+          &.--active {
+
+            &::after {
+              content          : "";
+              position         : absolute;
+              bottom           : 0;
+              left             : 0;
+              width            : 100%;
+              height           : 2px;
+              background-color : $primaryDark;
+              transition       : all .3s ease-in-out;
+            }
+          }
 
           &::after {
             content          : "";
