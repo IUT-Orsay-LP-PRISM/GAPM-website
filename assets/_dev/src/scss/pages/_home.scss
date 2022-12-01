@@ -5,7 +5,6 @@
     width           : 100vw;
     height          : 100vh;
     align-items     : center;
-    margin-bottom   : 20em;
 
     img {
       position : absolute;
@@ -83,5 +82,95 @@
     }
   }
 
+  &__content {
+    margin-bottom : 15rem;
 
+    &_row {
+      display    : grid;
+      grid-gap   : 5%;
+      margin-top : 15em;
+      padding    : 0 4em;
+
+      @include max-width($screenLg) {
+        grid-template-columns : 1fr 1fr;
+        svg {
+          width : 500px;
+        }
+        &-text {
+          width : 500px;
+        }
+      }
+
+      @include min-width($screenLg) {
+        grid-template-columns : 1fr 1fr;
+      }
+
+      &-text {
+        display         : flex;
+        flex-direction  : column;
+        justify-content : center;
+        align-items     : center;
+        padding         : 2rem 0;
+
+        h1 {
+          font-size     : 3em;
+          font-weight   : 700;
+          color         : $black;
+          margin-bottom : 1.5rem;
+          text-align    : center;
+        }
+
+        p {
+          font-size   : 1.2em;
+          font-weight : 500;
+          line-height : 1.5;
+          color       : $secondary;
+          font-family : $titleFont;
+          width       : 70%;
+        }
+      }
+    }
+    &-pilule {
+      position : absolute;
+
+      i {
+        position : absolute;
+      }
+
+      &-1 {
+        top  : -2em;
+        left : 95em;
+      }
+
+      &-2 {
+        top       : 0em;
+        left      : 60em;
+        transform : rotate(120deg) scale(0.7);
+      }
+
+      &-3 {
+        top       : 22em;
+        left      : 90em;
+        transform : rotate(-26.5deg) scale(0.8);
+      }
+
+        &-4 {
+            top       : 45em;
+            left      : 5em;
+            transform : scale(0.9);
+        }
+
+      &-5 {
+        top       : 47em;
+        left      : 38em;
+        transform : rotate(60deg) scale(0.6);
+      }
+
+        &-6 {
+            top       : 70em;
+            left      : 35em;
+            transform : rotate(120deg) scale(0.7);
+        }
+    }
+  }
 }
