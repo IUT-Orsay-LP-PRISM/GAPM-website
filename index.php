@@ -15,9 +15,9 @@ require 'vendor/autoload.php';
     </head>
     <body>
         <header class="header">
-            <nav class="header__nav down">
+            <nav class="header__nav transparent">
                 <ul class="header__menu menu-left">
-                    <li class="menu-item"><a href="#">Accueil</a></li>
+                    <li class="menu-item"><a href="#" class="--active">Accueil</a></li>
                     <li class="menu-item"><a href="#">Besoin d'aide ?</a></li>
                     <li class="menu-item"><a href="#">A propos</a></li>
                 </ul>
@@ -70,5 +70,7 @@ require 'vendor/autoload.php';
         <section class="hp__content">
             <!-- TODO: Faire le contenu : img - texte en grid ou flex, plus les pilules en absolute : le footer pour finir -->
         </section>
+
+        <script src="assets/prod/js/main.min.js"></script>
     </body>
 </html>
