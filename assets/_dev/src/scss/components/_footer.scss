@@ -1,0 +1,71 @@
+.footer {
+  display          : flex;
+  justify-content  : space-around;
+  align-items      : center;
+  background-color : $black;
+  padding          : 10em 2em;
+  color            : $white;
+  font-family      : $mainFont;
+
+  p {
+    font-size     : 1.5em;
+    font-family   : $titleFont;
+    font-weight   : 600;
+    margin-bottom : 1rem;
+  }
+
+  &__about, &__misc, &__social, &__access {
+    padding : 2em 0;
+  }
+
+  ul {
+    li {
+      &:not(:last-child) {
+        margin-bottom : 0.7em;
+      }
+
+      &::before {
+        content        : ">";
+        font-family    : $titleFont;
+        color          : $secondary;
+        font-size      : 1.4em;
+        margin-right   : 0.5em;
+        vertical-align : text-top;
+      }
+
+      a {
+        color           : $white;
+        font-size       : 1em;
+        font-family     : $mainFont;
+        text-decoration : none;
+        position: relative;
+        z-index: 2;
+
+        &::after {
+          content          : "";
+          position         : absolute;
+          bottom           : 2px;
+          left             : 0;
+          width            : 0;
+          height           : 5px;
+          z-index: -1;
+          background-color : $secondary;
+          transition       : all .3s ease-in-out;
+        }
+
+        &:hover::after {
+          width : 100%;
+        }
+      }
+    }
+  }
+
+  &__pre{
+    background-color : $primaryDark;
+    color: $white;
+    font-size: 0.9em;
+    padding: 1em 0;
+    text-align : center;
+    font-family: $mainFont;
+  }
+}
