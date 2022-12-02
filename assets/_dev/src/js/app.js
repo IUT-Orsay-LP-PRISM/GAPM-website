@@ -1,6 +1,6 @@
 const header = document.querySelector('.header .header__nav');
 const banner = document.querySelector('.hp__banner');
-const windowHeight = banner.offsetHeight - 200;
+const windowHeight = header.offsetHeight;
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > windowHeight) {
