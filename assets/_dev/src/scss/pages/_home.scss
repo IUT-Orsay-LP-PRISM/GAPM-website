@@ -109,8 +109,12 @@
         display         : flex;
         flex-direction  : column;
         justify-content : center;
-        align-items     : center;
+        align-items     : flex-start;
         padding         : 2rem 0;
+
+        a {
+            margin-top : 1.5rem;
+        }
 
         h1 {
           font-size     : 3em;
@@ -130,6 +134,7 @@
         }
       }
     }
+
     &-pilule {
       position : absolute;
 
@@ -143,8 +148,8 @@
       }
 
       &-2 {
-        top       : 0em;
-        left      : 60em;
+        top       : -2em;
+        left      : 55em;
         transform : rotate(120deg) scale(0.7);
       }
 
@@ -154,11 +159,11 @@
         transform : rotate(-26.5deg) scale(0.8);
       }
 
-        &-4 {
-            top       : 45em;
-            left      : 5em;
-            transform : scale(0.9);
-        }
+      &-4 {
+        top       : 40em;
+        left      : 5em;
+        transform : scale(0.9);
+      }
 
       &-5 {
         top       : 47em;
@@ -166,11 +171,11 @@
         transform : rotate(60deg) scale(0.6);
       }
 
-        &-6 {
-            top       : 70em;
-            left      : 35em;
-            transform : rotate(120deg) scale(0.7);
-        }
+      &-6 {
+        top       : 70em;
+        left      : 35em;
+        transform : rotate(120deg) scale(0.7);
+      }
     }
   }
 }

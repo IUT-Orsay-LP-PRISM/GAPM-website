@@ -13,6 +13,8 @@
   display         : block;
   width           : fit-content;
   transition      : all .5s ease-in-out;
+  text-align      : center;
+  cursor          : pointer;
 
   /* Bouton Primaire - Bleu foncé vers bleu clair */
   &.btn-primary {
