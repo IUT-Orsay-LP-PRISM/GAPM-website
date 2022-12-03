@@ -4,6 +4,8 @@
 // Import du style de tous outils (mixins, fonctions, variables)
 @import "tools/responsive";
 @import "tools/typos";
+@import "tools/scrollBar";
+
 
 // Import du style de toutes les pages
 @import "pages/home";
@@ -13,8 +15,7 @@
 @import "components/inputs";
 @import "components/header";
 @import "components/footer";
-@import "components/scrollBar";
-@import "components/popup";
+@import "components/popups";
 @import "components/link";
 
 

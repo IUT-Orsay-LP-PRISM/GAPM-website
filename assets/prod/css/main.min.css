@@ -79,6 +79,37 @@ h1 {
     height: 15px;
     background-color: #5154EC;
     transition: width 0.3s ease; }
+  .text__underline-light {
+    position: relative;
+    display: inline-block; }
+    .text__underline-light::after {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      z-index: -1;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 100%;
+      height: 15px;
+      background-color: #7EA6F4;
+      transition: width 0.3s ease; }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1E1E3D; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5154EC; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #393BAA; }
 
 .hp__banner {
   display: flex;
@@ -154,8 +185,10 @@ h1 {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       padding: 2rem 0; }
+      .hp__content_row-text a {
+        margin-top: 1.5rem; }
       .hp__content_row-text h1 {
         font-size: 3em;
         font-weight: 700;
@@ -177,15 +210,15 @@ h1 {
       top: -2em;
       left: 95em; }
     .hp__content-pilule-2 {
-      top: 0em;
-      left: 60em;
+      top: -2em;
+      left: 55em;
       transform: rotate(120deg) scale(0.7); }
     .hp__content-pilule-3 {
       top: 22em;
       left: 90em;
       transform: rotate(-26.5deg) scale(0.8); }
     .hp__content-pilule-4 {
-      top: 45em;
+      top: 40em;
       left: 5em;
       transform: scale(0.9); }
     .hp__content-pilule-5 {
@@ -212,6 +245,8 @@ h1 {
   display: block;
   width: fit-content;
   transition: all .5s ease-in-out;
+  text-align: center;
+  cursor: pointer;
   /* Bouton Primaire - Bleu foncé vers bleu clair */ }
   .btn.btn-primary {
     border: none;
@@ -406,6 +441,104 @@ h1 {
     padding: 1em 0;
     text-align: center;
     font-family: "Open Sans", sans-serif; }
+
+#popUp-connexion {
+  display: none; }
+  #popUp-connexion:after {
+    content: "";
+    display: block;
+    clear: both;
+    width: auto;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(30, 30, 61, 0.82); }
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 25%;
+  height: 50%;
+  background: #FFFFFF;
+  padding: 1em;
+  border-radius: 25px;
+  font-family: "Open Sans", sans-serif;
+  z-index: 1; }
+  .popup h1 {
+    font-size: 2.5em;
+    margin-bottom: 1em; }
+  .popup p {
+    color: #787878; }
+  .popup-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
+    .popup-container form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      width: 100%; }
+      .popup-container form .input-container {
+        width: 80%; }
+      .popup-container form .italic {
+        font-style: italic; }
+      .popup-container form input:last-child {
+        width: 80%; }
+  .popup .cross {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    border-radius: 50% 50%;
+    cursor: pointer;
+    z-index: 5; }
+    .popup .cross::before {
+      background: #888;
+      position: absolute;
+      display: block;
+      content: '';
+      width: 70%;
+      height: 6%;
+      top: 47%;
+      left: 15%;
+      transform: rotate(45deg); }
+    .popup .cross::after {
+      background: #888;
+      position: absolute;
+      display: block;
+      content: '';
+      width: 6%;
+      height: 70%;
+      left: 47%;
+      top: 15%;
+      transform: rotate(45deg); }
+    .popup .cross:hover::before {
+      background: red; }
+    .popup .cross:hover::after {
+      background: red; }
+
+.link {
+  color: #393BAA;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.1em;
+  font-weight: 600; }
 
 .list {
   margin: 3em 1em;
