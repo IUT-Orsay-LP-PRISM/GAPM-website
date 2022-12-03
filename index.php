@@ -92,6 +92,10 @@ require 'vendor/autoload.php';
 </section>
 
 <?php include "app/views/includes/footer.php"; ?>
+
+<i id="popUp-connexion"><?php include "app/views/includes/popUpConnexion.php"; ?></i>
+
+
 <script src="assets/prod/js/main.min.js"></script>
 </body>
 </html>
