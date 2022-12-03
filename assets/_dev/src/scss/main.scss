@@ -6,9 +6,9 @@
 @import "tools/typos";
 @import "tools/scrollBar";
 
-
 // Import du style de toutes les pages
 @import "pages/home";
+@import "pages/search";
 
 // Import du style de tous les composants
 @import "components/buttons";
@@ -19,16 +19,16 @@
 @import "components/link";
 
 
-
 // A supprimer : juste pour lister
 .list {
-  margin : 3em 1em;
-  display: flex;
-  a{
+  margin  : 3em 1em;
+  display : flex;
+
+  a {
     margin : 1em;
   }
 }
 
-body{
-  overflow-x: hidden;
+body {
+  overflow-x : hidden;
 }

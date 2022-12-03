@@ -2,7 +2,7 @@
     <div class="footer__about">
         <p>A propos de</p>
         <ul>
-            <li><a href="#">Mentions légales</a></li>
+            <li><a href="/">Accueil</a></li>
             <li><a href="#">Nous contacter</a></li>
             <li><a href="#">Spécialités</a></li>
             <li><a href="#">Rechercher un praticien</a></li>
@@ -11,10 +11,10 @@
     <div class="footer__misc">
         <p>Divers</p>
         <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">CGU</a></li>
-            <li><a href="#">CGV</a></li>
-            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Besoin d'aide ?</a></li>
+            <li><a href="#">A propos</a></li>
+            <li><a href="#">Se connecter</a></li>
+            <li><a href="#">S'inscrire</a></li>
         </ul>
     </div>
     <div class="footer__social">

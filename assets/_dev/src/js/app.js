@@ -10,10 +10,14 @@ const btn_cross = document.querySelector('.cross');
 window.addEventListener('scroll', () => {
     if (window.scrollY > windowHeight) {
         header.classList.add('down');
-        header.classList.remove('transparent');
+        if (banner) {
+            header.classList.remove('transparent');
+        }
     } else {
         header.classList.remove('down');
-        header.classList.add('transparent');
+        if (banner) {
+            header.classList.add('transparent');
+        }
     }
 });
 

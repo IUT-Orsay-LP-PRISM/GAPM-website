@@ -1,5 +1,8 @@
 <?php
+
 require 'vendor/autoload.php';
+
+use App\Views\Includes\Header;
 
 ?>
 
@@ -15,7 +18,7 @@ require 'vendor/autoload.php';
 </head>
 <body>
 
-<?php include "app/views/includes/header.php"; ?>
+<?= Header::getHeader("home"); ?>
 
 <section class="hp__banner">
     <img src="assets/img/banner_gradient.png" alt="Banner">
@@ -40,7 +43,7 @@ require 'vendor/autoload.php';
                         <label class="label" for="city">Ville</label>
                     </div>
                 </div>
-                <a href="#" class="btn btn-primary-nb">Rechercher</a>
+                <a href="search.php" class="btn btn-primary-nb">Rechercher</a>
 
             </section>
         </section>
