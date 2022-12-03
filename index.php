@@ -1,5 +1,8 @@
 <?php
+
 require 'vendor/autoload.php';
+
+use App\Views\includes\Includes;
 
 ?>
 
@@ -15,7 +18,7 @@ require 'vendor/autoload.php';
 </head>
 <body>
 
-<?php include "app/views/includes/header.php"; ?>
+<?= Includes::getHeader("transparent"); ?>
 
 <section class="hp__banner">
     <img src="assets/img/banner_gradient.png" alt="Banner">
@@ -40,7 +43,7 @@ require 'vendor/autoload.php';
                         <label class="label" for="city-query">Ville</label>
                     </div>
                 </div>
-                <a href="#" class="btn btn-primary-nb">Rechercher</a>
+                <a href="search.php" class="btn btn-primary-nb">Rechercher</a>
 
             </section>
         </section>
@@ -91,11 +94,11 @@ require 'vendor/autoload.php';
     </section>
 </section>
 
-<?php include "app/views/includes/footer.php"; ?>
 
 <i id="popUp-connexion"><?php include "app/views/includes/popUpConnexion.php"; ?></i>
 <i id="popUp-inscription"><?php include "app/views/includes/popUpInscription.php"; ?></i>
 
+<?= Includes::getFooter() ?>
 
 <script src="assets/prod/js/main.min.js"></script>
 </body>

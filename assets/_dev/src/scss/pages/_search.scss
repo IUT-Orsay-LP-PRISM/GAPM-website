@@ -1,0 +1,135 @@
+.bg__secondary {
+  background-color : #DBECEF;
+}
+
+
+.search {
+  &__inputs {
+    display         : flex;
+    justify-content : center;
+    margin          : 10rem 0 3rem 0;
+
+    .input-container {
+      &:first-child {
+        max-width : 500px;
+        width     : 300px;
+        min-width : 100px;
+      }
+
+      &:not(:last-child) {
+        margin-right : 1rem;
+      }
+    }
+
+    @include max-width($screenSm) {
+      max-width   : 80%;
+      margin      : 10rem auto 3rem auto;
+      align-items : flex-start;
+      .input-container {
+        &:not(:last-child) {
+          margin-right  : 0;
+          margin-bottom : 1rem;
+        }
+      }
+    }
+  }
+
+  &__contents {
+    background-color : $white;
+    box-shadow       : $boxShadowOut;
+    border-radius    : $borderRadiusSmall;
+    padding          : 2rem 3rem;
+    max-width        : 90rem;
+    margin           : 2rem auto 5em auto;
+
+    &-list {
+      margin-top : 2em;
+    }
+
+    &-user {
+      display         : flex;
+      justify-content : space-between;
+      align-items     : center;
+      padding         : 1rem;
+      transition      : all .2s ease-in-out;
+      position        : relative;
+
+      &:hover {
+        background-color : #F1FAFB;
+        border-radius    : 10px;
+      }
+
+      &:not(:last-child) {
+        &::after {
+          content          : "";
+          position         : absolute;
+          display          : block;
+          bottom           : -16px;
+          width            : 100%;
+          left             : 0;
+          height           : 1px;
+          background-color : lightgrey;
+          margin           : 1rem 0;
+        }
+      }
+
+      &-img {
+        img {
+          max-width     : 100px;
+          border-radius : 50%;
+        }
+      }
+
+      &-info {
+        flex                  : 1;
+        display               : grid;
+        grid-template-areas   : "name speciality city";
+        grid-template-columns : repeat(3, 1fr);
+        grid-gap              : 5%;
+        margin                : 0 5rem;
+
+        .title {
+          font-family : $titleFont;
+          font-size   : 1rem;
+          color       : $primaryDark;
+          font-weight : 500;
+          line-height : 2;
+        }
+
+        .desc {
+          font-size   : 1.1rem;
+          color       : $black;
+          font-weight : 400;
+          font-family : $mainFont;
+          line-height : 2;
+        }
+      }
+
+      &-name {
+        grid-area : name;
+      }
+
+      &-speciality {
+        grid-area : speciality;
+      }
+
+      &-city {
+        grid-area : city;
+      }
+
+      &-btn {
+        a {
+          svg {
+            transition : all .3s ease-in-out;
+            transform  : rotate(0);
+          }
+
+          &:hover svg {
+            transition : all .5s ease-in-out;
+            transform  : rotate(180deg);
+          }
+        }
+      }
+    }
+  }
+}

@@ -17,7 +17,7 @@ $greyDark                 : #787878;
 /* Dégradés */
 $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
 $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
-$gradientDarkToPrimary : linear-gradient(90deg, $black 0%, $primaryDark 100%);
+$gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
 
 /* Shadow */
 $boxShadowOut             : 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
@@ -25,15 +25,16 @@ $boxShadowIn              : inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
 
 /* Border radius */
 $borderRadius             : 25px;
+$borderRadiusSmall        : 10px;
 
 
 /* Fonts */
-$titleFont: "Poppins", sans-serif;
-$mainFont: "Open Sans", sans-serif;
+$titleFont                : "Poppins", sans-serif;
+$mainFont                 : "Open Sans", sans-serif;
 
 /* Screen variables */
-$screenXs: 480px;
-$screenSm: 768px;
-$screenMd: 992px;
-$screenLg: 1280px;
-$screenXl: 1440px;
+$screenXs                 : 480px;
+$screenSm                 : 768px;
+$screenMd                 : 992px;
+$screenLg                 : 1280px;
+$screenXl                 : 1440px;

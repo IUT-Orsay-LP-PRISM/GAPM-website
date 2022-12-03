@@ -4,30 +4,31 @@
 // Import du style de tous outils (mixins, fonctions, variables)
 @import "tools/responsive";
 @import "tools/typos";
+@import "tools/scrollBar";
 
 // Import du style de toutes les pages
 @import "pages/home";
+@import "pages/search";
 
 // Import du style de tous les composants
 @import "components/buttons";
 @import "components/inputs";
 @import "components/header";
 @import "components/footer";
-@import "components/scrollBar";
-@import "components/popup";
+@import "components/popups";
 @import "components/link";
-
 
 
 // A supprimer : juste pour lister
 .list {
-  margin : 3em 1em;
-  display: flex;
-  a{
+  margin  : 3em 1em;
+  display : flex;
+
+  a {
     margin : 1em;
   }
 }
 
-body{
-  overflow-x: hidden;
+body {
+  overflow-x : hidden;
 }
