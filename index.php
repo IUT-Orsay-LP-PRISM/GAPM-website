@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-use App\Views\Includes\Header;
+use App\Views\includes\Includes;
 
 ?>
 
@@ -18,7 +18,7 @@ use App\Views\Includes\Header;
 </head>
 <body>
 
-<?= Header::getHeader("transparent"); ?>
+<?= Includes::getHeader("transparent"); ?>
 
 <section class="hp__banner">
     <img src="assets/img/banner_gradient.png" alt="Banner">
@@ -94,10 +94,10 @@ use App\Views\Includes\Header;
     </section>
 </section>
 
-<?php include "app/views/includes/footer.php"; ?>
 
 <i id="popUp-connexion"><?php include "app/views/includes/popUpConnexion.php"; ?></i>
 
+<?= Includes::getFooter() ?>
 
 <script src="assets/prod/js/main.min.js"></script>
 </body>
