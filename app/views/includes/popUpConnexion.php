@@ -6,19 +6,19 @@
         <form action="">
             <p>Vous n'avez pas de compte ? <a class="link">Inscrivez-vous .</a></p>
 
-            <div class="input-container">
-                <i><?php include "assets/svg/at.svg" ?></i>
-                <input id="login" class="input" type="text" required/>
-                <label class="label" for="login">Votre adresse e-mail</label>
+            <div class="popup-container-col">
+                <div class="input-container">
+                    <i><?php include "assets/svg/at.svg" ?></i>
+                    <input id="login" class="input" type="text" required/>
+                    <label class="label" for="login">Votre adresse e-mail</label>
+                </div>
+                <div class="input-container">
+                    <i><?php include "assets/svg/key.svg" ?></i>
+                    <input id="mdp" class="input" type="text" required/>
+                    <label class="label" for="mdp">Votre mot de passe</label>
+                </div>
             </div>
-            <div class="input-container">
-                <i><?php include "assets/svg/key.svg" ?></i>
-                <input id="mdp" class="input" type="text" required/>
-                <label class="label" for="mdp">Votre mot de passe</label>
-            </div>
-
-
-            <p class="italic" >Mots de passe oublié ? Cliquez <a class="link">ici</a></p>
+            <p class="italic">Mots de passe oublié ? Cliquez <a class="link">ici</a></p>
 
             <input class="btn btn-primary-nb" type="submit" value="Se connecter">
         </form>

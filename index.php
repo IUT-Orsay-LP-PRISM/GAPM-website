@@ -31,13 +31,13 @@ require 'vendor/autoload.php';
                 <div class="hp__banner-inputs-list">
                     <div class="input-container">
                         <i><?php include "assets/svg/zoom-search.svg" ?></i>
-                        <input id="name" class="input" type="text" required/>
-                        <label class="label" for="name">Nom, spécialité</label>
+                        <input id="name-query" class="input" type="text" required/>
+                        <label class="label" for="name-query">Nom, spécialité</label>
                     </div>
                     <div class="input-container">
                         <i><?php include "assets/svg/city.svg" ?></i>
-                        <input id="city" class="input" type="text" required/>
-                        <label class="label" for="city">Ville</label>
+                        <input id="city-query" class="input" type="text" required/>
+                        <label class="label" for="city-query">Ville</label>
                     </div>
                 </div>
                 <a href="#" class="btn btn-primary-nb">Rechercher</a>
@@ -94,6 +94,7 @@ require 'vendor/autoload.php';
 <?php include "app/views/includes/footer.php"; ?>
 
 <i id="popUp-connexion"><?php include "app/views/includes/popUpConnexion.php"; ?></i>
+<i id="popUp-inscription"><?php include "app/views/includes/popUpInscription.php"; ?></i>
 
 
 <script src="assets/prod/js/main.min.js"></script>

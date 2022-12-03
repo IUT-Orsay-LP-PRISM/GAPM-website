@@ -36,6 +36,12 @@
     }
   }
 
+
+  input[type="date"]:not(:focus):not(:valid) {
+    color : transparent;
+  }
+
+
   .label {
     top         : 0;
     left        : calc(2rem + 25px);
