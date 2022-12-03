@@ -8,19 +8,13 @@ class Header {
     private static $logIcon = "assets/svg/user.svg";
     private static $regIcon = "assets/svg/user_add.svg";
 
-    public static function getHeader($template)
+    public static function getHeader($type = null)
     {
         $logIcon = file_get_contents(self::$logIcon);
         $regIcon = file_get_contents(self::$regIcon);
 
-        if ($template == "home") {
-            $class = "transparent";
-        } else {
-            $class = null;
-        }
-
         return '<header class="header">
-                        <nav class="header__nav ' . $class . '">
+                        <nav class="header__nav ' . $type . '">
                             <ul class="header__menu menu-left">
                                 <li class="menu-item"><a href="/" class="--active">Accueil</a></li>
                                 <li class="menu-item"><a href="#">Besoin d\'aide ?</a></li>

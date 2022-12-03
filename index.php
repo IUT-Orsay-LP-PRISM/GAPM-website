@@ -18,7 +18,7 @@ use App\Views\Includes\Header;
 </head>
 <body>
 
-<?= Header::getHeader("home"); ?>
+<?= Header::getHeader("transparent"); ?>
 
 <section class="hp__banner">
     <img src="assets/img/banner_gradient.png" alt="Banner">

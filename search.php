@@ -16,7 +16,7 @@ use App\views\includes\Header;
     <title>Page d'accueil • GAPM</title>
 </head>
 <body class="bg__secondary">
-<?= Header::getHeader("search") ?>
+<?= Header::getHeader() ?>
 
 <section class="search__inputs">
     <div class="input-container">
