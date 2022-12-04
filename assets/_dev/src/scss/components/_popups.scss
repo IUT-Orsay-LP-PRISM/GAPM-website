@@ -1,5 +1,7 @@
 #popUp-connexion, #popUp-inscription {
-  display : none;
+  opacity    : 0;
+  visibility : hidden;
+
 
   &:after {
     content          : "";
@@ -14,7 +16,23 @@
     bottom           : 0;
     background-color : rgba(30, 30, 61, 0.82);
   }
+
+  transition : all 0.5s ease-in-out;
+
+
+  &.visible {
+    opacity    : 1;
+    visibility : visible;
+    transition : opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+
+    .popup {
+      top        : -50%;
+      transform  : translateY(40%);
+      transition : transform 1s ease-in-out;
+    }
+  }
 }
+
 
 .popup {
   position      : fixed;
@@ -31,6 +49,7 @@
   border-radius : $borderRadius;
   font-family   : $mainFont;
   z-index       : 1;
+
 
   &.popup-inscription {
     width  : 40%;

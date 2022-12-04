@@ -545,7 +545,9 @@ h2 {
     font-family: "Open Sans", sans-serif; }
 
 #popUp-connexion, #popUp-inscription {
-  display: none; }
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out; }
   #popUp-connexion:after, #popUp-inscription:after {
     content: "";
     display: block;
@@ -558,6 +560,14 @@ h2 {
     right: 0;
     bottom: 0;
     background-color: rgba(30, 30, 61, 0.82); }
+  #popUp-connexion.visible, #popUp-inscription.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; }
+    #popUp-connexion.visible .popup, #popUp-inscription.visible .popup {
+      top: -50%;
+      transform: translateY(40%);
+      transition: transform 1s ease-in-out; }
 
 .popup {
   position: fixed;

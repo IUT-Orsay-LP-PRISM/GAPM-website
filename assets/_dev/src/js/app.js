@@ -25,36 +25,40 @@ window.addEventListener('scroll', () => {
 });
 window.onclick = function (event) {
     if (event.target == popUp_connexion || event.target == popUp_inscription) {
-        popUp_connexion.style.display = "none";
-        popUp_inscription.style.display = "none";
+        popUp_connexion.classList.remove('visible');
+        popUp_inscription.classList.remove('visible');
         document.body.style.overflowY = "auto";
     }
 }
 
 btn_connexion.addEventListener('click', () => {
-    const style = popUp_connexion.style.display;
-    popUp_connexion.style.display = style === "block" ? 'none' : 'block';
-    popUp_inscription.style.display = 'none';
+    popUp_connexion.classList.toggle('visible');
+    popUp_inscription.classList.remove('visible');
+
+    if (popUp_connexion.classList.contains('visible')) {
+        document.body.style.overflowY = "hidden";
+    } else {
+        document.body.style.overflowY = "auto";
+    }
     window.scrollTo(0, 0);
-    document.body.style.overflowY = style === "block" ? 'auto' : 'hidden';
 });
 
-console.log(btn_inscription);
-console.log(btn_connexion);
-
 btn_inscription.addEventListener('click', () => {
-    const style = popUp_inscription.style.display;
-    popUp_inscription.style.display = style === "block" ? 'none' : 'block';
-    popUp_connexion.style.display = 'none';
+    popUp_inscription.classList.toggle('visible');
+    popUp_connexion.classList.remove('visible');
+    if (popUp_inscription.classList.contains('visible')) {
+        document.body.style.overflowY = "hidden";
+    } else {
+        document.body.style.overflowY = "auto";
+    }
     window.scrollTo(0, 0);
-    document.body.style.overflowY = style === "block" ? 'auto' : 'hidden';
 });
 
 btn_cross.forEach(btn => btn
     .addEventListener('click', () => {
-        popUp_connexion.style.display = 'none';
-        popUp_inscription.style.display = 'none';
-        document.body.style.overflowY = 'auto';
+        popUp_connexion.classList.remove('visible');
+        popUp_inscription.classList.remove('visible');
+        document.body.style.overflowY = "auto";
     }));
 
 
