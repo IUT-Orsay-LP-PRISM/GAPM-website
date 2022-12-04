@@ -565,13 +565,12 @@ h2 {
     visibility: visible;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; }
     #popUp-connexion.visible .popup, #popUp-inscription.visible .popup {
-      top: -50%;
       transform: translateY(40%);
       transition: transform 1s ease-in-out; }
 
 .popup {
   position: fixed;
-  top: 0;
+  top: -50%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -582,7 +581,9 @@ h2 {
   padding: 1em;
   border-radius: 25px;
   font-family: "Open Sans", sans-serif;
-  z-index: 1; }
+  z-index: 1;
+  transform: translateY(-40%);
+  transition: transform 1s ease-in-out; }
   .popup.popup-inscription {
     width: 40%;
     height: 40em; }
