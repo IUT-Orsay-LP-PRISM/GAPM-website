@@ -399,6 +399,8 @@ h2 {
       font-size: .8rem;
       top: -15px;
       pointer-events: none; }
+  .input-container input[type="date"]:not(:focus):not(:valid) {
+    color: transparent; }
   .input-container .label {
     top: 0;
     left: calc(2rem + 25px);
@@ -488,6 +490,9 @@ h2 {
   .header__menu.menu-right li:not(:last-child) {
     margin-right: 2em; }
 
+.svg-white path {
+  fill: #FFFFFF; }
+
 .footer {
   display: flex;
   justify-content: space-around;
@@ -539,9 +544,9 @@ h2 {
     text-align: center;
     font-family: "Open Sans", sans-serif; }
 
-#popUp-connexion {
+#popUp-connexion, #popUp-inscription {
   display: none; }
-  #popUp-connexion:after {
+  #popUp-connexion:after, #popUp-inscription:after {
     content: "";
     display: block;
     clear: both;
@@ -562,12 +567,15 @@ h2 {
   bottom: 0;
   margin: auto;
   width: 25%;
-  height: 50%;
+  height: 30em;
   background: #FFFFFF;
   padding: 1em;
   border-radius: 25px;
   font-family: "Open Sans", sans-serif;
   z-index: 1; }
+  .popup.popup-inscription {
+    width: 40%;
+    height: 40em; }
   .popup h1 {
     font-size: 2.5em;
     margin-bottom: 1em; }
@@ -581,6 +589,21 @@ h2 {
     flex-direction: column;
     justify-content: space-between;
     align-items: center; }
+    .popup-container-row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center; }
+      .popup-container-row .input-container {
+        margin: 0 1em; }
+    .popup-container-col {
+      width: 80%;
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center; }
     .popup-container form {
       display: flex;
       flex-direction: column;
@@ -588,12 +611,12 @@ h2 {
       align-items: center;
       height: 100%;
       width: 100%; }
-      .popup-container form .input-container {
-        width: 80%; }
       .popup-container form .italic {
         font-style: italic; }
+      .popup-container form .input-container {
+        width: 100%; }
       .popup-container form input:last-child {
-        width: 80%; }
+        width: 18em; }
   .popup .cross {
     position: absolute;
     top: 1em;

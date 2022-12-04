@@ -3,7 +3,7 @@ const banner = document.querySelector('.hp__banner');
 const windowHeight = header.offsetHeight;
 
 const btn_connexion = document.querySelector('#btn-connexion');
-const btn_inscription = document.querySelector('#btn-inscription');
+const btn_inscription = document.getElementById('btn-inscription');
 const popUp_connexion = document.querySelector('#popUp-connexion');
 const popUp_inscription = document.querySelector('#popUp-inscription');
 
@@ -39,6 +39,8 @@ btn_connexion.addEventListener('click', () => {
     document.body.style.overflowY = style === "block" ? 'auto' : 'hidden';
 });
 
+console.log(btn_inscription);
+console.log(btn_connexion);
 
 btn_inscription.addEventListener('click', () => {
     const style = popUp_inscription.style.display;

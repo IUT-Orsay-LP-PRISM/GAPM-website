@@ -26,7 +26,7 @@ class Includes
                                        ' . $logIcon . '&nbsp;Se
                                         connecter
                                     </a></li>
-                                <li class="menu-item"><a href="#" class="btn btn-secondary-nb">
+                                <li class="menu-item"><a id="btn-inscription" href="javascript:void()" class="btn btn-secondary-nb">
                                         ' . $regIcon . '
                                         &nbsp;S\'inscrire
                                     </a></li>
