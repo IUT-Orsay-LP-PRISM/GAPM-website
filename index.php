@@ -33,12 +33,12 @@ use App\Views\includes\Includes;
             <section class="hp__banner-inputs">
                 <div class="hp__banner-inputs-list">
                     <div class="input-container">
-                        <i><?php include "assets/svg/zoom-search.svg" ?></i>
+                        <i class="icon-fi-rr-search"></i>
                         <input id="name-query" class="input" type="text" required/>
                         <label class="label" for="name-query">Nom, spécialité</label>
                     </div>
                     <div class="input-container">
-                        <i><?php include "assets/svg/city.svg" ?></i>
+                        <i class="icon-fi-rr-location-alt"></i>
                         <input id="city-query" class="input" type="text" required/>
                         <label class="label" for="city-query">Ville</label>
                     </div>

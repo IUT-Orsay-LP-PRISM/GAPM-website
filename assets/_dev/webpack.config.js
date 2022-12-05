@@ -7,7 +7,15 @@ module.exports = {
         "main":
             [
                 "./src/js/app.js",
-                "./src/scss/main.scss"
+                "./src/scss/main.scss",
+            ],
+        "demandeur":
+            [
+                "./src/scss/tools/_color_demandeur.scss"
+            ],
+        "intervenant":
+            [
+                "./src/scss/tools/_color_intervenant.scss"
             ]
     },
     output: {
@@ -43,7 +51,7 @@ module.exports = {
     },
     plugins: [
         new miniCss({
-            filename: "../css/[name].min.css"
-        })
+            filename: "../css/[name].min.css",
+        }),
     ]
 };
