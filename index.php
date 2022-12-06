@@ -3,7 +3,6 @@
 require 'vendor/autoload.php';
 
 use App\Views\includes\Includes;
-
 ?>
 
 <!doctype html>
