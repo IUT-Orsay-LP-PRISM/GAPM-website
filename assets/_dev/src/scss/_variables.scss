@@ -1,28 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;700&display=swap');
-
 /* Shadow */
-$boxShadowOut      : 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
-$boxShadowIn       : inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+$boxShadowOut: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+$boxShadowIn: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
 
 /* Border radius */
-$borderRadius      : 25px;
-$borderRadiusSmall : 10px;
+$borderRadius: 25px;
+$borderRadiusSmall: 10px;
 
 
 /* Fonts */
-$titleFont         : "Poppins", sans-serif;
-$mainFont          : "Open Sans", sans-serif;
+$titleFont: "Poppins", sans-serif;
+$mainFont: "Open Sans", sans-serif;
 
 /* Screen variables */
-$screenXs          : 480px;
-$screenSm          : 768px;
-$screenMd          : 992px;
-$screenLg          : 1280px;
-$screenXl          : 1440px;
+$screenXs: 480px;
+$screenSm: 768px;
+$screenMd: 992px;
+$screenLg: 1280px;
+$screenXl: 1440px;
+
+@import "tools/typos";
 
 // Import du style de tous outils (mixins, fonctions, variables)
 @import "tools/responsive";
-@import "tools/typos";
 @import "tools/scrollBar";
 
 // Import du style de toutes les pages
