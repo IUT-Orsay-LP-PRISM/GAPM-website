@@ -8,12 +8,12 @@
 
             <div class="popup-container-col">
                 <div class="input-container">
-                    <i><?php include "assets/svg/at.svg" ?></i>
+                    <i class="icon icon-fi-rr-at"></i>
                     <input id="login" class="input" type="text" required/>
                     <label class="label" for="login">Votre adresse e-mail</label>
                 </div>
                 <div class="input-container">
-                    <i><?php include "assets/svg/key.svg" ?></i>
+                    <i class="icon icon-fi-rr-key"></i>
                     <input id="mdp" class="input" type="text" required/>
                     <label class="label" for="mdp">Votre mot de passe</label>
                 </div>

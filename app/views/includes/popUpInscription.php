@@ -8,12 +8,12 @@
 
             <div class="popup-container-row">
                 <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
+                    <i class="icon icon-fi-rr-text"></i>
                     <input id="name" class="input" type="text" required/>
                     <label class="label" for="name">Votre nom</label>
                 </div>
                 <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
+                    <i class="icon icon-fi-rr-text"></i>
                     <input id="first-name" class="input" type="text" required/>
                     <label class="label" for="first-name">Votre Prénom</label>
                 </div>
@@ -21,49 +21,49 @@
 
             <div class="popup-container-row">
                 <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
+                    <i class="icon icon-fi-rr-at"></i>
                     <input id="e-mail" class="input" type="text" required/>
                     <label class="label" for="e-mail">Votre adresse e-mail</label>
                 </div>
                 <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
+                    <i class="icon icon-fi-rr-calendar"></i>
                     <input id="birthday" class="input" type="date" required/>
                     <label class="label" for="birthday">Votre date de naissance</label>
                 </div>
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
+                    <i class="icon icon-fi-rr-home-location-alt"></i>
                     <input id="adress" class="input" type="text" required/>
                     <label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
                 </div>
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
-                    <input id="cp" class="input" type="text" required/>
-                    <label class="label" for="cp">Code postal</label>
-                </div>
-                <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
+                    <i class="icon icon-fi-rr-map-marker"></i>
                     <input id="ville" class="input" type="text" required/>
                     <label class="label" for="ville">Ville</label>
+                </div>
+                <div class="input-container">
+                    <i class="icon icon-fi-rr-thumbtack"></i>
+                    <input id="cp" class="input" type="text" required/>
+                    <label class="label" for="cp">Code postal</label>
                 </div>
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
+                    <i class="icon icon-fi-rr-key"></i>
                     <input id="mdp-insc" class="input" type="text" required/>
                     <label class="label" for="mdp-insc">Votre mot de passe</label>
                 </div>
                 <div class="input-container">
-                    <i><?php include "assets/svg/text_input.svg" ?></i>
+                    <i class="icon icon-fi-rr-phone-call"></i>
                     <input id="tel" class="input" type="text" required/>
                     <label class="label" for="tel">Téléphone portable</label>
                 </div>
             </div>
             <button class="btn btn-primary-nb" type="submit">
-                <i class="svg-white"><?php include "assets/svg/user_add.svg" ?></i>
+                <i class="icon-w icon-fi-rr-user-add"></i>
                 S'inscrire
             </button>
         </form>
