@@ -21,12 +21,12 @@ use App\views\includes\Includes;
 
 <section class="search__inputs">
     <div class="input-container">
-        <i><?php include "assets/svg/zoom-search.svg" ?></i>
+        <i class="icon icon-fi-rr-search"></i>
         <input id="name" class="input" type="text" required value="Jane Doe"/>
         <label class="label" for="name">Nom, spécialité</label>
     </div>
     <div class="input-container">
-        <i><?php include "assets/svg/city.svg" ?></i>
+        <i class="icon icon-fi-rr-map-marker"></i>
         <input id="city" class="input" type="text" required value="Orsay"/>
         <label class="label" for="city">Ville</label>
     </div>

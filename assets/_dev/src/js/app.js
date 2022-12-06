@@ -62,4 +62,11 @@ btn_cross.forEach(btn => btn
     }));
 
 
+document.getElementById('switch').addEventListener('click', changeColor);
+
+function changeColor() {
+    document.body.classList.toggle('demandeur');
+    document.body.classList.toggle('intervenant');
+}
+
 

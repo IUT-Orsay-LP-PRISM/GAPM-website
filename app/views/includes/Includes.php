@@ -11,8 +11,6 @@ class Includes
 
     public static function getHeader($navbarType = null)
     {
-        $logIcon = file_get_contents(self::$logIcon);
-        $regIcon = file_get_contents(self::$regIcon);
 
         return '<header class="header">
                         <nav class="header__nav ' . $navbarType . '">
@@ -21,13 +19,14 @@ class Includes
                                 <li class="menu-item"><a href="#">Besoin d\'aide ?</a></li>
                                 <li class="menu-item"><a href="#">A propos</a></li>
                             </ul>
+                                                        <button id="switch" >Change color </button>
                             <ul class="header__menu menu-right">
                                 <li class="menu-item"><a id="btn-connexion" href="javascript:void()" class="btn btn-primary-nb">
-                                       ' . $logIcon . '&nbsp;Se
-                                        connecter
+                                       <i class="icon-w icon-fi-rr-user"></i>
+                                       Se connecter
                                     </a></li>
                                 <li class="menu-item"><a id="btn-inscription" href="javascript:void()" class="btn btn-secondary-nb">
-                                        ' . $regIcon . '
+                                         <i class="icon icon-fi-rr-user-add"></i>
                                         &nbsp;S\'inscrire
                                     </a></li>
                             </ul>

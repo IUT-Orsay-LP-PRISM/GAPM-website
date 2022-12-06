@@ -1,8 +1,8 @@
 @import "tools/reset.css";
 @import "tools/icons";
 
-body{
-  &.intervenant{
+body {
+  &.intervenant {
     $primaryLight             : #36A793;
     $primaryDark              : #257466;
     $primaryWhite             : #F1FAFB;
@@ -17,10 +17,14 @@ body{
     $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
     $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
     $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
+    $gradientIcon             : linear-gradient(180deg, $primaryDark 0%, $primaryLight 100%);
+
+
 
     @import "variables";
   }
-  &.demandeur{
+
+  &.demandeur {
     $primaryLight             : #5154EC;
     $primaryDark              : #393BAA;
     $primaryWhite             : #F1FAFB;
@@ -36,13 +40,18 @@ body{
     $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
     $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
     $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
+    $gradientIcon             : linear-gradient(180deg, $primaryDark 0%, $primaryLight 100%);
+
 
     @import "variables";
   }
 }
 
+
 body {
   overflow-x : hidden;
 }
+
+
 
 

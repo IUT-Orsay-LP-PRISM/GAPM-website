@@ -32,12 +32,12 @@ use App\Views\includes\Includes;
             <section class="hp__banner-inputs">
                 <div class="hp__banner-inputs-list">
                     <div class="input-container">
-                        <i class="icon-fi-rr-search"></i>
+                        <i class="icon icon-fi-rr-search"></i>
                         <input id="name-query" class="input" type="text" required/>
                         <label class="label" for="name-query">Nom, spécialité</label>
                     </div>
                     <div class="input-container">
-                        <i class="icon-fi-rr-location-alt"></i>
+                        <i class="icon icon-fi-rr-location-alt"></i>
                         <input id="city-query" class="input" type="text" required/>
                         <label class="label" for="city-query">Ville</label>
                     </div>

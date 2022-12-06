@@ -1837,9 +1837,11 @@ body.intervenant {
     color: #144139;
     border-radius: 25px;
     background-size: 200% 100%;
-    padding: .59rem 1.48rem;
+    padding: .59rem 1rem;
     box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: fit-content;
     transition: all .5s ease-in-out;
     text-align: center;
@@ -1870,6 +1872,8 @@ body.intervenant {
     body.intervenant .btn:focus {
       outline: none;
       box-shadow: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+    body.intervenant .btn i {
+      margin-right: calc(1.48rem / 2); }
   body.intervenant .input-container {
     font-family: 'Poppins', sans-serif;
     position: relative;
@@ -2162,6 +2166,16 @@ body.intervenant {
     font-family: "Open Sans", sans-serif;
     font-size: 1.1em;
     font-weight: 600; }
+  body.intervenant .icon {
+    background: linear-gradient(180deg, #257466 0%, #36A793 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 1px;
+    font-size: 1.5rem; }
+    body.intervenant .icon-w {
+      color: white;
+      padding: 1px;
+      font-size: 1.5rem; }
 
 body.demandeur {
   /* Shadow */
@@ -2436,9 +2450,11 @@ body.demandeur {
     color: #1E1E3D;
     border-radius: 25px;
     background-size: 200% 100%;
-    padding: .59rem 1.48rem;
+    padding: .59rem 1rem;
     box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: fit-content;
     transition: all .5s ease-in-out;
     text-align: center;
@@ -2469,6 +2485,8 @@ body.demandeur {
     body.demandeur .btn:focus {
       outline: none;
       box-shadow: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+    body.demandeur .btn i {
+      margin-right: calc(1.48rem / 2); }
   body.demandeur .input-container {
     font-family: 'Poppins', sans-serif;
     position: relative;
@@ -2761,6 +2779,16 @@ body.demandeur {
     font-family: "Open Sans", sans-serif;
     font-size: 1.1em;
     font-weight: 600; }
+  body.demandeur .icon {
+    background: linear-gradient(180deg, #393BAA 0%, #5154EC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 1px;
+    font-size: 1.5rem; }
+    body.demandeur .icon-w {
+      color: white;
+      padding: 1px;
+      font-size: 1.5rem; }
 
 body {
   overflow-x: hidden; }

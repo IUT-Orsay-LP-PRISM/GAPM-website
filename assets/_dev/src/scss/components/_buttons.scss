@@ -8,13 +8,16 @@
   color           : $black;
   border-radius   : $borderRadius;
   background-size : 200% 100%;
-  padding         : .59rem 1.48rem;
+  padding         : .59rem 1rem;
   box-shadow      : $boxShadowOut;
-  display         : block;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
   width           : fit-content;
   transition      : all .5s ease-in-out;
   text-align      : center;
   cursor          : pointer;
+
 
   /* Bouton Primaire - Bleu foncé vers bleu clair */
   &.btn-primary {
@@ -54,5 +57,9 @@
   &:focus {
     outline    : none;
     box-shadow : $boxShadowIn;
+  }
+
+  i {
+    margin-right : calc(1.48rem / 2);
   }
 }
