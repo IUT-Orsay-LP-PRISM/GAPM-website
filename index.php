@@ -15,7 +15,7 @@ use App\Views\includes\Includes;
     <link rel="stylesheet" href="assets/prod/css/main.min.css">
     <title>Page d'accueil • GAPM</title>
 </head>
-<body>
+<body class="demandeur">
 
 <?= Includes::getHeader("transparent"); ?>
 

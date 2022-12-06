@@ -1,35 +1,48 @@
 @import "tools/reset.css";
-@import "variables";
-
-// Import du style de tous outils (mixins, fonctions, variables)
 @import "tools/icons";
-@import "tools/responsive";
-@import "tools/typos";
-@import "tools/scrollBar";
 
-// Import du style de toutes les pages
-@import "pages/home";
-@import "pages/search";
+body{
+  &.intervenant{
+    $primaryLight             : #36A793;
+    $primaryDark              : #257466;
+    $primaryWhite             : #F1FAFB;
 
-// Import du style de tous les composants
-@import "components/buttons";
-@import "components/inputs";
-@import "components/header";
-@import "components/footer";
-@import "components/popups";
-@import "components/link";
+    $secondary                : #86CABE;
+    $secondaryLight           : #A0E4F1;
 
+    $white                    : #FFFFFF;
+    $black                    : #144139;
+    $greyDark                 : #787878;
 
-// A supprimer : juste pour lister
-.list {
-  margin  : 3em 1em;
-  display : flex;
+    $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
+    $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
+    $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
 
-  a {
-    margin : 1em;
+    @import "variables";
+  }
+  &.demandeur{
+    $primaryLight             : #5154EC;
+    $primaryDark              : #393BAA;
+    $primaryWhite             : #F1FAFB;
+
+    $secondary                : #7EA6F4;
+    $secondaryLight           : #A0E4F1;
+
+    $white                    : #FFFFFF;
+    $black                    : #1E1E3D;
+
+    $greyDark                 : #787878;
+
+    $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
+    $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
+    $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
+
+    @import "variables";
   }
 }
 
 body {
   overflow-x : hidden;
 }
+
+

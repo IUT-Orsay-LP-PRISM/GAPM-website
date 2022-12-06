@@ -15,7 +15,7 @@ use App\views\includes\Includes;
     <link rel="stylesheet" href="assets/prod/css/main.min.css">
     <title>Page d'accueil • GAPM</title>
 </head>
-<body class="bg__secondary">
+<body class="bg__secondary intervenant">
 
 <?= Includes::getHeader() ?>
 

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;700&display=swap');
 
-@import "tools/color_demandeur";
-
 /* Shadow */
 $boxShadowOut             : 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
 $boxShadowIn              : inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
@@ -21,3 +19,20 @@ $screenSm                 : 768px;
 $screenMd                 : 992px;
 $screenLg                 : 1280px;
 $screenXl                 : 1440px;
+
+// Import du style de tous outils (mixins, fonctions, variables)
+@import "tools/responsive";
+@import "tools/typos";
+@import "tools/scrollBar";
+
+// Import du style de toutes les pages
+@import "pages/home";
+@import "pages/search";
+
+// Import du style de tous les composants
+@import "components/buttons";
+@import "components/inputs";
+@import "components/header";
+@import "components/footer";
+@import "components/popups";
+@import "components/link";
