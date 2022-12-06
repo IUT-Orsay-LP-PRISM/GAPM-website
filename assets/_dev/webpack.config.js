@@ -9,14 +9,6 @@ module.exports = {
                 "./src/js/app.js",
                 "./src/scss/main.scss",
             ],
-        "demandeur":
-            [
-                "./src/scss/tools/_color_demandeur.scss"
-            ],
-        "intervenant":
-            [
-                "./src/scss/tools/_color_intervenant.scss"
-            ]
     },
     output: {
         path: path.resolve(__dirname, '../prod/js'),
@@ -24,7 +16,7 @@ module.exports = {
     },
     module: {
         rules: [{
-            test:/\.(s*)css$/,
+            test: /\.(s*)css$/,
             use: [
                 {
                     loader: miniCss.loader,
@@ -36,18 +28,31 @@ module.exports = {
                 'sass-loader',
             ]
         },
-        {
-            test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-            use: [
-                {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: '../fonts/'
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: '../fonts/'
+                        }
                     }
-                }
-            ]
-        }]
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: '../img/'
+                        }
+                    }
+                ]
+            }
+        ]
     },
     plugins: [
         new miniCss({

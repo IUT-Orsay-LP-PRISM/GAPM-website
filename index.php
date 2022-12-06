@@ -20,7 +20,7 @@ use App\Views\includes\Includes;
 <?= Includes::getHeader("transparent"); ?>
 
 <section class="hp__banner">
-    <img src="assets/img/banner_gradient.png" alt="Banner">
+    <img class="banner_bg" alt="Banner">
 
     <section class="hp__banner-text">
         <section class="hp__banner-title">

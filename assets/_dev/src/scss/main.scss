@@ -19,7 +19,7 @@ body {
     $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
     $gradientIcon             : linear-gradient(180deg, $primaryDark 0%, $primaryLight 100%);
 
-
+    $srcBackgroundBanner            : url("../../../img/banner_gradient_intervenant.png");
 
     @import "variables";
   }
@@ -41,6 +41,8 @@ body {
     $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
     $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
     $gradientIcon             : linear-gradient(180deg, $primaryDark 0%, $primaryLight 100%);
+
+    $srcBackgroundBanner            : url("../../../img/banner_gradient.png");
 
 
     @import "variables";

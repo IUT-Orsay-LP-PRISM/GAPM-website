@@ -1,22 +1,22 @@
 /* Shadow */
-$boxShadowOut: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
-$boxShadowIn: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+$boxShadowOut      : 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+$boxShadowIn       : inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
 
 /* Border radius */
-$borderRadius: 25px;
-$borderRadiusSmall: 10px;
+$borderRadius      : 25px;
+$borderRadiusSmall : 10px;
 
 
 /* Fonts */
-$titleFont: "Poppins", sans-serif;
-$mainFont: "Open Sans", sans-serif;
+$titleFont         : "Poppins", sans-serif;
+$mainFont          : "Open Sans", sans-serif;
 
 /* Screen variables */
-$screenXs: 480px;
-$screenSm: 768px;
-$screenMd: 992px;
-$screenLg: 1280px;
-$screenXl: 1440px;
+$screenXs          : 480px;
+$screenSm          : 768px;
+$screenMd          : 992px;
+$screenLg          : 1280px;
+$screenXl          : 1440px;
 
 @import "tools/typos";
 
@@ -44,8 +44,12 @@ $screenXl: 1440px;
   font-size               : 1.5rem;
 
   &-w {
-    color : white;
-    padding                 : 1px;
-    font-size               : 1.5rem;
+    color     : white;
+    padding   : 1px;
+    font-size : 1.5rem;
   }
+}
+
+.banner_bg {
+  content : $srcBackgroundBanner;
 }
