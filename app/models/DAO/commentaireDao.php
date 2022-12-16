@@ -1,5 +1,10 @@
 <?php
-class CommentaireDao extends Commentaire{
+
+namespace App\models\dao;
+
+use PDO;
+
+class CommentaireDao extends ConnexionDB{
 
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -95,7 +100,7 @@ class CommentaireDao extends Commentaire{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'Commentaire');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Commentaire');
 			// récupération du commentaire
 			$a = $req_prep->fetch();
 			// retour
@@ -114,7 +119,7 @@ class CommentaireDao extends Commentaire{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'Commentaire');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Commentaire');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

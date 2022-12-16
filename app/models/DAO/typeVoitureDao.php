@@ -1,5 +1,10 @@
 <?php
-class TypeVoitureDao extends TypeVoiture{
+
+namespace App\models\dao;
+
+use PDO;
+
+class TypeVoitureDao extends ConnexionDB{
 
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -84,7 +89,7 @@ class TypeVoitureDao extends TypeVoiture{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'TypeVoiture');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\TypeVoiture');
 			// récupération du type de la voiture
 			$a = $req_prep->fetch();
 			// retour
@@ -103,7 +108,7 @@ class TypeVoitureDao extends TypeVoiture{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'TypeVoiture');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\TypeVoiture');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

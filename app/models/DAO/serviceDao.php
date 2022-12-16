@@ -1,5 +1,10 @@
 <?php
-class ServiceDao extends Service{
+
+namespace App\models\dao;
+
+use PDO;
+
+class ServiceDao extends ConnexionDB{
 
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -85,7 +90,7 @@ class ServiceDao extends Service{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'Service');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Service');
 			// récupération du service
 			$a = $req_prep->fetch();
 			// retour
@@ -104,7 +109,7 @@ class ServiceDao extends Service{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'Service');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Service');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

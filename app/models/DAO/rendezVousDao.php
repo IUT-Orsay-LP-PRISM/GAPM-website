@@ -1,5 +1,10 @@
 <?php
-class RendezVousDao extends RendezVous{
+
+namespace App\models\dao;
+
+use PDO;
+
+class RendezVousDao extends ConnexionDB{
 
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -107,7 +112,7 @@ class RendezVousDao extends RendezVous{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'RendezVous');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\RendezVous');
 			// récupération du rendezVous
 			$a = $req_prep->fetch();
 			// retour
@@ -126,7 +131,7 @@ class RendezVousDao extends RendezVous{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'RendezVous');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\RendezVous');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

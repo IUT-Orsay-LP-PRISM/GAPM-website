@@ -1,5 +1,10 @@
 <?php
-class FichePaieDao extends FichePaie{
+
+namespace App\models\dao;
+
+use PDO;
+
+class FichePaieDao extends ConnexionDB{
 
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -92,7 +97,7 @@ class FichePaieDao extends FichePaie{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'FichePaie');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\FichePaie');
 			// récupération de la fiche de paie
 			$a = $req_prep->fetch();
 			// retour
@@ -111,7 +116,7 @@ class FichePaieDao extends FichePaie{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'FichePaie');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\FichePaie');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

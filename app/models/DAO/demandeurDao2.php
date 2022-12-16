@@ -1,4 +1,9 @@
 <?php
+
+namespace App\models\dao;
+
+use PDO;
+
 class DemandeurDao extends Demandeur{
 
 	// -------------------------------------------------------------------------------------------
@@ -115,7 +120,7 @@ class DemandeurDao extends Demandeur{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'Demandeur');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Demandeur');
 			// récupération du demandeur
 			$a = $req_prep->fetch();
 			// retour
@@ -134,7 +139,7 @@ class DemandeurDao extends Demandeur{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'Demandeur');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Demandeur');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

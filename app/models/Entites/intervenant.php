@@ -1,4 +1,7 @@
 <?php
+
+namespace App\models\entity;
+
 class Intervenant extends Demandeur{
 
 // -------------------------------------------------------------------------------------------

@@ -1,5 +1,10 @@
 <?php
-class IntervenantDao extends Intervenant{
+
+namespace App\models\dao;
+
+use PDO;
+
+class IntervenantDao extends ConnexionDB{
 
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -128,7 +133,7 @@ class IntervenantDao extends Intervenant{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'Intervenant');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Intervenant');
 			// récupération de l'intervenant
 			$a = $req_prep->fetch();
 			// retour
@@ -147,7 +152,7 @@ class IntervenantDao extends Intervenant{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'Intervenant');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Intervenant');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

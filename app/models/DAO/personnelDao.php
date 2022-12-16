@@ -1,5 +1,10 @@
 <?php
-class PersonnelDao extends Personnel{
+
+namespace App\models\dao;
+
+use PDO;
+
+class PersonnelDao extends ConnexionDB{
 
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -95,7 +100,7 @@ class PersonnelDao extends Personnel{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'Personnel');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Personnel');
 			// récupération du personnel
 			$a = $req_prep->fetch();
 			// retour
@@ -114,7 +119,7 @@ class PersonnelDao extends Personnel{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'Personnel');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Personnel');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

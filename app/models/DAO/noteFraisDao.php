@@ -1,5 +1,10 @@
 <?php
-class NoteFraisDao extends NoteFrais{
+
+namespace App\models\dao;
+
+use PDO;
+
+class NoteFraisDao extends ConnexionDB{
 
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -103,7 +108,7 @@ class NoteFraisDao extends NoteFrais{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'NoteFrais');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\NoteFrais');
 			// récupération de la note de frais
 			$a = $req_prep->fetch();
 			// retour
@@ -122,7 +127,7 @@ class NoteFraisDao extends NoteFrais{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'NoteFrais');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\NoteFrais');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}

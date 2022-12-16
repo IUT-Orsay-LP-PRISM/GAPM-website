@@ -1,5 +1,10 @@
 <?php
-class EmpechementDao extends Empechement{
+
+namespace App\models\dao;
+
+use PDO;
+
+class EmpechementDao extends ConnexionDB{
 	
 	// -------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------------------------------------
@@ -92,7 +97,7 @@ class EmpechementDao extends Empechement{
 			// envoi de la requête
 			$req_prep->execute($valeurs);
 			// traitement de la réponse
-		$req_prep->setFetchmode(PDO::FETCH_CLASS,'Empechement');
+		$req_prep->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Empechement');
 			// récupération de l'empechement
 			$a = $req_prep->fetch();
 			// retour
@@ -111,7 +116,7 @@ class EmpechementDao extends Empechement{
 	// envoi de la requête et stockage de la réponse
 		$resultat = Connexion::pdo()->query($requete);
 	// traitement de la réponse
-	$resultat->setFetchmode(PDO::FETCH_CLASS,'Empechement');
+	$resultat->setFetchmode(PDO::FETCH_CLASS,'App\models\entity\Empechement');
 	$tableau = $resultat->fetchAll();
 		return $tableau;
 	}
