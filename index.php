@@ -1,11 +1,19 @@
 <?php
-
 require 'vendor/autoload.php';
 
-use App\Views\includes\Includes;
+use App\models\dao\DemandeurDAO;
+use App\Views\Includes\Includes;
+
+$users = DemandeurDAO::getAllDemandeur();
+
+foreach ($users as $user) {
+    echo "Login : " . $user->getLogin();
+}
+
+var_dump($users);
 ?>
 
-<!doctype html>
+<!--<!doctype html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +25,7 @@ use App\Views\includes\Includes;
 </head>
 <body class="demandeur">
 
-<?= Includes::getHeader("transparent"); ?>
+<?php /*= Includes::getHeader("transparent"); */?>
 
 <section class="hp__banner">
     <img class="banner_bg" alt="Banner">
@@ -47,23 +55,23 @@ use App\Views\includes\Includes;
             </section>
         </section>
         <section class="hp__banner-img">
-            <?php include "assets/svg/illu_banner.svg " ?>
+            <?php /*include "assets/svg/illu_banner.svg " */?>
         </section>
     </section>
 </section>
 
 <section class="hp__content">
     <div class="hp__content-pilule">
-        <i class="hp__content-pilule-1"><?php include "assets/svg/pilule.svg " ?></i>
-        <i class="hp__content-pilule-2"><?php include "assets/svg/pilule.svg " ?></i>
-        <i class="hp__content-pilule-3"><?php include "assets/svg/pilule.svg " ?></i>
-        <i class="hp__content-pilule-4"><?php include "assets/svg/pilule2.svg " ?></i>
-        <i class="hp__content-pilule-5"><?php include "assets/svg/pilule2.svg " ?></i>
-        <i class="hp__content-pilule-6"><?php include "assets/svg/pilule2.svg " ?></i>
+        <i class="hp__content-pilule-1"><?php /*include "assets/svg/pilule.svg " */?></i>
+        <i class="hp__content-pilule-2"><?php /*include "assets/svg/pilule.svg " */?></i>
+        <i class="hp__content-pilule-3"><?php /*include "assets/svg/pilule.svg " */?></i>
+        <i class="hp__content-pilule-4"><?php /*include "assets/svg/pilule2.svg " */?></i>
+        <i class="hp__content-pilule-5"><?php /*include "assets/svg/pilule2.svg " */?></i>
+        <i class="hp__content-pilule-6"><?php /*include "assets/svg/pilule2.svg " */?></i>
     </div>
     <section class="hp__content_row">
         <section class="hp__content_row-img">
-            <?php include "assets/svg/illu_home_content.svg " ?>
+            <?php /*include "assets/svg/illu_home_content.svg " */?>
         </section>
 
         <section class="hp__content_row-text">
@@ -88,17 +96,18 @@ use App\Views\includes\Includes;
             <a href="#" class="btn btn-primary">Remplir le formulaire</a>
         </section>
         <section class="hp__content_row-img">
-            <?php include "assets/svg/illu_home_content2.svg " ?>
+            <?php /*include "assets/svg/illu_home_content2.svg " */?>
         </section>
     </section>
 </section>
 
 
-<i id="popUp-connexion"><?php include "app/views/includes/popUpConnexion.php"; ?></i>
-<i id="popUp-inscription"><?php include "app/views/includes/popUpInscription.php"; ?></i>
+<i id="popUp-connexion"><?php /*include "app/views/includes/popUpConnexion.php"; */?></i>
+<i id="popUp-inscription"><?php /*include "app/views/includes/popUpInscription.php"; */?></i>
 
-<?= Includes::getFooter() ?>
+<?php /*= Includes::getFooter() */?>
 
 <script src="assets/prod/js/main.min.js"></script>
 </body>
 </html>
+-->
