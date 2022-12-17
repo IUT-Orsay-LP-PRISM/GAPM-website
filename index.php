@@ -1,16 +1,10 @@
 <?php
 require 'vendor/autoload.php';
 
-use App\models\dao\DemandeurDAO;
-use App\Views\Includes\Includes;
+use App\controllers\DemandeurControlleur;
 
-$users = DemandeurDAO::getAllDemandeur();
+DemandeurControlleur::index();
 
-foreach ($users as $user) {
-    echo "Login : " . $user->getLogin();
-}
-
-var_dump($users);
 ?>
 
 <!--<!doctype html>

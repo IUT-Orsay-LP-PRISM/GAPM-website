@@ -2,7 +2,11 @@
 
 namespace App\models\dao;
 
+
+use App\models\entity\Demandeur;
+
 use PDO;
+use PDOException;
 
 class ConnexionDB
 {
@@ -16,6 +20,7 @@ class ConnexionDB
     private static string $user = "root";
     private static string $passwd = "";
 
+
     /**
      * @return PDO Retourne l'instance de connexion à la BDD, si y'a aucune instance de connexion, on en crée une.
      */
@@ -28,5 +33,40 @@ class ConnexionDB
         return self::$db;
     }
 
+    /**
+     * Fonction générique permettant de select all
+     */
+    public static function findAll()
+    {
+        try {
+            $query = "SELECT * FROM " . static::$entity;
+            $rs = self::getInstance()->query($query);
+            $rs->setFetchMode(PDO::FETCH_CLASS, 'App\models\entity\\' . static::$entity);
+            return $rs->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    /**
+     * Fonction générique permettant de select by id
+     */
+    public static function findById(int $id)
+    {
+        try {
+            $query = "SELECT * FROM " . static::$entity. " WHERE id" . static::$entity. " = :id";
+            $rs = self::getInstance()->prepare($query);
+            $rs->setFetchMode(PDO::FETCH_CLASS, 'App\models\entity\\' . static::$entity);
+            $rs->execute(
+                [":id" => $id]
+            );
+            return $rs->fetch();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }
+
 

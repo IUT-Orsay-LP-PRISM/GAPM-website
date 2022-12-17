@@ -2,12 +2,13 @@
 
 namespace App\models\entity;
 
-class Empechement{
+class Empechement
+{
 
-	private $idEmpechement;
-	private	 $dateDebut;
-	private $dateFin;
-	private $idIntervenant;
+    private $idEmpechement;
+    private $dateDebut;
+    private $dateFin;
+    private $idIntervenant;
 
     // -------------------------------------------------------------------------------------------
     // Constructeur
@@ -28,22 +29,34 @@ class Empechement{
     /**
      * @return mixed
      */
-    public function getIdEmpechement(){return $this->idEmpechement;}
+    public function getIdEmpechement()
+    {
+        return $this->idEmpechement;
+    }
 
     /**
      * @return mixed
      */
-    public function getDateDebut(){return $this->dateDebut;}
+    public function getDateDebut()
+    {
+        return $this->dateDebut;
+    }
 
     /**
      * @return mixed
      */
-    public function getDateFin(){return $this->dateFin;}
+    public function getDateFin()
+    {
+        return $this->dateFin;
+    }
 
     /**
      * @return mixed
      */
-    public function getIdIntervenant(){return $this->idIntervenant;}
+    public function getIdIntervenant()
+    {
+        return $this->idIntervenant;
+    }
 
 
     // -------------------------------------------------------------------------------------------
