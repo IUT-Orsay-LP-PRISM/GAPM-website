@@ -1,5 +1,5 @@
 <?php
-  require_once("modele/intervenant.php");
+  require_once("modele/Intervenant.php");
 
   class ControleurIntervenant extends ControleurObjet {
 

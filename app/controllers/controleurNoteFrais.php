@@ -1,5 +1,5 @@
 <?php
-  require_once("modele/noteFrais.php");
+  require_once("modele/NoteFrais.php");
 
   class ControleurNoteFrais extends ControleurObjet {
 

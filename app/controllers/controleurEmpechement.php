@@ -1,5 +1,5 @@
 <?php
-  require_once("modele/empechement.php");
+  require_once("modele/Empechement.php");
 
   class ControleurEmpechement extends ControleurObjet {
 

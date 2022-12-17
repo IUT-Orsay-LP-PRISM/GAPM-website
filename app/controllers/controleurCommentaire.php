@@ -1,5 +1,5 @@
 <?php
-  require_once("modele/commentaire.php");
+  require_once("modele/Commentaire.php");
 
   class ControleurCommentaire extends ControleurObjet {
 

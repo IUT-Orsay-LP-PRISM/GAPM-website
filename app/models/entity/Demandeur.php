@@ -5,16 +5,18 @@ namespace App\models\entity;
 class Demandeur
 {
 
-    private int $idDemandeur;
-    private string $login;
-    private string $motDePasse;
-    private string $nom;
-    private string $prenom;
-    private string $dateNaissance;
-    private string $adresse;
-    private string $telephone;
-    private string $sexe;
+    private $idDemandeur;
+    private $login;
+    private $motDePasse;
+    private $nom;
+    private $prenom;
+    private $dateNaissance;
+    private $adresse;
+    private $telephone;
+    private $sexe;
 
+    // -------------------------------------------------------------------------------------------
+    // Constructeur
     /**
      * @param int $idDemandeur Id du demandeur
      * @param String $login Login permettant de l'identifier
@@ -32,10 +34,12 @@ class Demandeur
         }
     }
 
+    // -------------------------------------------------------------------------------------------
+    // getters & setters
     /**
      * @return int
      */
-    public function getIdDemandeur(): int
+    public function getIdDemandeur()
     {
         return $this->idDemandeur;
     }
@@ -43,7 +47,7 @@ class Demandeur
     /**
      * @param int $idDemandeur
      */
-    public function setIdDemandeur(int $idDemandeur): void
+    public function setIdDemandeur(int $idDemandeur)
     {
         $this->idDemandeur = $idDemandeur;
     }
@@ -51,7 +55,7 @@ class Demandeur
     /**
      * @return String
      */
-    public function getLogin(): string
+    public function getLogin()
     {
         return $this->login;
     }
@@ -59,7 +63,7 @@ class Demandeur
     /**
      * @param String $login
      */
-    public function setLogin(string $login): void
+    public function setLogin(string $login)
     {
         $this->login = $login;
     }
@@ -67,7 +71,7 @@ class Demandeur
     /**
      * @return String
      */
-    public function getMotDePasse(): string
+    public function getMotDePasse()
     {
         return $this->motDePasse;
     }
@@ -75,7 +79,7 @@ class Demandeur
     /**
      * @param String $motDePasse
      */
-    public function setMotDePasse(string $motDePasse): void
+    public function setMotDePasse(string $motDePasse)
     {
         $this->motDePasse = $motDePasse;
     }
@@ -83,7 +87,7 @@ class Demandeur
     /**
      * @return String
      */
-    public function getNom(): string
+    public function getNom()
     {
         return $this->nom;
     }
@@ -91,7 +95,7 @@ class Demandeur
     /**
      * @param String $nom
      */
-    public function setNom(string $nom): void
+    public function setNom(string $nom)
     {
         $this->nom = $nom;
     }
@@ -99,7 +103,7 @@ class Demandeur
     /**
      * @return String
      */
-    public function getPrenom(): string
+    public function getPrenom()
     {
         return $this->prenom;
     }
@@ -107,7 +111,7 @@ class Demandeur
     /**
      * @param String $prenom
      */
-    public function setPrenom(string $prenom): void
+    public function setPrenom(string $prenom)
     {
         $this->prenom = $prenom;
     }
@@ -115,7 +119,7 @@ class Demandeur
     /**
      * @return String
      */
-    public function getDateNaissance(): string
+    public function getDateNaissance()
     {
         return $this->dateNaissance;
     }
@@ -123,7 +127,7 @@ class Demandeur
     /**
      * @param String $dateNaissance
      */
-    public function setDateNaissance(string $dateNaissance): void
+    public function setDateNaissance(string $dateNaissance)
     {
         $this->dateNaissance = $dateNaissance;
     }
@@ -131,7 +135,7 @@ class Demandeur
     /**
      * @return String
      */
-    public function getAdresse(): string
+    public function getAdresse()
     {
         return $this->adresse;
     }
@@ -139,7 +143,7 @@ class Demandeur
     /**
      * @param String $adresse
      */
-    public function setAdresse(string $adresse): void
+    public function setAdresse(string $adresse)
     {
         $this->adresse = $adresse;
     }
@@ -147,7 +151,7 @@ class Demandeur
     /**
      * @return String
      */
-    public function getTelephone(): string
+    public function getTelephone()
     {
         return $this->telephone;
     }
@@ -155,7 +159,7 @@ class Demandeur
     /**
      * @param String $telephone
      */
-    public function setTelephone(string $telephone): void
+    public function setTelephone(string $telephone)
     {
         $this->telephone = $telephone;
     }
@@ -163,7 +167,7 @@ class Demandeur
     /**
      * @return String
      */
-    public function getSexe(): string
+    public function getSexe()
     {
         return $this->sexe;
     }
@@ -171,7 +175,7 @@ class Demandeur
     /**
      * @param String $sexe
      */
-    public function setSexe(string $sexe): void
+    public function setSexe(string $sexe)
     {
         $this->sexe = $sexe;
     }

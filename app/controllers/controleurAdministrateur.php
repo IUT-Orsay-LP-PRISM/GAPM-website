@@ -1,5 +1,5 @@
 <?php
-  require_once("modele/administrateur.php");
+  require_once("modele/Administrateur.php");
 
   class ControleurAdministrateur extends ControleurObjet {
 

@@ -1,5 +1,5 @@
 <?php
-  require_once("modele/voiture.php");
+  require_once("modele/Voiture.php");
 
   class ControleurVoiture extends ControleurObjet {
 

@@ -1,5 +1,5 @@
 <?php
-  require_once("modele/emprunt.php");
+  require_once("modele/Emprunt.php");
 
   class ControleurEmprunt extends ControleurObjet {
 

@@ -1,5 +1,5 @@
 <?php
-  require_once("modele/personnel.php");
+  require_once("modele/Personnel.php");
 
   class ControleurPersonnel extends ControleurObjet {
 

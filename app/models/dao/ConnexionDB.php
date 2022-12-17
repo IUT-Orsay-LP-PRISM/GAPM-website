@@ -19,7 +19,7 @@ class ConnexionDB
     /**
      * @return PDO Retourne l'instance de connexion à la BDD, si y'a aucune instance de connexion, on en crée une.
      */
-    public static function getInstance(): PDO
+    public static function getInstance()
     {
         if (is_null(self::$db)) {
             self::$db = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbName, self::$user, self::$passwd);
