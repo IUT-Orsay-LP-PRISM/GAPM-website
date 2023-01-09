@@ -50,9 +50,9 @@ class Includes
                         <p>Divers</p>
                         <ul>
                             <li><a href="#">Besoin d\'aide ?</a ></li >
-                            <li ><a href = "#" > A propos </a ></li >
-                            <li ><a href = "#" > Se connecter </a ></li >
-                            <li ><a href = "#" > S\'inscrire</a></li>
+                            <li ><a href="#">A propos </a ></li >
+                            <li ><a href="#">Se connecter </a ></li >
+                            <li ><a href="#">S\'inscrire</a></li>
                         </ul>
                     </div>
                     <div class="footer__social">
