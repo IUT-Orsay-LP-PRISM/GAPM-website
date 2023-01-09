@@ -1,5 +1,6 @@
 @import "tools/reset.css";
 @import "tools/icons";
+@import "tools/fonts";
 
 body {
   &.intervenant {
@@ -48,7 +49,6 @@ body {
     @import "variables";
   }
 }
-
 
 body {
   overflow-x : hidden;
