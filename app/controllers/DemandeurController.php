@@ -4,7 +4,7 @@ namespace App\controllers;
 
 use App\models\dao\DemandeurDAO;
 
-class DemandeurControlleur implements InterfaceController
+abstract class DemandeurController implements InterfaceController
 {
     public static function index()
     {
@@ -15,7 +15,8 @@ class DemandeurControlleur implements InterfaceController
 
     public static function store()
     {
-        // TODO: Implement store() method.
+
+
     }
 
     public static function update()
