@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models\dao;
+namespace App\models\DAO;
 
 use App\models\entity\Demandeur;
 use PDO;
@@ -12,7 +12,7 @@ class DemandeurDAO extends ConnexionDB{
 
     public static function findByNameOrCity($nom, $city)
     {
-        $sql = "SELECT * FROM demandeur WHERE nom LIKE :nom OR prenom LIKE :city";
+        $sql = "SELECT * FROM demandeur WHERE nom LIKE :nom AND prenom LIKE :city";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
             'nom' => "%$nom%",
