@@ -2,8 +2,6 @@
 
 require 'vendor/autoload.php';
 
-$loader = new \Twig\Loader\FilesystemLoader('app/views');
-
 use App\controllers\Route;
 
 // Les get de l'url

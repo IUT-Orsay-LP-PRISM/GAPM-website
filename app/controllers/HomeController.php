@@ -2,10 +2,17 @@
 
 namespace App\controllers;
 
-abstract class HomeController implements InterfaceController
+/**
+ * @template-extends Héritage de Template pour que les classes enfants puisse utiliser la méthode render beaucoup plus simplement
+ */
+abstract class HomeController extends Template implements InterfaceController
 {
     public static function index()
     {
-        require_once "app/views/home.php";
+
+        self::render('home.twig', [
+            'title' => 'Accueil - Bienvenue',
+            'type' => 'home'
+        ]);
     }
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<link rel="stylesheet" href="assets/prod/css/main.min.css">
+		<title>{% block title %}{% endblock %} • GAPM</title>
+	</head>
+	<body class="demandeur {% block type %}{% endblock %}">
+		{% include "includes/header.twig" %}
+		<div id="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+		{% include "includes/footer.twig" %}
+		<i id="popUp-connexion">{% include 'includes/popupConnexion.php' %}</i>
+		<i id="popUp-inscription">{% include 'includes/popUpInscription.php' %}</i>
+		<script src="assets/prod/js/main.min.js"></script>
+	</body>
+</html>
+

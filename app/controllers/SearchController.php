@@ -4,7 +4,7 @@ namespace App\controllers;
 
 use App\models\dao\DemandeurDAO;
 
-abstract class SearchController implements InterfaceController
+abstract class SearchController extends Template implements InterfaceController
 {
     public static function index()
     {
@@ -13,7 +13,13 @@ abstract class SearchController implements InterfaceController
 
         $demandeursRecherches = DemandeurDAO::findByNameOrCity($nom, $city);
 
-        require_once "app/views/search.php";
+        self::render('search.twig', [
+            'title' => "Recherche d'un médecin",
+            'type' => 'search',
+            'city' => $city,
+            'nom' => $nom,
+            'demandeurs' => $demandeursRecherches
+        ]);
     }
 
 }

@@ -3,27 +3,23 @@
 namespace App\controllers;
 
 use App\models\dao\DemandeurDAO;
-use App\models\entity\Session;
 
-abstract class DemandeurController extends TwigController implements InterfaceController
+abstract class DemandeurController extends Template implements InterfaceController
 {
     public static function index()
     {
         $lesDemandeurs = DemandeurDAO::findAll();
         $unDemandeur = DemandeurDAO::findById(5);
-        $session = Session::start();
 
-        self::render('demandeurListView.html.twig', [
+        self::render('demandeur/demandeurList.twig', [
             'lesDemandeurs' => $lesDemandeurs,
             'unDemandeur' => $unDemandeur,
-            'session' => $session
         ]);
     }
 
     public static function store()
     {
-
-
+        // TODO: Implement store() method.
     }
 
     public static function update()

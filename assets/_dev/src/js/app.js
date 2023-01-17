@@ -10,6 +10,12 @@ const popUp_inscription = document.querySelector('#popUp-inscription');
 const btn_cross = document.querySelectorAll('.cross');
 
 
+if (document.querySelector('.demandeur.home') && window.scrollY === 0) {
+    header.classList.add('transparent');
+} else if (document.querySelector('.demandeur.home')) {
+    header.classList.add('down');
+}
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > windowHeight) {
         header.classList.add('down');
