@@ -1910,6 +1910,8 @@ body.intervenant {
           width: 500px; } }
     body.intervenant .hp__banner-inputs {
       margin-top: 1.5rem; }
+      body.intervenant .hp__banner-inputs form {
+        display: flex; }
       body.intervenant .hp__banner-inputs-list {
         display: flex; }
       body.intervenant .hp__banner-inputs .input-container:not(:last-child) {
@@ -1918,6 +1920,8 @@ body.intervenant {
         width: 170px; }
       body.intervenant .hp__banner-inputs a {
         margin-top: 1.5rem; }
+      body.intervenant .hp__banner-inputs button {
+        margin-left: 1rem; }
   body.intervenant .hp__content {
     margin-bottom: 15rem; }
     body.intervenant .hp__content_row {
@@ -2297,17 +2301,20 @@ body.intervenant {
     body.intervenant #popUp-connexion.visible, body.intervenant #popUp-inscription.visible {
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; }
+      transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out; }
       body.intervenant #popUp-connexion.visible .popup, body.intervenant #popUp-inscription.visible .popup {
-        transform: translateY(40%);
-        transition: transform 1s ease-in-out; }
+        transform: translateY(0);
+        transition: all .8s ease-in-out; }
   body.intervenant .popup {
     position: fixed;
-    top: -50%;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 25%;
     height: 30em;
     background: #FFFFFF;
@@ -2315,8 +2322,8 @@ body.intervenant {
     border-radius: 25px;
     font-family: "Open Sans", sans-serif;
     z-index: 1;
-    transform: translateY(-40%);
-    transition: transform 1s ease-in-out; }
+    transform: translateY(-20px);
+    transition: transform 0.3s ease-in-out; }
     body.intervenant .popup.popup-inscription {
       width: 40%;
       height: 40em; }
@@ -2402,6 +2409,37 @@ body.intervenant {
     font-family: "Open Sans", sans-serif;
     font-size: 1.1em;
     font-weight: 600; }
+  body.intervenant #loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #FFFFFF;
+    transition: all .4s ease-in-out; }
+    body.intervenant #loader::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      margin-top: -50px;
+      margin-left: -50px;
+      border-radius: 50%;
+      border: 10px solid transparent;
+      border-top: 10px solid #257466;
+      animation: spin 1s linear infinite; }
+    body.intervenant #loader.--hidden {
+      opacity: 0;
+      visibility: hidden; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
   body.intervenant .icon {
     background: linear-gradient(180deg, #257466 0%, #36A793 100%);
     -webkit-background-clip: text;
@@ -2523,6 +2561,8 @@ body.demandeur {
           width: 500px; } }
     body.demandeur .hp__banner-inputs {
       margin-top: 1.5rem; }
+      body.demandeur .hp__banner-inputs form {
+        display: flex; }
       body.demandeur .hp__banner-inputs-list {
         display: flex; }
       body.demandeur .hp__banner-inputs .input-container:not(:last-child) {
@@ -2531,6 +2571,8 @@ body.demandeur {
         width: 170px; }
       body.demandeur .hp__banner-inputs a {
         margin-top: 1.5rem; }
+      body.demandeur .hp__banner-inputs button {
+        margin-left: 1rem; }
   body.demandeur .hp__content {
     margin-bottom: 15rem; }
     body.demandeur .hp__content_row {
@@ -2910,17 +2952,20 @@ body.demandeur {
     body.demandeur #popUp-connexion.visible, body.demandeur #popUp-inscription.visible {
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; }
+      transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out; }
       body.demandeur #popUp-connexion.visible .popup, body.demandeur #popUp-inscription.visible .popup {
-        transform: translateY(40%);
-        transition: transform 1s ease-in-out; }
+        transform: translateY(0);
+        transition: all .8s ease-in-out; }
   body.demandeur .popup {
     position: fixed;
-    top: -50%;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 25%;
     height: 30em;
     background: #FFFFFF;
@@ -2928,8 +2973,8 @@ body.demandeur {
     border-radius: 25px;
     font-family: "Open Sans", sans-serif;
     z-index: 1;
-    transform: translateY(-40%);
-    transition: transform 1s ease-in-out; }
+    transform: translateY(-20px);
+    transition: transform 0.3s ease-in-out; }
     body.demandeur .popup.popup-inscription {
       width: 40%;
       height: 40em; }
@@ -3015,6 +3060,37 @@ body.demandeur {
     font-family: "Open Sans", sans-serif;
     font-size: 1.1em;
     font-weight: 600; }
+  body.demandeur #loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #FFFFFF;
+    transition: all .4s ease-in-out; }
+    body.demandeur #loader::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      margin-top: -50px;
+      margin-left: -50px;
+      border-radius: 50%;
+      border: 10px solid transparent;
+      border-top: 10px solid #393BAA;
+      animation: spin 1s linear infinite; }
+    body.demandeur #loader.--hidden {
+      opacity: 0;
+      visibility: hidden; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
   body.demandeur .icon {
     background: linear-gradient(180deg, #393BAA 0%, #5154EC 100%);
     -webkit-background-clip: text;
@@ -3027,6 +3103,9 @@ body.demandeur {
       font-size: 1.5rem; }
   body.demandeur .banner_bg {
     content: url(../img/banner_gradient.png); }
+
+html {
+  scroll-behavior: smooth; }
 
 body {
   overflow-x: hidden; }

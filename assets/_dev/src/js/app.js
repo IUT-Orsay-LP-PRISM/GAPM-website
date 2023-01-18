@@ -16,6 +16,10 @@ if (document.querySelector('.demandeur.home') && window.scrollY === 0) {
     header.classList.add('down');
 }
 
+window.addEventListener('load', function () {
+    document.querySelector('#loader').classList.add('--hidden');
+});
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > windowHeight) {
         header.classList.add('down');
@@ -67,8 +71,6 @@ btn_cross.forEach(btn => btn
         document.body.style.overflowY = "auto";
     }));
 
-
-document.getElementById('switch').addEventListener('click', changeColor);
 
 function changeColor() {
     document.body.classList.toggle('demandeur');

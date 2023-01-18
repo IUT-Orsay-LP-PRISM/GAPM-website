@@ -5,6 +5,7 @@
 		<title>{% block title %}{% endblock %} • GAPM</title>
 	</head>
 	<body class="demandeur {% block type %}{% endblock %}">
+		<div id="loader"></div>
 		{% include "includes/header.twig" %}
 		<div id="content">
 			{% block content %}
