@@ -2,7 +2,6 @@
 
 namespace App\models\DAO;
 
-
 use App\models\entity\Demandeur;
 
 use PDO;
@@ -56,6 +55,7 @@ class ConnexionDB
     {
         try {
             $query = "SELECT * FROM " . static::$entity. " WHERE id_" . static::$entity. " = :id";
+
             $rs = self::getInstance()->prepare($query);
             $rs->setFetchMode(PDO::FETCH_CLASS, 'App\models\entity\\' . static::$entity);
             $rs->execute(
