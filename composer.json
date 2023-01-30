@@ -42,6 +42,12 @@
         }
     },
     "require": {
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+        "twig/twig": "3.0",
+        "symfony/asset": "5.4.x-dev",
+        "polarising/bcrypt": "dev-master"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "5.4.x-dev"
     }
 }

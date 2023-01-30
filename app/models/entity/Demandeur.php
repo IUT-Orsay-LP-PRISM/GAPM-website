@@ -5,15 +5,16 @@ namespace App\models\entity;
 class Demandeur
 {
 
-    private $idDemandeur;
-    private $login;
-    private $motDePasse;
-    private $nom;
-    private $prenom;
-    private $dateNaissance;
-    private $adresse;
-    private $telephone;
-    private $sexe;
+    private int $id_Demandeur;
+    private string $login;
+    private string $motDePasse;
+    private string $nom;
+    private string $prenom;
+    private string $dateNaissance;
+    private string $adresse;
+    private string $telephone;
+    private string $sexe;
+    private int $id_Ville;
 
     // -------------------------------------------------------------------------------------------
     // Constructeur
@@ -41,15 +42,15 @@ class Demandeur
      */
     public function getIdDemandeur()
     {
-        return $this->idDemandeur;
+        return $this->id_Demandeur;
     }
 
     /**
-     * @param int $idDemandeur
+     * @param int $id_Demandeur
      */
-    public function setIdDemandeur(int $idDemandeur)
+    public function setIdDemandeur(int $id_Demandeur)
     {
-        $this->idDemandeur = $idDemandeur;
+        $this->id_Demandeur = $id_Demandeur;
     }
 
     /**
@@ -179,5 +180,22 @@ class Demandeur
     {
         $this->sexe = $sexe;
     }
+
+    /**
+     * @return int
+     */
+    public function getIdVille()
+    {
+        return $this->id_Ville;
+    }
+
+    /**
+     * @param int $id_Ville
+     */
+    public function setIdVille(int $id_Ville)
+    {
+        $this->id_Ville = $id_Ville;
+    }
+
 
 }

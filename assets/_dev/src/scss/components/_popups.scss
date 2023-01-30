@@ -2,7 +2,6 @@
   opacity    : 0;
   visibility : hidden;
 
-
   &:after {
     content          : "";
     display          : block;
@@ -23,11 +22,11 @@
   &.visible {
     opacity    : 1;
     visibility : visible;
-    transition : opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out;
 
     .popup {
-      transform  : translateY(40%);
-      transition : transform 1s ease-in-out;
+      transform: translateY(0);
+      transition : all .8s ease-in-out;
     }
   }
 }
@@ -35,11 +34,14 @@
 
 .popup {
   position      : fixed;
-  top           : -50%;
-  left          : 0;
+  top: 0;
+  left: 0;
   right         : 0;
   bottom        : 0;
   margin        : auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   width         : 25%;
   height        : 30em;
@@ -48,8 +50,8 @@
   border-radius : $borderRadius;
   font-family   : $mainFont;
   z-index       : 1;
-  transform     : translateY(-40%);
-  transition    : transform 1s ease-in-out;
+  transform: translateY(-20px);
+  transition    : transform 0.3s ease-in-out;
 
   &.popup-inscription {
     width  : 40%;

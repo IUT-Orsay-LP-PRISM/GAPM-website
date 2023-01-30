@@ -4,19 +4,22 @@ namespace App\controllers;
 
 use App\models\dao\DemandeurDAO;
 
-abstract class DemandeurController implements InterfaceController
+abstract class DemandeurController extends Template implements InterfaceController
 {
     public static function index()
     {
         $lesDemandeurs = DemandeurDAO::findAll();
-        $unDemandeur = DemandeurDAO::findById(1);
-        require_once "app/views/demandeurListView.php";
+        $unDemandeur = DemandeurDAO::findById(5);
+
+        self::render('demandeur/demandeurList.twig', [
+            'lesDemandeurs' => $lesDemandeurs,
+            'unDemandeur' => $unDemandeur,
+        ]);
     }
 
     public static function store()
     {
-
-
+        // TODO: Implement store() method.
     }
 
     public static function update()

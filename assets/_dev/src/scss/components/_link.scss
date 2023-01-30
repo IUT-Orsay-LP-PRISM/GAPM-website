@@ -7,3 +7,42 @@
   font-weight     : 600;
 
 }
+
+#loader {
+  position : fixed;
+  top      : 0;
+  left     : 0;
+  width         : 100vw;
+  height        : 100vh;
+  z-index  : 9999;
+  background-color: $white;
+  transition: all .4s ease-in-out;
+
+  &::before {
+    content: "";
+    position      : absolute;
+    top           : 50%;
+    left          : 50%;
+    width         : 100px;
+    height        : 100px;
+    margin-top    : -50px;
+    margin-left   : -50px;
+    border-radius : 50%;
+    border        : 10px solid transparent;
+    border-top    : 10px solid $primaryDark;
+    animation     : spin 1s linear infinite;
+  }
+  &.--hidden{
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform : rotate(0deg);
+  }
+  100% {
+    transform : rotate(360deg);
+  }
+}
