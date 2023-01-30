@@ -6,8 +6,9 @@ class Route
 {
     public static function get(string $str, string $controller, string $action)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_SERVER['REQUEST_URI'] === $str) {
-            $controller = "App\\controllers\\{$controller}";
+        $url = $_SERVER['REQUEST_URI'];
+        if ($str === $url){
+            $controller = "App\\controllers\\".$controller;
             $controller::$action();
         }
     }
@@ -22,13 +23,12 @@ class Route
         }
     }
 
-    public static function post(string $str, string $controller, string $action)
+    public static function post()
     {
-        $url = $_GET['action'];
-        if ($str === $url){
-            $controller = "App\\controllers\\".$controller;
-            $controller::$action();
-        }
+        /**
+         * TODO: Faire le système d'implémentation pour les formulaires, récupérés les valeurs etc..
+         * TODO: Faire le système de vérification des données
+         */
     }
 
 }
