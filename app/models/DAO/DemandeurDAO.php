@@ -21,4 +21,30 @@ class DemandeurDAO extends ConnexionDB{
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         return $stmt->fetchAll();
     }
+    public static function checkIfLoginExists($login){
+        $sql = "SELECT login FROM demandeur WHERE login = :login";
+        $stmt = self::getInstance()->prepare($sql);
+        $stmt->execute([
+            'login' => "$login"
+        ]);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
+        $result = $stmt->fetchAll();
+        if($result != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+
+    public static function getPasswordFromLogin($login){
+        $sql = "SELECT motDePasse FROM demandeur WHERE login = :login ";
+        $stmt = self::getInstance()->prepare($sql);
+        $stmt->execute([
+            'login' => "$login"
+        ]);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
+        return $stmt->fetch();
+    }
 }
