@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use App\models\dao\DemandeurDAO;
+use App\models\entity\Session;
 
 abstract class DemandeurController extends Template implements InterfaceController
 {
@@ -35,5 +36,28 @@ abstract class DemandeurController extends Template implements InterfaceControll
     public static function show()
     {
         // TODO: Implement show() method.
+    }
+
+    public static function login(){
+        $login = $_POST['login'];
+        $password  = $_POST['password'];
+
+        var_dump($_POST);
+        $salt= "legrosseldeguerande";
+        $saltedAndHashed = crypt($password,$salt);
+        var_dump($saltedAndHashed);
+        if(DemandeurDAO::checkIfLoginExists($login)){
+            $userPassword = DemandeurDAO::getPasswordFromLogin($login);
+            if($userPassword->getMotDePasse() == $saltedAndHashed){
+                Session::set('connected',1);
+                die("Connecté");
+            }
+            else{
+                die("Mauvais mot de passe");
+            }
+        }
+        else{
+            die("L'utilisateur demandé n'existe pas");
+        }
     }
 }

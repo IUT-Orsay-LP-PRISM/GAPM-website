@@ -10,7 +10,7 @@ Route::get('/?action=demandeur', 'DemandeurController', 'index');
 Route::get('/?action=inscription_intervenant', 'InscriptionIntervenenantController', 'index');
 
 // Les post de l'url
-Route::post('/?actionconnexion', 'DemandeurController', 'login');
+Route::get('/?action=loginUser', 'DemandeurController', 'login');
 
 // route::search pour le système de recherche, différent de ::get()
 Route::search('/?action=search');
