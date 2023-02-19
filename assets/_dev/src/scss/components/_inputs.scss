@@ -1,5 +1,5 @@
 .input-container {
-  font-family      : 'Poppins', sans-serif;
+  font-family      : $titleFont;
   position         : relative;
   box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
   border-radius    : 10px;
@@ -16,6 +16,13 @@
 
   i {
     margin : 0 1rem;
+  }
+
+  select.input {
+    color          : $primaryDark;
+    padding: 0;
+    font-size: 1rem;
+    font-family: $titleFont;
   }
 
   .input {

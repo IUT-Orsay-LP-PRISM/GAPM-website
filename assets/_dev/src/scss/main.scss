@@ -3,6 +3,8 @@
 @import "tools/fonts";
 
 body {
+  $greenLight               : #AEDBD3;
+
   &.intervenant {
     $primaryLight             : #36A793;
     $primaryDark              : #257466;

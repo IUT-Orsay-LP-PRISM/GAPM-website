@@ -46,6 +46,12 @@
     background-image : $gradientSecondaryToLight;
   }
 
+  &.btn-greenLight {
+    border           : none;
+    color            : $primaryDark;
+    background-color : $greenLight;
+  }
+
   svg {
     vertical-align : text-top;
   }

@@ -1,12 +1,32 @@
-<section class="popup popup-inscription">
-    <i class="cross"></i>
+{% extends "base.twig" %}
 
-    <section class="popup-container">
-        <h1 class="text__underline-light">Inscription</h1>
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block type %}
+    {{ type }}
+{% endblock %}
+
+{% block content %}
+    <section class="inscr_intervenant__banner">
+        <a href="/" class="btn btn-greenLight"><i class="icon icon-fi-rr-arrow-left"></i> Retour à l'accueil</a>
+        <div class="row">
+            <div>
+                <h1>Vous souhaitez </br> exercer votre <span class="text__underline-light">métier ?</span></h1>
+                <h2>N'attendez plus, postulez dès maintenant.</h2>
+                <a class="btn btn-primary-nb" href="#form">S'inscrire dès maintenant !</a>
+            </div>
+            <div>
+                {% include 'svg/illu_banner.svg' %}
+            </div>
+        </div>
+    </section>
+    <section class="inscr_intervenant__form" id="form">
         <form action="">
-            <p>Vous êtes praticien <a href="?action=inscription_intervenant" class="link">Voir Formulaire</a></p>
+            <h2 class="text__underline-light">Inscription Pro</h2>
 
-            <div class="popup-container-row">
+            <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
                     <input id="name" class="input" type="text" required/>
@@ -19,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="popup-container-row">
+            <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
                     <input id="e-mail" class="input" type="text" required/>
@@ -31,14 +51,14 @@
                     <label class="label" for="birthday">Votre date de naissance</label>
                 </div>
             </div>
-            <div class="popup-container-row">
+            <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-home-location-alt"></i>
                     <input id="adress" class="input" type="text" required/>
                     <label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
                 </div>
             </div>
-            <div class="popup-container-row">
+            <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-map-marker"></i>
                     <input id="ville" class="input" type="text" required/>
@@ -50,7 +70,7 @@
                     <label class="label" for="cp">Code postal</label>
                 </div>
             </div>
-            <div class="popup-container-row">
+            <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-key"></i>
                     <input id="mdp-insc" class="input" type="text" required/>
@@ -62,11 +82,33 @@
                     <label class="label" for="tel">Téléphone portable</label>
                 </div>
             </div>
+            <div class="separator">
+                <div></div>
+            </div>
+            <div class="inscr_intervenant__form-container-row">
+                <div class="input-container">
+                    <i class="icon icon-fi-rr-doctor"></i>
+                    <select id="specialite" class="input" required>
+                        <option disabled selected hidden value="0">Votre spécialité</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                </div>
+                <div class="car">
+                    <p>Demande de voiture </br> de fonction</p>
+                    <label class="switch">
+                        <input type="checkbox"/>
+                        <span></span>
+                    </label>
+                </div>
+            </div>
             <button class="btn btn-primary-nb" type="submit">
                 <i class="icon-w icon-fi-rr-user-add"></i>
                 S'inscrire
             </button>
         </form>
+
     </section>
 
-</section>
+{% endblock %}
