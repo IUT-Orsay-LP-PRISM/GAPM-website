@@ -26,7 +26,7 @@ class ConnexionDB
     public static function getInstance()
     {
         if (is_null(self::$db)) {
-            self::$db = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbName, self::$user, self::$passwd);
+            self::$db = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbName, self::$user, self::$passwd, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         return self::$db;
