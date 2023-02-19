@@ -39,15 +39,15 @@ abstract class DemandeurController extends Template implements InterfaceControll
     }
 
     public static function login(){
-        $login = $_POST['login'];
+        $email = $_POST['email'];
         $password  = $_POST['password'];
 
         var_dump($_POST);
         $salt= "legrosseldeguerande";
         $saltedAndHashed = crypt($password,$salt);
         var_dump($saltedAndHashed);
-        if(DemandeurDAO::checkIfLoginExists($login)){
-            $userPassword = DemandeurDAO::getPasswordFromLogin($login);
+        if(DemandeurDAO::checkIfEmailExists($email)){
+            $userPassword = DemandeurDAO::getPasswordFromEmail($email);
             if($userPassword->getMotDePasse() == $saltedAndHashed){
                 Session::set('connected',1);
                 die("Connecté");

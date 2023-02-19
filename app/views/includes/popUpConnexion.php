@@ -8,7 +8,7 @@
             <div class="popup-container-col">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
-                    <input id="loginPopUp" name="login" class="input" type="text" required/>
+                    <input id="loginPopUp" name="email" class="input" type="text" required/>
                     <label class="label" for="loginPopUp">Votre adresse e-mail</label>
                 </div>
                 <div class="input-container">

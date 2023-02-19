@@ -21,11 +21,11 @@ class DemandeurDAO extends ConnexionDB{
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         return $stmt->fetchAll();
     }
-    public static function checkIfLoginExists($login){
-        $sql = "SELECT login FROM demandeur WHERE login = :login";
+    public static function checkIfEmailExists($email){
+        $sql = "SELECT login FROM demandeur WHERE email = :email";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
-            'login' => "$login"
+            'email' => "$email"
         ]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         $result = $stmt->fetchAll();
@@ -38,11 +38,11 @@ class DemandeurDAO extends ConnexionDB{
         
     }
 
-    public static function getPasswordFromLogin($login){
-        $sql = "SELECT motDePasse FROM demandeur WHERE login = :login ";
+    public static function getPasswordFromEmail($email){
+        $sql = "SELECT motDePasse FROM demandeur WHERE email = :email ";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
-            'login' => "$login"
+            'email' => "$email"
         ]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         return $stmt->fetch();
