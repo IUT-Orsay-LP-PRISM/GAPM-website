@@ -8,7 +8,7 @@ const popUp_connexion = document.querySelector('#popUp-connexion');
 const popUp_inscription = document.querySelector('#popUp-inscription');
 
 const btn_cross = document.querySelectorAll('.cross');
-
+const openPopUpInsc = document.querySelector('#openPopUpInsc');
 
 if (document.querySelector('.demandeur.home') && window.scrollY === 0) {
     header.classList.add('transparent');
@@ -54,14 +54,10 @@ btn_connexion.addEventListener('click', () => {
 });
 
 btn_inscription.addEventListener('click', () => {
-    popUp_inscription.classList.toggle('visible');
-    popUp_connexion.classList.remove('visible');
-    if (popUp_inscription.classList.contains('visible')) {
-        document.body.style.overflowY = "hidden";
-    } else {
-        document.body.style.overflowY = "auto";
-    }
-    window.scrollTo(0, 0);
+    openPopUpInscription();
+});
+openPopUpInsc.addEventListener('click', () => {
+    openPopUpInscription();
 });
 
 btn_cross.forEach(btn => btn
@@ -77,4 +73,14 @@ function changeColor() {
     document.body.classList.toggle('intervenant');
 }
 
+function openPopUpInscription() {
+    popUp_inscription.classList.toggle('visible');
+    popUp_connexion.classList.remove('visible');
+    if (popUp_inscription.classList.contains('visible')) {
+        document.body.style.overflowY = "hidden";
+    } else {
+        document.body.style.overflowY = "auto";
+    }
+    window.scrollTo(0, 0);
+}
 

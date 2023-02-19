@@ -4,7 +4,7 @@
     <section class="popup-container">
         <h1 class="text__underline-light">Connexion</h1>
         <form method="post" action="?action=connexion">
-            <p>Vous n'avez pas de compte ? <a class="link">Inscrivez-vous .</a></p>
+            <p>Vous n'avez pas de compte ? <a class="link" id="openPopUpInsc">Inscrivez-vous .</a></p>
 
             <div class="popup-container-col">
                 <div class="input-container">

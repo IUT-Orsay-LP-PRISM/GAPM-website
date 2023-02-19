@@ -4,7 +4,7 @@
     <section class="popup-container">
         <h1 class="text__underline-light">Inscription</h1>
         <form action="">
-            <p>Vous êtes praticien <a class="link">Voir Formulaire</a></p>
+            <p>Vous êtes praticien <a href="?action=inscription_intervenant" class="link">Voir Formulaire</a></p>
 
             <div class="popup-container-row">
                 <div class="input-container">
