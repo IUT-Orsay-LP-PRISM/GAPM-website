@@ -4,7 +4,9 @@ namespace App\models\entity;
 
 class Service{
 
-	private $idService;
+	private $id_Service;
+
+    private $libelle;
 	private $description;
 
     // -------------------------------------------------------------------------------------------
@@ -25,12 +27,17 @@ class Service{
     /**
      * @return mixed - Getteur id service
      */
-	public function getIdService(){return $this->idService;}
+	public function getIdService(){return $this->id_Service;}
 
     /**
      * @return mixed - Getteur description
      */
 	public function getDescription(){return $this->description;}
+
+    /**
+     * @return mixed - Getteur libelle
+     */
+    public function getLibelle(){return $this->libelle;}
 
     // -------------------------------------------------------------------------------------------
     // Setters
@@ -50,6 +57,16 @@ class Service{
     {
         $this->description = $description;
     }
+
+    /**
+     * @param mixed $libelle
+     */
+    public function setLibelle($libelle): void
+    {
+        $this->libelle = $libelle;
+    }
+
+
 
 
 

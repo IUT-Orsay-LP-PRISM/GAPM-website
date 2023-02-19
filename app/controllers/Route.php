@@ -23,6 +23,16 @@ class Route
         }
     }
 
+    public static function autocomplete(string $str, string $controller)
+    {
+        $url = $_SERVER['REQUEST_URI'];
+        $url = explode('&', $url);
+        if ($url[0] == $str){
+            $controller = "App\\controllers\\".$controller."Controller";
+            $controller::autocomplete();
+        }
+    }
+
     public static function post()
     {
         /**

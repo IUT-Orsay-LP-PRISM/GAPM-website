@@ -14,3 +14,7 @@ Route::get('/?action=loginUser', 'DemandeurController', 'login');
 
 // route::search pour le système de recherche, différent de ::get()
 Route::search('/?action=search');
+
+// route::search pour le système de autocomplete, différent de ::get()
+Route::autocomplete('/?action=autocomplete','Service');
+
