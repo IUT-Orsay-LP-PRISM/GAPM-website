@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Page • 404</title>
+</head>
+<body>
+<header>
+    <h1>OOPS! - 404</h1>
+    <h3>Nous ne pouvons pas trouver la page que vous recherchez.</h3>
+    <a id="backHome" href="/">CLICK HERE TO GO BACK HOME</a>
+</header>
+</br>
+<div class='container top'>
+    <div>
+        <br>Nombre de coups: <span id="clickcount">0</span>
+        <br>Temps : <input type="text" name="chronotime" id="chronotime" value="00:00:00"/>
+    </div>
+    <div>
+        <p>Meilleur score : <span id="best">0</span> coups
+            <br>Meilleur temps : <span id="bestchrono">00:00:000</span></p>
+    </div>
+</div>
+
+<!-- Modal results -->
+<div id="resultats" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p></p>
+        <button type="button" id="rejouer"> Rejouer</button>
+    </div>
+</div>
+<br>
+
+<!-- Deck -->
+<section class='deck container flex'>
+    <div class='card'>
+        <div class='inner' value="0">
+            <p class='front'>&#10068;</p>
+            <p class='back back1'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="1">
+            <p class='front'>&#10068;</p>
+            <p class='back back2'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="2">
+            <p class='front'>&#10068;</p>
+            <p class='back back3'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="3">
+            <p class='front'>&#10068;</p>
+            <p class='back back4'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="4">
+            <p class='front'>&#10068;</p>
+            <p class='back back5'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="5">
+            <p class='front'>&#10068;</p>
+            <p class='back back6'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="6">
+            <p class='front'>&#10068;</p>
+            <p class='back back7'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="7">
+            <p class='front'>&#10068;</p>
+            <p class='back back8'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="8">
+            <p class='front'>&#10068;</p>
+            <p class='back back9'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="9">
+            <p class='front'>&#10068;</p>
+            <p class='back back10'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="10">
+            <p class='front'>&#10068;</p>
+            <p class='back back11'></p>
+        </div>
+    </div>
+    <div class='card'>
+        <div class='inner' value="11">
+            <p class='front'>&#10068;</p>
+            <p class='back back12'></p>
+        </div>
+    </div>
+</section>
+<br>
+<button type="button" id="playagain">Recommencer</button>
+</body>
+
+<style>
+    header {
+        font-size       : 1.5em;
+        margin          : auto;
+        text-align      : center;
+        text-decoration : none;
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+        flex-direction  : column;
+        color           : #FFFFFF;
+    }
+
+    body {
+        margin           : 0;
+        width            : 100%;
+        background-color : #333;
+        padding          : 20px 0;
+    }
+
+    input {
+        background-color : #333;
+    }
+
+    html, input, button {
+        font-family : "Montserrat", sans-serif;
+        font-size   : 1.05em;
+        color       : #fff;
+    }
+
+    button {
+        width            : fit-content;
+        padding          : 10px 20px;
+        background-color : #03a9f4;
+        color            : #fff;
+        border           : 0px solid #333;
+        border-radius    : 3px;
+        text-transform   : uppercase;
+    }
+
+    button:hover, #backHome:hover {
+        background-color : #0095d8;
+    }
+
+    #chronotime {
+        border : none;
+    }
+
+    .container {
+        width           : 650px;
+        margin          : auto;
+        user-select     : none;
+        display         : flex;
+        justify-content : space-between;
+    }
+
+    .flex {
+        display         : flex;
+        justify-content : space-evenly;
+        flex-wrap       : wrap;
+    }
+
+    .card {
+        width          : 150px;
+        height         : 150px;
+        cursor         : pointer;
+        padding-bottom : 10px;
+    }
+
+    .inner {
+        position   : relative;
+        width      : 100%;
+        height     : 100%;
+        text-align : center;
+        transition : transform 0.4s;
+    }
+
+    .inner p {
+        font-size       : 3em;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        margin          : 0;
+    }
+
+    .card .flipped {
+        -webkit-transform : rotateY(180deg);
+        -moz-transform    : rotateY(180deg);
+        -o-transform      : rotateY(180deg);
+        transform         : rotateY(180deg);
+        transform-style   : preserve-3d;
+    }
+
+    .front, .back {
+        position            : absolute;
+        width               : 100%;
+        height              : 100%;
+        backface-visibility : hidden;
+        border-radius       : 3px;
+    }
+
+    .front {
+        background : lightblue;
+    }
+
+    .back {
+        background : khaki;
+        transform  : rotateY(180deg);
+        transition : all 0.4s ease-out;
+    }
+
+    .foundCard {
+        background-color : #b5e25a;
+    }
+
+    .modal {
+        display          : none;
+        position         : fixed;
+        z-index          : 1;
+        padding-top      : 100px;
+        left             : 0;
+        top              : 0;
+        width            : 100%;
+        height           : 100%;
+        overflow         : auto;
+        background-color : rgb(0, 0, 0);
+        background-color : rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color : #111111;
+        margin           : auto;
+        padding          : 20px;
+        border           : 1px solid #333;
+        width            : 80%;
+        text-align       : center;
+        border-radius    : 3px;
+    }
+
+    .close {
+        color       : #aaaaaa;
+        float       : right;
+        font-size   : 28px;
+        font-weight : bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color           : #000;
+        text-decoration : none;
+        cursor          : pointer;
+    }
+
+    #playagain {
+        margin  : auto;
+        display : block;
+    }
+
+    #backHome {
+        background-color : #03a9f4;
+        color            : #fff;
+        border           : 0px solid #333;
+        border-radius    : 3px;
+        text-transform   : uppercase;
+        width            : fit-content;
+        padding          : 10px 20px;
+        margin           : 20px auto;
+        display          : block;
+    }
+
+</style>
+
+<script>
+    let cardsArray = [
+            '&#128137;', '&#128137;',
+            '&#129656;', '&#129656;',
+            '&#128138;', '&#128138;',
+            '&#129657;', '&#129657;',
+            '&#129658;', '&#129658;',
+            '&#129659;', '&#129659;'],
+        flippedCard = [],
+        flippedId = [],
+        found = [],
+        clickCount = 0,
+        bestScore = 99,
+        bestChrono = "10:00:000",
+        innerCards = document.querySelectorAll(".inner"),
+        backs = document.querySelectorAll(".back"),
+        clickDisplay = document.getElementById("clickcount"),
+        close = document.getElementsByClassName("close")[0],
+        resultDisplay = document.getElementById("resultats"),
+        resultText = document.querySelector(".modal-content p"),
+        bestChronoDisplay = document.getElementById("bestchrono"),
+        bestScoreDisplay = document.getElementById("best");
+
+    window.onload = start();
+    document.getElementById("rejouer").addEventListener("click", newGame);
+    document.getElementById("playagain").addEventListener("click", newGame);
+
+    function start() {
+        shuffle(cardsArray);
+        assignCards();
+        innerCards.forEach(card => card.addEventListener("click", flippedCards));
+    }
+
+    function assignCards() {
+        for (let i = 0; i < cardsArray.length; i++) {
+            backs[i].innerHTML = cardsArray[i];
+        }
+        backs.forEach(back => back.classList.remove("foundCard"));
+    }
+
+    function flippedCards() {
+        if (isStarted === false) {
+            chronoStart();
+            isStarted = true;
+        }
+        this.classList.add("flipped");
+        flippedCard.push(this.children[1].innerHTML);
+        flippedId.push(this.getAttribute("value"));
+        if (flippedId[0] === flippedId[1]) {
+            flippedId.splice(1);
+            flippedCard.splice(1);
+        }
+        if (flippedId.length === 2) {
+            clickCount++;
+            innerCards.forEach(card => card.removeEventListener("click", flippedCards));
+            setTimeout(checkCards, 600);
+        }
+        clickDisplay.innerHTML = clickCount;
+    }
+
+    function checkCards() {
+        innerCards.forEach(card => card.addEventListener("click", flippedCards));
+        if (flippedCard[0] === flippedCard[1]) {
+            found.push(flippedCard);
+            backs[flippedId[0]].classList.add("foundCard");
+            backs[flippedId[1]].classList.add("foundCard");
+        } else {
+            innerCards[flippedId[0]].classList.remove("flipped");
+            innerCards[flippedId[1]].classList.remove("flipped");
+        }
+        flippedCard = [];
+        flippedId = [];
+        if (found.length === cardsArray.length / 2) {
+            results();
+        }
+    }
+
+    function results() {
+        chronoStop();
+        innerCards.forEach(card => card.removeEventListener("click", flippedCards));
+        resultDisplay.style.display = "block";
+        resultText.innerHTML = "<h1>Bravo</h1> " + "Vous avez trouvé toutes les paires en " + clickCount + " coups <br>" + "Le tout en " + chronotime.value + " secondes";
+        if (clickCount < bestScore) {
+            bestScore = clickCount;
+            bestScoreDisplay.innerHTML = bestScore;
+        }
+        if (chronotime.value < bestChrono) {
+            bestChrono = chronotime.value;
+            bestChronoDisplay.innerHTML = bestChrono;
+        }
+        close.onclick = function () {
+            resultDisplay.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == resultDisplay) {
+                resultDisplay.style.display = "none";
+            }
+        }
+    }
+
+    function newGame() {
+        resultDisplay.style.display = "none";
+        clickDisplay.innerHTML = 0;
+        isStarted = false;
+        clickCount = 0;
+        flipped = [];
+        flippedId = [];
+        found = [];
+        innerCards.forEach(card => card.classList.remove("flipped"));
+        chronoReset();
+        chronoStop();
+        start();
+    }
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    let startTime = 0,
+        isStarted = false,
+        startTemps = 0,
+        end = 0,
+        diff = 0,
+        timerID = 0;
+
+    function chrono() {
+        end = new Date();
+        diff = end - startTemps;
+        diff = new Date(diff);
+        let msec = diff.getMilliseconds();
+        let sec = diff.getSeconds();
+        let min = diff.getMinutes();
+        if (min < 10) {
+            min = "0" + min;
+        }
+        if (sec < 10) {
+            sec = "0" + sec;
+        }
+        if (msec < 10) {
+            msec = "00" + msec;
+        } else if (msec < 100) {
+            msec = "0" + msec
+        }
+        document.getElementById("chronotime").value = min + ":" + sec + ":" + msec;
+        timerID = setTimeout("chrono()", 10);
+    }
+
+    function chronoStart() {
+        startTemps = new Date();
+        chrono();
+    }
+
+    function chronoReset() {
+        document.getElementById("chronotime").value = "00:00:000";
+        startTemps = new Date();
+    }
+
+    function chronoStop() {
+        clearTimeout(timerID);
+    }
+</script>
+
+</html>
