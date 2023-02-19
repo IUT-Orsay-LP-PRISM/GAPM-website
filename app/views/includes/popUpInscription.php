@@ -9,57 +9,57 @@
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
-                    <input id="name" class="input" type="text" required/>
-                    <label class="label" for="name">Votre nom</label>
+                    <input id="namePopUp" class="input" type="text" required/>
+                    <label class="label" for="namePopUp">Votre nom</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
-                    <input id="first-name" class="input" type="text" required/>
-                    <label class="label" for="first-name">Votre Prénom</label>
+                    <input id="first-namePopUp" class="input" type="text" required/>
+                    <label class="label" for="first-namePopUp">Votre Prénom</label>
                 </div>
             </div>
 
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
-                    <input id="e-mail" class="input" type="text" required/>
-                    <label class="label" for="e-mail">Votre adresse e-mail</label>
+                    <input id="e-mailPopUp" class="input" type="text" required/>
+                    <label class="label" for="e-mailPopUp">Votre adresse e-mail</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-calendar"></i>
-                    <input id="birthday" class="input" type="date" required/>
-                    <label class="label" for="birthday">Votre date de naissance</label>
+                    <input id="birthdayPopUp" class="input" type="date" required/>
+                    <label class="label" for="birthdayPopUp">Votre date de naissance</label>
                 </div>
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-home-location-alt"></i>
-                    <input id="adress" class="input" type="text" required/>
-                    <label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
+                    <input id="adressPopUp" class="input" type="text" required/>
+                    <label class="label" for="adressPopUp">Votre adresse (Numéro, Rue)</label>
                 </div>
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-map-marker"></i>
-                    <input id="ville" class="input" type="text" required/>
-                    <label class="label" for="ville">Ville</label>
+                    <input id="villePopUp" class="input" type="text" required/>
+                    <label class="label" for="villePopUp">Ville</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-thumbtack"></i>
-                    <input id="cp" class="input" type="text" required/>
-                    <label class="label" for="cp">Code postal</label>
+                    <input id="cpPopUp" class="input" type="text" required/>
+                    <label class="label" for="cpPopUp">Code postal</label>
                 </div>
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-key"></i>
-                    <input id="mdp-insc" class="input" type="text" required/>
-                    <label class="label" for="mdp-insc">Votre mot de passe</label>
+                    <input id="mdp-inscPopUp" class="input" type="text" required/>
+                    <label class="label" for="mdp-inscPopUp">Votre mot de passe</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-phone-call"></i>
-                    <input id="tel" class="input" type="text" required/>
-                    <label class="label" for="tel">Téléphone portable</label>
+                    <input id="telPopUp" class="input" type="text" required/>
+                    <label class="label" for="telPopUp">Téléphone portable</label>
                 </div>
             </div>
             <button class="btn btn-primary-nb" type="submit">

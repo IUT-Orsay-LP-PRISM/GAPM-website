@@ -2094,7 +2094,7 @@ body.intervenant {
     align-items: center;
     flex-direction: column;
     padding: 2em;
-    height: 50em; }
+    height: auto; }
     body.intervenant .inscr_intervenant__form h2 {
       font-size: 2.5em;
       margin-bottom: 2rem;
@@ -2103,7 +2103,7 @@ body.intervenant {
       width: content-box; }
     body.intervenant .inscr_intervenant__form form {
       width: 50em;
-      height: 100%;
+      height: fit-content;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -2113,76 +2113,73 @@ body.intervenant {
       padding: 2em;
       border-radius: 25px; }
       body.intervenant .inscr_intervenant__form form button[type="submit"] {
-        width: 12em; }
-    body.intervenant .inscr_intervenant__form-container-row .car {
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      flex-direction: row;
-      width: 40%; }
-      body.intervenant .inscr_intervenant__form-container-row .car p {
-        margin-right: 2em;
-        color: #787878;
-        font-family: "Open Sans", sans-serif; }
-      body.intervenant .inscr_intervenant__form-container-row .car .switch {
-        display: inline-block;
-        position: relative;
-        width: 70px;
-        height: 30px;
-        cursor: pointer; }
-        body.intervenant .inscr_intervenant__form-container-row .car .switch input {
-          position: absolute;
-          top: -30px;
-          left: -30px;
-          width: 0;
-          height: 0; }
-          body.intervenant .inscr_intervenant__form-container-row .car .switch input + span {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #86CABE;
-            border-radius: 20px; }
-          body.intervenant .inscr_intervenant__form-container-row .car .switch input + span:before {
-            content: "Non";
-            font-family: "Open Sans", sans-serif;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 50%;
-            left: -4px;
-            width: 45px;
-            height: 42px;
-            background: #FFFFFF;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 50%;
-            transform: translateY(-50%);
-            transition: all .5s; }
-          body.intervenant .inscr_intervenant__form-container-row .car .switch input:checked + span {
-            background: linear-gradient(90deg, #257466 0%, #36A793 50%); }
-          body.intervenant .inscr_intervenant__form-container-row .car .switch input:checked + span:before {
-            left: 34px;
-            content: "Oui"; }
-    body.intervenant .inscr_intervenant__form-container-row:not(:nth-child(4)) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%; }
-      body.intervenant .inscr_intervenant__form-container-row:not(:nth-child(4)) .input-container {
+        width: 12em;
+        margin-top: 1em; }
+    body.intervenant .inscr_intervenant__form-container-row {
+      margin: 1.5em 0; }
+      body.intervenant .inscr_intervenant__form-container-row .car {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
         width: 40%; }
-    body.intervenant .inscr_intervenant__form-container-row:nth-child(4) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%; }
+        body.intervenant .inscr_intervenant__form-container-row .car p {
+          margin-right: 2em;
+          color: #787878;
+          font-family: "Open Sans", sans-serif; }
+        body.intervenant .inscr_intervenant__form-container-row .car .switch {
+          display: inline-block;
+          position: relative;
+          width: 70px;
+          height: 30px;
+          cursor: pointer; }
+          body.intervenant .inscr_intervenant__form-container-row .car .switch input {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 0;
+            height: 0; }
+            body.intervenant .inscr_intervenant__form-container-row .car .switch input + span {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: #86CABE;
+              border-radius: 20px; }
+            body.intervenant .inscr_intervenant__form-container-row .car .switch input + span:before {
+              content: "Non";
+              font-family: "Open Sans", sans-serif;
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              top: 50%;
+              left: -4px;
+              width: 45px;
+              height: 42px;
+              background: #FFFFFF;
+              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+              border-radius: 50%;
+              transform: translateY(-50%);
+              transition: all .5s; }
+            body.intervenant .inscr_intervenant__form-container-row .car .switch input:checked + span {
+              background: linear-gradient(90deg, #257466 0%, #36A793 50%); }
+            body.intervenant .inscr_intervenant__form-container-row .car .switch input:checked + span:before {
+              left: 34px;
+              content: "Oui"; }
+      body.intervenant .inscr_intervenant__form-container-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%; }
+        body.intervenant .inscr_intervenant__form-container-row .input-container {
+          width: 40%; }
       body.intervenant .inscr_intervenant__form-container-row:nth-child(4) .input-container {
         width: 90%; }
-    body.intervenant .inscr_intervenant__form-container-row select option {
-      color: #787878; }
+      body.intervenant .inscr_intervenant__form-container-row:nth-child(8) .input-container {
+        overflow: visible; }
     body.intervenant .inscr_intervenant__form .separator {
       display: flex;
       flex-direction: row;
@@ -2194,6 +2191,62 @@ body.intervenant {
         height: 4px;
         background-color: #86CABE;
         margin: 1em 0; }
+    body.intervenant .inscr_intervenant__form #auto_completion {
+      position: absolute;
+      top: 2.6rem;
+      left: 0;
+      width: 100%;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border-radius: 0 0 10px 10px;
+      font-size: 18px;
+      background-color: #FFFFFF;
+      overflow: hidden;
+      z-index: 1; }
+      body.intervenant .inscr_intervenant__form #auto_completion p {
+        padding: 1em;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        user-select: none;
+        cursor: pointer; }
+      body.intervenant .inscr_intervenant__form #auto_completion p:hover {
+        background-color: #AEDBD3; }
+      body.intervenant .inscr_intervenant__form #auto_completion.notVisible {
+        display: none; }
+    body.intervenant .inscr_intervenant__form #tag-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 90%;
+      font-family: "Open Sans", sans-serif;
+      font-size: 1.1em; }
+      body.intervenant .inscr_intervenant__form #tag-container .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%; }
+        body.intervenant .inscr_intervenant__form #tag-container .container .tag {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          background-color: #FFFFFF;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+          padding: 0.5em;
+          border-radius: 10px;
+          margin: 0.5em;
+          font-size: 1.1em;
+          font-family: "Open Sans", sans-serif;
+          color: #257466;
+          user-select: none; }
+          body.intervenant .inscr_intervenant__form #tag-container .container .tag-close {
+            cursor: pointer;
+            font-size: 1.5em; }
+          body.intervenant .inscr_intervenant__form #tag-container .container .tag-close:hover {
+            background: red;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -2260,11 +2313,6 @@ body.intervenant {
     background-color: #FFFFFF; }
     body.intervenant .input-container i {
       margin: 0 1rem; }
-    body.intervenant .input-container select.input {
-      color: #257466;
-      padding: 0;
-      font-size: 1rem;
-      font-family: "Poppins", sans-serif; }
     body.intervenant .input-container .input {
       border: 0;
       outline: none;
@@ -2372,7 +2420,9 @@ body.intervenant {
     background-color: #144139;
     padding: 10em 2em;
     color: #FFFFFF;
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Open Sans", sans-serif;
+    position: relative;
+    z-index: 0; }
     body.intervenant .footer p {
       font-size: 1.5em;
       font-family: "Poppins", sans-serif;
@@ -2878,7 +2928,7 @@ body.demandeur {
     align-items: center;
     flex-direction: column;
     padding: 2em;
-    height: 50em; }
+    height: auto; }
     body.demandeur .inscr_intervenant__form h2 {
       font-size: 2.5em;
       margin-bottom: 2rem;
@@ -2887,7 +2937,7 @@ body.demandeur {
       width: content-box; }
     body.demandeur .inscr_intervenant__form form {
       width: 50em;
-      height: 100%;
+      height: fit-content;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -2897,76 +2947,73 @@ body.demandeur {
       padding: 2em;
       border-radius: 25px; }
       body.demandeur .inscr_intervenant__form form button[type="submit"] {
-        width: 12em; }
-    body.demandeur .inscr_intervenant__form-container-row .car {
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      flex-direction: row;
-      width: 40%; }
-      body.demandeur .inscr_intervenant__form-container-row .car p {
-        margin-right: 2em;
-        color: #787878;
-        font-family: "Open Sans", sans-serif; }
-      body.demandeur .inscr_intervenant__form-container-row .car .switch {
-        display: inline-block;
-        position: relative;
-        width: 70px;
-        height: 30px;
-        cursor: pointer; }
-        body.demandeur .inscr_intervenant__form-container-row .car .switch input {
-          position: absolute;
-          top: -30px;
-          left: -30px;
-          width: 0;
-          height: 0; }
-          body.demandeur .inscr_intervenant__form-container-row .car .switch input + span {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #7EA6F4;
-            border-radius: 20px; }
-          body.demandeur .inscr_intervenant__form-container-row .car .switch input + span:before {
-            content: "Non";
-            font-family: "Open Sans", sans-serif;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 50%;
-            left: -4px;
-            width: 45px;
-            height: 42px;
-            background: #FFFFFF;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 50%;
-            transform: translateY(-50%);
-            transition: all .5s; }
-          body.demandeur .inscr_intervenant__form-container-row .car .switch input:checked + span {
-            background: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
-          body.demandeur .inscr_intervenant__form-container-row .car .switch input:checked + span:before {
-            left: 34px;
-            content: "Oui"; }
-    body.demandeur .inscr_intervenant__form-container-row:not(:nth-child(4)) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%; }
-      body.demandeur .inscr_intervenant__form-container-row:not(:nth-child(4)) .input-container {
+        width: 12em;
+        margin-top: 1em; }
+    body.demandeur .inscr_intervenant__form-container-row {
+      margin: 1.5em 0; }
+      body.demandeur .inscr_intervenant__form-container-row .car {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
         width: 40%; }
-    body.demandeur .inscr_intervenant__form-container-row:nth-child(4) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%; }
+        body.demandeur .inscr_intervenant__form-container-row .car p {
+          margin-right: 2em;
+          color: #787878;
+          font-family: "Open Sans", sans-serif; }
+        body.demandeur .inscr_intervenant__form-container-row .car .switch {
+          display: inline-block;
+          position: relative;
+          width: 70px;
+          height: 30px;
+          cursor: pointer; }
+          body.demandeur .inscr_intervenant__form-container-row .car .switch input {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 0;
+            height: 0; }
+            body.demandeur .inscr_intervenant__form-container-row .car .switch input + span {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: #7EA6F4;
+              border-radius: 20px; }
+            body.demandeur .inscr_intervenant__form-container-row .car .switch input + span:before {
+              content: "Non";
+              font-family: "Open Sans", sans-serif;
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              top: 50%;
+              left: -4px;
+              width: 45px;
+              height: 42px;
+              background: #FFFFFF;
+              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+              border-radius: 50%;
+              transform: translateY(-50%);
+              transition: all .5s; }
+            body.demandeur .inscr_intervenant__form-container-row .car .switch input:checked + span {
+              background: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
+            body.demandeur .inscr_intervenant__form-container-row .car .switch input:checked + span:before {
+              left: 34px;
+              content: "Oui"; }
+      body.demandeur .inscr_intervenant__form-container-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%; }
+        body.demandeur .inscr_intervenant__form-container-row .input-container {
+          width: 40%; }
       body.demandeur .inscr_intervenant__form-container-row:nth-child(4) .input-container {
         width: 90%; }
-    body.demandeur .inscr_intervenant__form-container-row select option {
-      color: #787878; }
+      body.demandeur .inscr_intervenant__form-container-row:nth-child(8) .input-container {
+        overflow: visible; }
     body.demandeur .inscr_intervenant__form .separator {
       display: flex;
       flex-direction: row;
@@ -2978,6 +3025,62 @@ body.demandeur {
         height: 4px;
         background-color: #7EA6F4;
         margin: 1em 0; }
+    body.demandeur .inscr_intervenant__form #auto_completion {
+      position: absolute;
+      top: 2.6rem;
+      left: 0;
+      width: 100%;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border-radius: 0 0 10px 10px;
+      font-size: 18px;
+      background-color: #FFFFFF;
+      overflow: hidden;
+      z-index: 1; }
+      body.demandeur .inscr_intervenant__form #auto_completion p {
+        padding: 1em;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        user-select: none;
+        cursor: pointer; }
+      body.demandeur .inscr_intervenant__form #auto_completion p:hover {
+        background-color: #AEDBD3; }
+      body.demandeur .inscr_intervenant__form #auto_completion.notVisible {
+        display: none; }
+    body.demandeur .inscr_intervenant__form #tag-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 90%;
+      font-family: "Open Sans", sans-serif;
+      font-size: 1.1em; }
+      body.demandeur .inscr_intervenant__form #tag-container .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%; }
+        body.demandeur .inscr_intervenant__form #tag-container .container .tag {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          background-color: #FFFFFF;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+          padding: 0.5em;
+          border-radius: 10px;
+          margin: 0.5em;
+          font-size: 1.1em;
+          font-family: "Open Sans", sans-serif;
+          color: #393BAA;
+          user-select: none; }
+          body.demandeur .inscr_intervenant__form #tag-container .container .tag-close {
+            cursor: pointer;
+            font-size: 1.5em; }
+          body.demandeur .inscr_intervenant__form #tag-container .container .tag-close:hover {
+            background: red;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -3044,11 +3147,6 @@ body.demandeur {
     background-color: #FFFFFF; }
     body.demandeur .input-container i {
       margin: 0 1rem; }
-    body.demandeur .input-container select.input {
-      color: #393BAA;
-      padding: 0;
-      font-size: 1rem;
-      font-family: "Poppins", sans-serif; }
     body.demandeur .input-container .input {
       border: 0;
       outline: none;
@@ -3156,7 +3254,9 @@ body.demandeur {
     background-color: #1E1E3D;
     padding: 10em 2em;
     color: #FFFFFF;
-    font-family: "Open Sans", sans-serif; }
+    font-family: "Open Sans", sans-serif;
+    position: relative;
+    z-index: 0; }
     body.demandeur .footer p {
       font-size: 1.5em;
       font-family: "Poppins", sans-serif;

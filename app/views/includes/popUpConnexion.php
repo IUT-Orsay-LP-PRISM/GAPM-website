@@ -8,13 +8,13 @@
             <div class="popup-container-col">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
-                    <input id="login" name="login" class="input" type="text" required/>
-                    <label class="label" for="login">Votre adresse e-mail</label>
+                    <input id="loginPopUp" name="login" class="input" type="text" required/>
+                    <label class="label" for="loginPopUp">Votre adresse e-mail</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-key"></i>
-                    <input id="mdp" name="password" class="input" type="password" required/>
-                    <label class="label" for="mdp">Votre mot de passe</label>
+                    <input id="mdpPopUp" name="password" class="input" type="password" required/>
+                    <label class="label" for="mdpPopUp">Votre mot de passe</label>
                 </div>
             </div>
             <p class="italic">Mots de passe oublié ? Cliquez <a class="link">ici</a></p>
