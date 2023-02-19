@@ -1,6 +1,6 @@
 const header = document.querySelector('.header .header__nav');
 const banner = document.querySelector('.hp__banner');
-const windowHeight = header.offsetHeight;
+const windowHeight = header ? header.offsetHeight : 0;
 
 const btn_connexion = document.querySelector('#btn-connexion');
 const btn_inscription = document.getElementById('btn-inscription');
