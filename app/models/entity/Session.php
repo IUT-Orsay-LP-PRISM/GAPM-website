@@ -7,7 +7,7 @@ abstract class Session
 
     public static function start(): bool
     {
-        return session_status() === PHP_SESSION_ACTIVE || session_start();
+        return session_start();
     }
 
     public static function currentSession(): array
@@ -15,9 +15,10 @@ abstract class Session
         return $_SESSION;
     }
 
-    public static function destroy(): bool
+    public static function destroy(): void
     {
-        return session_destroy();
+        session_unset();
+        session_destroy();
     }
 
     public static function set(string $key, $value): void

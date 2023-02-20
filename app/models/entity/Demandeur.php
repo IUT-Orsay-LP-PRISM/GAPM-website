@@ -7,6 +7,7 @@ class Demandeur
 
     private int $id_Demandeur;
     private string $login;
+    private string $email;
     private string $motDePasse;
     private string $nom;
     private string $prenom;
@@ -195,6 +196,22 @@ class Demandeur
     public function setIdVille(int $id_Ville)
     {
         $this->id_Ville = $id_Ville;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
 

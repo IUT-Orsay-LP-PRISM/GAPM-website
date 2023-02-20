@@ -63,8 +63,12 @@
     margin-bottom : 1em;
   }
 
-  p {
+  p:not(.error) {
     color : $greyDark;
+  }
+  p.error {
+    color : red;
+    text-align: center;
   }
 
   &-container {

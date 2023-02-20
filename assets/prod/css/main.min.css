@@ -2219,6 +2219,9 @@ body.intervenant {
       width: 90%;
       font-family: "Open Sans", sans-serif;
       font-size: 1.1em; }
+      body.intervenant .inscr_intervenant__form #tag-container p {
+        font-weight: 600;
+        color: #787878; }
       body.intervenant .inscr_intervenant__form #tag-container .container {
         display: flex;
         flex-direction: row;
@@ -2513,8 +2516,11 @@ body.intervenant {
     body.intervenant .popup h1 {
       font-size: 2.5em;
       margin-bottom: 1em; }
-    body.intervenant .popup p {
+    body.intervenant .popup p:not(.error) {
       color: #787878; }
+    body.intervenant .popup p.error {
+      color: red;
+      text-align: center; }
     body.intervenant .popup-container {
       position: relative;
       width: 100%;
@@ -3053,6 +3059,9 @@ body.demandeur {
       width: 90%;
       font-family: "Open Sans", sans-serif;
       font-size: 1.1em; }
+      body.demandeur .inscr_intervenant__form #tag-container p {
+        font-weight: 600;
+        color: #787878; }
       body.demandeur .inscr_intervenant__form #tag-container .container {
         display: flex;
         flex-direction: row;
@@ -3347,8 +3356,11 @@ body.demandeur {
     body.demandeur .popup h1 {
       font-size: 2.5em;
       margin-bottom: 1em; }
-    body.demandeur .popup p {
+    body.demandeur .popup p:not(.error) {
       color: #787878; }
+    body.demandeur .popup p.error {
+      color: red;
+      text-align: center; }
     body.demandeur .popup-container {
       position: relative;
       width: 100%;

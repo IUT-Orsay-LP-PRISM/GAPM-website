@@ -46,15 +46,7 @@ window.onclick = function (event) {
 
 if (btn_connexion && btn_inscription) {
     btn_connexion.addEventListener('click', () => {
-        popUp_connexion.classList.toggle('visible');
-        popUp_inscription.classList.remove('visible');
-
-        if (popUp_connexion.classList.contains('visible')) {
-            document.body.style.overflowY = "hidden";
-        } else {
-            document.body.style.overflowY = "auto";
-        }
-        window.scrollTo(0, 0);
+        openPopUpConnexion();
     });
 
     btn_inscription.addEventListener('click', () => {
@@ -73,16 +65,21 @@ btn_cross.forEach(btn => btn
         document.body.style.overflowY = "auto";
     }));
 
-
-function changeColor() {
-    document.body.classList.toggle('demandeur');
-    document.body.classList.toggle('intervenant');
-}
-
 function openPopUpInscription() {
     popUp_inscription.classList.toggle('visible');
     popUp_connexion.classList.remove('visible');
     if (popUp_inscription.classList.contains('visible')) {
+        document.body.style.overflowY = "hidden";
+    } else {
+        document.body.style.overflowY = "auto";
+    }
+    window.scrollTo(0, 0);
+}
+
+function openPopUpConnexion() {
+    popUp_connexion.classList.toggle('visible');
+    popUp_inscription.classList.remove('visible');
+    if (popUp_connexion.classList.contains('visible')) {
         document.body.style.overflowY = "hidden";
     } else {
         document.body.style.overflowY = "auto";
@@ -144,4 +141,8 @@ if (specialite_input && auto_completion) {
         closeBtn.addEventListener("click", () => tag.remove());
         return tag;
     }
+}
+
+if (document.querySelector('.demandeur.home') && window.location.search.includes('error')) {
+    openPopUpConnexion();
 }

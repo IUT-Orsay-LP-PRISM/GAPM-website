@@ -2,6 +2,8 @@
 
 namespace App\controllers;
 
+use App\models\entity\Demandeur;
+use Bcrypt\Bcrypt;
 use App\models\dao\DemandeurDAO;
 use App\models\entity\Session;
 
@@ -38,26 +40,44 @@ abstract class DemandeurController extends Template implements InterfaceControll
         // TODO: Implement show() method.
     }
 
-    public static function login(){
-        $login = $_POST['login'];
-        $password  = $_POST['password'];
+    public static function login()
+    {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-        var_dump($_POST);
-        $salt= "legrosseldeguerande";
+        $salt= "sel";
         $saltedAndHashed = crypt($password,$salt);
-        var_dump($saltedAndHashed);
-        if(DemandeurDAO::checkIfLoginExists($login)){
-            $userPassword = DemandeurDAO::getPasswordFromLogin($login);
-            if($userPassword->getMotDePasse() == $saltedAndHashed){
-                Session::set('connected',1);
-                die("Connecté");
+        if(DemandeurDAO::checkIfEmailExists($email)){
+            $user = DemandeurDAO::getUserFromEmail($email);
+            if($user->getMotDePasse() == $saltedAndHashed){
+                Session::start();
+                Session::set('user', $user);
+                header("Location: /?action=demandeur");
+            } else{
+                header("Location: /?error=Adresse email ou mot de passe incorrect.");
             }
-            else{
-                die("Mauvais mot de passe");
-            }
+        } else{
+            header("Location: /?error=Adresse email ou mot de passe incorrect.");
         }
-        else{
-            die("L'utilisateur demandé n'existe pas");
-        }
+    }
+
+    public static function register(){
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['mail'];
+        $birthday = $_POST['birthday'];
+        $password = $_POST['password'];
+        $city = $_POST['city'];
+        $cp = $_POST['cp'];
+        $phone = $_POST['phone'];
+
+        $salt= "sel";
+        $saltedAndHashed = crypt($password,$salt);
+        $demandeur = new Demandeur();
+        $demandeur->setNom($lastname);
+        $demandeur->setPrenom($firstname);
+        $demandeur->setEmail($email);
+        $demandeur->setDateNaissance($birthday);
+        $demandeur->setMotDePasse($saltedAndHashed);
     }
 }
