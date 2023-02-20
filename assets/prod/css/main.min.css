@@ -2325,7 +2325,7 @@ body.intervenant {
       height: 3rem;
       font-size: 1rem;
       padding-top: 0.5rem; }
-      body.intervenant .input-container .input:valid + label, body.intervenant .input-container .input:focus + label {
+      body.intervenant .input-container .input:valid + label, body.intervenant .input-container .input:focus + label, body.intervenant .input-container .input.input[type="email"]:not(:placeholder-shown) + label {
         color: #257466;
         font-size: .8rem;
         top: -15px;
@@ -3165,7 +3165,7 @@ body.demandeur {
       height: 3rem;
       font-size: 1rem;
       padding-top: 0.5rem; }
-      body.demandeur .input-container .input:valid + label, body.demandeur .input-container .input:focus + label {
+      body.demandeur .input-container .input:valid + label, body.demandeur .input-container .input:focus + label, body.demandeur .input-container .input.input[type="email"]:not(:placeholder-shown) + label {
         color: #393BAA;
         font-size: .8rem;
         top: -15px;

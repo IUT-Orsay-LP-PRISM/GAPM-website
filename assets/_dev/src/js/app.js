@@ -41,6 +41,8 @@ window.onclick = function (event) {
         popUp_connexion.classList.remove('visible');
         popUp_inscription.classList.remove('visible');
         document.body.style.overflowY = "auto";
+        removeErrorInURL();
+        document.querySelector('#popUp-connexion .error').innerHTML = '';
     }
 }
 
@@ -63,6 +65,8 @@ btn_cross.forEach(btn => btn
         popUp_connexion.classList.remove('visible');
         popUp_inscription.classList.remove('visible');
         document.body.style.overflowY = "auto";
+        removeErrorInURL();
+        document.querySelector('#popUp-connexion .error').innerHTML = '';
     }));
 
 function openPopUpInscription() {
@@ -119,8 +123,6 @@ if (specialite_input && auto_completion) {
                         specialite_input.value = '';
                         auto_completion.classList.add('notVisible');
                     });
-
-
                 });
             }
         }
@@ -141,6 +143,13 @@ if (specialite_input && auto_completion) {
         closeBtn.addEventListener("click", () => tag.remove());
         return tag;
     }
+}
+
+function removeErrorInURL(){
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete('error');
+    const newUrl = window.location.pathname + '?' + urlParams.toString();
+    window.history.pushState({path: newUrl}, '', newUrl);
 }
 
 if (document.querySelector('.demandeur.home') && window.location.search.includes('error')) {
