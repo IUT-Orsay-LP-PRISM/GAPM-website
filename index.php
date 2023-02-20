@@ -18,5 +18,3 @@ Route::search('/?action=search');
 
 // route::search pour le système de autocomplete, différent de ::get()
 Route::autocomplete('/?action=autocomplete','Service');
-
-Route::notFound();
