@@ -41,4 +41,14 @@ class Route
          */
     }
 
+    public static function notFound()
+    {
+        $url = $_SERVER['REQUEST_URI'];
+        if ($url != '/'){
+            header('Location: /app/views/404.html');
+        } else {
+            header('Location: /');
+        }
+    }
+
 }
