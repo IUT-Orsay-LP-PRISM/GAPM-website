@@ -99,7 +99,7 @@ if (specialite_input && auto_completion) {
     specialite_input.addEventListener('keyup', () => {
 
         const xhr = new XMLHttpRequest();
-        const url = "?action=autocomplete&query=" + specialite_input.value;
+        const url = "?action=autocompleteService&query=" + specialite_input.value;
         xhr.open("GET", url, true);
         xhr.onload = () => callback(xhr);
         xhr.send();
@@ -152,6 +152,58 @@ function removeErrorInURL(){
     window.history.pushState({path: newUrl}, '', newUrl);
 }
 
+function addErrorInURL(msg){
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('error', msg);
+    const newUrl = window.location.pathname + '?' + urlParams.toString();
+    window.history.pushState({path: newUrl}, '', newUrl);
+}
+
 if (document.querySelector('.demandeur.home') && window.location.search.includes('error')) {
     openPopUpConnexion();
+}
+
+
+
+
+// auto_completion popup inscription
+
+const input_villePopUp = document.querySelector('#villePopUp');
+const auto_completion_ville = document.querySelector('#auto_completion_ville');
+const input_cpPopUp = document.querySelector('#cpPopUp');
+const input_hidden_value_ville = document.querySelector('#hiddenValueCity');
+
+if (input_villePopUp && auto_completion_ville) {
+    input_villePopUp.addEventListener('keyup', () => {
+        const xhr = new XMLHttpRequest();
+        const url = "?action=autocompleteVille&query=" + input_villePopUp.value;
+        xhr.open("GET", url, true);
+        xhr.onload = () => callback(xhr);
+        xhr.send();
+
+        callback = (xhr) => {
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                auto_completion_ville.innerHTML = '';
+                data.forEach(element => {
+                    const p = document.createElement('p');
+                    p.innerHTML = element.nom.toUpperCase();
+                    auto_completion_ville.appendChild(p);
+                    p.addEventListener('click', () => {
+                        input_villePopUp.value = '';
+                        input_villePopUp.value = element.nom.toUpperCase();
+                        input_hidden_value_ville.value = element.id_ville;
+                        input_cpPopUp.value = element.code_postal;
+                        auto_completion_ville.classList.add('notVisible');
+                    });
+                });
+            }
+        }
+
+        if (input_villePopUp.value.length < 1) {
+            auto_completion_ville.classList.add('notVisible');
+        } else {
+            auto_completion_ville.classList.remove('notVisible');
+        }
+    });
 }

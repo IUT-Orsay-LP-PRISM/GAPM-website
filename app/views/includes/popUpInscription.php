@@ -41,8 +41,10 @@
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-map-marker"></i>
-                    <input id="villePopUp" class="input" name="city" type="text" required/>
+                    <input id="villePopUp" class="input" type="text" required/>
                     <label class="label" for="villePopUp">Ville</label>
+                    <input id="hiddenValueCity" name="city" type="number" hidden="hidden" required/>
+                    <div id="auto_completion_ville" class="notVisible"></div>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-thumbtack"></i>

@@ -2491,6 +2491,26 @@ body.intervenant {
       body.intervenant #popUp-connexion.visible .popup, body.intervenant #popUp-inscription.visible .popup {
         transform: translateY(0);
         transition: all .8s ease-in-out; }
+    body.intervenant #popUp-connexion #auto_completion_ville, body.intervenant #popUp-inscription #auto_completion_ville {
+      position: absolute;
+      top: 2.6rem;
+      left: 0;
+      width: 100%;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border-radius: 0 0 10px 10px;
+      font-size: 18px;
+      background-color: #FFFFFF;
+      overflow: hidden;
+      z-index: 1; }
+      body.intervenant #popUp-connexion #auto_completion_ville p, body.intervenant #popUp-inscription #auto_completion_ville p {
+        padding: 1em;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        user-select: none;
+        cursor: pointer; }
+      body.intervenant #popUp-connexion #auto_completion_ville p:hover, body.intervenant #popUp-inscription #auto_completion_ville p:hover {
+        background-color: #A0E4F1; }
+      body.intervenant #popUp-connexion #auto_completion_ville.notVisible, body.intervenant #popUp-inscription #auto_completion_ville.notVisible {
+        display: none; }
   body.intervenant .popup {
     position: fixed;
     top: 0;
@@ -2513,6 +2533,8 @@ body.intervenant {
     body.intervenant .popup.popup-inscription {
       width: 40%;
       height: 40em; }
+      body.intervenant .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
+        overflow: visible; }
     body.intervenant .popup h1 {
       font-size: 2.5em;
       margin-bottom: 1em; }
@@ -3331,6 +3353,26 @@ body.demandeur {
       body.demandeur #popUp-connexion.visible .popup, body.demandeur #popUp-inscription.visible .popup {
         transform: translateY(0);
         transition: all .8s ease-in-out; }
+    body.demandeur #popUp-connexion #auto_completion_ville, body.demandeur #popUp-inscription #auto_completion_ville {
+      position: absolute;
+      top: 2.6rem;
+      left: 0;
+      width: 100%;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border-radius: 0 0 10px 10px;
+      font-size: 18px;
+      background-color: #FFFFFF;
+      overflow: hidden;
+      z-index: 1; }
+      body.demandeur #popUp-connexion #auto_completion_ville p, body.demandeur #popUp-inscription #auto_completion_ville p {
+        padding: 1em;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        user-select: none;
+        cursor: pointer; }
+      body.demandeur #popUp-connexion #auto_completion_ville p:hover, body.demandeur #popUp-inscription #auto_completion_ville p:hover {
+        background-color: #A0E4F1; }
+      body.demandeur #popUp-connexion #auto_completion_ville.notVisible, body.demandeur #popUp-inscription #auto_completion_ville.notVisible {
+        display: none; }
   body.demandeur .popup {
     position: fixed;
     top: 0;
@@ -3353,6 +3395,8 @@ body.demandeur {
     body.demandeur .popup.popup-inscription {
       width: 40%;
       height: 40em; }
+      body.demandeur .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
+        overflow: visible; }
     body.demandeur .popup h1 {
       font-size: 2.5em;
       margin-bottom: 1em; }
