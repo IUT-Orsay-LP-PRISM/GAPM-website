@@ -90,13 +90,7 @@
                     <i class="icon icon-fi-rr-doctor"></i>
                     <input id="specialite" class="input" type="text" required/>
                     <label class="label" for="specialite">Vos spécialités</label>
-                    <div id="auto_completion" class="notVisible">
-                        {% if services is not empty %}
-                            {% for service in services %}
-                                <p>{{ service.libelle }}</p>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                    <div id="auto_completion" class="notVisible"></div>
                 </div>
 
                 <div class="car">
