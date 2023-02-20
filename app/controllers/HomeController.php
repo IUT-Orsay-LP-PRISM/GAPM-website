@@ -9,10 +9,10 @@ abstract class HomeController extends Template implements InterfaceController
 {
     public static function index()
     {
-
         self::render('home.twig', [
             'title' => 'Accueil - Bienvenue',
-            'type' => 'home'
+            'type' => 'home',
+            'error' => $_GET['error'] ?? null,
         ]);
     }
 }

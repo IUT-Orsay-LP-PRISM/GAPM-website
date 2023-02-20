@@ -17,6 +17,9 @@
                     <label class="label" for="mdpPopUp">Votre mot de passe</label>
                 </div>
             </div>
+            {% if error is not empty %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
             <p class="italic">Mots de passe oublié ? Cliquez <a class="link">ici</a></p>
 
             <input class="btn btn-primary-nb" type="submit" value="Se connecter">
