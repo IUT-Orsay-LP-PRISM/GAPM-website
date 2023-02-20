@@ -54,10 +54,10 @@ abstract class DemandeurController extends Template implements InterfaceControll
                 Session::set('user', $user);
                 header("Location: /?action=demandeur");
             } else{
-                header("Location: /?error=Adresse email ou mot de passe incorrect. Veuillez réessayer");
+                header("Location: /?error=Adresse email ou mot de passe incorrect.");
             }
         } else{
-            header("Location: /?error=Adresse email ou mot de passe incorrect. Veuillez réessayer");
+            header("Location: /?error=Adresse email ou mot de passe incorrect.");
         }
     }
 }

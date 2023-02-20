@@ -2520,7 +2520,7 @@ body.intervenant {
       color: #787878; }
     body.intervenant .popup p.error {
       color: red;
-      font-weight: bold; }
+      text-align: center; }
     body.intervenant .popup-container {
       position: relative;
       width: 100%;
@@ -3360,7 +3360,7 @@ body.demandeur {
       color: #787878; }
     body.demandeur .popup p.error {
       color: red;
-      font-weight: bold; }
+      text-align: center; }
     body.demandeur .popup-container {
       position: relative;
       width: 100%;
