@@ -209,6 +209,11 @@
       font-family     : $mainFont;
       font-size       : 1.1em;
 
+      p {
+        font-weight: 600;
+        color: $greyDark;
+      }
+
       .container {
         display         : flex;
         flex-direction  : row;

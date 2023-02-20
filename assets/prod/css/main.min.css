@@ -2219,6 +2219,9 @@ body.intervenant {
       width: 90%;
       font-family: "Open Sans", sans-serif;
       font-size: 1.1em; }
+      body.intervenant .inscr_intervenant__form #tag-container p {
+        font-weight: 600;
+        color: #787878; }
       body.intervenant .inscr_intervenant__form #tag-container .container {
         display: flex;
         flex-direction: row;
@@ -3053,6 +3056,9 @@ body.demandeur {
       width: 90%;
       font-family: "Open Sans", sans-serif;
       font-size: 1.1em; }
+      body.demandeur .inscr_intervenant__form #tag-container p {
+        font-weight: 600;
+        color: #787878; }
       body.demandeur .inscr_intervenant__form #tag-container .container {
         display: flex;
         flex-direction: row;
