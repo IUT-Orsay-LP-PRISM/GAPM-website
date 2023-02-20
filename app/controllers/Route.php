@@ -4,20 +4,28 @@ namespace App\controllers;
 
 class Route
 {
-    public static function get(string $str, string $controller, string $action)
+    public static function get(string $action, string $controller, string $method)
     {
-        $url = $_SERVER['REQUEST_URI'];
-        if ($str === $url){
-            $controller = "App\\controllers\\".$controller;
-            $controller::$action();
+        if (isset($_GET['action'])) {
+            if ($action === $_GET['action']) {
+                $controller = "App\\controllers\\" . $controller;
+                $controller::$method();
+            } else {
+                echo "404";
+            }
+        } else {
+            $_GET['action'] = '/';
+            $controller = "App\\controllers\\HomeController";
+            $controller::index();
         }
+
     }
 
     public static function search(string $str)
     {
         $url = $_SERVER['REQUEST_URI'];
         $url = explode('&', $url);
-        if ($url[0] == $str){
+        if ($url[0] == $str) {
             $controller = "App\\controllers\\SearchController";
             $controller::index();
         }
@@ -27,8 +35,8 @@ class Route
     {
         $url = $_SERVER['REQUEST_URI'];
         $url = explode('&', $url);
-        if ($url[0] == $str){
-            $controller = "App\\controllers\\".$controller."Controller";
+        if ($url[0] == $str) {
+            $controller = "App\\controllers\\" . $controller . "Controller";
             $controller::autocomplete();
         }
     }

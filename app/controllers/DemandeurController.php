@@ -2,6 +2,8 @@
 
 namespace App\controllers;
 
+use App\models\entity\Demandeur;
+use Bcrypt\Bcrypt;
 use App\models\dao\DemandeurDAO;
 use App\models\entity\Session;
 
@@ -38,26 +40,26 @@ abstract class DemandeurController extends Template implements InterfaceControll
         // TODO: Implement show() method.
     }
 
-    public static function login(){
+    public static function login()
+    {
         $email = $_POST['email'];
-        $password  = $_POST['password'];
+        $password = $_POST['password'];
 
-        var_dump($_POST);
-        $salt= "legrosseldeguerande";
+        $salt= "sel";
         $saltedAndHashed = crypt($password,$salt);
-        var_dump($saltedAndHashed);
         if(DemandeurDAO::checkIfEmailExists($email)){
-            $userPassword = DemandeurDAO::getPasswordFromEmail($email);
-            if($userPassword->getMotDePasse() == $saltedAndHashed){
-                Session::set('connected',1);
-                die("Connecté");
+            $user = DemandeurDAO::getUserFromEmail($email);
+            if($user->getMotDePasse() == $saltedAndHashed){
+                Session::start();
+                Session::set('user', $user);
+                header("Location: /?action=demandeur");
+            } else{
+                header("Location: /?error='Mot de passe incorrect'");
+                // TODO: Faire en sorte de renvoyer une variable pour afficher un message d'erreur sur la popup
             }
-            else{
-                die("Mauvais mot de passe");
-            }
-        }
-        else{
-            die("L'utilisateur demandé n'existe pas");
+        } else{
+            header("Location: /?error='Email incorrect'");
+            // TODO: faire la même chose pour l'email
         }
     }
 }

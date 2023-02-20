@@ -29,17 +29,11 @@ class DemandeurDAO extends ConnexionDB{
         ]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         $result = $stmt->fetchAll();
-        if($result != null){
-            return true;
-        }
-        else{
-            return false;
-        }
-        
+        return !($result == null);
     }
 
-    public static function getPasswordFromEmail($email){
-        $sql = "SELECT motDePasse FROM demandeur WHERE email = :email ";
+    public static function getUserFromEmail($email){
+        $sql = "SELECT *  FROM demandeur WHERE email = :email ";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
             'email' => "$email"
