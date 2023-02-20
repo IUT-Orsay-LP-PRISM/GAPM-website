@@ -60,4 +60,24 @@ abstract class DemandeurController extends Template implements InterfaceControll
             header("Location: /?error=Adresse email ou mot de passe incorrect.");
         }
     }
+
+    public static function register(){
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['mail'];
+        $birthday = $_POST['birthday'];
+        $password = $_POST['password'];
+        $city = $_POST['city'];
+        $cp = $_POST['cp'];
+        $phone = $_POST['phone'];
+
+        $salt= "sel";
+        $saltedAndHashed = crypt($password,$salt);
+        $demandeur = new Demandeur();
+        $demandeur->setNom($lastname);
+        $demandeur->setPrenom($firstname);
+        $demandeur->setEmail($email);
+        $demandeur->setDateNaissance($birthday);
+        $demandeur->setMotDePasse($saltedAndHashed);
+    }
 }
