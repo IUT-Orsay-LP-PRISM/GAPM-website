@@ -10,15 +10,12 @@ class Route
             if ($action === $_GET['action']) {
                 $controller = "App\\controllers\\" . $controller;
                 $controller::$method();
-            } else {
-                echo "404";
             }
         } else {
             $_GET['action'] = '/';
             $controller = "App\\controllers\\HomeController";
             $controller::index();
         }
-
     }
 
     public static function search(string $str)
@@ -41,12 +38,14 @@ class Route
         }
     }
 
-    public static function post()
+    public static function post(string $action, string $controller, string $method)
     {
-        /**
-         * TODO: Faire le système d'implémentation pour les formulaires, récupérés les valeurs etc..
-         * TODO: Faire le système de vérification des données
-         */
+        if (isset($_GET['action'])) {
+            if ($action === $_GET['action']) {
+                $controller = "App\\controllers\\" . $controller;
+                $controller::$method();
+            }
+        }
     }
 
 }

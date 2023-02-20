@@ -6,12 +6,12 @@ use App\controllers\Route;
 
 // Les get de l'url
 // Basé sur /?action=...
-Route::get('/', 'HomeController', 'index');
 Route::get('demandeur', 'DemandeurController', 'index');
-Route::get('inscription_intervenant', 'IntervenantController', 'index');
+Route::get('inscription-intervenant', 'IntervenantController', 'index');
 
 // Les post de l'url
-Route::get('loginUser', 'DemandeurController', 'login');
+Route::post('login-user', 'DemandeurController', 'login');
+Route::post('register-user', 'DemandeurController', 'register');
 
 // route::search pour le système de recherche, différent de ::get()
 Route::search('/?action=search');
