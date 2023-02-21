@@ -30,7 +30,9 @@ if (btn_connexion && btn_inscription) {
     });
 }
 
-window.onclick = function (event) {
+// close div auto_completion when click outside
+const AC = document.querySelectorAll('.AC');
+window.onclick = function (event) { // When the user clicks anywhere outside of the modal, close it
     if (event.target == popUp_connexion || event.target == popUp_inscription) {
         popUp_connexion.classList.remove('visible');
         popUp_inscription.classList.remove('visible');
@@ -38,7 +40,16 @@ window.onclick = function (event) {
         removeErrorInURL();
         div_error ? div_error.innerHTML = '' : null;
     }
+    if (AC) {
+        AC.forEach(div => {
+            if (!Array.from(event.target.classList).includes('AC')) {
+                div.parentNode.querySelector('.auto_completion').classList.add('notVisible');
+            }
+        });
+    }
 }
+
+
 if (document.querySelector('.demandeur.home') && window.location.search.includes('error')) {
     openPopUpConnexion();
 }

@@ -28,35 +28,6 @@
       transition : all .8s ease-in-out;
     }
   }
-
-
-  #auto_completion_ville {
-    position         : absolute;
-    top              : 2.6rem;
-    left             : 0;
-    width            : 100%;
-    box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
-    border-radius    : 0 0 10px 10px;
-    font-size        : 18px;
-    background-color : $white;
-    overflow         : hidden;
-    z-index          : 1;
-
-    p {
-      padding     : 1em;
-      box-shadow  : 0px 2px 4px rgba(0, 0, 0, 0.38);
-      user-select : none;
-      cursor      : pointer;
-    }
-
-    p:hover {
-      background-color : $secondaryLight;
-    }
-
-    &.notVisible {
-      display : none;
-    }
-  }
 }
 
 
@@ -85,9 +56,9 @@
     width  : 40%;
     height : 40em;
 
-    .popup-container form div:nth-child(5) .input-container:first-child{
-        overflow : visible;
-      }
+    .popup-container form div:nth-child(5) .input-container:first-child {
+      overflow : visible;
+    }
   }
 
   h1 {
@@ -202,5 +173,36 @@
         background : red;
       }
     }
+  }
+}
+
+.auto_completion {
+  position         : absolute;
+  top              : 2.6rem;
+  left             : 0;
+  width            : 100%;
+  max-height       : 3em*5;
+  box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+  border-radius    : 0 0 10px 10px;
+  font-size        : 1em;
+  background-color : $white;
+  overflow-x       : hidden;
+  overflow-y       : scroll;
+  z-index          : 2;
+
+  .AC_ville {
+    padding     : 1em;
+    box-shadow  : 0px 2px 4px rgba(0, 0, 0, 0.38);
+    user-select : none;
+    cursor      : pointer;
+    color       : $greyDark;
+
+    &:hover {
+      background-color : $secondaryLight;
+    }
+  }
+
+  &.notVisible {
+    display : none;
   }
 }

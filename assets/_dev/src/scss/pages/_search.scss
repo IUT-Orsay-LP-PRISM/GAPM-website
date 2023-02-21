@@ -10,11 +10,16 @@
     margin          : 10rem 0 3rem 0;
 
     .input-container {
+      &:nth-child(3) {
+        overflow : visible;
+      }
+
       &:first-child {
         max-width : 500px;
         width     : 300px;
         min-width : 100px;
       }
+
 
       &:not(:last-child) {
         margin-right : 1rem;
