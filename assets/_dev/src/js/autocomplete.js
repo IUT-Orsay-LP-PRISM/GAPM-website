@@ -54,45 +54,60 @@ if (specialite_input && auto_completion) {
 // end
 
 
-
-// auto_completion popup inscription
-const input_villePopUp = document.querySelector('#villePopUp');
-const auto_completion_ville = document.querySelector('#auto_completion_ville');
-const input_cpPopUp = document.querySelector('#cpPopUp');
-const input_hidden_value_ville = document.querySelector('#hiddenValueCity');
-
-if (input_villePopUp && auto_completion_ville) {
-    input_villePopUp.addEventListener('keyup', () => {
-        const xhr = new XMLHttpRequest();
-        const url = "?action=autocompleteVille&query=" + input_villePopUp.value;
-        xhr.open("GET", url, true);
-        xhr.onload = () => callback(xhr);
-        xhr.send();
-
-        function callback(xhr) {
-            if (xhr.status === 200) {
-                const data = JSON.parse(xhr.responseText);
-                auto_completion_ville.innerHTML = '';
-                data.forEach(element => {
-                    const p = document.createElement('p');
-                    p.innerHTML = element.nom.toUpperCase();
-                    auto_completion_ville.appendChild(p);
-                    p.addEventListener('click', () => {
-                        input_villePopUp.value = '';
-                        input_villePopUp.value = element.nom.toUpperCase();
-                        input_hidden_value_ville.value = element.id_ville;
-                        input_cpPopUp.value = element.code_postal;
-                        auto_completion_ville.classList.add('notVisible');
-                    });
-                });
-            }
-        }
-
-        if (input_villePopUp.value.length < 1) {
-            auto_completion_ville.classList.add('notVisible');
-        } else {
-            auto_completion_ville.classList.remove('notVisible');
-        }
+const AC_input_ville = document.querySelectorAll('.AC.input_ville');
+if (AC_input_ville) {
+    AC_input_ville.forEach(input => {
+        const div_auto_complete = input.parentNode.querySelector('.auto_completion');
+        input.addEventListener('keyup', () => {
+            ajaxVille(div_auto_complete, input);
+        });
+        input.addEventListener('focus', () => {
+            ajaxVille(div_auto_complete, input);
+        });
     });
 }
+
+function ajaxVille(div_auto_complete, input) {
+    const xhr = new XMLHttpRequest();
+    const url = "?action=autocompleteVille&query=" + input.value;
+    xhr.open("GET", url, true);
+    xhr.onload = () => callback(xhr);
+    xhr.send();
+
+    function callback(xhr) {
+        if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            div_auto_complete.innerHTML = '';
+            data.forEach(element => {
+                const p = document.createElement('p');
+                p.classList.add('AC_ville');
+                p.innerHTML = element.nom.toUpperCase();
+                div_auto_complete.appendChild(p);
+                p.addEventListener('click', () => {
+                    input.value = '';
+                    input.value = element.nom.toUpperCase();
+
+                    const input_cpPopUp = input.parentNode.parentNode.querySelector('#cpPopUp, #cpIntervenant');
+                    const input_hidden_value_ville = input.parentNode.querySelector('#hiddenValueCityPopUp, #hiddenValueCityIntervenant');
+                    if (input_hidden_value_ville && input_cpPopUp) {
+                        console.log(input_hidden_value_ville);
+                        console.log(input_cpPopUp);
+                        input_hidden_value_ville.value = element.id_ville;
+                        input_cpPopUp.value = element.code_postal;
+                    }
+                    div_auto_complete.classList.add('notVisible');
+                });
+            });
+        }
+    }
+
+    // if input is not focused && input is not empty => show auto_completion
+    if (input.value.length < 1 && input !== document.activeElement) {
+        div_auto_complete.classList.add('notVisible');
+    } else {
+        div_auto_complete.classList.remove('notVisible');
+    }
+}
+
+
 // end

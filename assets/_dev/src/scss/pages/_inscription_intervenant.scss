@@ -150,8 +150,8 @@
         }
       }
 
-      &:nth-child(8) {
-        .input-container {
+      &:nth-child(8), &:nth-child(5) {
+        .input-container:first-child {
           overflow : visible;
         }
       }
