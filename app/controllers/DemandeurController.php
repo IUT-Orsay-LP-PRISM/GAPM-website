@@ -42,40 +42,67 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
     public static function login()
     {
+        function addErrorToUrl($error): string
+        {
+            // if error query param already exists, replace it
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            if (isset($referer_parts['query'])) {
+                parse_str($referer_parts['query'], $query_params);
+                $query_params['error'] = $error;
+                $referer_parts['query'] = http_build_query($query_params);
+                $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
+            } else {
+                $referer .= '?error=' . $error;
+            }
+            return $referer;
+        }
+
+        function removeErrorFromUrl() : string
+        {
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            if (isset($referer_parts['query'])) { // remove error query param
+                parse_str($referer_parts['query'], $query_params);
+                unset($query_params['error']);
+                $referer_parts['query'] = http_build_query($query_params);
+                $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
+            }
+            return $referer;
+        }
+
         // TODO: faire la fonction pour valider chaque champs en regex
-        if (!empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['email']) && isset($_POST['password'])){
+        if (!empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['email']) && isset($_POST['password'])) {
 
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            $salt= "sel";
-            $saltedAndHashed = crypt($password,$salt);
-            if (DemandeurDAO::checkIfEmailExists($email)){
+            $salt = "sel";
+            $saltedAndHashed = crypt($password, $salt);
+            if (DemandeurDAO::checkIfEmailExists($email)) {
                 $user = DemandeurDAO::getUserFromEmail($email);
-                if($user->getMotDePasse() == $saltedAndHashed){
+                if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('user', $user);
 
-                    $referer = $_SERVER['HTTP_REFERER'];
-                    $referer_parts = parse_url($referer);
-                    if (isset($referer_parts['query'])) { // remove error query param
-                        parse_str($referer_parts['query'], $query_params);
-                        unset($query_params['error']);
-                        $referer_parts['query'] = http_build_query($query_params);
-                        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
-                    }
+                    $referer = removeErrorFromUrl();
                     header('Location: ' . $referer);
-                } else{
-                    header("Location: /?error=Adresse email ou mot de passe incorrect.");
+                } else {
+                    $referer = addErrorToUrl('Adresse email ou mot de passe incorrect.');
+                    header("Location: $referer");
                 }
-            } else{
-                header("Location: /?error=Adresse email ou mot de passe incorrect.");
+            } else {
+                $referer = addErrorToUrl('Adresse email ou mot de passe incorrect.');
+                header("Location: $referer");
             }
         } else {
-            header("Location: /?error=Veuillez remplir tous les champs.");
+            $referer = addErrorToUrl('Veuillez remplir tous les champs.');
+            header("Location: $referer");
         }
     }
 
-    public static function register(){
+
+    public static function register()
+    {
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['mail'];
@@ -86,8 +113,8 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $address = $_POST['address'];
         $sexe = $_POST['sexe'];
 
-        $salt= "sel";
-        $saltedAndHashed = crypt($password,$salt);
+        $salt = "sel";
+        $saltedAndHashed = crypt($password, $salt);
         $demandeur = new Demandeur();
         $demandeur->setNom($lastname);
         $demandeur->setPrenom($firstname);
@@ -106,7 +133,8 @@ abstract class DemandeurController extends Template implements InterfaceControll
         // - LOGIN inutile
     }
 
-    public static function logout(){
+    public static function logout()
+    {
         Session::destroy();
         header('Location: /');
     }

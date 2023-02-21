@@ -50,7 +50,7 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
 }
 
 
-if (document.querySelector('.demandeur.home') && window.location.search.includes('error')) {
+if (window.location.search.includes('error')) {
     openPopUpConnexion();
 }
 
