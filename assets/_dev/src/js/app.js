@@ -8,6 +8,9 @@ const btn_inscription = document.getElementById('btn-inscription');
 const popUp_connexion = document.querySelector('#popUp-connexion');
 const popUp_inscription = document.querySelector('#popUp-inscription');
 
+const eyeConnexion = document.getElementById('eyeConnexion');
+const eyeInscription = document.getElementById('eyeInscription');
+
 const btn_cross = document.querySelectorAll('.cross');
 const openPopUpInsc = document.querySelector('#openPopUpInsc');
 
@@ -63,6 +66,14 @@ openPopUpInsc.addEventListener('click', () => {
     openPopUpInscription();
 });
 
+eyeConnexion.addEventListener('click', () => {
+    connectPassShowHide();
+});
+
+eyeInscription.addEventListener('click', () => {
+    inscriptPassShowHide();
+});
+
 btn_cross.forEach(btn => btn
     .addEventListener('click', () => {
         popUp_connexion.classList.remove('visible');
@@ -74,7 +85,6 @@ btn_cross.forEach(btn => btn
 
 function inscriptPassShowHide(){
     let mdp = document.getElementById("mdp-inscPopUp");
-    let eyeInscription = document.getElementById('eyeInscription');
     
     if(mdp.type == 'password'){
         mdp.type = 'text';
@@ -90,7 +100,6 @@ function inscriptPassShowHide(){
 
 function connectPassShowHide(){
     let mdp = document.getElementById("mdpPopUp");
-    let eyeConnexion = document.getElementById('eyeConnexion');
     
     if(mdp.type == 'password'){
         mdp.type = 'text';
@@ -113,10 +122,6 @@ function openPopUpInscription() {
         document.body.style.overflowY = "auto";
     }
     window.scrollTo(0, 0);
-    var eyeInscription = document.getElementById('eyeInscription');
-    eyeInscription.addEventListener('click', () => {
-        inscriptPassShowHide();
-    });
 }
 
 function openPopUpConnexion() {
@@ -128,10 +133,6 @@ function openPopUpConnexion() {
         document.body.style.overflowY = "auto";
     }
     window.scrollTo(0, 0);
-    var eyeConnexion = document.getElementById('eyeConnexion');
-    eyeConnexion.addEventListener('click', () => {
-        connectPassShowHide();
-    });
 }
 
 
