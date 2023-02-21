@@ -2338,6 +2338,8 @@ body.intervenant {
         pointer-events: none; }
     body.intervenant .input-container input[type="date"]:not(:focus):not(:valid) {
       color: transparent; }
+    body.intervenant .input-container span.code_postal {
+      color: #257466; }
     body.intervenant .input-container .label {
       top: 0;
       left: calc(2rem + 25px);
@@ -3298,6 +3300,8 @@ body.demandeur {
         pointer-events: none; }
     body.demandeur .input-container input[type="date"]:not(:focus):not(:valid) {
       color: transparent; }
+    body.demandeur .input-container span.code_postal {
+      color: #393BAA; }
     body.demandeur .input-container .label {
       top: 0;
       left: calc(2rem + 25px);

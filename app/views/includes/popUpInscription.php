@@ -33,14 +33,6 @@
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
-                    <select id="sexePopUp" class="input" type="text" name="sexe" required>
-                        <option value="M">Homme</option>
-                        <option value="F">Femme</option>
-                        <option value="A">Autre</option>
-                    </select>
-                    <label class="label" for="telPopUp">Sexe</label>
-                </div>
-                <div class="input-container">
                     <i class="icon icon-fi-rr-home-location-alt"></i>
                     <input id="adressPopUp" class="input" type="text" name="address" required/>
                     <label class="label" for="adressPopUp">Votre adresse (Numéro, Rue)</label>
@@ -53,11 +45,16 @@
                     <label class="label" for="villePopUp">Ville</label>
                     <input id="hiddenValueCityPopUp" name="city" type="number" hidden="hidden" required/>
                     <div class="notVisible auto_completion" ></div>
+                    <span class="code_postal"></span>
                 </div>
                 <div class="input-container">
-                    <i class="icon icon-fi-rr-thumbtack"></i>
-                    <input id="cpPopUp" class="input" type="text" name="cp" required/>
-                    <label class="label" for="cpPopUp">Code postal</label>
+                    <i class="icon icon-fi-rr-venus-mars"></i>
+                    <select id="sexePopUp" class="input" type="text" name="sexe" required>
+                        <option value="M">Homme</option>
+                        <option value="F">Femme</option>
+                        <option value="A">Autre</option>
+                    </select>
+                    <label class="label" for="sexePopUp">Sexe</label>
                 </div>
             </div>
             <div class="popup-container-row">

@@ -87,13 +87,9 @@ function ajaxVille(div_auto_complete, input) {
                     input.value = '';
                     input.value = element.nom.toUpperCase();
 
-                    const input_cpPopUp = input.parentNode.parentNode.querySelector('#cpPopUp, #cpIntervenant');
-                    const input_hidden_value_ville = input.parentNode.querySelector('#hiddenValueCityPopUp, #hiddenValueCityIntervenant');
-                    if (input_hidden_value_ville && input_cpPopUp) {
-                        console.log(input_hidden_value_ville);
-                        console.log(input_cpPopUp);
-                        input_hidden_value_ville.value = element.id_ville;
-                        input_cpPopUp.value = element.code_postal;
+                    const span = input.parentNode.querySelector('span.code_postal')
+                    if (span !== null) {
+                        span.innerHTML = element.code_postal;
                     }
                     div_auto_complete.classList.add('notVisible');
                 });
