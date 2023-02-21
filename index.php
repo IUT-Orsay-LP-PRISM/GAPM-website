@@ -1,6 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
+\App\models\entity\Session::start();
 
 use App\controllers\Route;
 
@@ -8,6 +9,7 @@ use App\controllers\Route;
 // Basé sur /?action=...
 Route::get('demandeur', 'DemandeurController', 'index');
 Route::get('inscription-intervenant', 'IntervenantController', 'index');
+Route::get('logout', 'DemandeurController', 'logout');
 
 // Les post de l'url
 Route::post('login-user', 'DemandeurController', 'login');

@@ -2,6 +2,7 @@
 
 namespace App\controllers;
 
+use App\models\entity\Session;
 use Twig\Extension\DebugExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -27,6 +28,10 @@ class Template
             'cache' => false,
             'debug' => true
         ]);
+        $twig->addGlobal('userLogged', Session::isLogged());
+        if (Session::isLogged()){
+            $twig->addGlobal('user', Session::get('user'));
+        }
         $twig->addExtension(new DebugExtension());
 
         echo $twig->render($view, $data);
