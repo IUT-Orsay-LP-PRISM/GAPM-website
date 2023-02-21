@@ -13,7 +13,7 @@ class ServiceDAO extends ConnexionDB
 
     public static function findByQuery($query)
     {
-        $sql = "SELECT * FROM service WHERE libelle LIKE :libelle";
+        $sql = "SELECT * FROM service WHERE libelle LIKE :libelle LIMIT 10";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
             'libelle' => "%$query%"

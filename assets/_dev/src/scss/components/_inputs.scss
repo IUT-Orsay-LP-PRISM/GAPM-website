@@ -13,6 +13,9 @@
   padding-right    : 1rem;
   background-color : $white;
 
+  .js-iconEyePassword {
+    z-index : 1;
+  }
 
   i {
     margin : 0 1rem;
@@ -28,8 +31,8 @@
     font-size   : 1rem;
     padding-top : 0.5rem;
 
-    &:valid +, &:focus + {
-      label {
+    &:valid, &:focus, &.input[type="email"]:not(:placeholder-shown), {
+      & + label {
         color          : $primaryDark;
         font-size      : .8rem;
         top            : -15px;

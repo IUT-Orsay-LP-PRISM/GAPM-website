@@ -8,13 +8,14 @@
             <div class="popup-container-col">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
-                    <input id="loginPopUp" name="email" class="input" type="text" required/>
+                    <input placeholder=" "  id="loginPopUp" name="email" class="input" type="email" required/>
                     <label class="label" for="loginPopUp">Votre adresse e-mail</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-key"></i>
                     <input id="mdpPopUp" name="password" class="input" type="password" required/>
                     <label class="label" for="mdpPopUp">Votre mot de passe</label>
+                    <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
                 </div>
             </div>
             {% if error is not empty %}

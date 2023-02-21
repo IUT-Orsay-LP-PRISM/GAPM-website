@@ -61,12 +61,14 @@
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-map-marker"></i>
-                    <input id="ville" class="input" type="text" required/>
+                    <input id="ville" class="input AC input_ville" type="text" required/>
                     <label class="label" for="ville">Ville</label>
+                    <input id="hiddenValueCityIntervenant" name="city" type="number" hidden="hidden" required/>
+                    <div class="notVisible auto_completion" ></div>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-thumbtack"></i>
-                    <input id="cp" class="input" type="text" required/>
+                    <input id="cpIntervenant" class="input" type="text" required/>
                     <label class="label" for="cp">Code postal</label>
                 </div>
             </div>
@@ -90,13 +92,7 @@
                     <i class="icon icon-fi-rr-doctor"></i>
                     <input id="specialite" class="input" type="text" required/>
                     <label class="label" for="specialite">Vos spécialités</label>
-                    <div id="auto_completion" class="notVisible">
-                        {% if services is not empty %}
-                            {% for service in services %}
-                                <p>{{ service.libelle }}</p>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                    <div id="auto_completion" class="notVisible"></div>
                 </div>
 
                 <div class="car">

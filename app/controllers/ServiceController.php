@@ -3,7 +3,6 @@
 namespace App\controllers;
 
 use App\models\dao\ServiceDAO;
-use App\models\entity\Service;
 
 abstract class ServiceController extends Template implements InterfaceController
 {

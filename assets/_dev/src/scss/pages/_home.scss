@@ -35,7 +35,7 @@
         margin-bottom : 1.5rem;
       }
 
-      p {
+      .home-title {
         font-size   : 2em;
         font-weight : 500;
         line-height : 1.5;
@@ -62,12 +62,16 @@
     &-inputs {
       margin-top : 1.5rem;
 
-      form{
-        display: flex;
+      form {
+        display : flex;
       }
 
       &-list {
         display : flex;
+
+        .input-container:nth-child(2) {
+          overflow : visible;
+        }
       }
 
       .input-container {
@@ -84,7 +88,7 @@
         margin-top : 1.5rem;
       }
 
-      button{
+      button {
         margin-left : 1rem;
       }
     }
@@ -121,7 +125,7 @@
         padding         : 2rem 0;
 
         a {
-            margin-top : 1.5rem;
+          margin-top : 1.5rem;
         }
 
         h1 {

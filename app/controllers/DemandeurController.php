@@ -68,8 +68,9 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $birthday = $_POST['birthday'];
         $password = $_POST['password'];
         $city = $_POST['city'];
-        $cp = $_POST['cp'];
         $phone = $_POST['phone'];
+        $address = $_POST['address'];
+        $sexe = $_POST['sexe'];
 
         $salt= "sel";
         $saltedAndHashed = crypt($password,$salt);
@@ -78,6 +79,16 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $demandeur->setPrenom($firstname);
         $demandeur->setEmail($email);
         $demandeur->setDateNaissance($birthday);
+        $demandeur->setAdresse($address);
+        $demandeur->setIdVille($city);
         $demandeur->setMotDePasse($saltedAndHashed);
+        $demandeur->setTelephone($phone);
+        $demandeur->setSexe($sexe);
+
+        dump($demandeur);
+        $demandeur = DemandeurDAO::create($demandeur);
+
+        // TODO FOR BDD:
+        // - LOGIN inutile
     }
 }

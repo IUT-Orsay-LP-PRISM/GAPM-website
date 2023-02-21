@@ -4,10 +4,10 @@ namespace App\models\entity;
 
 class Ville
 {
-
-    private $idVille;
+    private $id_Ville;
     private $nom;
     private $codePostal;
+    private $codeDepartement;
 
     // -------------------------------------------------------------------------------------------
     // Constructeur
@@ -28,7 +28,7 @@ class Ville
      */
     public function getIdVille()
     {
-        return $this->idVille;
+        return $this->id_Ville;
     }
 
     /**
@@ -63,5 +63,19 @@ class Ville
         $this->codePostal = $codePostal;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCodeDepartement()
+    {
+        return $this->codeDepartement;
+    }
 
+    /**
+     * @param mixed $codeDepartement
+     */
+    public function setCodeDepartement($codeDepartement)
+    {
+        $this->codeDepartement = $codeDepartement;
+    }
 }

@@ -17,4 +17,5 @@ Route::post('register-user', 'DemandeurController', 'register');
 Route::search('/?action=search');
 
 // route::search pour le système de autocomplete, différent de ::get()
-Route::autocomplete('/?action=autocomplete','Service');
+Route::autocomplete('/?action=autocompleteService','Service');
+Route::autocomplete('/?action=autocompleteVille','Ville');

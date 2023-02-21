@@ -5,7 +5,8 @@ namespace App\models\DAO;
 use App\models\entity\Demandeur;
 use PDO;
 
-class DemandeurDAO extends ConnexionDB{
+class DemandeurDAO extends ConnexionDB
+{
 
     protected static $entity = "Demandeur";
     protected static $link = 'App\models\entity\\';
@@ -21,7 +22,9 @@ class DemandeurDAO extends ConnexionDB{
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         return $stmt->fetchAll();
     }
-    public static function checkIfEmailExists($email){
+
+    public static function checkIfEmailExists($email)
+    {
         $sql = "SELECT login FROM demandeur WHERE email = :email";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
@@ -32,7 +35,8 @@ class DemandeurDAO extends ConnexionDB{
         return !($result == null);
     }
 
-    public static function getUserFromEmail($email){
+    public static function getUserFromEmail($email)
+    {
         $sql = "SELECT *  FROM demandeur WHERE email = :email ";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
@@ -40,5 +44,24 @@ class DemandeurDAO extends ConnexionDB{
         ]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         return $stmt->fetch();
+    }
+
+    public static function create($data)
+    {
+        dump($data);
+        $sql = "INSERT INTO demandeur (login, email, motDePasse, nom, prenom, dateNaissance, adresse, telephone, sexe, id_Ville) VALUES (:login, :email, :motDePasse, :nom, :prenom, :dateNaissance, :adresse, :telephone, :sexe, :id_Ville)";
+        $stmt = self::getInstance()->prepare($sql);
+        $stmt->execute([
+            'login' => $data->getNom().".".$data->getPrenom(),
+            'email' => $data->getEmail(),
+            'motDePasse' => $data->getMotDePasse(),
+            'nom' => $data->getNom(),
+            'prenom' => $data->getPrenom(),
+            'dateNaissance' => $data->getDateNaissance(),
+            'adresse' => $data->getAdresse(),
+            'telephone' => $data->getTelephone(),
+            'sexe' => $data->getSexe(),
+            'id_Ville' => $data->getIdVille()
+        ]);
     }
 }
