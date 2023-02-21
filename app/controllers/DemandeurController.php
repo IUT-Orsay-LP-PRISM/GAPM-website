@@ -68,9 +68,9 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $birthday = $_POST['birthday'];
         $password = $_POST['password'];
         $city = $_POST['city'];
-        $cp = $_POST['cp'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];
+        $sexe = $_POST['sexe'];
 
         $salt= "sel";
         $saltedAndHashed = crypt($password,$salt);
@@ -83,16 +83,12 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $demandeur->setIdVille($city);
         $demandeur->setMotDePasse($saltedAndHashed);
         $demandeur->setTelephone($phone);
-        $demandeur->setSexe("M");
+        $demandeur->setSexe($sexe);
 
         dump($demandeur);
-        //$demandeur = DemandeurDAO::create($demandeur);
+        $demandeur = DemandeurDAO::create($demandeur);
 
         // TODO FOR BDD:
         // - LOGIN inutile
-        // - COMMENT ON GET LE SEXE ?
-        // POUR PUSH TELEPHONE IL FAUT LE METTRE au début en +33 ?
-        // ici on set pas le code postal car il est pas dans la table demandeur il faudrai car 1 ville peut avoir plusieurs cp
-        // donc il faudrai faire une table intermédiaire entre ville et cp
     }
 }
