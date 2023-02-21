@@ -80,7 +80,12 @@ function openPopUpInscription() {
 function removeErrorInURL() {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete('error');
-    const newUrl = window.location.pathname + '?' + urlParams.toString();
+    let newUrl = '';
+    if(urlParams.toString() === '') {
+        newUrl = window.location.pathname;
+    } else{
+        newUrl = window.location.pathname + '?' + urlParams.toString();
+    }
     window.history.pushState({path: newUrl}, '', newUrl);
 }
 
