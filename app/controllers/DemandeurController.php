@@ -42,22 +42,27 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
     public static function login()
     {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        // TODO: faire la fonction pour valider chaque champs en regex
+        if (!empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['email']) && isset($_POST['password'])){
 
-        $salt= "sel";
-        $saltedAndHashed = crypt($password,$salt);
-        if(DemandeurDAO::checkIfEmailExists($email)){
-            $user = DemandeurDAO::getUserFromEmail($email);
-            if($user->getMotDePasse() == $saltedAndHashed){
-                Session::start();
-                Session::set('user', $user);
-                header("Location: /?action=demandeur");
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $salt= "sel";
+            $saltedAndHashed = crypt($password,$salt);
+            if (DemandeurDAO::checkIfEmailExists($email)){
+                $user = DemandeurDAO::getUserFromEmail($email);
+                if($user->getMotDePasse() == $saltedAndHashed){
+                    Session::set('user', $user);
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                } else{
+                    header("Location: /?error=Adresse email ou mot de passe incorrect.");
+                }
             } else{
                 header("Location: /?error=Adresse email ou mot de passe incorrect.");
             }
-        } else{
-            header("Location: /?error=Adresse email ou mot de passe incorrect.");
+        } else {
+            header("Location: /?error=Veuillez remplir tous les champs.");
         }
     }
 
@@ -90,5 +95,10 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
         // TODO FOR BDD:
         // - LOGIN inutile
+    }
+
+    public static function logout(){
+        Session::destroy();
+        header('Location: /');
     }
 }

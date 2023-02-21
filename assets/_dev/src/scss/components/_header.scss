@@ -19,7 +19,7 @@
       box-shadow       : none;
       transition       : all .3s ease-in-out;
 
-      .menu-left {
+      .menu-left, .menu-right {
         li a {
           color : $white !important;
 
@@ -39,55 +39,14 @@
     &.menu-left {
       margin-left : 5em;
       display     : flex;
+      align-items : center;
       @include max-width($screenLg) {
         margin-left : 1em;
       }
 
       li {
         a {
-          font-family     : $mainFont;
-          font-weight     : 600;
-          color           : $primaryDark;
-          text-decoration : none;
-          font-size       : 1em;
-          padding         : 1em;
-          position        : relative;
-          transition      : all .3s ease-in-out;
-
-          &.--active {
-
-            &::after {
-              content          : "";
-              position         : absolute;
-              bottom           : 0;
-              left             : 0;
-              width            : 100%;
-              height           : 2px;
-              background-color : $primaryDark;
-              transition       : all .3s ease-in-out;
-            }
-          }
-
-          &::after {
-            content          : "";
-            position         : absolute;
-            bottom           : 0;
-            left             : 0;
-            right            : 0;
-            margin           : auto;
-            width            : 0;
-            height           : 2px;
-            background-color : $primaryLight;
-            transition       : width 0.3s ease;
-          }
-
-          &:hover::after {
-            width : 100%;
-          }
-
-          &:hover {
-            color : $primaryLight;
-          }
+          @include nav-link;
         }
 
         &:not(:last-child) {
@@ -99,15 +58,104 @@
     &.menu-right {
       margin-right : 5em;
       display      : flex;
+      align-items  : center;
       @include max-width($screenLg) {
         margin-right : 1em;
       }
 
       li {
+        a {
+          &.dropdown-item {
+            color : $white;
+          }
+
+          &.link {
+            @include nav-link;
+          }
+        }
+
+        &.dropdown {
+          position : relative;
+          padding  : 1rem 0;
+
+          .dropdown-icon{
+            margin-left: 1rem;
+            margin-right: 0;
+          }
+
+          &:hover {
+            .menu-dropdown {
+              opacity    : 1;
+              visibility : visible;
+              transform  : translateY(0);
+            }
+          }
+        }
         &:not(:last-child) {
-          margin-right : 2em;
+          margin-right : 1.5em;
+        }
+      }
+
+      .menu-dropdown {
+        position         : absolute;
+        top              : 100%;
+        left             : 0;
+        width            : 100%;
+        background-color : white;
+        border-radius    : 10px;
+        box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.45);
+        box-sizing       : border-box;
+        overflow         : hidden;
+        opacity          : 0;
+        transition       : all .2s ease-in-out;
+        visibility       : hidden;
+        transform        : translateY(-10px);
+
+        li {
+          margin-right: 0;
+
+          a {
+            margin          : 0 !important;
+            display         : flex;
+            justify-content : flex-start;
+            align-items     : center;
+            color           : #787878 !important;
+            font-size       : 1rem;
+            font-family     : $mainFont;
+            text-decoration : none;
+            padding         : 0.9rem 1rem;
+            flex            : 1;
+            transition      : all .3s ease-in-out;
+
+            &:hover {
+              color            : $primaryDark !important;
+              background-color : #F6F6f6;
+            }
+
+            i {
+              margin-right : 1rem;
+            }
+          }
+
+          &.--logout {
+            a {
+              color : #B61414 !important;
+            }
+
+            i {
+              background              : #B61414;
+              background-clip         : border-box;
+              -webkit-background-clip : text;
+              -webkit-text-fill-color : transparent;
+            }
+          }
+
+          &:not(:last-child) {
+            border-bottom : 1px solid #E6E6E6;
+          }
         }
       }
     }
   }
+
 }

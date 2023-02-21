@@ -14,7 +14,6 @@ abstract class Session
     {
         return $_SESSION;
     }
-
     public static function destroy(): void
     {
         session_unset();
@@ -31,5 +30,9 @@ abstract class Session
         return $_SESSION[$key];
     }
 
+    public static function isLogged(): bool
+    {
+        return isset($_SESSION['user']);
+    }
 
 }

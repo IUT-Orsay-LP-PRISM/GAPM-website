@@ -12,9 +12,8 @@ class Route
                 $controller::$method();
             }
         } else {
-            $_GET['action'] = '/';
-            $controller = "App\\controllers\\HomeController";
-            $controller::index();
+            $_GET['action'] = 'home';
+            HomeController::index();
         }
     }
 
