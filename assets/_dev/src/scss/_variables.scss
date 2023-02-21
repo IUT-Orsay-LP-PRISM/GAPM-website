@@ -18,6 +18,7 @@ $screenMd          : 992px;
 $screenLg          : 1280px;
 $screenXl          : 1440px;
 
+@import "tools/mixins";
 @import "tools/typos";
 
 // Import du style de tous outils (mixins, fonctions, variables)

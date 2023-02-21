@@ -1,19 +1,54 @@
 <header class="header">
-    <nav class="header__nav">
-        <ul class="header__menu menu-left">
-            <li class="menu-item"><a href="/" class="--active">Accueil</a></li>
-            <li class="menu-item"><a href="#">Besoin d'aide ?</a></li>
-            <li class="menu-item"><a href="#">A propos</a></li>
-        </ul>
-        <ul class="header__menu menu-right">
-            <li class="menu-item"><a id="btn-connexion" href="#" class="btn btn-primary-nb">
-                    <i class="icon-w icon-fi-rr-user"></i>
-                    Se connecter
-                </a></li>
-            <li class="menu-item"><a id="btn-inscription" href="#" class="btn btn-secondary-nb">
-                    <i class="icon icon-fi-rr-user-add"></i>
-                    S'inscrire
-                </a></li>
-        </ul>
-    </nav>
+	<nav class="header__nav">
+		<ul class="header__menu menu-left">
+			<li class="menu-item"><a href="/" class="--active">Accueil</a></li>
+			<li class="menu-item"><a href="#">Besoin d'aide ?</a></li>
+			<li class="menu-item"><a href="#">A propos</a></li>
+		</ul>
+		<ul class="header__menu menu-right">
+			{% if userLogged %}
+				{% if userIntervenant %}
+					<li class="menu-item">
+						<a href="/?action=intervenant" class="btn btn-primary">Mode intervenant</a>
+					</li>
+				{% endif %}
+				<li class="menu-item">
+					<a href="/?action=prendre-rdv" class="link">
+						Prendre RDV
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="/?action=mes-rendez-vous" class="link">Mes rendez-vous</a>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="btn btn-primary-nb">
+						<i class="icon-w icon-fi-rr-user"></i>
+						{{ user.prenom }}&nbsp;{{ user.nom }}
+						<i class="icon-w icon-fi-rr-angle-small-down dropdown-icon"></i>
+					</a>
+					<ul class="menu-dropdown">
+						<li>
+							<a href="#" class="dropdown-item"><i class="icon icon-fi-rr-comment-user"></i>Mon compte</a>
+						</li>
+						<li class="--logout">
+
+							<a href="/?action=logout" class="dropdown-item">
+								<i class="icon icon-fi-rr-user-delete"></i>
+								Se déconnecter</a>
+						</li>
+					</ul>
+				</li>
+			{% else %}
+				<li class="menu-item"><a id="btn-connexion" href="#" class="btn btn-primary-nb">
+						<i class="icon-w icon-fi-rr-user"></i>
+						Se connecter
+					</a></li>
+				<li class="menu-item"><a id="btn-inscription" href="#" class="btn btn-secondary-nb"
+										 style="color: #393BAA !important;">
+						<i class="icon icon-fi-rr-user-add"></i>
+						S'inscrire
+					</a></li>
+			{% endif %}
+		</ul>
+	</nav>
 </header>
