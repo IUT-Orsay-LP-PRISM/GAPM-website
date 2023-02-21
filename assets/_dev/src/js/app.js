@@ -4,11 +4,14 @@ const windowHeight = header ? header.offsetHeight : 0;
 
 const btn_connexion = document.querySelector('#btn-connexion');
 const btn_inscription = document.getElementById('btn-inscription');
+
 const popUp_connexion = document.querySelector('#popUp-connexion');
 const popUp_inscription = document.querySelector('#popUp-inscription');
 
 const btn_cross = document.querySelectorAll('.cross');
 const openPopUpInsc = document.querySelector('#openPopUpInsc');
+
+
 
 if (document.querySelector('.demandeur.home') && window.scrollY === 0 && header) {
     header.classList.add('transparent');
@@ -69,6 +72,38 @@ btn_cross.forEach(btn => btn
         document.querySelector('#popUp-connexion .error').innerHTML = '';
     }));
 
+function inscriptPassShowHide(){
+    let mdp = document.getElementById("mdp-inscPopUp");
+    let eyeInscription = document.getElementById('eyeInscription');
+    
+    if(mdp.type == 'password'){
+        mdp.type = 'text';
+        eyeInscription.classList.remove('icon-fi-rr-eye-crossed');
+        eyeInscription.classList.add('icon-fi-rr-eye');
+    }
+    else{
+        mdp.type = 'password';
+        eyeInscription.classList.add('icon-fi-rr-eye-crossed');
+        eyeInscription.classList.remove('icon-fi-rr-eye');
+    }
+}
+
+function connectPassShowHide(){
+    let mdp = document.getElementById("mdpPopUp");
+    let eyeConnexion = document.getElementById('eyeConnexion');
+    
+    if(mdp.type == 'password'){
+        mdp.type = 'text';
+        eyeConnexion.classList.remove('icon-fi-rr-eye-crossed');
+        eyeConnexion.classList.add('icon-fi-rr-eye');
+    }
+    else{
+        mdp.type = 'password';
+        eyeConnexion.classList.add('icon-fi-rr-eye-crossed');
+        eyeConnexion.classList.remove('icon-fi-rr-eye');
+    }
+}
+
 function openPopUpInscription() {
     popUp_inscription.classList.toggle('visible');
     popUp_connexion.classList.remove('visible');
@@ -78,6 +113,10 @@ function openPopUpInscription() {
         document.body.style.overflowY = "auto";
     }
     window.scrollTo(0, 0);
+    var eyeInscription = document.getElementById('eyeInscription');
+    eyeInscription.addEventListener('click', () => {
+        inscriptPassShowHide();
+    });
 }
 
 function openPopUpConnexion() {
@@ -89,6 +128,10 @@ function openPopUpConnexion() {
         document.body.style.overflowY = "auto";
     }
     window.scrollTo(0, 0);
+    var eyeConnexion = document.getElementById('eyeConnexion');
+    eyeConnexion.addEventListener('click', () => {
+        connectPassShowHide();
+    });
 }
 
 
