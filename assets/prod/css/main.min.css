@@ -2314,6 +2314,8 @@ body.intervenant {
     overflow: hidden;
     padding-right: 1rem;
     background-color: #FFFFFF; }
+    body.intervenant .input-container .js-iconEyePassword {
+      z-index: 10; }
     body.intervenant .input-container i {
       margin: 0 1rem; }
     body.intervenant .input-container .input {
@@ -3176,6 +3178,8 @@ body.demandeur {
     overflow: hidden;
     padding-right: 1rem;
     background-color: #FFFFFF; }
+    body.demandeur .input-container .js-iconEyePassword {
+      z-index: 10; }
     body.demandeur .input-container i {
       margin: 0 1rem; }
     body.demandeur .input-container .input {

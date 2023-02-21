@@ -65,7 +65,7 @@
                     <i class="icon icon-fi-rr-key"></i>
                     <input id="mdp-inscPopUp" class="input" type="password" name="password" required/>
                     <label class="label" for="mdp-inscPopUp">Votre mot de passe</label>
-                    <i id="eyeInscription" class="icon icon-fi-rr-eye-crossed" style="z-index:2"></i>
+                    <i  class="icon icon-fi-rr-eye-crossed js-iconEyePassword""></i>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-phone-call"></i>
