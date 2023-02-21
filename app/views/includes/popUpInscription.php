@@ -33,6 +33,14 @@
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
+                    <select id="sexePopUp" class="input" type="text" name="sexe" required>
+                        <option value="M">Homme</option>
+                        <option value="F">Femme</option>
+                        <option value="A">Autre</option>
+                    </select>
+                    <label class="label" for="telPopUp">Sexe</label>
+                </div>
+                <div class="input-container">
                     <i class="icon icon-fi-rr-home-location-alt"></i>
                     <input id="adressPopUp" class="input" type="text" name="address" required/>
                     <label class="label" for="adressPopUp">Votre adresse (Numéro, Rue)</label>
@@ -55,8 +63,9 @@
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-key"></i>
-                    <input id="mdp-inscPopUp" class="input" type="text" name="password" required/>
+                    <input id="mdp-inscPopUp" class="input" type="password" name="password" required/>
                     <label class="label" for="mdp-inscPopUp">Votre mot de passe</label>
+                    <i id="eyeInscription" class="icon icon-fi-rr-eye-crossed" style="z-index:2"></i>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-phone-call"></i>
