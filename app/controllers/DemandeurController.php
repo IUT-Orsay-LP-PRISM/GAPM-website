@@ -54,7 +54,16 @@ abstract class DemandeurController extends Template implements InterfaceControll
                 $user = DemandeurDAO::getUserFromEmail($email);
                 if($user->getMotDePasse() == $saltedAndHashed){
                     Session::set('user', $user);
-                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+                    $referer = $_SERVER['HTTP_REFERER'];
+                    $referer_parts = parse_url($referer);
+                    if (isset($referer_parts['query'])) { // remove error query param
+                        parse_str($referer_parts['query'], $query_params);
+                        unset($query_params['error']);
+                        $referer_parts['query'] = http_build_query($query_params);
+                        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
+                    }
+                    header('Location: ' . $referer);
                 } else{
                     header("Location: /?error=Adresse email ou mot de passe incorrect.");
                 }
