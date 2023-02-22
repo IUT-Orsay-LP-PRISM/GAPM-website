@@ -3,7 +3,7 @@
 namespace App\controllers;
 
 use App\models\entity\Demandeur;
-use Bcrypt\Bcrypt;
+use App\models\dao\VilleDAO;
 use App\models\dao\DemandeurDAO;
 use App\models\entity\Session;
 
@@ -138,4 +138,17 @@ abstract class DemandeurController extends Template implements InterfaceControll
         Session::destroy();
         header('Location: /');
     }
+
+    public static function myAccount()
+    {
+        $user = Session::get('user');
+        $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
+        $ville = VilleDAO::findById($demandeur->getId_Ville());
+
+        self::render('demandeur/myAccount.twig', [
+            'demandeur' => $demandeur,
+            'ville' => $ville,
+        ]);
+    }
+
 }

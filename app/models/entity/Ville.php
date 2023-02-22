@@ -26,7 +26,7 @@ class Ville
     /**
      * @return mixed
      */
-    public function getIdVille()
+    public function getId_Ville()
     {
         return $this->id_Ville;
     }

@@ -86,11 +86,8 @@ function ajaxVille(div_auto_complete, input) {
                 p.addEventListener('click', () => {
                     input.value = '';
                     input.value = element.nom.toUpperCase();
-
                     const span = input.parentNode.querySelector('span.code_postal')
-                    if (span !== null) {
-                        span.innerHTML = element.code_postal;
-                    }
+                    span ? span.innerHTML = element.code_postal : null;
                     div_auto_complete.classList.add('notVisible');
                 });
             });

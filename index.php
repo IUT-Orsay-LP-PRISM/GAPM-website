@@ -10,6 +10,7 @@ use App\controllers\Route;
 Route::get('demandeur', 'DemandeurController', 'index');
 Route::get('inscription-intervenant', 'IntervenantController', 'index');
 Route::get('logout', 'DemandeurController', 'logout');
+Route::get('my-account', 'DemandeurController', 'myAccount');
 
 // Les post de l'url
 Route::post('login-user', 'DemandeurController', 'login');

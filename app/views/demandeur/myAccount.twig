@@ -1,0 +1,127 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block type %}
+    {{ type }}
+{% endblock %}
+
+{% block content %}
+
+    <section class="my-account__container">
+{#        <section class="my-account__nav">#}
+{#            <ul>#}
+{#                <li>Information personnelles</li>#}
+{#                #}{# TODO: ICI CHANGER LI - IF INTERVENANT #}
+{#                <li>Devenir Intervenant</li>#}
+{#                <li>Compte <i class="icon icon-fi-rr-comment-user"></i></li>#}
+{#            </ul>#}
+{#        </section>#}
+        <section class="my-account__form" id="form">
+            <h1 class="my-account__title">Mon compte</h1>
+            <form action="">
+                <h2 class="my-account__form-title">Mes informations personnelles</h2>
+
+                <div class="my-account__form-container-row">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-text"></i>
+                        <input id="name" class="input" type="text" required value="{{ demandeur.nom }}"/>
+                        <label class="label" for="name">Votre nom</label>
+                    </div>
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-text"></i>
+                        <input id="first-name" class="input" type="text" required value="{{ demandeur.prenom }}"/>
+                        <label class="label" for="first-name">Votre Prénom</label>
+                    </div>
+                </div>
+
+                <div class="my-account__form-container-row">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-at"></i>
+                        <input id="e-mail" class="input" type="text" required value="{{ demandeur.email }}"/>
+                        <label class="label" for="e-mail">Votre adresse e-mail</label>
+                    </div>
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-calendar"></i>
+                        <input id="birthday" class="input" type="date" required value="{{ demandeur.dateNaissance }}"/>
+                        <label class="label" for="birthday">Votre date de naissance</label>
+                    </div>
+                </div>
+                <div class="my-account__form-container-row">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-venus-mars"></i>
+                        <select id="sexePopUp" class="input" type="text" name="sexe" required>
+                            {% if demandeur.sexe == "M" %}
+                                <option value="M" selected>Homme</option>
+                                <option value="F">Femme</option>
+                                <option value="A">Autre</option>
+                            {% elseif demandeur.sexe == "F" %}
+                                <option value="F" selected>Femme</option>
+                                <option value="M">Homme</option>
+                                <option value="A">Autre</option>
+                            {% elseif demandeur.sexe == "A" %}
+                                <option value="A" selected>Autre</option>
+                                <option value="M">Homme</option>
+                                <option value="F">Femme</option>
+                            {% endif %}
+                        </select>
+                        <label class="label" for="sexePopUp">Sexe</label>
+                    </div>
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-phone-call"></i>
+                        <input id="tel" class="input" type="text" required value="{{ demandeur.telephone }}"/>
+                        <label class="label" for="tel">Téléphone portable</label>
+                    </div>
+                </div>
+                <h2 class="my-account__form-title">Adresse</h2>
+                <div class="my-account__form-container-row">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-home-location-alt"></i>
+                        <input id="adress" class="input" type="text" required value="{{ demandeur.adresse }}"/>
+                        <label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
+                    </div>
+                </div>
+                <div class="my-account__form-container-row">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-map-marker"></i>
+                        <input id="ville" class="input AC input_ville" type="text" required
+                               value="{{ ville.nom|upper }}"/>
+                        <label class="label" for="ville">Ville</label>
+                        <input id="hiddenValueCityIntervenant" name="city" type="number" hidden="hidden" required/>
+                        <div class="notVisible auto_completion"></div>
+                        <span class="code_postal">{{ ville.codePostal }}</span>
+                    </div>
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-map-marker"></i>
+                        <input id="code_postal" class="input AC input_code_postal" type="text" required/>
+                        <label class="label code_postal" for="code_postal">Code postal</label>
+                    </div>
+                </div>
+                <h2 class="my-account__form-title">Sécurité</h2>
+                <div class="my-account__form-container-row">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-key"></i>
+                        <input id="oldMdp" name="oldPassword" class="input" type="password" required/>
+                        <label class="label" for="oldMdp">Ancien mot de passe</label>
+                        <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
+                    </div>
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-key"></i>
+                        <input id="newMdp" name="newPassword" class="input" type="password" required/>
+                        <label class="label" for="newMdp">Nouveau mot de passe</label>
+                        <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">
+                    <i class="icon-w icon-fi-rr-check"></i>
+                    Enregistrer vos modifications
+                </button>
+            </form>
+        </section>
+    </section>
+
+    {% if demandeur is not empty %}
+    {% endif %}
+{% endblock %}

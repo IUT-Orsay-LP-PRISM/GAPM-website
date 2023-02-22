@@ -2254,6 +2254,132 @@ body.intervenant {
             background: red;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; }
+  body.intervenant .my-account__container {
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    background-color: #AEDBD3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px; }
+  body.intervenant .my-account__title {
+    padding: 1.5em 0; }
+  body.intervenant .my-account__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto; }
+    body.intervenant .my-account__form-title {
+      font-size: 1.6em;
+      line-height: 1.2;
+      color: #144139;
+      width: content-box;
+      margin-top: 1.5em; }
+    body.intervenant .my-account__form form {
+      width: 50em;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      background-color: #FFFFFF;
+      z-index: 1;
+      padding: 0 2em 2em 2em;
+      border-radius: 25px; }
+      body.intervenant .my-account__form form > *:not(:last-child) {
+        align-self: flex-start; }
+      body.intervenant .my-account__form form > *:last-child {
+        width: 22em;
+        align-self: center;
+        margin-top: 1em; }
+    body.intervenant .my-account__form-container-row {
+      margin: 1.5em 0; }
+      body.intervenant .my-account__form-container-row .car {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        width: 40%; }
+        body.intervenant .my-account__form-container-row .car p {
+          margin-right: 2em;
+          color: #787878;
+          font-family: "Open Sans", sans-serif; }
+        body.intervenant .my-account__form-container-row .car .switch {
+          display: inline-block;
+          position: relative;
+          width: 70px;
+          height: 30px;
+          cursor: pointer; }
+          body.intervenant .my-account__form-container-row .car .switch input {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 0;
+            height: 0; }
+            body.intervenant .my-account__form-container-row .car .switch input + span {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: #86CABE;
+              border-radius: 20px; }
+            body.intervenant .my-account__form-container-row .car .switch input + span:before {
+              content: "Non";
+              font-family: "Open Sans", sans-serif;
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              top: 50%;
+              left: -4px;
+              width: 45px;
+              height: 42px;
+              background: #FFFFFF;
+              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+              border-radius: 50%;
+              transform: translateY(-50%);
+              transition: all .5s; }
+            body.intervenant .my-account__form-container-row .car .switch input:checked + span {
+              background: linear-gradient(90deg, #257466 0%, #36A793 50%); }
+            body.intervenant .my-account__form-container-row .car .switch input:checked + span:before {
+              left: 34px;
+              content: "Oui"; }
+      body.intervenant .my-account__form-container-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%; }
+        body.intervenant .my-account__form-container-row .input-container {
+          width: 40%; }
+      body.intervenant .my-account__form-container-row:nth-child(6) .input-container {
+        width: 90%; }
+      body.intervenant .my-account__form-container-row:nth-child(7) .input-container:first-child {
+        overflow: visible; }
+    body.intervenant .my-account__form #auto_completion {
+      position: absolute;
+      top: 2.6rem;
+      left: 0;
+      width: 100%;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border-radius: 0 0 10px 10px;
+      font-size: 18px;
+      background-color: #FFFFFF;
+      overflow: hidden;
+      z-index: 1; }
+      body.intervenant .my-account__form #auto_completion p {
+        padding: 1em;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        user-select: none;
+        cursor: pointer; }
+      body.intervenant .my-account__form #auto_completion p:hover {
+        background-color: #AEDBD3; }
+      body.intervenant .my-account__form #auto_completion.notVisible {
+        display: none; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -3216,6 +3342,132 @@ body.demandeur {
             background: red;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; }
+  body.demandeur .my-account__container {
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    background-color: #AEDBD3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px; }
+  body.demandeur .my-account__title {
+    padding: 1.5em 0; }
+  body.demandeur .my-account__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto; }
+    body.demandeur .my-account__form-title {
+      font-size: 1.6em;
+      line-height: 1.2;
+      color: #1E1E3D;
+      width: content-box;
+      margin-top: 1.5em; }
+    body.demandeur .my-account__form form {
+      width: 50em;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      background-color: #FFFFFF;
+      z-index: 1;
+      padding: 0 2em 2em 2em;
+      border-radius: 25px; }
+      body.demandeur .my-account__form form > *:not(:last-child) {
+        align-self: flex-start; }
+      body.demandeur .my-account__form form > *:last-child {
+        width: 22em;
+        align-self: center;
+        margin-top: 1em; }
+    body.demandeur .my-account__form-container-row {
+      margin: 1.5em 0; }
+      body.demandeur .my-account__form-container-row .car {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        width: 40%; }
+        body.demandeur .my-account__form-container-row .car p {
+          margin-right: 2em;
+          color: #787878;
+          font-family: "Open Sans", sans-serif; }
+        body.demandeur .my-account__form-container-row .car .switch {
+          display: inline-block;
+          position: relative;
+          width: 70px;
+          height: 30px;
+          cursor: pointer; }
+          body.demandeur .my-account__form-container-row .car .switch input {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 0;
+            height: 0; }
+            body.demandeur .my-account__form-container-row .car .switch input + span {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background: #7EA6F4;
+              border-radius: 20px; }
+            body.demandeur .my-account__form-container-row .car .switch input + span:before {
+              content: "Non";
+              font-family: "Open Sans", sans-serif;
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              top: 50%;
+              left: -4px;
+              width: 45px;
+              height: 42px;
+              background: #FFFFFF;
+              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+              border-radius: 50%;
+              transform: translateY(-50%);
+              transition: all .5s; }
+            body.demandeur .my-account__form-container-row .car .switch input:checked + span {
+              background: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
+            body.demandeur .my-account__form-container-row .car .switch input:checked + span:before {
+              left: 34px;
+              content: "Oui"; }
+      body.demandeur .my-account__form-container-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%; }
+        body.demandeur .my-account__form-container-row .input-container {
+          width: 40%; }
+      body.demandeur .my-account__form-container-row:nth-child(6) .input-container {
+        width: 90%; }
+      body.demandeur .my-account__form-container-row:nth-child(7) .input-container:first-child {
+        overflow: visible; }
+    body.demandeur .my-account__form #auto_completion {
+      position: absolute;
+      top: 2.6rem;
+      left: 0;
+      width: 100%;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border-radius: 0 0 10px 10px;
+      font-size: 18px;
+      background-color: #FFFFFF;
+      overflow: hidden;
+      z-index: 1; }
+      body.demandeur .my-account__form #auto_completion p {
+        padding: 1em;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        user-select: none;
+        cursor: pointer; }
+      body.demandeur .my-account__form #auto_completion p:hover {
+        background-color: #AEDBD3; }
+      body.demandeur .my-account__form #auto_completion.notVisible {
+        display: none; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;

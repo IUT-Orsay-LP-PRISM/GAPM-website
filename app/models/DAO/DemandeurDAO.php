@@ -61,7 +61,7 @@ class DemandeurDAO extends ConnexionDB
             'adresse' => $data->getAdresse(),
             'telephone' => $data->getTelephone(),
             'sexe' => $data->getSexe(),
-            'id_Ville' => $data->getIdVille()
+            'id_Ville' => $data->getId_Ville()
         ]);
     }
 }
