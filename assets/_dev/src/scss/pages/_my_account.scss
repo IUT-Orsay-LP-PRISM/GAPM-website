@@ -1,5 +1,42 @@
 .my-account {
 
+  &__nav {
+    position : fixed;
+    top      : 14.5em;
+    left     : 5em;
+    height   : 100px;
+
+    ul {
+      display          : flex;
+      flex-direction   : column;
+      justify-content  : space-around;
+      align-items      : flex-end;
+      width            : 100%;
+      height           : 100%;
+      background-color : $white;
+      border-radius    : $borderRadius;
+      box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+      padding          : 0 2em;
+      list-style       : none;
+      font-size        : 1.2em;
+      font-weight      : 600;
+      color            : $greyDark;
+
+      li {
+        cursor : pointer;
+      }
+
+      li:hover {
+        color : $primaryDark;
+      }
+
+      li.active {
+        color         : $primaryDark;
+        border-bottom : 2px solid $primaryDark;
+      }
+    }
+  }
+
   &__container {
     width            : 100%;
     height           : 100%;
@@ -9,12 +46,13 @@
     flex-direction   : column;
     justify-content  : center;
     align-items      : center;
-    padding-bottom: 100px;
+    padding-bottom   : 100px;
   }
 
   &__title {
     padding : 1.5em 0;
   }
+
 
   &__form {
     display         : flex;
@@ -52,12 +90,72 @@
         width      : 22em;
         align-self : center;
         margin-top : 1em;
+      }
 
+      .subtitles {
+        font-size   : 1em;
+        color       : $greyDark;
+        margin-top  : 1em;
+        font-family : $mainFont;
+
+        p {
+          margin-top : 0.5em;
+
+          span {
+            color       : $redDark;
+            font-weight : bold;
+          }
+        }
+      }
+
+      .alert {
+        font-family     : $mainFont;
+        color           : $redDark;
+        font-size       : 1.5em;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        flex-direction  : row;
+        margin-top      : .5em;
+
+        p {
+          margin-left : 0.5em;
+        }
+
+        i {
+          background              : $redDark;
+          background-clip         : border-box;
+          -webkit-background-clip : text;
+          -webkit-text-fill-color : transparent;
+        }
+      }
+
+      .validEmail {
+        width : 40%;
+        i {
+          background              : $redDark;
+          background-clip         : border-box;
+          -webkit-background-clip : text;
+          -webkit-text-fill-color : transparent;
+        }
+      }
+
+      .input-container.validEmail .input {
+          &:valid, &:focus, &.input[type="email"]:not(:placeholder-shown) {
+            & + label {
+              color : $redDark;
+            }
+          }
       }
     }
 
     &-container-row {
       margin : 1.5em 0;
+
+      .overflow {
+        overflow : visible;
+      }
+
 
       .car {
         display         : flex;
@@ -180,5 +278,58 @@
         display : none;
       }
     }
+
+    #tag-container {
+      display         : flex;
+      flex-direction  : column;
+      justify-content : center;
+      align-items     : flex-start;
+      width           : 90%;
+      font-family     : $mainFont;
+      font-size       : 1.1em;
+
+      p {
+        font-weight : 600;
+        color       : $greyDark;
+      }
+
+      .container {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : flex-start;
+        flex-wrap       : wrap;
+        align-items     : center;
+        width           : 100%;
+
+        .tag {
+          display          : flex;
+          flex-direction   : row;
+          justify-content  : center;
+          align-items      : center;
+          background-color : $white;
+          box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+          padding          : 0.5em;
+          border-radius    : 10px;
+          margin           : 0.5em;
+          font-size        : 1.1em;
+          font-family      : $mainFont;
+          color            : $primaryDark;
+          user-select      : none;
+
+
+          &-close {
+            cursor    : pointer;
+            font-size : 1.5em;
+          }
+
+          &-close:hover {
+            background              : red;
+            -webkit-background-clip : text;
+            -webkit-text-fill-color : transparent;
+          }
+        }
+      }
+    }
   }
+
 }

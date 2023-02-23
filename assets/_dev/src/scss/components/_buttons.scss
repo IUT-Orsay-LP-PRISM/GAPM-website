@@ -51,6 +51,11 @@
     color            : $primaryDark;
     background-color : $greenLight;
   }
+  &.btn-redDark {
+    border           : none;
+    color            : $white;
+    background-color : $redDark;
+  }
 
   svg {
     vertical-align : text-top;

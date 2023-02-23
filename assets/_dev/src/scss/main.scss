@@ -4,6 +4,8 @@
 
 body {
   $greenLight               : #AEDBD3;
+  $redDark                  : #B61414;
+  $white                    : #FFFFFF;
 
   &.intervenant {
     $primaryLight             : #36A793;
@@ -13,7 +15,6 @@ body {
     $secondary                : #86CABE;
     $secondaryLight           : #A0E4F1;
 
-    $white                    : #FFFFFF;
     $black                    : #144139;
     $greyDark                 : #787878;
 
@@ -35,7 +36,6 @@ body {
     $secondary                : #7EA6F4;
     $secondaryLight           : #A0E4F1;
 
-    $white                    : #FFFFFF;
     $black                    : #1E1E3D;
 
     $greyDark                 : #787878;

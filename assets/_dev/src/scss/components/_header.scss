@@ -139,11 +139,11 @@
 
           &.--logout {
             a {
-              color : #B61414 !important;
+              color : $redDark !important;
             }
 
             i {
-              background              : #B61414;
+              background              : $redDark;
               background-clip         : border-box;
               -webkit-background-clip : text;
               -webkit-text-fill-color : transparent;
