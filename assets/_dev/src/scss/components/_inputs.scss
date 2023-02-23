@@ -31,7 +31,7 @@
     font-size   : 1rem;
     padding-top : 0.5rem;
 
-    &:valid, &:focus, &.input[type="email"]:not(:placeholder-shown), {
+    &:valid, &:focus, &.input[type="email"]:not(:placeholder-shown) {
       & + label {
         color          : $primaryDark;
         font-size      : .8rem;

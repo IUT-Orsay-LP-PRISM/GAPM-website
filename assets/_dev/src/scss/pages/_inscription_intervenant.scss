@@ -2,6 +2,7 @@
 
   &__banner {
     padding : 2em;
+    height  : calc(100vh - 4em);
 
     .row {
       display         : flex;

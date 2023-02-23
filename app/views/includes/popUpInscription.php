@@ -44,7 +44,7 @@
                     <input id="villePopUp" class="input AC input_ville" type="text" required/>
                     <label class="label" for="villePopUp">Ville</label>
                     <input id="hiddenValueCityPopUp" name="city" type="number" hidden="hidden" required/>
-                    <div class="notVisible auto_completion" ></div>
+                    <div class="notVisible auto_completion"></div>
                     <span class="code_postal"></span>
                 </div>
                 <div class="input-container">
@@ -62,7 +62,7 @@
                     <i class="icon icon-fi-rr-key"></i>
                     <input id="mdp-inscPopUp" class="input" type="password" name="password" required/>
                     <label class="label" for="mdp-inscPopUp">Votre mot de passe</label>
-                    <i  class="icon icon-fi-rr-eye-crossed js-iconEyePassword""></i>
+                    <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-phone-call"></i>
