@@ -2120,11 +2120,6 @@ body.intervenant {
       body.intervenant .inscr_intervenant__form form button[type="submit"] {
         width: 12em;
         margin-top: 1em; }
-      body.intervenant .inscr_intervenant__form form p.error {
-        color: red;
-        text-align: center;
-        font-family: "Open Sans", sans-serif;
-        font-weight: 600; }
     body.intervenant .inscr_intervenant__form-container-row {
       margin: 1.5em 0; }
       body.intervenant .inscr_intervenant__form-container-row {
@@ -2779,9 +2774,6 @@ body.intervenant {
       margin-bottom: 1em; }
     body.intervenant .popup p:not(.error) {
       color: #787878; }
-    body.intervenant .popup p.error {
-      color: red;
-      text-align: center; }
     body.intervenant .popup-container {
       position: relative;
       width: 100%;
@@ -2925,6 +2917,11 @@ body.intervenant {
       font-size: 1.5rem; }
   body.intervenant .banner_bg {
     content: url(../img/banner_gradient_intervenant.png); }
+  body.intervenant p.error {
+    color: red;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600; }
 
 body.demandeur {
   /* Shadow */
@@ -3244,11 +3241,6 @@ body.demandeur {
       body.demandeur .inscr_intervenant__form form button[type="submit"] {
         width: 12em;
         margin-top: 1em; }
-      body.demandeur .inscr_intervenant__form form p.error {
-        color: red;
-        text-align: center;
-        font-family: "Open Sans", sans-serif;
-        font-weight: 600; }
     body.demandeur .inscr_intervenant__form-container-row {
       margin: 1.5em 0; }
       body.demandeur .inscr_intervenant__form-container-row {
@@ -3903,9 +3895,6 @@ body.demandeur {
       margin-bottom: 1em; }
     body.demandeur .popup p:not(.error) {
       color: #787878; }
-    body.demandeur .popup p.error {
-      color: red;
-      text-align: center; }
     body.demandeur .popup-container {
       position: relative;
       width: 100%;
@@ -4049,6 +4038,11 @@ body.demandeur {
       font-size: 1.5rem; }
   body.demandeur .banner_bg {
     content: url(../img/banner_gradient.png); }
+  body.demandeur p.error {
+    color: red;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600; }
 
 html {
   scroll-behavior: smooth; }

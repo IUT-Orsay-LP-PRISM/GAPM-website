@@ -56,3 +56,9 @@ $screenXl          : 1440px;
 .banner_bg {
   content : $srcBackgroundBanner;
 }
+p.error {
+  color      : red;
+  text-align : center;
+  font-family: $mainFont;
+  font-weight: 600;
+}

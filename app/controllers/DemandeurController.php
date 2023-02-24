@@ -30,12 +30,84 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
     public static function update()
     {
-        // TODO: Implement update() method.
+        $user = Session::get('user');
+        $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
+        $email = $_POST['mail'];
+        $userFromEmail = DemandeurDAO::getUserFromEmail($email);
+
+        $salt = "sel";
+        $saltedAndHashed = crypt($_POST['oldPassword'], $salt);
+        $oldPassword = $saltedAndHashed;
+        $password = $demandeur->getMotDePasse();
+
+        if($oldPassword == $demandeur->getMotDePasse()){
+            if(!empty($_POST['newPassword'])) {
+                $salt = "sel";
+                $saltedAndHashed = crypt($_POST['newPassword'], $salt);
+                $password = $saltedAndHashed;
+            }
+        }else{
+            $referer = self::addErrorToUrl('Ancien mot de passe incorrect.', 'mon-compte');
+            header("Location: $referer");
+            exit();
+        }
+
+
+        if ($userFromEmail && $userFromEmail->getIdDemandeur() != $user->getIdDemandeur()) {
+            $referer = self::addErrorToUrl('Cette email est déjà utilisé.', 'mon-compte');
+            header("Location: $referer");
+            exit();
+        } else {
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $birthday = $_POST['birthday'];
+            $city = $_POST['city'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $sexe = $_POST['sexe'];
+
+            $demandeur->setNom($lastname);
+            $demandeur->setPrenom($firstname);
+            $demandeur->setEmail($email);
+            $demandeur->setDateNaissance($birthday);
+            $demandeur->setAdresse($address);
+            $demandeur->setIdVille($city);
+            $demandeur->setMotDePasse($password);
+            $demandeur->setTelephone($phone);
+            $demandeur->setSexe($sexe);
+
+            $demandeur = DemandeurDAO::update($demandeur);
+
+            if ($demandeur) {
+                Session::set('user', $demandeur);
+                header('Location: /?action=my-account');
+            } else {
+                header('Location: /');
+            }
+        }
     }
 
     public static function delete()
     {
-        // TODO: Implement delete() method.
+        $email = $_POST['email'];
+        if ($email != $_SESSION['user']->getEmail()) {
+            header('Location: /?action=my-account');
+        } else {
+            $user = Session::get('user');
+            $demandeur = DemandeurDAO::removeById($user->getIdDemandeur());
+
+            $isIntervenant = IntervenantDAO::findById($user->getIdDemandeur());
+            $isIntervenant ? IntervenantDAO::removeById($user->getIdDemandeur()) : null;
+
+            //TODO :  soit mettre la bdd en cascade delete soit faire a la main les delete des Service tout le reste
+
+            if ($demandeur) {
+                Session::destroy();
+                header('Location: /');
+            } else {
+                header('Location: /?action=my-account');
+            }
+        }
     }
 
     public static function show()
@@ -189,28 +261,5 @@ abstract class DemandeurController extends Template implements InterfaceControll
             'ville' => $ville,
             'view' => $_GET['view'] ?? 'perso',
         ]);
-    }
-
-    public static function myAccountDelete()
-    {
-        $email = $_POST['email'];
-        if($email != $_SESSION['user']->getEmail()){
-            header('Location: /?action=my-account');
-        } else{
-            $user = Session::get('user');
-            $demandeur = DemandeurDAO::removeById($user->getIdDemandeur());
-
-            $isIntervenant = IntervenantDAO::findById($user->getIdDemandeur());
-            $isIntervenant ? IntervenantDAO::removeById($user->getIdDemandeur()) : null;
-
-            //TODO :  soit mettre la bdd en cascade delete soit faire a la main les delete des Service tout le reste
-
-            if($demandeur){
-                Session::destroy();
-                header('Location: /');
-            } else{
-                header('Location: /?action=my-account');
-            }
-        }
     }
 }

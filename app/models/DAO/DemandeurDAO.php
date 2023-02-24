@@ -68,6 +68,27 @@ class DemandeurDAO extends ConnexionDB
             return $data;
         }
         return false;
-
     }
+
+    public  static function update($data)
+    {
+        $sql = "UPDATE demandeur SET login = :login, email = :email, motDePasse = :motDePasse, nom = :nom, prenom = :prenom, dateNaissance = :dateNaissance, adresse = :adresse, telephone = :telephone, sexe = :sexe, id_Ville = :id_Ville WHERE id_Demandeur = :idDemandeur";
+        $stmt = self::getInstance()->prepare($sql);
+        $result = $stmt->execute([
+            'login' => $data->getNom() . "." . $data->getPrenom(),
+            'email' => $data->getEmail(),
+            'motDePasse' => $data->getMotDePasse(),
+            'nom' => $data->getNom(),
+            'prenom' => $data->getPrenom(),
+            'dateNaissance' => $data->getDateNaissance(),
+            'adresse' => $data->getAdresse(),
+            'telephone' => $data->getTelephone(),
+            'sexe' => $data->getSexe(),
+            'id_Ville' => $data->getId_Ville(),
+            'idDemandeur' => $data->getIdDemandeur()
+        ]);
+
+        return $result ? $data : false;
+    }
+
 }
