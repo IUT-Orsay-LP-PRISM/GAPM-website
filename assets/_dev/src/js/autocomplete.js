@@ -88,6 +88,9 @@ function ajaxVille(div_auto_complete, input) {
                     input.value = element.nom.toUpperCase();
                     const span = input.parentNode.querySelector('span.code_postal')
                     span ? span.innerHTML = element.code_postal : null;
+
+                    const input_city_hidden = input.parentNode.querySelector('input[name="city"]');
+                    input_city_hidden ? input_city_hidden.value = element.id_ville : null;
                     div_auto_complete.classList.add('notVisible');
                 });
             });

@@ -48,11 +48,10 @@ class DemandeurDAO extends ConnexionDB
 
     public static function create($data)
     {
-        dump($data);
         $sql = "INSERT INTO demandeur (login, email, motDePasse, nom, prenom, dateNaissance, adresse, telephone, sexe, id_Ville) VALUES (:login, :email, :motDePasse, :nom, :prenom, :dateNaissance, :adresse, :telephone, :sexe, :id_Ville)";
         $stmt = self::getInstance()->prepare($sql);
-        $stmt->execute([
-            'login' => $data->getNom().".".$data->getPrenom(),
+        $result = $stmt->execute([
+            'login' => $data->getNom() . "." . $data->getPrenom(),
             'email' => $data->getEmail(),
             'motDePasse' => $data->getMotDePasse(),
             'nom' => $data->getNom(),
@@ -63,5 +62,11 @@ class DemandeurDAO extends ConnexionDB
             'sexe' => $data->getSexe(),
             'id_Ville' => $data->getId_Ville()
         ]);
+
+        if ($result) {
+            return self::getInstance()->lastInsertId();
+        }
+        return false;
+
     }
 }
