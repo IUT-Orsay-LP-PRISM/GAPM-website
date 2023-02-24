@@ -5,9 +5,7 @@
 		<title>{% block title %}{% endblock %} • GAPM</title>
 	</head>
 	<body class="{% if isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}">
-{#
-<div id="loader"></div>
-#}
+	<div id="loader"></div>
 	{% if not no_header %}
 		{% include "includes/header.twig" %}
 	{% endif %}

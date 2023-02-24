@@ -51,10 +51,10 @@
     color            : $primaryDark;
     background-color : $greenLight;
   }
-  &.btn-redDark {
+  &.btn-red {
     border           : none;
     color            : $white;
-    background-color : $redDark;
+    background : $gradientRed;
   }
 
   svg {
