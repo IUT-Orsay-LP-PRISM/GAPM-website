@@ -14,7 +14,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $lesDemandeurs = DemandeurDAO::findAll();
         $unDemandeur = DemandeurDAO::findById(5);
 
-        self::render('demandeur/demandeurList.twig', [
+        self::render('demandeur/liste-demandeur.twig', [
             'lesDemandeurs' => $lesDemandeurs,
             'unDemandeur' => $unDemandeur,
         ]);
@@ -44,7 +44,6 @@ abstract class DemandeurController extends Template implements InterfaceControll
     {
         function addErrorToUrl($error): string
         {
-            // if error query param already exists, replace it
             $referer = $_SERVER['HTTP_REFERER'];
             $referer_parts = parse_url($referer);
             if (isset($referer_parts['query'])) {
@@ -145,8 +144,9 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
         $ville = VilleDAO::findById($demandeur->getId_Ville());
 
-        self::render('demandeur/myAccount.twig', [
+        self::render('demandeur/mon-compte.twig', [
             'demandeur' => $demandeur,
+            'title' => 'Mon compte',
             'ville' => $ville,
             'view' => $_GET['view'] ?? 'perso',
         ]);

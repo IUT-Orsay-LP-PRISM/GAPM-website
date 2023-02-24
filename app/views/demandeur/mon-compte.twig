@@ -10,20 +10,42 @@
 
 {% block content %}
 
-    <section class="my-account__container">
-        <section class="my-account__nav">
-            <ul>
-                <li class="{% if view == 'perso' %}active{% endif %}"><a href="/?action=my-account&view=perso">Information
-                        personnelles</a></li>
-                <li class="{% if view == 'intervenant' %}active{% endif %}"><a
-                            href="/?action=my-account&view=intervenant">Devenir
-                        Intervenant</a></li>
-                <li class="{% if view == 'compte' %}active{% endif %}"><a href="/?action=my-account&view=compte">Compte
-                        <i class="icon icon-fi-rr-comment-user"></i></a></li>
-            </ul>
-        </section>
+    <section class="myaccount">
+        <h1>Mon compte</h1>
+        <div class="myaccount__content">
+            <div class="myaccount__content__nav">
+                <ul>
+                    <li>
+                        <a href="#" class="myaccount__content__nav-link --active">
+                            <span>Informations personnelles</span>
+                            <i class="icon icon-fi-rr-info"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="myaccount__content__nav-link">
+                            <span>Devenir intervenant</span>
+                            <i class="icon icon-fi-rr-redo"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="myaccount__content__nav-link">
+                            <span>Options</span>
+                            <i class="icon icon-fi-rr-comment-user"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="myaccount__content__body">
+                <div class="myaccount__content__body-form">
+                    {% include '/demandeur/compte/perso.twig' %}
+                </div>
+            </div>
+        </div>
+    </section>
+{#
         <h1 class="my-account__title">Mon compte</h1>
-        {% if view == 'perso' %}
+#}
+{#        {% if view == 'perso' %}
             <section class="my-account__form" id="form">
                 <form action="">
                     <h2 class="my-account__form-title">Mes informations personnelles</h2>
@@ -181,6 +203,6 @@
                     </button>
                 </form>
             </section>
-        {% endif %}
-    </section>
+        {% endif %}#}
+{#    </section>#}
 {% endblock %}

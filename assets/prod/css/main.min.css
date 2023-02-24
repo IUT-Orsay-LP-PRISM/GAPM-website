@@ -1811,6 +1811,340 @@ body.intervenant {
   /* Track */
   /* Handle */
   /* Handle on hover */
+  /*
+  &__nav {
+    position : fixed;
+    top      : 14.5em;
+    left     : 5em;
+    height   : 100px;
+
+    ul {
+      display          : flex;
+      flex-direction   : column;
+      justify-content  : space-around;
+      align-items      : flex-end;
+      width            : 100%;
+      height           : 100%;
+      background-color : $white;
+      border-radius    : $borderRadius;
+      box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+      padding          : 0 2em;
+      list-style       : none;
+      font-size        : 1.2em;
+      font-weight      : 600;
+      color            : $greyDark;
+
+      li {
+        cursor : pointer;
+      }
+
+      li:hover {
+        color : $primaryDark;
+      }
+
+      li.active {
+        color         : $primaryDark;
+        border-bottom : 2px solid $primaryDark;
+      }
+    }
+  }
+
+  &__container {
+    width            : 100%;
+    height           : 100%;
+    padding-top      : 100px;
+    background-color : $greenLight;
+    display          : flex;
+    flex-direction   : column;
+    justify-content  : center;
+    align-items      : center;
+    padding-bottom   : 100px;
+  }
+
+  &__title {
+    padding : 1.5em 0;
+  }
+
+
+  &__form {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    flex-direction  : column;
+    height          : auto;
+
+    &-title {
+      font-size   : 1.6em;
+      line-height : 1.2;
+      color       : $black;
+      width       : content-box;
+      margin-top  : 1.5em;
+    }
+
+
+    form {
+      width            : 50em;
+      height           : fit-content;
+      display          : flex;
+      flex-direction   : column;
+      align-items      : center;
+      justify-content  : space-around;
+      background-color : $white;
+      z-index          : 1;
+      padding          : 0 2em 2em 2em;
+      border-radius    : $borderRadius;
+
+      > *:not(:last-child) {
+        align-self : flex-start;
+      }
+
+      > *:last-child {
+        width      : 22em;
+        align-self : center;
+        margin-top : 1em;
+      }
+
+      .subtitles {
+        font-size   : 1em;
+        color       : $greyDark;
+        margin-top  : 1em;
+        font-family : $mainFont;
+
+        p {
+          margin-top : 0.5em;
+
+          span {
+            color       : $redDark;
+            font-weight : bold;
+          }
+        }
+      }
+
+      .alert {
+        font-family     : $mainFont;
+        color           : $redDark;
+        font-size       : 1.5em;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        flex-direction  : row;
+        margin-top      : .5em;
+
+        p {
+          margin-left : 0.5em;
+        }
+
+        i {
+          background              : $redDark;
+          background-clip         : border-box;
+          -webkit-background-clip : text;
+          -webkit-text-fill-color : transparent;
+        }
+      }
+
+      .validEmail {
+        width : 40%;
+        i {
+          background              : $redDark;
+          background-clip         : border-box;
+          -webkit-background-clip : text;
+          -webkit-text-fill-color : transparent;
+        }
+      }
+
+      .input-container.validEmail .input {
+          &:valid, &:focus, &.input[type="email"]:not(:placeholder-shown) {
+            & + label {
+              color : $redDark;
+            }
+          }
+      }
+    }
+
+    &-container-row {
+      margin : 1.5em 0;
+
+      .overflow {
+        overflow : visible;
+      }
+
+
+      .car {
+        display         : flex;
+        justify-content : center;
+        align-content   : center;
+        flex-direction  : row;
+        width           : 40%;
+
+        p {
+          margin-right : 2em;
+          color        : $greyDark;
+          font-family  : $mainFont;
+        }
+
+        .switch {
+          display  : inline-block;
+          position : relative;
+          width    : 70px;
+          height   : 30px;
+          cursor   : pointer;
+
+          input {
+            position : absolute;
+            top      : -30px;
+            left     : -30px;
+            width    : 0;
+            height   : 0;
+
+            & + span {
+              position      : absolute;
+              top           : 0;
+              bottom        : 0;
+              left          : 0;
+              right         : 0;
+              background    : $secondary;
+              border-radius : 20px;
+            }
+
+            & + span:before {
+              content         : "Non";
+              font-family     : $mainFont;
+              position        : absolute;
+              display         : flex;
+              justify-content : center;
+              align-items     : center;
+              top             : 50%;
+              left            : -4px;
+              width           : 45px;
+              height          : 42px;
+              background      : $white;
+              box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
+              border-radius   : 50%;
+              transform       : translateY(-50%);
+              transition      : all .5s;
+            }
+
+            &:checked {
+              + span {
+                background : $gradientDarkToLight;
+              }
+
+              + span:before {
+                left    : 34px;
+                content : "Oui";
+              }
+            }
+          }
+        }
+      }
+
+      & {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : space-around;
+        align-items     : center;
+        width           : 100%;
+
+        .input-container {
+          width : 40%;
+        }
+      }
+
+      &:nth-child(6) {
+        .input-container {
+          width : 90%;
+        }
+      }
+
+      &:nth-child(7) {
+        .input-container:first-child {
+          overflow : visible;
+        }
+      }
+    }
+
+    #auto_completion {
+      position         : absolute;
+      top              : 2.6rem;
+      left             : 0;
+      width            : 100%;
+      box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border-radius    : 0 0 10px 10px;
+      font-size        : 18px;
+      background-color : $white;
+      overflow         : hidden;
+      z-index          : 1;
+
+      p {
+        padding     : 1em;
+        box-shadow  : 0px 2px 4px rgba(0, 0, 0, 0.38);
+        user-select : none;
+        cursor      : pointer;
+      }
+
+      p:hover {
+        background-color : $greenLight;
+      }
+
+      &.notVisible {
+        display : none;
+      }
+    }
+
+    #tag-container {
+      display         : flex;
+      flex-direction  : column;
+      justify-content : center;
+      align-items     : flex-start;
+      width           : 90%;
+      font-family     : $mainFont;
+      font-size       : 1.1em;
+
+      p {
+        font-weight : 600;
+        color       : $greyDark;
+      }
+
+      .container {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : flex-start;
+        flex-wrap       : wrap;
+        align-items     : center;
+        width           : 100%;
+
+        .tag {
+          display          : flex;
+          flex-direction   : row;
+          justify-content  : center;
+          align-items      : center;
+          background-color : $white;
+          box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+          padding          : 0.5em;
+          border-radius    : 10px;
+          margin           : 0.5em;
+          font-size        : 1.1em;
+          font-family      : $mainFont;
+          color            : $primaryDark;
+          user-select      : none;
+
+
+          &-close {
+            cursor    : pointer;
+            font-size : 1.5em;
+          }
+
+          &-close:hover {
+            background              : red;
+            -webkit-background-clip : text;
+            -webkit-text-fill-color : transparent;
+          }
+        }
+      }
+    }
+  }
+
+}*/
   /* Bouton par défaut */
   /* Header + Navbar */ }
   body.intervenant *::selection {
@@ -2255,235 +2589,101 @@ body.intervenant {
             background: red;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; }
-  body.intervenant .my-account__nav {
-    position: fixed;
-    top: 14.5em;
-    left: 5em;
-    height: 100px; }
-    body.intervenant .my-account__nav ul {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: flex-end;
-      width: 100%;
-      height: 100%;
-      background-color: #FFFFFF;
-      border-radius: 25px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-      padding: 0 2em;
-      list-style: none;
-      font-size: 1.2em;
-      font-weight: 600;
-      color: #787878; }
-      body.intervenant .my-account__nav ul li {
-        cursor: pointer; }
-      body.intervenant .my-account__nav ul li:hover {
-        color: #257466; }
-      body.intervenant .my-account__nav ul li.active {
-        color: #257466;
-        border-bottom: 2px solid #257466; }
-  body.intervenant .my-account__container {
-    width: 100%;
-    height: 100%;
-    padding-top: 100px;
-    background-color: #AEDBD3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 100px; }
-  body.intervenant .my-account__title {
-    padding: 1.5em 0; }
-  body.intervenant .my-account__form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: auto; }
-    body.intervenant .my-account__form-title {
-      font-size: 1.6em;
-      line-height: 1.2;
-      color: #144139;
-      width: content-box;
-      margin-top: 1.5em; }
-    body.intervenant .my-account__form form {
-      width: 50em;
-      height: fit-content;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      background-color: #FFFFFF;
-      z-index: 1;
-      padding: 0 2em 2em 2em;
-      border-radius: 25px; }
-      body.intervenant .my-account__form form > *:not(:last-child) {
-        align-self: flex-start; }
-      body.intervenant .my-account__form form > *:last-child {
-        width: 22em;
-        align-self: center;
-        margin-top: 1em; }
-      body.intervenant .my-account__form form .subtitles {
-        font-size: 1em;
-        color: #787878;
-        margin-top: 1em;
-        font-family: "Open Sans", sans-serif; }
-        body.intervenant .my-account__form form .subtitles p {
-          margin-top: 0.5em; }
-          body.intervenant .my-account__form form .subtitles p span {
-            color: #B61414;
-            font-weight: bold; }
-      body.intervenant .my-account__form form .alert {
-        font-family: "Open Sans", sans-serif;
-        color: #B61414;
-        font-size: 1.5em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        margin-top: .5em; }
-        body.intervenant .my-account__form form .alert p {
-          margin-left: 0.5em; }
-        body.intervenant .my-account__form form .alert i {
-          background: #B61414;
-          background-clip: border-box;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent; }
-      body.intervenant .my-account__form form .validEmail {
-        width: 40%; }
-        body.intervenant .my-account__form form .validEmail i {
-          background: #B61414;
-          background-clip: border-box;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent; }
-      body.intervenant .my-account__form form .input-container.validEmail .input:valid + label, body.intervenant .my-account__form form .input-container.validEmail .input:focus + label, body.intervenant .my-account__form form .input-container.validEmail .input.input[type="email"]:not(:placeholder-shown) + label {
-        color: #B61414; }
-    body.intervenant .my-account__form-container-row {
-      margin: 1.5em 0; }
-      body.intervenant .my-account__form-container-row .overflow {
-        overflow: visible; }
-      body.intervenant .my-account__form-container-row .car {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-direction: row;
-        width: 40%; }
-        body.intervenant .my-account__form-container-row .car p {
-          margin-right: 2em;
-          color: #787878;
-          font-family: "Open Sans", sans-serif; }
-        body.intervenant .my-account__form-container-row .car .switch {
-          display: inline-block;
-          position: relative;
-          width: 70px;
-          height: 30px;
-          cursor: pointer; }
-          body.intervenant .my-account__form-container-row .car .switch input {
-            position: absolute;
-            top: -30px;
-            left: -30px;
-            width: 0;
-            height: 0; }
-            body.intervenant .my-account__form-container-row .car .switch input + span {
+  body.intervenant .myaccount {
+    background-color: #DBECEF;
+    padding-top: calc(130px + 2.5rem);
+    padding-bottom: 12.2rem; }
+    body.intervenant .myaccount h1 {
+      text-align: center; }
+    body.intervenant .myaccount__content {
+      margin-top: 2.35rem;
+      display: grid;
+      grid-gap: 2rem;
+      grid-template-columns: 1fr;
+      grid-template-areas: "nav" "body"; }
+      @media all and (min-width: 992px) {
+        body.intervenant .myaccount__content {
+          grid-template-areas: "nav body .";
+          grid-template-columns: 20rem 1fr 50px; } }
+      @media all and (min-width: 1280px) {
+        body.intervenant .myaccount__content {
+          grid-template-areas: "nav body .";
+          grid-template-columns: minmax(12.5rem, 25.8rem) minmax(500px, 1500px) minmax(12.5rem, 25.8rem); } }
+      body.intervenant .myaccount__content__nav {
+        grid-area: nav;
+        width: 25.8rem; }
+        body.intervenant .myaccount__content__nav ul {
+          position: sticky;
+          top: 100px; }
+        body.intervenant .myaccount__content__nav li:not(:last-child) {
+          margin-bottom: 0.5rem; }
+        body.intervenant .myaccount__content__nav-link {
+          font-family: "Open Sans", sans-serif;
+          font-weight: 600;
+          font-size: 1em;
+          text-decoration: none;
+          color: #144139;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0.5rem 0 0.5rem 5rem;
+          transition: all .3s ease-in-out;
+          position: relative; }
+          body.intervenant .myaccount__content__nav-link > i {
+            margin-left: 0.6rem;
+            background: #144139;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all .3s ease-in-out; }
+          body.intervenant .myaccount__content__nav-link.--active {
+            color: #36A793; }
+            body.intervenant .myaccount__content__nav-link.--active::before {
+              content: "";
               position: absolute;
+              left: 0;
               top: 0;
               bottom: 0;
-              left: 0;
-              right: 0;
-              background: #86CABE;
-              border-radius: 20px; }
-            body.intervenant .my-account__form-container-row .car .switch input + span:before {
-              content: "Non";
-              font-family: "Open Sans", sans-serif;
-              position: absolute;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              top: 50%;
-              left: -4px;
+              margin: auto;
+              height: 50%;
+              background-color: #36A793;
               width: 45px;
-              height: 42px;
-              background: #FFFFFF;
-              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-              border-radius: 50%;
-              transform: translateY(-50%);
-              transition: all .5s; }
-            body.intervenant .my-account__form-container-row .car .switch input:checked + span {
-              background: linear-gradient(90deg, #257466 0%, #36A793 50%); }
-            body.intervenant .my-account__form-container-row .car .switch input:checked + span:before {
-              left: 34px;
-              content: "Oui"; }
-      body.intervenant .my-account__form-container-row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%; }
-        body.intervenant .my-account__form-container-row .input-container {
-          width: 40%; }
-      body.intervenant .my-account__form-container-row:nth-child(6) .input-container {
-        width: 90%; }
-      body.intervenant .my-account__form-container-row:nth-child(7) .input-container:first-child {
-        overflow: visible; }
-    body.intervenant .my-account__form #auto_completion {
-      position: absolute;
-      top: 2.6rem;
-      left: 0;
-      width: 100%;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-      border-radius: 0 0 10px 10px;
-      font-size: 18px;
-      background-color: #FFFFFF;
-      overflow: hidden;
-      z-index: 1; }
-      body.intervenant .my-account__form #auto_completion p {
-        padding: 1em;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-        user-select: none;
-        cursor: pointer; }
-      body.intervenant .my-account__form #auto_completion p:hover {
-        background-color: #AEDBD3; }
-      body.intervenant .my-account__form #auto_completion.notVisible {
-        display: none; }
-    body.intervenant .my-account__form #tag-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      width: 90%;
-      font-family: "Open Sans", sans-serif;
-      font-size: 1.1em; }
-      body.intervenant .my-account__form #tag-container p {
-        font-weight: 600;
-        color: #787878; }
-      body.intervenant .my-account__form #tag-container .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%; }
-        body.intervenant .my-account__form #tag-container .container .tag {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          background-color: #FFFFFF;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-          padding: 0.5em;
-          border-radius: 10px;
-          margin: 0.5em;
-          font-size: 1.1em;
-          font-family: "Open Sans", sans-serif;
-          color: #257466;
-          user-select: none; }
-          body.intervenant .my-account__form #tag-container .container .tag-close {
-            cursor: pointer;
-            font-size: 1.5em; }
-          body.intervenant .my-account__form #tag-container .container .tag-close:hover {
-            background: red;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; }
+              border-radius: 0 50px 50px 0; }
+            body.intervenant .myaccount__content__nav-link.--active > i {
+              background: #36A793;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent; }
+          body.intervenant .myaccount__content__nav-link:hover {
+            color: #36A793; }
+            body.intervenant .myaccount__content__nav-link:hover > i {
+              background: #36A793;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent; }
+      body.intervenant .myaccount__content__body {
+        grid-area: body;
+        padding: 1.85rem 2.53rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+        @media all and (max-width: 992px) {
+          body.intervenant .myaccount__content__body {
+            margin-left: 2.5rem;
+            margin-right: 2.5rem; } }
+    body.intervenant .myaccount__form-title {
+      margin-bottom: 2.4rem; }
+    body.intervenant .myaccount__form__perso {
+      text-align: center; }
+      body.intervenant .myaccount__form__perso__infos, body.intervenant .myaccount__form__perso__adresses, body.intervenant .myaccount__form__perso__security {
+        margin: 2.4rem 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2rem 3.2rem;
+        box-sizing: border-box; }
+        body.intervenant .myaccount__form__perso__infos .input-container, body.intervenant .myaccount__form__perso__adresses .input-container, body.intervenant .myaccount__form__perso__security .input-container {
+          width: 100%; }
+      body.intervenant .myaccount__form__perso__adresses .input-container:nth-child(2) {
+        grid-row: 2; }
+    body.intervenant .myaccount__form .btn {
+      margin: auto; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -2559,17 +2759,19 @@ body.intervenant {
     body.intervenant .input-container .input {
       border: 0;
       outline: none;
-      transition: .2s ease-in-out;
+      transition: .1s ease-in-out;
       box-sizing: border-box;
       width: 100%;
-      height: 3rem;
+      height: 3.2rem;
       font-size: 1rem;
-      padding-top: 0.5rem; }
+      padding-top: .6rem;
+      padding-left: 0; }
       body.intervenant .input-container .input:valid + label, body.intervenant .input-container .input:focus + label, body.intervenant .input-container .input.input[type="email"]:not(:placeholder-shown) + label {
-        color: #257466;
+        color: grey;
         font-size: .8rem;
         top: -15px;
-        pointer-events: none; }
+        pointer-events: none;
+        font-family: "Poppins", sans-serif; }
     body.intervenant .input-container input[type="date"]:not(:focus):not(:valid) {
       color: transparent; }
     body.intervenant .input-container span.code_postal {
@@ -2583,10 +2785,14 @@ body.intervenant {
       position: absolute;
       font-size: 1rem;
       cursor: text;
-      transition: .2s ease-in-out;
+      transition: .1s ease-in-out;
       box-sizing: border-box;
       height: 3rem;
       color: #787878; }
+  body.intervenant select {
+    background-color: #FFFFFF; }
+  body.intervenant input, body.intervenant select, body.intervenant option, body.intervenant textarea {
+    font-family: "Open Sans", sans-serif; }
   body.intervenant .header__nav {
     position: fixed;
     width: 100%;
@@ -3007,6 +3213,340 @@ body.demandeur {
   /* Track */
   /* Handle */
   /* Handle on hover */
+  /*
+  &__nav {
+    position : fixed;
+    top      : 14.5em;
+    left     : 5em;
+    height   : 100px;
+
+    ul {
+      display          : flex;
+      flex-direction   : column;
+      justify-content  : space-around;
+      align-items      : flex-end;
+      width            : 100%;
+      height           : 100%;
+      background-color : $white;
+      border-radius    : $borderRadius;
+      box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+      padding          : 0 2em;
+      list-style       : none;
+      font-size        : 1.2em;
+      font-weight      : 600;
+      color            : $greyDark;
+
+      li {
+        cursor : pointer;
+      }
+
+      li:hover {
+        color : $primaryDark;
+      }
+
+      li.active {
+        color         : $primaryDark;
+        border-bottom : 2px solid $primaryDark;
+      }
+    }
+  }
+
+  &__container {
+    width            : 100%;
+    height           : 100%;
+    padding-top      : 100px;
+    background-color : $greenLight;
+    display          : flex;
+    flex-direction   : column;
+    justify-content  : center;
+    align-items      : center;
+    padding-bottom   : 100px;
+  }
+
+  &__title {
+    padding : 1.5em 0;
+  }
+
+
+  &__form {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    flex-direction  : column;
+    height          : auto;
+
+    &-title {
+      font-size   : 1.6em;
+      line-height : 1.2;
+      color       : $black;
+      width       : content-box;
+      margin-top  : 1.5em;
+    }
+
+
+    form {
+      width            : 50em;
+      height           : fit-content;
+      display          : flex;
+      flex-direction   : column;
+      align-items      : center;
+      justify-content  : space-around;
+      background-color : $white;
+      z-index          : 1;
+      padding          : 0 2em 2em 2em;
+      border-radius    : $borderRadius;
+
+      > *:not(:last-child) {
+        align-self : flex-start;
+      }
+
+      > *:last-child {
+        width      : 22em;
+        align-self : center;
+        margin-top : 1em;
+      }
+
+      .subtitles {
+        font-size   : 1em;
+        color       : $greyDark;
+        margin-top  : 1em;
+        font-family : $mainFont;
+
+        p {
+          margin-top : 0.5em;
+
+          span {
+            color       : $redDark;
+            font-weight : bold;
+          }
+        }
+      }
+
+      .alert {
+        font-family     : $mainFont;
+        color           : $redDark;
+        font-size       : 1.5em;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        flex-direction  : row;
+        margin-top      : .5em;
+
+        p {
+          margin-left : 0.5em;
+        }
+
+        i {
+          background              : $redDark;
+          background-clip         : border-box;
+          -webkit-background-clip : text;
+          -webkit-text-fill-color : transparent;
+        }
+      }
+
+      .validEmail {
+        width : 40%;
+        i {
+          background              : $redDark;
+          background-clip         : border-box;
+          -webkit-background-clip : text;
+          -webkit-text-fill-color : transparent;
+        }
+      }
+
+      .input-container.validEmail .input {
+          &:valid, &:focus, &.input[type="email"]:not(:placeholder-shown) {
+            & + label {
+              color : $redDark;
+            }
+          }
+      }
+    }
+
+    &-container-row {
+      margin : 1.5em 0;
+
+      .overflow {
+        overflow : visible;
+      }
+
+
+      .car {
+        display         : flex;
+        justify-content : center;
+        align-content   : center;
+        flex-direction  : row;
+        width           : 40%;
+
+        p {
+          margin-right : 2em;
+          color        : $greyDark;
+          font-family  : $mainFont;
+        }
+
+        .switch {
+          display  : inline-block;
+          position : relative;
+          width    : 70px;
+          height   : 30px;
+          cursor   : pointer;
+
+          input {
+            position : absolute;
+            top      : -30px;
+            left     : -30px;
+            width    : 0;
+            height   : 0;
+
+            & + span {
+              position      : absolute;
+              top           : 0;
+              bottom        : 0;
+              left          : 0;
+              right         : 0;
+              background    : $secondary;
+              border-radius : 20px;
+            }
+
+            & + span:before {
+              content         : "Non";
+              font-family     : $mainFont;
+              position        : absolute;
+              display         : flex;
+              justify-content : center;
+              align-items     : center;
+              top             : 50%;
+              left            : -4px;
+              width           : 45px;
+              height          : 42px;
+              background      : $white;
+              box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
+              border-radius   : 50%;
+              transform       : translateY(-50%);
+              transition      : all .5s;
+            }
+
+            &:checked {
+              + span {
+                background : $gradientDarkToLight;
+              }
+
+              + span:before {
+                left    : 34px;
+                content : "Oui";
+              }
+            }
+          }
+        }
+      }
+
+      & {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : space-around;
+        align-items     : center;
+        width           : 100%;
+
+        .input-container {
+          width : 40%;
+        }
+      }
+
+      &:nth-child(6) {
+        .input-container {
+          width : 90%;
+        }
+      }
+
+      &:nth-child(7) {
+        .input-container:first-child {
+          overflow : visible;
+        }
+      }
+    }
+
+    #auto_completion {
+      position         : absolute;
+      top              : 2.6rem;
+      left             : 0;
+      width            : 100%;
+      box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border-radius    : 0 0 10px 10px;
+      font-size        : 18px;
+      background-color : $white;
+      overflow         : hidden;
+      z-index          : 1;
+
+      p {
+        padding     : 1em;
+        box-shadow  : 0px 2px 4px rgba(0, 0, 0, 0.38);
+        user-select : none;
+        cursor      : pointer;
+      }
+
+      p:hover {
+        background-color : $greenLight;
+      }
+
+      &.notVisible {
+        display : none;
+      }
+    }
+
+    #tag-container {
+      display         : flex;
+      flex-direction  : column;
+      justify-content : center;
+      align-items     : flex-start;
+      width           : 90%;
+      font-family     : $mainFont;
+      font-size       : 1.1em;
+
+      p {
+        font-weight : 600;
+        color       : $greyDark;
+      }
+
+      .container {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : flex-start;
+        flex-wrap       : wrap;
+        align-items     : center;
+        width           : 100%;
+
+        .tag {
+          display          : flex;
+          flex-direction   : row;
+          justify-content  : center;
+          align-items      : center;
+          background-color : $white;
+          box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+          padding          : 0.5em;
+          border-radius    : 10px;
+          margin           : 0.5em;
+          font-size        : 1.1em;
+          font-family      : $mainFont;
+          color            : $primaryDark;
+          user-select      : none;
+
+
+          &-close {
+            cursor    : pointer;
+            font-size : 1.5em;
+          }
+
+          &-close:hover {
+            background              : red;
+            -webkit-background-clip : text;
+            -webkit-text-fill-color : transparent;
+          }
+        }
+      }
+    }
+  }
+
+}*/
   /* Bouton par défaut */
   /* Header + Navbar */ }
   body.demandeur *::selection {
@@ -3451,235 +3991,101 @@ body.demandeur {
             background: red;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; }
-  body.demandeur .my-account__nav {
-    position: fixed;
-    top: 14.5em;
-    left: 5em;
-    height: 100px; }
-    body.demandeur .my-account__nav ul {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: flex-end;
-      width: 100%;
-      height: 100%;
-      background-color: #FFFFFF;
-      border-radius: 25px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-      padding: 0 2em;
-      list-style: none;
-      font-size: 1.2em;
-      font-weight: 600;
-      color: #787878; }
-      body.demandeur .my-account__nav ul li {
-        cursor: pointer; }
-      body.demandeur .my-account__nav ul li:hover {
-        color: #393BAA; }
-      body.demandeur .my-account__nav ul li.active {
-        color: #393BAA;
-        border-bottom: 2px solid #393BAA; }
-  body.demandeur .my-account__container {
-    width: 100%;
-    height: 100%;
-    padding-top: 100px;
-    background-color: #AEDBD3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 100px; }
-  body.demandeur .my-account__title {
-    padding: 1.5em 0; }
-  body.demandeur .my-account__form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: auto; }
-    body.demandeur .my-account__form-title {
-      font-size: 1.6em;
-      line-height: 1.2;
-      color: #1E1E3D;
-      width: content-box;
-      margin-top: 1.5em; }
-    body.demandeur .my-account__form form {
-      width: 50em;
-      height: fit-content;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      background-color: #FFFFFF;
-      z-index: 1;
-      padding: 0 2em 2em 2em;
-      border-radius: 25px; }
-      body.demandeur .my-account__form form > *:not(:last-child) {
-        align-self: flex-start; }
-      body.demandeur .my-account__form form > *:last-child {
-        width: 22em;
-        align-self: center;
-        margin-top: 1em; }
-      body.demandeur .my-account__form form .subtitles {
-        font-size: 1em;
-        color: #787878;
-        margin-top: 1em;
-        font-family: "Open Sans", sans-serif; }
-        body.demandeur .my-account__form form .subtitles p {
-          margin-top: 0.5em; }
-          body.demandeur .my-account__form form .subtitles p span {
-            color: #B61414;
-            font-weight: bold; }
-      body.demandeur .my-account__form form .alert {
-        font-family: "Open Sans", sans-serif;
-        color: #B61414;
-        font-size: 1.5em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        margin-top: .5em; }
-        body.demandeur .my-account__form form .alert p {
-          margin-left: 0.5em; }
-        body.demandeur .my-account__form form .alert i {
-          background: #B61414;
-          background-clip: border-box;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent; }
-      body.demandeur .my-account__form form .validEmail {
-        width: 40%; }
-        body.demandeur .my-account__form form .validEmail i {
-          background: #B61414;
-          background-clip: border-box;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent; }
-      body.demandeur .my-account__form form .input-container.validEmail .input:valid + label, body.demandeur .my-account__form form .input-container.validEmail .input:focus + label, body.demandeur .my-account__form form .input-container.validEmail .input.input[type="email"]:not(:placeholder-shown) + label {
-        color: #B61414; }
-    body.demandeur .my-account__form-container-row {
-      margin: 1.5em 0; }
-      body.demandeur .my-account__form-container-row .overflow {
-        overflow: visible; }
-      body.demandeur .my-account__form-container-row .car {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-direction: row;
-        width: 40%; }
-        body.demandeur .my-account__form-container-row .car p {
-          margin-right: 2em;
-          color: #787878;
-          font-family: "Open Sans", sans-serif; }
-        body.demandeur .my-account__form-container-row .car .switch {
-          display: inline-block;
-          position: relative;
-          width: 70px;
-          height: 30px;
-          cursor: pointer; }
-          body.demandeur .my-account__form-container-row .car .switch input {
-            position: absolute;
-            top: -30px;
-            left: -30px;
-            width: 0;
-            height: 0; }
-            body.demandeur .my-account__form-container-row .car .switch input + span {
+  body.demandeur .myaccount {
+    background-color: #DBECEF;
+    padding-top: calc(130px + 2.5rem);
+    padding-bottom: 12.2rem; }
+    body.demandeur .myaccount h1 {
+      text-align: center; }
+    body.demandeur .myaccount__content {
+      margin-top: 2.35rem;
+      display: grid;
+      grid-gap: 2rem;
+      grid-template-columns: 1fr;
+      grid-template-areas: "nav" "body"; }
+      @media all and (min-width: 992px) {
+        body.demandeur .myaccount__content {
+          grid-template-areas: "nav body .";
+          grid-template-columns: 20rem 1fr 50px; } }
+      @media all and (min-width: 1280px) {
+        body.demandeur .myaccount__content {
+          grid-template-areas: "nav body .";
+          grid-template-columns: minmax(12.5rem, 25.8rem) minmax(500px, 1500px) minmax(12.5rem, 25.8rem); } }
+      body.demandeur .myaccount__content__nav {
+        grid-area: nav;
+        width: 25.8rem; }
+        body.demandeur .myaccount__content__nav ul {
+          position: sticky;
+          top: 100px; }
+        body.demandeur .myaccount__content__nav li:not(:last-child) {
+          margin-bottom: 0.5rem; }
+        body.demandeur .myaccount__content__nav-link {
+          font-family: "Open Sans", sans-serif;
+          font-weight: 600;
+          font-size: 1em;
+          text-decoration: none;
+          color: #1E1E3D;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0.5rem 0 0.5rem 5rem;
+          transition: all .3s ease-in-out;
+          position: relative; }
+          body.demandeur .myaccount__content__nav-link > i {
+            margin-left: 0.6rem;
+            background: #1E1E3D;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all .3s ease-in-out; }
+          body.demandeur .myaccount__content__nav-link.--active {
+            color: #5154EC; }
+            body.demandeur .myaccount__content__nav-link.--active::before {
+              content: "";
               position: absolute;
+              left: 0;
               top: 0;
               bottom: 0;
-              left: 0;
-              right: 0;
-              background: #7EA6F4;
-              border-radius: 20px; }
-            body.demandeur .my-account__form-container-row .car .switch input + span:before {
-              content: "Non";
-              font-family: "Open Sans", sans-serif;
-              position: absolute;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              top: 50%;
-              left: -4px;
+              margin: auto;
+              height: 50%;
+              background-color: #5154EC;
               width: 45px;
-              height: 42px;
-              background: #FFFFFF;
-              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-              border-radius: 50%;
-              transform: translateY(-50%);
-              transition: all .5s; }
-            body.demandeur .my-account__form-container-row .car .switch input:checked + span {
-              background: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
-            body.demandeur .my-account__form-container-row .car .switch input:checked + span:before {
-              left: 34px;
-              content: "Oui"; }
-      body.demandeur .my-account__form-container-row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%; }
-        body.demandeur .my-account__form-container-row .input-container {
-          width: 40%; }
-      body.demandeur .my-account__form-container-row:nth-child(6) .input-container {
-        width: 90%; }
-      body.demandeur .my-account__form-container-row:nth-child(7) .input-container:first-child {
-        overflow: visible; }
-    body.demandeur .my-account__form #auto_completion {
-      position: absolute;
-      top: 2.6rem;
-      left: 0;
-      width: 100%;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-      border-radius: 0 0 10px 10px;
-      font-size: 18px;
-      background-color: #FFFFFF;
-      overflow: hidden;
-      z-index: 1; }
-      body.demandeur .my-account__form #auto_completion p {
-        padding: 1em;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-        user-select: none;
-        cursor: pointer; }
-      body.demandeur .my-account__form #auto_completion p:hover {
-        background-color: #AEDBD3; }
-      body.demandeur .my-account__form #auto_completion.notVisible {
-        display: none; }
-    body.demandeur .my-account__form #tag-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      width: 90%;
-      font-family: "Open Sans", sans-serif;
-      font-size: 1.1em; }
-      body.demandeur .my-account__form #tag-container p {
-        font-weight: 600;
-        color: #787878; }
-      body.demandeur .my-account__form #tag-container .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%; }
-        body.demandeur .my-account__form #tag-container .container .tag {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          background-color: #FFFFFF;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-          padding: 0.5em;
-          border-radius: 10px;
-          margin: 0.5em;
-          font-size: 1.1em;
-          font-family: "Open Sans", sans-serif;
-          color: #393BAA;
-          user-select: none; }
-          body.demandeur .my-account__form #tag-container .container .tag-close {
-            cursor: pointer;
-            font-size: 1.5em; }
-          body.demandeur .my-account__form #tag-container .container .tag-close:hover {
-            background: red;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; }
+              border-radius: 0 50px 50px 0; }
+            body.demandeur .myaccount__content__nav-link.--active > i {
+              background: #5154EC;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent; }
+          body.demandeur .myaccount__content__nav-link:hover {
+            color: #5154EC; }
+            body.demandeur .myaccount__content__nav-link:hover > i {
+              background: #5154EC;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent; }
+      body.demandeur .myaccount__content__body {
+        grid-area: body;
+        padding: 1.85rem 2.53rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+        @media all and (max-width: 992px) {
+          body.demandeur .myaccount__content__body {
+            margin-left: 2.5rem;
+            margin-right: 2.5rem; } }
+    body.demandeur .myaccount__form-title {
+      margin-bottom: 2.4rem; }
+    body.demandeur .myaccount__form__perso {
+      text-align: center; }
+      body.demandeur .myaccount__form__perso__infos, body.demandeur .myaccount__form__perso__adresses, body.demandeur .myaccount__form__perso__security {
+        margin: 2.4rem 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2rem 3.2rem;
+        box-sizing: border-box; }
+        body.demandeur .myaccount__form__perso__infos .input-container, body.demandeur .myaccount__form__perso__adresses .input-container, body.demandeur .myaccount__form__perso__security .input-container {
+          width: 100%; }
+      body.demandeur .myaccount__form__perso__adresses .input-container:nth-child(2) {
+        grid-row: 2; }
+    body.demandeur .myaccount__form .btn {
+      margin: auto; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -3755,17 +4161,19 @@ body.demandeur {
     body.demandeur .input-container .input {
       border: 0;
       outline: none;
-      transition: .2s ease-in-out;
+      transition: .1s ease-in-out;
       box-sizing: border-box;
       width: 100%;
-      height: 3rem;
+      height: 3.2rem;
       font-size: 1rem;
-      padding-top: 0.5rem; }
+      padding-top: .6rem;
+      padding-left: 0; }
       body.demandeur .input-container .input:valid + label, body.demandeur .input-container .input:focus + label, body.demandeur .input-container .input.input[type="email"]:not(:placeholder-shown) + label {
-        color: #393BAA;
+        color: grey;
         font-size: .8rem;
         top: -15px;
-        pointer-events: none; }
+        pointer-events: none;
+        font-family: "Poppins", sans-serif; }
     body.demandeur .input-container input[type="date"]:not(:focus):not(:valid) {
       color: transparent; }
     body.demandeur .input-container span.code_postal {
@@ -3779,10 +4187,14 @@ body.demandeur {
       position: absolute;
       font-size: 1rem;
       cursor: text;
-      transition: .2s ease-in-out;
+      transition: .1s ease-in-out;
       box-sizing: border-box;
       height: 3rem;
       color: #787878; }
+  body.demandeur select {
+    background-color: #FFFFFF; }
+  body.demandeur input, body.demandeur select, body.demandeur option, body.demandeur textarea {
+    font-family: "Open Sans", sans-serif; }
   body.demandeur .header__nav {
     position: fixed;
     width: 100%;
