@@ -53,6 +53,7 @@
 
         & > i {
           margin-left : 0.6rem;
+          pointer-events: none;
           @include icon-color($black);
           transition  : all .3s ease-in-out;
         }
@@ -99,6 +100,15 @@
       }
 
       h2 {
+      }
+      &-form{
+        .js-account-content{
+          display: none;
+          &.--display{
+            display: block;
+          }
+
+        }
       }
     }
   }

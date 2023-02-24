@@ -2187,6 +2187,7 @@ body.intervenant {
           position: relative; }
           body.intervenant .myaccount__content__nav-link > i {
             margin-left: 0.6rem;
+            pointer-events: none;
             background: #144139;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2224,6 +2225,10 @@ body.intervenant {
           body.intervenant .myaccount__content__body {
             margin-left: 2.5rem;
             margin-right: 2.5rem; } }
+        body.intervenant .myaccount__content__body-form .js-account-content {
+          display: none; }
+          body.intervenant .myaccount__content__body-form .js-account-content.--display {
+            display: block; }
     body.intervenant .myaccount__form-title {
       margin-bottom: 1.2rem; }
     body.intervenant .myaccount__form-subtitle {
@@ -3301,6 +3306,7 @@ body.demandeur {
           position: relative; }
           body.demandeur .myaccount__content__nav-link > i {
             margin-left: 0.6rem;
+            pointer-events: none;
             background: #1E1E3D;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -3338,6 +3344,10 @@ body.demandeur {
           body.demandeur .myaccount__content__body {
             margin-left: 2.5rem;
             margin-right: 2.5rem; } }
+        body.demandeur .myaccount__content__body-form .js-account-content {
+          display: none; }
+          body.demandeur .myaccount__content__body-form .js-account-content.--display {
+            display: block; }
     body.demandeur .myaccount__form-title {
       margin-bottom: 1.2rem; }
     body.demandeur .myaccount__form-subtitle {
