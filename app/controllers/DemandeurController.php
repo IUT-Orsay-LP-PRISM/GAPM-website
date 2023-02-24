@@ -125,11 +125,13 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $demandeur->setTelephone($phone);
         $demandeur->setSexe($sexe);
 
-        dump($demandeur);
         $demandeur = DemandeurDAO::create($demandeur);
-
-        // TODO FOR BDD:
-        // - LOGIN inutile
+        if($demandeur){
+            Session::set('user', $demandeur);
+            header('Location: /');
+        } else {
+            header('Location: /');
+        }
     }
 
     public static function logout()

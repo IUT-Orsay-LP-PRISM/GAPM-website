@@ -64,7 +64,9 @@ class DemandeurDAO extends ConnexionDB
         ]);
 
         if ($result) {
-            return self::getInstance()->lastInsertId();
+            $idDemandeur = self::getInstance()->lastInsertId();
+            $data->setIdDemandeur($idDemandeur);
+            return $data;
         }
         return false;
 
