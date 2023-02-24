@@ -61,8 +61,9 @@ if (window.location.search.includes('error')  ) {
         openPopUpConnexion();
     } else if (containerError === 'inscription') {
         openPopUpInscription();
-    } else {
-        openPopUpConnexion();
+    } else if (containerError === 'inscription-intervenant') {
+        const form = document.querySelector('#form');
+        form.scrollIntoView();
     }
 }
 

@@ -43,13 +43,14 @@ abstract class DemandeurController extends Template implements InterfaceControll
         // TODO: Implement show() method.
     }
 
-    private function addErrorToUrl($error, $containerError): string
+    private static function addErrorToUrl($error, $containerError): string
     {
         $referer = $_SERVER['HTTP_REFERER'];
         $referer_parts = parse_url($referer);
         if (isset($referer_parts['query'])) {
             parse_str($referer_parts['query'], $query_params);
             $query_params['error'] = $error;
+            $query_params['c'] = $containerError;
             $referer_parts['query'] = http_build_query($query_params);
             $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
         } else {
@@ -108,8 +109,10 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $inscriptionIntervenant = false;
         $voiture = 0;
         $specialites = [];
+        $containerError = 'inscription';
         if (isset($_POST['specialites'])) {
             $inscriptionIntervenant = true;
+            $containerError = 'inscription-intervenant';
             $specialitesString = $_POST['specialites'];
             if($specialitesString != 'null') {
                 $specialites = explode('-', $specialitesString);
@@ -120,7 +123,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
         $email = $_POST['mail'];
         $user = DemandeurDAO::getUserFromEmail($email);
         if ($user) {
-            $referer = self::addErrorToUrl('Cette email est déjà utilisé.', 'inscription');
+            $referer = self::addErrorToUrl('Cette email est déjà utilisé.', $containerError);
             header("Location: $referer");
         } else {
             $firstname = $_POST['firstname'];

@@ -2120,6 +2120,11 @@ body.intervenant {
       body.intervenant .inscr_intervenant__form form button[type="submit"] {
         width: 12em;
         margin-top: 1em; }
+      body.intervenant .inscr_intervenant__form form p.error {
+        color: red;
+        text-align: center;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600; }
     body.intervenant .inscr_intervenant__form-container-row {
       margin: 1.5em 0; }
       body.intervenant .inscr_intervenant__form-container-row {
@@ -3239,6 +3244,11 @@ body.demandeur {
       body.demandeur .inscr_intervenant__form form button[type="submit"] {
         width: 12em;
         margin-top: 1em; }
+      body.demandeur .inscr_intervenant__form form p.error {
+        color: red;
+        text-align: center;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600; }
     body.demandeur .inscr_intervenant__form-container-row {
       margin: 1.5em 0; }
       body.demandeur .inscr_intervenant__form-container-row {
