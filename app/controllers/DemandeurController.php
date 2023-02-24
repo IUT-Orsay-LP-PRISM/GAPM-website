@@ -40,24 +40,24 @@ abstract class DemandeurController extends Template implements InterfaceControll
         // TODO: Implement show() method.
     }
 
+    private function addErrorToUrl($error, $containerError): string
+    {
+        $referer = $_SERVER['HTTP_REFERER'];
+        $referer_parts = parse_url($referer);
+        if (isset($referer_parts['query'])) {
+            parse_str($referer_parts['query'], $query_params);
+            $query_params['error'] = $error;
+            $referer_parts['query'] = http_build_query($query_params);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
+        } else {
+            $referer .= '?error=' . $error . '&c=' . $containerError;
+        }
+        return $referer;
+    }
+
     public static function login()
     {
-        function addErrorToUrl($error): string
-        {
-            $referer = $_SERVER['HTTP_REFERER'];
-            $referer_parts = parse_url($referer);
-            if (isset($referer_parts['query'])) {
-                parse_str($referer_parts['query'], $query_params);
-                $query_params['error'] = $error;
-                $referer_parts['query'] = http_build_query($query_params);
-                $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
-            } else {
-                $referer .= '?error=' . $error;
-            }
-            return $referer;
-        }
-
-        function removeErrorFromUrl() : string
+        function removeErrorFromUrl(): string
         {
             $referer = $_SERVER['HTTP_REFERER'];
             $referer_parts = parse_url($referer);
@@ -86,15 +86,15 @@ abstract class DemandeurController extends Template implements InterfaceControll
                     $referer = removeErrorFromUrl();
                     header('Location: ' . $referer);
                 } else {
-                    $referer = addErrorToUrl('Adresse email ou mot de passe incorrect.');
+                    $referer = self::addErrorToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
                     header("Location: $referer");
                 }
             } else {
-                $referer = addErrorToUrl('Adresse email ou mot de passe incorrect.');
+                $referer = self::addErrorToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
                 header("Location: $referer");
             }
         } else {
-            $referer = addErrorToUrl('Veuillez remplir tous les champs.');
+            $referer = self::addErrorToUrl('Veuillez remplir tous les champs.', 'connexion');
             header("Location: $referer");
         }
     }
@@ -102,37 +102,44 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
     public static function register()
     {
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
         $email = $_POST['mail'];
-        $birthday = $_POST['birthday'];
-        $password = $_POST['password'];
-        $city = $_POST['city'];
-        $phone = $_POST['phone'];
-        $address = $_POST['address'];
-        $sexe = $_POST['sexe'];
-
-        $salt = "sel";
-        $saltedAndHashed = crypt($password, $salt);
-        $demandeur = new Demandeur();
-        $demandeur->setNom($lastname);
-        $demandeur->setPrenom($firstname);
-        $demandeur->setEmail($email);
-        $demandeur->setDateNaissance($birthday);
-        $demandeur->setAdresse($address);
-        $demandeur->setIdVille($city);
-        $demandeur->setMotDePasse($saltedAndHashed);
-        $demandeur->setTelephone($phone);
-        $demandeur->setSexe($sexe);
-
-        $demandeur = DemandeurDAO::create($demandeur);
-        if($demandeur){
-            Session::set('user', $demandeur);
-            header('Location: /');
+        $user = DemandeurDAO::getUserFromEmail($email);
+        if ($user) {
+            $referer = self::addErrorToUrl('Cette email est déjà utilisé.', 'inscription');
+            header("Location: $referer");
         } else {
-            header('Location: /');
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $birthday = $_POST['birthday'];
+            $password = $_POST['password'];
+            $city = $_POST['city'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $sexe = $_POST['sexe'];
+
+            $salt = "sel";
+            $saltedAndHashed = crypt($password, $salt);
+            $demandeur = new Demandeur();
+            $demandeur->setNom($lastname);
+            $demandeur->setPrenom($firstname);
+            $demandeur->setEmail($email);
+            $demandeur->setDateNaissance($birthday);
+            $demandeur->setAdresse($address);
+            $demandeur->setIdVille($city);
+            $demandeur->setMotDePasse($saltedAndHashed);
+            $demandeur->setTelephone($phone);
+            $demandeur->setSexe($sexe);
+
+            $demandeur = DemandeurDAO::create($demandeur);
+            if ($demandeur) {
+                Session::set('user', $demandeur);
+                header('Location: /');
+            } else {
+                header('Location: /');
+            }
         }
     }
+
 
     public static function logout()
     {

@@ -49,9 +49,17 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
     }
 }
 
-
-if (window.location.search.includes('error')) {
-    openPopUpConnexion();
+// gestion des erreurs
+if (window.location.search.includes('error')  ) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const containerError = urlParams.get('c');
+    if (containerError === 'connexion') {
+        openPopUpConnexion();
+    } else if (containerError === 'inscription') {
+        openPopUpInscription();
+    } else {
+        openPopUpConnexion();
+    }
 }
 
 
@@ -80,6 +88,7 @@ function openPopUpInscription() {
 function removeErrorInURL() {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete('error');
+    urlParams.delete('c');
     let newUrl = '';
     if(urlParams.toString() === '') {
         newUrl = window.location.pathname;

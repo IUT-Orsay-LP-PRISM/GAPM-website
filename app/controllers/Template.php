@@ -30,6 +30,7 @@ class Template
         ]);
         $twig->addGlobal('userLogged', Session::isLogged());
         $twig->addGlobal('error', $_GET['error'] ?? null);
+        $twig->addGlobal('containerError', $_GET['c'] ?? null);
         if (Session::isLogged()) {
             $twig->addGlobal('user', Session::get('user'));
         }
