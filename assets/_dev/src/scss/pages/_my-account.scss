@@ -107,21 +107,41 @@
     &-title {
       margin-bottom : 1.2rem;
     }
-    &-subtitle{
-      font-family: $mainFont;
-      font-weight: 500;
-      color: $greyDark;
+
+    &-subtitle {
+      font-family   : $mainFont;
+      font-weight   : 400;
+      color         : $greyDark;
       margin-bottom : 1.2rem;
+      line-height   : 1.5;
+    }
+
+    &-alert {
+      display     : flex;
+      align-items : center;
+
+      p {
+        font-family : $titleFont;
+        font-weight : 400;
+        font-size   : 1.5rem;
+        color: $redDark;
+        margin-left: .5rem;
+        line-height: 2;
+      }
+
+      & > i {
+        @include icon-color($redDark);
+      }
     }
 
     &__perso {
-      text-align: center;
+      text-align : center;
 
       &__infos, &__adresses, &__security {
-        margin: 2.4rem 0;
+        margin                : 2.4rem 0;
         display               : grid;
         grid-template-columns : 1fr 1fr;
-        grid-gap              :  2rem 3.2rem;
+        grid-gap              : 2rem 3.2rem;
         box-sizing            : border-box;
 
         .input-container {
@@ -148,349 +168,11 @@
         align-items: center;
         justify-content: flex-start;
       }
-
     }
 
     .btn{
       margin: auto;
+      margin-top : 2.4rem;
     }
   }
 }
-
-
-/*
-  &__nav {
-    position : fixed;
-    top      : 14.5em;
-    left     : 5em;
-    height   : 100px;
-
-    ul {
-      display          : flex;
-      flex-direction   : column;
-      justify-content  : space-around;
-      align-items      : flex-end;
-      width            : 100%;
-      height           : 100%;
-      background-color : $white;
-      border-radius    : $borderRadius;
-      box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
-      padding          : 0 2em;
-      list-style       : none;
-      font-size        : 1.2em;
-      font-weight      : 600;
-      color            : $greyDark;
-
-      li {
-        cursor : pointer;
-      }
-
-      li:hover {
-        color : $primaryDark;
-      }
-
-      li.active {
-        color         : $primaryDark;
-        border-bottom : 2px solid $primaryDark;
-      }
-    }
-  }
-
-  &__container {
-    width            : 100%;
-    height           : 100%;
-    padding-top      : 100px;
-    background-color : $greenLight;
-    display          : flex;
-    flex-direction   : column;
-    justify-content  : center;
-    align-items      : center;
-    padding-bottom   : 100px;
-  }
-
-  &__title {
-    padding : 1.5em 0;
-  }
-
-
-  &__form {
-    display         : flex;
-    justify-content : center;
-    align-items     : center;
-    flex-direction  : column;
-    height          : auto;
-
-    &-title {
-      font-size   : 1.6em;
-      line-height : 1.2;
-      color       : $black;
-      width       : content-box;
-      margin-top  : 1.5em;
-    }
-
-
-    form {
-      width            : 50em;
-      height           : fit-content;
-      display          : flex;
-      flex-direction   : column;
-      align-items      : center;
-      justify-content  : space-around;
-      background-color : $white;
-      z-index          : 1;
-      padding          : 0 2em 2em 2em;
-      border-radius    : $borderRadius;
-
-      > *:not(:last-child) {
-        align-self : flex-start;
-      }
-
-      > *:last-child {
-        width      : 22em;
-        align-self : center;
-        margin-top : 1em;
-      }
-
-      .subtitles {
-        font-size   : 1em;
-        color       : $greyDark;
-        margin-top  : 1em;
-        font-family : $mainFont;
-
-        p {
-          margin-top : 0.5em;
-
-          span {
-            color       : $redDark;
-            font-weight : bold;
-          }
-        }
-      }
-
-      .alert {
-        font-family     : $mainFont;
-        color           : $redDark;
-        font-size       : 1.5em;
-        display         : flex;
-        justify-content : center;
-        align-items     : center;
-        flex-direction  : row;
-        margin-top      : .5em;
-
-        p {
-          margin-left : 0.5em;
-        }
-
-        i {
-          background              : $redDark;
-          background-clip         : border-box;
-          -webkit-background-clip : text;
-          -webkit-text-fill-color : transparent;
-        }
-      }
-
-      .validEmail {
-        width : 40%;
-        i {
-          background              : $redDark;
-          background-clip         : border-box;
-          -webkit-background-clip : text;
-          -webkit-text-fill-color : transparent;
-        }
-      }
-
-      .input-container.validEmail .input {
-          &:valid, &:focus, &.input[type="email"]:not(:placeholder-shown) {
-            & + label {
-              color : $redDark;
-            }
-          }
-      }
-    }
-
-    &-container-row {
-      margin : 1.5em 0;
-
-      .overflow {
-        overflow : visible;
-      }
-
-
-      .car {
-        display         : flex;
-        justify-content : center;
-        align-content   : center;
-        flex-direction  : row;
-        width           : 40%;
-
-        p {
-          margin-right : 2em;
-          color        : $greyDark;
-          font-family  : $mainFont;
-        }
-
-        .switch {
-          display  : inline-block;
-          position : relative;
-          width    : 70px;
-          height   : 30px;
-          cursor   : pointer;
-
-          input {
-            position : absolute;
-            top      : -30px;
-            left     : -30px;
-            width    : 0;
-            height   : 0;
-
-            & + span {
-              position      : absolute;
-              top           : 0;
-              bottom        : 0;
-              left          : 0;
-              right         : 0;
-              background    : $secondary;
-              border-radius : 20px;
-            }
-
-            & + span:before {
-              content         : "Non";
-              font-family     : $mainFont;
-              position        : absolute;
-              display         : flex;
-              justify-content : center;
-              align-items     : center;
-              top             : 50%;
-              left            : -4px;
-              width           : 45px;
-              height          : 42px;
-              background      : $white;
-              box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
-              border-radius   : 50%;
-              transform       : translateY(-50%);
-              transition      : all .5s;
-            }
-
-            &:checked {
-              + span {
-                background : $gradientDarkToLight;
-              }
-
-              + span:before {
-                left    : 34px;
-                content : "Oui";
-              }
-            }
-          }
-        }
-      }
-
-      & {
-        display         : flex;
-        flex-direction  : row;
-        justify-content : space-around;
-        align-items     : center;
-        width           : 100%;
-
-        .input-container {
-          width : 40%;
-        }
-      }
-
-      &:nth-child(6) {
-        .input-container {
-          width : 90%;
-        }
-      }
-
-      &:nth-child(7) {
-        .input-container:first-child {
-          overflow : visible;
-        }
-      }
-    }
-
-    #auto_completion {
-      position         : absolute;
-      top              : 2.6rem;
-      left             : 0;
-      width            : 100%;
-      box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
-      border-radius    : 0 0 10px 10px;
-      font-size        : 18px;
-      background-color : $white;
-      overflow         : hidden;
-      z-index          : 1;
-
-      p {
-        padding     : 1em;
-        box-shadow  : 0px 2px 4px rgba(0, 0, 0, 0.38);
-        user-select : none;
-        cursor      : pointer;
-      }
-
-      p:hover {
-        background-color : $greenLight;
-      }
-
-      &.notVisible {
-        display : none;
-      }
-    }
-
-    #tag-container {
-      display         : flex;
-      flex-direction  : column;
-      justify-content : center;
-      align-items     : flex-start;
-      width           : 90%;
-      font-family     : $mainFont;
-      font-size       : 1.1em;
-
-      p {
-        font-weight : 600;
-        color       : $greyDark;
-      }
-
-      .container {
-        display         : flex;
-        flex-direction  : row;
-        justify-content : flex-start;
-        flex-wrap       : wrap;
-        align-items     : center;
-        width           : 100%;
-
-        .tag {
-          display          : flex;
-          flex-direction   : row;
-          justify-content  : center;
-          align-items      : center;
-          background-color : $white;
-          box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
-          padding          : 0.5em;
-          border-radius    : 10px;
-          margin           : 0.5em;
-          font-size        : 1.1em;
-          font-family      : $mainFont;
-          color            : $primaryDark;
-          user-select      : none;
-
-
-          &-close {
-            cursor    : pointer;
-            font-size : 1.5em;
-          }
-
-          &-close:hover {
-            background              : red;
-            -webkit-background-clip : text;
-            -webkit-text-fill-color : transparent;
-          }
-        }
-      }
-    }
-  }
-
-}*/
-
-

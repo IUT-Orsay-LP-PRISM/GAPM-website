@@ -146,6 +146,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
         self::render('demandeur/mon-compte.twig', [
             'demandeur' => $demandeur,
+            'loader' => false,
             'title' => 'Mon compte',
             'ville' => $ville,
             'view' => $_GET['view'] ?? 'perso',

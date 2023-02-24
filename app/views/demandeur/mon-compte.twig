@@ -22,13 +22,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="myaccount__content__nav-link --active">
+                        <a href="#" class="myaccount__content__nav-link">
                             <span>Devenir intervenant</span>
                             <i class="icon icon-fi-rr-redo"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="myaccount__content__nav-link">
+                        <a href="#" class="myaccount__content__nav-link --active">
                             <span>Options</span>
                             <i class="icon icon-fi-rr-comment-user"></i>
                         </a>
@@ -39,176 +39,11 @@
                 <div class="myaccount__content__body-form">
 {#
                     {% include '/demandeur/compte/perso.twig' %}
-#}
                     {% include '/demandeur/compte/intervenant.twig' %}
-{#
-                    {% include '/demandeur/compte/compte.twig' %}
 #}
+                    {% include '/demandeur/compte/options.twig' %}
                 </div>
             </div>
         </div>
     </section>
-{#
-        <h1 class="my-account__title">Mon compte</h1>
-#}
-{#        {% if view == 'perso' %}
-            <section class="my-account__form" id="form">
-                <form action="">
-                    <h2 class="my-account__form-title">Mes informations personnelles</h2>
-                    <div class="my-account__form-container-row">
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-text"></i>
-                            <input id="name" class="input" type="text" required value="{{ demandeur.nom }}"/>
-                            <label class="label" for="name">Votre nom</label>
-                        </div>
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-text"></i>
-                            <input id="first-name" class="input" type="text" required value="{{ demandeur.prenom }}"/>
-                            <label class="label" for="first-name">Votre Prénom</label>
-                        </div>
-                    </div>
-                    <div class="my-account__form-container-row">
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-at"></i>
-                            <input id="e-mail" class="input" type="text" required value="{{ demandeur.email }}"/>
-                            <label class="label" for="e-mail">Votre adresse e-mail</label>
-                        </div>
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-calendar"></i>
-                            <input id="birthday" class="input" type="date" required
-                                   value="{{ demandeur.dateNaissance }}"/>
-                            <label class="label" for="birthday">Votre date de naissance</label>
-                        </div>
-                    </div>
-                    <div class="my-account__form-container-row">
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-venus-mars"></i>
-                            <select id="sexePopUp" class="input" type="text" name="sexe" required>
-                                {% if demandeur.sexe == "M" %}
-                                    <option value="M" selected>Homme</option>
-                                    <option value="F">Femme</option>
-                                    <option value="A">Autre</option>
-                                {% elseif demandeur.sexe == "F" %}
-                                    <option value="F" selected>Femme</option>
-                                    <option value="M">Homme</option>
-                                    <option value="A">Autre</option>
-                                {% elseif demandeur.sexe == "A" %}
-                                    <option value="A" selected>Autre</option>
-                                    <option value="M">Homme</option>
-                                    <option value="F">Femme</option>
-                                {% endif %}
-                            </select>
-                            <label class="label" for="sexePopUp">Sexe</label>
-                        </div>
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-phone-call"></i>
-                            <input id="tel" class="input" type="text" required value="{{ demandeur.telephone }}"/>
-                            <label class="label" for="tel">Téléphone portable</label>
-                        </div>
-                    </div>
-                    <h2 class="my-account__form-title">Adresse</h2>
-                    <div class="my-account__form-container-row">
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-home-location-alt"></i>
-                            <input id="adress" class="input" type="text" required value="{{ demandeur.adresse }}"/>
-                            <label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
-                        </div>
-                    </div>
-                    <div class="my-account__form-container-row">
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-map-marker"></i>
-                            <input id="ville" class="input AC input_ville" type="text" required
-                                   value="{{ ville.nom|upper }}"/>
-                            <label class="label" for="ville">Ville</label>
-                            <input id="hiddenValueCityIntervenant" name="city" type="number" hidden="hidden" required/>
-                            <div class="notVisible auto_completion"></div>
-                            <span class="code_postal">{{ ville.codePostal }}</span>
-                        </div>
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-map-marker"></i>
-                            <input id="code_postal" class="input AC input_code_postal" type="text" required/>
-                            <label class="label code_postal" for="code_postal">Code postal</label>
-                        </div>
-                    </div>
-                    <h2 class="my-account__form-title">Sécurité</h2>
-                    <div class="my-account__form-container-row">
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-key"></i>
-                            <input id="oldMdp" name="oldPassword" class="input" type="password" required/>
-                            <label class="label" for="oldMdp">Ancien mot de passe</label>
-                            <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
-                        </div>
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-key"></i>
-                            <input id="newMdp" name="newPassword" class="input" type="password" required/>
-                            <label class="label" for="newMdp">Nouveau mot de passe</label>
-                            <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" type="submit">
-                        <i class="icon-w icon-fi-rr-check"></i>
-                        Enregistrer vos modifications
-                    </button>
-                </form>
-            </section>
-        {% elseif view == 'intervenant' %}
-            <section class="my-account__form" id="form">
-                <form action="">
-                    <h2 class="my-account__form-title">Devenir intervenant</h2>
-                    <p class="subtitles">Choissisez vos domaînes de compétences :</p>
-                    <div class="my-account__form-container-row ">
-                        <div class="input-container overflow">
-                            <i class="icon icon-fi-rr-doctor"></i>
-                            <input id="specialite" class="input" type="text"/>
-                            <label class="label" for="specialite">Vos spécialités</label>
-                            <div id="auto_completion" class="notVisible"></div>
-                        </div>
-
-                        <div class="car">
-                            <p>Demande de voiture </br> de fonction</p>
-                            <label class="switch">
-                                <input type="checkbox"/>
-                                <span></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div id="tag-container">
-                        <p>Vos choix :</p>
-                        <div class="container"></div>
-                    </div>
-                    <button class="btn btn-primary" type="submit">
-                        <i class="icon-w icon-fi-rr-check"></i>
-                        Postuler en tant que praticien
-                    </button>
-                </form>
-            </section>
-        {% elseif view == 'compte' %}
-            <section class="my-account__form" id="form">
-                <form action="">
-                    <h2 class="my-account__form-title">Compte</h2>
-                    <div class="alert"><i class="icon icon-fi-rr-shield-exclamation"></i>
-                        <p>Option dangereuse</p></div>
-                    <div class="subtitles">
-                        <p>Vous souhaitez supprimer votre compte ?</p>
-                        <p>Attention, cette action est <span>irréversible.</span></p>
-                        <p>P.S. : Votre e-mail ne pourra être réutilisé qu’à partir d’une semaine après la suppression
-                            du compte.</p>
-                    </div>
-                    <br>
-                    <p class="subtitles">Entrez votre adresse mail ci-dessous, puis cliquez sur confirmer. </p>
-                    </br>
-                    <div class="input-container validEmail">
-                        <i class="icon icon-fi-rr-user-remove"></i>
-                        <input id="email" name="email" class="input" type="email" placeholder=" " required/>
-                        <label class="label" for="email">Email</label>
-                    </div>
-
-                    <button class="btn btn-redDark" type="submit">
-                        <i class="icon-w icon-fi-rr-check"></i>
-                        Confirmer la suppression
-                    </button>
-                </form>
-            </section>
-        {% endif %}#}
-{#    </section>#}
 {% endblock %}
