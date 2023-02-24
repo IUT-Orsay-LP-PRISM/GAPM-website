@@ -4,7 +4,8 @@ const popUp_inscription = document.querySelector('#popUp-inscription');
 const btn_cross = document.querySelectorAll('.cross');
 const btn_connexion = document.querySelector('#btn-connexion');
 const btn_inscription = document.getElementById('btn-inscription');
-const div_error = document.querySelector('#popUp-connexion .error');
+const div_errorConnexion = document.querySelector('#popUp-connexion .error');
+const div_errorInscription = document.querySelector('#popUp-inscription .error');
 
 openPopUpInsc.addEventListener('click', () => {
     openPopUpInscription();
@@ -16,7 +17,9 @@ btn_cross.forEach(btn => btn
         popUp_inscription.classList.remove('visible');
         document.body.style.overflowY = "auto";
         removeErrorInURL();
-        div_error ? div_error.innerHTML = '' : null;
+        div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
+        div_errorInscription ? div_errorInscription.innerHTML = '' : null;
+
     })
 );
 
@@ -38,7 +41,8 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
         popUp_inscription.classList.remove('visible');
         document.body.style.overflowY = "auto";
         removeErrorInURL();
-        div_error ? div_error.innerHTML = '' : null;
+        div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
+        div_errorInscription ? div_errorInscription.innerHTML = '' : null;
     }
     if (AC) {
         AC.forEach(div => {
