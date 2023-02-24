@@ -2,10 +2,13 @@
 
 namespace App\models\entity;
 
-class Intervenant extends Demandeur{
+class Intervenant extends Demandeur
+{
 
-    private $idIntervenant;
+    private $id_Intervenant;
     private $adressePro;
+
+    private $specialites;
 
     // -------------------------------------------------------------------------------------------
     // Constructeur
@@ -28,17 +31,17 @@ class Intervenant extends Demandeur{
     /**
      * @return mixed
      */
-    public function getIdIntervenant()
+    public function getId_Intervenant()
     {
-        return $this->idIntervenant;
+        return $this->id_Intervenant;
     }
 
     /**
-     * @param mixed $idIntervenant
+     * @param mixed $id_Intervenant
      */
-    public function setIdIntervenant($idIntervenant)
+    public function setId_Intervenant($idIntervenant)
     {
-        $this->idIntervenant = $idIntervenant;
+        $this->id_Intervenant = $idIntervenant;
     }
 
     /**
@@ -55,6 +58,23 @@ class Intervenant extends Demandeur{
     public function setAdressePro($adressePro)
     {
         $this->adressePro = $adressePro;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpecialites()
+    {
+        return $this->specialites;
+    }
+
+    /**
+     * @param mixed $specialites
+     */
+
+    public function setSpecialites($specialites)
+    {
+        $this->specialites = $specialites;
     }
 
 

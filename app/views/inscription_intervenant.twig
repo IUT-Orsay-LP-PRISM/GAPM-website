@@ -23,18 +23,18 @@
         </div>
     </section>
     <section class="inscr_intervenant__form" id="form">
-        <form action="">
+        <form method="post" action="?action=register-user">
             <h2 class="text__underline-light">Inscription Pro</h2>
 
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
-                    <input id="name" class="input" type="text" required/>
+                    <input id="name" class="input" type="text" name="lastname" required/>
                     <label class="label" for="name">Votre nom</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
-                    <input id="first-name" class="input" type="text" required/>
+                    <input id="first-name" class="input" type="text" name="firstname" required/>
                     <label class="label" for="first-name">Votre Prénom</label>
                 </div>
             </div>
@@ -42,19 +42,19 @@
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
-                    <input id="e-mail" class="input" type="text" required/>
+                    <input id="e-mail" class="input" type="email" placeholder=" " name="mail" required/>
                     <label class="label" for="e-mail">Votre adresse e-mail</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-calendar"></i>
-                    <input id="birthday" class="input" type="date" required/>
+                    <input id="birthday" class="input" type="date" name="birthday" required/>
                     <label class="label" for="birthday">Votre date de naissance</label>
                 </div>
             </div>
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-home-location-alt"></i>
-                    <input id="adress" class="input" type="text" required/>
+                    <input id="adress" class="input" type="text" name="address" required/>
                     <label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
                 </div>
             </div>
@@ -69,12 +69,12 @@
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-venus-mars"></i>
-                    <select id="sexePopUp" class="input" type="text" name="sexe" required>
+                    <select id="sexe" class="input" type="text" name="sexe" required>
                         <option value="M">Homme</option>
                         <option value="F">Femme</option>
                         <option value="A">Autre</option>
                     </select>
-                    <label class="label" for="sexePopUp">Sexe</label>
+                    <label class="label" for="sexe">Sexe</label>
                 </div>
             </div>
             <div class="inscr_intervenant__form-container-row">
@@ -86,7 +86,7 @@
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-phone-call"></i>
-                    <input id="tel" class="input" type="text" required/>
+                    <input id="tel" class="input" type="text" name="phone" required/>
                     <label class="label" for="tel">Téléphone portable</label>
                 </div>
             </div>
@@ -99,12 +99,12 @@
                     <input id="specialite" class="input" type="text"/>
                     <label class="label" for="specialite">Vos spécialités</label>
                     <div id="auto_completion" class="notVisible"></div>
+                    <input id="specialitesInput" type="hidden" name="specialites" value="null">
                 </div>
-
                 <div class="car">
                     <p>Demande de voiture </br> de fonction</p>
                     <label class="switch">
-                        <input type="checkbox"/>
+                        <input type="checkbox" name="voiture" value="1"/>
                         <span></span>
                     </label>
                 </div>

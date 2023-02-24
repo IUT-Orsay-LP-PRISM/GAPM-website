@@ -2,7 +2,6 @@
 
 namespace App\models\DAO;
 
-use App\models\entity\Demandeur;
 use PDO;
 
 class DemandeurDAO extends ConnexionDB

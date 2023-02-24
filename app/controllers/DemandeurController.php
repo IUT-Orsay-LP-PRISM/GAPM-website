@@ -6,6 +6,9 @@ use App\models\entity\Demandeur;
 use App\models\dao\VilleDAO;
 use App\models\dao\DemandeurDAO;
 use App\models\entity\Session;
+use App\models\entity\Intervenant;
+use App\models\dao\IntervenantDAO;
+
 
 abstract class DemandeurController extends Template implements InterfaceController
 {
@@ -102,6 +105,18 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
     public static function register()
     {
+        $inscriptionIntervenant = false;
+        $voiture = 0;
+        $specialites = [];
+        if (isset($_POST['specialites'])) {
+            $inscriptionIntervenant = true;
+            $specialitesString = $_POST['specialites'];
+            if($specialitesString != 'null') {
+                $specialites = explode('-', $specialitesString);
+            }
+            $voiture = $_POST['voiture'] ?? 0;
+        }
+
         $email = $_POST['mail'];
         $user = DemandeurDAO::getUserFromEmail($email);
         if ($user) {
@@ -131,6 +146,17 @@ abstract class DemandeurController extends Template implements InterfaceControll
             $demandeur->setSexe($sexe);
 
             $demandeur = DemandeurDAO::create($demandeur);
+
+            if ($inscriptionIntervenant) {
+                $intervenant = new Intervenant();
+                $intervenant->setId_Intervenant($demandeur->getIdDemandeur());
+                $intervenant->setSpecialites($specialites);
+                //$intervenant->setVoiture($voiture);
+                // TODO : ajouter voiture et demande voiture
+
+                $intervenant = IntervenantDAO::create($intervenant);
+            }
+
             if ($demandeur) {
                 Session::set('user', $demandeur);
                 header('Location: /');

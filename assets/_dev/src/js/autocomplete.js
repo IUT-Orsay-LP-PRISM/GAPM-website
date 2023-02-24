@@ -27,6 +27,16 @@ if (specialite_input && auto_completion) {
 
                     p.addEventListener('click', () => {
                         tag_container.appendChild(createTag(element.libelle.toUpperCase(), element.id_service));
+                        const specialitesInput = document.querySelector('#specialitesInput');
+                        if (specialitesInput) {
+                            const value = specialitesInput.value;
+                            if (value === 'null') {
+                                specialitesInput.value = element.id_service;
+                            } else {
+                                specialitesInput.value = value + '-' + element.id_service;
+                            }
+                        }
+
                         specialite_input.value = '';
                         auto_completion.classList.add('notVisible');
                     });
