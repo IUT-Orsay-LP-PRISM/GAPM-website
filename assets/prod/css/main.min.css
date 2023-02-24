@@ -2456,57 +2456,6 @@ body.intervenant {
         margin-top: 1em; }
     body.intervenant .inscr_intervenant__form-container-row {
       margin: 1.5em 0; }
-      body.intervenant .inscr_intervenant__form-container-row .car {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-direction: row;
-        width: 40%; }
-        body.intervenant .inscr_intervenant__form-container-row .car p {
-          margin-right: 2em;
-          color: #787878;
-          font-family: "Open Sans", sans-serif; }
-        body.intervenant .inscr_intervenant__form-container-row .car .switch {
-          display: inline-block;
-          position: relative;
-          width: 70px;
-          height: 30px;
-          cursor: pointer; }
-          body.intervenant .inscr_intervenant__form-container-row .car .switch input {
-            position: absolute;
-            top: -30px;
-            left: -30px;
-            width: 0;
-            height: 0; }
-            body.intervenant .inscr_intervenant__form-container-row .car .switch input + span {
-              position: absolute;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              background: #86CABE;
-              border-radius: 20px; }
-            body.intervenant .inscr_intervenant__form-container-row .car .switch input + span:before {
-              content: "Non";
-              font-family: "Open Sans", sans-serif;
-              position: absolute;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              top: 50%;
-              left: -4px;
-              width: 45px;
-              height: 42px;
-              background: #FFFFFF;
-              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-              border-radius: 50%;
-              transform: translateY(-50%);
-              transition: all .5s; }
-            body.intervenant .inscr_intervenant__form-container-row .car .switch input:checked + span {
-              background: linear-gradient(90deg, #257466 0%, #36A793 50%); }
-            body.intervenant .inscr_intervenant__form-container-row .car .switch input:checked + span:before {
-              left: 34px;
-              content: "Oui"; }
       body.intervenant .inscr_intervenant__form-container-row {
         display: flex;
         flex-direction: row;
@@ -2530,65 +2479,6 @@ body.intervenant {
         height: 4px;
         background-color: #86CABE;
         margin: 1em 0; }
-    body.intervenant .inscr_intervenant__form #auto_completion {
-      position: absolute;
-      top: 2.6rem;
-      left: 0;
-      width: 100%;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-      border-radius: 0 0 10px 10px;
-      font-size: 18px;
-      background-color: #FFFFFF;
-      overflow: hidden;
-      z-index: 1; }
-      body.intervenant .inscr_intervenant__form #auto_completion p {
-        padding: 1em;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-        user-select: none;
-        cursor: pointer; }
-      body.intervenant .inscr_intervenant__form #auto_completion p:hover {
-        background-color: #AEDBD3; }
-      body.intervenant .inscr_intervenant__form #auto_completion.notVisible {
-        display: none; }
-    body.intervenant .inscr_intervenant__form #tag-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      width: 90%;
-      font-family: "Open Sans", sans-serif;
-      font-size: 1.1em; }
-      body.intervenant .inscr_intervenant__form #tag-container p {
-        font-weight: 600;
-        color: #787878; }
-      body.intervenant .inscr_intervenant__form #tag-container .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%; }
-        body.intervenant .inscr_intervenant__form #tag-container .container .tag {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          background-color: #FFFFFF;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-          padding: 0.5em;
-          border-radius: 10px;
-          margin: 0.5em;
-          font-size: 1.1em;
-          font-family: "Open Sans", sans-serif;
-          color: #257466;
-          user-select: none; }
-          body.intervenant .inscr_intervenant__form #tag-container .container .tag-close {
-            cursor: pointer;
-            font-size: 1.5em; }
-          body.intervenant .inscr_intervenant__form #tag-container .container .tag-close:hover {
-            background: red;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; }
   body.intervenant .myaccount {
     background-color: #DBECEF;
     padding-top: calc(130px + 2.5rem);
@@ -2669,7 +2559,12 @@ body.intervenant {
             margin-left: 2.5rem;
             margin-right: 2.5rem; } }
     body.intervenant .myaccount__form-title {
-      margin-bottom: 2.4rem; }
+      margin-bottom: 1.2rem; }
+    body.intervenant .myaccount__form-subtitle {
+      font-family: "Open Sans", sans-serif;
+      font-weight: 500;
+      color: #787878;
+      margin-bottom: 1.2rem; }
     body.intervenant .myaccount__form__perso {
       text-align: center; }
       body.intervenant .myaccount__form__perso__infos, body.intervenant .myaccount__form__perso__adresses, body.intervenant .myaccount__form__perso__security {
@@ -2682,6 +2577,15 @@ body.intervenant {
           width: 100%; }
       body.intervenant .myaccount__form__perso__adresses .input-container:nth-child(2) {
         grid-row: 2; }
+    body.intervenant .myaccount__form__intervenant {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1.3rem 3.2rem;
+      margin: 2.4rem 0; }
+      body.intervenant .myaccount__form__intervenant .car {
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start; }
     body.intervenant .myaccount__form .btn {
       margin: auto; }
   body.intervenant .btn {
@@ -2793,6 +2697,132 @@ body.intervenant {
     background-color: #FFFFFF; }
   body.intervenant input, body.intervenant select, body.intervenant option, body.intervenant textarea {
     font-family: "Open Sans", sans-serif; }
+  body.intervenant #tag-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.1em; }
+    body.intervenant #tag-container p {
+      font-weight: 600;
+      color: #787878; }
+    body.intervenant #tag-container .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+      margin-top: .5rem; }
+      body.intervenant #tag-container .container .tag {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFFFFF;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        padding: 0.5em;
+        border-radius: 10px;
+        font-size: 1em;
+        font-family: "Open Sans", sans-serif;
+        color: #787878;
+        user-select: none;
+        margin-top: 0.5rem; }
+        body.intervenant #tag-container .container .tag:not(:last-child) {
+          margin-right: 0.5rem; }
+        body.intervenant #tag-container .container .tag-close {
+          cursor: pointer;
+          font-size: 1.5em;
+          margin-left: 0.8rem; }
+        body.intervenant #tag-container .container .tag-close:hover {
+          background: #257466;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent; }
+  body.intervenant #auto_completion {
+    position: absolute;
+    top: 2.6rem;
+    left: 0;
+    width: 100%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+    border-radius: 0 0 10px 10px;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    z-index: 1;
+    height: 150px;
+    overflow-y: scroll;
+    font-family: "Open Sans", sans-serif; }
+    body.intervenant #auto_completion p {
+      padding: 1em;
+      font-size: 0.85em;
+      text-transform: unset;
+      user-select: none;
+      cursor: pointer; }
+    body.intervenant #auto_completion p:hover {
+      background-color: #DBECEF; }
+    body.intervenant #auto_completion.notVisible {
+      display: none; }
+  body.intervenant .input-container.overflow {
+    overflow: visible; }
+  body.intervenant .car {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    width: 40%; }
+    body.intervenant .car p {
+      margin-right: 2em;
+      color: #787878;
+      font-family: "Open Sans", sans-serif; }
+    body.intervenant .car .switch {
+      display: inline-block;
+      position: relative;
+      width: 70px;
+      height: 30px;
+      cursor: pointer; }
+      body.intervenant .car .switch input {
+        position: absolute;
+        top: -30px;
+        left: -30px;
+        width: 0;
+        height: 0; }
+        body.intervenant .car .switch input + span {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: #86CABE;
+          border-radius: 20px; }
+        body.intervenant .car .switch input + span:before {
+          content: "";
+          font-family: "Open Sans", sans-serif;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          top: 50%;
+          left: -4px;
+          width: 45px;
+          height: 42px;
+          background: #FFFFFF;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 50%;
+          transform: translateY(-50%);
+          transition: all .5s; }
+        body.intervenant .car .switch input:checked + span {
+          background: linear-gradient(90deg, #257466 0%, #36A793 50%); }
+        body.intervenant .car .switch input:checked + span:before {
+          left: 34px;
+          content: "Oui"; }
+  body.intervenant .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0; }
   body.intervenant .header__nav {
     position: fixed;
     width: 100%;
@@ -3858,57 +3888,6 @@ body.demandeur {
         margin-top: 1em; }
     body.demandeur .inscr_intervenant__form-container-row {
       margin: 1.5em 0; }
-      body.demandeur .inscr_intervenant__form-container-row .car {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-direction: row;
-        width: 40%; }
-        body.demandeur .inscr_intervenant__form-container-row .car p {
-          margin-right: 2em;
-          color: #787878;
-          font-family: "Open Sans", sans-serif; }
-        body.demandeur .inscr_intervenant__form-container-row .car .switch {
-          display: inline-block;
-          position: relative;
-          width: 70px;
-          height: 30px;
-          cursor: pointer; }
-          body.demandeur .inscr_intervenant__form-container-row .car .switch input {
-            position: absolute;
-            top: -30px;
-            left: -30px;
-            width: 0;
-            height: 0; }
-            body.demandeur .inscr_intervenant__form-container-row .car .switch input + span {
-              position: absolute;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              background: #7EA6F4;
-              border-radius: 20px; }
-            body.demandeur .inscr_intervenant__form-container-row .car .switch input + span:before {
-              content: "Non";
-              font-family: "Open Sans", sans-serif;
-              position: absolute;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              top: 50%;
-              left: -4px;
-              width: 45px;
-              height: 42px;
-              background: #FFFFFF;
-              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-              border-radius: 50%;
-              transform: translateY(-50%);
-              transition: all .5s; }
-            body.demandeur .inscr_intervenant__form-container-row .car .switch input:checked + span {
-              background: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
-            body.demandeur .inscr_intervenant__form-container-row .car .switch input:checked + span:before {
-              left: 34px;
-              content: "Oui"; }
       body.demandeur .inscr_intervenant__form-container-row {
         display: flex;
         flex-direction: row;
@@ -3932,65 +3911,6 @@ body.demandeur {
         height: 4px;
         background-color: #7EA6F4;
         margin: 1em 0; }
-    body.demandeur .inscr_intervenant__form #auto_completion {
-      position: absolute;
-      top: 2.6rem;
-      left: 0;
-      width: 100%;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-      border-radius: 0 0 10px 10px;
-      font-size: 18px;
-      background-color: #FFFFFF;
-      overflow: hidden;
-      z-index: 1; }
-      body.demandeur .inscr_intervenant__form #auto_completion p {
-        padding: 1em;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-        user-select: none;
-        cursor: pointer; }
-      body.demandeur .inscr_intervenant__form #auto_completion p:hover {
-        background-color: #AEDBD3; }
-      body.demandeur .inscr_intervenant__form #auto_completion.notVisible {
-        display: none; }
-    body.demandeur .inscr_intervenant__form #tag-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      width: 90%;
-      font-family: "Open Sans", sans-serif;
-      font-size: 1.1em; }
-      body.demandeur .inscr_intervenant__form #tag-container p {
-        font-weight: 600;
-        color: #787878; }
-      body.demandeur .inscr_intervenant__form #tag-container .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%; }
-        body.demandeur .inscr_intervenant__form #tag-container .container .tag {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          background-color: #FFFFFF;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-          padding: 0.5em;
-          border-radius: 10px;
-          margin: 0.5em;
-          font-size: 1.1em;
-          font-family: "Open Sans", sans-serif;
-          color: #393BAA;
-          user-select: none; }
-          body.demandeur .inscr_intervenant__form #tag-container .container .tag-close {
-            cursor: pointer;
-            font-size: 1.5em; }
-          body.demandeur .inscr_intervenant__form #tag-container .container .tag-close:hover {
-            background: red;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; }
   body.demandeur .myaccount {
     background-color: #DBECEF;
     padding-top: calc(130px + 2.5rem);
@@ -4071,7 +3991,12 @@ body.demandeur {
             margin-left: 2.5rem;
             margin-right: 2.5rem; } }
     body.demandeur .myaccount__form-title {
-      margin-bottom: 2.4rem; }
+      margin-bottom: 1.2rem; }
+    body.demandeur .myaccount__form-subtitle {
+      font-family: "Open Sans", sans-serif;
+      font-weight: 500;
+      color: #787878;
+      margin-bottom: 1.2rem; }
     body.demandeur .myaccount__form__perso {
       text-align: center; }
       body.demandeur .myaccount__form__perso__infos, body.demandeur .myaccount__form__perso__adresses, body.demandeur .myaccount__form__perso__security {
@@ -4084,6 +4009,15 @@ body.demandeur {
           width: 100%; }
       body.demandeur .myaccount__form__perso__adresses .input-container:nth-child(2) {
         grid-row: 2; }
+    body.demandeur .myaccount__form__intervenant {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1.3rem 3.2rem;
+      margin: 2.4rem 0; }
+      body.demandeur .myaccount__form__intervenant .car {
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start; }
     body.demandeur .myaccount__form .btn {
       margin: auto; }
   body.demandeur .btn {
@@ -4195,6 +4129,132 @@ body.demandeur {
     background-color: #FFFFFF; }
   body.demandeur input, body.demandeur select, body.demandeur option, body.demandeur textarea {
     font-family: "Open Sans", sans-serif; }
+  body.demandeur #tag-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.1em; }
+    body.demandeur #tag-container p {
+      font-weight: 600;
+      color: #787878; }
+    body.demandeur #tag-container .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+      margin-top: .5rem; }
+      body.demandeur #tag-container .container .tag {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFFFFF;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        padding: 0.5em;
+        border-radius: 10px;
+        font-size: 1em;
+        font-family: "Open Sans", sans-serif;
+        color: #787878;
+        user-select: none;
+        margin-top: 0.5rem; }
+        body.demandeur #tag-container .container .tag:not(:last-child) {
+          margin-right: 0.5rem; }
+        body.demandeur #tag-container .container .tag-close {
+          cursor: pointer;
+          font-size: 1.5em;
+          margin-left: 0.8rem; }
+        body.demandeur #tag-container .container .tag-close:hover {
+          background: #393BAA;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent; }
+  body.demandeur #auto_completion {
+    position: absolute;
+    top: 2.6rem;
+    left: 0;
+    width: 100%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+    border-radius: 0 0 10px 10px;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    z-index: 1;
+    height: 150px;
+    overflow-y: scroll;
+    font-family: "Open Sans", sans-serif; }
+    body.demandeur #auto_completion p {
+      padding: 1em;
+      font-size: 0.85em;
+      text-transform: unset;
+      user-select: none;
+      cursor: pointer; }
+    body.demandeur #auto_completion p:hover {
+      background-color: #DBECEF; }
+    body.demandeur #auto_completion.notVisible {
+      display: none; }
+  body.demandeur .input-container.overflow {
+    overflow: visible; }
+  body.demandeur .car {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    width: 40%; }
+    body.demandeur .car p {
+      margin-right: 2em;
+      color: #787878;
+      font-family: "Open Sans", sans-serif; }
+    body.demandeur .car .switch {
+      display: inline-block;
+      position: relative;
+      width: 70px;
+      height: 30px;
+      cursor: pointer; }
+      body.demandeur .car .switch input {
+        position: absolute;
+        top: -30px;
+        left: -30px;
+        width: 0;
+        height: 0; }
+        body.demandeur .car .switch input + span {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: #7EA6F4;
+          border-radius: 20px; }
+        body.demandeur .car .switch input + span:before {
+          content: "";
+          font-family: "Open Sans", sans-serif;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          top: 50%;
+          left: -4px;
+          width: 45px;
+          height: 42px;
+          background: #FFFFFF;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 50%;
+          transform: translateY(-50%);
+          transition: all .5s; }
+        body.demandeur .car .switch input:checked + span {
+          background: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
+        body.demandeur .car .switch input:checked + span:before {
+          left: 34px;
+          content: "Oui"; }
+  body.demandeur .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0; }
   body.demandeur .header__nav {
     position: fixed;
     width: 100%;

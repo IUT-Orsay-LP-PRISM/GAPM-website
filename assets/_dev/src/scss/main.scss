@@ -3,17 +3,18 @@
 @import "tools/fonts";
 
 body {
-  $greenLight               : #AEDBD3;
-  $redDark                  : #B61414;
-  $white                    : #FFFFFF;
+  $greenLight : #AEDBD3;
+  $light      : #DBECEF;
+  $redDark    : #B61414;
+  $white      : #FFFFFF;
 
   &.intervenant {
-    $primaryLight             : #36A793;
-    $primaryDark              : #257466;
-    $primaryWhite             : #F1FAFB;
+    $primaryLight                   : #36A793;
+    $primaryDark                    : #257466;
+    $primaryWhite                   : #F1FAFB;
 
-    $secondary                : #86CABE;
-    $secondaryLight           : #A0E4F1;
+    $secondary                      : #86CABE;
+    $secondaryLight                 : #A0E4F1;
 
     $black                    : #144139;
     $greyDark                 : #787878;

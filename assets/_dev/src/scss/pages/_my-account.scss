@@ -1,5 +1,5 @@
 .myaccount {
-  background-color : #DBECEF; // c quoi déjà le code hexa de la couleur de fond de la page ?
+  background-color : #DBECEF; // c quoi déjà la var de la couleur de fond de la page ?
   padding-top      : calc(130px + 2.5rem);
   padding-bottom   : 12.2rem;
 
@@ -105,7 +105,13 @@
 
   &__form {
     &-title {
-      margin-bottom : 2.4rem;
+      margin-bottom : 1.2rem;
+    }
+    &-subtitle{
+      font-family: $mainFont;
+      font-weight: 500;
+      color: $greyDark;
+      margin-bottom : 1.2rem;
     }
 
     &__perso {
@@ -130,11 +136,25 @@
         }
       }
     }
+
+    &__intervenant{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1.3rem 3.2rem;
+      margin: 2.4rem 0;
+
+      .car{
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+    }
+
     .btn{
       margin: auto;
     }
   }
-
 }
 
 
@@ -472,3 +492,5 @@
   }
 
 }*/
+
+

@@ -16,13 +16,13 @@
             <div class="myaccount__content__nav">
                 <ul>
                     <li>
-                        <a href="#" class="myaccount__content__nav-link --active">
+                        <a href="#" class="myaccount__content__nav-link">
                             <span>Informations personnelles</span>
                             <i class="icon icon-fi-rr-info"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="myaccount__content__nav-link">
+                        <a href="#" class="myaccount__content__nav-link --active">
                             <span>Devenir intervenant</span>
                             <i class="icon icon-fi-rr-redo"></i>
                         </a>
@@ -37,7 +37,13 @@
             </div>
             <div class="myaccount__content__body">
                 <div class="myaccount__content__body-form">
+{#
                     {% include '/demandeur/compte/perso.twig' %}
+#}
+                    {% include '/demandeur/compte/intervenant.twig' %}
+{#
+                    {% include '/demandeur/compte/compte.twig' %}
+#}
                 </div>
             </div>
         </div>
