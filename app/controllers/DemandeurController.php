@@ -114,7 +114,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
             $inscriptionIntervenant = true;
             $containerError = 'inscription-intervenant';
             $specialitesString = $_POST['specialites'];
-            if($specialitesString != 'null') {
+            if ($specialitesString != 'null') {
                 $specialites = explode('-', $specialitesString);
             }
             $voiture = $_POST['voiture'] ?? 0;
@@ -191,4 +191,26 @@ abstract class DemandeurController extends Template implements InterfaceControll
         ]);
     }
 
+    public static function myAccountDelete()
+    {
+        $email = $_POST['email'];
+        if($email != $_SESSION['user']->getEmail()){
+            header('Location: /?action=my-account');
+        } else{
+            $user = Session::get('user');
+            $demandeur = DemandeurDAO::removeById($user->getIdDemandeur());
+
+            $isIntervenant = IntervenantDAO::findById($user->getIdDemandeur());
+            $isIntervenant ? IntervenantDAO::removeById($user->getIdDemandeur()) : null;
+
+            //TODO :  soit mettre la bdd en cascade delete soit faire a la main les delete des Service tout le reste
+
+            if($demandeur){
+                Session::destroy();
+                header('Location: /');
+            } else{
+                header('Location: /?action=my-account');
+            }
+        }
+    }
 }

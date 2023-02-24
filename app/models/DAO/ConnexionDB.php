@@ -67,6 +67,26 @@ class ConnexionDB
             return false;
         }
     }
+
+    /**
+     * Fonction générique permettant de remove by id
+     */
+
+    public static function removeById(int $id)
+    {
+        try {
+            $query = "DELETE FROM " . static::$entity. " WHERE id_" . static::$entity. " = :id";
+
+            $rs = self::getInstance()->prepare($query);
+            $rs->execute(
+                [":id" => $id]
+            );
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }
 
 
