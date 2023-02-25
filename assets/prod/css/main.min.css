@@ -2325,7 +2325,12 @@ body.intervenant {
               font-size: 1.5rem;
               font-weight: 600; }
             body.intervenant .prendreRdv__content__body__card-info .speciality {
-              font-size: 1.2rem; }
+              font-size: 1.2rem;
+              margin: .5em 0; }
+              body.intervenant .prendreRdv__content__body__card-info .speciality span {
+                color: #36A793; }
+                body.intervenant .prendreRdv__content__body__card-info .speciality span:not(:last-child)::after {
+                  content: ', '; }
         body.intervenant .prendreRdv__content__body-form .js-account-content {
           display: none; }
           body.intervenant .prendreRdv__content__body-form .js-account-content.--display {
@@ -3581,7 +3586,12 @@ body.demandeur {
               font-size: 1.5rem;
               font-weight: 600; }
             body.demandeur .prendreRdv__content__body__card-info .speciality {
-              font-size: 1.2rem; }
+              font-size: 1.2rem;
+              margin: .5em 0; }
+              body.demandeur .prendreRdv__content__body__card-info .speciality span {
+                color: #5154EC; }
+                body.demandeur .prendreRdv__content__body__card-info .speciality span:not(:last-child)::after {
+                  content: ', '; }
         body.demandeur .prendreRdv__content__body-form .js-account-content {
           display: none; }
           body.demandeur .prendreRdv__content__body-form .js-account-content.--display {

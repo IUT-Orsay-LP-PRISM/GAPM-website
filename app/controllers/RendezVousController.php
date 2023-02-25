@@ -3,6 +3,8 @@
 namespace App\controllers;
 
 use App\models\dao\DemandeurDAO;
+use App\models\dao\IntervenantDAO;
+use App\models\dao\ServiceDAO;
 use App\models\entity\Session;
 
 abstract class RendezVousController extends Template implements InterfaceController
@@ -14,10 +16,14 @@ abstract class RendezVousController extends Template implements InterfaceControl
             exit;
         }
 
-        $intervenant = DemandeurDAO::findById($_GET['intervenant']);
+        $demandeur = DemandeurDAO::findById($_GET['demandeur']);
+        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
+        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
+        $intervenant->setSpecialites($services);
 
         self::render('demandeur/search/prendre-rdv.twig', [
             'intervenant' => $intervenant,
+            'demandeur' => $demandeur,
             'loader' => false,
             'title' => 'Prendre RDV',
         ]);

@@ -19,9 +19,13 @@
                         <img class="pdp" src="assets/img/profils/exemple_doctor.jpg" alt="User">
                     </div>
                     <div class="prendreRdv__content__body__card-info">
-                        <p class="name">{{ intervenant.nom }} {{ intervenant.prenom }}</p>
-                        <p class="speciality">Ici les specialitées</p>
-                        <p class="address">{{ intervenant.adresse }}</p>
+                        <p class="name">{{ demandeur.nom }} {{ demandeur.prenom }}</p>
+                        <p class="speciality">
+                            {% for specialite in intervenant.specialites %}
+                                <span>{{ specialite.libelle }}</span>
+                            {% endfor %}
+                        </p>
+                        <p class="address">{{ demandeur.adresse }}</p>
                     </div>
                 </div>
                 <div class="prendreRdv__content__body-form">

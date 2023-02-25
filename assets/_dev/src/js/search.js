@@ -12,7 +12,7 @@ if (btn_RDVS) {
                 const newUrl = currentQueryString + '&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion';
                 window.location.href = newUrl;
             } else {
-                window.location.href = '/?action=prendre-rdv&intervenant=' + idDemandeur;
+                window.location.href = '/?action=prendre-rdv&demandeur=' + idDemandeur;
             }
         });
     });
