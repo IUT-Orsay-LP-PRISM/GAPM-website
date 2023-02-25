@@ -1,0 +1,106 @@
+.inscr_intervenant {
+
+  &__banner {
+    padding : 2em;
+    height  : calc(100vh - 4em);
+
+    .row {
+      display         : flex;
+      flex-direction  : row;
+      align-items     : center;
+      justify-content : space-around;
+    }
+
+    h1 {
+      font-size     : 4em;
+      margin-bottom : 2rem;
+      line-height   : 1.2;
+    }
+
+    h2 {
+      font-size     : 1.8em;
+      margin-bottom : 2rem;
+      line-height   : 1.2;
+      color         : $primaryLight;
+      font-weight   : 600;
+    }
+  }
+
+  &__form {
+    background-color : $greenLight;
+    display          : flex;
+    justify-content  : center;
+    align-items      : center;
+    flex-direction   : column;
+    padding          : 2em;
+    height           : auto;
+
+    h2 {
+      font-size     : 2.5em;
+      margin-bottom : 2rem;
+      line-height   : 1.2;
+      color         : $black;
+      width         : content-box;
+    }
+
+    form {
+      width            : 50em;
+      height           : fit-content;
+      display          : flex;
+      flex-direction   : column;
+      justify-content  : space-around;
+      align-items      : center;
+      background-color : $white;
+      z-index          : 1;
+      padding          : 2em;
+      border-radius    : $borderRadius;
+
+      button[type="submit"] {
+        width : 12em;
+        margin-top: 1em;
+      }
+    }
+
+    &-container-row {
+      margin: 1.5em 0;
+      & {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : space-around;
+        align-items     : center;
+        width           : 100%;
+
+        .input-container {
+          width : 40%;
+        }
+      }
+
+      &:nth-child(4) {
+        .input-container {
+          width : 90%;
+        }
+      }
+
+      &:nth-child(8), &:nth-child(5) {
+        .input-container:first-child {
+          overflow : visible;
+        }
+      }
+    }
+
+    .separator {
+      display         : flex;
+      flex-direction  : row;
+      justify-content : flex-start;
+      align-items     : center;
+      width           : 90%;
+
+      div {
+        width            : 5em;
+        height           : 4px;
+        background-color : $secondary;
+        margin           : 1em 0;
+      }
+    }
+  }
+}

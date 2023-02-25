@@ -28,7 +28,8 @@ $screenXl          : 1440px;
 // Import du style de toutes les pages
 @import "pages/home";
 @import "pages/search";
-@import "pages/inscription_intervenant";
+@import "pages/inscription-intervenant";
+@import "pages/my-account";
 
 // Import du style de tous les composants
 @import "components/buttons";
@@ -54,4 +55,10 @@ $screenXl          : 1440px;
 
 .banner_bg {
   content : $srcBackgroundBanner;
+}
+p.error {
+  color      : red;
+  text-align : center;
+  font-family: $mainFont;
+  font-weight: 600;
 }

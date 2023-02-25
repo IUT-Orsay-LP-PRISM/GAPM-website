@@ -1,0 +1,28 @@
+<section class="myaccount__form myaccount__form__security" id="form">
+	<form method="post" action="?action=my-account-delete">
+		<h2 class="myaccount__form-title">Compte</h2>
+		<div class="myaccount__form-alert">
+			<i class="icon icon-fi-rr-shield-exclamation"></i>
+			<p>Option dangereuse</p>
+		</div>
+		<div class="myaccount__form-subtitle">
+			<p>Vous souhaitez supprimer votre compte ?</p>
+			<p>Attention, cette action est <span>irréversible.</span></p>
+			<p>P.S. : Votre e-mail ne pourra être réutilisé qu’à partir d’une semaine après la suppression
+				du compte.</p>
+		</div>
+		<br>
+		<p class="myaccount__form-subtitle">Entrez votre adresse mail ci-dessous, puis cliquez sur confirmer. </p>
+		</br>
+		<div class="input-container validEmail">
+			<i class="icon icon-fi-rr-user-remove"></i>
+			<input id="email" name="email" class="input" type="email" placeholder=" " required/>
+			<label class="label" for="email">Email</label>
+		</div>
+
+		<button class="btn btn-red" type="submit">
+			<i class="icon-w icon-fi-rr-check"></i>
+			Confirmer la suppression
+		</button>
+	</form>
+</section>

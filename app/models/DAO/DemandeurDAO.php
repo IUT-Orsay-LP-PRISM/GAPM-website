@@ -2,7 +2,6 @@
 
 namespace App\models\DAO;
 
-use App\models\entity\Demandeur;
 use PDO;
 
 class DemandeurDAO extends ConnexionDB
@@ -13,12 +12,13 @@ class DemandeurDAO extends ConnexionDB
 
     public static function findByNameOrCity($nom, $city)
     {
-        $sql = "SELECT * FROM demandeur WHERE nom LIKE :nom AND prenom LIKE :city";
+        $nom = "%$nom%";
+        $city = "%$city%";
+        $sql = "SELECT demandeur.* FROM demandeur INNER JOIN ville ON demandeur.id_Ville = ville.id_Ville WHERE (demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom) AND ville.nom LIKE :city";
         $stmt = self::getInstance()->prepare($sql);
-        $stmt->execute([
-            'nom' => "%$nom%",
-            'city' => "%$city%"
-        ]);
+        $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $stmt->bindParam(':city', $city, PDO::PARAM_STR);
+        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         return $stmt->fetchAll();
     }
@@ -48,11 +48,10 @@ class DemandeurDAO extends ConnexionDB
 
     public static function create($data)
     {
-        dump($data);
         $sql = "INSERT INTO demandeur (login, email, motDePasse, nom, prenom, dateNaissance, adresse, telephone, sexe, id_Ville) VALUES (:login, :email, :motDePasse, :nom, :prenom, :dateNaissance, :adresse, :telephone, :sexe, :id_Ville)";
         $stmt = self::getInstance()->prepare($sql);
-        $stmt->execute([
-            'login' => $data->getNom().".".$data->getPrenom(),
+        $result = $stmt->execute([
+            'login' => $data->getNom() . "." . $data->getPrenom(),
             'email' => $data->getEmail(),
             'motDePasse' => $data->getMotDePasse(),
             'nom' => $data->getNom(),
@@ -61,7 +60,36 @@ class DemandeurDAO extends ConnexionDB
             'adresse' => $data->getAdresse(),
             'telephone' => $data->getTelephone(),
             'sexe' => $data->getSexe(),
-            'id_Ville' => $data->getIdVille()
+            'id_Ville' => $data->getId_Ville()
         ]);
+
+        if ($result) {
+            $idDemandeur = self::getInstance()->lastInsertId();
+            $data->setIdDemandeur($idDemandeur);
+            return $data;
+        }
+        return false;
     }
+
+    public  static function update($data)
+    {
+        $sql = "UPDATE demandeur SET login = :login, email = :email, motDePasse = :motDePasse, nom = :nom, prenom = :prenom, dateNaissance = :dateNaissance, adresse = :adresse, telephone = :telephone, sexe = :sexe, id_Ville = :id_Ville WHERE id_Demandeur = :idDemandeur";
+        $stmt = self::getInstance()->prepare($sql);
+        $result = $stmt->execute([
+            'login' => $data->getNom() . "." . $data->getPrenom(),
+            'email' => $data->getEmail(),
+            'motDePasse' => $data->getMotDePasse(),
+            'nom' => $data->getNom(),
+            'prenom' => $data->getPrenom(),
+            'dateNaissance' => $data->getDateNaissance(),
+            'adresse' => $data->getAdresse(),
+            'telephone' => $data->getTelephone(),
+            'sexe' => $data->getSexe(),
+            'id_Ville' => $data->getId_Ville(),
+            'idDemandeur' => $data->getIdDemandeur()
+        ]);
+
+        return $result ? $data : false;
+    }
+
 }

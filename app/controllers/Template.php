@@ -29,13 +29,13 @@ class Template
             'debug' => true
         ]);
         $twig->addGlobal('userLogged', Session::isLogged());
-        if (Session::isLogged()){
+        $twig->addGlobal('error', $_GET['error'] ?? null);
+        $twig->addGlobal('containerError', $_GET['c'] ?? null);
+        if (Session::isLogged()) {
             $twig->addGlobal('user', Session::get('user'));
         }
         $twig->addExtension(new DebugExtension());
 
         echo $twig->render($view, $data);
     }
-
-
 }

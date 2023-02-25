@@ -18,7 +18,7 @@
                     <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
                 </div>
             </div>
-            {% if error is not empty %}
+            {% if error is not empty and containerError is not empty and containerError == "connexion" %}
                 <p class="error">{{ error }}</p>
             {% endif %}
             <p class="italic">Mots de passe oublié ? Cliquez <a class="link">ici</a></p>

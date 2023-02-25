@@ -11,8 +11,7 @@ abstract class HomeController extends Template implements InterfaceController
     {
         self::render('home.twig', [
             'title' => 'Accueil - Bienvenue',
-            'type' => 'home',
-            'error' => $_GET['error'] ?? null,
+            'type' => 'home'
         ]);
     }
 }

@@ -1,0 +1,89 @@
+<section class="myaccount__form" id="form">
+	<form method="post" action="?action=my-account-edit">
+		<h2 class="myaccount__form__title">Mes informations personnelles</h2>
+		<div class="myaccount__form__perso__infos">
+			<div class="input-container">
+				<i class="icon icon-fi-rr-text"></i>
+				<input id="name" class="input" type="text" name="lastname" value="{{ demandeur.nom }}"/>
+				<label class="label" for="name">Votre nom</label>
+			</div>
+			<div class="input-container">
+				<i class="icon icon-fi-rr-text"></i>
+				<input id="first-name" class="input" type="text" name="firstname" value="{{ demandeur.prenom }}"/>
+				<label class="label" for="first-name">Votre Prénom</label>
+			</div>
+			<div class="input-container">
+				<i class="icon icon-fi-rr-at"></i>
+				<input id="e-mail" class="input" type="email" name="mail" placeholder=" " value="{{ demandeur.email }}"/>
+				<label class="label" for="e-mail">Votre adresse e-mail</label>
+			</div>
+			<div class="input-container">
+				<i class="icon icon-fi-rr-calendar"></i>
+				<input id="birthday" class="input" type="date" name="birthday" value="{{ demandeur.dateNaissance }}"/>
+				<label class="label" for="birthday">Votre date de naissance</label>
+			</div>
+			<div class="input-container">
+				<i class="icon icon-fi-rr-venus-mars"></i>
+				<select id="sexe" class="input" type="text" name="sexe">
+					{% if demandeur.sexe == "M" %}
+						<option value="M" selected>Homme</option>
+						<option value="F">Femme</option>
+						<option value="A">Autre</option>
+					{% elseif demandeur.sexe == "F" %}
+						<option value="F" selected>Femme</option>
+						<option value="M">Homme</option>
+						<option value="A">Autre</option>
+					{% elseif demandeur.sexe == "A" %}
+						<option value="A" selected>Autre</option>
+						<option value="M">Homme</option>
+						<option value="F">Femme</option>
+					{% endif %}
+				</select>
+				<label class="label" for="sexe">Sexe</label>
+			</div>
+			<div class="input-container">
+				<i class="icon icon-fi-rr-phone-call"></i>
+				<input id="tel" class="input" type="text" name="phone" value="{{ demandeur.telephone }}"/>
+				<label class="label" for="tel">Téléphone portable</label>
+			</div>
+		</div>
+		<h2 class="myaccount__form-title">Adresse</h2>
+		<div class="myaccount__form__perso__adresses">
+			<div class="input-container">
+				<i class="icon icon-fi-rr-home-location-alt"></i>
+				<input id="adress" class="input" type="text" name="address" value="{{ demandeur.adresse }}"/>
+				<label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
+			</div>
+			<div class="input-container overflow">
+				<i class="icon icon-fi-rr-map-marker"></i>
+				<input id="ville" class="input AC input_ville" type="text" value="{{ ville.nom|upper }}"/>
+				<label class="label" for="ville">Ville</label>
+				<input id="hiddenValueCityIntervenant" name="city" type="number" hidden="hidden" value="{{ ville.id_Ville }}"/>
+				<div class="notVisible auto_completion"></div>
+				<span class="code_postal">{{ ville.codePostal }}</span>
+			</div>
+		</div>
+		<h2 class="myaccount__form-title">Sécurité</h2>
+		<div class="myaccount__form__perso__security">
+			<div class="input-container">
+				<i class="icon icon-fi-rr-key"></i>
+				<input id="oldMdp" name="oldPassword" class="input" type="password" required/>
+				<label class="label" for="oldMdp">Ancien mot de passe</label>
+				<i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
+			</div>
+			<div class="input-container">
+				<i class="icon icon-fi-rr-key"></i>
+				<input id="newMdp" name="newPassword" class="input" type="password"/>
+				<label class="label" for="newMdp">Nouveau mot de passe</label>
+				<i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
+			</div>
+		</div>
+		{% if error is not empty and containerError is not empty and containerError == "mon-compte" %}
+			<p class="error">{{ error }}</p>
+		{% endif %}
+		<button class="btn btn-primary" type="submit">
+			<i class="icon-w icon-fi-rr-check"></i>
+			Enregistrer vos modifications
+		</button>
+	</form>
+</section>

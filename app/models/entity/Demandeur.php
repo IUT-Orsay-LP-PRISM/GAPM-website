@@ -185,7 +185,7 @@ class Demandeur
     /**
      * @return int
      */
-    public function getIdVille()
+    public function getId_Ville()
     {
         return $this->id_Ville;
     }
@@ -213,6 +213,5 @@ class Demandeur
     {
         $this->email = $email;
     }
-
 
 }

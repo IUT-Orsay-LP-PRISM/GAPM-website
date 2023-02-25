@@ -43,3 +43,30 @@
     color : $primaryLight;
   }
 }
+
+@mixin px($px) {
+  padding-left  : #{$px}rem;
+  padding-right : #{$px}rem;
+}
+
+@mixin py($py) {
+  padding-top    : #{$py}rem;
+  padding-bottom : #{$py}rem;
+}
+
+@mixin mx($mx) {
+  margin-left  : #{$mx}rem;
+  margin-right : #{$mx}rem;
+}
+
+@mixin my($my) {
+  margin-top    : #{$my}rem;
+  margin-bottom : #{$my}rem;
+}
+
+
+@mixin icon-color($color) {
+  background              : $color;
+  -webkit-background-clip : text;
+  -webkit-text-fill-color : transparent;
+}

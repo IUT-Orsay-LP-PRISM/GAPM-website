@@ -4,7 +4,8 @@ const popUp_inscription = document.querySelector('#popUp-inscription');
 const btn_cross = document.querySelectorAll('.cross');
 const btn_connexion = document.querySelector('#btn-connexion');
 const btn_inscription = document.getElementById('btn-inscription');
-const div_error = document.querySelector('#popUp-connexion .error');
+const div_errorConnexion = document.querySelector('#popUp-connexion .error');
+const div_errorInscription = document.querySelector('#popUp-inscription .error');
 
 openPopUpInsc.addEventListener('click', () => {
     openPopUpInscription();
@@ -16,7 +17,9 @@ btn_cross.forEach(btn => btn
         popUp_inscription.classList.remove('visible');
         document.body.style.overflowY = "auto";
         removeErrorInURL();
-        div_error ? div_error.innerHTML = '' : null;
+        div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
+        div_errorInscription ? div_errorInscription.innerHTML = '' : null;
+
     })
 );
 
@@ -38,7 +41,8 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
         popUp_inscription.classList.remove('visible');
         document.body.style.overflowY = "auto";
         removeErrorInURL();
-        div_error ? div_error.innerHTML = '' : null;
+        div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
+        div_errorInscription ? div_errorInscription.innerHTML = '' : null;
     }
     if (AC) {
         AC.forEach(div => {
@@ -49,9 +53,18 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
     }
 }
 
-
-if (document.querySelector('.demandeur.home') && window.location.search.includes('error')) {
-    openPopUpConnexion();
+// gestion des erreurs
+if (window.location.search.includes('error')  ) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const containerError = urlParams.get('c');
+    if (containerError === 'connexion') {
+        openPopUpConnexion();
+    } else if (containerError === 'inscription') {
+        openPopUpInscription();
+    } else if (containerError === 'inscription-intervenant') {
+        const form = document.querySelector('#form');
+        form.scrollIntoView();
+    }
 }
 
 
@@ -80,7 +93,13 @@ function openPopUpInscription() {
 function removeErrorInURL() {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete('error');
-    const newUrl = window.location.pathname + '?' + urlParams.toString();
+    urlParams.delete('c');
+    let newUrl = '';
+    if(urlParams.toString() === '') {
+        newUrl = window.location.pathname;
+    } else{
+        newUrl = window.location.pathname + '?' + urlParams.toString();
+    }
     window.history.pushState({path: newUrl}, '', newUrl);
 }
 

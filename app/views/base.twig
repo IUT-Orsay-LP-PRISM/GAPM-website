@@ -4,8 +4,8 @@
 		<link rel="stylesheet" href="assets/prod/css/main.min.css">
 		<title>{% block title %}{% endblock %} • GAPM</title>
 	</head>
-	<body class="{% if isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}">
-<div id="loader"></div>
+	<body class="{% if isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}" data-log="{{ userLogged }}">
+	<div id="loader"></div>
 	{% if not no_header %}
 		{% include "includes/header.twig" %}
 	{% endif %}
@@ -15,7 +15,7 @@
 		</div>
 		{% include "includes/footer.twig" %}
 		<i id="popUp-connexion">{% include 'includes/popupConnexion.twig' %}</i>
-		<i id="popUp-inscription">{% include 'includes/popUpInscription.php' %}</i>
+		<i id="popUp-inscription">{% include 'includes/popUpInscription.twig' %}</i>
 		<script src="assets/prod/js/main.min.js"></script>
 	</body>
 </html>

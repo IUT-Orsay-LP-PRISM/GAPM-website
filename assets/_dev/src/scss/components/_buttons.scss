@@ -51,6 +51,11 @@
     color            : $primaryDark;
     background-color : $greenLight;
   }
+  &.btn-red {
+    border           : none;
+    color            : $white;
+    background : $gradientRed;
+  }
 
   svg {
     vertical-align : text-top;

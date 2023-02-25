@@ -1,0 +1,188 @@
+.myaccount {
+  background-color : #DBECEF; // c quoi déjà la var de la couleur de fond de la page ?
+  padding-top      : calc(130px + 2.5rem);
+  padding-bottom   : 12.2rem;
+
+  h1 {
+    text-align : center;
+  }
+
+  &__content {
+    margin-top            : 2.35rem;
+    display               : grid;
+    grid-gap              : 2rem;
+    grid-template-columns : 1fr;
+    grid-template-areas   : "nav" "body";
+    @include min-width($screenMd) {
+      grid-template-areas   : "nav body .";
+      grid-template-columns : 20rem 1fr 50px;
+    }
+    @include min-width($screenLg) {
+      grid-template-areas   : "nav body .";
+      grid-template-columns : minmax(12.5rem, 25.8rem) minmax(500px, 1500px) minmax(12.5rem, 25.8rem);
+    }
+
+    &__nav {
+      grid-area : nav;
+      width     : 25.8rem;
+
+      ul {
+        position : sticky;
+        top      : 100px;
+      }
+
+      li {
+        &:not(:last-child) {
+          margin-bottom : 0.5rem;
+        }
+      }
+
+      &-link {
+        font-family     : $mainFont;
+        font-weight     : 600;
+        font-size       : 1em;
+        text-decoration : none;
+        color           : $black;
+        display         : flex;
+        justify-content : flex-start;
+        align-items     : center;
+        padding         : 0.5rem 0 0.5rem 5rem;
+        transition      : all .3s ease-in-out;
+        position        : relative;
+
+
+        & > i {
+          margin-left : 0.6rem;
+          pointer-events: none;
+          @include icon-color($black);
+          transition  : all .3s ease-in-out;
+        }
+
+        &.--active {
+          color : $primaryLight;
+
+          &::before {
+            content          : "";
+            position         : absolute;
+            left             : 0;
+            top              : 0;
+            bottom           : 0;
+            margin           : auto;
+            height           : 50%;
+            background-color : $primaryLight;
+            width            : 45px;
+            border-radius    : 0 50px 50px 0;
+          }
+
+          & > i {
+            @include icon-color($primaryLight);
+          }
+        }
+
+        &:hover {
+          color : $primaryLight;
+
+          & > i {
+            @include icon-color($primaryLight);
+          }
+        }
+      }
+    }
+
+    &__body {
+      grid-area     : body;
+      padding       : 1.85rem 2.53rem;
+      background    : white;
+      border-radius : 10px;
+      box-shadow    : 0px 2px 4px rgba(0, 0, 0, 0.25);
+      @include max-width($screenMd) {
+        @include mx(2.5);
+      }
+
+      h2 {
+      }
+      &-form{
+        .js-account-content{
+          display: none;
+          &.--display{
+            display: block;
+          }
+
+        }
+      }
+    }
+  }
+
+  &__form {
+    &-title {
+      margin-bottom : 1.2rem;
+    }
+
+    &-subtitle {
+      font-family   : $mainFont;
+      font-weight   : 400;
+      color         : $greyDark;
+      margin-bottom : 1.2rem;
+      line-height   : 1.5;
+    }
+
+    &-alert {
+      display     : flex;
+      align-items : center;
+
+      p {
+        font-family : $titleFont;
+        font-weight : 400;
+        font-size   : 1.5rem;
+        color: $redDark;
+        margin-left: .5rem;
+        line-height: 2;
+      }
+
+      & > i {
+        @include icon-color($redDark);
+      }
+    }
+
+    &__perso {
+      text-align : center;
+
+      &__infos, &__adresses, &__security {
+        margin                : 2.4rem 0;
+        display               : grid;
+        grid-template-columns : 1fr 1fr;
+        grid-gap              : 2rem 3.2rem;
+        box-sizing            : border-box;
+
+        .input-container {
+          width : 100%;
+        }
+      }
+      &__adresses{
+        .input-container{
+          &:nth-child(2){
+            grid-row: 2;
+          }
+        }
+      }
+    }
+
+    &__intervenant{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1.3rem 3.2rem;
+      margin: 2.4rem 0;
+
+      .car{
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    }
+
+    .btn{
+      margin: auto;
+      margin-top : 2.4rem;
+    }
+  }
+}

@@ -27,6 +27,16 @@ if (specialite_input && auto_completion) {
 
                     p.addEventListener('click', () => {
                         tag_container.appendChild(createTag(element.libelle.toUpperCase(), element.id_service));
+                        const specialitesInput = document.querySelector('#specialitesInput');
+                        if (specialitesInput) {
+                            const value = specialitesInput.value;
+                            if (value === 'null') {
+                                specialitesInput.value = element.id_service;
+                            } else {
+                                specialitesInput.value = value + '-' + element.id_service;
+                            }
+                        }
+
                         specialite_input.value = '';
                         auto_completion.classList.add('notVisible');
                     });
@@ -86,15 +96,11 @@ function ajaxVille(div_auto_complete, input) {
                 p.addEventListener('click', () => {
                     input.value = '';
                     input.value = element.nom.toUpperCase();
+                    const span = input.parentNode.querySelector('span.code_postal')
+                    span ? span.innerHTML = element.code_postal : null;
 
-                    const input_cpPopUp = input.parentNode.parentNode.querySelector('#cpPopUp, #cpIntervenant');
-                    const input_hidden_value_ville = input.parentNode.querySelector('#hiddenValueCityPopUp, #hiddenValueCityIntervenant');
-                    if (input_hidden_value_ville && input_cpPopUp) {
-                        console.log(input_hidden_value_ville);
-                        console.log(input_cpPopUp);
-                        input_hidden_value_ville.value = element.id_ville;
-                        input_cpPopUp.value = element.code_postal;
-                    }
+                    const input_city_hidden = input.parentNode.querySelector('input[name="city"]');
+                    input_city_hidden ? input_city_hidden.value = element.id_ville : null;
                     div_auto_complete.classList.add('notVisible');
                 });
             });
