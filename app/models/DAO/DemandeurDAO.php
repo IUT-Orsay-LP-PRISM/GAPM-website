@@ -12,7 +12,9 @@ class DemandeurDAO extends ConnexionDB
 
     public static function findByNameOrCity($nom, $city)
     {
-        $sql = "SELECT demandeur.* FROM demandeur INNER JOIN ville ON demandeur.id_Ville = ville.id_Ville WHERE demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom OR ville.nom LIKE :city";
+        $nom = "%$nom%";
+        $city = "%$city%";
+        $sql = "SELECT demandeur.* FROM demandeur INNER JOIN ville ON demandeur.id_Ville = ville.id_Ville WHERE (demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom) AND ville.nom LIKE :city";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
         $stmt->bindParam(':city', $city, PDO::PARAM_STR);
@@ -69,7 +71,7 @@ class DemandeurDAO extends ConnexionDB
         return false;
     }
 
-    public static function update($data)
+    public  static function update($data)
     {
         $sql = "UPDATE demandeur SET login = :login, email = :email, motDePasse = :motDePasse, nom = :nom, prenom = :prenom, dateNaissance = :dateNaissance, adresse = :adresse, telephone = :telephone, sexe = :sexe, id_Ville = :id_Ville WHERE id_Demandeur = :idDemandeur";
         $stmt = self::getInstance()->prepare($sql);
