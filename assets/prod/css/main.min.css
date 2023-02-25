@@ -2345,7 +2345,9 @@ body.intervenant {
               justify-content: space-around;
               align-items: center;
               margin: 1.5rem 0 0 0;
-              padding-top: 1.5rem; }
+              padding-top: 1.5rem;
+              color: #257466;
+              font-weight: 600; }
               body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .weekdays .weekday {
                 font-size: 1.2rem; }
             body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days {
@@ -3578,7 +3580,9 @@ body.demandeur {
               justify-content: space-around;
               align-items: center;
               margin: 1.5rem 0 0 0;
-              padding-top: 1.5rem; }
+              padding-top: 1.5rem;
+              color: #393BAA;
+              font-weight: 600; }
               body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .weekdays .weekday {
                 font-size: 1.2rem; }
             body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days {

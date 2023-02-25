@@ -49,7 +49,7 @@
 
         .js-calendar {
           font-family : $mainFont;
-          user-select: none;
+          user-select : none;
 
           .header {
             display         : flex;
@@ -96,6 +96,8 @@
               align-items     : center;
               margin          : 1.5rem 0 0 0;
               padding-top     : 1.5rem;
+              color           : $primaryDark;
+              font-weight     : 600;
 
               .weekday {
                 font-size : 1.2rem;
