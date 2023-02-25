@@ -80,6 +80,14 @@ function creerCalendrier(annee, mois) {
                     dayNumber.innerHTML = day + dayOfWeek;
                 } else {
                     dayDiv.classList.add('--disabled');
+                    let nextMonth = mois + 1;
+                    let nextMonthYear = annee;
+                    if (nextMonth == 13) {
+                        nextMonth = 1;
+                        nextMonthYear = annee + 1;
+                    }
+                    const nextMonthDay = dayOfWeek - nbDaysLeft;
+                    dayNumber.innerHTML = nextMonthDay;
                 }
                 if (annee == currentYear && mois == currentMonth && day + dayOfWeek == currentDay) {
                     dayDiv.classList.add('--today');
