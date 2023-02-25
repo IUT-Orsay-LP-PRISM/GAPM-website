@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_DATABASE: gapm
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - ./.docker/mariadb/data:/var/lib/mysql
+  php:
+    build:
+      context: ./.docker/php
+    depends_on:
+      - mariadb
+    links:
+      - mariadb
+    tty: true
+    ports:
+      - 80:80
+    volumes:
+      - .:/var/www/html
