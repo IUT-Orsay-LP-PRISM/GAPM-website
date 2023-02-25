@@ -1,0 +1,46 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block type %}
+    {{ type }}
+{% endblock %}
+
+{% block content %}
+    <section class="prendreRdv">
+        <h1>Prendre un RDV <i class="icon icon-fi-rr-arrow-small-right"></i><span
+                    class="small">Choisir une <span>date.</span></span></h1>
+        <div class="prendreRdv__content">
+            <div class="prendreRdv__content__body">
+                <div class="prendreRdv__content__body-form">
+                    <div class="js-calendar">
+                        <div class="header">
+                            <p class="current-month">September 2023 </p>
+                            <div class="buttons">
+                                <i class="icon icon-fi-rr-mode-portrait now"></i>
+                                <i class="icon icon-fi-rr-angle-small-left prev"></i>
+                                <i class="icon icon-fi-rr-angle-small-right next"></i>
+                            </div>
+                        </div>
+
+                        <div class="container-dates">
+                            <ul class="weekdays">
+                                <li class="weekday">Dim</li>
+                                <li class="weekday">Lun</li>
+                                <li class="weekday">Mar</li>
+                                <li class="weekday">Mer</li>
+                                <li class="weekday">Jeu</li>
+                                <li class="weekday">Ven</li>
+                                <li class="weekday">Sam</li>
+                            </ul>
+                            <div class="days"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

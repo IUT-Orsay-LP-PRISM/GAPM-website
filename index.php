@@ -11,12 +11,13 @@ Route::get('demandeur', 'DemandeurController', 'index');
 Route::get('inscription-intervenant', 'IntervenantController', 'index');
 Route::get('logout', 'DemandeurController', 'logout');
 Route::get('my-account', 'DemandeurController', 'myAccount');
+Route::get('prendre-rdv', 'RendezVousController', 'prendreRdv');
 
 // Les post de l'url
 Route::post('login-user', 'DemandeurController', 'login');
 Route::post('register-user', 'DemandeurController', 'register');
 Route::post('my-account-edit', 'DemandeurController', 'update');
-Route::get('my-account-delete', 'DemandeurController', 'delete');
+Route::post('my-account-delete', 'DemandeurController', 'delete');
 
 
 
