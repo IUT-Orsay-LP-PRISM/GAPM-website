@@ -4,7 +4,7 @@
 		<link rel="stylesheet" href="assets/prod/css/main.min.css">
 		<title>{% block title %}{% endblock %} • GAPM</title>
 	</head>
-	<body class="{% if isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}">
+	<body class="{% if isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}" data-log="{{ userLogged }}">
 	<div id="loader"></div>
 	{% if not no_header %}
 		{% include "includes/header.twig" %}
