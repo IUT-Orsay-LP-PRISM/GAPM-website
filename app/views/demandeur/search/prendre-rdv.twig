@@ -14,6 +14,16 @@
                     class="small">Choisir une <span>date.</span></span></h1>
         <div class="prendreRdv__content">
             <div class="prendreRdv__content__body">
+                <div class="prendreRdv__content__body__card">
+                    <div class="prendreRdv__content__body__card-img">
+                        <img class="pdp" src="assets/img/profils/exemple_doctor.jpg" alt="User">
+                    </div>
+                    <div class="prendreRdv__content__body__card-info">
+                        <p class="name">{{ intervenant.nom }} {{ intervenant.prenom }}</p>
+                        <p class="speciality">Ici les specialitées</p>
+                        <p class="address">{{ intervenant.adresse }}</p>
+                    </div>
+                </div>
                 <div class="prendreRdv__content__body-form">
                     <div class="js-calendar">
                         <div class="header">
@@ -24,7 +34,6 @@
                                 <i class="icon icon-fi-rr-angle-small-right next"></i>
                             </div>
                         </div>
-
                         <div class="container-dates">
                             <ul class="weekdays">
                                 <li class="weekday">Dim</li>

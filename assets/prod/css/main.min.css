@@ -2305,6 +2305,27 @@ body.intervenant {
           body.intervenant .prendreRdv__content__body {
             margin-left: 2.5rem;
             margin-right: 2.5rem; } }
+        body.intervenant .prendreRdv__content__body__card {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1.5rem;
+          font-family: "Open Sans", sans-serif; }
+          body.intervenant .prendreRdv__content__body__card-img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            overflow: hidden; }
+            body.intervenant .prendreRdv__content__body__card-img img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover; }
+          body.intervenant .prendreRdv__content__body__card-info {
+            margin-left: 1.5rem; }
+            body.intervenant .prendreRdv__content__body__card-info .name {
+              font-size: 1.5rem;
+              font-weight: 600; }
+            body.intervenant .prendreRdv__content__body__card-info .speciality {
+              font-size: 1.2rem; }
         body.intervenant .prendreRdv__content__body-form .js-account-content {
           display: none; }
           body.intervenant .prendreRdv__content__body-form .js-account-content.--display {
@@ -3540,6 +3561,27 @@ body.demandeur {
           body.demandeur .prendreRdv__content__body {
             margin-left: 2.5rem;
             margin-right: 2.5rem; } }
+        body.demandeur .prendreRdv__content__body__card {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1.5rem;
+          font-family: "Open Sans", sans-serif; }
+          body.demandeur .prendreRdv__content__body__card-img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            overflow: hidden; }
+            body.demandeur .prendreRdv__content__body__card-img img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover; }
+          body.demandeur .prendreRdv__content__body__card-info {
+            margin-left: 1.5rem; }
+            body.demandeur .prendreRdv__content__body__card-info .name {
+              font-size: 1.5rem;
+              font-weight: 600; }
+            body.demandeur .prendreRdv__content__body__card-info .speciality {
+              font-size: 1.2rem; }
         body.demandeur .prendreRdv__content__body-form .js-account-content {
           display: none; }
           body.demandeur .prendreRdv__content__body-form .js-account-content.--display {
