@@ -2910,7 +2910,7 @@ body.intervenant {
       body.intervenant .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
     body.intervenant .popup.popup-prendreRDV {
-      width: 40%;
+      width: 25%;
       height: 40em; }
       body.intervenant .popup.popup-prendreRDV .popup-container {
         justify-content: flex-start; }
@@ -4206,7 +4206,7 @@ body.demandeur {
       body.demandeur .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
     body.demandeur .popup.popup-prendreRDV {
-      width: 40%;
+      width: 25%;
       height: 40em; }
       body.demandeur .popup.popup-prendreRDV .popup-container {
         justify-content: flex-start; }
