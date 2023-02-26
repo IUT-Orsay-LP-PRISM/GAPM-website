@@ -17,12 +17,12 @@
                     </p>
                     <p class="address">{{ ville.nom }},{{ ville.codePostal }}</p>
                 </div>
-                <div class="popup-container-col__date"></div>
+                <div id="js-date" class="popup-container-col__date"></div>
                 <div class="popup-container-col__form">
                     <div class="input-container">
                         <i class="icon icon-fi-rr-time-fast "></i>
                         <select id="selectHoraire" class="input" type="text" name="horaire" required>
-                            <option value="null" selected hidden="hidden"> </option>
+                            <option value="" selected hidden="hidden"> </option>
                             <option value="8:00">8h00</option>
                             <option value="8:30">8h30</option>
                             <option value="9:00">9h00</option>
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary-nb" type="submit">
+            <button id="js-btn-prendreRDV" class="btn btn-primary-nb" type="submit">
                 <i class="icon-w icon-fi-rr-time-add"></i>
                 <span>Prendre RDV</span>
             </button>
