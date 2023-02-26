@@ -63,10 +63,10 @@
 
   &.popup-prendreRDV {
     width  : 25%;
-    height : 40em;
+    height : 37em;
 
     .popup-container {
-      justify-content: flex-start;
+      justify-content : flex-start;
 
       form {
         justify-content : space-between;
@@ -74,8 +74,8 @@
       }
 
       .prendreRdv__content__body__card-img {
-        width         : 8rem;
-        height        : 8rem;
+        width  : 8rem;
+        height : 8rem;
       }
 
       &-col {
@@ -102,20 +102,22 @@
         }
 
         &__form {
-          &-title {
-            font-size   : 1.2em;
+          width           : 12em;
+          display         : flex;
+          justify-content : center;
+          align-items     : center;
+
+          .input-container-title {
             font-weight : 600;
             color       : $greyDark;
 
-            span {
+            span.primary {
               color : $secondary;
             }
           }
-
         }
       }
     }
-
   }
 
 
