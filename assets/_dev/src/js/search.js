@@ -161,6 +161,14 @@ function placeEventListenerInDays() {
                 .replace(/^\w|\s\w/g, (c) => c.toUpperCase());
 
             popUp_prendreRDV.querySelector('.popup-container-col__date').innerText = fullDate;
+            editDateInPopUp(`${year}-${month}-${day}`);
         });
     });
+}
+
+function editDateInPopUp(fullDate) {
+    const inputDate = document.querySelector('#inputDate');
+    const [year, month, day] = fullDate.split('-');
+    const newFullDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+    inputDate.value = newFullDate;
 }

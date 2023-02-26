@@ -21,6 +21,8 @@
                 <div class="popup-container-col__form">
                     <div class="input-container">
                         <i class="icon icon-fi-rr-time-fast "></i>
+                        <input id="inputDate" class="input" type="hidden" name="date">
+                        <input class="input" type="hidden" name="idIntervenant" value="{{ demandeur.id_Demandeur }}">
                         <select id="selectHoraire" class="input" type="text" name="horaire" required>
                             <option value="" selected hidden="hidden"> </option>
                             <option value="8:00">8h00</option>
