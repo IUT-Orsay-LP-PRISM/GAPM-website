@@ -63,66 +63,45 @@ function creerCalendrier(annee, mois) {
     const days = calendar.querySelector('.days');
     days.innerHTML = '';
 
-
     let day = 1 - jourSemaine;
-    for (day; day <= nbJoursMois; day += 7) {
+    while (day <= nbJoursMois) {
         const row = document.createElement('div');
         row.classList.add('row');
+        for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.classList.add('day');
+            const dayNumber = document.createElement('div');
+            dayNumber.classList.add('day-number');
 
-        if (day + 7 > nbJoursMois) {
-            const nbDaysLeft = nbJoursMois - day;
-            for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.classList.add('day');
-                const dayNumber = document.createElement('div');
-                dayNumber.classList.add('day-number');
-                if (dayOfWeek <= nbDaysLeft) {
-                    dayNumber.innerHTML = day + dayOfWeek;
-                } else {
-                    dayDiv.classList.add('--disabled');
-                    const nextMonthDay = dayOfWeek - nbDaysLeft;
-                    dayNumber.innerHTML = nextMonthDay;
-                }
-                if (annee == currentYear && mois == currentMonth && day + dayOfWeek == currentDay) {
-                    dayDiv.classList.add('--today');
-                }
-                dayDiv.appendChild(dayNumber);
-                row.appendChild(dayDiv);
+            if (day + dayOfWeek < 1 || day + dayOfWeek > nbJoursMois) {
+                const previousMonthYear = mois === 1 ? annee - 1 : annee;
+                const previousMonthMonth = mois === 1 ? 12 : mois - 1;
+                const previousMonthDays = nbJours(previousMonthYear, previousMonthMonth);
+                const previousMonthDay = day + dayOfWeek < 1 ? previousMonthDays + day + dayOfWeek : day + dayOfWeek - nbJoursMois;
+                dayDiv.classList.add('--disabled');
+                dayNumber.innerHTML = previousMonthDay;
+            } else {
+                dayNumber.innerHTML = day + dayOfWeek;
+                const dateObj = new Date(annee, mois - 1, dayNumber.innerHTML);
+                const datasetDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
+                dayDiv.dataset.date = datasetDate;
             }
-            days.appendChild(row);
-            break;
-        } else {
-            for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.classList.add('day');
-                const dayNumber = document.createElement('div');
-                dayNumber.classList.add('day-number');
-                if (day + dayOfWeek <= 0) {
-                    let previousMonth = mois - 1;
-                    let previousMonthYear = annee;
-                    if (previousMonth == 0) {
-                        previousMonth = 12;
-                        previousMonthYear = annee - 1;
-                    }
-                    const previousMonthDays = nbJours(previousMonthYear, previousMonth);
-                    const previousMonthDay = previousMonthDays + day + dayOfWeek;
-                    dayNumber.innerHTML = previousMonthDay;
-                    dayDiv.classList.add('--disabled');
-                } else {
-                    dayNumber.innerHTML = day + dayOfWeek;
-                }
-                if (annee == currentYear && mois == currentMonth && day + dayOfWeek == currentDay) {
-                    dayDiv.classList.add('--today');
-                }
-                dayDiv.appendChild(dayNumber);
-                row.appendChild(dayDiv);
+
+            if (annee === currentYear && mois === currentMonth && day + dayOfWeek === currentDay) {
+                dayDiv.classList.add('--today');
             }
-            days.appendChild(row);
+
+            dayDiv.appendChild(dayNumber);
+            row.appendChild(dayDiv);
         }
-
-
+        days.appendChild(row);
+        day += 7;
     }
+
+    placeEventListenerInDays();
 }
+
+
 
 function StartCalendar() {
     const now = new Date();
@@ -138,26 +117,28 @@ function StartCalendar() {
 
     btnNextMonth.addEventListener('click', () => {
         if (currentMonth == 12) {
-            creerCalendrier(currentYear + 1, 1);
-            textMonth.innerText = `${getMonthName(1)} ${currentYear + 1}`;
+            currentMonth = 1;
             currentYear++;
+            creerCalendrier(currentYear, currentMonth);
+            textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
         } else {
-            creerCalendrier(currentYear, currentMonth + 1);
-            textMonth.innerText = `${getMonthName(currentMonth + 1)} ${currentYear}`;
+            currentMonth++;
+            creerCalendrier(currentYear, currentMonth);
+            textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
         }
-        currentMonth++;
     });
 
     btnPreviousMonth.addEventListener('click', () => {
         if (currentMonth == 1) {
-            creerCalendrier(currentYear - 1, 12);
-            textMonth.innerText = `${getMonthName(12)} ${currentYear - 1}`;
+            currentMonth = 12;
             currentYear--;
+            creerCalendrier(currentYear, currentMonth);
+            textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
         } else {
-            creerCalendrier(currentYear, currentMonth - 1);
-            textMonth.innerText = `${getMonthName(currentMonth - 1)} ${currentYear}`;
+            currentMonth--;
+            creerCalendrier(currentYear, currentMonth);
+            textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
         }
-        currentMonth--;
     });
 
     btnNow.addEventListener('click', () => {
@@ -165,6 +146,23 @@ function StartCalendar() {
         currentMonth = now.getMonth() + 1;
         creerCalendrier(currentYear, currentMonth);
         textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
+    });
+}
+
+
+function placeEventListenerInDays() {
+    const popUp_prendreRDV = document.querySelector('#popUp-prendre-RDV');
+    document.querySelectorAll('.day:not(.--disabled)').forEach(divDay => {
+        divDay.addEventListener('click', () => {
+            popUp_prendreRDV.classList.toggle('visible');
+
+            const [year, month, day] = divDay.dataset.date.split('-');
+            const options = {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
+            const fullDate = new Date(year, month - 1, day).toLocaleDateString('fr-FR', options)
+                .replace(/^\w|\s\w/g, (c) => c.toUpperCase());
+
+            popUp_prendreRDV.querySelector('.popup-container-col__date').innerText = fullDate;
+        });
     });
 }
 
