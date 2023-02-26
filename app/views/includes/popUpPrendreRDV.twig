@@ -1,0 +1,30 @@
+<section class="popup popup-prendreRDV">
+    <i class="cross"></i>
+
+    <section class="popup-container">
+        <h1 class="text__underline-light">Prendre un RDV</h1>
+        <form method="post" action="?action=confirm-RDV">
+            <div class="popup-container-col">
+                <div class="prendreRdv__content__body__card-img">
+                    <img class="pdp" src="assets/img/profils/exemple_doctor.jpg" alt="User">
+                </div>
+                <div class="prendreRdv__content__body__card-info">
+                    <p class="name">{{ demandeur.nom }} {{ demandeur.prenom }}</p>
+                    <p class="speciality">
+                        {% for specialite in intervenant.specialites %}
+                            <span>{{ specialite.libelle }}</span>
+                        {% endfor %}
+                    </p>
+                    <p class="address">{{ ville.nom }},{{ ville.codePostal }}</p>
+                </div>
+                <div class="popup-container-col__date"></div>
+                <div class="popup-container-col__form">
+                    <p class="popup-container-col__form-title">Choisir un <span>horaire :</span></p>
+                </div>
+            </div>
+
+            <input class="btn btn-primary-nb" type="submit" value="Se connecter">
+        </form>
+    </section>
+
+</section>

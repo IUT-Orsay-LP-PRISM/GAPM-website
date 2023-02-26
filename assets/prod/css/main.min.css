@@ -2862,11 +2862,11 @@ body.intervenant {
       padding: 1em 0;
       text-align: center;
       font-family: "Open Sans", sans-serif; }
-  body.intervenant #popUp-connexion, body.intervenant #popUp-inscription {
+  body.intervenant #popUp-connexion, body.intervenant #popUp-inscription, body.intervenant #popUp-prendre-RDV {
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s ease-in-out; }
-    body.intervenant #popUp-connexion:after, body.intervenant #popUp-inscription:after {
+    body.intervenant #popUp-connexion:after, body.intervenant #popUp-inscription:after, body.intervenant #popUp-prendre-RDV:after {
       content: "";
       display: block;
       clear: both;
@@ -2878,11 +2878,11 @@ body.intervenant {
       right: 0;
       bottom: 0;
       background-color: rgba(30, 30, 61, 0.82); }
-    body.intervenant #popUp-connexion.visible, body.intervenant #popUp-inscription.visible {
+    body.intervenant #popUp-connexion.visible, body.intervenant #popUp-inscription.visible, body.intervenant #popUp-prendre-RDV.visible {
       opacity: 1;
       visibility: visible;
       transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out; }
-      body.intervenant #popUp-connexion.visible .popup, body.intervenant #popUp-inscription.visible .popup {
+      body.intervenant #popUp-connexion.visible .popup, body.intervenant #popUp-inscription.visible .popup, body.intervenant #popUp-prendre-RDV.visible .popup {
         transform: translateY(0);
         transition: all .8s ease-in-out; }
   body.intervenant .popup {
@@ -2909,6 +2909,41 @@ body.intervenant {
       height: 40em; }
       body.intervenant .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
+    body.intervenant .popup.popup-prendreRDV {
+      width: 40%;
+      height: 40em; }
+      body.intervenant .popup.popup-prendreRDV .popup-container {
+        justify-content: flex-start; }
+        body.intervenant .popup.popup-prendreRDV .popup-container form {
+          justify-content: space-between;
+          height: 80%; }
+        body.intervenant .popup.popup-prendreRDV .popup-container .prendreRdv__content__body__card-img {
+          width: 8rem;
+          height: 8rem; }
+        body.intervenant .popup.popup-prendreRDV .popup-container-col {
+          height: 25em; }
+          body.intervenant .popup.popup-prendreRDV .popup-container-col .prendreRdv__content__body__card-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center; }
+          body.intervenant .popup.popup-prendreRDV .popup-container-col__date {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #A0E4F1;
+            border-radius: 10px;
+            padding: 1em;
+            font-size: 1.2em;
+            color: #787878;
+            font-weight: 600; }
+          body.intervenant .popup.popup-prendreRDV .popup-container-col__form-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #787878; }
+            body.intervenant .popup.popup-prendreRDV .popup-container-col__form-title span {
+              color: #86CABE; }
     body.intervenant .popup h1 {
       font-size: 2.5em;
       margin-bottom: 1em; }
@@ -4123,11 +4158,11 @@ body.demandeur {
       padding: 1em 0;
       text-align: center;
       font-family: "Open Sans", sans-serif; }
-  body.demandeur #popUp-connexion, body.demandeur #popUp-inscription {
+  body.demandeur #popUp-connexion, body.demandeur #popUp-inscription, body.demandeur #popUp-prendre-RDV {
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s ease-in-out; }
-    body.demandeur #popUp-connexion:after, body.demandeur #popUp-inscription:after {
+    body.demandeur #popUp-connexion:after, body.demandeur #popUp-inscription:after, body.demandeur #popUp-prendre-RDV:after {
       content: "";
       display: block;
       clear: both;
@@ -4139,11 +4174,11 @@ body.demandeur {
       right: 0;
       bottom: 0;
       background-color: rgba(30, 30, 61, 0.82); }
-    body.demandeur #popUp-connexion.visible, body.demandeur #popUp-inscription.visible {
+    body.demandeur #popUp-connexion.visible, body.demandeur #popUp-inscription.visible, body.demandeur #popUp-prendre-RDV.visible {
       opacity: 1;
       visibility: visible;
       transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out; }
-      body.demandeur #popUp-connexion.visible .popup, body.demandeur #popUp-inscription.visible .popup {
+      body.demandeur #popUp-connexion.visible .popup, body.demandeur #popUp-inscription.visible .popup, body.demandeur #popUp-prendre-RDV.visible .popup {
         transform: translateY(0);
         transition: all .8s ease-in-out; }
   body.demandeur .popup {
@@ -4170,6 +4205,41 @@ body.demandeur {
       height: 40em; }
       body.demandeur .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
+    body.demandeur .popup.popup-prendreRDV {
+      width: 40%;
+      height: 40em; }
+      body.demandeur .popup.popup-prendreRDV .popup-container {
+        justify-content: flex-start; }
+        body.demandeur .popup.popup-prendreRDV .popup-container form {
+          justify-content: space-between;
+          height: 80%; }
+        body.demandeur .popup.popup-prendreRDV .popup-container .prendreRdv__content__body__card-img {
+          width: 8rem;
+          height: 8rem; }
+        body.demandeur .popup.popup-prendreRDV .popup-container-col {
+          height: 25em; }
+          body.demandeur .popup.popup-prendreRDV .popup-container-col .prendreRdv__content__body__card-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center; }
+          body.demandeur .popup.popup-prendreRDV .popup-container-col__date {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #A0E4F1;
+            border-radius: 10px;
+            padding: 1em;
+            font-size: 1.2em;
+            color: #787878;
+            font-weight: 600; }
+          body.demandeur .popup.popup-prendreRDV .popup-container-col__form-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #787878; }
+            body.demandeur .popup.popup-prendreRDV .popup-container-col__form-title span {
+              color: #7EA6F4; }
     body.demandeur .popup h1 {
       font-size: 2.5em;
       margin-bottom: 1em; }
