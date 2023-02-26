@@ -10,18 +10,7 @@ class DemandeurDAO extends ConnexionDB
     protected static $entity = "Demandeur";
     protected static $link = 'App\models\entity\\';
 
-    public static function findByNameOrCity($nom, $city)
-    {
-        $nom = "%$nom%";
-        $city = "%$city%";
-        $sql = "SELECT demandeur.* FROM demandeur INNER JOIN ville ON demandeur.id_Ville = ville.id_Ville WHERE (demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom) AND ville.nom LIKE :city";
-        $stmt = self::getInstance()->prepare($sql);
-        $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $stmt->bindParam(':city', $city, PDO::PARAM_STR);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
-        return $stmt->fetchAll();
-    }
+
 
     public static function checkIfEmailExists($email)
     {
