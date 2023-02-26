@@ -18,6 +18,10 @@ abstract class RendezVousController extends Template implements InterfaceControl
 
         $demandeur = DemandeurDAO::findById($_GET['demandeur']);
         $intervenant = IntervenantDAO::findById($demandeur->getId_Demandeur());
+        if($intervenant == null) {
+            header('Location: /?action=search&s_name=&s_city=&error=Intervenant introuvable&c=message');
+            exit;
+        }
         $services = ServiceDAO::findByIdIntervenant($demandeur->getId_Demandeur());
         $intervenant->setSpecialites($services);
 
