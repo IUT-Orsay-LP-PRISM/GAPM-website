@@ -41,7 +41,7 @@ class Demandeur
     /**
      * @return int
      */
-    public function getIdDemandeur()
+    public function getId_Demandeur()
     {
         return $this->id_Demandeur;
     }
@@ -49,7 +49,7 @@ class Demandeur
     /**
      * @param int $id_Demandeur
      */
-    public function setIdDemandeur(int $id_Demandeur)
+    public function setId_Demandeur(int $id_Demandeur)
     {
         $this->id_Demandeur = $id_Demandeur;
     }

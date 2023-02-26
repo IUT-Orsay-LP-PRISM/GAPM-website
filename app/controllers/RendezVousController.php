@@ -17,8 +17,8 @@ abstract class RendezVousController extends Template implements InterfaceControl
         }
 
         $demandeur = DemandeurDAO::findById($_GET['demandeur']);
-        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
-        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
+        $intervenant = IntervenantDAO::findById($demandeur->getId_Demandeur());
+        $services = ServiceDAO::findByIdIntervenant($demandeur->getId_Demandeur());
         $intervenant->setSpecialites($services);
 
         self::render('demandeur/search/prendre-rdv.twig', [

@@ -31,7 +31,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
     public static function update()
     {
         $user = Session::get('user');
-        $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
+        $demandeur = DemandeurDAO::findById($user->getId_Demandeur());
         $email = $_POST['mail'];
         $userFromEmail = DemandeurDAO::getUserFromEmail($email);
 
@@ -53,7 +53,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
         }
 
 
-        if ($userFromEmail && $userFromEmail->getIdDemandeur() != $user->getIdDemandeur()) {
+        if ($userFromEmail && $userFromEmail->getId_Demandeur() != $user->getId_Demandeur()) {
             $referer = self::addErrorToUrl('Cette email est déjà utilisé.', 'mon-compte');
             header("Location: $referer");
             exit();
@@ -94,10 +94,10 @@ abstract class DemandeurController extends Template implements InterfaceControll
             header('Location: /?action=my-account');
         } else {
             $user = Session::get('user');
-            $demandeur = DemandeurDAO::removeById($user->getIdDemandeur());
+            $demandeur = DemandeurDAO::removeById($user->getId_Demandeur());
 
-            $isIntervenant = IntervenantDAO::findById($user->getIdDemandeur());
-            $isIntervenant ? IntervenantDAO::removeById($user->getIdDemandeur()) : null;
+            $isIntervenant = IntervenantDAO::findById($user->getId_Demandeur());
+            $isIntervenant ? IntervenantDAO::removeById($user->getId_Demandeur()) : null;
 
             //TODO :  soit mettre la bdd en cascade delete soit faire a la main les delete des Service tout le reste
 
@@ -224,7 +224,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
             if ($inscriptionIntervenant) {
                 $intervenant = new Intervenant();
-                $intervenant->setId_Intervenant($demandeur->getIdDemandeur());
+                $intervenant->setId_Intervenant($demandeur->getId_Demandeur());
                 $intervenant->setSpecialites($specialites);
                 //$intervenant->setVoiture($voiture);
                 // TODO : ajouter voiture et demande voiture
@@ -251,7 +251,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
     public static function myAccount()
     {
         $user = Session::get('user');
-        $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
+        $demandeur = DemandeurDAO::findById($user->getId_Demandeur());
         $ville = VilleDAO::findById($demandeur->getId_Ville());
 
         self::render('demandeur/mon-compte.twig', [

@@ -65,7 +65,7 @@ class DemandeurDAO extends ConnexionDB
 
         if ($result) {
             $idDemandeur = self::getInstance()->lastInsertId();
-            $data->setIdDemandeur($idDemandeur);
+            $data->setId_Demandeur($idDemandeur);
             return $data;
         }
         return false;
@@ -86,7 +86,7 @@ class DemandeurDAO extends ConnexionDB
             'telephone' => $data->getTelephone(),
             'sexe' => $data->getSexe(),
             'id_Ville' => $data->getId_Ville(),
-            'idDemandeur' => $data->getIdDemandeur()
+            'idDemandeur' => $data->getId_Demandeur()
         ]);
 
         return $result ? $data : false;

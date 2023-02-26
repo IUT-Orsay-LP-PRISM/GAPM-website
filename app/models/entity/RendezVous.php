@@ -10,7 +10,7 @@ class RendezVous
     private $dateRdv;
     private $heureDebut;
     private $heureFin;
-    private $idDemandeur;
+    private $id_Demandeur;
     private $idService;
     private $idIntervenant;
 
@@ -55,9 +55,9 @@ class RendezVous
         return $this->heureFin;
     }
 
-    public function getIdDemandeur()
+    public function getId_Demandeur()
     {
-        return $this->idDemandeur;
+        return $this->id_Demandeur;
     }
 
     public function getIdService()
@@ -117,9 +117,9 @@ class RendezVous
     /**
      * @param mixed $idDemandeur
      */
-    public function setIdDemandeur($idDemandeur): void
+    public function setId_Demandeur($idDemandeur): void
     {
-        $this->idDemandeur = $idDemandeur;
+        $this->idDemandeur = $id_Demandeur;
     }
 
     /**
