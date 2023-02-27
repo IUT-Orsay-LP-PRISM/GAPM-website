@@ -27,7 +27,7 @@ class Service{
     /**
      * @return mixed - Getteur id service
      */
-	public function getIdService(){return $this->id_Service;}
+	public function getId_Service(){return $this->id_Service;}
 
     /**
      * @return mixed - Getteur description
@@ -45,7 +45,7 @@ class Service{
     /**
      * @param mixed $idService
      */
-    public function setIdService($idService): void
+    public function setId_Service($idService): void
     {
         $this->idService = $idService;
     }

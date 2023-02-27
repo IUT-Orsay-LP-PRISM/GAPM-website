@@ -51,6 +51,16 @@
                         </select>
                         <label class="input-container-title label" for="selectHoraire"><span>Choisir un <span class="primary">horaire :</span></span></label>
                     </div>
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-list"></i>
+                        <select id="selectSpecialite" class="input" type="text" name="specialite" required>
+                            <option value="" selected hidden="hidden"> </option>
+                            {% for service in intervenant.specialites %}
+                                <option value="{{ service.id_Service }}">{{ service.libelle }}</option>
+                            {% endfor %}
+                        </select>
+                        <label class="input-container-title label" for="selectHoraire"><span>Choisir la <span class="primary">spécialité :</span></span></label>
+                    </div>
                 </div>
             </div>
 

@@ -53,7 +53,7 @@
   transition      : transform 0.3s ease-in-out;
 
   &.popup-inscription {
-    width  : 40%;
+    width  : 30%;
     height : 40em;
 
     .popup-container form div:nth-child(5) .input-container:first-child {
@@ -62,7 +62,7 @@
   }
 
   &.popup-prendreRDV {
-    width  : 25%;
+    width  : 35%;
     height : 37em;
 
     .popup-container {
@@ -102,17 +102,21 @@
         }
 
         &__form {
-          width           : 12em;
+          width           : 100%;
           display         : flex;
-          justify-content : center;
+          justify-content : space-around;
           align-items     : center;
 
-          .input-container-title {
-            font-weight : 600;
-            color       : $greyDark;
+          .input-container {
+            width : 40%;
 
-            span.primary {
-              color : $secondary;
+            &-title {
+              font-weight : 600;
+              color       : $greyDark;
+
+              span.primary {
+                color : $secondary;
+              }
             }
           }
         }
