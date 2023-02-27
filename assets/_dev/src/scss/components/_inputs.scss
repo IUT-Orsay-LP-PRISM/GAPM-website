@@ -21,16 +21,17 @@
     margin : 0 1rem;
   }
 
+
   .input {
-    border      : 0;
-    outline     : none;
-    transition  : .1s ease-in-out;
-    box-sizing  : border-box;
-    width       : 100%;
-    height      : 3.2rem;
-    font-size   : 1rem;
-    padding-top: .6rem;
-    padding-left: 0;
+    border       : 0;
+    outline      : none;
+    transition   : .1s ease-in-out;
+    box-sizing   : border-box;
+    width        : 100%;
+    height       : 3.2rem;
+    font-size    : 1rem;
+    padding-top  : .6rem;
+    padding-left : 0;
 
     &:valid, &:focus, &.input[type="email"]:not(:placeholder-shown) {
       & + label {
@@ -38,8 +39,17 @@
         font-size      : .8rem;
         top            : -15px;
         pointer-events : none;
-        font-family: $titleFont;
+        font-family    : $titleFont;
       }
+    }
+  }
+
+  select.input {
+    & + label {
+      color          : grey;
+      font-size      : .8rem;
+      top            : -15px;
+      pointer-events : none;
     }
   }
 
@@ -49,7 +59,7 @@
   }
 
   span.code_postal {
-    color       : $primaryDark;
+    color : $primaryDark;
   }
 
 
@@ -235,13 +245,13 @@ input, select, option, textarea {
   }
 }
 
-.sr-only{
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
+.sr-only {
+  position : absolute;
+  width    : 1px;
+  height   : 1px;
+  padding  : 0;
+  margin   : -1px;
+  overflow : hidden;
+  clip     : rect(0, 0, 0, 0);
+  border   : 0;
 }

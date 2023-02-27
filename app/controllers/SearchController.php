@@ -2,7 +2,7 @@
 
 namespace App\controllers;
 
-use App\models\dao\DemandeurDAO;
+use App\models\dao\IntervenantDAO;
 
 abstract class SearchController extends Template implements InterfaceController
 {
@@ -11,7 +11,7 @@ abstract class SearchController extends Template implements InterfaceController
         $nom = $_GET['s_name'];
         $city = $_GET['s_city'];
 
-        $demandeursRecherches = DemandeurDAO::findByNameOrCity($nom, $city);
+        $demandeursRecherches = IntervenantDAO::findByNameOrCity($nom, $city);
 
         self::render('search.twig', [
             'title' => "Recherche d'un médecin",

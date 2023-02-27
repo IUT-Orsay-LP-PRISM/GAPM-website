@@ -10,18 +10,7 @@ class DemandeurDAO extends ConnexionDB
     protected static $entity = "Demandeur";
     protected static $link = 'App\models\entity\\';
 
-    public static function findByNameOrCity($nom, $city)
-    {
-        $nom = "%$nom%";
-        $city = "%$city%";
-        $sql = "SELECT demandeur.* FROM demandeur INNER JOIN ville ON demandeur.id_Ville = ville.id_Ville WHERE (demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom) AND ville.nom LIKE :city";
-        $stmt = self::getInstance()->prepare($sql);
-        $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $stmt->bindParam(':city', $city, PDO::PARAM_STR);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
-        return $stmt->fetchAll();
-    }
+
 
     public static function checkIfEmailExists($email)
     {
@@ -65,7 +54,7 @@ class DemandeurDAO extends ConnexionDB
 
         if ($result) {
             $idDemandeur = self::getInstance()->lastInsertId();
-            $data->setIdDemandeur($idDemandeur);
+            $data->setId_Demandeur($idDemandeur);
             return $data;
         }
         return false;
@@ -86,7 +75,7 @@ class DemandeurDAO extends ConnexionDB
             'telephone' => $data->getTelephone(),
             'sexe' => $data->getSexe(),
             'id_Ville' => $data->getId_Ville(),
-            'idDemandeur' => $data->getIdDemandeur()
+            'idDemandeur' => $data->getId_Demandeur()
         ]);
 
         return $result ? $data : false;

@@ -9,7 +9,7 @@ class Commentaire
     private $description;
     private $note;
     private $idRdv;
-    private $idDemandeur;
+    private $id_Demandeur;
 
     // -------------------------------------------------------------------------------------------
     // Constructeur
@@ -47,9 +47,9 @@ class Commentaire
         return $this->idRdv;
     }
 
-    public function getIdDemandeur()
+    public function getId_Demandeur()
     {
-        return $this->idDemandeur;
+        return $this->id_Demandeur;
     }
 
 
@@ -90,9 +90,9 @@ class Commentaire
     /**
      * @param mixed $idDemandeur
      */
-    public function setIdDemandeur($idDemandeur): void
+    public function setId_Demandeur($idDemandeur): void
     {
-        $this->idDemandeur = $idDemandeur;
+        $this->idDemandeur = id_Demandeur;
     }
 }
 

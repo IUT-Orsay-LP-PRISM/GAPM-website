@@ -1,6 +1,7 @@
 const openPopUpInsc = document.querySelector('#openPopUpInsc');
 const popUp_connexion = document.querySelector('#popUp-connexion');
 const popUp_inscription = document.querySelector('#popUp-inscription');
+const popUp_prendreRDV = document.querySelector('#popUp-prendre-RDV');
 const btn_cross = document.querySelectorAll('.cross');
 const btn_connexion = document.querySelector('#btn-connexion');
 const btn_inscription = document.getElementById('btn-inscription');
@@ -15,6 +16,7 @@ btn_cross.forEach(btn => btn
     .addEventListener('click', () => {
         popUp_connexion.classList.remove('visible');
         popUp_inscription.classList.remove('visible');
+        popUp_prendreRDV.classList.remove('visible');
         document.body.style.overflowY = "auto";
         removeErrorInURL();
         div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
@@ -36,9 +38,10 @@ if (btn_connexion && btn_inscription) {
 // close div auto_completion when click outside
 const AC = document.querySelectorAll('.AC');
 window.onclick = function (event) { // When the user clicks anywhere outside of the modal, close it
-    if (event.target == popUp_connexion || event.target == popUp_inscription) {
+    if (event.target == popUp_connexion  || event.target == popUp_inscription || event.target == popUp_prendreRDV) {
         popUp_connexion.classList.remove('visible');
         popUp_inscription.classList.remove('visible');
+        popUp_prendreRDV.classList.remove('visible');
         document.body.style.overflowY = "auto";
         removeErrorInURL();
         div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;

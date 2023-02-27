@@ -3,29 +3,30 @@
 @import "tools/fonts";
 
 body {
-  $greenLight : #AEDBD3;
-  $light      : #DBECEF;
-  $redDark    : #B61414;
+  $greenLight  : #AEDBD3;
+  $light       : #DCE6F2;
+  $redDark     : #B61414;
   $gradientRed : linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%);
-  $white      : #FFFFFF;
+  $white       : #FFFFFF;
+  $greyDark    : #787878;
+  $greyLight   : #b5b5b5;
 
   &.intervenant {
-    $primaryLight                   : #36A793;
-    $primaryDark                    : #257466;
-    $primaryWhite                   : #F1FAFB;
+    $primaryLight             : #36A793;
+    $primaryDark              : #257466;
+    $primaryWhite             : #F1FAFB;
 
-    $secondary                      : #86CABE;
-    $secondaryLight                 : #A0E4F1;
+    $secondary                : #86CABE;
+    $secondaryLight           : #A0E4F1;
 
     $black                    : #144139;
-    $greyDark                 : #787878;
 
     $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
     $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
     $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
     $gradientIcon             : linear-gradient(180deg, $primaryDark 0%, $primaryLight 100%);
 
-    $srcBackgroundBanner            : url("../../../img/banner_gradient_intervenant.png");
+    $srcBackgroundBanner      : url("../../../img/banner_gradient_intervenant.png");
 
     @import "variables";
   }
@@ -40,22 +41,20 @@ body {
 
     $black                    : #1E1E3D;
 
-    $greyDark                 : #787878;
-
     $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
     $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
     $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
     $gradientIcon             : linear-gradient(180deg, $primaryDark 0%, $primaryLight 100%);
 
-    $srcBackgroundBanner            : url("../../../img/banner_gradient.png");
+    $srcBackgroundBanner      : url("../../../img/banner_gradient.png");
 
 
     @import "variables";
   }
 }
 
-html{
-  scroll-behavior: smooth;
+html {
+  scroll-behavior : smooth;
 }
 
 body {

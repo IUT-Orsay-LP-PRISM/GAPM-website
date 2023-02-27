@@ -1,4 +1,4 @@
-#popUp-connexion, #popUp-inscription {
+#popUp-connexion, #popUp-inscription, #popUp-prendre-RDV {
   opacity    : 0;
   visibility : hidden;
 
@@ -60,6 +60,66 @@
       overflow : visible;
     }
   }
+
+  &.popup-prendreRDV {
+    width  : 25%;
+    height : 37em;
+
+    .popup-container {
+      justify-content : flex-start;
+
+      form {
+        justify-content : space-between;
+        height          : 80%;
+      }
+
+      .prendreRdv__content__body__card-img {
+        width  : 8rem;
+        height : 8rem;
+      }
+
+      &-col {
+        height : 25em;
+
+        .prendreRdv__content__body__card-info {
+          display         : flex;
+          flex-direction  : column;
+          justify-content : space-around;
+          align-items     : center;
+        }
+
+        &__date {
+          display          : flex;
+          flex-direction   : column;
+          justify-content  : space-around;
+          align-items      : center;
+          background-color : $secondaryLight;
+          border-radius    : 10px;
+          padding          : 1em;
+          font-size        : 1.2em;
+          color            : $greyDark;
+          font-weight      : 600;
+        }
+
+        &__form {
+          width           : 12em;
+          display         : flex;
+          justify-content : center;
+          align-items     : center;
+
+          .input-container-title {
+            font-weight : 600;
+            color       : $greyDark;
+
+            span.primary {
+              color : $secondary;
+            }
+          }
+        }
+      }
+    }
+  }
+
 
   h1 {
     font-size     : 2.5em;

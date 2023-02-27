@@ -1,0 +1,64 @@
+<section class="popup popup-prendreRDV">
+    <i class="cross"></i>
+
+    <section class="popup-container">
+        <h1 class="text__underline-light">Prendre un RDV</h1>
+        <form method="post" action="?action=confirm-RDV">
+            <div class="popup-container-col">
+                <div class="prendreRdv__content__body__card-img">
+                    <img class="pdp" src="assets/img/profils/exemple_doctor.jpg" alt="User">
+                </div>
+                <div class="prendreRdv__content__body__card-info">
+                    <p class="name">{{ demandeur.nom }} {{ demandeur.prenom }}</p>
+                    <p class="speciality">
+                        {% for specialite in intervenant.specialites %}
+                            <span>{{ specialite.libelle }}</span>
+                        {% endfor %}
+                    </p>
+                    <p class="address">{{ ville.nom }},{{ ville.codePostal }}</p>
+                </div>
+                <div id="js-date" class="popup-container-col__date"></div>
+                <div class="popup-container-col__form">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-time-fast "></i>
+                        <input id="inputDate" class="input" type="hidden" name="date">
+                        <input class="input" type="hidden" name="idIntervenant" value="{{ demandeur.id_Demandeur }}">
+                        <select id="selectHoraire" class="input" type="text" name="horaire" required>
+                            <option value="" selected hidden="hidden"> </option>
+                            <option value="8:00">8h00</option>
+                            <option value="8:30">8h30</option>
+                            <option value="9:00">9h00</option>
+                            <option value="9:30">9h30</option>
+                            <option value="10:00">10h00</option>
+                            <option value="10:30">10h30</option>
+                            <option value="11:00">11h00</option>
+                            <option value="11:30">11h30</option>
+                            <option value="12:00">12h00</option>
+                            <option value="12:30">12h30</option>
+                            <option value="13:00">13h00</option>
+                            <option value="13:30">13h30</option>
+                            <option value="14:00">14h00</option>
+                            <option value="14:30">14h30</option>
+                            <option value="15:00">15h00</option>
+                            <option value="15:30">15h30</option>
+                            <option value="16:00">16h00</option>
+                            <option value="16:30">16h30</option>
+                            <option value="17:00">17h00</option>
+                            <option value="17:30">17h30</option>
+                            <option value="18:00">18h00</option>
+                            <option value="18:30">18h30</option>
+                            <option value="19:00">19h00</option>
+                        </select>
+                        <label class="input-container-title label" for="selectHoraire"><span>Choisir un <span class="primary">horaire :</span></span></label>
+                    </div>
+                </div>
+            </div>
+
+            <button id="js-btn-prendreRDV" class="btn btn-primary-nb" type="submit">
+                <i class="icon-w icon-fi-rr-time-add"></i>
+                <span>Prendre RDV</span>
+            </button>
+        </form>
+    </section>
+
+</section>

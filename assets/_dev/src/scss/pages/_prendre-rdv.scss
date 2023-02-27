@@ -1,0 +1,210 @@
+.prendreRdv {
+  background-color : $light;
+  padding-top      : calc(130px + 2.5rem);
+  padding-bottom   : 12.2rem;
+
+  h1 {
+    text-align      : center;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+
+    i {
+      font-size : 2.5rem;
+    }
+
+    .small {
+      font-size : 1.2rem;
+
+      span {
+        color : $primaryLight;
+      }
+    }
+  }
+
+  &__content {
+    margin-top      : 2.35rem;
+    display         : flex;
+    justify-content : center;
+    align-items     : flex-start;
+
+    &__body {
+      width         : 60%;
+      padding       : 1.85rem 2.53rem;
+      background    : white;
+      border-radius : 10px;
+      box-shadow    : 0px 2px 4px rgba(0, 0, 0, 0.25);
+      @include max-width($screenMd) {
+        @include mx(2.5);
+      }
+
+      &__card {
+        display       : flex;
+        align-items   : center;
+        margin-bottom : 1.5rem;
+        font-family   : $mainFont;
+
+        &-img {
+          width         : 5rem;
+          height        : 5rem;
+          border-radius : 50%;
+          overflow      : hidden;
+
+          img {
+            width      : 100%;
+            height     : 100%;
+            object-fit : cover;
+          }
+        }
+
+        &-info {
+          margin-left : 1.5rem;
+
+          .name {
+            font-size   : 1.5rem;
+            font-weight : 600;
+          }
+
+          .speciality {
+            font-size : 1.2rem;
+            margin: .5em 0;
+            span {
+              color      : $primaryLight;
+              &:not(:last-child)::after {
+                content : ', ';
+              }
+            }
+          }
+        }
+      }
+
+      &-form {
+        .js-account-content {
+          display : none;
+
+          &.--display {
+            display : block;
+          }
+        }
+
+        .js-calendar {
+          font-family : $mainFont;
+          user-select : none;
+
+          .header {
+            display         : flex;
+            justify-content : space-between;
+            align-items     : center;
+            margin-bottom   : 1.5rem;
+
+            .current-month {
+              font-size   : 1.5rem;
+              font-weight : 600;
+            }
+
+            .buttons {
+              display         : flex;
+              justify-content : space-around;
+              align-items     : center;
+              width           : 10rem;
+
+              i {
+                display         : flex;
+                justify-content : center;
+                align-items     : center;
+                font-size       : 1.5rem;
+                cursor          : pointer;
+                width           : 2.5rem;
+                height          : 2.5rem;
+                border-radius   : 10px;
+                box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
+              }
+            }
+          }
+
+
+          .container-dates {
+            background-color : $light;
+            border-radius    : 10px;
+            height           : 100%;
+            width            : 100%;
+
+
+            .weekdays {
+              display         : flex;
+              justify-content : space-around;
+              align-items     : center;
+              margin          : 1.5rem 0 0 0;
+              padding-top     : 1.5rem;
+              color           : $primaryDark;
+              font-weight     : 600;
+
+              .weekday {
+                font-size : 1.2rem;
+              }
+            }
+
+            .days {
+              display         : flex;
+              justify-content : space-around;
+              align-items     : center;
+              flex-wrap       : wrap;
+              margin          : 1.5rem 0 0 0;
+
+              .row {
+                display         : flex;
+                justify-content : space-around;
+                align-items     : center;
+                width           : 100%;
+              }
+
+              .day {
+                display          : flex;
+                justify-content  : center;
+                align-items      : center;
+                width            : calc(100% / 7);
+                aspect-ratio     : 1/1;
+                cursor           : pointer;
+                background-color : $white;
+                margin           : 1px;
+                position         : relative;
+
+                .day-number {
+                  position    : absolute;
+                  top         : 5%;
+                  right       : 5%;
+                  font-size   : 1.5em;
+                  font-weight : 600;
+                }
+
+                &.--today {
+                  background-color : $primaryDark;
+                  color            : white;
+                }
+
+                &.--disabled {
+                  .day-number {
+                    color : $greyLight;
+                  }
+
+                  background-color : $light;
+                  color            : $black;
+                  cursor           : not-allowed;
+                }
+
+                &:hover:not(.--disabled) {
+                  background-color : $secondary;
+                  color            : white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
