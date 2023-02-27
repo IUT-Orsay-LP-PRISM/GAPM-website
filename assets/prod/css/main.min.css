@@ -2826,6 +2826,7 @@ body.intervenant {
   body.intervenant .header__mobile {
     position: fixed;
     width: 100%;
+    z-index: 50;
     box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
@@ -4190,6 +4191,7 @@ body.demandeur {
   body.demandeur .header__mobile {
     position: fixed;
     width: 100%;
+    z-index: 50;
     box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
