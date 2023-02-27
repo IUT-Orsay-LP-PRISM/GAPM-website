@@ -2146,7 +2146,7 @@ body.intervenant {
         background-color: #86CABE;
         margin: 1em 0; }
   body.intervenant .myaccount {
-    background-color: #DBECEF;
+    background-color: #DCE6F2;
     padding-top: calc(130px + 2.5rem);
     padding-bottom: 12.2rem; }
     body.intervenant .myaccount h1 {
@@ -2276,7 +2276,7 @@ body.intervenant {
       margin: auto;
       margin-top: 2.4rem; }
   body.intervenant .prendreRdv {
-    background-color: #DBECEF;
+    background-color: #DCE6F2;
     padding-top: calc(130px + 2.5rem);
     padding-bottom: 12.2rem; }
     body.intervenant .prendreRdv h1 {
@@ -2362,7 +2362,7 @@ body.intervenant {
                 border-radius: 10px;
                 box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
           body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates {
-            background-color: #DBECEF;
+            background-color: #DCE6F2;
             border-radius: 10px;
             height: 100%;
             width: 100%; }
@@ -2407,7 +2407,7 @@ body.intervenant {
                   background-color: #257466;
                   color: white; }
                 body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled {
-                  background-color: #DBECEF;
+                  background-color: #DCE6F2;
                   color: #144139;
                   cursor: not-allowed; }
                   body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled .day-number {
@@ -2590,7 +2590,7 @@ body.intervenant {
       user-select: none;
       cursor: pointer; }
     body.intervenant #auto_completion p:hover {
-      background-color: #DBECEF; }
+      background-color: #DCE6F2; }
     body.intervenant #auto_completion.notVisible {
       display: none; }
   body.intervenant .input-container.overflow {
@@ -3451,7 +3451,7 @@ body.demandeur {
         background-color: #7EA6F4;
         margin: 1em 0; }
   body.demandeur .myaccount {
-    background-color: #DBECEF;
+    background-color: #DCE6F2;
     padding-top: calc(130px + 2.5rem);
     padding-bottom: 12.2rem; }
     body.demandeur .myaccount h1 {
@@ -3581,7 +3581,7 @@ body.demandeur {
       margin: auto;
       margin-top: 2.4rem; }
   body.demandeur .prendreRdv {
-    background-color: #DBECEF;
+    background-color: #DCE6F2;
     padding-top: calc(130px + 2.5rem);
     padding-bottom: 12.2rem; }
     body.demandeur .prendreRdv h1 {
@@ -3667,7 +3667,7 @@ body.demandeur {
                 border-radius: 10px;
                 box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
           body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates {
-            background-color: #DBECEF;
+            background-color: #DCE6F2;
             border-radius: 10px;
             height: 100%;
             width: 100%; }
@@ -3712,7 +3712,7 @@ body.demandeur {
                   background-color: #393BAA;
                   color: white; }
                 body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled {
-                  background-color: #DBECEF;
+                  background-color: #DCE6F2;
                   color: #1E1E3D;
                   cursor: not-allowed; }
                   body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled .day-number {
@@ -3895,7 +3895,7 @@ body.demandeur {
       user-select: none;
       cursor: pointer; }
     body.demandeur #auto_completion p:hover {
-      background-color: #DBECEF; }
+      background-color: #DCE6F2; }
     body.demandeur #auto_completion.notVisible {
       display: none; }
   body.demandeur .input-container.overflow {
