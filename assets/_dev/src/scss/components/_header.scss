@@ -12,6 +12,9 @@
     box-shadow       : $boxShadowOut;
     transition       : all .3s ease-in-out;
     height           : 100px;
+    @include max-width($screenMd) {
+      display : none;
+    }
 
 
     &.transparent {
@@ -32,6 +35,13 @@
 
     &.down {
       height : 80px;
+    }
+  }
+
+  &__mobile {
+    display : none;
+    @include max-width($screenMd) {
+      display : flex;
     }
   }
 
@@ -158,4 +168,90 @@
     }
   }
 
+}
+
+.header {
+  &__mobile {
+    position   : fixed;
+    width      : 100%;
+    z-index: 50;
+    box-sizing : border-box;
+    justify-content  : space-between;
+    align-items      : center;
+    background-color : transparent;
+    @include px(2);
+    @include py(1);
+
+    &__logo {
+      h1 {
+        color    : $white;
+        position : relative;
+
+      }
+    }
+
+    &__menu {
+
+
+      &:hover {
+        span {
+          width : 45px;
+
+          &:first-child {
+            width : 45px;
+          }
+        }
+      }
+
+      &-btn {
+        cursor     : pointer;
+        padding    : .5rem;
+        box-sizing : border-box;
+        position   : relative;
+        z-index    : 115;
+
+        span {
+          display          : block;
+          width            : 35px;
+          height           : 6px;
+          background-color : $white;
+          margin           : 7px 0;
+          border-radius    : 15px;
+          transition       : all .3s ease-in-out;
+
+          &:first-child {
+            width : 20px;
+          }
+
+          &:last-child {
+            width : 45px;
+          }
+        }
+
+        &.--opened {
+          span {
+            width            : 45px;
+            background-color : $primaryLight;
+          }
+        }
+      }
+
+
+      &-content {
+        position         : fixed;
+        top              : 0;
+        left             : 0;
+        width            : 100%;
+        height           : 100vh;
+        background-color : $white;
+        z-index          : 100;
+        transform        : translateX(-100%);
+        transition       : all .3s ease-in-out;
+
+        &.--open {
+          transform : translateX(0);
+        }
+      }
+    }
+  }
 }

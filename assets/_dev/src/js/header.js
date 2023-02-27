@@ -23,3 +23,15 @@ if (header) {
         header.classList.add('down');
     }
 }
+
+
+const headerMobile = document.querySelector('.header__mobile__menu-content');
+const headerMobileButton = document.querySelector('.header__mobile__menu-btn');
+
+if (headerMobileButton) {
+    headerMobileButton.addEventListener('click', () => {
+        headerMobile.classList.toggle('--open');
+        headerMobileButton.classList.toggle('--opened');
+        document.body.style.overflowY = document.body.style.overflowY === 'hidden' ? 'auto' : 'hidden';
+    });
+}
