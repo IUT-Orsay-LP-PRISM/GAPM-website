@@ -12,6 +12,7 @@ Route::get('inscription-intervenant', 'IntervenantController', 'index');
 Route::get('logout', 'DemandeurController', 'logout');
 Route::get('my-account', 'DemandeurController', 'myAccount');
 Route::get('prendre-rdv', 'RendezVousController', 'index');
+Route::get('success-rdv', 'RendezVousController', 'success');
 
 // Les post de l'url
 Route::post('login-user', 'DemandeurController', 'login');

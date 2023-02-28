@@ -72,13 +72,36 @@ abstract class RendezVousController extends Template implements InterfaceControl
         $rdv->setId_Demandeur($idDemandeur);
         $rdv->setId_Service($idService);
         $rdv->setId_Intervenant($idIntervenant);
-        RendezVousDAO::create($rdv);
+        $result = RendezVousDAO::create($rdv);
 
         if ($rdv == null) {
             header('Location: /?action=search&s_name=&s_city=&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
-        header('Location: /?action=search&s_name=&s_city=&success=Votre rendez-vous a bien été créé&c=message');
-        exit;
+
+        if($result == false) {
+            header('Location: /?action=search&s_name=&s_city=&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
+            exit;
+        } else {
+            header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
+            exit;
+        }
+    }
+
+    public static function success()
+    {
+
+        $date = $_GET['date'];
+        $horaire = $_GET['horaire'];
+        $jours = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+        $mois = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        $dateString = $jours[date('w', strtotime($date))] . ' ' . date('d', strtotime($date)) . ' ' . $mois[date('n', strtotime($date))] . ' ' . date('Y', strtotime($date));
+
+        self::render('demandeur/search/success-rdv.twig', [
+            'loader' => false,
+            'title' => 'Prendre RDV',
+            'date' => $dateString,
+            'horaire' => $_GET['horaire'] ?? null,
+        ]);
     }
 }

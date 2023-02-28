@@ -21,6 +21,8 @@ class RendezVousDAO extends ConnexionDB
         $stmt->bindValue(':id_demandeur', $rdv->getId_Demandeur());
         $stmt->bindValue(':id_Service', $rdv->getId_Service());
         $stmt->bindValue(':id_Intervenant', $rdv->getId_Intervenant());
-        $stmt->execute();
-        }
+        $result = $stmt->execute();
+
+        return $result == 1;
+    }
 }

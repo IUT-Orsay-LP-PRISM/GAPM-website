@@ -67,9 +67,11 @@
 
           .speciality {
             font-size : 1.2rem;
-            margin: .5em 0;
+            margin    : .5em 0;
+
             span {
-              color      : $primaryLight;
+              color : $primaryLight;
+
               &:not(:last-child)::after {
                 content : ', ';
               }
@@ -199,6 +201,61 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  &.success {
+    .small span {
+      color : $greenPrimary;
+    }
+
+    .prendreRdv__content__body {
+      display         : flex;
+      justify-content : space-around;
+      align-items     : center;
+      height          : 50vh;
+
+      svg {
+        width  : 30em;
+        height : auto;
+      }
+
+      &__info {
+        display         : flex;
+        flex-direction  : column;
+        justify-content : space-around;
+        align-items     : flex-start;
+        height          : 100%;
+        width           : 50%;
+        text-align      : start;
+        font-family     : $mainFont;
+
+        h1 {
+          text-align : start;
+          display    : block;
+          color      : $black;
+
+          span {
+            color : $primaryDark;
+          }
+
+        }
+
+        h3 {
+          font-size : 1.5rem;
+          color     : $greyDark;
+        }
+
+        p {
+          font-size   : 1.5rem;
+          color       : $black;
+
+          span {
+            font-weight : bold;
+          }
+
         }
       }
     }
