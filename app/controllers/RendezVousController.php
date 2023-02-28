@@ -15,14 +15,14 @@ abstract class RendezVousController extends Template implements InterfaceControl
     public static function index()
     {
         if (Session::isLogged() == false) {
-            header('Location: /?action=search&s_name=&s_city=&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
 
         $demandeur = DemandeurDAO::findById($_GET['demandeur']);
         $intervenant = IntervenantDAO::findById($demandeur->getId_Demandeur());
         if ($intervenant == null) {
-            header('Location: /?action=search&s_name=&s_city=&error=Intervenant introuvable&c=message');
+            header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
         $services = ServiceDAO::findByIdIntervenant($demandeur->getId_Demandeur());
@@ -41,14 +41,14 @@ abstract class RendezVousController extends Template implements InterfaceControl
     public static function createRDV()
     {
         if (Session::isLogged() == false) {
-            header('Location: /?action=search&s_name=&s_city=&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
 
         $demandeur = DemandeurDAO::findById($_POST['idIntervenant']);
         $intervenant = IntervenantDAO::findById($demandeur->getId_Demandeur());
         if ($intervenant == null) {
-            header('Location: /?action=search&s_name=&s_city=&error=Intervenant introuvable&c=message');
+            header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
         $services = ServiceDAO::findByIdIntervenant($demandeur->getId_Demandeur());
@@ -75,12 +75,12 @@ abstract class RendezVousController extends Template implements InterfaceControl
         $result = RendezVousDAO::create($rdv);
 
         if ($rdv == null) {
-            header('Location: /?action=search&s_name=&s_city=&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
+            header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
 
         if($result == false) {
-            header('Location: /?action=search&s_name=&s_city=&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
+            header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         } else {
             header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
