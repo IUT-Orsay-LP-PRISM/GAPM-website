@@ -79,7 +79,7 @@ abstract class RendezVousController extends Template implements InterfaceControl
             exit;
         }
 
-        if($result == false) {
+        if ($result == false) {
             header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         } else {
@@ -103,5 +103,13 @@ abstract class RendezVousController extends Template implements InterfaceControl
             'date' => $dateString,
             'horaire' => $_GET['horaire'] ?? null,
         ]);
+    }
+
+public static function getHoraireNotAvailableByIntervenant()
+    {
+        $date = $_GET['date'];
+        $idIntervenant = $_GET['idIntervenant'];
+        $horaire = RendezVousDAO::findHeureNonDispo($idIntervenant,$date);
+        echo json_encode($horaire);
     }
 }

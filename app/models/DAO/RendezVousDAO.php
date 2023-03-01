@@ -25,4 +25,28 @@ class RendezVousDAO extends ConnexionDB
 
         return $result == 1;
     }
+
+    public static function findByIntervenant($id_intervenant)
+    {
+        $sql = "SELECT * FROM rdv WHERE id_Intervenant = :id_Intervenant";
+        $stmt = self::getInstance()->prepare($sql);
+        $stmt->bindValue(':id_Intervenant', $id_intervenant);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, self::$entity);
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
+    public static function findHeureNonDispo($id_intervenant, $date)
+    {
+        $sql = "SELECT heureDebut FROM rdv WHERE id_Intervenant = :id_Intervenant AND dateRDV = :dateRDV";
+        $stmt = self::getInstance()->prepare($sql);
+        $stmt->bindValue(':id_Intervenant', $id_intervenant);
+        $stmt->bindValue(':dateRDV', $date);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, self::$entity);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

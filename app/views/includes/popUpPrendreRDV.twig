@@ -23,33 +23,10 @@
                         <i class="icon icon-fi-rr-time-fast "></i>
                         <input id="inputDate" class="input" type="hidden" name="date">
                         <input class="input" type="hidden" name="idIntervenant" value="{{ demandeur.id_Demandeur }}">
-                        <select id="selectHoraire" class="input" type="text" name="horaire" required>
-                            <option value="" selected hidden="hidden"> </option>
-                            <option value="8:00">8h00</option>
-                            <option value="8:30">8h30</option>
-                            <option value="9:00">9h00</option>
-                            <option value="9:30">9h30</option>
-                            <option value="10:00">10h00</option>
-                            <option value="10:30">10h30</option>
-                            <option value="11:00">11h00</option>
-                            <option value="11:30">11h30</option>
-                            <option value="12:00">12h00</option>
-                            <option value="12:30">12h30</option>
-                            <option value="13:00">13h00</option>
-                            <option value="13:30">13h30</option>
-                            <option value="14:00">14h00</option>
-                            <option value="14:30">14h30</option>
-                            <option value="15:00">15h00</option>
-                            <option value="15:30">15h30</option>
-                            <option value="16:00">16h00</option>
-                            <option value="16:30">16h30</option>
-                            <option value="17:00">17h00</option>
-                            <option value="17:30">17h30</option>
-                            <option value="18:00">18h00</option>
-                            <option value="18:30">18h30</option>
-                            <option value="19:00">19h00</option>
-                        </select>
-                        <label class="input-container-title label" for="selectHoraire"><span>Choisir un <span class="primary">horaire :</span></span></label>
+                        <select id="selectHoraire" class="input" type="text" name="horaire" required></select>
+                        <label class="input-container-title label" for="selectHoraire">
+                            <span>Choisir un <span class="primary">horaire :</span></span>
+                        </label>
                     </div>
                     <div class="input-container">
                         <i class="icon icon-fi-rr-list"></i>
@@ -59,7 +36,8 @@
                                 <option value="{{ service.id_Service }}">{{ service.libelle }}</option>
                             {% endfor %}
                         </select>
-                        <label class="input-container-title label" for="selectHoraire"><span>Choisir la <span class="primary">spécialité :</span></span></label>
+                        <label class="input-container-title label" for="selectHoraire"><span>Choisir la <span
+                                        class="primary">spécialité :</span></span></label>
                     </div>
                 </div>
             </div>

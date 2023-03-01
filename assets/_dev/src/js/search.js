@@ -161,14 +161,49 @@ function placeEventListenerInDays() {
                 .replace(/^\w|\s\w/g, (c) => c.toUpperCase());
 
             popUp_prendreRDV.querySelector('.popup-container-col__date').innerText = fullDate;
-            editDateInPopUp(`${year}-${month}-${day}`);
+
+            const newFullDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+            editDateInPopUp(newFullDate);
+            removeHeureNotAvailable(newFullDate);
         });
     });
 }
 
 function editDateInPopUp(fullDate) {
     const inputDate = document.querySelector('#inputDate');
-    const [year, month, day] = fullDate.split('-');
-    const newFullDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-    inputDate.value = newFullDate;
+    inputDate.value = fullDate;
+}
+
+
+function removeHeureNotAvailable(date) {
+    // get id intervenant from url
+    const URL = window.location.href;
+    const urlParams = new URLSearchParams(URL);
+    const idIntervenant = urlParams.get('demandeur');
+
+    console.log(idIntervenant);
+
+    const xhr = new XMLHttpRequest();
+    const url = "?action=getHoraireNotAvailable&date=" + date + "&idIntervenant=" + idIntervenant;
+    xhr.open("GET", url, true);
+    xhr.onload = () => callback(xhr);
+    xhr.send();
+
+    function callback(xhr) {
+        if (xhr.status !== 200) return;
+        const data = JSON.parse(xhr.responseText);
+        const selectHoraire = document.querySelector('#selectHoraire');
+        selectHoraire.innerHTML = '<option value="" selected hidden> </option>';
+        const notAvailable = data.map(horaire => horaire.heureDebut);
+        const heures = [];
+        for (let h = 8; h < 20; h++) {
+            for (let m = 0; m < 60; m += 30) {
+                if (h === 19 && m === 30) continue;
+                let heure = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+                if (!notAvailable.includes(heure)) {
+                    selectHoraire.appendChild(new Option(heure.replace(':', 'h'), heure));
+                }
+            }
+        }
+    }
 }
