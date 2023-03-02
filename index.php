@@ -9,20 +9,6 @@ use Symfony\Component\Dotenv\Dotenv;
 $dotenv = new Dotenv();
 $dotenv->load('.env.local');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Les get de l'url
 // Basé sur /?action=...
 Route::get('demandeur', 'DemandeurController', 'index');
