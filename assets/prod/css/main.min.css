@@ -2062,6 +2062,12 @@ body.intervenant {
           font-weight: 400;
           font-family: "Open Sans", sans-serif;
           line-height: 2; }
+        body.intervenant .search__contents-user-info ul.desc {
+          list-style: "- ";
+          padding-left: .65rem;
+          color: #257466; }
+          body.intervenant .search__contents-user-info ul.desc li {
+            color: #144139; }
       body.intervenant .search__contents-user-name {
         grid-area: name; }
       body.intervenant .search__contents-user-speciality {
@@ -3462,6 +3468,12 @@ body.demandeur {
           font-weight: 400;
           font-family: "Open Sans", sans-serif;
           line-height: 2; }
+        body.demandeur .search__contents-user-info ul.desc {
+          list-style: "- ";
+          padding-left: .65rem;
+          color: #393BAA; }
+          body.demandeur .search__contents-user-info ul.desc li {
+            color: #1E1E3D; }
       body.demandeur .search__contents-user-name {
         grid-area: name; }
       body.demandeur .search__contents-user-speciality {

@@ -14,7 +14,7 @@ abstract class RendezVousController extends Template implements InterfaceControl
 {
     public static function index()
     {
-        if (Session::isLogged() == false) {
+        if (!Session::isLogged()) {
             header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
