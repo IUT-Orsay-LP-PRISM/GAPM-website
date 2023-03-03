@@ -47,7 +47,7 @@ class ConnexionDB
     public static function findById(int $id)
     {
         try {
-            $query = "SELECT * FROM " . static::$entity. " WHERE id_" . static::$entity. " = :id";
+            $query = "SELECT * FROM " . static::$entity. " WHERE id" . static::$entity. " = :id";
 
             $rs = self::getInstance()->prepare($query);
             $rs->setFetchMode(PDO::FETCH_CLASS, 'App\models\entity\\' . static::$entity);
@@ -68,7 +68,7 @@ class ConnexionDB
     public static function removeById(int $id)
     {
         try {
-            $query = "DELETE FROM " . static::$entity. " WHERE id_" . static::$entity. " = :id";
+            $query = "DELETE FROM " . static::$entity. " WHERE id" . static::$entity. " = :id";
 
             $rs = self::getInstance()->prepare($query);
             $rs->execute(

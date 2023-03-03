@@ -24,10 +24,10 @@ class ServiceDAO extends ConnexionDB
 
     public static function findByIdIntervenant($idIntervenant)
     {
-        $sql = "SELECT service.* FROM realiser INNER JOIN service ON realiser.id_Service = service.id_Service WHERE id_intervenant = :id_intervenant";
+        $sql = "SELECT service.* FROM realiser INNER JOIN service ON realiser.idService = service.idService WHERE idIntervenant = :idIntervenant";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
-            'id_intervenant' => $idIntervenant
+            'idIntervenant' => $idIntervenant
         ]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, static::$link . static::$entity);
         return $stmt->fetchAll();

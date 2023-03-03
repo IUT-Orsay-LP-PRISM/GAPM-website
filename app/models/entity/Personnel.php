@@ -5,6 +5,7 @@ namespace App\models\entity;
 class Personnel
 {
 
+    private $idPersonnel;
     private $login;
     private $nom;
     private $prenom;
@@ -30,6 +31,14 @@ class Personnel
 
     // -------------------------------------------------------------------------------------------
     // Getters
+
+    /**
+     * @return mixed
+     */
+    public function getIdPersonnel()
+    {
+        return $this->idPersonnel;
+    }
 
     /**
      * @return mixed
@@ -74,6 +83,14 @@ class Personnel
     // -------------------------------------------------------------------------------------------
     // Setters
 
+
+    /**
+     * @param mixed $idPersonnel
+     */
+    public function setIdPersonnel($idPersonnel): void
+    {
+        $this->idPersonnel = $idPersonnel;
+    }
 
     /**
      * @param mixed $login

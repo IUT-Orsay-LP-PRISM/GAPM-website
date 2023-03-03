@@ -15,7 +15,7 @@ abstract class SearchController extends Template implements InterfaceController
 
         $intervenants = IntervenantDAO::findByNameOrCity($nom, $city);
         foreach ($intervenants as $intervenant) {
-            $intervenant->setSpecialites(ServiceDAO::findByIdIntervenant($intervenant->getId_Intervenant()));
+            $intervenant->setSpecialites(ServiceDAO::findByIdIntervenant($intervenant->getIdIntervenant()));
         }
 
         self::render('search.twig', [

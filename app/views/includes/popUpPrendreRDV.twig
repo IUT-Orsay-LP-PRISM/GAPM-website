@@ -22,7 +22,7 @@
                     <div class="input-container">
                         <i class="icon icon-fi-rr-time-fast "></i>
                         <input id="inputDate" class="input" type="hidden" name="date">
-                        <input class="input" type="hidden" name="idIntervenant" value="{{ demandeur.id_Demandeur }}">
+                        <input class="input" type="hidden" name="idIntervenant" value="{{ demandeur.idDemandeur }}">
                         <select id="selectHoraire" class="input" type="text" name="horaire" required></select>
                         <label class="input-container-title label" for="selectHoraire">
                             <span>Choisir un <span class="primary">horaire :</span></span>
@@ -33,7 +33,7 @@
                         <select id="selectSpecialite" class="input" type="text" name="specialite" required>
                             <option value="" selected hidden="hidden"> </option>
                             {% for service in intervenant.specialites %}
-                                <option value="{{ service.id_Service }}">{{ service.libelle }}</option>
+                                <option value="{{ service.idService }}">{{ service.libelle }}</option>
                             {% endfor %}
                         </select>
                         <label class="input-container-title label" for="selectHoraire"><span>Choisir la <span

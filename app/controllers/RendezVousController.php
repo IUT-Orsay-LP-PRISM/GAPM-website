@@ -20,14 +20,14 @@ abstract class RendezVousController extends Template implements InterfaceControl
         }
 
         $demandeur = DemandeurDAO::findById($_GET['demandeur']);
-        $intervenant = IntervenantDAO::findById($demandeur->getId_Demandeur());
+        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
         if ($intervenant == null) {
             header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
-        $services = ServiceDAO::findByIdIntervenant($demandeur->getId_Demandeur());
+        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
         $intervenant->setSpecialites($services);
-        $ville = VilleDAO::findById($demandeur->getId_Ville());
+        $ville = VilleDAO::findById($demandeur->getIdVille());
 
         self::render('demandeur/search/prendre-rdv.twig', [
             'intervenant' => $intervenant,
@@ -46,19 +46,19 @@ abstract class RendezVousController extends Template implements InterfaceControl
         }
 
         $demandeur = DemandeurDAO::findById($_POST['idIntervenant']);
-        $intervenant = IntervenantDAO::findById($demandeur->getId_Demandeur());
+        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
         if ($intervenant == null) {
             header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
-        $services = ServiceDAO::findByIdIntervenant($demandeur->getId_Demandeur());
+        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
         $intervenant->setSpecialites($services);
 
         $horaireDebut = $_POST['horaire'];
         $horaireFin = date('H:i', strtotime($horaireDebut) + 1800);
         $date = $_POST['date'];
-        $idIntervenant = $intervenant->getId_Intervenant();
-        $idDemandeur = Session::get('user')->getId_Demandeur();
+        $idIntervenant = $intervenant->getIdIntervenant();
+        $idDemandeur = Session::get('user')->getIdDemandeur();
         $status = 'En attente';
         $idService = $_POST['specialite'];
 
@@ -69,9 +69,9 @@ abstract class RendezVousController extends Template implements InterfaceControl
         $rdv->setDateRdv($date);
         $rdv->setHeureDebut($horaireDebut);
         $rdv->setHeureFin($horaireFin);
-        $rdv->setId_Demandeur($idDemandeur);
-        $rdv->setId_Service($idService);
-        $rdv->setId_Intervenant($idIntervenant);
+        $rdv->setIdDemandeur($idDemandeur);
+        $rdv->setIdService($idService);
+        $rdv->setIdIntervenant($idIntervenant);
         $result = RendezVousDAO::create($rdv);
 
         if ($rdv == null) {
