@@ -14,21 +14,20 @@ abstract class RendezVousController extends Template implements InterfaceControl
 {
     public static function index()
     {
-        if(Session::isLogged() == false) {
-            header('Location: /?action=search&s_name=&s_city=&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
 
         $demandeur = DemandeurDAO::findById($_GET['demandeur']);
-        $intervenant = IntervenantDAO::findById($demandeur->getId_Demandeur());
-        if($intervenant == null) {
-            header('Location: /?action=search&s_name=&s_city=&error=Intervenant introuvable&c=message');
+        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
+        if ($intervenant == null) {
+            header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
-        $services = ServiceDAO::findByIdIntervenant($demandeur->getId_Demandeur());
+        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
         $intervenant->setSpecialites($services);
-
-         $ville = VilleDAO::findById($demandeur->getId_Ville());
+        $ville = VilleDAO::findById($demandeur->getIdVille());
 
         self::render('demandeur/search/prendre-rdv.twig', [
             'intervenant' => $intervenant,
@@ -39,48 +38,78 @@ abstract class RendezVousController extends Template implements InterfaceControl
         ]);
     }
 
-    public static function createRDV() {
-        if(Session::isLogged() == false) {
-            header('Location: /?action=search&s_name=&s_city=&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+    public static function createRDV()
+    {
+        if (Session::isLogged() == false) {
+            header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
 
         $demandeur = DemandeurDAO::findById($_POST['idIntervenant']);
-        $intervenant = IntervenantDAO::findById($demandeur->getId_Demandeur());
-        if($intervenant == null) {
-            header('Location: /?action=search&s_name=&s_city=&error=Intervenant introuvable&c=message');
+        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
+        if ($intervenant == null) {
+            header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
-        $services = ServiceDAO::findByIdIntervenant($demandeur->getId_Demandeur());
+        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
         $intervenant->setSpecialites($services);
 
         $horaireDebut = $_POST['horaire'];
         $horaireFin = date('H:i', strtotime($horaireDebut) + 1800);
         $date = $_POST['date'];
-        $idIntervenant = $intervenant->getId_Intervenant();
-        $idDemandeur = Session::get('user')->getId_Demandeur();
+        $idIntervenant = $intervenant->getIdIntervenant();
+        $idDemandeur = Session::get('user')->getIdDemandeur();
         $status = 'En attente';
-        $services = ServiceDAO::findByIdIntervenant($idIntervenant);
-        $service = $services[0];
+        $idService = $_POST['specialite'];
 
         // TODO : Vérifier que l'intervenant est disponible à cette date et à cette heure
-        // TODO : Ajouter le choix du service
 
         $rdv = new RendezVous();
         $rdv->setStatus($status);
         $rdv->setDateRdv($date);
         $rdv->setHeureDebut($horaireDebut);
         $rdv->setHeureFin($horaireFin);
-        $rdv->setId_Demandeur($idDemandeur);
-        $rdv->setId_Service($service->getIdService());
-        $rdv->setId_Intervenant($idIntervenant);
-        RendezVousDAO::create($rdv);
+        $rdv->setIdDemandeur($idDemandeur);
+        $rdv->setIdService($idService);
+        $rdv->setIdIntervenant($idIntervenant);
+        $result = RendezVousDAO::create($rdv);
 
-        if($rdv == null) {
-            header('Location: /?action=search&s_name=&s_city=&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
+        if ($rdv == null) {
+            header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
-        header('Location: /?action=search&s_name=&s_city=&success=Votre rendez-vous a bien été créé&c=message');
-        exit;
+
+        if ($result == false) {
+            header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
+            exit;
+        } else {
+            header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
+            exit;
+        }
+    }
+
+    public static function success()
+    {
+
+        $date = $_GET['date'];
+        $horaire = $_GET['horaire'];
+        $jours = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+        $mois = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        $dateString = $jours[date('w', strtotime($date))] . ' ' . date('d', strtotime($date)) . ' ' . $mois[date('n', strtotime($date))] . ' ' . date('Y', strtotime($date));
+
+        self::render('demandeur/search/success-rdv.twig', [
+            'loader' => false,
+            'title' => 'Prendre RDV',
+            'date' => $dateString,
+            'horaire' => $_GET['horaire'] ?? null,
+        ]);
+    }
+
+public static function getHoraireNotAvailableByIntervenant()
+    {
+        $date = $_GET['date'];
+        $idIntervenant = $_GET['idIntervenant'];
+        $horaire = RendezVousDAO::findHeureNonDispo($idIntervenant,$date);
+        echo json_encode($horaire);
     }
 }

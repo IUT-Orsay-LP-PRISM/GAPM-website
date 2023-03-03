@@ -2062,6 +2062,12 @@ body.intervenant {
           font-weight: 400;
           font-family: "Open Sans", sans-serif;
           line-height: 2; }
+        body.intervenant .search__contents-user-info ul.desc {
+          list-style: "- ";
+          padding-left: .65rem;
+          color: #257466; }
+          body.intervenant .search__contents-user-info ul.desc li {
+            color: #144139; }
       body.intervenant .search__contents-user-name {
         grid-area: name; }
       body.intervenant .search__contents-user-speciality {
@@ -2415,6 +2421,39 @@ body.intervenant {
                 body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day:hover:not(.--disabled) {
                   background-color: #86CABE;
                   color: white; }
+    body.intervenant .prendreRdv.success .small span {
+      color: #36A793; }
+    body.intervenant .prendreRdv.success .prendreRdv__content__body {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 50vh; }
+      body.intervenant .prendreRdv.success .prendreRdv__content__body svg {
+        width: 30em;
+        height: auto; }
+      body.intervenant .prendreRdv.success .prendreRdv__content__body__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        height: 100%;
+        width: 50%;
+        text-align: start;
+        font-family: "Open Sans", sans-serif; }
+        body.intervenant .prendreRdv.success .prendreRdv__content__body__info h1 {
+          text-align: start;
+          display: block;
+          color: #144139; }
+          body.intervenant .prendreRdv.success .prendreRdv__content__body__info h1 span {
+            color: #257466; }
+        body.intervenant .prendreRdv.success .prendreRdv__content__body__info h3 {
+          font-size: 1.5rem;
+          color: #787878; }
+        body.intervenant .prendreRdv.success .prendreRdv__content__body__info p {
+          font-size: 1.5rem;
+          color: #144139; }
+          body.intervenant .prendreRdv.success .prendreRdv__content__body__info p span {
+            font-weight: bold; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -2970,12 +3009,12 @@ body.intervenant {
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
     body.intervenant .popup.popup-inscription {
-      width: 40%;
+      width: 30%;
       height: 40em; }
       body.intervenant .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
     body.intervenant .popup.popup-prendreRDV {
-      width: 25%;
+      width: 35%;
       height: 37em; }
       body.intervenant .popup.popup-prendreRDV .popup-container {
         justify-content: flex-start; }
@@ -3004,15 +3043,17 @@ body.intervenant {
             color: #787878;
             font-weight: 600; }
           body.intervenant .popup.popup-prendreRDV .popup-container-col__form {
-            width: 12em;
+            width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center; }
-            body.intervenant .popup.popup-prendreRDV .popup-container-col__form .input-container-title {
-              font-weight: 600;
-              color: #787878; }
-              body.intervenant .popup.popup-prendreRDV .popup-container-col__form .input-container-title span.primary {
-                color: #86CABE; }
+            body.intervenant .popup.popup-prendreRDV .popup-container-col__form .input-container {
+              width: 40%; }
+              body.intervenant .popup.popup-prendreRDV .popup-container-col__form .input-container-title {
+                font-weight: 600;
+                color: #787878; }
+                body.intervenant .popup.popup-prendreRDV .popup-container-col__form .input-container-title span.primary {
+                  color: #86CABE; }
     body.intervenant .popup h1 {
       font-size: 2.5em;
       margin-bottom: 1em; }
@@ -3427,6 +3468,12 @@ body.demandeur {
           font-weight: 400;
           font-family: "Open Sans", sans-serif;
           line-height: 2; }
+        body.demandeur .search__contents-user-info ul.desc {
+          list-style: "- ";
+          padding-left: .65rem;
+          color: #393BAA; }
+          body.demandeur .search__contents-user-info ul.desc li {
+            color: #1E1E3D; }
       body.demandeur .search__contents-user-name {
         grid-area: name; }
       body.demandeur .search__contents-user-speciality {
@@ -3780,6 +3827,39 @@ body.demandeur {
                 body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day:hover:not(.--disabled) {
                   background-color: #7EA6F4;
                   color: white; }
+    body.demandeur .prendreRdv.success .small span {
+      color: #36A793; }
+    body.demandeur .prendreRdv.success .prendreRdv__content__body {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 50vh; }
+      body.demandeur .prendreRdv.success .prendreRdv__content__body svg {
+        width: 30em;
+        height: auto; }
+      body.demandeur .prendreRdv.success .prendreRdv__content__body__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        height: 100%;
+        width: 50%;
+        text-align: start;
+        font-family: "Open Sans", sans-serif; }
+        body.demandeur .prendreRdv.success .prendreRdv__content__body__info h1 {
+          text-align: start;
+          display: block;
+          color: #1E1E3D; }
+          body.demandeur .prendreRdv.success .prendreRdv__content__body__info h1 span {
+            color: #393BAA; }
+        body.demandeur .prendreRdv.success .prendreRdv__content__body__info h3 {
+          font-size: 1.5rem;
+          color: #787878; }
+        body.demandeur .prendreRdv.success .prendreRdv__content__body__info p {
+          font-size: 1.5rem;
+          color: #1E1E3D; }
+          body.demandeur .prendreRdv.success .prendreRdv__content__body__info p span {
+            font-weight: bold; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -4335,12 +4415,12 @@ body.demandeur {
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
     body.demandeur .popup.popup-inscription {
-      width: 40%;
+      width: 30%;
       height: 40em; }
       body.demandeur .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
     body.demandeur .popup.popup-prendreRDV {
-      width: 25%;
+      width: 35%;
       height: 37em; }
       body.demandeur .popup.popup-prendreRDV .popup-container {
         justify-content: flex-start; }
@@ -4369,15 +4449,17 @@ body.demandeur {
             color: #787878;
             font-weight: 600; }
           body.demandeur .popup.popup-prendreRDV .popup-container-col__form {
-            width: 12em;
+            width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center; }
-            body.demandeur .popup.popup-prendreRDV .popup-container-col__form .input-container-title {
-              font-weight: 600;
-              color: #787878; }
-              body.demandeur .popup.popup-prendreRDV .popup-container-col__form .input-container-title span.primary {
-                color: #7EA6F4; }
+            body.demandeur .popup.popup-prendreRDV .popup-container-col__form .input-container {
+              width: 40%; }
+              body.demandeur .popup.popup-prendreRDV .popup-container-col__form .input-container-title {
+                font-weight: 600;
+                color: #787878; }
+                body.demandeur .popup.popup-prendreRDV .popup-container-col__form .input-container-title span.primary {
+                  color: #7EA6F4; }
     body.demandeur .popup h1 {
       font-size: 2.5em;
       margin-bottom: 1em; }

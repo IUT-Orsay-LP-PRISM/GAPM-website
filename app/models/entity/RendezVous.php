@@ -10,9 +10,9 @@ class RendezVous
     private $dateRdv;
     private $heureDebut;
     private $heureFin;
-    private $id_Demandeur;
-    private $id_Service;
-    private $id_Intervenant;
+    private $idDemandeur;
+    private $idService;
+    private $idIntervenant;
 
 
     // -------------------------------------------------------------------------------------------
@@ -55,19 +55,19 @@ class RendezVous
         return $this->heureFin;
     }
 
-    public function getId_Demandeur()
+    public function getIdDemandeur()
     {
-        return $this->id_Demandeur;
+        return $this->idDemandeur;
     }
 
-    public function getId_Service()
+    public function getIdService()
     {
-        return $this->id_Service;
+        return $this->idService;
     }
 
-    public function getId_Intervenant()
+    public function getIdIntervenant()
     {
-        return $this->id_Intervenant;
+        return $this->idIntervenant;
     }
 
 
@@ -117,25 +117,25 @@ class RendezVous
     /**
      * @param mixed $idDemandeur
      */
-    public function setId_Demandeur($idDemandeur): void
+    public function setIdDemandeur($idDemandeur): void
     {
-        $this->id_Demandeur = $idDemandeur;
+        $this->idDemandeur = $idDemandeur;
     }
 
     /**
      * @param mixed $idService
      */
-    public function setId_Service($idService): void
+    public function setIdService($idService): void
     {
-        $this->id_Service = $idService;
+        $this->idService = $idService;
     }
 
     /**
      * @param mixed $idIntervenant
      */
-    public function setId_Intervenant($idIntervenant): void
+    public function setIdIntervenant($idIntervenant): void
     {
-        $this->id_Intervenant = $idIntervenant;
+        $this->idIntervenant = $idIntervenant;
     }
 
 }

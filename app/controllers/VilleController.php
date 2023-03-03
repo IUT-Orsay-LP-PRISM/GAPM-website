@@ -17,7 +17,7 @@ abstract class VilleController extends Template implements InterfaceController
         $villes = VilleDAO::findByQuery($query);
         $villes_json = json_encode(array_map(function ($v) {
             return [
-                'id_ville' => $v->getId_Ville(),
+                'idVille' => $v->getIdVille(),
                 'nom' => $v->getNom(),
                 'code_postal' => $v->getCodePostal(),
                 'code_departement' => $v->getCodeDepartement()

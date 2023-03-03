@@ -19,21 +19,21 @@ if (specialite_input && auto_completion) {
                     const p = document.createElement('p');
                     p.innerHTML = element.libelle.toUpperCase();
                     // if tag exist in tag_container don't add it
-                    if (tag_container.querySelector(`[data-id="${element.id_service}"]`)) {
+                    if (tag_container.querySelector(`[data-id="${element.idService}"]`)) {
                         return;
                     } else {
                         auto_completion.appendChild(p);
                     }
 
                     p.addEventListener('click', () => {
-                        tag_container.appendChild(createTag(element.libelle.toUpperCase(), element.id_service));
+                        tag_container.appendChild(createTag(element.libelle.toUpperCase(), element.idService));
                         const specialitesInput = document.querySelector('#specialitesInput');
                         if (specialitesInput) {
                             const value = specialitesInput.value;
                             if (value === 'null') {
-                                specialitesInput.value = element.id_service;
+                                specialitesInput.value = element.idService;
                             } else {
-                                specialitesInput.value = value + '-' + element.id_service;
+                                specialitesInput.value = value + '-' + element.idService;
                             }
                         }
 
@@ -100,7 +100,7 @@ function ajaxVille(div_auto_complete, input) {
                     span ? span.innerHTML = element.code_postal : null;
 
                     const input_city_hidden = input.parentNode.querySelector('input[name="city"]');
-                    input_city_hidden ? input_city_hidden.value = element.id_ville : null;
+                    input_city_hidden ? input_city_hidden.value = element.idVille : null;
                     div_auto_complete.classList.add('notVisible');
                 });
             });

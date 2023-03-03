@@ -4,7 +4,7 @@ namespace App\models\entity;
 
 class Ville
 {
-    private $id_Ville;
+    private $idVille;
     private $nom;
     private $codePostal;
     private $codeDepartement;
@@ -26,9 +26,17 @@ class Ville
     /**
      * @return mixed
      */
-    public function getId_Ville()
+    public function getIdVille()
     {
-        return $this->id_Ville;
+        return $this->idVille;
+    }
+
+    /**
+     * @param mixed $idVille
+     */
+    public function setIdVille($idVille)
+    {
+        $this->idVille = $idVille;
     }
 
     /**

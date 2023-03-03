@@ -5,3 +5,4 @@
 /assets/_dev/package-lock.json
 /composer.lock
 /.docker/mariadb/data/
+/.env.local

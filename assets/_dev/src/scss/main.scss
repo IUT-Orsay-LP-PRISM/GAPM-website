@@ -3,13 +3,15 @@
 @import "tools/fonts";
 
 body {
-  $greenLight  : #AEDBD3;
-  $light       : #DCE6F2;
-  $redDark     : #B61414;
-  $gradientRed : linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%);
-  $white       : #FFFFFF;
-  $greyDark    : #787878;
-  $greyLight   : #b5b5b5;
+  $greenLight   : #AEDBD3;
+  $light        : #DCE6F2;
+  $redDark      : #B61414;
+  $gradientRed  : linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%);
+  $white        : #FFFFFF;
+  $greyDark     : #787878;
+  $greyLight    : #b5b5b5;
+  $greenPrimary : #36A793;
+
 
   &.intervenant {
     $primaryLight             : #36A793;

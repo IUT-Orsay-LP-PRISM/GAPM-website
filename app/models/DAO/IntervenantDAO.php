@@ -11,19 +11,19 @@ class IntervenantDAO extends ConnexionDB
 
     public static function create($intervenant)
     {
-        $sql = "INSERT INTO intervenant (id_Intervenant, adressePro) VALUES (:id, :adressPro)";
+        $sql = "INSERT INTO intervenant (idIntervenant, adressePro) VALUES (:id, :adressPro)";
         $stmt = self::getInstance()->prepare($sql);
-        $stmt->bindValue(':id', $intervenant->getId_Intervenant());
+        $stmt->bindValue(':id', $intervenant->getIdIntervenant());
         $stmt->bindValue(':adressPro', $intervenant->getAdressePro());
         $result = $stmt->execute();
 
 
         $specialites = $intervenant->getSpecialites();
         foreach ($specialites as $service) {
-            $sql = "INSERT INTO realiser (id_Intervenant, id_Service) VALUES (:id, :id_Service)";
+            $sql = "INSERT INTO realiser (idIntervenant, idService) VALUES (:id, :idService)";
             $stmt = self::getInstance()->prepare($sql);
-            $stmt->bindValue(':id', $intervenant->getId_Intervenant());
-            $stmt->bindValue(':id_Service', $service);
+            $stmt->bindValue(':id', $intervenant->getIdIntervenant());
+            $stmt->bindValue(':idService', $service);
             $result = $stmt->execute();
         }
 
@@ -36,7 +36,7 @@ class IntervenantDAO extends ConnexionDB
     {
         $nom = "%$nom%";
         $city = "%$city%";
-        $sql = "SELECT demandeur.* FROM demandeur INNER JOIN ville ON demandeur.id_Ville = ville.id_Ville INNER JOIN intervenant ON demandeur.id_Demandeur = intervenant.id_Intervenant WHERE (demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom) AND ville.nom LIKE :city";
+        $sql = "SELECT demandeur.*, intervenant.idIntervenant FROM demandeur INNER JOIN ville ON demandeur.idVille = ville.idVille INNER JOIN intervenant ON demandeur.idDemandeur = intervenant.idIntervenant WHERE (demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom) AND ville.nom LIKE :city";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
         $stmt->bindParam(':city', $city, PDO::PARAM_STR);

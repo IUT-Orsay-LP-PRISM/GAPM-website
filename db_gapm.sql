@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Administrateur`
 (
-    `id_Administrateur` int(11)     NOT NULL,
+    `idAdministrateur` int(11)     NOT NULL,
     `login`             varchar(50) NOT NULL,
     `nom`               varchar(50) NOT NULL,
     `prenom`            varchar(50) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `Administrateur`
 -- Déchargement des données de la table `Administrateur`
 --
 
-INSERT INTO `Administrateur` (`id_Administrateur`, `login`, `nom`, `prenom`, `motDePasse`)
+INSERT INTO `Administrateur` (`idAdministrateur`, `login`, `nom`, `prenom`, `motDePasse`)
 VALUES (1, 'superAdmin', 'super', 'admin', '2023'),
        (2, 'masterkey', 'master', 'key', 'Acc3sGr4ant3d'),
        (3, 'superAdmin', 'super', 'admin', '2023'),
@@ -56,11 +56,11 @@ VALUES (1, 'superAdmin', 'super', 'admin', '2023'),
 
 CREATE TABLE `Commentaire`
 (
-    `id_Commentaires` int(11)      NOT NULL,
+    `idCommentaires` int(11)      NOT NULL,
     `description`     varchar(280) NOT NULL,
     `note`            float        NOT NULL,
-    `id_RDV`          int(11)      NOT NULL,
-    `id_Intervenant`    int(11)      NOT NULL
+    `idRdv`          int(11)      NOT NULL,
+    `idIntervenant`    int(11)      NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -69,7 +69,7 @@ CREATE TABLE `Commentaire`
 -- Déchargement des données de la table `Commentaire`
 --
 
-INSERT INTO `Commentaire` (`id_Commentaires`, `description`, `note`, `id_RDV`, `id_Intervenant`)
+INSERT INTO `Commentaire` (`idCommentaires`, `description`, `note`, `idRdv`, `idIntervenant`)
 VALUES (1, 'Le médecin était très à l\'écoute et a pris le temps de m\'expliquer les différentes options de traitement',
         4.5, 1, 1),
        (2, 'Le rendez-vous a été très rapide, le médecin n\'a pas pris le temps de répondre à mes questions', 2, 2, 1),
@@ -84,7 +84,7 @@ VALUES (1, 'Le médecin était très à l\'écoute et a pris le temps de m\'expl
 
 CREATE TABLE `Demandeur`
 (
-    `id_Demandeur`  int(11)     NOT NULL,
+    `idDemandeur`  int(11)     NOT NULL,
     `email`         varchar(50) NOT NULL,
     `login`         varchar(50) NOT NULL,
     `motDePasse`    varchar(50) NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE `Demandeur`
     `adresse`       varchar(50) NOT NULL,
     `telephone`     varchar(50) NOT NULL,
     `sexe`          varchar(1)  NOT NULL,
-    `id_Ville`      int(11)     NOT NULL
+    `idVille`      int(11)     NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -103,7 +103,7 @@ CREATE TABLE `Demandeur`
 -- Déchargement des données de la table `Demandeur`
 --
 
-INSERT INTO `Demandeur` (`id_Demandeur`, `email`, `login`, `motDePasse`, `nom`, `prenom`, `dateNaissance`, `adresse`, `telephone`, `sexe`, `id_Ville`) VALUES
+INSERT INTO `Demandeur` (`idDemandeur`, `email`, `login`, `motDePasse`, `nom`, `prenom`, `dateNaissance`, `adresse`, `telephone`, `sexe`, `idVille`) VALUES
 (1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '1990-01-01', '123 rue Principale', '555-5555', 'M', 1),
 (2, 'jane.doe@example.com', 'jane.doe', 'seA/6v3hNAL1.', 'Doe', 'Jane', '1995-05-05', '456 rue Secondaire', '555-5555', 'F', 2),
 (3, 'bob.smith@example.com', 'bob.smith', 'seA/6v3hNAL1.', 'Smith', 'Bob', '1985-02-10', '789 rue Tertiaire', '555-5555', 'M', 1),
@@ -117,15 +117,15 @@ INSERT INTO `Demandeur` (`id_Demandeur`, `email`, `login`, `motDePasse`, `nom`, 
 --
 
 CREATE TABLE `Emet` (
-  `id_Intervenant` int(11) NOT NULL,
-  `id_NoteFrais` int(11) NOT NULL
+  `idIntervenant` int(11) NOT NULL,
+  `idNoteFrais` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `Emet`
 --
 
-INSERT INTO `Emet` (`id_Intervenant`, `id_NoteFrais`)
+INSERT INTO `Emet` (`idIntervenant`, `idNoteFrais`)
 VALUES (1, 1),
        (2, 2),
        (5, 3);
@@ -138,10 +138,10 @@ VALUES (1, 1),
 
 CREATE TABLE `Empechement`
 (
-    `id_Empechement` int(11) NOT NULL,
+    `idEmpechement` int(11) NOT NULL,
     `dateDebut`      date    NOT NULL,
     `dateFin`        date    NOT NULL,
-    `id_Intervenant` int(11) NOT NULL
+    `idIntervenant` int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -150,7 +150,7 @@ CREATE TABLE `Empechement`
 -- Déchargement des données de la table `Empechement`
 --
 
-INSERT INTO `Empechement` (`id_Empechement`, `dateDebut`, `dateFin`, `id_Intervenant`)
+INSERT INTO `Empechement` (`idEmpechement`, `dateDebut`, `dateFin`, `idIntervenant`)
 VALUES (1, '2022-01-01', '2022-01-05', 1),
        (2, '2022-02-01', '2022-02-05', 2),
        (3, '2022-03-01', '2022-03-05', 5);
@@ -163,12 +163,12 @@ VALUES (1, '2022-01-01', '2022-01-05', 1),
 
 CREATE TABLE `Emprunt`
 (
-    `id_Emprunt`     int(11) NOT NULL,
+    `idEmprunt`     int(11) NOT NULL,
     `dateFin`        date    NOT NULL,
     `dateDebut`      date    NOT NULL,
-    `id_Intervenant` int(11) NOT NULL,
-    `id_Personnel`   int(11) NOT NULL,
-    `id_Voiture`     int(11) NOT NULL
+    `idIntervenant` int(11) NOT NULL,
+    `idPersonnel`   int(11) NOT NULL,
+    `idVoiture`     int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -177,7 +177,7 @@ CREATE TABLE `Emprunt`
 -- Déchargement des données de la table `Emprunt`
 --
 
-INSERT INTO `Emprunt` (`id_Emprunt`, `dateFin`, `dateDebut`, `id_Intervenant`, `id_Personnel`, `id_Voiture`)
+INSERT INTO `Emprunt` (`idEmprunt`, `dateFin`, `dateDebut`, `idIntervenant`, `idPersonnel`, `idVoiture`)
 VALUES (1, '2022-06-10', '2022-06-01', 1, 2, 1),
        (2, '2022-07-15', '2022-07-01', 2, 4, 2);
 
@@ -189,8 +189,8 @@ VALUES (1, '2022-06-10', '2022-06-01', 1, 2, 1),
 
 CREATE TABLE `Exercer`
 (
-    `id_Intervenant` int(11) NOT NULL,
-    `id_Ville`       int(11) NOT NULL
+    `idIntervenant` int(11) NOT NULL,
+    `idVille`       int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -199,7 +199,7 @@ CREATE TABLE `Exercer`
 -- Déchargement des données de la table `Exercer`
 --
 
-INSERT INTO `Exercer` (`id_Intervenant`, `id_Ville`)
+INSERT INTO `Exercer` (`idIntervenant`, `idVille`)
 VALUES (1, 1),
        (2, 2),
        (5, 5);
@@ -212,10 +212,10 @@ VALUES (1, 1),
 
 CREATE TABLE `FichePaie`
 (
-    `id_FichePaie`   int(11)      NOT NULL,
+    `idFichePaie`   int(11)      NOT NULL,
     `URL`            varchar(280) NOT NULL,
-    `id_Intervenant` int(11)      NOT NULL,
-    `id_Personnel`   int(11)      NOT NULL
+    `idIntervenant` int(11)      NOT NULL,
+    `idPersonnel`   int(11)      NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -224,7 +224,7 @@ CREATE TABLE `FichePaie`
 -- Déchargement des données de la table `Exercer`
 --
 
-INSERT INTO `FichePaie` (`id_FichePaie`, `URL`, `id_Intervenant`, `id_Personnel`) VALUES
+INSERT INTO `FichePaie` (`idFichePaie`, `URL`, `idIntervenant`, `idPersonnel`) VALUES
 (1, 'https://example.com/fichepaie1.pdf', 1, 1);
 
 -- --------------------------------------------------------
@@ -235,7 +235,7 @@ INSERT INTO `FichePaie` (`id_FichePaie`, `URL`, `id_Intervenant`, `id_Personnel`
 
 CREATE TABLE `Intervenant`
 (
-    `id_Intervenant` int(11) NOT NULL,
+    `idIntervenant` int(11) NOT NULL,
     `adressePro` varchar(255) DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -247,7 +247,7 @@ CREATE TABLE `Intervenant`
 -- Déchargement des données de la table `Intervenant`
 --
 
-INSERT INTO `Intervenant` (`id_Intervenant`, `adressePro`) VALUES
+INSERT INTO `Intervenant` (`idIntervenant`, `adressePro`) VALUES
 (1, '100 rue des Intervenants'),
 (2, '200 rue des Experts'),
 (5, '500 chemin des Professionnels');
@@ -260,13 +260,13 @@ INSERT INTO `Intervenant` (`id_Intervenant`, `adressePro`) VALUES
 
 CREATE TABLE `NoteFrais`
 (
-    `id_NoteFrais`    int(11)      NOT NULL,
+    `idNoteFrais`    int(11)      NOT NULL,
     `dateNote`        date         NOT NULL,
     `description`     varchar(280) NOT NULL,
     `urlJustificatif` varchar(280) NOT NULL,
     `montant`         float        NOT NULL,
     `status`          varchar(50)  NOT NULL,
-    `id_Personnel`    int(11)      NOT NULL
+    `idPersonnel`    int(11)      NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -275,8 +275,8 @@ CREATE TABLE `NoteFrais`
 -- Déchargement des données de la table `NoteFrais`
 --
 
-INSERT INTO `NoteFrais` (`id_NoteFrais`, `dateNote`, `description`, `urlJustificatif`, `montant`, `status`,
-                         `id_Personnel`)
+INSERT INTO `NoteFrais` (`idNoteFrais`, `dateNote`, `description`, `urlJustificatif`, `montant`, `status`,
+                         `idPersonnel`)
 VALUES (1, '2022-01-01', 'Frais 1', 'justificatif1.pdf', 100, 'Valider', 1),
        (2, '2022-02-01', 'Frais 2', 'justificatif2.pdf', 200, 'Validation', 2),
        (3, '2022-03-01', 'Frais 3', 'justificatif3.pdf', 300, 'Annuler', 3);
@@ -289,7 +289,7 @@ VALUES (1, '2022-01-01', 'Frais 1', 'justificatif1.pdf', 100, 'Valider', 1),
 
 CREATE TABLE `Personnel`
 (
-    `id_Personnel` int(11)     NOT NULL,
+    `idPersonnel` int(11)     NOT NULL,
     `login`        varchar(50) NOT NULL,
     `nom`          varchar(50) NOT NULL,
     `prenom`       varchar(50) NOT NULL,
@@ -303,7 +303,7 @@ CREATE TABLE `Personnel`
 -- Déchargement des données de la table `Personnel`
 --
 
-INSERT INTO `Personnel` (`id_Personnel`, `login`, `nom`, `prenom`, `motDePasse`, `email`) VALUES
+INSERT INTO `Personnel` (`idPersonnel`, `login`, `nom`, `prenom`, `motDePasse`, `email`) VALUES
 (1, 'admin', 'Dupont', 'Anne', 'admin123', 'anne.dupont@example.com'),
 (2, 'jdoe', 'Doe', 'John', 'john123', 'john.doe@example.com'),
 (3, 'jsmith', 'Smith', 'Jane', 'jane123', 'jane.smith@example.com'),
@@ -318,14 +318,14 @@ INSERT INTO `Personnel` (`id_Personnel`, `login`, `nom`, `prenom`, `motDePasse`,
 
 CREATE TABLE `RDV`
 (
-    `id_RDV`         int(11)     NOT NULL,
+    `idRdv`         int(11)     NOT NULL,
     `status`         varchar(50) NOT NULL,
     `dateRDV`        varchar(50) NOT NULL,
     `heureDebut`     varchar(50) NOT NULL,
     `heureFin`       varchar(50) NOT NULL,
-    `id_Demandeur`   int(11)     NOT NULL,
-    `id_Service`     int(11)     NOT NULL,
-    `id_Intervenant` int(11)     NOT NULL
+    `idDemandeur`   int(11)     NOT NULL,
+    `idService`     int(11)     NOT NULL,
+    `idIntervenant` int(11)     NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -334,8 +334,8 @@ CREATE TABLE `RDV`
 -- Déchargement des données de la table `RDV`
 --
 
-INSERT INTO `RDV` (`id_RDV`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `id_Demandeur`, `id_Service`,
-                   `id_Intervenant`)
+INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idService`,
+                   `idIntervenant`)
 VALUES (1, 'Confirme', '2023-02-01', '10:00', '11:00', 1, 1, 1),
        (2, 'En attente', '2023-02-02', '09:00', '10:00', 2, 2, 2),
        (3, 'Annule', '2023-02-03', '08:00', '09:00', 3, 3, 5);
@@ -348,8 +348,8 @@ VALUES (1, 'Confirme', '2023-02-01', '10:00', '11:00', 1, 1, 1),
 
 CREATE TABLE `Realiser`
 (
-    `id_Intervenant` int(11) NOT NULL,
-    `id_Service`     int(11) NOT NULL
+    `idIntervenant` int(11) NOT NULL,
+    `idService`     int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -358,7 +358,7 @@ CREATE TABLE `Realiser`
 -- Déchargement des données de la table `Realiser`
 --
 
-INSERT INTO `Realiser` (`id_Intervenant`, `id_Service`)
+INSERT INTO `Realiser` (`idIntervenant`, `idService`)
 VALUES (1, 1),
        (1, 3),
        (2, 5),
@@ -373,7 +373,7 @@ VALUES (1, 1),
 
 CREATE TABLE `Service`
 (
-    `id_Service`  int(11)      NOT NULL,
+    `idService`  int(11)      NOT NULL,
     `libelle`     varchar(50)  NOT NULL,
     `description` varchar(280) NOT NULL
 ) ENGINE = InnoDB
@@ -384,7 +384,7 @@ CREATE TABLE `Service`
 -- Déchargement des données de la table `Service`
 --
 
-INSERT INTO `Service` (`id_Service`, `libelle`, `description`)
+INSERT INTO `Service` (`idService`, `libelle`, `description`)
 VALUES (1, 'Généraliste', 'Medecin généraliste'),
        (2, 'Ophtalmologie', 'ophtalmologues'),
        (3, 'Chirurgie', 'chirurgiens'),
@@ -416,7 +416,7 @@ VALUES (1, 'Généraliste', 'Medecin généraliste'),
 
 CREATE TABLE `TypeVoiture`
 (
-    `id_TypeVoiture` int(11)     NOT NULL,
+    `idTypeVoiture` int(11)     NOT NULL,
     `Modele`         varchar(50) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -426,7 +426,7 @@ CREATE TABLE `TypeVoiture`
 -- Déchargement des données de la table `TypeVoiture`
 --
 
-INSERT INTO `TypeVoiture` (`id_TypeVoiture`, `Modele`)
+INSERT INTO `TypeVoiture` (`idTypeVoiture`, `Modele`)
 VALUES (1, 'RENAULT'),
        (2, 'Peugeot'),
        (3, 'Citroen'),
@@ -456,7 +456,7 @@ VALUES (1, 'RENAULT'),
 
 CREATE TABLE `Ville`
 (
-    `id_Ville`   int(11)     NOT NULL,
+    `idVille`   int(11)     NOT NULL,
     `nom`        varchar(50) NOT NULL,
     `codePostal` varchar(10) NOT NULL
 ) ENGINE = InnoDB
@@ -467,7 +467,7 @@ CREATE TABLE `Ville`
 -- Déchargement des données de la table `Ville`
 --
 
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (1, 'OZAN', '1190'),
        (2, 'CORMORANCHE-SUR-SAONE', '1290'),
        (3, 'PLAGNE', '1130'),
@@ -2210,7 +2210,7 @@ VALUES (1, 'OZAN', '1190'),
        (1740, 'PEIPIN', '4200'),
        (1741, 'THORAME-HAUTE', '4170'),
        (1742, 'PEYROULES', '4120');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (1743, 'REVEST-DES-BROUSSES', '4150'),
        (1744, 'GREOUX-LES-BAINS', '4800'),
        (1745, 'SAINT-MARTIN-LES-SEYNE', '4140'),
@@ -3901,7 +3901,7 @@ VALUES (1743, 'REVEST-DES-BROUSSES', '4150'),
        (3430, 'THIL', '10200'),
        (3431, 'SEMOINE', '10700'),
        (3432, 'BOUY-LUXEMBOURG', '10220');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (3433, 'SAINT-LEGER-SOUS-MARGERIE', '10330'),
        (3434, 'GRANDVILLE', '10700'),
        (3435, 'CHASEREY', '10210'),
@@ -5500,7 +5500,7 @@ VALUES (3433, 'SAINT-LEGER-SOUS-MARGERIE', '10330'),
        (5028, 'HAMARS', '14220'),
        (5029, 'AUBIGNY', '14700'),
        (5030, 'AUTHIE', '14280');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (5031, 'CANCHY', '14230'),
        (5032, 'PONT-D\'OUILLY', '14690'),
        (5033, 'EPRON', '14610'),
@@ -7130,7 +7130,7 @@ VALUES (5031, 'CANCHY', '14230'),
        (6657, 'BORT-LES-ORGUES', '19110'),
        (6658, 'BEYSSAC', '19230'),
        (6659, 'SAINT-PANTALEON-DE-LAPLEAU', '19160');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (6660, 'CHASTEAUX', '19600'),
        (6661, 'CHANTEIX', '19330'),
        (6662, 'NEUVIC', '19160'),
@@ -8744,7 +8744,7 @@ VALUES (6660, 'CHASTEAUX', '19600'),
        (8270, 'AURIAT', '23400'),
        (8271, 'SAINT-GEORGES-LA-POUGE', '23250'),
        (8272, 'LA VILLENEUVE', '23260');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (8273, 'SAINT-MICHEL-DE-VEISSE', '23480'),
        (8274, 'AZERABLES', '23160'),
        (8275, 'SAINT-PARDOUX-LES-CARDS', '23150'),
@@ -10327,7 +10327,7 @@ VALUES (8273, 'SAINT-MICHEL-DE-VEISSE', '23480'),
        (9852, 'LES THILLIERS-EN-VEXIN', '27420'),
        (9853, 'VANDRIMARE', '27380'),
        (9854, 'NEAUFLES-AUVERGNY', '27250');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (9855, 'SAINT-CHRISTOPHE-SUR-CONDE', '27450'),
        (9856, 'BEZU-SAINT-ELOI', '27660'),
        (9857, 'BOURTH', '27580'),
@@ -11859,7 +11859,7 @@ VALUES (9855, 'SAINT-CHRISTOPHE-SUR-CONDE', '27450'),
        (11383, 'SAUMANE', '30125'),
        (11384, 'MOLIERES-CAVAILLAC', '30120'),
        (11385, 'SAINT-ANDRE-DE-VALBORGNE', '30940');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (11386, 'AULAS', '30120'),
        (11387, 'GAUJAC', '30330'),
        (11388, 'FONS', '30730'),
@@ -13468,7 +13468,7 @@ VALUES (11386, 'AULAS', '30120'),
        (12991, 'VILLENEUVE', '33710'),
        (12992, 'GISCOS', '33840'),
        (12993, 'SAINT-SEURIN-DE-BOURG', '33710');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (12994, 'LOUCHATS', '33125'),
        (12995, 'ASQUES', '33240'),
        (12996, 'IZON', '33450'),
@@ -15028,7 +15028,7 @@ VALUES (12994, 'LOUCHATS', '33125'),
        (14550, 'LAFFREY', '38220'),
        (14551, 'SERRE-NERPOL', '38470'),
        (14552, 'VILLETTE-DE-VIENNE', '38200');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (14553, 'LA FORTERESSE', '38590'),
        (14554, 'NIVOLAS-VERMELLE', '38300'),
        (14555, 'SAINT-GEOIRS', '38590'),
@@ -16641,7 +16641,7 @@ VALUES (14553, 'LA FORTERESSE', '38590'),
        (16162, 'ECOTAY-L\'OLME', '42600'),
        (16163, 'LURE', '42260'),
        (16164, 'SOLEYMIEUX', '42560');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (16165, 'SAINTE-COLOMBE-SUR-GAND', '42540'),
        (16166, 'SAINT-ROMAIN-LE-PUY', '42610'),
        (16167, 'CEZAY', '42130'),
@@ -18195,7 +18195,7 @@ VALUES (16165, 'SAINTE-COLOMBE-SUR-GAND', '42540'),
        (17715, 'AGNAC', '47800'),
        (17716, 'RIVES', '47210'),
        (17717, 'LAFOX', '47240');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (17718, 'CASTELNAU-SUR-GUPIE', '47200'),
        (17719, 'SALLES', '47150'),
        (17720, 'SAINT-URCISSE', '47270'),
@@ -19710,7 +19710,7 @@ VALUES (17718, 'CASTELNAU-SUR-GUPIE', '47200'),
        (19229, 'WARMERIVILLE', '51110'),
        (19230, 'GIVRY-EN-ARGONNE', '51330'),
        (19231, 'CORROBERT', '51210');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (19232, 'MONCETZ-LONGEVAS', '51470'),
        (19233, 'SEZANNE', '51120'),
        (19234, 'ISLES-SUR-SUIPPE', '51110'),
@@ -21274,7 +21274,7 @@ VALUES (19232, 'MONCETZ-LONGEVAS', '51470'),
        (20792, 'LAGNEY', '54200'),
        (20793, 'MAXEVILLE', '54320'),
        (20794, 'VILLE-SUR-YRON', '54800');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (20795, 'VANDOEUVRE-LES-NANCY', '54500'),
        (20796, 'OGNEVILLE', '54330'),
        (20797, 'CRUSNES', '54680'),
@@ -22873,7 +22873,7 @@ VALUES (20795, 'VANDOEUVRE-LES-NANCY', '54500'),
        (22390, 'DIENNES-AUBIGNY', '58340'),
        (22391, 'LA NOCLE-MAULAIX', '58250'),
        (22392, 'MARIGNY-L\'EGLISE', '58140');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (22393, 'BALLERAY', '58130'),
        (22394, 'MARCY', '58210'),
        (22395, 'SAINT-PIERRE-DU-MONT', '58210'),
@@ -24471,7 +24471,7 @@ VALUES (22393, 'BALLERAY', '58130'),
        (23987, 'MORANGLES', '60530'),
        (23988, 'HALLOY', '60210'),
        (23989, 'PUISEUX-LE-HAUBERGER', '60540');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (23990, 'SOMMEREUX', '60210'),
        (23991, 'MONTATAIRE', '60160'),
        (23992, 'HANVOILE', '60650'),
@@ -26036,7 +26036,7 @@ VALUES (23990, 'SOMMEREUX', '60210'),
        (25551, 'BOUZEL', '63910'),
        (25552, 'VARENNES-SUR-USSON', '63500'),
        (25553, 'LAQUEUILLE', '63820');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (25554, 'SAINT-REMY-SUR-DUROLLE', '63550'),
        (25555, 'LA CELLE', '63620'),
        (25556, 'BRENAT', '63500'),
@@ -27695,7 +27695,7 @@ VALUES (25554, 'SAINT-REMY-SUR-DUROLLE', '63550'),
        (27209, 'RUSS', '67130'),
        (27210, 'SCHOPPERTEN', '67260'),
        (27211, 'DUTTLENHEIM', '67120');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (27212, 'DURRENBACH', '67360'),
        (27213, 'MOLSHEIM', '67120'),
        (27214, 'ZINSWILLER', '67110'),
@@ -29284,7 +29284,7 @@ VALUES (27212, 'DURRENBACH', '67360'),
        (28797, 'SAINT-LOUP-SUR-SEMOUSE', '70800'),
        (28798, 'APREMONT', '70100'),
        (28799, 'PROVENCHERE', '70170');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (28800, 'ARPENANS', '70200'),
        (28801, 'CHAMPEY', '70400'),
        (28802, 'GRAY-LA-VILLE', '70100'),
@@ -30832,7 +30832,7 @@ VALUES (28800, 'ARPENANS', '70200'),
        (30344, 'SAINT-EUSTACHE', '74410'),
        (30345, 'COPPONEX', '74350'),
        (30346, 'PRINGY', '74370');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (30347, 'USINENS', '74910'),
        (30348, 'POISY', '74330'),
        (30349, 'CRUSEILLES', '74350'),
@@ -32339,7 +32339,7 @@ VALUES (30347, 'USINENS', '74910'),
        (31850, 'MAULETTE', '78550'),
        (31851, 'LA BOISSIERE-ECOLE', '78125'),
        (31852, 'NEAUPHLE-LE-VIEUX', '78640');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (31853, 'BONNELLES', '78830'),
        (31854, 'ORGERUS', '78910'),
        (31855, 'GARANCIERES', '78890'),
@@ -33931,7 +33931,7 @@ VALUES (31853, 'BONNELLES', '78830'),
        (33441, 'MOISSAC', '82200'),
        (33442, 'ANGEVILLE', '82210'),
        (33443, 'MALAUSE', '82200');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (33444, 'VAZERAC', '82220'),
        (33445, 'MONTAIGU-DE-QUERCY', '82150'),
        (33446, 'SAINT-PORQUIER', '82700'),
@@ -35491,7 +35491,7 @@ VALUES (33444, 'VAZERAC', '82220'),
        (35000, 'VECOUX', '88200'),
        (35001, 'OFFROICOURT', '88500'),
        (35002, 'REMIREMONT', '88200');
-INSERT INTO `Ville` (`id_Ville`, `nom`, `codePostal`)
+INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (35003, 'LEMMECOURT', '88300'),
        (35004, 'BAN-SUR-MEURTHE-CLEFCY', '88230'),
        (35005, 'CHATAS', '88210'),
@@ -36707,9 +36707,9 @@ VALUES (35003, 'LEMMECOURT', '88300'),
 
 CREATE TABLE `Voiture`
 (
-    `id_Voiture`      int(11)     NOT NULL,
+    `idVoiture`      int(11)     NOT NULL,
     `immatriculation` varchar(50) NOT NULL,
-    `id_TypeVoiture`  int(11)     NOT NULL
+    `idTypeVoiture`  int(11)     NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -36718,7 +36718,7 @@ CREATE TABLE `Voiture`
 -- Déchargement des données de la table `Voiture`
 --
 
-INSERT INTO `Voiture` (`id_Voiture`, `immatriculation`, `id_TypeVoiture`)
+INSERT INTO `Voiture` (`idVoiture`, `immatriculation`, `idTypeVoiture`)
 VALUES (1, 'EM-007-LX', 1),
        (2, 'AZ-452-SD', 2),
        (3, 'RT-918-CD', 3),
@@ -36733,120 +36733,120 @@ VALUES (1, 'EM-007-LX', 1),
 -- Index pour la table `Administrateur`
 --
 ALTER TABLE `Administrateur`
-    ADD PRIMARY KEY (`id_Administrateur`);
+    ADD PRIMARY KEY (`idAdministrateur`);
 
 --
 -- Index pour la table `Commentaire`
 --
 ALTER TABLE `Commentaire`
-    ADD PRIMARY KEY (`id_Commentaires`),
-    ADD KEY `id_RDV` (`id_RDV`),
-    ADD KEY `id_Intervenant` (`id_Intervenant`);
+    ADD PRIMARY KEY (`idCommentaires`),
+    ADD KEY `idRdv` (`idRdv`),
+    ADD KEY `idIntervenant` (`idIntervenant`);
 
 --
 -- Index pour la table `Demandeur`
 --
 ALTER TABLE `Demandeur`
-    ADD PRIMARY KEY (`id_Demandeur`),
-    ADD KEY `id_Ville` (`id_Ville`);
+    ADD PRIMARY KEY (`idDemandeur`),
+    ADD KEY `idVille` (`idVille`);
 
 --
 -- Index pour la table `Emet`
 --
 ALTER TABLE `Emet`
-    ADD PRIMARY KEY (`id_Intervenant`, `id_NoteFrais`),
-    ADD KEY `id_NoteFrais` (`id_NoteFrais`);
+    ADD PRIMARY KEY (`idIntervenant`, `idNoteFrais`),
+    ADD KEY `idNoteFrais` (`idNoteFrais`);
 
 --
 -- Index pour la table `Empechement`
 --
 ALTER TABLE `Empechement`
-    ADD PRIMARY KEY (`id_Empechement`),
-    ADD KEY `id_Intervenant` (`id_Intervenant`);
+    ADD PRIMARY KEY (`idEmpechement`),
+    ADD KEY `idIntervenant` (`idIntervenant`);
 
 --
 -- Index pour la table `Emprunt`
 --
 ALTER TABLE `Emprunt`
-    ADD PRIMARY KEY (`id_Emprunt`),
-    ADD KEY `id_Intervenant` (`id_Intervenant`),
-    ADD KEY `id_Personnel` (`id_Personnel`),
-    ADD KEY `id_Voiture` (`id_Voiture`);
+    ADD PRIMARY KEY (`idEmprunt`),
+    ADD KEY `idIntervenant` (`idIntervenant`),
+    ADD KEY `idPersonnel` (`idPersonnel`),
+    ADD KEY `idVoiture` (`idVoiture`);
 
 --
 -- Index pour la table `Exercer`
 --
 ALTER TABLE `Exercer`
-    ADD PRIMARY KEY (`id_Intervenant`, `id_Ville`),
-    ADD KEY `id_Ville` (`id_Ville`);
+    ADD PRIMARY KEY (`idIntervenant`, `idVille`),
+    ADD KEY `idVille` (`idVille`);
 
 --
 -- Index pour la table `FichePaie`
 --
 ALTER TABLE `FichePaie`
-    ADD PRIMARY KEY (`id_FichePaie`),
-    ADD KEY `id_Intervenant` (`id_Intervenant`),
-    ADD KEY `id_Personnel` (`id_Personnel`);
+    ADD PRIMARY KEY (`idFichePaie`),
+    ADD KEY `idIntervenant` (`idIntervenant`),
+    ADD KEY `idPersonnel` (`idPersonnel`);
 
 --
 -- Index pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD PRIMARY KEY (`id_Intervenant`);
+    ADD PRIMARY KEY (`idIntervenant`);
 
 --
 -- Index pour la table `NoteFrais`
 --
 ALTER TABLE `NoteFrais`
-    ADD PRIMARY KEY (`id_NoteFrais`),
-    ADD KEY `id_Personnel` (`id_Personnel`);
+    ADD PRIMARY KEY (`idNoteFrais`),
+    ADD KEY `idPersonnel` (`idPersonnel`);
 
 --
 -- Index pour la table `Personnel`
 --
 ALTER TABLE `Personnel`
-    ADD PRIMARY KEY (`id_Personnel`);
+    ADD PRIMARY KEY (`idPersonnel`);
 
 --
 -- Index pour la table `RDV`
 --
 ALTER TABLE `RDV`
-    ADD PRIMARY KEY (`id_RDV`),
-    ADD KEY `id_Demandeur` (`id_Demandeur`),
-    ADD KEY `id_Service` (`id_Service`),
-    ADD KEY `id_Intervenant` (`id_Intervenant`);
+    ADD PRIMARY KEY (`idRdv`),
+    ADD KEY `idDemandeur` (`idDemandeur`),
+    ADD KEY `idService` (`idService`),
+    ADD KEY `idIntervenant` (`idIntervenant`);
 
 --
 -- Index pour la table `Realiser`
 --
 ALTER TABLE `Realiser`
-    ADD PRIMARY KEY (`id_Intervenant`, `id_Service`),
-    ADD KEY `id_Service` (`id_Service`);
+    ADD PRIMARY KEY (`idIntervenant`, `idService`),
+    ADD KEY `idService` (`idService`);
 
 --
 -- Index pour la table `Service`
 --
 ALTER TABLE `Service`
-    ADD PRIMARY KEY (`id_Service`);
+    ADD PRIMARY KEY (`idService`);
 
 --
 -- Index pour la table `TypeVoiture`
 --
 ALTER TABLE `TypeVoiture`
-    ADD PRIMARY KEY (`id_TypeVoiture`);
+    ADD PRIMARY KEY (`idTypeVoiture`);
 
 --
 -- Index pour la table `Ville`
 --
 ALTER TABLE `Ville`
-    ADD PRIMARY KEY (`id_Ville`);
+    ADD PRIMARY KEY (`idVille`);
 
 --
 -- Index pour la table `Voiture`
 --
 ALTER TABLE `Voiture`
-    ADD PRIMARY KEY (`id_Voiture`),
-    ADD KEY `id_TypeVoiture` (`id_TypeVoiture`);
+    ADD PRIMARY KEY (`idVoiture`),
+    ADD KEY `idTypeVoiture` (`idTypeVoiture`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -36856,21 +36856,21 @@ ALTER TABLE `Voiture`
 -- AUTO_INCREMENT pour la table `Administrateur`
 --
 ALTER TABLE `Administrateur`
-    MODIFY `id_Administrateur` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idAdministrateur` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 5;
 
 --
 -- AUTO_INCREMENT pour la table `Commentaire`
 --
 ALTER TABLE `Commentaire`
-    MODIFY `id_Commentaires` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idCommentaires` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 6;
 
 --
 -- AUTO_INCREMENT pour la table `Demandeur`
 --
 ALTER TABLE `Demandeur`
-    MODIFY `id_Demandeur` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idDemandeur` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 7;
 
 
@@ -36878,21 +36878,21 @@ ALTER TABLE `Demandeur`
 -- AUTO_INCREMENT pour la table `Empechement`
 --
 ALTER TABLE `Empechement`
-    MODIFY `id_Empechement` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idEmpechement` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 3;
 
 --
 -- AUTO_INCREMENT pour la table `Emprunt`
 --
 ALTER TABLE `Emprunt`
-    MODIFY `id_emprunt` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idEmprunt` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 3;
 
 --
 -- AUTO_INCREMENT pour la table `FichePaie`
 --
 ALTER TABLE `FichePaie`
-    MODIFY `id_FichePaie` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idFichePaie` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 2;
 
 
@@ -36900,49 +36900,49 @@ ALTER TABLE `FichePaie`
 -- AUTO_INCREMENT pour la table `NoteFrais`
 --
 ALTER TABLE `NoteFrais`
-    MODIFY `id_NoteFrais` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idNoteFrais` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 4;
 
 --
 -- AUTO_INCREMENT pour la table `Personnel`
 --
 ALTER TABLE `Personnel`
-    MODIFY `id_Personnel` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idPersonnel` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 6;
 
 --
 -- AUTO_INCREMENT pour la table `RDV`
 --
 ALTER TABLE `RDV`
-    MODIFY `id_RDV` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idRdv` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 4;
 
 --
 -- AUTO_INCREMENT pour la table `Service`
 --
 ALTER TABLE `Service`
-    MODIFY `id_Service` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idService` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 23;
 
 --
 -- AUTO_INCREMENT pour la table `TypeVoiture`
 --
 ALTER TABLE `TypeVoiture`
-    MODIFY `id_TypeVoiture` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idTypeVoiture` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 21;
 
 --
 -- AUTO_INCREMENT pour la table `Ville`
 --
 ALTER TABLE `Ville`
-    MODIFY `id_Ville` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idVille` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 36209;
 
 --
 -- AUTO_INCREMENT pour la table `Voiture`
 --
 ALTER TABLE `Voiture`
-    MODIFY `id_Voiture` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idVoiture` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 6;
 
 --
@@ -36953,81 +36953,81 @@ ALTER TABLE `Voiture`
 -- Contraintes pour la table `Commentaire`
 --
 ALTER TABLE `Commentaire`
-    ADD CONSTRAINT `Commentaire_ibfk_1` FOREIGN KEY (`id_RDV`) REFERENCES `RDV` (`id_RDV`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Commentaire_ibfk_2` FOREIGN KEY (`id_Intervenant`) REFERENCES `Intervenant` (`id_Intervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Commentaire_ibfk_1` FOREIGN KEY (`idRdv`) REFERENCES `RDV` (`idRdv`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Commentaire_ibfk_2` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
 -- Contraintes pour la table `Demandeur`
 --
 ALTER TABLE `Demandeur`
-    ADD CONSTRAINT `Demandeur_ibfk_1` FOREIGN KEY (`id_Ville`) REFERENCES `Ville` (`id_Ville`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Demandeur_ibfk_1` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Emet`
 --
 ALTER TABLE `Emet`
-    ADD CONSTRAINT `Emet_ibfk_1` FOREIGN KEY (`id_Intervenant`) REFERENCES `Intervenant` (`id_Intervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Emet_ibfk_2` FOREIGN KEY (`id_NoteFrais`) REFERENCES `NoteFrais` (`id_NoteFrais`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Emet_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Emet_ibfk_2` FOREIGN KEY (`idNoteFrais`) REFERENCES `NoteFrais` (`idNoteFrais`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Empechement`
 --
 ALTER TABLE `Empechement`
-    ADD CONSTRAINT `Empechement_ibfk_1` FOREIGN KEY (`id_Intervenant`) REFERENCES `Intervenant` (`id_Intervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Empechement_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Emprunt`
 --
 ALTER TABLE `Emprunt`
-    ADD CONSTRAINT `Emprunt_ibfk_1` FOREIGN KEY (`id_Intervenant`) REFERENCES `Intervenant` (`id_Intervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Emprunt_ibfk_2` FOREIGN KEY (`id_Personnel`) REFERENCES `Personnel` (`id_Personnel`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Emprunt_ibfk_3` FOREIGN KEY (`id_Voiture`) REFERENCES `Voiture` (`id_Voiture`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Emprunt_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Emprunt_ibfk_2` FOREIGN KEY (`idPersonnel`) REFERENCES `Personnel` (`idPersonnel`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Emprunt_ibfk_3` FOREIGN KEY (`idVoiture`) REFERENCES `Voiture` (`idVoiture`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Exercer`
 --
 ALTER TABLE `Exercer`
-    ADD CONSTRAINT `Exercer_ibfk_1` FOREIGN KEY (`id_Intervenant`) REFERENCES `Intervenant` (`id_Intervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Exercer_ibfk_2` FOREIGN KEY (`id_Ville`) REFERENCES `Ville` (`id_Ville`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Exercer_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Exercer_ibfk_2` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `FichePaie`
 --
 ALTER TABLE `FichePaie`
-    ADD CONSTRAINT `FichePaie_ibfk_1` FOREIGN KEY (`id_Intervenant`) REFERENCES `Intervenant` (`id_Intervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `FichePaie_ibfk_2` FOREIGN KEY (`id_Personnel`) REFERENCES `Personnel` (`id_Personnel`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `FichePaie_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `FichePaie_ibfk_2` FOREIGN KEY (`idPersonnel`) REFERENCES `Personnel` (`idPersonnel`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`id_Intervenant`) REFERENCES `Demandeur` (`id_Demandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `NoteFrais`
 --
 ALTER TABLE `NoteFrais`
-    ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`id_Personnel`) REFERENCES `Personnel` (`id_Personnel`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`idPersonnel`) REFERENCES `Personnel` (`idPersonnel`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `RDV`
 --
 ALTER TABLE `RDV`
-    ADD CONSTRAINT `RDV_ibfk_1` FOREIGN KEY (`id_Demandeur`) REFERENCES `Demandeur` (`id_Demandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `RDV_ibfk_2` FOREIGN KEY (`id_Service`) REFERENCES `Service` (`id_Service`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `RDV_ibfk_3` FOREIGN KEY (`id_Intervenant`) REFERENCES `Intervenant` (`id_Intervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `RDV_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `RDV_ibfk_2` FOREIGN KEY (`idService`) REFERENCES `Service` (`idService`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `RDV_ibfk_3` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Realiser`
 --
 ALTER TABLE `Realiser`
-    ADD CONSTRAINT `Realiser_ibfk_1` FOREIGN KEY (`id_Intervenant`) REFERENCES `Intervenant` (`id_Intervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Realiser_ibfk_2` FOREIGN KEY (`id_Service`) REFERENCES `Service` (`id_Service`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Realiser_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Realiser_ibfk_2` FOREIGN KEY (`idService`) REFERENCES `Service` (`idService`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Voiture`
 --
 ALTER TABLE `Voiture`
-    ADD CONSTRAINT `Voiture_ibfk_1` FOREIGN KEY (`id_TypeVoiture`) REFERENCES `TypeVoiture` (`id_TypeVoiture`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Voiture_ibfk_1` FOREIGN KEY (`idTypeVoiture`) REFERENCES `TypeVoiture` (`idTypeVoiture`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;

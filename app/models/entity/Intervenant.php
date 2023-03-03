@@ -5,7 +5,7 @@ namespace App\models\entity;
 class Intervenant extends Demandeur
 {
 
-    private $id_Intervenant;
+    private $idIntervenant;
     private $adressePro;
 
     private $specialites;
@@ -31,17 +31,17 @@ class Intervenant extends Demandeur
     /**
      * @return mixed
      */
-    public function getId_Intervenant()
+    public function getIdIntervenant()
     {
-        return $this->id_Intervenant;
+        return $this->idIntervenant;
     }
 
     /**
-     * @param mixed $id_Intervenant
+     * @param mixed $idIntervenant
      */
-    public function setId_Intervenant($idIntervenant)
+    public function setIdIntervenant($idIntervenant)
     {
-        $this->id_Intervenant = $idIntervenant;
+        $this->idIntervenant = $idIntervenant;
     }
 
     /**

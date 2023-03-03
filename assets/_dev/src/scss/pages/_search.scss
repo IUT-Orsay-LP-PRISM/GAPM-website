@@ -108,6 +108,14 @@
           font-family : $mainFont;
           line-height : 2;
         }
+        ul.desc{
+          list-style: "- ";
+          padding-left: .65rem;
+          color: $primaryDark;
+          li{
+            color: $black;
+          }
+        }
       }
 
       &-name {

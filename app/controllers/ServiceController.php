@@ -17,7 +17,7 @@ abstract class ServiceController extends Template implements InterfaceController
         $services = ServiceDAO::findByQuery($query);
         $services_json = json_encode(array_map(function ($s) {
             return [
-                'id_service' => $s->getIdService(),
+                'idService' => $s->getIdService(),
                 'libelle' => $s->getLibelle(),
                 'description' => $s->getDescription()
             ];

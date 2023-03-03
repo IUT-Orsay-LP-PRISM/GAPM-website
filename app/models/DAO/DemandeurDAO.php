@@ -11,7 +11,6 @@ class DemandeurDAO extends ConnexionDB
     protected static $link = 'App\models\entity\\';
 
 
-
     public static function checkIfEmailExists($email)
     {
         $sql = "SELECT login FROM demandeur WHERE email = :email";
@@ -37,7 +36,7 @@ class DemandeurDAO extends ConnexionDB
 
     public static function create($data)
     {
-        $sql = "INSERT INTO demandeur (login, email, motDePasse, nom, prenom, dateNaissance, adresse, telephone, sexe, id_Ville) VALUES (:login, :email, :motDePasse, :nom, :prenom, :dateNaissance, :adresse, :telephone, :sexe, :id_Ville)";
+        $sql = "INSERT INTO demandeur (login, email, motDePasse, nom, prenom, dateNaissance, adresse, telephone, sexe, idVille) VALUES (:login, :email, :motDePasse, :nom, :prenom, :dateNaissance, :adresse, :telephone, :sexe, :idVille)";
         $stmt = self::getInstance()->prepare($sql);
         $result = $stmt->execute([
             'login' => $data->getNom() . "." . $data->getPrenom(),
@@ -49,12 +48,12 @@ class DemandeurDAO extends ConnexionDB
             'adresse' => $data->getAdresse(),
             'telephone' => $data->getTelephone(),
             'sexe' => $data->getSexe(),
-            'id_Ville' => $data->getId_Ville()
+            'idVille' => $data->getIdVille()
         ]);
 
         if ($result) {
             $idDemandeur = self::getInstance()->lastInsertId();
-            $data->setId_Demandeur($idDemandeur);
+            $data->setIdDemandeur($idDemandeur);
             return $data;
         }
         return false;
@@ -62,7 +61,7 @@ class DemandeurDAO extends ConnexionDB
 
     public  static function update($data)
     {
-        $sql = "UPDATE demandeur SET login = :login, email = :email, motDePasse = :motDePasse, nom = :nom, prenom = :prenom, dateNaissance = :dateNaissance, adresse = :adresse, telephone = :telephone, sexe = :sexe, id_Ville = :id_Ville WHERE id_Demandeur = :idDemandeur";
+        $sql = "UPDATE demandeur SET login = :login, email = :email, motDePasse = :motDePasse, nom = :nom, prenom = :prenom, dateNaissance = :dateNaissance, adresse = :adresse, telephone = :telephone, sexe = :sexe, idVille = :idVille WHERE idDemandeur = :idDemandeur";
         $stmt = self::getInstance()->prepare($sql);
         $result = $stmt->execute([
             'login' => $data->getNom() . "." . $data->getPrenom(),
@@ -74,8 +73,8 @@ class DemandeurDAO extends ConnexionDB
             'adresse' => $data->getAdresse(),
             'telephone' => $data->getTelephone(),
             'sexe' => $data->getSexe(),
-            'id_Ville' => $data->getId_Ville(),
-            'idDemandeur' => $data->getId_Demandeur()
+            'idVille' => $data->getIdVille(),
+            'idDemandeur' => $data->getIdDemandeur()
         ]);
 
         return $result ? $data : false;

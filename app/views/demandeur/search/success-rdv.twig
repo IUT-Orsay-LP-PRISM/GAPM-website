@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block type %}
+    {{ type }}
+{% endblock %}
+
+{% block content %}
+    <section class="prendreRdv success">
+        <h1>Prendre un RDV
+            <i class="icon icon-fi-rr-arrow-small-right"></i>
+            <span class="--active" >Choisir une <span>date.</span></span>
+            <i class="icon icon-fi-rr-arrow-small-right"></i>
+            <span class="small">Rendez-vous <span>en attente.</span></span>
+        </h1>
+        <div class="prendreRdv__content">
+            <div class="prendreRdv__content__body">
+                {% include 'svg/success-rdv.svg' %}
+                <div class="prendreRdv__content__body__info">
+                    <h1>Votre demande de rendez-vous <br> a bien été <span>confirmé.</span></h1>
+                    <h3>Vous recevrez un mail de confirmation.</h3>
+                    <p class="date"><span>Date : </span>{{ date }}</p>
+                    <p class="horaire"><span>Horaires : </span>{{ horaire }}</p>
+
+                    <a href="/?action=mes-rendez-vous" class="btn btn-primary-nb">Voir mes rendez-vous</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
