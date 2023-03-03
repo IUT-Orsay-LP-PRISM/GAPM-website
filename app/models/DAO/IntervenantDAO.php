@@ -36,7 +36,7 @@ class IntervenantDAO extends ConnexionDB
     {
         $nom = "%$nom%";
         $city = "%$city%";
-        $sql = "SELECT * FROM demandeur INNER JOIN ville ON demandeur.id_Ville = ville.id_Ville INNER JOIN intervenant ON demandeur.id_Demandeur = intervenant.id_Intervenant WHERE (demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom) AND ville.nom LIKE :city";
+        $sql = "SELECT demandeur.*, intervenant.id_Intervenant FROM demandeur INNER JOIN ville ON demandeur.id_Ville = ville.id_Ville INNER JOIN intervenant ON demandeur.id_Demandeur = intervenant.id_Intervenant WHERE (demandeur.nom LIKE :nom OR demandeur.prenom LIKE :nom) AND ville.nom LIKE :city";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
         $stmt->bindParam(':city', $city, PDO::PARAM_STR);
