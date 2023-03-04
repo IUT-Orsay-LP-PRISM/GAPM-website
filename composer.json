@@ -46,7 +46,8 @@
         "twig/twig": "3.0",
         "symfony/asset": "5.4.x-dev",
         "polarising/bcrypt": "dev-master",
-        "symfony/dotenv": "5.4.x-dev"
+        "symfony/dotenv": "5.4.x-dev",
+        "doctrine/orm": "2.15.x-dev"
     },
     "require-dev": {
         "symfony/var-dumper": "5.4.x-dev"
