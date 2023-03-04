@@ -7,32 +7,8 @@
             "email": "louis.lubineau@universite-paris-saclay.fr"
         },
         {
-            "name": "Christopher",
-            "email": "christopher.dent@universite-paris-saclay.fr"
-        },
-        {
             "name": "Frédéric",
             "email": "frederic.dabadie@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Valentin",
-            "email": "valentin.chretien@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Joel",
-            "email": "joel.e@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Enolah",
-            "email": "enolah.e@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Taisong",
-            "email": "taisong.ma@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Mathieu",
-            "email": "mathieu.morgat@universite-paris-saclay.fr"
         }
     ],
     "minimum-stability": "dev",
