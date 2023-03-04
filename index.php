@@ -5,9 +5,22 @@ require 'vendor/autoload.php';
 
 use App\controllers\Route;
 use Symfony\Component\Dotenv\Dotenv;
+use Doctrine\DBAL\DriverManager;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\ORMSetup;
 
 $dotenv = new Dotenv();
 $dotenv->load('.env.local');
+
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+
+require 'bootstrap.php';
+
+ConsoleRunner::run(
+    new SingleManagerProvider($entityManager)
+);
+
 
 // Les get de l'url
 // Basé sur /?action=...

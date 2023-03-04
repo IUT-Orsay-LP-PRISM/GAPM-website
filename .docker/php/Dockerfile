@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.0-apache
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 RUN cp /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/
 
