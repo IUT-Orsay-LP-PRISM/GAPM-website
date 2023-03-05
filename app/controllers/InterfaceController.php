@@ -8,31 +8,31 @@ interface InterfaceController
      * @return mixed
      * Fonction pour SELECT toutes les données
      */
-    public static function index();
+    public function index(): mixed;
 
     /**
      * @return mixed
      * Fonction pour INSERER des données 'CREATE'
      */
-    public static function store();
+    public function store(): mixed;
 
     /**
      * @return mixed
      * Fonction pour VOIR les détails d'une donnée 'READ'
      */
-    public static function show();
+    public function show(): mixed;
 
     /**
      * @return mixed
      * Fonction pour UPDATE des données 'UPDATE'
      */
-    public static function update();
+    public function update(): mixed;
 
     /**
      * @return mixed
      * Fonction pour DELETE des données 'DELETE'
      */
-    public static function delete();
+    public function delete(): mixed;
 
 
 }

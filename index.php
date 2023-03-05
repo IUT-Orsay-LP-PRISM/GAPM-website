@@ -1,12 +1,9 @@
 <?php
 use App\controllers\Route;
 use App\models\entity\Session;
-use Symfony\Component\Dotenv\Dotenv;
-
 require 'vendor/autoload.php';
 
 Session::start();
-
 
 // Les get de l'url
 // Basé sur /?action=...

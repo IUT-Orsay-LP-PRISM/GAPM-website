@@ -1,10 +1,11 @@
 <?php
 namespace App\models\entity;
 
+use App\models\repository\DemandeurRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: DemandeurRepository::class)]
 #[ORM\Table(name: 'Demandeur')]
 class Demandeur
 {

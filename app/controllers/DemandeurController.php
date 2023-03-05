@@ -8,32 +8,32 @@ use App\models\dao\DemandeurDAO;
 use App\models\entity\Session;
 use App\models\entity\Intervenant;
 use App\models\dao\IntervenantDAO;
+use App\models\repository\DemandeurRepository;
 use Doctrine\ORM\EntityManager;
 
 
 class DemandeurController extends Template
 {
-    private $entityManager;
+    private DemandeurRepository $demandeurRepository;
+    private EntityManager $entityManager;
 
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
+        $this->demandeurRepository = $entityManager->getRepository(Demandeur::class);
+
     }
 
     public function index()
     {
-        $demandeurRepository = $this->entityManager->getRepository(Demandeur::class);
-        $demandeurs = $demandeurRepository->findAll();
-
+        $demandeurs = $this->demandeurRepository->findAll();
+        $demandeurOne = $this->demandeurRepository->find(1);
         dump($demandeurs);
 
         $this->render('demandeur/liste-demandeur.twig', [
-            'lesDemandeurs' => $demandeurs
+            'lesDemandeurs' => $demandeurs,
+            'demandeurOne' => $demandeurOne
         ]);
-    }
-    public static function store()
-    {
-        // TODO: Implement store() method.
     }
 
     public static function update()
@@ -139,7 +139,7 @@ class DemandeurController extends Template
         return $referer;
     }
 
-    public static function login()
+    public function login()
     {
         function removeErrorFromUrl(): string
         {
@@ -155,7 +155,6 @@ class DemandeurController extends Template
             return $referer;
         }
 
-        // TODO: faire la fonction pour valider chaque champs en regex
         if (!empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['email']) && isset($_POST['password'])) {
 
             $email = $_POST['email'];
@@ -163,8 +162,13 @@ class DemandeurController extends Template
 
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
-            if (DemandeurDAO::checkIfEmailExists($email)) {
-                $user = DemandeurDAO::getUserFromEmail($email);
+
+            $demandeurEmail = $this->demandeurRepository->findBy(['email' => $email]);
+            $emailExists = !empty($demandeurEmail);
+
+            if ($emailExists) {
+                $user = $this->demandeurRepository->findOneBy(['email' => $email]);
+
                 if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('user', $user);
 
