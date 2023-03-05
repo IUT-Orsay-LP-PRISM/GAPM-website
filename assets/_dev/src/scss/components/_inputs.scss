@@ -1,17 +1,20 @@
 .input-container {
   font-family      : $titleFont;
   position         : relative;
-  box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
-  border-radius    : 10px;
   width            : fit-content;
   display          : flex;
   flex-direction   : row;
   align-items      : center;
   justify-content  : space-between;
+  border-radius: 10px;
+  border: 1px solid $greyLight;
   font-size        : 18px;
   overflow         : hidden;
   padding-right    : 1rem;
   background-color : $white;
+  &:focus{
+    border: 2px solid $primaryDark;
+  }
 
   .js-iconEyePassword {
     z-index : 1;
@@ -37,7 +40,7 @@
       & + label {
         color          : grey;
         font-size      : .8rem;
-        top            : -15px;
+        top            : -12px;
         pointer-events : none;
         font-family    : $titleFont;
       }

@@ -1,25 +1,11 @@
 <?php
+use App\controllers\Route;
+use App\models\entity\Session;
+use Symfony\Component\Dotenv\Dotenv;
 
 require 'vendor/autoload.php';
-\App\models\entity\Session::start();
 
-use App\controllers\Route;
-use Symfony\Component\Dotenv\Dotenv;
-use Doctrine\DBAL\DriverManager;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\ORMSetup;
-
-$dotenv = new Dotenv();
-$dotenv->load('.env.local');
-
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
-
-require 'bootstrap.php';
-
-ConsoleRunner::run(
-    new SingleManagerProvider($entityManager)
-);
+Session::start();
 
 
 // Les get de l'url

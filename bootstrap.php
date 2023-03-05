@@ -1,24 +1,48 @@
 <?php
-// bootstrap.php
-use Doctrine\DBAL\DriverManager;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\ORMSetup;
 
 require_once "vendor/autoload.php";
 
-// Create a simple "default" Doctrine ORM configuration for Attributes
-$config = ORMSetup::createAttributeMetadataConfiguration(
-    paths: array(__DIR__."/app/models/entity"),
-    isDevMode: true,
+use Doctrine\DBAL\DriverManager;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\ORMSetup;
+use Symfony\Component\Dotenv\Dotenv;
+use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
+use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\Connection;
+
+
+$dotenv = new Dotenv();
+$dotenv->load('.env.local');
+
+
+require_once 'vendor/autoload.php';
+
+$isDevMode = true;
+$proxyDir = null;
+$cache = null;
+$useSimpleAnnotationReader = false;
+
+$annotationConfig = ORMSetup::createAttributeMetadataConfiguration(
+    ["app/models/entity"],
+    $isDevMode,
+    $proxyDir,
+    $cache
 );
 
-// configuring the database connection
-$connection = DriverManager::getConnection([
-    'driver'   => 'pdo_mysql',
-    'user'     => $_ENV['USERNAME_DB'],
-    'password' => $_ENV['PASSWORD_DB'],
-    'dbname'   => $_ENV['NAME_DB'],
-], $config);
+$connectionParams = [
+    'dbname' => 'gapm',
+    'user' => 'root',
+    'password' => 'root',
+    'host' => 'mariadb',
+    'driver' => 'pdo_mysql',
+];
 
-// obtaining the entity manager
-$entityManager = new EntityManager($connection, $config);
+$config = new Configuration();
+$connection = DriverManager::getConnection($connectionParams, $config);
+
+
+$entityManagerFactory = function () use ($annotationConfig, $connection) {
+    return new EntityManager($connection, $annotationConfig);
+};
+
+return $entityManagerFactory;

@@ -8,21 +8,29 @@ use App\models\dao\DemandeurDAO;
 use App\models\entity\Session;
 use App\models\entity\Intervenant;
 use App\models\dao\IntervenantDAO;
+use Doctrine\ORM\EntityManager;
 
 
-abstract class DemandeurController extends Template implements InterfaceController
+class DemandeurController extends Template
 {
-    public static function index()
-    {
-        $lesDemandeurs = DemandeurDAO::findAll();
-        $unDemandeur = DemandeurDAO::findById(5);
+    private $entityManager;
 
-        self::render('demandeur/liste-demandeur.twig', [
-            'lesDemandeurs' => $lesDemandeurs,
-            'unDemandeur' => $unDemandeur,
-        ]);
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
     }
 
+    public function index()
+    {
+        $demandeurRepository = $this->entityManager->getRepository(Demandeur::class);
+        $demandeurs = $demandeurRepository->findAll();
+
+        dump($demandeurs);
+
+        $this->render('demandeur/liste-demandeur.twig', [
+            'lesDemandeurs' => $demandeurs
+        ]);
+    }
     public static function store()
     {
         // TODO: Implement store() method.

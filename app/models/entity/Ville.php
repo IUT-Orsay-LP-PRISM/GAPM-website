@@ -2,27 +2,22 @@
 
 namespace App\models\entity;
 
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'Ville')]
 class Ville
 {
+    #[ORM\Id]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
     private $idVille;
+    #[ORM\Column]
     private $nom;
+    #[ORM\Column]
     private $codePostal;
-    private $codeDepartement;
 
-    // -------------------------------------------------------------------------------------------
-    // Constructeur
-    function __construct(array $data = null)
-    {
-        if ($data != null) {
-            foreach ($data as $key => $element) {
-                $this->$key = $element;
-            }
-        }
-    }
-
-
-    // -------------------------------------------------------------------------------------------
-    // Getters & Setters
     /**
      * @return mixed
      */
@@ -34,7 +29,7 @@ class Ville
     /**
      * @param mixed $idVille
      */
-    public function setIdVille($idVille)
+    public function setIdVille($idVille): void
     {
         $this->idVille = $idVille;
     }
@@ -50,7 +45,7 @@ class Ville
     /**
      * @param mixed $nom
      */
-    public function setNom($nom)
+    public function setNom($nom): void
     {
         $this->nom = $nom;
     }
@@ -66,24 +61,10 @@ class Ville
     /**
      * @param mixed $codePostal
      */
-    public function setCodePostal($codePostal)
+    public function setCodePostal($codePostal): void
     {
         $this->codePostal = $codePostal;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCodeDepartement()
-    {
-        return $this->codeDepartement;
-    }
-
-    /**
-     * @param mixed $codeDepartement
-     */
-    public function setCodeDepartement($codeDepartement)
-    {
-        $this->codeDepartement = $codeDepartement;
-    }
 }
+
+
