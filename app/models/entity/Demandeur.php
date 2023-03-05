@@ -23,7 +23,7 @@ class Demandeur
     private $nom;
     #[ORM\Column]
     private $prenom;
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column]
     private $dateNaissance;
     #[ORM\Column]
     private $adresse;

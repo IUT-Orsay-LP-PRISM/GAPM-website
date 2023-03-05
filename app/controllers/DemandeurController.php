@@ -264,14 +264,11 @@ class DemandeurController extends Template
     public static function myAccount()
     {
         $user = Session::get('user');
-        $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
-        $ville = VilleDAO::findById($demandeur->getIdVille());
 
         self::render('demandeur/mon-compte.twig', [
-            'demandeur' => $demandeur,
-            'loader' => false,
             'title' => 'Mon compte',
-            'ville' => $ville,
+            'demandeur' => $user,
+            'loader' => false,
             'view' => $_GET['view'] ?? 'perso',
         ]);
     }
