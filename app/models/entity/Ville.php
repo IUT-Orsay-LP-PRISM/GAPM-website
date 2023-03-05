@@ -2,10 +2,11 @@
 
 namespace App\models\entity;
 
+use App\models\repository\VilleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: VilleRepository::class)]
 #[ORM\Table(name: 'Ville')]
 class Ville
 {
