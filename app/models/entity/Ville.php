@@ -22,7 +22,7 @@ class Ville
     /**
      * @return mixed
      */
-    public function getIdVille()
+    public function getIdVille(): mixed
     {
         return $this->idVille;
     }
@@ -30,7 +30,7 @@ class Ville
     /**
      * @param mixed $idVille
      */
-    public function setIdVille($idVille): void
+    public function setIdVille(mixed $idVille)
     {
         $this->idVille = $idVille;
     }
@@ -38,7 +38,7 @@ class Ville
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getNom(): mixed
     {
         return $this->nom;
     }
@@ -54,7 +54,7 @@ class Ville
     /**
      * @return mixed
      */
-    public function getCodePostal()
+    public function getCodePostal(): mixed
     {
         return $this->codePostal;
     }

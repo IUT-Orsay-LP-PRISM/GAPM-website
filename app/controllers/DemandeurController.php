@@ -2,15 +2,14 @@
 
 namespace App\controllers;
 
-use App\models\entity\Demandeur;
-use App\models\dao\VilleDAO;
 use App\models\dao\DemandeurDAO;
-use App\models\entity\Session;
-use App\models\entity\Intervenant;
 use App\models\dao\IntervenantDAO;
+use App\models\entity\Demandeur;
+use App\models\entity\Intervenant;
+use App\models\entity\Session;
+use App\models\entity\Ville;
 use App\models\repository\DemandeurRepository;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping as ORM;
 
 
 class DemandeurController extends Template
@@ -22,7 +21,6 @@ class DemandeurController extends Template
     {
         $this->entityManager = $entityManager;
         $this->demandeurRepository = $entityManager->getRepository(Demandeur::class);
-
     }
 
     public function index()
@@ -231,18 +229,28 @@ class DemandeurController extends Template
 
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
+
+
+            $cityId = (int)$city;
+            $ville = $this->entityManager->getRepository(Ville::class)->find($cityId);
+            $login = strtolower($firstname . ".". $lastname);
+
             $demandeur = new Demandeur();
             $demandeur->setNom($lastname);
+            $demandeur->setLogin($login);
             $demandeur->setPrenom($firstname);
             $demandeur->setEmail($email);
             $demandeur->setDateNaissance($birthday);
             $demandeur->setAdresse($address);
-            $demandeur->setIdVille($city);
             $demandeur->setMotDePasse($saltedAndHashed);
             $demandeur->setTelephone($phone);
             $demandeur->setSexe($sexe);
+            $demandeur->setVille($ville);
 
-            $demandeur = DemandeurDAO::create($demandeur);
+            // On persist => on dit à doctrine de garder en mémoire l'objet
+            $this->entityManager->persist($demandeur);
+            // On flush => on dit à doctrine d'écrire dans la base de données
+            $this->entityManager->flush();
 
             if ($inscriptionIntervenant) {
                 $intervenant = new Intervenant();
@@ -260,9 +268,9 @@ class DemandeurController extends Template
             } else {
                 header('Location: /');
             }
+
         }
     }
-
 
     public static function logout()
     {
