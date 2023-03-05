@@ -10,6 +10,7 @@ use App\models\entity\Intervenant;
 use App\models\dao\IntervenantDAO;
 use App\models\repository\DemandeurRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping as ORM;
 
 
 class DemandeurController extends Template
@@ -145,7 +146,7 @@ class DemandeurController extends Template
         {
             $referer = $_SERVER['HTTP_REFERER'];
             $referer_parts = parse_url($referer);
-            if (isset($referer_parts['query'])) { // remove error query param
+            if (isset($referer_parts['query'])) {
                 parse_str($referer_parts['query'], $query_params);
                 unset($query_params['error']);
                 unset($query_params['c']);
@@ -155,19 +156,23 @@ class DemandeurController extends Template
             return $referer;
         }
 
-        if (!empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['email']) && isset($_POST['password'])) {
+        $isValid = !empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['email']) && isset($_POST['password']);
 
+        if ($isValid) {
+
+            //TODO vérifier chaque champs avec regex
             $email = $_POST['email'];
             $password = $_POST['password'];
 
+            // TODO changer le sel par un vrai sel
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
 
-            $demandeurEmail = $this->demandeurRepository->findBy(['email' => $email]);
-            $emailExists = !empty($demandeurEmail);
+            $demandeur = $this->demandeurRepository->findOneBy(['email' => $email]);
+            $emailExists = !empty($demandeur);
 
             if ($emailExists) {
-                $user = $this->demandeurRepository->findOneBy(['email' => $email]);
+                $user = $demandeur;
 
                 if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('user', $user);
@@ -188,8 +193,7 @@ class DemandeurController extends Template
         }
     }
 
-
-    public static function register()
+    public function register()
     {
         $inscriptionIntervenant = false;
         $voiture = 0;
@@ -205,12 +209,17 @@ class DemandeurController extends Template
             $voiture = $_POST['voiture'] ?? 0;
         }
 
+        // TODO vérifier champ
         $email = $_POST['mail'];
-        $user = DemandeurDAO::getUserFromEmail($email);
-        if ($user) {
+
+        $demandeur = $this->demandeurRepository->findOneBy(['email' => $email]);
+        $emailExists = !empty($demandeur);
+
+        if ($emailExists) {
             $referer = self::addErrorToUrl('Cette email est déjà utilisé.', $containerError);
             header("Location: $referer");
         } else {
+            // TODO vérifier chaque champs ; faire une classe de vérification ?
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
             $birthday = $_POST['birthday'];
@@ -261,7 +270,7 @@ class DemandeurController extends Template
         header('Location: /');
     }
 
-    public static function myAccount()
+    public function displayMyAccount()
     {
         $user = Session::get('user');
 
