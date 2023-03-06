@@ -2,140 +2,135 @@
 
 namespace App\models\entity;
 
+use App\models\repository\RendezVousRepository;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: RendezVousRepository::class)]
+#[ORM\Table(name: 'RDV')]
 class RendezVous
 {
 
-    private $idRdv;
-    private $status;
-    private $dateRdv;
-    private $heureDebut;
-    private $heureFin;
-    private $idDemandeur;
-    private $idService;
-    private $idIntervenant;
+    #[ORM\Id]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    private int $idRdv;
+    #[ORM\Column]
+    private string $status;
+    #[ORM\Column]
+    private string $dateRdv;
+    #[ORM\Column]
+    private string $heureDebut;
+    #[ORM\Column]
+    private string $heureFin;
+    #[ORM\OneToOne(targetEntity: Demandeur::class, fetch: 'EAGER')]
+    #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
+    private Demandeur $demandeur;
 
 
-    // -------------------------------------------------------------------------------------------
-    // Constructeur
-    function __construct($data = null)
-    {
-        if ($data != null) {
-            foreach ($data as $key => $element) {
-                $this->$key = $element;
-            }
-        }
-    }
 
-
-    // -------------------------------------------------------------------------------------------
-    // Getters
-
-    public function getIdRdv()
+    /**
+     * @return int
+     */
+    public function getIdRdv(): int
     {
         return $this->idRdv;
     }
 
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    public function getDateRdv()
-    {
-        return $this->dateRdv;
-    }
-
-    public function getHeureDebut()
-    {
-        return $this->heureDebut;
-    }
-
-    public function getHeureFin()
-    {
-        return $this->heureFin;
-    }
-
-    public function getIdDemandeur()
-    {
-        return $this->idDemandeur;
-    }
-
-    public function getIdService()
-    {
-        return $this->idService;
-    }
-
-    public function getIdIntervenant()
-    {
-        return $this->idIntervenant;
-    }
-
-
-
-    // -------------------------------------------------------------------------------------------
-    // Setters
     /**
-     * @param mixed $idRdv
+     * @param int $idRdv
      */
-    public function setIdRdv($idRdv): void
+    public function setIdRdv(int $idRdv): void
     {
         $this->idRdv = $idRdv;
     }
 
     /**
-     * @param mixed $status
+     * @return string
      */
-    public function setStatus($status): void
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
     {
         $this->status = $status;
     }
 
     /**
-     * @param mixed $dateRdv
+     * @return string
      */
-    public function setDateRdv($dateRdv): void
+    public function getDateRdv(): string
+    {
+        return $this->dateRdv;
+    }
+
+    /**
+     * @param string $dateRdv
+     */
+    public function setDateRdv(string $dateRdv): void
     {
         $this->dateRdv = $dateRdv;
     }
 
     /**
-     * @param mixed $heureDebut
+     * @return string
      */
-    public function setHeureDebut($heureDebut): void
+    public function getHeureDebut(): string
+    {
+        return $this->heureDebut;
+    }
+
+    /**
+     * @param string $heureDebut
+     */
+    public function setHeureDebut(string $heureDebut): void
     {
         $this->heureDebut = $heureDebut;
     }
 
     /**
-     * @param mixed $heureFin
+     * @return string
      */
-    public function setHeureFin($heureFin): void
+    public function getHeureFin(): string
+    {
+        return $this->heureFin;
+    }
+
+    /**
+     * @param string $heureFin
+     */
+    public function setHeureFin(string $heureFin): void
     {
         $this->heureFin = $heureFin;
     }
 
     /**
-     * @param mixed $idDemandeur
+     * @return Demandeur
      */
-    public function setIdDemandeur($idDemandeur): void
+    public function getDemandeur(): Demandeur
     {
-        $this->idDemandeur = $idDemandeur;
+        return $this->demandeur;
     }
 
     /**
-     * @param mixed $idService
+     * @param Demandeur $demandeur
      */
-    public function setIdService($idService): void
+    public function setDemandeur(Demandeur $demandeur): void
     {
-        $this->idService = $idService;
+        $this->demandeur = $demandeur;
     }
 
-    /**
-     * @param mixed $idIntervenant
-     */
-    public function setIdIntervenant($idIntervenant): void
+    public function contains(Rendezvous $rendezvous)
     {
-        $this->idIntervenant = $idIntervenant;
+        // check if the given $rendezvous is in the current $rendezvous
+        // return true or false
+
     }
+
 
 }

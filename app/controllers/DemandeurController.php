@@ -26,8 +26,8 @@ class DemandeurController extends Template
     public function index()
     {
         $demandeurs = $this->demandeurRepository->findAll();
-        $demandeurOne = $this->demandeurRepository->find(1);
         dump($demandeurs);
+        die();
 
         $this->render('demandeur/liste-demandeur.twig', [
             'lesDemandeurs' => $demandeurs,

@@ -2,6 +2,8 @@
 namespace App\models\entity;
 
 use App\models\repository\DemandeurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,17 @@ class Demandeur
     #[ORM\ManyToOne(targetEntity: Ville::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idVille', referencedColumnName: 'idVille', nullable: false)]
     private Ville $ville;
+    #[ORM\OneToMany(targetEntity: RendezVous::class, mappedBy: 'demandeur', fetch: 'EAGER')]
+    private ArrayCollection $rendezVous;
+
+    /**
+     * @param RendezVous $rendezVous
+     */
+    public function __construct(RendezVous $rendezVous)
+    {
+        $this->rendezVous = new ArrayCollection();
+    }
+
 
     /**
      * @return mixed
@@ -209,6 +222,33 @@ class Demandeur
     public function setVille(Ville $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getRendezVous(): Collection
+    {
+        return $this->rendezVous;
+    }
+
+    public function addRendezVous(Rendezvous $rendezvous): self
+    {
+        if (!$this->rendezVous->contains($rendezvous)) {
+            $this->rendezVous[] = $rendezvous;
+            $rendezvous->setDemandeur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRendezvous(Rendezvous $rendezvous): self
+    {
+        if ($this->rendezVous->contains($rendezvous)) {
+            $this->rendezVous->removeElement($rendezvous);
+            if ($rendezvous->getDemandeur() === $this) {
+                $rendezvous->setDemandeur(null);
+            }
+        }
 
         return $this;
     }
