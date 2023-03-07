@@ -20,7 +20,7 @@ class IntervenantDAO extends ConnexionDB
 
         $specialites = $intervenant->getSpecialites();
         foreach ($specialites as $service) {
-            $sql = "INSERT INTO realiser (idIntervenant, idService) VALUES (:id, :idService)";
+            $sql = "INSERT INTO Intervenant_Specialite (idIntervenant, idService) VALUES (:id, :idService)";
             $stmt = self::getInstance()->prepare($sql);
             $stmt->bindValue(':id', $intervenant->getIdIntervenant());
             $stmt->bindValue(':idService', $service);

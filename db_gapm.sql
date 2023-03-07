@@ -358,7 +358,7 @@ CREATE TABLE `Realiser`
 -- Déchargement des données de la table `Realiser`
 --
 
-INSERT INTO `Realiser` (`idIntervenant`, `idSpecialite`)
+INSERT INTO Intervenant_Specialite (`idIntervenant`, `idSpecialite`)
 VALUES (1, 1),
        (1, 3),
        (2, 5),
@@ -36819,7 +36819,7 @@ ALTER TABLE `RDV`
 --
 -- Index pour la table `Realiser`
 --
-ALTER TABLE `Realiser`
+ALTER TABLE Intervenant_Specialite
     ADD PRIMARY KEY (`idIntervenant`, `idSpecialite`),
     ADD KEY `idSpecialite` (`idSpecialite`);
 
@@ -37019,7 +37019,7 @@ ALTER TABLE `RDV`
 --
 -- Contraintes pour la table `Realiser`
 --
-ALTER TABLE `Realiser`
+ALTER TABLE Intervenant_Specialite
     ADD CONSTRAINT `Realiser_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `Realiser_ibfk_2` FOREIGN KEY (`idSpecialite`) REFERENCES `Specialite` (`idSpecialite`) ON DELETE CASCADE ON UPDATE CASCADE;
 

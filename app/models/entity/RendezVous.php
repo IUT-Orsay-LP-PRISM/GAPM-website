@@ -26,8 +26,9 @@ class RendezVous
     #[ORM\OneToOne(targetEntity: Demandeur::class, fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
     private Demandeur $demandeur;
-
-
+    #[ORM\ManyToOne(targetEntity: Specialite::class, fetch: 'EAGER')]
+    #[ORM\JoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
+    private Specialite $specialite;
 
     /**
      * @return int
@@ -130,6 +131,22 @@ class RendezVous
         // check if the given $rendezvous is in the current $rendezvous
         // return true or false
 
+    }
+
+    /**
+     * @return Specialite
+     */
+    public function getSpecialite(): Specialite
+    {
+        return $this->specialite;
+    }
+
+    /**
+     * @param Specialite $specialite
+     */
+    public function setSpecialite(Specialite $specialite): void
+    {
+        $this->specialite = $specialite;
     }
 
 

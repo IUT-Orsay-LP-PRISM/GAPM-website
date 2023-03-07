@@ -24,7 +24,7 @@ class ServiceDAO extends ConnexionDB
 
     public static function findByIdIntervenant($idIntervenant)
     {
-        $sql = "SELECT service.* FROM realiser INNER JOIN service ON realiser.idService = service.idService WHERE idIntervenant = :idIntervenant";
+        $sql = "SELECT service.* FROM Intervenant_Specialite INNER JOIN service ON Intervenant_Specialite.idService = service.idService WHERE idIntervenant = :idIntervenant";
         $stmt = self::getInstance()->prepare($sql);
         $stmt->execute([
             'idIntervenant' => $idIntervenant

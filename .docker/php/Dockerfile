@@ -6,4 +6,6 @@ RUN apt update \
     && apt install -y zlib1g-dev g++ git zip libzip-dev libicu-dev zip default-libmysqlclient-dev \
     && docker-php-ext-install pdo pdo_mysql intl \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
