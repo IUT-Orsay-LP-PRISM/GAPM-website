@@ -5,8 +5,10 @@ namespace App\controllers;
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
 use App\models\entity\Session;
+use App\models\entity\Specialite;
 use App\models\entity\Ville;
 use App\models\repository\DemandeurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 
 
@@ -193,6 +195,11 @@ class DemandeurController extends Template
         $specialites = [];
         $containerError = 'inscription';
         if (isset($_POST['specialites'])) {
+            if ($_POST['specialites'] == 'null') {
+                $referer = self::addErrorToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
+                header("Location: $referer");
+                exit();
+            }
             $inscriptionIntervenant = true;
             $containerError = 'inscription-intervenant';
             $specialitesString = $_POST['specialites'];
@@ -225,12 +232,13 @@ class DemandeurController extends Template
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
 
-
             $cityId = (int)$city;
             $ville = $this->entityManager->getRepository(Ville::class)->find($cityId);
             $login = strtolower($firstname . "." . $lastname);
 
-            $demandeur = new Demandeur();
+            $type = $inscriptionIntervenant ? 'intervenant' : 'demandeur';
+
+            $demandeur = $inscriptionIntervenant ? new Intervenant() : new Demandeur();
             $demandeur->setNom($lastname);
             $demandeur->setLogin($login);
             $demandeur->setPrenom($firstname);
@@ -241,32 +249,28 @@ class DemandeurController extends Template
             $demandeur->setTelephone($phone);
             $demandeur->setSexe($sexe);
             $demandeur->setVille($ville);
+            $demandeur->setType($type);
 
-            // On persist => on dit à doctrine de garder en mémoire l'objet
-            $this->entityManager->persist($demandeur);
-            // On flush => on dit à doctrine d'écrire dans la base de données
-            $this->entityManager->flush();
-
-            // TODO : gérer register intervenant ; update field type = demandeur > intervenant ; créer intervenant&
             if ($inscriptionIntervenant) {
-                $intervenant = new Intervenant();
-                $intervenant->setIdIntervenant($demandeur->getIdDemandeur());
-                $intervenant->setSpecialites($specialites);
+                $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
+                $demandeur->setSpecialites(new ArrayCollection($specialites));
                 //$intervenant->setVoiture($voiture);
                 // TODO : ajouter voiture et demande voiture
-
-                $intervenant = IntervenantDAO::create($intervenant);
             }
 
-            if ($demandeur) {
-                Session::set('user', $demandeur);
-                header('Location: /');
-            } else {
-                header('Location: /');
+            try {
+                $this->entityManager->persist($demandeur);
+                $this->entityManager->flush();
+            } catch (Exception $e) {
+                $referer = self::addErrorToUrl('Une erreur est survenue.', $containerError);
+                header("Location: $referer");
+                exit();
             }
-
+            Session::set('user', $demandeur);
+            header('Location: /');
         }
     }
+
 
     public static function logout()
     {

@@ -3,6 +3,7 @@
 namespace App\models\entity;
 
 use App\models\repository\IntervenantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -64,9 +65,9 @@ class Intervenant extends Demandeur
     }
 
     /**
-     * @param Collection $specialites
+     * @param ArrayCollection $specialites
      */
-    public function setSpecialites(Collection $specialites): void
+    public function setSpecialites(ArrayCollection $specialites): void
     {
         $this->specialites = $specialites;
     }

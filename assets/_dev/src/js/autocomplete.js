@@ -87,7 +87,6 @@ function ajaxVille(div_auto_complete, input) {
     function callback(xhr) {
         if (xhr.status === 200) {
             const data = JSON.parse(xhr.responseText);
-            console.log(data);
             div_auto_complete.innerHTML = '';
             data.forEach(element => {
                 const p = document.createElement('p');
