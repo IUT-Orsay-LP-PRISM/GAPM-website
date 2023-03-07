@@ -128,8 +128,7 @@ class RendezVous
 
     public function contains(Rendezvous $rendezvous)
     {
-        // check if the given $rendezvous is in the current $rendezvous
-        // return true or false
+        // todo check si un rendez-vous est déjà pris à cette date et à cette heure
 
     }
 

@@ -2,10 +2,11 @@
 
 namespace App\models\entity;
 
+use App\models\repository\IntervenantRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: IntervenantRepository::class)]
 #[ORM\Table(name: 'Intervenant')]
 class Intervenant extends Demandeur
 {

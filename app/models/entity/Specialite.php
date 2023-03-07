@@ -2,9 +2,10 @@
 
 namespace App\models\entity;
 
+use App\models\Repository\SpecialiteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: SpecialiteRepository::class)]
 #[ORM\Table(name: 'Specialite')]
 class Specialite
 {
