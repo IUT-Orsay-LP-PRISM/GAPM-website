@@ -94,7 +94,8 @@ CREATE TABLE `Demandeur`
     `adresse`       varchar(50) NOT NULL,
     `telephone`     varchar(50) NOT NULL,
     `sexe`          varchar(1)  NOT NULL,
-    `idVille`      int(11)     NOT NULL
+    `idVille`      int(11)     NOT NULL,
+    `type`      varchar(50)    DEFAULT 'demandeur'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -103,13 +104,13 @@ CREATE TABLE `Demandeur`
 -- Déchargement des données de la table `Demandeur`
 --
 
-INSERT INTO `Demandeur` (`idDemandeur`, `email`, `login`, `motDePasse`, `nom`, `prenom`, `dateNaissance`, `adresse`, `telephone`, `sexe`, `idVille`) VALUES
-(1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '1990-01-01', '123 rue Principale', '555-5555', 'M', 1),
-(2, 'jane.doe@example.com', 'jane.doe', 'seA/6v3hNAL1.', 'Doe', 'Jane', '1995-05-05', '456 rue Secondaire', '555-5555', 'F', 2),
-(3, 'bob.smith@example.com', 'bob.smith', 'seA/6v3hNAL1.', 'Smith', 'Bob', '1985-02-10', '789 rue Tertiaire', '555-5555', 'M', 1),
-(4, 'alice.white@example.com', 'alice.white', 'seA/6v3hNAL1.', 'White', 'Alice', '1999-12-25', '1011 rue Quaternaire', '555-5555', 'F', 3),
-(5, 'jack.black@example.com', 'jack.black', 'seA/6v3hNAL1.', 'Black', 'Jack', '1978-06-30', '1213 rue Cinquième', '555-5555', 'M', 2),
-(6, 'fred@fred', 'fred.fred', 'seA/6v3hNAL1.', 'Dabadie', 'Frédéric', '2002-04-21', '12 rue tire barbe', '0123456789', 'F', 8);
+INSERT INTO `Demandeur` (`idDemandeur`, `email`, `login`, `motDePasse`, `nom`, `prenom`, `dateNaissance`, `adresse`, `telephone`, `sexe`, `idVille`, `type`) VALUES
+(1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '1990-01-01', '123 rue Principale', '555-5555', 'M', 1, "intervenant"),
+(2, 'jane.doe@example.com', 'jane.doe', 'seA/6v3hNAL1.', 'Doe', 'Jane', '1995-05-05', '456 rue Secondaire', '555-5555', 'F', 2, "intervenant"),
+(3, 'bob.smith@example.com', 'bob.smith', 'seA/6v3hNAL1.', 'Smith', 'Bob', '1985-02-10', '789 rue Tertiaire', '555-5555', 'M', 1, "demandeur"),
+(4, 'alice.white@example.com', 'alice.white', 'seA/6v3hNAL1.', 'White', 'Alice', '1999-12-25', '1011 rue Quaternaire', '555-5555', 'F', 3, "demandeur"),
+(5, 'jack.black@example.com', 'jack.black', 'seA/6v3hNAL1.', 'Black', 'Jack', '1978-06-30', '1213 rue Cinquième', '555-5555', 'M', 2, "intervenant"),
+(6, 'fred@fred', 'fred.fred', 'seA/6v3hNAL1.', 'Dabadie', 'Frédéric', '2002-04-21', '12 rue tire barbe', '0123456789', 'F', 8, "demandeur");
 -- --------------------------------------------------------
 
 --
@@ -235,7 +236,7 @@ INSERT INTO `FichePaie` (`idFichePaie`, `URL`, `idIntervenant`, `idPersonnel`) V
 
 CREATE TABLE `Intervenant`
 (
-    `idIntervenant` int(11) NOT NULL,
+    `idDemandeur` int(11) NOT NULL,
     `adressePro` varchar(255) DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -247,7 +248,7 @@ CREATE TABLE `Intervenant`
 -- Déchargement des données de la table `Intervenant`
 --
 
-INSERT INTO `Intervenant` (`idIntervenant`, `adressePro`) VALUES
+INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`) VALUES
 (1, '100 rue des Intervenants'),
 (2, '200 rue des Experts'),
 (5, '500 chemin des Professionnels');
@@ -346,7 +347,7 @@ VALUES (1, 'Confirme', '2023-02-01', '10:00', '11:00', 1, 1, 1),
 -- Structure de la table `Realiser`
 --
 
-CREATE TABLE `Realiser`
+CREATE TABLE `Intervenant_Specialite`
 (
     `idIntervenant` int(11) NOT NULL,
     `idSpecialite`     int(11) NOT NULL
@@ -36792,7 +36793,7 @@ ALTER TABLE `FichePaie`
 -- Index pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD PRIMARY KEY (`idIntervenant`);
+    ADD PRIMARY KEY (`idDemandeur`);
 
 --
 -- Index pour la table `NoteFrais`
@@ -36819,7 +36820,7 @@ ALTER TABLE `RDV`
 --
 -- Index pour la table `Realiser`
 --
-ALTER TABLE Intervenant_Specialite
+ALTER TABLE `Intervenant_Specialite`
     ADD PRIMARY KEY (`idIntervenant`, `idSpecialite`),
     ADD KEY `idSpecialite` (`idSpecialite`);
 
@@ -36954,7 +36955,7 @@ ALTER TABLE `Voiture`
 --
 ALTER TABLE `Commentaire`
     ADD CONSTRAINT `Commentaire_ibfk_1` FOREIGN KEY (`idRdv`) REFERENCES `RDV` (`idRdv`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Commentaire_ibfk_2` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Commentaire_ibfk_2` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
 -- Contraintes pour la table `Demandeur`
 --
@@ -36965,20 +36966,20 @@ ALTER TABLE `Demandeur`
 -- Contraintes pour la table `Emet`
 --
 ALTER TABLE `Emet`
-    ADD CONSTRAINT `Emet_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Emet_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `Emet_ibfk_2` FOREIGN KEY (`idNoteFrais`) REFERENCES `NoteFrais` (`idNoteFrais`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Empechement`
 --
 ALTER TABLE `Empechement`
-    ADD CONSTRAINT `Empechement_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Empechement_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Emprunt`
 --
 ALTER TABLE `Emprunt`
-    ADD CONSTRAINT `Emprunt_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Emprunt_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `Emprunt_ibfk_2` FOREIGN KEY (`idPersonnel`) REFERENCES `Personnel` (`idPersonnel`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `Emprunt_ibfk_3` FOREIGN KEY (`idVoiture`) REFERENCES `Voiture` (`idVoiture`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -36986,21 +36987,21 @@ ALTER TABLE `Emprunt`
 -- Contraintes pour la table `Exercer`
 --
 ALTER TABLE `Exercer`
-    ADD CONSTRAINT `Exercer_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Exercer_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `Exercer_ibfk_2` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `FichePaie`
 --
 ALTER TABLE `FichePaie`
-    ADD CONSTRAINT `FichePaie_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `FichePaie_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `FichePaie_ibfk_2` FOREIGN KEY (`idPersonnel`) REFERENCES `Personnel` (`idPersonnel`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `NoteFrais`
@@ -37014,13 +37015,13 @@ ALTER TABLE `NoteFrais`
 ALTER TABLE `RDV`
     ADD CONSTRAINT `RDV_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `RDV_ibfk_2` FOREIGN KEY (`idSpecialite`) REFERENCES `Specialite` (`idSpecialite`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `RDV_ibfk_3` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `RDV_ibfk_3` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Realiser`
 --
-ALTER TABLE Intervenant_Specialite
-    ADD CONSTRAINT `Realiser_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
+ALTER TABLE `Intervenant_Specialite`
+    ADD CONSTRAINT `Realiser_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `Realiser_ibfk_2` FOREIGN KEY (`idSpecialite`) REFERENCES `Specialite` (`idSpecialite`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
