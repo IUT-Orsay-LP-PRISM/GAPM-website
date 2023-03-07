@@ -2,17 +2,23 @@
 
 namespace App\controllers;
 
-use App\models\dao\DemandeurDAO;
-use App\models\dao\IntervenantDAO;
-use App\models\dao\ServiceDAO;
-use App\models\dao\VilleDAO;
-use App\models\dao\RendezVousDAO;
 use App\models\entity\RendezVous;
 use App\models\entity\Session;
+use App\models\repository\IntervenantRepository;
+use Doctrine\ORM\EntityManager;
 
-abstract class RendezVousController extends Template implements InterfaceController
+class RendezVousController extends Template
 {
-    public static function index()
+    private IntervenantRepository $rendezVousRepository;
+    private EntityManager $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+        $this->rendezVousRepository = $entityManager->getRepository(RendezVous::class);
+    }
+
+    public function index()
     {
         if (!Session::isLogged()) {
             header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
@@ -38,7 +44,7 @@ abstract class RendezVousController extends Template implements InterfaceControl
         ]);
     }
 
-    public static function createRDV()
+    public function createRDV()
     {
         if (Session::isLogged() == false) {
             header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
@@ -88,7 +94,7 @@ abstract class RendezVousController extends Template implements InterfaceControl
         }
     }
 
-    public static function success()
+    public function success()
     {
 
         $date = $_GET['date'];
@@ -105,7 +111,7 @@ abstract class RendezVousController extends Template implements InterfaceControl
         ]);
     }
 
-public static function getHoraireNotAvailableByIntervenant()
+    public function getHoraireNotAvailableByIntervenant()
     {
         $date = $_GET['date'];
         $idIntervenant = $_GET['idIntervenant'];

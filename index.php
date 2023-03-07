@@ -1,31 +1,26 @@
 <?php
-
-require 'vendor/autoload.php';
-\App\models\entity\Session::start();
-
 use App\controllers\Route;
-use Symfony\Component\Dotenv\Dotenv;
+use App\models\entity\Session;
+require 'vendor/autoload.php';
+require_once 'bootstrap.php';
 
-$dotenv = new Dotenv();
-$dotenv->load('.env.local');
+Session::start();
 
-// Les get de l'url
-// Basé sur /?action=...
+global $entityManagerFactory;
+$entityManager = $entityManagerFactory();
+
 Route::get('demandeur', 'DemandeurController', 'index');
 Route::get('inscription-intervenant', 'IntervenantController', 'index');
 Route::get('logout', 'DemandeurController', 'logout');
-Route::get('my-account', 'DemandeurController', 'myAccount');
+Route::get('my-account', 'DemandeurController', 'displayMyAccount');
 Route::get('prendre-rdv', 'RendezVousController', 'index');
 Route::get('success-rdv', 'RendezVousController', 'success');
 
-// Les post de l'url
 Route::post('login-user', 'DemandeurController', 'login');
 Route::post('register-user', 'DemandeurController', 'register');
 Route::post('my-account-edit', 'DemandeurController', 'update');
 Route::post('my-account-delete', 'DemandeurController', 'delete');
 Route::post('confirm-RDV', 'RendezVousController', 'createRDV');
-
-
 
 // route::search pour le système de recherche, différent de ::get()
 Route::search('/?action=search');
