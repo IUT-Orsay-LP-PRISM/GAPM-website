@@ -5,13 +5,31 @@ namespace App\controllers;
 use App\models\dao\IntervenantDAO;
 use App\models\DAO\ServiceDAO;
 use App\models\DAO\VilleDAO;
+use App\models\entity\Intervenant;
+use App\models\entity\RendezVous;
+use App\models\entity\Specialite;
+use App\models\entity\Ville;
+use App\models\repository\IntervenantRepository;
+use Doctrine\ORM\EntityManager;
 
-abstract class SearchController extends Template implements InterfaceController
+class SearchController extends Template
 {
-    public static function index()
+
+    private EntityManager $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    public function index()
     {
         $nom = $_GET['s_name'] ?? null;
         $city = $_GET['s_city'] ?? null;
+
+        $intervenants = $this->entityManager->getRepository(Intervenant::class);
+        $specialites = $this->entityManager->getRepository(Specialite::class);
+
 
         $intervenants = IntervenantDAO::findByNameOrCity($nom, $city);
         foreach ($intervenants as $intervenant) {

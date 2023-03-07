@@ -2,80 +2,73 @@
 
 namespace App\models\entity;
 
+use App\models\repository\IntervenantRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: IntervenantRepository::class)]
+#[ORM\Table(name: 'Intervenant')]
 class Intervenant extends Demandeur
 {
-
-    private $idIntervenant;
-    private $adressePro;
-
+    #[ORM\Column]
+    private string $adressePro;
+    #[ORM\JoinTable(name: 'Intervenant_Specialite')]
+    #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
+    #[ORM\InverseJoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
+    #[ORM\ManyToMany(targetEntity: Specialite::class, fetch: 'EAGER')]
     private $specialites;
 
-    // -------------------------------------------------------------------------------------------
-    // Constructeur
-
-    /**
-     * @param array|null $data Constructeur qui prend un tableau en paramètres, ça sera toutes les propriétés cités ci-dessus en + du demandeur
-     */
-    public function __construct(array $data = null)
+    public function __construct()
     {
-        parent::__construct($data);
-        if ($data != null) {
-            foreach ($data as $key => $element) {
-                $this->$key = $element;
-            }
-        }
+        $this->specialites = new ArrayCollection();
     }
 
-    // -------------------------------------------------------------------------------------------
-    // getters & setters
     /**
-     * @return mixed
+     * @return int
      */
-    public function getIdIntervenant()
+    public function getIdIntervenant(): int
     {
         return $this->idIntervenant;
     }
 
     /**
-     * @param mixed $idIntervenant
+     * @param int $idIntervenant
      */
-    public function setIdIntervenant($idIntervenant)
+    public function setIdIntervenant(int $idIntervenant): void
     {
         $this->idIntervenant = $idIntervenant;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAdressePro()
+    public function getAdressePro(): string
     {
         return $this->adressePro;
     }
 
     /**
-     * @param mixed $adressePro
+     * @param string $adressePro
      */
-    public function setAdressePro($adressePro)
+    public function setAdressePro(string $adressePro): void
     {
         $this->adressePro = $adressePro;
     }
 
     /**
-     * @return mixed
+     * @return Collection
      */
-    public function getSpecialites()
+    public function getSpecialites(): Collection
     {
         return $this->specialites;
     }
 
     /**
-     * @param mixed $specialites
+     * @param Collection $specialites
      */
-
-    public function setSpecialites($specialites)
+    public function setSpecialites(Collection $specialites): void
     {
         $this->specialites = $specialites;
     }
-
 
 }

@@ -3,29 +3,36 @@
 namespace App\controllers;
 
 use App\models\entity\Demandeur;
-use App\models\dao\VilleDAO;
-use App\models\dao\DemandeurDAO;
-use App\models\entity\Session;
 use App\models\entity\Intervenant;
-use App\models\dao\IntervenantDAO;
+use App\models\entity\Session;
+use App\models\entity\Ville;
+use App\models\repository\DemandeurRepository;
+use Doctrine\ORM\EntityManager;
 
 
-abstract class DemandeurController extends Template implements InterfaceController
+class DemandeurController extends Template
 {
-    public static function index()
-    {
-        $lesDemandeurs = DemandeurDAO::findAll();
-        $unDemandeur = DemandeurDAO::findById(5);
+    private DemandeurRepository $demandeurRepository;
+    private EntityManager $entityManager;
 
-        self::render('demandeur/liste-demandeur.twig', [
-            'lesDemandeurs' => $lesDemandeurs,
-            'unDemandeur' => $unDemandeur,
-        ]);
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+        $this->demandeurRepository = $entityManager->getRepository(Demandeur::class);
     }
 
-    public static function store()
+    public function index()
     {
-        // TODO: Implement store() method.
+        $demandeurs = $this->demandeurRepository->findAll();
+        $intervenants = $this->entityManager->getRepository(Intervenant::class)->findAll();
+
+        dump($demandeurs);
+        echo "-----------";
+        dump($intervenants);
+
+        $this->render('demandeur/liste-demandeur.twig', [
+            'lesDemandeurs' => $demandeurs,
+        ]);
     }
 
     public static function update()
@@ -110,11 +117,6 @@ abstract class DemandeurController extends Template implements InterfaceControll
         }
     }
 
-    public static function show()
-    {
-        // TODO: Implement show() method.
-    }
-
     private static function addErrorToUrl($error, $containerError): string
     {
         $referer = $_SERVER['HTTP_REFERER'];
@@ -131,13 +133,13 @@ abstract class DemandeurController extends Template implements InterfaceControll
         return $referer;
     }
 
-    public static function login()
+    public function login()
     {
         function removeErrorFromUrl(): string
         {
             $referer = $_SERVER['HTTP_REFERER'];
             $referer_parts = parse_url($referer);
-            if (isset($referer_parts['query'])) { // remove error query param
+            if (isset($referer_parts['query'])) {
                 parse_str($referer_parts['query'], $query_params);
                 unset($query_params['error']);
                 unset($query_params['c']);
@@ -147,16 +149,24 @@ abstract class DemandeurController extends Template implements InterfaceControll
             return $referer;
         }
 
-        // TODO: faire la fonction pour valider chaque champs en regex
-        if (!empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['email']) && isset($_POST['password'])) {
+        $isValid = !empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['email']) && isset($_POST['password']);
 
+        if ($isValid) {
+
+            //TODO vérifier chaque champs avec regex
             $email = $_POST['email'];
             $password = $_POST['password'];
 
+            // TODO changer le sel par un vrai sel
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
-            if (DemandeurDAO::checkIfEmailExists($email)) {
-                $user = DemandeurDAO::getUserFromEmail($email);
+
+            $demandeur = $this->demandeurRepository->findOneBy(['email' => $email]);
+            $emailExists = !empty($demandeur);
+
+            if ($emailExists) {
+                $user = $demandeur;
+
                 if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('user', $user);
 
@@ -176,8 +186,7 @@ abstract class DemandeurController extends Template implements InterfaceControll
         }
     }
 
-
-    public static function register()
+    public function register()
     {
         $inscriptionIntervenant = false;
         $voiture = 0;
@@ -193,12 +202,17 @@ abstract class DemandeurController extends Template implements InterfaceControll
             $voiture = $_POST['voiture'] ?? 0;
         }
 
+        // TODO vérifier champ
         $email = $_POST['mail'];
-        $user = DemandeurDAO::getUserFromEmail($email);
-        if ($user) {
+
+        $demandeur = $this->demandeurRepository->findOneBy(['email' => $email]);
+        $emailExists = !empty($demandeur);
+
+        if ($emailExists) {
             $referer = self::addErrorToUrl('Cette email est déjà utilisé.', $containerError);
             header("Location: $referer");
         } else {
+            // TODO vérifier chaque champs ; faire une classe de vérification ?
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
             $birthday = $_POST['birthday'];
@@ -210,19 +224,30 @@ abstract class DemandeurController extends Template implements InterfaceControll
 
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
+
+
+            $cityId = (int)$city;
+            $ville = $this->entityManager->getRepository(Ville::class)->find($cityId);
+            $login = strtolower($firstname . ".". $lastname);
+
             $demandeur = new Demandeur();
             $demandeur->setNom($lastname);
+            $demandeur->setLogin($login);
             $demandeur->setPrenom($firstname);
             $demandeur->setEmail($email);
             $demandeur->setDateNaissance($birthday);
             $demandeur->setAdresse($address);
-            $demandeur->setIdVille($city);
             $demandeur->setMotDePasse($saltedAndHashed);
             $demandeur->setTelephone($phone);
             $demandeur->setSexe($sexe);
+            $demandeur->setVille($ville);
 
-            $demandeur = DemandeurDAO::create($demandeur);
+            // On persist => on dit à doctrine de garder en mémoire l'objet
+            $this->entityManager->persist($demandeur);
+            // On flush => on dit à doctrine d'écrire dans la base de données
+            $this->entityManager->flush();
 
+            // TODO : gérer register intervenant ; update field type = demandeur > intervenant ; créer intervenant&
             if ($inscriptionIntervenant) {
                 $intervenant = new Intervenant();
                 $intervenant->setIdIntervenant($demandeur->getIdDemandeur());
@@ -239,9 +264,9 @@ abstract class DemandeurController extends Template implements InterfaceControll
             } else {
                 header('Location: /');
             }
+
         }
     }
-
 
     public static function logout()
     {
@@ -249,18 +274,13 @@ abstract class DemandeurController extends Template implements InterfaceControll
         header('Location: /');
     }
 
-    public static function myAccount()
+    public function displayMyAccount()
     {
         $user = Session::get('user');
-        $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
-        $ville = VilleDAO::findById($demandeur->getIdVille());
 
         self::render('demandeur/mon-compte.twig', [
-            'demandeur' => $demandeur,
-            'loader' => false,
             'title' => 'Mon compte',
-            'ville' => $ville,
-            'view' => $_GET['view'] ?? 'perso',
+            'demandeur' => $user,
         ]);
     }
 }

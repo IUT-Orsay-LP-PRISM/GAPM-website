@@ -2511,17 +2511,19 @@ body.intervenant {
   body.intervenant .input-container {
     font-family: "Poppins", sans-serif;
     position: relative;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-    border-radius: 10px;
     width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    border-radius: 10px;
+    border: 1px solid #b5b5b5;
     font-size: 18px;
     overflow: hidden;
     padding-right: 1rem;
     background-color: #FFFFFF; }
+    body.intervenant .input-container:focus {
+      border: 2px solid #257466; }
     body.intervenant .input-container .js-iconEyePassword {
       z-index: 1; }
     body.intervenant .input-container i {
@@ -2539,7 +2541,7 @@ body.intervenant {
       body.intervenant .input-container .input:valid + label, body.intervenant .input-container .input:focus + label, body.intervenant .input-container .input.input[type="email"]:not(:placeholder-shown) + label {
         color: grey;
         font-size: .8rem;
-        top: -15px;
+        top: -12px;
         pointer-events: none;
         font-family: "Poppins", sans-serif; }
     body.intervenant .input-container select.input + label {
@@ -3917,17 +3919,19 @@ body.demandeur {
   body.demandeur .input-container {
     font-family: "Poppins", sans-serif;
     position: relative;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
-    border-radius: 10px;
     width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    border-radius: 10px;
+    border: 1px solid #b5b5b5;
     font-size: 18px;
     overflow: hidden;
     padding-right: 1rem;
     background-color: #FFFFFF; }
+    body.demandeur .input-container:focus {
+      border: 2px solid #393BAA; }
     body.demandeur .input-container .js-iconEyePassword {
       z-index: 1; }
     body.demandeur .input-container i {
@@ -3945,7 +3949,7 @@ body.demandeur {
       body.demandeur .input-container .input:valid + label, body.demandeur .input-container .input:focus + label, body.demandeur .input-container .input.input[type="email"]:not(:placeholder-shown) + label {
         color: grey;
         font-size: .8rem;
-        top: -15px;
+        top: -12px;
         pointer-events: none;
         font-family: "Poppins", sans-serif; }
     body.demandeur .input-container select.input + label {

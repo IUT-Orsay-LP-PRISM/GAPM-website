@@ -2,31 +2,27 @@
 
 namespace App\models\entity;
 
+use App\models\repository\VilleRepository;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: VilleRepository::class)]
+#[ORM\Table(name: 'Ville')]
 class Ville
 {
+    #[ORM\Id]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
     private $idVille;
+    #[ORM\Column]
     private $nom;
+    #[ORM\Column]
     private $codePostal;
-    private $codeDepartement;
 
-    // -------------------------------------------------------------------------------------------
-    // Constructeur
-    function __construct(array $data = null)
-    {
-        if ($data != null) {
-            foreach ($data as $key => $element) {
-                $this->$key = $element;
-            }
-        }
-    }
-
-
-    // -------------------------------------------------------------------------------------------
-    // Getters & Setters
     /**
      * @return mixed
      */
-    public function getIdVille()
+    public function getIdVille(): mixed
     {
         return $this->idVille;
     }
@@ -34,7 +30,7 @@ class Ville
     /**
      * @param mixed $idVille
      */
-    public function setIdVille($idVille)
+    public function setIdVille(mixed $idVille)
     {
         $this->idVille = $idVille;
     }
@@ -42,7 +38,7 @@ class Ville
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getNom(): mixed
     {
         return $this->nom;
     }
@@ -50,7 +46,7 @@ class Ville
     /**
      * @param mixed $nom
      */
-    public function setNom($nom)
+    public function setNom($nom): void
     {
         $this->nom = $nom;
     }
@@ -58,7 +54,7 @@ class Ville
     /**
      * @return mixed
      */
-    public function getCodePostal()
+    public function getCodePostal(): mixed
     {
         return $this->codePostal;
     }
@@ -66,24 +62,10 @@ class Ville
     /**
      * @param mixed $codePostal
      */
-    public function setCodePostal($codePostal)
+    public function setCodePostal($codePostal): void
     {
         $this->codePostal = $codePostal;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCodeDepartement()
-    {
-        return $this->codeDepartement;
-    }
-
-    /**
-     * @param mixed $codeDepartement
-     */
-    public function setCodeDepartement($codeDepartement)
-    {
-        $this->codeDepartement = $codeDepartement;
-    }
 }
+
+

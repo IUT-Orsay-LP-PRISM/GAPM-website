@@ -7,32 +7,8 @@
             "email": "louis.lubineau@universite-paris-saclay.fr"
         },
         {
-            "name": "Christopher",
-            "email": "christopher.dent@universite-paris-saclay.fr"
-        },
-        {
             "name": "Frédéric",
             "email": "frederic.dabadie@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Valentin",
-            "email": "valentin.chretien@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Joel",
-            "email": "joel.e@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Enolah",
-            "email": "enolah.e@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Taisong",
-            "email": "taisong.ma@universite-paris-saclay.fr"
-        },
-        {
-            "name": "Mathieu",
-            "email": "mathieu.morgat@universite-paris-saclay.fr"
         }
     ],
     "minimum-stability": "dev",
@@ -43,10 +19,14 @@
     },
     "require": {
       "ext-pdo": "*",
-        "twig/twig": "3.0",
+        "twig/twig": "3.5.1",
         "symfony/asset": "5.4.x-dev",
         "polarising/bcrypt": "dev-master",
-        "symfony/dotenv": "5.4.x-dev"
+        "symfony/dotenv": "5.4.x-dev",
+        "doctrine/orm": "2.15.x-dev",
+        "symfony/cache": "5.4.x-dev",
+        "doctrine/annotations": "2.0.x-dev",
+        "doctrine/dbal": "^3.7"
     },
     "require-dev": {
         "symfony/var-dumper": "5.4.x-dev"

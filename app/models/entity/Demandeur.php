@@ -1,45 +1,50 @@
 <?php
-
 namespace App\models\entity;
 
+use App\models\repository\DemandeurRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: DemandeurRepository::class)]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
+#[ORM\DiscriminatorMap(['demandeur' => Demandeur::class, 'intervenant' => Intervenant::class])]
+#[ORM\Table(name: 'Demandeur')]
 class Demandeur
 {
-
-    private int $idDemandeur;
+    #[ORM\Id]
+    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\GeneratedValue]
+    protected int $idDemandeur;
+    #[ORM\Column(unique: true)]
     private string $login;
+    #[ORM\Column(unique: true)]
     private string $email;
+    #[ORM\Column]
     private string $motDePasse;
+    #[ORM\Column]
     private string $nom;
+    #[ORM\Column]
     private string $prenom;
+    #[ORM\Column]
     private string $dateNaissance;
+    #[ORM\Column]
     private string $adresse;
+    #[ORM\Column]
     private string $telephone;
+    #[ORM\Column]
     private string $sexe;
-    private int $idVille;
+    #[ORM\ManyToOne(targetEntity: Ville::class, fetch: 'EAGER')]
+    #[ORM\JoinColumn(name: 'idVille', referencedColumnName: 'idVille', nullable: false)]
+    private Ville $ville;
+    #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: RendezVous::class, fetch: 'LAZY')]
+    private $rendezVous;
 
-    // -------------------------------------------------------------------------------------------
-    // Constructeur
-    /**
-     * @param int $idDemandeur Id du demandeur
-     * @param String $login Login permettant de l'identifier
-     * @param String $motDePasse Son MDP chiffré
-     * @param String $nom Son nom
-     * @param String $prenom Son prenom
-     * @param array|null $data Le reste des données formatées en tableau pour l'insertion de données facultatives
-     */
-    public function __construct(array $data = null)
-    {
-        if ($data != null) {
-            foreach ($data as $key => $element) {
-                $this->$key = $element;
-            }
-        }
-    }
+    #
 
-    // -------------------------------------------------------------------------------------------
-    // getters & setters
     /**
-     * @return int
+     * @return mixed
      */
     public function getIdDemandeur()
     {
@@ -47,15 +52,15 @@ class Demandeur
     }
 
     /**
-     * @param int $idDemandeur
+     * @param mixed $idDemandeur
      */
-    public function setIdDemandeur(int $idDemandeur)
+    public function setIdDemandeur($idDemandeur): void
     {
         $this->idDemandeur = $idDemandeur;
     }
 
     /**
-     * @return String
+     * @return mixed
      */
     public function getLogin()
     {
@@ -63,15 +68,31 @@ class Demandeur
     }
 
     /**
-     * @param String $login
+     * @param mixed $login
      */
-    public function setLogin(string $login)
+    public function setLogin($login): void
     {
         $this->login = $login;
     }
 
     /**
-     * @return String
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
      */
     public function getMotDePasse()
     {
@@ -79,15 +100,15 @@ class Demandeur
     }
 
     /**
-     * @param String $motDePasse
+     * @param mixed $motDePasse
      */
-    public function setMotDePasse(string $motDePasse)
+    public function setMotDePasse($motDePasse): void
     {
         $this->motDePasse = $motDePasse;
     }
 
     /**
-     * @return String
+     * @return mixed
      */
     public function getNom()
     {
@@ -95,15 +116,15 @@ class Demandeur
     }
 
     /**
-     * @param String $nom
+     * @param mixed $nom
      */
-    public function setNom(string $nom)
+    public function setNom($nom): void
     {
         $this->nom = $nom;
     }
 
     /**
-     * @return String
+     * @return mixed
      */
     public function getPrenom()
     {
@@ -111,15 +132,15 @@ class Demandeur
     }
 
     /**
-     * @param String $prenom
+     * @param mixed $prenom
      */
-    public function setPrenom(string $prenom)
+    public function setPrenom($prenom): void
     {
         $this->prenom = $prenom;
     }
 
     /**
-     * @return String
+     * @return mixed
      */
     public function getDateNaissance()
     {
@@ -127,15 +148,15 @@ class Demandeur
     }
 
     /**
-     * @param String $dateNaissance
+     * @param mixed $dateNaissance
      */
-    public function setDateNaissance(string $dateNaissance)
+    public function setDateNaissance($dateNaissance): void
     {
         $this->dateNaissance = $dateNaissance;
     }
 
     /**
-     * @return String
+     * @return mixed
      */
     public function getAdresse()
     {
@@ -143,15 +164,15 @@ class Demandeur
     }
 
     /**
-     * @param String $adresse
+     * @param mixed $adresse
      */
-    public function setAdresse(string $adresse)
+    public function setAdresse($adresse): void
     {
         $this->adresse = $adresse;
     }
 
     /**
-     * @return String
+     * @return mixed
      */
     public function getTelephone()
     {
@@ -159,15 +180,15 @@ class Demandeur
     }
 
     /**
-     * @param String $telephone
+     * @param mixed $telephone
      */
-    public function setTelephone(string $telephone)
+    public function setTelephone($telephone): void
     {
         $this->telephone = $telephone;
     }
 
     /**
-     * @return String
+     * @return mixed
      */
     public function getSexe()
     {
@@ -175,43 +196,79 @@ class Demandeur
     }
 
     /**
-     * @param String $sexe
+     * @param mixed $sexe
      */
-    public function setSexe(string $sexe)
+    public function setSexe($sexe): void
     {
         $this->sexe = $sexe;
     }
 
     /**
-     * @return int
+     * @return Ville
      */
-    public function getIdVille()
+    public function getVille(): ?Ville
     {
-        return $this->idVille;
+        return $this->ville;
     }
 
     /**
-     * @param int $idVille
+     * @param Ville $ville
      */
-    public function setIdVille(int $idVille)
+    public function setVille(Ville $ville): self
     {
-        $this->idVille = $idVille;
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getRendezVous(): array
+    {
+        return $this->rendezVous->toArray();
+    }
+
+    public function setRendezVous(Collection $rendezVous): self
+    {
+        $this->rendezVous = $rendezVous;
+
+        return $this;
+    }
+
+    public function addRendezVous(Rendezvous $rendezvous): self
+    {
+        if (!$this->rendezVous->contains($rendezvous)) {
+            $this->rendezVous[] = $rendezvous;
+            $rendezvous->setDemandeur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRendezvous(Rendezvous $rendezvous): self
+    {
+        if ($this->rendezVous->contains($rendezvous)) {
+            $this->rendezVous->removeElement($rendezvous);
+            if ($rendezvous->getDemandeur() === $this) {
+                $rendezvous->setDemandeur(null);
+            }
+        }
+
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getType(): string
     {
-        return $this->email;
+        return $this->type;
     }
 
     /**
-     * @param string $email
+     * @param string $type
      */
-    public function setEmail(string $email): void
+    public function setType(string $type): void
     {
-        $this->email = $email;
+        $this->type = $type;
     }
 
 }
