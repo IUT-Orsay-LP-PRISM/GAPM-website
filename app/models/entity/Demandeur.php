@@ -14,25 +14,25 @@ class Demandeur
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
-    private $idDemandeur;
+    private int $idDemandeur;
     #[ORM\Column(unique: true)]
-    private $login;
+    private string $login;
     #[ORM\Column(unique: true)]
-    private $email;
+    private string $email;
     #[ORM\Column]
-    private $motDePasse;
+    private string $motDePasse;
     #[ORM\Column]
-    private $nom;
+    private string $nom;
     #[ORM\Column]
-    private $prenom;
+    private string $prenom;
     #[ORM\Column]
-    private $dateNaissance;
+    private string $dateNaissance;
     #[ORM\Column]
-    private $adresse;
+    private string $adresse;
     #[ORM\Column]
-    private $telephone;
+    private string $telephone;
     #[ORM\Column]
-    private $sexe;
+    private string $sexe;
     #[ORM\ManyToOne(targetEntity: Ville::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idVille', referencedColumnName: 'idVille', nullable: false)]
     private Ville $ville;
