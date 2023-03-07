@@ -1,8 +1,14 @@
 # Projet G.A.P.M.
 
+# ⚠️ À chaque "git pull" + Setup projet ⚠️
+- Pensez à faire `composer update` pour mettre à jour les dépendances PHP.
+- Réimportez la DB si le fichier a été modifié dernièrement.
+- Vérifiez que le fichier **.env.local** est bien présent
+- Avoir une version **PHP >= 8.0**
+- Si WampServer (xampp, uwamp, ...) faire un **Virtual Host**
+
 ## Description
-Projet sur lequel on va travailler tout au long de l'année.
-Rien n'est fait juste la base du projet et quelques fichiers/dossiers de test.
+Projet GAPM avancement : **30%**
 
 
 ## Installation
