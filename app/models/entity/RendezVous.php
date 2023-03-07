@@ -26,6 +26,9 @@ class RendezVous
     #[ORM\OneToOne(targetEntity: Demandeur::class, fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
     private Demandeur $demandeur;
+    #[ORM\OneToOne(targetEntity: Intervenant::class, fetch: 'LAZY')]
+    #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idIntervenant', nullable: false)]
+    private Intervenant $intervenant;
     #[ORM\ManyToOne(targetEntity: Specialite::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
     private Specialite $specialite;

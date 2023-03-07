@@ -2,14 +2,15 @@
 
 namespace App\controllers;
 
+use App\models\entity\Intervenant;
 use App\models\entity\RendezVous;
 use App\models\entity\Session;
-use App\models\repository\IntervenantRepository;
+use App\models\repository\RendezVousRepository;
 use Doctrine\ORM\EntityManager;
 
 class RendezVousController extends Template
 {
-    private IntervenantRepository $rendezVousRepository;
+    private RendezVousRepository $rendezVousRepository;
     private EntityManager $entityManager;
 
     public function __construct(EntityManager $entityManager)
@@ -24,22 +25,14 @@ class RendezVousController extends Template
             header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
-
-        $demandeur = DemandeurDAO::findById($_GET['demandeur']);
-        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($_GET['intervenant']);
         if ($intervenant == null) {
             header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
-        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
-        $intervenant->setSpecialites($services);
-        $ville = VilleDAO::findById($demandeur->getIdVille());
 
         self::render('demandeur/search/prendre-rdv.twig', [
             'intervenant' => $intervenant,
-            'demandeur' => $demandeur,
-            'loader' => false,
-            'ville' => $ville,
             'title' => 'Prendre RDV'
         ]);
     }
@@ -115,7 +108,8 @@ class RendezVousController extends Template
     {
         $date = $_GET['date'];
         $idIntervenant = $_GET['idIntervenant'];
-        $horaire = RendezVousDAO::findHeureNonDispo($idIntervenant,$date);
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+        $horaire = $this->rendezVousRepository->findHeureNonDispo($intervenant, $date);
         echo json_encode($horaire);
     }
 }
