@@ -324,7 +324,7 @@ CREATE TABLE `RDV`
     `heureDebut`     varchar(50) NOT NULL,
     `heureFin`       varchar(50) NOT NULL,
     `idDemandeur`   int(11)     NOT NULL,
-    `idService`     int(11)     NOT NULL,
+    `idSpecialite`     int(11)     NOT NULL,
     `idIntervenant` int(11)     NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -334,7 +334,7 @@ CREATE TABLE `RDV`
 -- Déchargement des données de la table `RDV`
 --
 
-INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idService`,
+INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idSpecialite`,
                    `idIntervenant`)
 VALUES (1, 'Confirme', '2023-02-01', '10:00', '11:00', 1, 1, 1),
        (2, 'En attente', '2023-02-02', '09:00', '10:00', 2, 2, 2),
@@ -349,7 +349,7 @@ VALUES (1, 'Confirme', '2023-02-01', '10:00', '11:00', 1, 1, 1),
 CREATE TABLE `Realiser`
 (
     `idIntervenant` int(11) NOT NULL,
-    `idService`     int(11) NOT NULL
+    `idSpecialite`     int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -358,7 +358,7 @@ CREATE TABLE `Realiser`
 -- Déchargement des données de la table `Realiser`
 --
 
-INSERT INTO `Realiser` (`idIntervenant`, `idService`)
+INSERT INTO `Realiser` (`idIntervenant`, `idSpecialite`)
 VALUES (1, 1),
        (1, 3),
        (2, 5),
@@ -368,12 +368,12 @@ VALUES (1, 1),
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Service`
+-- Structure de la table `Specialite`
 --
 
-CREATE TABLE `Service`
+CREATE TABLE `Specialite`
 (
-    `idService`  int(11)      NOT NULL,
+    `idSpecialite`  int(11)      NOT NULL,
     `libelle`     varchar(50)  NOT NULL,
     `description` varchar(280) NOT NULL
 ) ENGINE = InnoDB
@@ -381,10 +381,10 @@ CREATE TABLE `Service`
   COLLATE = utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `Service`
+-- Déchargement des données de la table `Specialite`
 --
 
-INSERT INTO `Service` (`idService`, `libelle`, `description`)
+INSERT INTO `Specialite` (`idSpecialite`, `libelle`, `description`)
 VALUES (1, 'Généraliste', 'Medecin généraliste'),
        (2, 'Ophtalmologie', 'ophtalmologues'),
        (3, 'Chirurgie', 'chirurgiens'),
@@ -36813,21 +36813,21 @@ ALTER TABLE `Personnel`
 ALTER TABLE `RDV`
     ADD PRIMARY KEY (`idRdv`),
     ADD KEY `idDemandeur` (`idDemandeur`),
-    ADD KEY `idService` (`idService`),
+    ADD KEY `idSpecialite` (`idSpecialite`),
     ADD KEY `idIntervenant` (`idIntervenant`);
 
 --
 -- Index pour la table `Realiser`
 --
 ALTER TABLE `Realiser`
-    ADD PRIMARY KEY (`idIntervenant`, `idService`),
-    ADD KEY `idService` (`idService`);
+    ADD PRIMARY KEY (`idIntervenant`, `idSpecialite`),
+    ADD KEY `idSpecialite` (`idSpecialite`);
 
 --
--- Index pour la table `Service`
+-- Index pour la table `Specialite`
 --
-ALTER TABLE `Service`
-    ADD PRIMARY KEY (`idService`);
+ALTER TABLE `Specialite`
+    ADD PRIMARY KEY (`idSpecialite`);
 
 --
 -- Index pour la table `TypeVoiture`
@@ -36918,10 +36918,10 @@ ALTER TABLE `RDV`
     AUTO_INCREMENT = 4;
 
 --
--- AUTO_INCREMENT pour la table `Service`
+-- AUTO_INCREMENT pour la table `Specialite`
 --
-ALTER TABLE `Service`
-    MODIFY `idService` int(11) NOT NULL AUTO_INCREMENT,
+ALTER TABLE `Specialite`
+    MODIFY `idSpecialite` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 23;
 
 --
@@ -37013,7 +37013,7 @@ ALTER TABLE `NoteFrais`
 --
 ALTER TABLE `RDV`
     ADD CONSTRAINT `RDV_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `RDV_ibfk_2` FOREIGN KEY (`idService`) REFERENCES `Service` (`idService`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `RDV_ibfk_2` FOREIGN KEY (`idSpecialite`) REFERENCES `Specialite` (`idSpecialite`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `RDV_ibfk_3` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -37021,7 +37021,7 @@ ALTER TABLE `RDV`
 --
 ALTER TABLE `Realiser`
     ADD CONSTRAINT `Realiser_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idIntervenant`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Realiser_ibfk_2` FOREIGN KEY (`idService`) REFERENCES `Service` (`idService`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Realiser_ibfk_2` FOREIGN KEY (`idSpecialite`) REFERENCES `Specialite` (`idSpecialite`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Voiture`
