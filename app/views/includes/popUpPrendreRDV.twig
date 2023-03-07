@@ -9,20 +9,20 @@
                     <img class="pdp" src="assets/img/profils/exemple_doctor.jpg" alt="User">
                 </div>
                 <div class="prendreRdv__content__body__card-info">
-                    <p class="name">{{ demandeur.nom }} {{ demandeur.prenom }}</p>
+                    <p class="name">{{ intervenant.nom }} {{ intervenant.prenom }}</p>
                     <p class="speciality">
                         {% for specialite in intervenant.specialites %}
                             <span>{{ specialite.libelle }}</span>
                         {% endfor %}
                     </p>
-                    <p class="address">{{ ville.nom }},{{ ville.codePostal }}</p>
+                    <p class="address">{{ intervenant.ville.nom }} ({{ intervenant.ville.codePostal }})</p>
                 </div>
                 <div id="js-date" class="popup-container-col__date"></div>
                 <div class="popup-container-col__form">
                     <div class="input-container">
                         <i class="icon icon-fi-rr-time-fast "></i>
                         <input id="inputDate" class="input" type="hidden" name="date">
-                        <input class="input" type="hidden" name="idIntervenant" value="{{ demandeur.idDemandeur }}">
+                        <input class="input" type="hidden" name="idIntervenant" value="{{ intervenant.idDemandeur }}">
                         <select id="selectHoraire" class="input" type="text" name="horaire" required></select>
                         <label class="input-container-title label" for="selectHoraire">
                             <span>Choisir un <span class="primary">horaire :</span></span>
@@ -32,8 +32,8 @@
                         <i class="icon icon-fi-rr-list"></i>
                         <select id="selectSpecialite" class="input" type="text" name="specialite" required>
                             <option value="" selected hidden="hidden"> </option>
-                            {% for service in intervenant.specialites %}
-                                <option value="{{ service.idService }}">{{ service.libelle }}</option>
+                            {% for specialite in intervenant.specialites %}
+                                <option value="{{ specialite.idSpecialite }}">{{ specialite.libelle }}</option>
                             {% endfor %}
                         </select>
                         <label class="input-container-title label" for="selectHoraire"><span>Choisir la <span

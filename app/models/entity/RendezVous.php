@@ -27,7 +27,7 @@ class RendezVous
     #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
     private Demandeur $demandeur;
     #[ORM\OneToOne(targetEntity: Intervenant::class, fetch: 'LAZY')]
-    #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idIntervenant', nullable: false)]
+    #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
     private Intervenant $intervenant;
     #[ORM\ManyToOne(targetEntity: Specialite::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
@@ -149,6 +149,22 @@ class RendezVous
     public function setSpecialite(Specialite $specialite): void
     {
         $this->specialite = $specialite;
+    }
+
+    /**
+     * @return Intervenant
+     */
+    public function getIntervenant(): Intervenant
+    {
+        return $this->intervenant;
+    }
+
+    /**
+     * @param Intervenant $intervenant
+     */
+    public function setIntervenant(Intervenant $intervenant): void
+    {
+        $this->intervenant = $intervenant;
     }
 
 
