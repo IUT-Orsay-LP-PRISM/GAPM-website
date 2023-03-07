@@ -9,17 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'Intervenant')]
 class Intervenant extends Demandeur
 {
-
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    private int $idIntervenant;
     #[ORM\Column]
     private string $adressePro;
     #[ORM\JoinTable(name: 'Intervenant_Specialite')]
-    #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idIntervenant', nullable: false)]
+    #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
     #[ORM\InverseJoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
-    #[ORM\ManyToMany(targetEntity: Specialite::class)]
-    private Collection $specialites;
+    #[ORM\ManyToMany(targetEntity: Specialite::class, fetch: 'EAGER')]
+    private $specialites;
 
     public function __construct()
     {

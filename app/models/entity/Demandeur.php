@@ -2,21 +2,21 @@
 namespace App\models\entity;
 
 use App\models\repository\DemandeurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
-use Doctrine\Tests\Common\Lexer\ConcreteLexer;
 
 #[ORM\Entity(repositoryClass: DemandeurRepository::class)]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
+#[ORM\DiscriminatorMap(['demandeur' => Demandeur::class, 'intervenant' => Intervenant::class])]
 #[ORM\Table(name: 'Demandeur')]
 class Demandeur
 {
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
-    private int $idDemandeur;
+    protected int $idDemandeur;
     #[ORM\Column(unique: true)]
     private string $login;
     #[ORM\Column(unique: true)]
@@ -253,6 +253,22 @@ class Demandeur
         }
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
     }
 
 }
