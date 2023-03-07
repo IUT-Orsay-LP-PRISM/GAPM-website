@@ -7,14 +7,12 @@ namespace App\controllers;
  */
 class HomeController extends Template
 {
-    public function index(): mixed
+    public function index()
     {
         self::render('home.twig', [
             'title' => 'Accueil - Bienvenue',
             'type' => 'home'
         ]);
-
-        return null;
     }
 
 }

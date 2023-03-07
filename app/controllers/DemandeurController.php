@@ -2,8 +2,6 @@
 
 namespace App\controllers;
 
-use App\models\dao\DemandeurDAO;
-use App\models\dao\IntervenantDAO;
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
 use App\models\entity\Session;
@@ -27,7 +25,6 @@ class DemandeurController extends Template
     {
         $demandeurs = $this->demandeurRepository->findAll();
         $intervenants = $this->entityManager->getRepository(Intervenant::class)->findAll();
-
 
         dump($demandeurs);
         echo "-----------";
@@ -118,11 +115,6 @@ class DemandeurController extends Template
                 header('Location: /?action=my-account');
             }
         }
-    }
-
-    public static function show()
-    {
-        // TODO: Implement show() method.
     }
 
     private static function addErrorToUrl($error, $containerError): string
@@ -255,6 +247,7 @@ class DemandeurController extends Template
             // On flush => on dit à doctrine d'écrire dans la base de données
             $this->entityManager->flush();
 
+            // TODO : gérer register intervenant ; update field type = demandeur > intervenant ; créer intervenant&
             if ($inscriptionIntervenant) {
                 $intervenant = new Intervenant();
                 $intervenant->setIdIntervenant($demandeur->getIdDemandeur());
@@ -288,8 +281,6 @@ class DemandeurController extends Template
         self::render('demandeur/mon-compte.twig', [
             'title' => 'Mon compte',
             'demandeur' => $user,
-            'loader' => false,
-            'view' => $_GET['view'] ?? 'perso',
         ]);
     }
 }
