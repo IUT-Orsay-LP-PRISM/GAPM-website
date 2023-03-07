@@ -35,32 +35,32 @@ class DemandeurController extends Template
         ]);
     }
 
-    public static function update()
+    public function update()
     {
+
         $user = Session::get('user');
-        $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
+        $demandeur = $this->demandeurRepository->findOneBy(['idDemandeur' => $user->getIdDemandeur()]);
         $email = $_POST['mail'];
-        $userFromEmail = DemandeurDAO::getUserFromEmail($email);
+        $userFromEmail = $this->demandeurRepository->findOneBy(['email' => $email]);
 
         $salt = "sel";
         $saltedAndHashed = crypt($_POST['oldPassword'], $salt);
         $oldPassword = $saltedAndHashed;
         $password = $demandeur->getMotDePasse();
 
-        if($oldPassword == $demandeur->getMotDePasse()){
-            if(!empty($_POST['newPassword'])) {
+        if ($oldPassword == $demandeur->getMotDePasse()) {
+            if (!empty($_POST['newPassword'])) {
                 $salt = "sel";
                 $saltedAndHashed = crypt($_POST['newPassword'], $salt);
                 $password = $saltedAndHashed;
             }
-        }else{
+        } else {
             $referer = self::addErrorToUrl('Ancien mot de passe incorrect.', 'mon-compte');
             header("Location: $referer");
             exit();
         }
 
-
-        if ($userFromEmail && $userFromEmail->getIdDemandeur() != $user->getIdDemandeur()) {
+        if ($userFromEmail && $userFromEmail->getIdDemandeur() != $demandeur->getIdDemandeur()) {
             $referer = self::addErrorToUrl('Cette email est déjà utilisé.', 'mon-compte');
             header("Location: $referer");
             exit();
@@ -68,7 +68,8 @@ class DemandeurController extends Template
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
             $birthday = $_POST['birthday'];
-            $city = $_POST['city'];
+            $cityId = $_POST['city'];
+            $city = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $cityId]);
             $phone = $_POST['phone'];
             $address = $_POST['address'];
             $sexe = $_POST['sexe'];
@@ -78,42 +79,41 @@ class DemandeurController extends Template
             $demandeur->setEmail($email);
             $demandeur->setDateNaissance($birthday);
             $demandeur->setAdresse($address);
-            $demandeur->setIdVille($city);
+            $demandeur->setVille($city);
             $demandeur->setMotDePasse($password);
             $demandeur->setTelephone($phone);
             $demandeur->setSexe($sexe);
 
-            $demandeur = DemandeurDAO::update($demandeur);
-
-            if ($demandeur) {
-                Session::set('user', $demandeur);
-                header('Location: /?action=my-account');
-            } else {
-                header('Location: /');
+            try {
+                $this->entityManager->persist($demandeur);
+                $this->entityManager->flush();
+            } catch (\Exception $e) {
+                $referer = self::addErrorToUrl('Une erreur est survenue. Merci de réessayer.', 'mon-compte');
+                header("Location: $referer");
+                exit();
             }
+            Session::set('user', $demandeur);
+            header('Location: /?action=my-account');
         }
     }
 
-    public static function delete()
+    public function delete()
     {
         $email = $_POST['email'];
         if ($email != $_SESSION['user']->getEmail()) {
             header('Location: /?action=my-account');
         } else {
             $user = Session::get('user');
-            $demandeur = DemandeurDAO::removeById($user->getIdDemandeur());
+            $demandeur = $this->demandeurRepository->findOneBy(['idDemandeur' => $user->getIdDemandeur()]);
 
-            $isIntervenant = IntervenantDAO::findById($user->getIdDemandeur());
-            $isIntervenant ? IntervenantDAO::removeById($user->getIdDemandeur()) : null;
-
-            //TODO :  soit mettre la bdd en cascade delete soit faire a la main les delete des Service tout le reste
-
-            if ($demandeur) {
-                Session::destroy();
-                header('Location: /');
-            } else {
+            try {
+                $this->entityManager->remove($demandeur);
+                $this->entityManager->flush();
+            } catch (\Exception $e) {
                 header('Location: /?action=my-account');
             }
+            Session::destroy();
+            header('Location: /');
         }
     }
 
@@ -228,7 +228,7 @@ class DemandeurController extends Template
 
             $cityId = (int)$city;
             $ville = $this->entityManager->getRepository(Ville::class)->find($cityId);
-            $login = strtolower($firstname . ".". $lastname);
+            $login = strtolower($firstname . "." . $lastname);
 
             $demandeur = new Demandeur();
             $demandeur->setNom($lastname);
