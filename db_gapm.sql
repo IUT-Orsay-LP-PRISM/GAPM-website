@@ -23,6 +23,22 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+-- DELETE DE LA BASE DE DONNEES
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+SELECT GROUP_CONCAT(table_schema, '.', table_name, ' ') INTO @tables
+  FROM information_schema.tables 
+  WHERE table_schema = 'projet';
+
+SET @query = CONCAT('DROP TABLE IF EXISTS ', @tables);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
 --
 -- Structure de la table `Administrateur`
 --
@@ -396,18 +412,7 @@ VALUES (1, 'Généraliste', 'Medecin généraliste'),
        (8, 'Psychiatrie ', 'Psychiatre'),
        (9, 'Oncologie ', 'Oncologue'),
        (10, 'Gériatrie ', 'Gériatrie'),
-       (11, 'Allergologie', 'Medecin allergologue'),
-       (12, 'Généraliste', 'Medecin généraliste'),
-       (13, 'Ophtalmologie', 'ophtalmologues'),
-       (14, 'Chirurgie', 'chirurgiens'),
-       (15, 'Cardiologie', 'cardiologues'),
-       (16, 'Gastro-entérologie', 'gastro-enterologue'),
-       (17, 'Pédiatrie ', 'pédiatres'),
-       (18, 'Pneumologie ', 'Pneumologues'),
-       (19, 'Psychiatrie ', 'Psychiatre'),
-       (20, 'Oncologie ', 'Oncologue'),
-       (21, 'Gériatrie ', 'Gériatrie'),
-       (22, 'Allergologie', 'Medecin allergologue');
+       (11, 'Allergologie', 'Medecin allergologue');
 
 -- --------------------------------------------------------
 
