@@ -26,7 +26,7 @@ Route::post('confirm-RDV', 'RendezVousController', 'createRDV');
 Route::search('/?action=search');
 
 // route::search pour le système de autocomplete, différent de ::get()
-Route::autocomplete('/?action=autocompleteService','Service');
+Route::autocomplete('/?action=autocompleteSpecialite','Specialite');
 Route::autocomplete('/?action=autocompleteVille','Ville');
 
 // route::Ajax pour retiré les date deja use d'un rdv

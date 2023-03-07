@@ -8,12 +8,11 @@ class SpecialiteRepository extends EntityRepository
 {
     public function findByQuery(string $query)
     {
-        $qb = $this->createQueryBuilder('v');
-        $qb->where('v.nom LIKE :query')
+        $qb = $this->createQueryBuilder('s');
+        $qb->where('s.libelle LIKE :query')
             ->setParameter('query', '%' . $query . '%')
-            ->orderBy('v.nom', 'ASC')
+            ->orderBy('s.libelle', 'ASC')
             ->setMaxResults(10);
         return $qb->getQuery()->getResult();
     }
-
 }
