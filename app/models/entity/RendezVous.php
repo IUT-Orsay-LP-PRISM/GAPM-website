@@ -23,7 +23,7 @@ class RendezVous
     private string $heureDebut;
     #[ORM\Column]
     private string $heureFin;
-    #[ORM\OneToOne(targetEntity: Demandeur::class, fetch: 'EAGER')]
+    #[ORM\OneToOne(targetEntity: Demandeur::class, fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
     private Demandeur $demandeur;
 

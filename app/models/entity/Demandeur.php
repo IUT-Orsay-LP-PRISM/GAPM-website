@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
+use Doctrine\Tests\Common\Lexer\ConcreteLexer;
 
 #[ORM\Entity(repositoryClass: DemandeurRepository::class)]
 #[ORM\Table(name: 'Demandeur')]
@@ -36,17 +38,10 @@ class Demandeur
     #[ORM\ManyToOne(targetEntity: Ville::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idVille', referencedColumnName: 'idVille', nullable: false)]
     private Ville $ville;
-    #[ORM\OneToMany(targetEntity: RendezVous::class, mappedBy: 'demandeur', fetch: 'EAGER')]
-    private ArrayCollection $rendezVous;
+    #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: RendezVous::class, fetch: 'LAZY')]
+    private $rendezVous;
 
-    /**
-     * @param RendezVous $rendezVous
-     */
-    public function __construct(RendezVous $rendezVous)
-    {
-        $this->rendezVous = new ArrayCollection();
-    }
-
+    #
 
     /**
      * @return mixed
@@ -226,9 +221,16 @@ class Demandeur
         return $this;
     }
 
-    public function getRendezVous(): Collection
+    public function getRendezVous(): array
     {
-        return $this->rendezVous;
+        return $this->rendezVous->toArray();
+    }
+
+    public function setRendezVous(Collection $rendezVous): self
+    {
+        $this->rendezVous = $rendezVous;
+
+        return $this;
     }
 
     public function addRendezVous(Rendezvous $rendezvous): self
