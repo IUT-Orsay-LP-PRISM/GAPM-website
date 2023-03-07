@@ -1,93 +1,93 @@
 {% extends "base.twig" %}
 
 {% block title %}
-	{{ title }}
+    {{ title }}
 {% endblock %}
 
 {% block content %}
-	<form method="get">
-		<section class="search__inputs">
-			<input type="hidden" name="action" value="search">
-			<div class="input-container">
-				<i class="icon icon-fi-rr-search"></i>
-				<input id="name" class="input" name="s_name" type="text" value="{{ nom }}"/>
-				<label class="label" for="name">Nom, spécialité</label>
-			</div>
-			<div class="input-container">
-				<i class="icon icon-fi-rr-map-marker"></i>
-				<input id="city" class="input AC input_ville" name="s_city" type="text" value="{{ city }}"/>
-				<label class="label" for="city">Ville</label>
-				<div class="notVisible auto_completion"></div>
-			</div>
-			<button type="submit" class="btn btn-primary-nb">Rechercher</button>
-		</section>
-	</form>
+    <form method="get">
+        <section class="search__inputs">
+            <input type="hidden" name="action" value="search">
+            <div class="input-container">
+                <i class="icon icon-fi-rr-search"></i>
+                <input id="name" class="input" name="s_name" type="text" value="{{ nom }}"/>
+                <label class="label" for="name">Nom, spécialité</label>
+            </div>
+            <div class="input-container">
+                <i class="icon icon-fi-rr-map-marker"></i>
+                <input id="city" class="input AC input_ville" name="s_city" type="text" value="{{ city }}"/>
+                <label class="label" for="city">Ville</label>
+                <div class="notVisible auto_completion"></div>
+            </div>
+            <button type="submit" class="btn btn-primary-nb">Rechercher</button>
+        </section>
+    </form>
 
-	<section class="search__contents">
-		{% if nom is not empty and city is not empty %}
-			<h2>Résultats pour la recherche :
-				<span class="text__light">
+    <section class="search__contents">
+        {% if nom is not empty and city is not empty %}
+            <h2>Résultats pour la recherche :
+                <span class="text__light">
 				"{{ nom }}"
 			</span>&nbsp;
-				Ville : <span class="text__light">
+                Ville : <span class="text__light">
 				"{{ city }}"
 			</span>
-			</h2>
-		{% else %}
-			<h2>Liste des intervenants :</h2>
-		{% endif %}
+            </h2>
+        {% else %}
+            <h2>Liste des intervenants :</h2>
+        {% endif %}
 
-		<div class="search__contents-list">
-			{% if intervenants is not empty %}
-				{% for intervenant in intervenants %}
-					<div class="search__contents-user">
-						<div class="search__contents-user-img">
-							<img src="assets/img/profils/exemple_doctor.jpg" alt="User">
-						</div>
-						<div class="search__contents-user-info">
-							<div class="search__contents-user-name">
-								<p class="title">
-									Nom
-								</p>
-								<p class="desc">
-									{{ intervenant.nom }} {{ intervenant.prenom }}
-								</p>
-							</div>
-							<div class="search__contents-user-speciality">
-								<p class="title">
-									{% if intervenant.specialites|length > 1 %}
-										Spécialités
-									{% else %}
-										Spécialité
-									{% endif %}
-								</p>
-								<ul class="desc">
-									{% for spe in intervenant.specialites %}
-										<li>
-											{{ spe.libelle }}
-										</li>
-									{% endfor %}
-								</ul>
-							</div>
-							<div class="search__contents-user-city">
-								<p class="title">
-									Ville
-								</p>
-								<p class="desc">
-									{{ intervenant.ville.nom }}
-								</p>
-							</div>
-						</div>
-						<div class="search__contents-user-btn">
-							<a data-id="{{ intervenant.idDemandeur }}" href="#" class="btn btn-primary js-btn-RDV">
-								{% include "svg/plus_small_white.svg" %}
-								Prendre rendez-vous</a>
-						</div>
-					</div>
-				{% endfor %}
-			{% else %}
-				<p>Aucun médecin trouvé avec les champs donné !</p>
-			{% endif %}
-		</div>
-	</section>
+        <div class="search__contents-list">
+            {% if intervenants is not empty %}
+                {% for intervenant in intervenants %}
+                    <div class="search__contents-user">
+                        <div class="search__contents-user-img">
+                            <img src="assets/img/profils/exemple_doctor.jpg" alt="User">
+                        </div>
+                        <div class="search__contents-user-info">
+                            <div class="search__contents-user-name">
+                                <p class="title">
+                                    Nom
+                                </p>
+                                <p class="desc">
+                                    {{ intervenant.nom }} {{ intervenant.prenom }}
+                                </p>
+                            </div>
+                            <div class="search__contents-user-speciality">
+                                <p class="title">
+                                    {% if intervenant.specialites|length > 1 %}
+                                        Spécialités
+                                    {% else %}
+                                        Spécialité
+                                    {% endif %}
+                                </p>
+                                <ul class="desc">
+                                    {% for spe in intervenant.specialites %}
+                                        <li>
+                                            {{ spe.libelle }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="search__contents-user-city">
+                                <p class="title">
+                                    Ville de pratique
+                                </p>
+                                <p class="desc">
+                                    {{ intervenant.ville.nom }} ({{ intervenant.ville.codePostal }})
+                                </p>
+                            </div>
+                        </div>
+                        <div class="search__contents-user-btn">
+                            <a data-id="{{ intervenant.idDemandeur }}" href="#" class="btn btn-primary js-btn-RDV">
+                                {% include "svg/plus_small_white.svg" %}
+                                Prendre rendez-vous</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucun médecin trouvé avec les champs donné !</p>
+            {% endif %}
+        </div>
+    </section>
 {% endblock %}
