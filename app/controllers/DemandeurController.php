@@ -26,9 +26,11 @@ class DemandeurController extends Template
     public function index()
     {
         $demandeurs = $this->demandeurRepository->findAll();
-        $inter = $this->entityManager->getRepository(Intervenant::class);
-        $intervenants = $inter->findAll();
+        $intervenants = $this->entityManager->getRepository(Intervenant::class)->findAll();
 
+
+        dump($demandeurs);
+        echo "-----------";
         dump($intervenants);
 
         $this->render('demandeur/liste-demandeur.twig', [
