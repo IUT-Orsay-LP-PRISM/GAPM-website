@@ -2,15 +2,12 @@
 
 namespace App\controllers;
 
-use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
-use App\models\repository\DemandeurRepository;
 use App\models\repository\IntervenantRepository;
 use Doctrine\ORM\EntityManager;
 
 class IntervenantController extends Template
 {
-
     private IntervenantRepository $intervenantRepository;
     private EntityManager $entityManager;
 

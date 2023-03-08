@@ -5,8 +5,10 @@ namespace App\controllers;
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
 use App\models\entity\Session;
+use App\models\entity\Specialite;
 use App\models\entity\Ville;
 use App\models\repository\DemandeurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 
 
@@ -35,32 +37,32 @@ class DemandeurController extends Template
         ]);
     }
 
-    public static function update()
+    public function update()
     {
+
         $user = Session::get('user');
-        $demandeur = DemandeurDAO::findById($user->getIdDemandeur());
+        $demandeur = $this->demandeurRepository->findOneBy(['idDemandeur' => $user->getIdDemandeur()]);
         $email = $_POST['mail'];
-        $userFromEmail = DemandeurDAO::getUserFromEmail($email);
+        $userFromEmail = $this->demandeurRepository->findOneBy(['email' => $email]);
 
         $salt = "sel";
         $saltedAndHashed = crypt($_POST['oldPassword'], $salt);
         $oldPassword = $saltedAndHashed;
         $password = $demandeur->getMotDePasse();
 
-        if($oldPassword == $demandeur->getMotDePasse()){
-            if(!empty($_POST['newPassword'])) {
+        if ($oldPassword == $demandeur->getMotDePasse()) {
+            if (!empty($_POST['newPassword'])) {
                 $salt = "sel";
                 $saltedAndHashed = crypt($_POST['newPassword'], $salt);
                 $password = $saltedAndHashed;
             }
-        }else{
+        } else {
             $referer = self::addErrorToUrl('Ancien mot de passe incorrect.', 'mon-compte');
             header("Location: $referer");
             exit();
         }
 
-
-        if ($userFromEmail && $userFromEmail->getIdDemandeur() != $user->getIdDemandeur()) {
+        if ($userFromEmail && $userFromEmail->getIdDemandeur() != $demandeur->getIdDemandeur()) {
             $referer = self::addErrorToUrl('Cette email est déjà utilisé.', 'mon-compte');
             header("Location: $referer");
             exit();
@@ -68,7 +70,8 @@ class DemandeurController extends Template
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
             $birthday = $_POST['birthday'];
-            $city = $_POST['city'];
+            $cityId = $_POST['city'];
+            $city = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $cityId]);
             $phone = $_POST['phone'];
             $address = $_POST['address'];
             $sexe = $_POST['sexe'];
@@ -78,42 +81,41 @@ class DemandeurController extends Template
             $demandeur->setEmail($email);
             $demandeur->setDateNaissance($birthday);
             $demandeur->setAdresse($address);
-            $demandeur->setIdVille($city);
+            $demandeur->setVille($city);
             $demandeur->setMotDePasse($password);
             $demandeur->setTelephone($phone);
             $demandeur->setSexe($sexe);
 
-            $demandeur = DemandeurDAO::update($demandeur);
-
-            if ($demandeur) {
-                Session::set('user', $demandeur);
-                header('Location: /?action=my-account');
-            } else {
-                header('Location: /');
+            try {
+                $this->entityManager->persist($demandeur);
+                $this->entityManager->flush();
+            } catch (\Exception $e) {
+                $referer = self::addErrorToUrl('Une erreur est survenue. Merci de réessayer.', 'mon-compte');
+                header("Location: $referer");
+                exit();
             }
+            Session::set('user', $demandeur);
+            header('Location: /?action=my-account');
         }
     }
 
-    public static function delete()
+    public function delete()
     {
         $email = $_POST['email'];
         if ($email != $_SESSION['user']->getEmail()) {
             header('Location: /?action=my-account');
         } else {
             $user = Session::get('user');
-            $demandeur = DemandeurDAO::removeById($user->getIdDemandeur());
+            $demandeur = $this->demandeurRepository->findOneBy(['idDemandeur' => $user->getIdDemandeur()]);
 
-            $isIntervenant = IntervenantDAO::findById($user->getIdDemandeur());
-            $isIntervenant ? IntervenantDAO::removeById($user->getIdDemandeur()) : null;
-
-            //TODO :  soit mettre la bdd en cascade delete soit faire a la main les delete des Service tout le reste
-
-            if ($demandeur) {
-                Session::destroy();
-                header('Location: /');
-            } else {
+            try {
+                $this->entityManager->remove($demandeur);
+                $this->entityManager->flush();
+            } catch (\Exception $e) {
                 header('Location: /?action=my-account');
             }
+            Session::destroy();
+            header('Location: /');
         }
     }
 
@@ -193,6 +195,11 @@ class DemandeurController extends Template
         $specialites = [];
         $containerError = 'inscription';
         if (isset($_POST['specialites'])) {
+            if ($_POST['specialites'] == 'null') {
+                $referer = self::addErrorToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
+                header("Location: $referer");
+                exit();
+            }
             $inscriptionIntervenant = true;
             $containerError = 'inscription-intervenant';
             $specialitesString = $_POST['specialites'];
@@ -225,12 +232,13 @@ class DemandeurController extends Template
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
 
-
             $cityId = (int)$city;
             $ville = $this->entityManager->getRepository(Ville::class)->find($cityId);
-            $login = strtolower($firstname . ".". $lastname);
+            $login = strtolower($firstname . "." . $lastname);
 
-            $demandeur = new Demandeur();
+            $type = $inscriptionIntervenant ? 'intervenant' : 'demandeur';
+
+            $demandeur = $inscriptionIntervenant ? new Intervenant() : new Demandeur();
             $demandeur->setNom($lastname);
             $demandeur->setLogin($login);
             $demandeur->setPrenom($firstname);
@@ -241,32 +249,28 @@ class DemandeurController extends Template
             $demandeur->setTelephone($phone);
             $demandeur->setSexe($sexe);
             $demandeur->setVille($ville);
+            $demandeur->setType($type);
 
-            // On persist => on dit à doctrine de garder en mémoire l'objet
-            $this->entityManager->persist($demandeur);
-            // On flush => on dit à doctrine d'écrire dans la base de données
-            $this->entityManager->flush();
-
-            // TODO : gérer register intervenant ; update field type = demandeur > intervenant ; créer intervenant&
             if ($inscriptionIntervenant) {
-                $intervenant = new Intervenant();
-                $intervenant->setIdIntervenant($demandeur->getIdDemandeur());
-                $intervenant->setSpecialites($specialites);
+                $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
+                $demandeur->setSpecialites(new ArrayCollection($specialites));
                 //$intervenant->setVoiture($voiture);
                 // TODO : ajouter voiture et demande voiture
-
-                $intervenant = IntervenantDAO::create($intervenant);
             }
 
-            if ($demandeur) {
-                Session::set('user', $demandeur);
-                header('Location: /');
-            } else {
-                header('Location: /');
+            try {
+                $this->entityManager->persist($demandeur);
+                $this->entityManager->flush();
+            } catch (Exception $e) {
+                $referer = self::addErrorToUrl('Une erreur est survenue.', $containerError);
+                header("Location: $referer");
+                exit();
             }
-
+            Session::set('user', $demandeur);
+            header('Location: /');
         }
     }
+
 
     public static function logout()
     {

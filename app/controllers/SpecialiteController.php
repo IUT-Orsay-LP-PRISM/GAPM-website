@@ -29,14 +29,15 @@ class SpecialiteController extends Template
     public function autocomplete()
     {
         $query = $_GET['query'];
-        $services = ServiceDAO::findByQuery($query);
-        $services_json = json_encode(array_map(function ($s) {
+        $specialites = $this->specialiteRepository->findByQuery($query);
+
+        $specialites_json = json_encode(array_map(function ($s) {
             return [
-                'idService' => $s->getIdService(),
+                'idSpecialite' => $s->getIdSpecialite(),
                 'libelle' => $s->getLibelle(),
                 'description' => $s->getDescription()
             ];
-        }, $services));
-        echo $services_json;
+        }, $specialites));
+        echo $specialites_json;
     }
 }

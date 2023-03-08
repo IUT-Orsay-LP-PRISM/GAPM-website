@@ -30,6 +30,7 @@ $connectionParams = [
     'password' => $_ENV['PASSWORD_DB'],
     'host' => $_ENV['HOST_DB'],
     'driver' => 'pdo_mysql',
+    'charset' => 'utf8mb4'
 ];
 
 $config = new Configuration();

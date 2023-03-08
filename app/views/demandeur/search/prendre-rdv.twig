@@ -19,13 +19,13 @@
                         <img class="pdp" src="assets/img/profils/exemple_doctor.jpg" alt="User">
                     </div>
                     <div class="prendreRdv__content__body__card-info">
-                        <p class="name">{{ demandeur.nom }} {{ demandeur.prenom }}</p>
+                        <p class="name">{{ intervenant.nom }} {{ intervenant.prenom }}</p>
                         <p class="speciality">
                             {% for specialite in intervenant.specialites %}
                                 <span>{{ specialite.libelle }}</span>
                             {% endfor %}
                         </p>
-                        <p class="address">{{ demandeur.adresse }}</p>
+                        <p class="address">{{ intervenant.ville.nom|upper }} ({{ intervenant.ville.codePostal }})</p>
                     </div>
                 </div>
                 <div class="prendreRdv__content__body-form">
@@ -51,7 +51,6 @@
                             <div class="days"></div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

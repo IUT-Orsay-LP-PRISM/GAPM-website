@@ -2,14 +2,17 @@
 
 namespace App\controllers;
 
+use App\models\entity\Demandeur;
+use App\models\entity\Intervenant;
 use App\models\entity\RendezVous;
 use App\models\entity\Session;
-use App\models\repository\IntervenantRepository;
+use App\models\entity\Specialite;
+use App\models\repository\RendezVousRepository;
 use Doctrine\ORM\EntityManager;
 
 class RendezVousController extends Template
 {
-    private IntervenantRepository $rendezVousRepository;
+    private RendezVousRepository $rendezVousRepository;
     private EntityManager $entityManager;
 
     public function __construct(EntityManager $entityManager)
@@ -24,22 +27,14 @@ class RendezVousController extends Template
             header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
-
-        $demandeur = DemandeurDAO::findById($_GET['demandeur']);
-        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($_GET['intervenant']);
         if ($intervenant == null) {
             header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
-        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
-        $intervenant->setSpecialites($services);
-        $ville = VilleDAO::findById($demandeur->getIdVille());
 
         self::render('demandeur/search/prendre-rdv.twig', [
             'intervenant' => $intervenant,
-            'demandeur' => $demandeur,
-            'loader' => false,
-            'ville' => $ville,
             'title' => 'Prendre RDV'
         ]);
     }
@@ -51,23 +46,21 @@ class RendezVousController extends Template
             exit;
         }
 
-        $demandeur = DemandeurDAO::findById($_POST['idIntervenant']);
-        $intervenant = IntervenantDAO::findById($demandeur->getIdDemandeur());
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($_POST['idIntervenant']);
+
         if ($intervenant == null) {
             header('Location: /?action=search&error=Intervenant introuvable&c=message');
             exit;
         }
-        $services = ServiceDAO::findByIdIntervenant($demandeur->getIdDemandeur());
-        $intervenant->setSpecialites($services);
-
         $horaireDebut = $_POST['horaire'];
         $horaireFin = date('H:i', strtotime($horaireDebut) + 1800);
         $date = $_POST['date'];
-        $idIntervenant = $intervenant->getIdIntervenant();
-        $idDemandeur = Session::get('user')->getIdDemandeur();
         $status = 'En attente';
-        $idService = $_POST['specialite'];
+        $idUser = Session::get('user')->getIdDemandeur();
+        $idSpecialite = $_POST['specialite'];
 
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($idUser);
+        $specialite = $this->entityManager->getRepository(Specialite::class)->find($idSpecialite);
         // TODO : Vérifier que l'intervenant est disponible à cette date et à cette heure
 
         $rdv = new RendezVous();
@@ -75,23 +68,19 @@ class RendezVousController extends Template
         $rdv->setDateRdv($date);
         $rdv->setHeureDebut($horaireDebut);
         $rdv->setHeureFin($horaireFin);
-        $rdv->setIdDemandeur($idDemandeur);
-        $rdv->setIdService($idService);
-        $rdv->setIdIntervenant($idIntervenant);
-        $result = RendezVousDAO::create($rdv);
+        $rdv->setDemandeur($demandeur);
+        $rdv->setSpecialite($specialite);
+        $rdv->setIntervenant($intervenant);
 
-        if ($rdv == null) {
+        try {
+            $this->entityManager->persist($rdv);
+            $this->entityManager->flush();
+            $result = true;
+        } catch (\Exception $e) {
             header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
-
-        if ($result == false) {
-            header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
-            exit;
-        } else {
-            header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
-            exit;
-        }
+        header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
     }
 
     public function success()
@@ -115,7 +104,8 @@ class RendezVousController extends Template
     {
         $date = $_GET['date'];
         $idIntervenant = $_GET['idIntervenant'];
-        $horaire = RendezVousDAO::findHeureNonDispo($idIntervenant,$date);
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+        $horaire = $this->rendezVousRepository->findHeureNonDispo($intervenant, $date);
         echo json_encode($horaire);
     }
 }

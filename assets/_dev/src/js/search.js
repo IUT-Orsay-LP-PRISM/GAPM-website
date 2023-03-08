@@ -5,14 +5,14 @@ if (btn_RDVS) {
     btn_RDVS.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            const idDemandeur = btn.getAttribute('data-id');
+            const idIntervenant = btn.getAttribute('data-id');
             const isLogged = document.body.getAttribute('data-log');
             if (isLogged != 1) {
                 const currentQueryString = window.location.search;
                 const newUrl = currentQueryString + '&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion';
                 window.location.href = newUrl;
             } else {
-                window.location.href = '/?action=prendre-rdv&demandeur=' + idDemandeur;
+                window.location.href = '/?action=prendre-rdv&intervenant=' + idIntervenant;
             }
         });
     });
@@ -102,7 +102,6 @@ function creerCalendrier(annee, mois) {
 }
 
 
-
 function StartCalendar() {
     const now = new Date();
     let currentYear = now.getFullYear();
@@ -179,9 +178,7 @@ function removeHeureNotAvailable(date) {
     // get id intervenant from url
     const URL = window.location.href;
     const urlParams = new URLSearchParams(URL);
-    const idIntervenant = urlParams.get('demandeur');
-
-    console.log(idIntervenant);
+    const idIntervenant = urlParams.get('intervenant');
 
     const xhr = new XMLHttpRequest();
     const url = "?action=getHoraireNotAvailable&date=" + date + "&idIntervenant=" + idIntervenant;

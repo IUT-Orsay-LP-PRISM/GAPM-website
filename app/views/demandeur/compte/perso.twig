@@ -56,11 +56,11 @@
 			</div>
 			<div class="input-container overflow">
 				<i class="icon icon-fi-rr-map-marker"></i>
-				<input id="ville" class="input AC input_ville" type="text" value="{{ ville.nom|upper }}"/>
+				<input id="ville" class="input AC input_ville" type="text" value="{{ demandeur.ville.nom|upper }}"/>
 				<label class="label" for="ville">Ville</label>
-				<input id="hiddenValueCityIntervenant" name="city" type="number" hidden="hidden" value="{{ ville.idVille }}"/>
+				<input id="hiddenValueCityIntervenant" name="city" type="number" hidden="hidden" value="{{ demandeur.ville.idVille }}"/>
 				<div class="notVisible auto_completion"></div>
-				<span class="code_postal">{{ ville.codePostal }}</span>
+				<span class="code_postal">{{ demandeur.ville.codePostal }}</span>
 			</div>
 		</div>
 		<h2 class="myaccount__form-title">Sécurité</h2>

@@ -6,7 +6,7 @@ if (specialite_input && auto_completion) {
     specialite_input.addEventListener('keyup', () => {
 
         const xhr = new XMLHttpRequest();
-        const url = "?action=autocompleteService&query=" + specialite_input.value;
+        const url = "?action=autocompleteSpecialite&query=" + specialite_input.value;
         xhr.open("GET", url, true);
         xhr.onload = () => callback(xhr);
         xhr.send();
@@ -19,21 +19,21 @@ if (specialite_input && auto_completion) {
                     const p = document.createElement('p');
                     p.innerHTML = element.libelle.toUpperCase();
                     // if tag exist in tag_container don't add it
-                    if (tag_container.querySelector(`[data-id="${element.idService}"]`)) {
+                    if (tag_container.querySelector(`[data-id="${element.idSpecialite}"]`)) {
                         return;
                     } else {
                         auto_completion.appendChild(p);
                     }
 
                     p.addEventListener('click', () => {
-                        tag_container.appendChild(createTag(element.libelle.toUpperCase(), element.idService));
+                        tag_container.appendChild(createTag(element.libelle.toUpperCase(), element.idSpecialite));
                         const specialitesInput = document.querySelector('#specialitesInput');
                         if (specialitesInput) {
                             const value = specialitesInput.value;
                             if (value === 'null') {
-                                specialitesInput.value = element.idService;
+                                specialitesInput.value = element.idSpecialite;
                             } else {
-                                specialitesInput.value = value + '-' + element.idService;
+                                specialitesInput.value = value + '-' + element.idSpecialite;
                             }
                         }
 
@@ -91,7 +91,7 @@ function ajaxVille(div_auto_complete, input) {
             data.forEach(element => {
                 const p = document.createElement('p');
                 p.classList.add('AC_ville');
-                p.innerHTML = element.nom.toUpperCase();
+                p.innerHTML = element.nom.toUpperCase() + ` (${element.code_postal})`;
                 div_auto_complete.appendChild(p);
                 p.addEventListener('click', () => {
                     input.value = '';
