@@ -2495,6 +2495,10 @@ body.intervenant {
       border: none;
       color: #257466;
       background-color: #AEDBD3; }
+    body.intervenant .btn.btn-greenPrimary {
+      border: none;
+      color: #FFFFFF;
+      background-color: #36A793; }
     body.intervenant .btn.btn-red {
       border: none;
       color: #FFFFFF;
@@ -3903,6 +3907,10 @@ body.demandeur {
       border: none;
       color: #393BAA;
       background-color: #AEDBD3; }
+    body.demandeur .btn.btn-greenPrimary {
+      border: none;
+      color: #FFFFFF;
+      background-color: #36A793; }
     body.demandeur .btn.btn-red {
       border: none;
       color: #FFFFFF;

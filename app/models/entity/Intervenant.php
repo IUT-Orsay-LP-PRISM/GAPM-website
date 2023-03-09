@@ -72,4 +72,9 @@ class Intervenant extends Demandeur
         $this->specialites = $specialites;
     }
 
+    public function isIntervenant(): bool
+    {
+        return true;
+    }
+
 }
