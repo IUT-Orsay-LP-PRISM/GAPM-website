@@ -172,15 +172,86 @@
 
 .header {
   &__mobile {
-    position   : fixed;
-    width      : 100%;
-    z-index: 50;
-    box-sizing : border-box;
-    justify-content  : space-between;
-    align-items      : center;
-    background-color : transparent;
+    position        : fixed;
+    width           : 100%;
+    z-index         : 50;
+    box-sizing      : border-box;
+    top: 0;
+    justify-content : space-between;
+    align-items     : center;
+    background      : $white;
+    transition      : all .3s ease-in-out;
+    height          : 100px;
+    box-shadow      : $boxShadowOut;
     @include px(2);
     @include py(1);
+
+    &.transparent {
+      background-color : transparent;
+      box-shadow       : none;
+
+      .header__mobile__menu-btn {
+        span {
+          background-color : $white;
+        }
+      }
+
+      .header__mobile__logo {
+        h1 {
+          color : $white;
+
+          &.text__underline::after {
+            height     : 0;
+            transition : all .3s ease;
+          }
+        }
+      }
+
+    }
+
+    &::before {
+      content          : '';
+      position         : absolute;
+      top              : 0;
+      left             : 0;
+      width            : 100vw;
+      height           : 100vh;
+      background-color : rgba(30, 30, 61, 0.82);
+      z-index          : 10;
+      opacity          : 0;
+      visibility       : hidden;
+      transition       : all .3s ease-in-out;
+    }
+
+    &.--fade {
+      &::before {
+        opacity    : 1;
+        visibility : visible;
+      }
+    }
+
+    &.down {
+      background-color : $white;
+      height           : 80px;
+      box-shadow       : $boxShadowOut;
+    }
+
+    .header__mobile__menu-btn {
+      span {
+        background-color : $primaryLight;
+      }
+    }
+
+    .header__mobile__logo {
+      h1 {
+        color : $primaryLight;
+
+        &.text__underline::after {
+          height     : 0;
+          transition : all .3s ease;
+        }
+      }
+    }
 
     &__logo {
       h1 {
@@ -189,6 +260,7 @@
         position  : relative;
       }
     }
+
     &__menu {
       position : relative;
 

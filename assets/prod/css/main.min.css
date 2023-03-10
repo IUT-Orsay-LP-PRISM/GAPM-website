@@ -1831,6 +1831,7 @@ body.intervenant {
     display: inline-block; }
     body.intervenant .text__underline::after {
       content: "";
+      transition: all .3s ease-out;
       position: absolute;
       bottom: 5px;
       z-index: -1;
@@ -1839,8 +1840,7 @@ body.intervenant {
       margin: auto;
       width: 100%;
       height: 15px;
-      background-color: #36A793;
-      transition: width 0.3s ease; }
+      background-color: #36A793; }
     body.intervenant .text__underline-light {
       position: relative;
       display: inline-block; }
@@ -2849,13 +2849,53 @@ body.intervenant {
     width: 100%;
     z-index: 50;
     box-sizing: border-box;
+    top: 0;
     justify-content: space-between;
     align-items: center;
-    background-color: transparent;
+    background: #FFFFFF;
+    transition: all .3s ease-in-out;
+    height: 100px;
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 1rem;
     padding-bottom: 1rem; }
+    body.intervenant .header__mobile.transparent {
+      background-color: transparent;
+      box-shadow: none; }
+      body.intervenant .header__mobile.transparent .header__mobile__menu-btn span {
+        background-color: #FFFFFF; }
+      body.intervenant .header__mobile.transparent .header__mobile__logo h1 {
+        color: #FFFFFF; }
+        body.intervenant .header__mobile.transparent .header__mobile__logo h1.text__underline::after {
+          height: 0;
+          transition: all .3s ease; }
+    body.intervenant .header__mobile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(30, 30, 61, 0.82);
+      z-index: 10;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .3s ease-in-out; }
+    body.intervenant .header__mobile.--fade::before {
+      opacity: 1;
+      visibility: visible; }
+    body.intervenant .header__mobile.down {
+      background-color: #FFFFFF;
+      height: 80px;
+      box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+    body.intervenant .header__mobile .header__mobile__menu-btn span {
+      background-color: #36A793; }
+    body.intervenant .header__mobile .header__mobile__logo h1 {
+      color: #36A793; }
+      body.intervenant .header__mobile .header__mobile__logo h1.text__underline::after {
+        height: 0;
+        transition: all .3s ease; }
     body.intervenant .header__mobile__logo h1 {
       color: #FFFFFF;
       font-size: 2.6rem;
@@ -3276,6 +3316,7 @@ body.demandeur {
     display: inline-block; }
     body.demandeur .text__underline::after {
       content: "";
+      transition: all .3s ease-out;
       position: absolute;
       bottom: 5px;
       z-index: -1;
@@ -3284,8 +3325,7 @@ body.demandeur {
       margin: auto;
       width: 100%;
       height: 15px;
-      background-color: #5154EC;
-      transition: width 0.3s ease; }
+      background-color: #5154EC; }
     body.demandeur .text__underline-light {
       position: relative;
       display: inline-block; }
@@ -4294,13 +4334,53 @@ body.demandeur {
     width: 100%;
     z-index: 50;
     box-sizing: border-box;
+    top: 0;
     justify-content: space-between;
     align-items: center;
-    background-color: transparent;
+    background: #FFFFFF;
+    transition: all .3s ease-in-out;
+    height: 100px;
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 1rem;
     padding-bottom: 1rem; }
+    body.demandeur .header__mobile.transparent {
+      background-color: transparent;
+      box-shadow: none; }
+      body.demandeur .header__mobile.transparent .header__mobile__menu-btn span {
+        background-color: #FFFFFF; }
+      body.demandeur .header__mobile.transparent .header__mobile__logo h1 {
+        color: #FFFFFF; }
+        body.demandeur .header__mobile.transparent .header__mobile__logo h1.text__underline::after {
+          height: 0;
+          transition: all .3s ease; }
+    body.demandeur .header__mobile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(30, 30, 61, 0.82);
+      z-index: 10;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .3s ease-in-out; }
+    body.demandeur .header__mobile.--fade::before {
+      opacity: 1;
+      visibility: visible; }
+    body.demandeur .header__mobile.down {
+      background-color: #FFFFFF;
+      height: 80px;
+      box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+    body.demandeur .header__mobile .header__mobile__menu-btn span {
+      background-color: #5154EC; }
+    body.demandeur .header__mobile .header__mobile__logo h1 {
+      color: #5154EC; }
+      body.demandeur .header__mobile .header__mobile__logo h1.text__underline::after {
+        height: 0;
+        transition: all .3s ease; }
     body.demandeur .header__mobile__logo h1 {
       color: #FFFFFF;
       font-size: 2.6rem;
