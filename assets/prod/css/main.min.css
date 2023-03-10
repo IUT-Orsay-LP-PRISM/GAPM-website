@@ -2940,7 +2940,8 @@ body.intervenant {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          padding: 1rem 2rem; }
+          padding: 1rem 2rem;
+          margin-top: 1rem; }
           body.intervenant .header__mobile__menu-content .close-menu svg {
             margin-right: 1rem; }
         body.intervenant .header__mobile__menu-content.--open {
@@ -4425,7 +4426,8 @@ body.demandeur {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          padding: 1rem 2rem; }
+          padding: 1rem 2rem;
+          margin-top: 1rem; }
           body.demandeur .header__mobile__menu-content .close-menu svg {
             margin-right: 1rem; }
         body.demandeur .header__mobile__menu-content.--open {
