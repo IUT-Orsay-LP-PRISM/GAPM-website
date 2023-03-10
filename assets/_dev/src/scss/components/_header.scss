@@ -172,66 +172,126 @@
 
 .header {
   &__mobile {
-    position   : fixed;
-    width      : 100%;
-    z-index: 50;
-    box-sizing : border-box;
-    justify-content  : space-between;
-    align-items      : center;
-    background-color : transparent;
+    position        : fixed;
+    width           : 100%;
+    z-index         : 50;
+    box-sizing      : border-box;
+    top: 0;
+    justify-content : space-between;
+    align-items     : center;
+    background      : $white;
+    transition      : all .3s ease-in-out;
+    height          : 100px;
+    box-shadow      : $boxShadowOut;
     @include px(2);
     @include py(1);
 
+    &.transparent {
+      background-color : transparent;
+      box-shadow       : none;
+
+      .header__mobile__menu-btn {
+        span {
+          background-color : $white;
+        }
+      }
+
+      .header__mobile__logo {
+        h1 {
+          color : $white;
+
+          &.text__underline::after {
+            height     : 0;
+            transition : all .3s ease;
+          }
+        }
+      }
+
+    }
+
+    &::before {
+      content          : '';
+      position         : absolute;
+      top              : 0;
+      left             : 0;
+      width            : 100vw;
+      height           : 100vh;
+      background-color : rgba(30, 30, 61, 0.82);
+      z-index          : 10;
+      opacity          : 0;
+      visibility       : hidden;
+      transition       : all .3s ease-in-out;
+    }
+
+    &.--fade {
+      &::before {
+        opacity    : 1;
+        visibility : visible;
+      }
+    }
+
+    &.down {
+      background-color : $white;
+      height           : 80px;
+      box-shadow       : $boxShadowOut;
+    }
+
+    .header__mobile__menu-btn {
+      span {
+        background-color : $primaryLight;
+      }
+    }
+
+    .header__mobile__logo {
+      h1 {
+        color : $primaryLight;
+
+        &.text__underline::after {
+          height     : 0;
+          transition : all .3s ease;
+        }
+      }
+    }
+
     &__logo {
       h1 {
-        color    : $white;
-        position : relative;
-
+        color     : $white;
+        font-size : 2.6rem;
+        position  : relative;
       }
     }
 
     &__menu {
-
-
-      &:hover {
-        span {
-          width : 45px;
-
-          &:first-child {
-            width : 45px;
-          }
-        }
-      }
+      position : relative;
 
       &-btn {
         cursor     : pointer;
         padding    : .5rem;
         box-sizing : border-box;
         position   : relative;
-        z-index    : 115;
+        z-index    : 0;
 
         span {
           display          : block;
-          width            : 35px;
-          height           : 6px;
+          width            : 45px;
+          height           : 4px;
           background-color : $white;
-          margin           : 7px 0;
+          margin           : 10px 0;
           border-radius    : 15px;
           transition       : all .3s ease-in-out;
 
-          &:first-child {
-            width : 20px;
+          &:last-child {
+            width : 22.5px;
           }
+        }
+      }
+
+      &:hover {
+        span {
+          width : 22.5px;
 
           &:last-child {
             width : 45px;
-          }
-        }
-
-        &.--opened {
-          span {
-            width            : 45px;
-            background-color : $primaryLight;
           }
         }
       }
@@ -241,17 +301,104 @@
         position         : fixed;
         top              : 0;
         left             : 0;
-        width            : 100%;
+        width            : 20rem;
         height           : 100vh;
         background-color : $white;
         z-index          : 100;
         transform        : translateX(-100%);
         transition       : all .3s ease-in-out;
 
+        .close-menu {
+          font-family     : $titleFont;
+          font-weight     : 600;
+          font-size       : 1em;
+          cursor          : pointer;
+          display         : flex;
+          align-items     : center;
+          justify-content : flex-start;
+          padding         : 1rem 2rem;
+          margin-top : 1rem;
+
+          svg {
+            margin-right : 1rem;
+          }
+        }
+
         &.--open {
           transform : translateX(0);
+
+          &::before {
+            opacity    : 1;
+            visibility : visible;
+          }
         }
       }
+
+      &-list {
+        li {
+          padding : 1rem 2rem;
+
+          a {
+            font-size       : 1.2rem;
+            font-weight     : 600;
+            text-decoration : none;
+            display         : flex;
+            align-items     : center;
+            justify-content : flex-start;
+            font-family     : $mainFont;
+            color           : $primaryDark;
+            position        : relative;
+            width           : fit-content;
+
+            svg {
+              margin-right : 1rem;
+            }
+
+            &:after {
+              content          : '';
+              position         : absolute;
+              width            : 0;
+              bottom           : -15px;
+              height           : 4px;
+              border-radius    : 5px;
+              background-color : $primaryLight;
+              transition       : all .3s ease-in-out;
+            }
+
+            &:hover {
+              color : $primaryLight;
+
+              &:after {
+                width : 50%;
+              }
+            }
+
+
+          }
+        }
+
+        &:last-child {
+          margin-top : 2rem;
+          .--logout{
+            position: absolute;
+            bottom: 2rem;
+            i{
+              @include icon-color($redDark);
+              margin-right : 1rem;
+            }
+            a{
+              color : $redDark;
+              font-weight: 400;
+              font-size: 1rem;
+              &:after{
+                background-color: transparent;
+                height: 1px;
+              }
+            }
+          }
+        }
+      }
+
     }
   }
 }

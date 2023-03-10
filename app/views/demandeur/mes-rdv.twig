@@ -1,0 +1,32 @@
+{% extends "base.twig" %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<section class="myrdv wrapper">
+		<h1>Mes rendez-vous</h1>
+
+		<div class="myrdv__container">
+			<div class="myrdv__content">
+				<div class="myrdv__nav">
+					<ul>
+						<li class="--active" data-count="{{ mesRdv.confirme|length }}">
+							Mes rendez-vous à venir
+						</li>
+						<li data-count="{{ mesRdv.attente|length }}">
+							Mes rendez-vous effectués
+						</li>
+						<li data-count="{{ mesRdv.annule|length }}">
+							Mes rendez-vous annulés
+						</li>
+						<li>
+							Mes avis à laisser
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

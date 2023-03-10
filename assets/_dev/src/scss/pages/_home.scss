@@ -20,7 +20,10 @@
       grid-template-areas   : "title img";
       grid-gap              : 5%;
       grid-template-columns : 1fr 1fr;
-
+      @include max-width($screenMd) {
+        grid-template-columns : 1fr;
+        grid-template-areas   : "title";
+      }
     }
 
     &-title {
@@ -49,8 +52,12 @@
     }
 
     &-img {
+
       grid-area     : img;
       padding-right : 2em;
+      @include max-width($screenMd) {
+        display : none;
+      }
 
       @include max-width($screenLg) {
         svg {
@@ -104,12 +111,24 @@
       padding    : 0 4em;
 
       @include max-width($screenLg) {
+        margin-top : 2em;
         grid-template-columns : 1fr 1fr;
         svg {
           width : 500px;
         }
         &-text {
           width : 500px;
+        }
+      }
+      @include max-width($screenMd) {
+        text-align: center;
+        margin-top : 2.5rem;
+        grid-template-columns : 1fr;
+        svg {
+          max-width : 100%;
+        }
+        &-text {
+          width : auto;
         }
       }
 
@@ -138,16 +157,22 @@
 
         p {
           font-size   : 1.2em;
-          font-weight : 500;
+          font-weight : 400;
           line-height : 1.5;
           color       : $secondary;
-          font-family : $titleFont;
-          width       : 70%;
+          font-family : $mainFont;
+          @include max-width($screenMd) {
+            text-align: justify;
+            width : 100%;
+          }
         }
       }
     }
 
     &-pilule {
+      @include max-width($screenLg) {
+        display : none;
+      }
       position : absolute;
 
       i {
