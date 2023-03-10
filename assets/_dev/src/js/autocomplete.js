@@ -59,15 +59,15 @@ function ajaxSpecialite(div_auto_complete,input) {
 
                     p.addEventListener('click', () => {
                         tag_container.appendChild(createTag(element.libelle.toUpperCase(), element.idSpecialite));
-                        if (input) {
-                            const value = input.value;
+                        const input_specialites_hidden = input.parentNode.querySelector('input[name="specialites"]');
+                        if (input_specialites_hidden) {
+                            const value = input_specialites_hidden.value;
                             if (value === 'null') {
-                                input.value = element.idSpecialite;
+                                input_specialites_hidden.value = element.idSpecialite;
                             } else {
-                                input.value = value + '-' + element.idSpecialite;
+                                input_specialites_hidden.value = value + '-' + element.idSpecialite;
                             }
                         }
-
                         input.value = '';
                         div_auto_complete.classList.add('notVisible');
                     });
