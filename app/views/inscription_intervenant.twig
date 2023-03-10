@@ -96,17 +96,10 @@
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-doctor"></i>
-                    <input id="specialite" class="input" type="text"/>
+                    <input id="specialite" class="input AC input_specialite" type="text"/>
                     <label class="label" for="specialite">Vos spécialités</label>
-                    <div id="auto_completion" class="notVisible"></div>
+                    <div class="notVisible auto_completion"></div>
                     <input id="specialitesInput" type="hidden" name="specialites" value="null">
-                </div>
-                <div class="car">
-                    <p>Demande de voiture </br> de fonction</p>
-                    <label class="switch">
-                        <input type="checkbox" name="voiture" value="1"/>
-                        <span></span>
-                    </label>
                 </div>
             </div>
             <div id="tag-container">
@@ -121,7 +114,6 @@
                 S'inscrire
             </button>
         </form>
-
     </section>
 
 {% endblock %}
