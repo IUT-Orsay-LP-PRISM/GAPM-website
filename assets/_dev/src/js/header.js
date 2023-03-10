@@ -30,8 +30,12 @@ const headerMobileButton = document.querySelector('.header__mobile__menu-btn');
 
 if (headerMobileButton) {
     headerMobileButton.addEventListener('click', () => {
-        headerMobile.classList.toggle('--open');
-        headerMobileButton.classList.toggle('--opened');
+        headerMobile.classList.add('--open');
         document.body.style.overflowY = document.body.style.overflowY === 'hidden' ? 'auto' : 'hidden';
     });
+
+    document.querySelector('.js-close-menu').addEventListener('click', () => {
+        headerMobile.classList.remove('--open');
+        document.body.style.overflowY = 'auto';
+    })
 }
