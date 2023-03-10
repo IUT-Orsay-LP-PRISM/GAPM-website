@@ -153,6 +153,9 @@
         grid-template-columns : 1fr 1fr;
         grid-gap              : 2rem 3.2rem;
         box-sizing            : border-box;
+        @include max-width($screenSm) {
+          grid-template-columns : 1fr;
+        }
 
         .input-container {
           width : 100%;
