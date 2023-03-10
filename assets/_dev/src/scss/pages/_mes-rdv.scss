@@ -1,0 +1,63 @@
+.myrdv {
+
+  &__container {
+    padding : 2.5rem 13.9rem;
+  }
+
+  &__content {
+    padding       : 1.85rem 2.53rem;
+    background    : white;
+    border-radius : 10px;
+    box-shadow    : 0px 2px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  &__nav {
+    ul {
+      margin-bottom   : 1.5rem;
+      display         : flex;
+      align-items     : center;
+      justify-content : flex-start;
+
+      li {
+        color       : $primaryDark;
+        font-family : $mainFont;
+        font-weight : 500;
+        font-size   : 1em;
+        cursor      : pointer;
+        position    : relative;
+        transition: all .3s ease;
+        &.--active{
+          color : $primaryLight;
+          &::before{
+            width: 20%;
+          }
+        }
+
+        &:before {
+          content          : '';
+          position         : absolute;
+          width            : 0;
+          height           : 2px;
+          bottom           : -10px;
+          left             : 0;
+          transition: all .2s ease-out;
+          background-color : $primaryLight;
+        }
+        &::after{
+          content: '• ' attr(data-count);
+        }
+
+        &:hover {
+          color : $primaryLight;
+          &::before{
+            width: 100%;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right : 1.5rem;
+        }
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ Route::get('logout', 'DemandeurController', 'logout');
 Route::get('my-account', 'DemandeurController', 'displayMyAccount');
 Route::get('prendre-rdv', 'RendezVousController', 'index');
 Route::get('success-rdv', 'RendezVousController', 'success');
+Route::get('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
 
 Route::post('login-user', 'DemandeurController', 'login');
 Route::post('register-user', 'DemandeurController', 'register');
