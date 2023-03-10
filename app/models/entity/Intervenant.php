@@ -25,22 +25,6 @@ class Intervenant extends Demandeur
     }
 
     /**
-     * @return int
-     */
-    public function getIdIntervenant(): int
-    {
-        return $this->idIntervenant;
-    }
-
-    /**
-     * @param int $idIntervenant
-     */
-    public function setIdIntervenant(int $idIntervenant): void
-    {
-        $this->idIntervenant = $idIntervenant;
-    }
-
-    /**
      * @return string
      */
     public function getAdressePro(): string

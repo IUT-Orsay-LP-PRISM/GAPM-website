@@ -254,8 +254,6 @@ class DemandeurController extends Template
             if ($inscriptionIntervenant) {
                 $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
                 $demandeur->setSpecialites(new ArrayCollection($specialites));
-                //$intervenant->setVoiture($voiture);
-                // TODO : ajouter voiture et demande voiture
             }
 
             try {

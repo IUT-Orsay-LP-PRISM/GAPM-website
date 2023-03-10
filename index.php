@@ -21,6 +21,7 @@ Route::post('register-user', 'DemandeurController', 'register');
 Route::post('my-account-edit', 'DemandeurController', 'update');
 Route::post('my-account-delete', 'DemandeurController', 'delete');
 Route::post('confirm-RDV', 'RendezVousController', 'createRDV');
+Route::post('upgrade-to-intervenant', 'IntervenantController', 'devenirIntervenant');
 
 // route::search pour le système de recherche, différent de ::get()
 Route::search('/?action=search');
