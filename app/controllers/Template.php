@@ -38,4 +38,20 @@ class Template
 
         echo $twig->render($view, $data);
     }
+
+    public static function addErrorToUrl($error, $containerError): string
+    {
+        $referer = $_SERVER['HTTP_REFERER'];
+        $referer_parts = parse_url($referer);
+        if (isset($referer_parts['query'])) {
+            parse_str($referer_parts['query'], $query_params);
+            $query_params['error'] = $error;
+            $query_params['c'] = $containerError;
+            $referer_parts['query'] = http_build_query($query_params);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
+        } else {
+            $referer .= '?error=' . $error . '&c=' . $containerError;
+        }
+        return $referer;
+    }
 }
