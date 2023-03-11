@@ -25,18 +25,9 @@ SET time_zone = "+00:00";
 
 -- DELETE DE LA BASE DE DONNEES
 
-SET FOREIGN_KEY_CHECKS = 0;
-
-SELECT GROUP_CONCAT(table_schema, '.', table_name, ' ') INTO @tables
-  FROM information_schema.tables 
-  WHERE table_schema = 'projet';
-
-SET @query = CONCAT('DROP TABLE IF EXISTS ', @tables);
-PREPARE stmt FROM @query;
-EXECUTE stmt;
-DEALLOCATE PREPARE stmt;
-
-SET FOREIGN_KEY_CHECKS = 1;
+DROP DATABASE projet;
+CREATE DATABASE projet;
+USE projet;
 
 
 --
