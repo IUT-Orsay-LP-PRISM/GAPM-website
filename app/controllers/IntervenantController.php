@@ -2,10 +2,14 @@
 
 namespace App\controllers;
 
+use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
+use App\models\entity\Session;
+use App\models\entity\Specialite;
+use App\models\entity\Ville;
 use App\models\repository\IntervenantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
-
 class IntervenantController extends Template
 {
     private IntervenantRepository $intervenantRepository;
@@ -25,5 +29,44 @@ class IntervenantController extends Template
             'isIntervenant' => true,
             'no_header' => true,
         ]);
+    }
+
+    public function devenirIntervenant()
+    {
+        if (isset($_POST['specialites'])) {
+            if ($_POST['specialites'] == 'null') {
+                $referer = self::addErrorToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
+                header("Location: $referer");
+                exit();
+            }
+            $specialitesString = $_POST['specialites'];
+            if ($specialitesString != 'null') {
+                $specialites = explode('-', $specialitesString);
+            }
+
+            $addressPro = $_POST['addressPro'];
+            $IdCityPro = $_POST['city'];
+            $villePro = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $IdCityPro]);
+
+            $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
+            $currentUser = Session::get('user');
+            $this->entityManager->getRepository(Demandeur::class)->changeDiscriminatorValue('intervenant', $currentUser->getIdDemandeur());
+            $currentDemandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy(['idDemandeur' => $currentUser->getIdDemandeur()]);
+
+            $currentDemandeur->setSpecialites(new ArrayCollection($specialites));
+            $currentDemandeur->setAdressePro($addressPro);
+            $currentDemandeur->setVillePro($villePro);
+
+            try {
+                $this->entityManager->persist($currentDemandeur);
+                $this->entityManager->flush();
+                Session::set('user', $currentDemandeur);
+            } catch (\Exception $e) {
+                $referer = self::addErrorToUrl('Une erreur est survenue.', 'inscription-intervenant');
+                header("Location: $referer");
+                exit();
+            }
+            header("Location: /");
+        }
     }
 }

@@ -1,0 +1,48 @@
+{% for unrdv in rdv %}
+	<div class="myrdv__contents-user --passed">
+		<div class="myrdv__contents-user-img">
+			<img src="assets/img/profils/exemple_doctor.jpg" alt="User">
+		</div>
+		<div class="myrdv__contents-user-info">
+			<div class="myrdv__contents-user-name">
+				<p class="title">
+					Nom
+				</p>
+				<p class="desc">
+					{{ unrdv.intervenant.nom }} {{ unrdv.intervenant.prenom }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-speciality">
+				<p class="title">
+					Spécialité
+				</p>
+				<ul class="desc">
+					<li>
+						{{ unrdv.specialite.libelle }}
+					</li>
+				</ul>
+			</div>
+			<div class="myrdv__contents-user-city">
+				<p class="title">
+					Ville
+				</p>
+				<p class="desc">
+					{{ unrdv.intervenant.ville.nom }}, {{ unrdv.intervenant.ville.codePostal }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-date">
+				<p class="title">
+					Date
+				</p>
+				<p class="desc">
+					Le {{ unrdv.dateRDV }}, à {{ unrdv.heureDebut }}
+				</p>
+			</div>
+		</div>
+		<div class="myrdv__contents-user-btn">
+			<a data-id="{{ unrdv.idRDV }}" href="#" class="btn btn-primary js-btn-RDV">
+				Voir sa fiche
+			</a>
+		</div>
+	</div>
+{% endfor %}

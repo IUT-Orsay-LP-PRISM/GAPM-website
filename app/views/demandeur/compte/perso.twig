@@ -4,36 +4,36 @@
 		<div class="myaccount__form__perso__infos">
 			<div class="input-container">
 				<i class="icon icon-fi-rr-text"></i>
-				<input id="name" class="input" type="text" name="lastname" value="{{ demandeur.nom }}"/>
+				<input id="name" class="input" type="text" name="lastname" value="{{ user.nom }}"/>
 				<label class="label" for="name">Votre nom</label>
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-text"></i>
-				<input id="first-name" class="input" type="text" name="firstname" value="{{ demandeur.prenom }}"/>
+				<input id="first-name" class="input" type="text" name="firstname" value="{{ user.prenom }}"/>
 				<label class="label" for="first-name">Votre Prénom</label>
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-at"></i>
-				<input id="e-mail" class="input" type="email" name="mail" placeholder=" " value="{{ demandeur.email }}"/>
+				<input id="e-mail" class="input" type="email" name="mail" placeholder=" " value="{{ user.email }}"/>
 				<label class="label" for="e-mail">Votre adresse e-mail</label>
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-calendar"></i>
-				<input id="birthday" class="input" type="date" name="birthday" value="{{ demandeur.dateNaissance }}"/>
+				<input id="birthday" class="input" type="date" name="birthday" value="{{ user.dateNaissance }}"/>
 				<label class="label" for="birthday">Votre date de naissance</label>
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-venus-mars"></i>
 				<select id="sexe" class="input" type="text" name="sexe">
-					{% if demandeur.sexe == "M" %}
+					{% if user.sexe == "M" %}
 						<option value="M" selected>Homme</option>
 						<option value="F">Femme</option>
 						<option value="A">Autre</option>
-					{% elseif demandeur.sexe == "F" %}
+					{% elseif user.sexe == "F" %}
 						<option value="F" selected>Femme</option>
 						<option value="M">Homme</option>
 						<option value="A">Autre</option>
-					{% elseif demandeur.sexe == "A" %}
+					{% elseif user.sexe == "A" %}
 						<option value="A" selected>Autre</option>
 						<option value="M">Homme</option>
 						<option value="F">Femme</option>
@@ -43,7 +43,7 @@
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-phone-call"></i>
-				<input id="tel" class="input" type="text" name="phone" value="{{ demandeur.telephone }}"/>
+				<input id="tel" class="input" type="text" name="phone" value="{{ user.telephone }}"/>
 				<label class="label" for="tel">Téléphone portable</label>
 			</div>
 		</div>
@@ -51,16 +51,16 @@
 		<div class="myaccount__form__perso__adresses">
 			<div class="input-container">
 				<i class="icon icon-fi-rr-home-location-alt"></i>
-				<input id="adress" class="input" type="text" name="address" value="{{ demandeur.adresse }}"/>
-				<label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
+				<input id="address" class="input" type="text" name="address" value="{{ user.adresse }}"/>
+				<label class="label" for="address">Votre adresse (Numéro, Rue)</label>
 			</div>
 			<div class="input-container overflow">
 				<i class="icon icon-fi-rr-map-marker"></i>
-				<input id="ville" class="input AC input_ville" type="text" value="{{ demandeur.ville.nom|upper }}"/>
-				<label class="label" for="ville">Ville</label>
-				<input id="hiddenValueCityIntervenant" name="city" type="number" hidden="hidden" value="{{ demandeur.ville.idVille }}"/>
+				<input id="villeIntervenant" class="input AC input_ville" type="text" value="{{ user.ville.nom|upper }}"/>
+				<label class="label" for="villeIntervenant">Ville</label>
+				<input id="hiddenValueCityIntervenantUpgrade" name="city" type="number" hidden="hidden" value="{{ user.ville.idVille }}"/>
 				<div class="notVisible auto_completion"></div>
-				<span class="code_postal">{{ demandeur.ville.codePostal }}</span>
+				<span class="code_postal">{{ user.ville.codePostal }}</span>
 			</div>
 		</div>
 		<h2 class="myaccount__form-title">Sécurité</h2>

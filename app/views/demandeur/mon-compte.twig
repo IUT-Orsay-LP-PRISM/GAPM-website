@@ -22,13 +22,23 @@
                             <i class="icon icon-fi-rr-info"></i>
                         </a>
                     </li>
-                    <li>
-                        <a href="#intervenant"
-                           class="js-account-nav myaccount__content__nav-link">
-                            Devenir intervenant
-                            <i class="icon icon-fi-rr-redo"></i>
-                        </a>
-                    </li>
+                    {% if user is defined and not user.isIntervenant() %}
+                        <li>
+                            <a href="#intervenant"
+                               class="js-account-nav myaccount__content__nav-link">
+                                Devenir intervenant
+                                <i class="icon icon-fi-rr-redo"></i>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="#intervenant"
+                               class="js-account-nav myaccount__content__nav-link">
+                                Informations professionnelle
+                                <i class="icon icon-fi-rr-redo"></i>
+                            </a>
+                        </li>
+                    {% endif %}
                     <li>
                         <a href="#options"
                            class="js-account-nav myaccount__content__nav-link">

@@ -108,4 +108,50 @@ class RendezVousController extends Template
         $horaire = $this->rendezVousRepository->findHeureNonDispo($intervenant, $date);
         echo json_encode($horaire);
     }
+
+    public function displayMyRdv()
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&error=Pour voir vos rendez vous, connectez vous!&c=connexion');
+            exit;
+        }
+
+        $user = Session::get('user');
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
+        $mesRdv = $demandeur->getRendezVous();
+
+        $mesRdvConfirme = [];
+        $mesRdvEnAttente = [];
+        $mesRdvAnnule = [];
+        $mesRdvEffectue = [];
+        foreach ($mesRdv as $rdv) {
+            switch ($rdv->getStatus()) {
+                case 'En attente':
+                    $mesRdvEnAttente[] = $rdv;
+                    break;
+                case 'Confirme':
+                    $mesRdvConfirme[] = $rdv;
+                    break;
+                case 'Effectue':
+                    $mesRdvEffectue[] = $rdv;
+                    break;
+                case 'Annule':
+                    $mesRdvAnnule[] = $rdv;
+                    break;
+            }
+        }
+
+        $mesRdv = [
+            'confirme' => $mesRdvConfirme,
+            'attente' => $mesRdvEnAttente,
+            'effectue' => $mesRdvEffectue,
+            'annule' => $mesRdvAnnule
+        ];
+
+        self::render('demandeur/mes-rdv.twig', [
+            'title' => 'Mes rendez-vous',
+            'user' => $demandeur,
+            'mesRdv' => $mesRdv
+        ]);
+    }
 }

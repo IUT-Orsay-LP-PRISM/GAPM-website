@@ -119,21 +119,7 @@ class DemandeurController extends Template
         }
     }
 
-    private static function addErrorToUrl($error, $containerError): string
-    {
-        $referer = $_SERVER['HTTP_REFERER'];
-        $referer_parts = parse_url($referer);
-        if (isset($referer_parts['query'])) {
-            parse_str($referer_parts['query'], $query_params);
-            $query_params['error'] = $error;
-            $query_params['c'] = $containerError;
-            $referer_parts['query'] = http_build_query($query_params);
-            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
-        } else {
-            $referer .= '?error=' . $error . '&c=' . $containerError;
-        }
-        return $referer;
-    }
+
 
     public function login()
     {
@@ -254,8 +240,6 @@ class DemandeurController extends Template
             if ($inscriptionIntervenant) {
                 $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
                 $demandeur->setSpecialites(new ArrayCollection($specialites));
-                //$intervenant->setVoiture($voiture);
-                // TODO : ajouter voiture et demande voiture
             }
 
             try {
@@ -283,8 +267,7 @@ class DemandeurController extends Template
         $user = Session::get('user');
 
         self::render('demandeur/mon-compte.twig', [
-            'title' => 'Mon compte',
-            'demandeur' => $user,
+            'title' => 'Mon compte'
         ]);
     }
 }

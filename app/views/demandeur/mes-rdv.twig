@@ -1,0 +1,50 @@
+{% extends "base.twig" %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<section class="myrdv wrapper">
+		<h1>Mes rendez-vous</h1>
+
+		<div class="myrdv__container">
+			<div class="myrdv__content">
+				<div class="myrdv__nav">
+					<ul>
+						<li class="--active js-rdv-nav" data-count="{{ mesRdv.confirme|length }}" data-id="confirm">
+							Rendez-vous à venir
+						</li>
+						<li class="js-rdv-nav" data-count="{{ mesRdv.attente|length }}" data-id="waiting">
+							RDV En attente de confirmation
+						</li>
+						<li class="js-rdv-nav" data-count="{{ mesRdv.effectue|length }}" data-id="passed">
+							RDV Effectués
+						</li>
+						<li class="js-rdv-nav" data-count="{{ mesRdv.annule|length }}" data-id="canceled">
+							RDV Annulés
+						</li>
+						<li class="js-rdv-nav">
+							Avis à laisser
+						</li>
+					</ul>
+				</div>
+
+				<div class="myrdv__list">
+					<div id="confirm" class="js-rdv-content --display">
+						{% include '/demandeur/rdv/rdv-confirme.twig' with {'rdv': mesRdv.confirme} %}
+					</div>
+					<div id="waiting" class="js-rdv-content">
+						{% include '/demandeur/rdv/rdv-attente.twig' with {'rdv': mesRdv.attente} %}
+					</div>
+					<div id="passed" class="js-rdv-content">
+						{% include '/demandeur/rdv/rdv-passed.twig' with {'rdv': mesRdv.effectue} %}
+					</div>
+					<div id="canceled" class="js-rdv-content">
+						{% include '/demandeur/rdv/rdv-annule.twig' with {'rdv': mesRdv.annule} %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

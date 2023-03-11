@@ -7,9 +7,9 @@
 		</ul>
 		<ul class="header__menu menu-right">
 			{% if userLogged %}
-				{% if userIntervenant %}
+                {% if user is defined and user.isIntervenant() %}
 					<li class="menu-item">
-						<a href="/?action=intervenant" class="btn btn-primary">Mode intervenant</a>
+						<a href="/?action=intervenant" class="btn btn-greenPrimary"><i class="icon-w icon-fi-rr-redo"></i>Mode intervenant</a>
 					</li>
 				{% endif %}
 				<li class="menu-item">
@@ -52,9 +52,6 @@
 		</ul>
 	</nav>
 	<section class="header__mobile">
-		<div class="header__mobile__logo">
-			<h1 class="text__underline">G.A.P.M</h1>
-		</div>
 		<div class="header__mobile__menu">
 			<div class="header__mobile__menu-btn">
 				<span></span>
@@ -62,12 +59,66 @@
 				<span></span>
 			</div>
 			<div class="header__mobile__menu-content">
+				<div class="close-menu js-close-menu">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g clip-path="url(#clip0_105_2924)">
+							<path d="M23.707 0.293145C23.5195 0.105674 23.2652 0.000358582 23 0.000358582C22.7349 0.000358582 22.4806 0.105674 22.293 0.293145L12 10.5861L1.70703 0.293145C1.5195 0.105674 1.26519 0.000358582 1.00003 0.000358582C0.734866 0.000358582 0.480558 0.105674 0.293031 0.293145C0.10556 0.480673 0.000244141 0.734981 0.000244141 1.00015C0.000244141 1.26531 0.10556 1.51962 0.293031 1.70715L10.586 12.0001L0.293031 22.2931C0.10556 22.4807 0.000244141 22.735 0.000244141 23.0001C0.000244141 23.2653 0.10556 23.5196 0.293031 23.7071C0.480558 23.8946 0.734866 23.9999 1.00003 23.9999C1.26519 23.9999 1.5195 23.8946 1.70703 23.7071L12 13.4141L22.293 23.7071C22.4806 23.8946 22.7349 23.9999 23 23.9999C23.2652 23.9999 23.5195 23.8946 23.707 23.7071C23.8945 23.5196 23.9998 23.2653 23.9998 23.0001C23.9998 22.735 23.8945 22.4807 23.707 22.2931L13.414 12.0001L23.707 1.70715C23.8945 1.51962 23.9998 1.26531 23.9998 1.00015C23.9998 0.734981 23.8945 0.480673 23.707 0.293145Z"
+								  fill="#1E1E3D"/>
+						</g>
+						<defs>
+							<clipPath id="clip0_105_2924">
+								<rect width="24" height="24" fill="white"/>
+							</clipPath>
+						</defs>
+					</svg>
+				</div>
 				<ul class="header__mobile__menu-list">
 					<li class="menu-item"><a href="/" class="--active">Accueil</a></li>
 					<li class="menu-item"><a href="#">Besoin d'aide ?</a></li>
 					<li class="menu-item"><a href="#">A propos</a></li>
 				</ul>
+				<ul class="header__mobile__menu-list">
+					{% if userLogged %}
+						{% if user is defined and user.isIntervenant() %}
+							<li class="menu-item">
+								<a href="/?action=intervenant" class="btn btn-greenPrimary"><i class="icon-w icon-fi-rr-redo"></i>Mode intervenant</a>
+							</li>
+						{% endif %}
+						<li class="menu-item">
+							<a href="/?action=search" class="link">
+								Prendre RDV
+							</a>
+						</li>
+						<li class="menu-item">
+							<a href="/?action=mes-rendez-vous" class="link">Mes rendez-vous</a>
+						</li>
+						<li class="menu-item">
+							<a href="/?action=my-account" class="link">Mon compte</a>
+						</li>
+						<li class="--logout">
+							<a href="/?action=logout" class="dropdown-item">
+								<i class="icon icon-fi-rr-user-delete"></i>
+								Se déconnecter</a>
+						</li>
+					{% else %}
+						<li class="menu-item"><a id="btn-connexion" href="#" class="btn btn-primary-nb">
+								<i class="icon-w icon-fi-rr-user"></i>
+								Se connecter
+							</a></li>
+						<li class="menu-item"><a id="btn-inscription" href="#" class="btn btn-secondary-nb"
+												 style="color: #393BAA !important;">
+								<i class="icon icon-fi-rr-user-add"></i>
+								S'inscrire
+							</a></li>
+					{% endif %}
+
+				</ul>
 			</div>
+		</div>
+		<div class="header__mobile__logo">
+			<a href="/">
+				<h1 class="text__underline">G.A.P.M</h1>
+			</a>
 		</div>
 	</section>
 </header>

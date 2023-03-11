@@ -51,6 +51,13 @@
     color            : $primaryDark;
     background-color : $greenLight;
   }
+
+  &.btn-greenPrimary {
+    border           : none;
+    color            : $white;
+    background-color : $greenPrimary;
+  }
+
   &.btn-red {
     border           : none;
     color            : $white;
