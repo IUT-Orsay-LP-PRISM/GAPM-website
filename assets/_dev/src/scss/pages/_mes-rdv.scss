@@ -1,7 +1,7 @@
 .myrdv {
 
   &__container {
-    padding : 2.5rem 13.9rem;
+    padding : 2.5rem 10.1rem;
   }
 
   &__content {
@@ -20,7 +20,7 @@
 
       li {
         color       : $primaryDark;
-        font-family : $mainFont;
+        font-family : $titleFont;
         font-weight : 500;
         font-size   : 1em;
         cursor      : pointer;
@@ -45,6 +45,7 @@
         }
         &::after{
           content: '• ' attr(data-count);
+          font-weight: 700;
         }
 
         &:hover {
@@ -60,4 +61,147 @@
       }
     }
   }
+
+
+  &__list{
+    margin-top: 3rem;
+
+    & > div {
+      display: none;
+    }
+
+    .--display{
+      display: block;
+    }
+  }
+
+  &__contents {
+    background-color : $white;
+    box-shadow       : $boxShadowOut;
+    border-radius    : $borderRadiusSmall;
+    padding          : 2rem 3rem;
+    max-width        : 90rem;
+    margin           : 2rem auto 5em auto;
+
+    &-list {
+      margin-top : 2em;
+    }
+
+    &-user {
+      display         : flex;
+      justify-content : space-between;
+      align-items     : center;
+      padding         : 1rem;
+      transition      : all .2s ease-in-out;
+      position        : relative;
+
+      &.--disabled{
+        opacity: .5;
+        cursor: not-allowed;
+        &:hover{
+          background-color: white;
+        }
+      }
+      &.--passed{
+        opacity: .9;
+        &:hover{
+          background-color: $greenLight;
+        }
+      }
+
+      &:hover {
+        background-color : #F1FAFB;
+        border-radius    : 10px;
+      }
+
+      &:not(:last-child) {
+        &::after {
+          content          : "";
+          position         : absolute;
+          display          : block;
+          bottom           : -16px;
+          width            : 100%;
+          left             : 0;
+          height           : 1px;
+          background-color : lightgrey;
+          margin           : 1rem 0;
+        }
+      }
+
+      &-img {
+        img {
+          max-width     : 100px;
+          border-radius : 50%;
+        }
+      }
+
+      &-info {
+        flex                  : 1;
+        display               : grid;
+        grid-template-areas   : "name speciality city date";
+        grid-template-columns : repeat(4, 1fr);
+        grid-gap              : 3%;
+        margin                : 0 4rem;
+
+        .title {
+          font-family : $titleFont;
+          font-size   : 1rem;
+          color       : $primaryDark;
+          font-weight : 500;
+          line-height : 2;
+        }
+
+        .desc {
+          font-size   : 1rem;
+          color       : $black;
+          font-weight : 400;
+          font-family : $mainFont;
+          line-height : 2;
+        }
+        ul.desc{
+          list-style: "- ";
+          padding-left: .65rem;
+          color: $primaryDark;
+          li{
+            color: $black;
+          }
+        }
+      }
+
+      &-name {
+        grid-area : name;
+      }
+
+      &-speciality {
+        grid-area : speciality;
+      }
+
+      &-city {
+        grid-area : city;
+      }
+      &-date{
+        grid-area: date;
+      }
+
+      &-btn {
+        display: flex;
+        align-items: center;
+        a {
+          &:not(:last-child){
+            margin-right : 1rem;
+          }
+          svg {
+            transition : all .3s ease-in-out;
+            transform  : rotate(0);
+          }
+
+          &:hover svg {
+            transition : all .5s ease-in-out;
+            transform  : rotate(180deg);
+          }
+        }
+      }
+    }
+  }
+
 }
