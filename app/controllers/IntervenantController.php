@@ -2,6 +2,7 @@
 
 namespace App\controllers;
 
+use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
