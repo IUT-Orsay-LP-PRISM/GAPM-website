@@ -6,6 +6,7 @@ use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
+use App\models\entity\Ville;
 use App\models\repository\IntervenantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
@@ -42,12 +43,19 @@ class IntervenantController extends Template
             if ($specialitesString != 'null') {
                 $specialites = explode('-', $specialitesString);
             }
-            $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
 
+            $addressPro = $_POST['addressPro'];
+            $IdCityPro = $_POST['city'];
+            $villePro = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $IdCityPro]);
+
+            $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
             $currentUser = Session::get('user');
             $this->entityManager->getRepository(Demandeur::class)->changeDiscriminatorValue('intervenant', $currentUser->getIdDemandeur());
             $currentDemandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy(['idDemandeur' => $currentUser->getIdDemandeur()]);
+
             $currentDemandeur->setSpecialites(new ArrayCollection($specialites));
+            $currentDemandeur->setAdressePro($addressPro);
+            $currentDemandeur->setVillePro($villePro);
 
             try {
                 $this->entityManager->persist($currentDemandeur);

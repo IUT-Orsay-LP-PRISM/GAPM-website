@@ -19,6 +19,10 @@ class Intervenant extends Demandeur
     #[ORM\ManyToMany(targetEntity: Specialite::class, fetch: 'EAGER')]
     private $specialites;
 
+    #[ORM\ManyToOne(targetEntity: Ville::class, fetch: 'EAGER')]
+    #[ORM\JoinColumn(name: 'idVille', referencedColumnName: 'idVille', nullable: false)]
+    private Ville $villePro;
+
     public function __construct()
     {
         $this->specialites = new ArrayCollection();
@@ -59,6 +63,22 @@ class Intervenant extends Demandeur
     public function isIntervenant(): bool
     {
         return true;
+    }
+
+    /**
+     * @return Ville
+     */
+    public function getVillePro(): Ville
+    {
+        return $this->villePro;
+    }
+
+    /**
+     * @param Ville $villePro
+     */
+    public function setVillePro(Ville $villePro): void
+    {
+        $this->villePro = $villePro;
     }
 
 }
