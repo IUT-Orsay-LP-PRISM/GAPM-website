@@ -38,7 +38,7 @@ class Demandeur
     #[ORM\ManyToOne(targetEntity: Ville::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idVille', referencedColumnName: 'idVille', nullable: false)]
     private Ville $ville;
-    #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: RendezVous::class, fetch: 'EAGER')]
+    #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: RendezVous::class, fetch: 'LAZY')]
     private $rendezVous;
 
     #

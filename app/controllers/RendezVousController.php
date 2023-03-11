@@ -123,6 +123,7 @@ class RendezVousController extends Template
         $mesRdvConfirme = [];
         $mesRdvEnAttente = [];
         $mesRdvAnnule = [];
+        $mesRdvEffectue = [];
         foreach ($mesRdv as $rdv) {
             switch ($rdv->getStatus()) {
                 case 'En attente':
@@ -130,6 +131,9 @@ class RendezVousController extends Template
                     break;
                 case 'Confirme':
                     $mesRdvConfirme[] = $rdv;
+                    break;
+                case 'Effectue':
+                    $mesRdvEffectue[] = $rdv;
                     break;
                 case 'Annule':
                     $mesRdvAnnule[] = $rdv;
@@ -140,6 +144,7 @@ class RendezVousController extends Template
         $mesRdv = [
             'confirme' => $mesRdvConfirme,
             'attente' => $mesRdvEnAttente,
+            'effectue' => $mesRdvEffectue,
             'annule' => $mesRdvAnnule
         ];
 
