@@ -1,4 +1,5 @@
 <section class="myaccount__form" id="form">
+	{% if user is defined and not user.isIntervenant() %}
 	<form method="post" action="?action=upgrade-to-intervenant">
 		<h2 class="myaccount__form-title">Devenir intervenant</h2>
 		<div class="myaccount__form__intervenant">
@@ -24,4 +25,13 @@
 			Postuler en tant que praticien
 		</button>
 	</form>
+	{% else %}
+		{% if user.isIntervenant() %}
+			<div class="myaccount__form__intervenant">
+				<div class="myaccount__form__intervenant__item">
+					<p class="myaccount__form-subtitle">Vous êtes déjà intervenant</p>
+				</div>
+			</div>
+		{% endif %}
+	{% endif %}
 </section>
