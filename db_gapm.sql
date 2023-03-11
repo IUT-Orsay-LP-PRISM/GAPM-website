@@ -244,7 +244,8 @@ INSERT INTO `FichePaie` (`idFichePaie`, `URL`, `idIntervenant`, `idPersonnel`) V
 CREATE TABLE `Intervenant`
 (
     `idDemandeur` int(11) NOT NULL,
-    `adressePro` varchar(255) DEFAULT NULL
+    `adressePro` varchar(255) DEFAULT NULL,
+    `idVille` int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -255,10 +256,10 @@ CREATE TABLE `Intervenant`
 -- Déchargement des données de la table `Intervenant`
 --
 
-INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`) VALUES
-(1, '100 rue des Intervenants'),
-(2, '200 rue des Experts'),
-(5, '500 chemin des Professionnels');
+INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`,`idVille`) VALUES
+(1, '100 rue des Intervenants',1),
+(2, '200 rue des Experts',1),
+(5, '500 chemin des Professionnels',2);
 
 -- --------------------------------------------------------
 
@@ -36789,7 +36790,8 @@ ALTER TABLE `FichePaie`
 -- Index pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD PRIMARY KEY (`idDemandeur`);
+    ADD PRIMARY KEY (`idDemandeur`),
+    ADD KEY `idVille` (`idVille`);
 
 --
 -- Index pour la table `NoteFrais`
@@ -36997,7 +36999,9 @@ ALTER TABLE `FichePaie`
 -- Contraintes pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Intervenant_ibfk_2` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 --
 -- Contraintes pour la table `NoteFrais`
