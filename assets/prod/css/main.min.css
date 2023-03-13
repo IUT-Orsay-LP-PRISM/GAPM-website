@@ -1,3 +1,6 @@
+/*!****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/scss/tools/reset.css ***!
+  \****************************************************************************/
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -46,11 +49,14 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss ***!
+  \*************************************************************************************************************/
 @charset "UTF-8";
 @font-face {
   font-family: 'gapm-svg';
-  src: url(../fonts/gapm-svg.eot);
-  src: url(../fonts/gapm-svg.eot#iefix) format("embedded-opentype"), url(../fonts/gapm-svg.ttf) format("truetype"), url(../fonts/gapm-svg.woff) format("woff"), url(../fonts/gapm-svg.svg#gapm-svg) format("svg");
+  src: url(../fonts/gapm-svg.eot?r8xomo);
+  src: url(../fonts/gapm-svg.eot?r8xomo#iefix) format("embedded-opentype"), url(../fonts/gapm-svg.ttf?r8xomo) format("truetype"), url(../fonts/gapm-svg.woff?r8xomo) format("woff"), url(../fonts/gapm-svg.svg?r8xomo#gapm-svg) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block; }
