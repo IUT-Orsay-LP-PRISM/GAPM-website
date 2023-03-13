@@ -26,8 +26,12 @@
         cursor      : pointer;
         position    : relative;
         transition: all .3s ease;
+        padding: 0.6rem;
+        border: 1px solid transparent;
+        border-radius: 4px;
         &.--active{
           color : $primaryLight;
+          border: 1px solid $primaryLight;
           &::before{
             width: 20%;
           }
@@ -51,7 +55,7 @@
         &:hover {
           color : $primaryLight;
           &::before{
-            width: 100%;
+            width: 20%;
           }
         }
 
