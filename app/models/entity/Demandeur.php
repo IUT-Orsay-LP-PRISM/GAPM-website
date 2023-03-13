@@ -41,6 +41,11 @@ class Demandeur
     #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: RendezVous::class, fetch: 'LAZY')]
     private $rendezVous;
 
+    #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: Commentaire::class, fetch: 'EAGER')]
+    private $commentaires;
+
+
+
     #
 
     /**
@@ -225,6 +230,23 @@ class Demandeur
     {
         return $this->rendezVous->toArray();
     }
+
+    public function getCommentaires(): array
+    {
+        return $this->commentaires->toArray();
+    }
+
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setDemandeur($this);
+        }
+
+        return $this;
+    }
+
 
     public function setRendezVous(Collection $rendezVous): self
     {
