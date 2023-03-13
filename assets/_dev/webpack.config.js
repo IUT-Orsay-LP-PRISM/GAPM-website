@@ -1,62 +1,49 @@
-const miniCss = require("mini-css-extract-plugin");
-const path = require("path");
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'development',
     entry: {
-        "main":
-            [
-                "./src/js/app.js",
-                "./src/scss/main.scss",
-            ],
+        main: ['./src/js/app.js', './src/scss/main.scss'],
     },
     output: {
         path: path.resolve(__dirname, '../prod/js'),
-        filename: "[name].min.js"
+        filename: '[name].min.js',
     },
     module: {
-        rules: [{
-            test: /\.(s*)css$/,
-            use: [
-                {
-                    loader: miniCss.loader,
-                    options: {
-                        publicPath: ''
-                    }
-                },
-                'css-loader',
-                'sass-loader',
-            ]
-        },
+        rules: [
             {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.(s*)css$/,
                 use: [
                     {
-                        loader: 'file-loader',
+                        loader: MiniCssExtractPlugin.loader,
                         options: {
-                            name: '[name].[ext]',
-                            outputPath: '../fonts/'
+                            publicPath: '../../'
                         }
-                    }
+                    },
+                    'css-loader',
+                    'sass-loader',
                 ]
             },
             {
-                test: /\.(png|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: '../img/'
-                        }
-                    }
-                ]
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: '../fonts/[name][ext][query]'
+                }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: '../img/[name][ext][query]'
+                }
             }
         ]
     },
     plugins: [
-        new miniCss({
-            filename: "../css/[name].min.css",
-        }),
+        new MiniCssExtractPlugin({
+            filename: '../css/[name].min.css'
+        })
     ]
 };

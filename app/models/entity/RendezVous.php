@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'RDV')]
 class RendezVous
 {
-
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
@@ -19,19 +18,26 @@ class RendezVous
     private string $status;
     #[ORM\Column]
     private string $dateRdv;
+
     #[ORM\Column]
     private string $heureDebut;
+
     #[ORM\Column]
     private string $heureFin;
+
     #[ORM\OneToOne(targetEntity: Demandeur::class, fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
     private Demandeur $demandeur;
+
     #[ORM\OneToOne(targetEntity: Intervenant::class, fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
     private Intervenant $intervenant;
+
     #[ORM\ManyToOne(targetEntity: Specialite::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
     private Specialite $specialite;
+
+
 
     /**
      * @return int
