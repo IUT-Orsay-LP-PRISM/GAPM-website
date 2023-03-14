@@ -38,7 +38,7 @@ class RendezVous
     private Specialite $specialite;
 
     #[ORM\OneToOne(targetEntity: Commentaire::class, fetch: 'EAGER')]
-    #[ORM\JoinColumn(name: 'idCommentaire', referencedColumnName: 'idCommentaire', nullable: false)]
+    #[ORM\JoinColumn(name: 'idCommentaire', referencedColumnName: 'idCommentaire', nullable: true)]
     private Commentaire $commentaire;
 
 

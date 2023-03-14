@@ -23,10 +23,8 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
--- DELETE DE LA BASE DE DONNEES
-
-DROP DATABASE projet;
-CREATE DATABASE projet;
+DROP DATABASE IF EXISTS projet;
+CREATE DATABASE IF NOT EXISTS projet;
 USE projet;
 
 
@@ -334,7 +332,8 @@ CREATE TABLE `RDV`
     `heureFin`       varchar(50) NOT NULL,
     `idDemandeur`   int(11)     NOT NULL,
     `idSpecialite`     int(11)     NOT NULL,
-    `idIntervenant` int(11)     NOT NULL
+    `idIntervenant` int(11)     NOT NULL,
+    `idCommentaire` int(11)     DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -36813,7 +36812,8 @@ ALTER TABLE `RDV`
     ADD PRIMARY KEY (`idRdv`),
     ADD KEY `idDemandeur` (`idDemandeur`),
     ADD KEY `idSpecialite` (`idSpecialite`),
-    ADD KEY `idIntervenant` (`idIntervenant`);
+    ADD KEY `idIntervenant` (`idIntervenant`),
+    ADD KEY `idCommentaire` (`idCommentaire`);
 
 --
 -- Index pour la table `Realiser`
@@ -37015,7 +37015,8 @@ ALTER TABLE `NoteFrais`
 ALTER TABLE `RDV`
     ADD CONSTRAINT `RDV_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `RDV_ibfk_2` FOREIGN KEY (`idSpecialite`) REFERENCES `Specialite` (`idSpecialite`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `RDV_ibfk_3` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `RDV_ibfk_3` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `RDV_ibfk_4` FOREIGN KEY (`idCommentaire`) REFERENCES `Commentaire` (`idCommentaire`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Realiser`
