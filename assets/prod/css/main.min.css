@@ -1867,9 +1867,11 @@ body.intervenant {
   body.intervenant ::-webkit-scrollbar {
     width: 10px; }
   body.intervenant ::-webkit-scrollbar-track {
-    background: #144139; }
+    background: #144139;
+    border-radius: 10px; }
   body.intervenant ::-webkit-scrollbar-thumb {
-    background: #36A793; }
+    background: #36A793;
+    border-radius: 10px; }
   body.intervenant ::-webkit-scrollbar-thumb:hover {
     background: #257466; }
   body.intervenant .hp__banner {
@@ -3393,22 +3395,23 @@ body.intervenant {
     top: 2.6rem;
     left: 0;
     width: 100%;
-    max-height: 15em;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
     border-radius: 0 0 10px 10px;
-    font-size: 1em;
+    font-size: 18px;
     background-color: #FFFFFF;
-    overflow-x: hidden;
+    overflow: hidden;
+    z-index: 1;
     overflow-y: scroll;
-    z-index: 2; }
-    body.intervenant .auto_completion .AC_ville, body.intervenant .auto_completion .AC_specialite {
+    font-family: "Open Sans", sans-serif;
+    max-height: 10em; }
+    body.intervenant .auto_completion p {
       padding: 1em;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+      font-size: 0.85em;
+      text-transform: unset;
       user-select: none;
-      cursor: pointer;
-      color: #787878; }
-      body.intervenant .auto_completion .AC_ville:hover, body.intervenant .auto_completion .AC_specialite:hover {
-        background-color: #A0E4F1; }
+      cursor: pointer; }
+    body.intervenant .auto_completion p:hover {
+      background-color: #DCE6F2; }
     body.intervenant .auto_completion.notVisible {
       display: none; }
   body.intervenant .link {
@@ -3526,9 +3529,11 @@ body.demandeur {
   body.demandeur ::-webkit-scrollbar {
     width: 10px; }
   body.demandeur ::-webkit-scrollbar-track {
-    background: #1E1E3D; }
+    background: #1E1E3D;
+    border-radius: 10px; }
   body.demandeur ::-webkit-scrollbar-thumb {
-    background: #5154EC; }
+    background: #5154EC;
+    border-radius: 10px; }
   body.demandeur ::-webkit-scrollbar-thumb:hover {
     background: #393BAA; }
   body.demandeur .hp__banner {
@@ -5052,22 +5057,23 @@ body.demandeur {
     top: 2.6rem;
     left: 0;
     width: 100%;
-    max-height: 15em;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
     border-radius: 0 0 10px 10px;
-    font-size: 1em;
+    font-size: 18px;
     background-color: #FFFFFF;
-    overflow-x: hidden;
+    overflow: hidden;
+    z-index: 1;
     overflow-y: scroll;
-    z-index: 2; }
-    body.demandeur .auto_completion .AC_ville, body.demandeur .auto_completion .AC_specialite {
+    font-family: "Open Sans", sans-serif;
+    max-height: 10em; }
+    body.demandeur .auto_completion p {
       padding: 1em;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+      font-size: 0.85em;
+      text-transform: unset;
       user-select: none;
-      cursor: pointer;
-      color: #787878; }
-      body.demandeur .auto_completion .AC_ville:hover, body.demandeur .auto_completion .AC_specialite:hover {
-        background-color: #A0E4F1; }
+      cursor: pointer; }
+    body.demandeur .auto_completion p:hover {
+      background-color: #DCE6F2; }
     body.demandeur .auto_completion.notVisible {
       display: none; }
   body.demandeur .link {

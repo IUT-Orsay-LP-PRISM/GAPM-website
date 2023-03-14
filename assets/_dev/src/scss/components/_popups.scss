@@ -235,30 +235,32 @@
   }
 }
 
+
 .auto_completion {
   position         : absolute;
   top              : 2.6rem;
   left             : 0;
   width            : 100%;
-  max-height       : 3em*5;
   box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
   border-radius    : 0 0 10px 10px;
-  font-size        : 1em;
+  font-size        : 18px;
   background-color : $white;
-  overflow-x       : hidden;
+  overflow         : hidden;
+  z-index          : 1;
   overflow-y       : scroll;
-  z-index          : 2;
+  font-family      : $mainFont;
+  max-height       : 2em*5;
 
-  .AC_ville,.AC_specialite {
-    padding     : 1em;
-    box-shadow  : 0px 2px 4px rgba(0, 0, 0, 0.38);
-    user-select : none;
-    cursor      : pointer;
-    color       : $greyDark;
+  p {
+    padding        : 1em;
+    font-size      : 0.85em;
+    text-transform : unset;
+    user-select    : none;
+    cursor         : pointer;
+  }
 
-    &:hover {
-      background-color : $secondaryLight;
-    }
+  p:hover {
+    background-color : $light;
   }
 
   &.notVisible {

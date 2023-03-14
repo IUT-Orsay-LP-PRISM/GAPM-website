@@ -175,7 +175,6 @@ class DemandeurController extends Template
     public function register()
     {
         $inscriptionIntervenant = false;
-        $voiture = 0;
         $specialites = [];
         $containerError = 'inscription';
         if (isset($_POST['specialites'])) {
@@ -190,7 +189,6 @@ class DemandeurController extends Template
             if ($specialitesString != 'null') {
                 $specialites = explode('-', $specialitesString);
             }
-            $voiture = $_POST['voiture'] ?? 0;
         }
 
         // TODO vérifier champ
@@ -212,6 +210,7 @@ class DemandeurController extends Template
             $phone = $_POST['phone'];
             $address = $_POST['address'];
             $sexe = $_POST['sexe'];
+
 
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
@@ -236,8 +235,13 @@ class DemandeurController extends Template
             $demandeur->setType($type);
 
             if ($inscriptionIntervenant) {
+                $adressePro = $_POST['adressePro'];
+                $IdCityPro = $_POST['cityPro'];
                 $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
+                $villePro = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $IdCityPro]);
                 $demandeur->setSpecialites(new ArrayCollection($specialites));
+                $demandeur->setAdressePro($adressePro);
+                $demandeur->setVillePro($villePro);
             }
 
             try {
