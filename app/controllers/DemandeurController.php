@@ -4,6 +4,7 @@ namespace App\controllers;
 
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
+use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\entity\Ville;
@@ -25,9 +26,8 @@ class DemandeurController extends Template
 
     public function index()
     {
-        $demandeurs = $this->demandeurRepository->findAll();
-
-        dump($demandeurs);
+        $rdvs = $this->entityManager->getRepository(RendezVous::class)->findAll();
+        dump($rdvs);
         die();
 
         $this->render('demandeur/liste-demandeur.twig', [
@@ -212,6 +212,7 @@ class DemandeurController extends Template
             $phone = $_POST['phone'];
             $address = $_POST['address'];
             $sexe = $_POST['sexe'];
+
 
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);

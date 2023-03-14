@@ -37,7 +37,18 @@ class RendezVous
     #[ORM\JoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
     private Specialite $specialite;
 
+    #[ORM\OneToOne(targetEntity: Commentaire::class, fetch: 'EAGER')]
+    #[ORM\JoinColumn(name: 'idCommentaire', referencedColumnName: 'idCommentaire', nullable: false)]
+    private Commentaire $commentaire;
 
+
+    public function setCommentaire(Commentaire $commentaire): void{
+        $this->commentaire = $commentaire;
+    }
+
+    public function getCommentaire(): Commentaire{
+        return $this->commentaire;
+    }
 
     /**
      * @return int
