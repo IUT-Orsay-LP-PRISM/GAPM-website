@@ -62,6 +62,7 @@ function creerCalendrier(annee, mois) {
     const currentDay = now.getDate();
     const days = calendar.querySelector('.days');
     days.innerHTML = '';
+    const btnPreviousMonth = calendar.querySelector('.buttons .prev');
 
     let day = 1 - jourSemaine;
     while (day <= nbJoursMois) {
@@ -85,6 +86,16 @@ function creerCalendrier(annee, mois) {
                 const dateObj = new Date(annee, mois - 1, dayNumber.innerHTML);
                 const datasetDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
                 dayDiv.dataset.date = datasetDate;
+            }
+
+            if (annee < currentYear || (annee === currentYear && mois < currentMonth) || (annee === currentYear && mois === currentMonth && day + dayOfWeek < currentDay)) {
+                dayDiv.classList.add('--disabled');
+            }
+
+            if (annee === currentYear && mois === currentMonth) {
+                btnPreviousMonth.classList.add('--disabled');
+            } else {
+                btnPreviousMonth.classList.remove('--disabled');
             }
 
             if (annee === currentYear && mois === currentMonth && day + dayOfWeek === currentDay) {
@@ -128,15 +139,17 @@ function StartCalendar() {
     });
 
     btnPreviousMonth.addEventListener('click', () => {
-        if (currentMonth == 1) {
-            currentMonth = 12;
-            currentYear--;
-            creerCalendrier(currentYear, currentMonth);
-            textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
-        } else {
-            currentMonth--;
-            creerCalendrier(currentYear, currentMonth);
-            textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
+        if (!btnPreviousMonth.classList.contains('--disabled')) {
+            if (currentMonth == 1) {
+                currentMonth = 12;
+                currentYear--;
+                creerCalendrier(currentYear, currentMonth);
+                textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
+            } else {
+                currentMonth--;
+                creerCalendrier(currentYear, currentMonth);
+                textMonth.innerText = `${getMonthName(currentMonth)} ${currentYear}`;
+            }
         }
     });
 
