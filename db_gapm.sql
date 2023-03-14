@@ -63,11 +63,11 @@ VALUES (1, 'superAdmin', 'super', 'admin', '2023'),
 
 CREATE TABLE `Commentaire`
 (
-    `idCommentaires` int(11)      NOT NULL,
+    `idCommentaire` int(11)      NOT NULL,
     `description`     varchar(280) NOT NULL,
     `note`            float        NOT NULL,
     `idRdv`          int(11)      NOT NULL,
-    `idIntervenant`    int(11)      NOT NULL
+    `idDemandeur`    int(11)      NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -117,7 +117,7 @@ INSERT INTO `Demandeur` (`idDemandeur`, `email`, `login`, `motDePasse`, `nom`, `
 (3, 'bob.smith@example.com', 'bob.smith', 'seA/6v3hNAL1.', 'Smith', 'Bob', '1985-02-10', '789 rue Tertiaire', '555-5555', 'M', 1, 'demandeur'),
 (4, 'alice.white@example.com', 'alice.white', 'seA/6v3hNAL1.', 'White', 'Alice', '1999-12-25', '1011 rue Quaternaire', '555-5555', 'F', 3, 'demandeur'),
 (5, 'jack.black@example.com', 'jack.black', 'seA/6v3hNAL1.', 'Black', 'Jack', '1978-06-30', '1213 rue Cinquième', '555-5555', 'M', 2, 'intervenant'),
-(6, 'fred@fred', 'fred.fred', 'seA/6v3hNAL1.', 'Dabadie', 'Frédéric', '2002-04-21', '12 rue tire barbe', '0123456789', 'F', 8, 'intervenant');
+(6, 'fred@fred', 'fred.fred', 'seA/6v3hNAL1.', 'Dabadie', 'Frédéric', '2002-04-21', '12 rue tire barbe', '0123456789', 'F', 8, 'demandeur');
 -- --------------------------------------------------------
 
 --
@@ -36737,9 +36737,9 @@ ALTER TABLE `Administrateur`
 -- Index pour la table `Commentaire`
 --
 ALTER TABLE `Commentaire`
-    ADD PRIMARY KEY (`idCommentaires`),
+    ADD PRIMARY KEY (`idCommentaire`),
     ADD KEY `idRdv` (`idRdv`),
-    ADD KEY `idIntervenant` (`idIntervenant`);
+    ADD KEY `idDemandeur` (`idDemandeur`);
 
 --
 -- Index pour la table `Demandeur`
@@ -36862,7 +36862,7 @@ ALTER TABLE `Administrateur`
 -- AUTO_INCREMENT pour la table `Commentaire`
 --
 ALTER TABLE `Commentaire`
-    MODIFY `idCommentaires` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 6;
 
 --
@@ -36953,7 +36953,7 @@ ALTER TABLE `Voiture`
 --
 ALTER TABLE `Commentaire`
     ADD CONSTRAINT `Commentaire_ibfk_1` FOREIGN KEY (`idRdv`) REFERENCES `RDV` (`idRdv`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Commentaire_ibfk_2` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `Commentaire_ibfk_2` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
 -- Contraintes pour la table `Demandeur`
 --
