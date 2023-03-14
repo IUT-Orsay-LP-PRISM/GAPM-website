@@ -76,7 +76,7 @@ CREATE TABLE `Commentaire`
 -- Déchargement des données de la table `Commentaire`
 --
 
-INSERT INTO `Commentaire` (`idCommentaires`, `description`, `note`, `idRdv`, `idIntervenant`)
+INSERT INTO `Commentaire` (`idCommentaire`, `description`, `note`, `idRdv`, `idDemandeur`)
 VALUES (1, 'Le médecin était très à l\'écoute et a pris le temps de m\'expliquer les différentes options de traitement',
         4.5, 1, 1),
        (2, 'Le rendez-vous a été très rapide, le médecin n\'a pas pris le temps de répondre à mes questions', 2, 2, 1),
@@ -112,12 +112,12 @@ CREATE TABLE `Demandeur`
 --
 
 INSERT INTO `Demandeur` (`idDemandeur`, `email`, `login`, `motDePasse`, `nom`, `prenom`, `dateNaissance`, `adresse`, `telephone`, `sexe`, `idVille`, `type`) VALUES
-(1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '1990-01-01', '123 rue Principale', '555-5555', 'M', 1, "intervenant"),
-(2, 'jane.doe@example.com', 'jane.doe', 'seA/6v3hNAL1.', 'Doe', 'Jane', '1995-05-05', '456 rue Secondaire', '555-5555', 'F', 2, "intervenant"),
-(3, 'bob.smith@example.com', 'bob.smith', 'seA/6v3hNAL1.', 'Smith', 'Bob', '1985-02-10', '789 rue Tertiaire', '555-5555', 'M', 1, "demandeur"),
-(4, 'alice.white@example.com', 'alice.white', 'seA/6v3hNAL1.', 'White', 'Alice', '1999-12-25', '1011 rue Quaternaire', '555-5555', 'F', 3, "demandeur"),
-(5, 'jack.black@example.com', 'jack.black', 'seA/6v3hNAL1.', 'Black', 'Jack', '1978-06-30', '1213 rue Cinquième', '555-5555', 'M', 2, "intervenant"),
-(6, 'fred@fred', 'fred.fred', 'seA/6v3hNAL1.', 'Dabadie', 'Frédéric', '2002-04-21', '12 rue tire barbe', '0123456789', 'F', 8, "demandeur");
+(1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '1990-01-01', '123 rue Principale', '555-5555', 'M', 1, 'demandeur'),
+(2, 'jane.doe@example.com', 'jane.doe', 'seA/6v3hNAL1.', 'Doe', 'Jane', '1995-05-05', '456 rue Secondaire', '555-5555', 'F', 2, 'intervenant'),
+(3, 'bob.smith@example.com', 'bob.smith', 'seA/6v3hNAL1.', 'Smith', 'Bob', '1985-02-10', '789 rue Tertiaire', '555-5555', 'M', 1, 'demandeur'),
+(4, 'alice.white@example.com', 'alice.white', 'seA/6v3hNAL1.', 'White', 'Alice', '1999-12-25', '1011 rue Quaternaire', '555-5555', 'F', 3, 'demandeur'),
+(5, 'jack.black@example.com', 'jack.black', 'seA/6v3hNAL1.', 'Black', 'Jack', '1978-06-30', '1213 rue Cinquième', '555-5555', 'M', 2, 'intervenant'),
+(6, 'fred@fred', 'fred.fred', 'seA/6v3hNAL1.', 'Dabadie', 'Frédéric', '2002-04-21', '12 rue tire barbe', '0123456789', 'F', 8, 'intervenant');
 -- --------------------------------------------------------
 
 --
