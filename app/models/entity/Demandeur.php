@@ -41,7 +41,7 @@ class Demandeur
     #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: RendezVous::class, fetch: 'LAZY')]
     private $rendezVous;
 
-    #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: Commentaire::class, fetch: 'EAGER')]
+    #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: Commentaire::class, fetch: 'LAZY')]
     private $commentaires;
 
 
