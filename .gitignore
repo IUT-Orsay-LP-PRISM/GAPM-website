@@ -6,3 +6,4 @@
 /composer.lock
 /.docker/mariadb/data/
 /.env.local
+/launch_dev.bat
