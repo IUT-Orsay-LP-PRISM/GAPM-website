@@ -20,11 +20,11 @@ class Commentaire
     #[ORM\Column(type: 'float', nullable: false)]
     private float $note;
 
-    #[ORM\ManyToOne(targetEntity: Demandeur::class, fetch: 'LAZY')]
+    #[ORM\ManyToOne(targetEntity: Demandeur::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
     private Demandeur $demandeur;
 
-    #[ORM\OneToOne(targetEntity: RendezVous::class, fetch: 'LAZY')]
+    #[ORM\OneToOne(targetEntity: RendezVous::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idRdv', referencedColumnName: 'idRdv', nullable: false)]
     private RendezVous $rendezVous;
 

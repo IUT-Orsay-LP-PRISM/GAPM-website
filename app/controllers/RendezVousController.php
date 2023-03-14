@@ -77,6 +77,8 @@ class RendezVousController extends Template
             $this->entityManager->flush();
             $result = true;
         } catch (\Exception $e) {
+            dump($e);
+            die();
             header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
