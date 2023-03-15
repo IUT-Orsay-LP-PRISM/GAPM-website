@@ -2705,6 +2705,8 @@ body.intervenant {
       border: 2px solid #257466; }
     body.intervenant .input-container .js-iconEyePassword {
       z-index: 1; }
+      body.intervenant .input-container .js-iconEyePassword:hover {
+        cursor: pointer; }
     body.intervenant .input-container i {
       margin: 0 1rem; }
     body.intervenant .input-container .input {
@@ -4373,6 +4375,8 @@ body.demandeur {
       border: 2px solid #393BAA; }
     body.demandeur .input-container .js-iconEyePassword {
       z-index: 1; }
+      body.demandeur .input-container .js-iconEyePassword:hover {
+        cursor: pointer; }
     body.demandeur .input-container i {
       margin: 0 1rem; }
     body.demandeur .input-container .input {
