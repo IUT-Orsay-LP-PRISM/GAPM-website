@@ -1,3 +1,21 @@
+DROP DATABASE IF EXISTS projet;
+CREATE DATABASE IF NOT EXISTS projet;
+USE projet;
+
+--
+-- Structure de la table `Ville`
+--
+
+CREATE TABLE `Ville`
+(
+    `idVille`   int(11)     NOT NULL,
+    `nom`        varchar(50) NOT NULL,
+    `codePostal` varchar(10) NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
+
+
 INSERT INTO `Ville` (`idVille`, `nom`, `codePostal`)
 VALUES (1, 'OZAN', '1190'),
        (2, 'CORMORANCHE-SUR-SAONE', '1290'),
