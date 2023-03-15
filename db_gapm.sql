@@ -110,7 +110,7 @@ CREATE TABLE `Demandeur`
 --
 
 INSERT INTO `Demandeur` (`idDemandeur`, `email`, `login`, `motDePasse`, `nom`, `prenom`, `dateNaissance`, `adresse`, `telephone`, `sexe`, `idVille`, `type`) VALUES
-(1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '1990-01-01', '123 rue Principale', '555-5555', 'M', 1, 'demandeur'),
+(1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '1990-01-01', '123 rue Principale', '555-5555', 'M', 1, 'intervenant'),
 (2, 'jane.doe@example.com', 'jane.doe', 'seA/6v3hNAL1.', 'Doe', 'Jane', '1995-05-05', '456 rue Secondaire', '555-5555', 'F', 2, 'intervenant'),
 (3, 'bob.smith@example.com', 'bob.smith', 'seA/6v3hNAL1.', 'Smith', 'Bob', '1985-02-10', '789 rue Tertiaire', '555-5555', 'M', 1, 'demandeur'),
 (4, 'alice.white@example.com', 'alice.white', 'seA/6v3hNAL1.', 'White', 'Alice', '1999-12-25', '1011 rue Quaternaire', '555-5555', 'F', 3, 'demandeur'),
@@ -30921,7 +30921,7 @@ VALUES (30347, 'USINENS', '74910'),
        (30435, 'QUINTAL', '74600'),
        (30436, 'AMBILLY', '74100'),
        (30437, 'TALLOIRES', '74290'),
-       (30438, 'PARIS', '-1425324'),
+       (30438, 'PARIS', '75000'),
        (30439, 'ESLETTES', '76710'),
        (30440, 'ROSAY', '76680'),
        (30441, 'VARENGEVILLE-SUR-MER', '76119'),
@@ -36936,7 +36936,7 @@ ALTER TABLE `TypeVoiture`
 ALTER TABLE `Ville`
     MODIFY `idVille` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 36209;
-
+ALTER TABLE ville ADD FULLTEXT(nom);
 --
 -- AUTO_INCREMENT pour la table `Voiture`
 --
