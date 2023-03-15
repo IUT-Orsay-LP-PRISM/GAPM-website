@@ -9,13 +9,13 @@
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
-                    <input id="namePopUp" class="input" type="text" name="lastname" required/>
-                    <label class="label" for="namePopUp">Votre nom</label>
+                    <input id="first-namePopUp" class="input" type="text" name="firstname" required/>
+                    <label class="label" for="first-namePopUp">Prénom</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
-                    <input id="first-namePopUp" class="input" type="text" name="firstname" required/>
-                    <label class="label" for="first-namePopUp">Votre Prénom</label>
+                    <input id="namePopUp" class="input" type="text" name="lastname" required/>
+                    <label class="label" for="namePopUp">Nom</label>
                 </div>
             </div>
 
@@ -23,19 +23,19 @@
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
                     <input id="e-mailPopUp" class="input" type="email" name="mail" placeholder=" " required/>
-                    <label class="label" for="e-mailPopUp">Votre adresse e-mail</label>
+                    <label class="label" for="e-mailPopUp">Email</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-calendar"></i>
                     <input id="birthdayPopUp" class="input" type="date" name="birthday" required/>
-                    <label class="label" for="birthdayPopUp">Votre date de naissance</label>
+                    <label class="label" for="birthdayPopUp">Date de naissance</label>
                 </div>
             </div>
             <div class="popup-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-home-location-alt"></i>
                     <input id="adressPopUp" class="input" type="text" name="address" required/>
-                    <label class="label" for="adressPopUp">Votre adresse (Numéro, Rue)</label>
+                    <label class="label" for="adressPopUp">Adresse (Numéro, Rue)</label>
                 </div>
             </div>
             <div class="popup-container-row">
@@ -50,6 +50,7 @@
                 <div class="input-container">
                     <i class="icon icon-fi-rr-venus-mars"></i>
                     <select id="sexePopUp" class="input" type="text" name="sexe" required>
+                        <option value="" disabled selected>-- Choisir</option>
                         <option value="M">Homme</option>
                         <option value="F">Femme</option>
                         <option value="A">Autre</option>
@@ -61,13 +62,13 @@
                 <div class="input-container">
                     <i class="icon icon-fi-rr-key"></i>
                     <input id="mdp-inscPopUp" class="input" type="password" name="password" required/>
-                    <label class="label" for="mdp-inscPopUp">Votre mot de passe</label>
+                    <label class="label" for="mdp-inscPopUp">Mot de passe</label>
                     <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-phone-call"></i>
                     <input id="telPopUp" class="input" type="text" name="phone" required/>
-                    <label class="label" for="telPopUp">Téléphone portable</label>
+                    <label class="label" for="telPopUp">Téléphone</label>
                 </div>
             </div>
             {% if error is not empty and containerError is not empty and containerError == "inscription" %}

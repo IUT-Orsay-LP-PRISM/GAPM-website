@@ -4,23 +4,23 @@
 		<div class="myaccount__form__perso__infos">
 			<div class="input-container">
 				<i class="icon icon-fi-rr-text"></i>
-				<input id="name" class="input" type="text" name="lastname" value="{{ user.nom }}"/>
-				<label class="label" for="name">Votre nom</label>
+				<input id="first-name" class="input" type="text" name="firstname" value="{{ user.prenom }}"/>
+				<label class="label" for="first-name">Prénom</label>
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-text"></i>
-				<input id="first-name" class="input" type="text" name="firstname" value="{{ user.prenom }}"/>
-				<label class="label" for="first-name">Votre Prénom</label>
+				<input id="name" class="input" type="text" name="lastname" value="{{ user.nom }}"/>
+				<label class="label" for="name">Nom</label>
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-at"></i>
 				<input id="e-mail" class="input" type="email" name="mail" placeholder=" " value="{{ user.email }}"/>
-				<label class="label" for="e-mail">Votre adresse e-mail</label>
+				<label class="label" for="e-mail">E-mail</label>
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-calendar"></i>
 				<input id="birthday" class="input" type="date" name="birthday" value="{{ user.dateNaissance }}"/>
-				<label class="label" for="birthday">Votre date de naissance</label>
+				<label class="label" for="birthday">Date de naissance</label>
 			</div>
 			<div class="input-container">
 				<i class="icon icon-fi-rr-venus-mars"></i>
@@ -44,7 +44,7 @@
 			<div class="input-container">
 				<i class="icon icon-fi-rr-phone-call"></i>
 				<input id="tel" class="input" type="text" name="phone" value="{{ user.telephone }}"/>
-				<label class="label" for="tel">Téléphone portable</label>
+				<label class="label" for="tel">Téléphone</label>
 			</div>
 		</div>
 		<h2 class="myaccount__form-title">Adresse</h2>
@@ -52,7 +52,7 @@
 			<div class="input-container">
 				<i class="icon icon-fi-rr-home-location-alt"></i>
 				<input id="address" class="input" type="text" name="address" value="{{ user.adresse }}"/>
-				<label class="label" for="address">Votre adresse (Numéro, Rue)</label>
+				<label class="label" for="address">Adresse (Numéro, Rue)</label>
 			</div>
 			<div class="input-container overflow">
 				<i class="icon icon-fi-rr-map-marker"></i>
