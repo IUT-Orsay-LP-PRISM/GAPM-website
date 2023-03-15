@@ -267,9 +267,14 @@ class DemandeurController extends Template
     public function displayMyAccount()
     {
         $user = Session::get('user');
-
-        self::render('demandeur/mon-compte.twig', [
-            'title' => 'Mon compte'
-        ]);
+        if($user == null){
+            header('Location: /?error=Veuillez%20vous%20connecter%20pour%20accéder%20à%20votre%20compte&c=connexion');
+        }
+        else{
+            self::render('demandeur/mon-compte.twig', [
+                'title' => 'Mon compte'
+            ]);
+        }
+        
     }
 }
