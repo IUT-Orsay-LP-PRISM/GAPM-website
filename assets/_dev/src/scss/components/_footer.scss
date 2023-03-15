@@ -52,6 +52,10 @@
 				position: relative;
 				z-index: 2;
 
+				&:hover{
+					cursor			 : pointer;
+				}
+
 				&::after {
 					content          : "";
 					position         : absolute;

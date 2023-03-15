@@ -3209,6 +3209,8 @@ body.intervenant {
       text-decoration: none;
       position: relative;
       z-index: 2; }
+      body.intervenant .footer ul li a:hover {
+        cursor: pointer; }
       body.intervenant .footer ul li a::after {
         content: "";
         position: absolute;
@@ -4875,6 +4877,8 @@ body.demandeur {
       text-decoration: none;
       position: relative;
       z-index: 2; }
+      body.demandeur .footer ul li a:hover {
+        cursor: pointer; }
       body.demandeur .footer ul li a::after {
         content: "";
         position: absolute;

@@ -5,6 +5,8 @@ const popUp_prendreRDV = document.querySelector('#popUp-prendre-RDV');
 const btn_cross = document.querySelectorAll('.cross');
 const btn_connexion = document.querySelector('#btn-connexion');
 const btn_inscription = document.getElementById('btn-inscription');
+const lien_connexion = document.querySelector('#lien-connexion');
+const lien_inscription = document.getElementById('lien-inscription');
 const div_errorConnexion = document.querySelector('#popUp-connexion .error');
 const div_errorInscription = document.querySelector('#popUp-inscription .error');
 
@@ -31,6 +33,18 @@ if (btn_connexion && btn_inscription) {
     });
 
     btn_inscription.addEventListener('click', () => {
+        openPopUpInscription();
+    });
+}
+
+if (lien_connexion && lien_inscription) {
+    lien_connexion.addEventListener('click', function(e){
+        e.preventDefault();
+        openPopUpConnexion();
+    });
+
+    lien_inscription.addEventListener('click', function(e){
+        e.preventDefault();
         openPopUpInscription();
     });
 }
@@ -79,7 +93,7 @@ function openPopUpConnexion() {
     } else {
         document.body.style.overflowY = "auto";
     }
-    window.scrollTo(0, 0);
+    /* window.scrollTo(0, 0); */
 }
 
 function openPopUpInscription() {
@@ -90,7 +104,7 @@ function openPopUpInscription() {
     } else {
         document.body.style.overflowY = "auto";
     }
-    window.scrollTo(0, 0);
+    /* window.scrollTo(0, 0); */
 }
 
 function removeErrorInURL() {
@@ -105,4 +119,3 @@ function removeErrorInURL() {
     }
     window.history.pushState({path: newUrl}, '', newUrl);
 }
-
