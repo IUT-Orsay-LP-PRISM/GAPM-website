@@ -9,7 +9,7 @@ const lien_connexion = document.querySelector('#lien-connexion');
 const lien_inscription = document.getElementById('lien-inscription');
 const div_errorConnexion = document.querySelector('#popUp-connexion .error');
 const div_errorInscription = document.querySelector('#popUp-inscription .error');
-
+import { removeErrorInURL } from './notification';
 openPopUpInsc.addEventListener('click', () => {
     openPopUpInscription();
 });
@@ -70,22 +70,10 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
     }
 }
 
-// gestion des erreurs
-if (window.location.search.includes('error')  ) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const containerError = urlParams.get('c');
-    if (containerError === 'connexion') {
-        openPopUpConnexion();
-    } else if (containerError === 'inscription') {
-        openPopUpInscription();
-    } else if (containerError === 'inscription-intervenant') {
-        const form = document.querySelector('#form');
-        form.scrollIntoView();
-    }
-}
 
 
-function openPopUpConnexion() {
+
+export function openPopUpConnexion() {
     popUp_connexion.classList.toggle('visible');
     popUp_inscription.classList.remove('visible');
     if (popUp_connexion.classList.contains('visible')) {
@@ -96,7 +84,7 @@ function openPopUpConnexion() {
     /* window.scrollTo(0, 0); */
 }
 
-function openPopUpInscription() {
+export function openPopUpInscription() {
     popUp_inscription.classList.toggle('visible');
     popUp_connexion.classList.remove('visible');
     if (popUp_inscription.classList.contains('visible')) {
@@ -107,15 +95,3 @@ function openPopUpInscription() {
     /* window.scrollTo(0, 0); */
 }
 
-function removeErrorInURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.delete('error');
-    urlParams.delete('c');
-    let newUrl = '';
-    if(urlParams.toString() === '') {
-        newUrl = window.location.pathname;
-    } else{
-        newUrl = window.location.pathname + '?' + urlParams.toString();
-    }
-    window.history.pushState({path: newUrl}, '', newUrl);
-}

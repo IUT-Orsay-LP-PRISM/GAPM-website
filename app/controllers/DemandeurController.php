@@ -268,7 +268,7 @@ class DemandeurController extends Template
     {
         $user = Session::get('user');
         if($user == null){
-            header('Location: /?error=Veuillez%20vous%20connecter%20pour%20accéder%20à%20votre%20compte&c=connexion');
+            header('Location: /?message=Veuillez%20vous%20connecter%20pour%20accéder%20à%20votre%20compte&c=connexion');
         }
         else{
             self::render('demandeur/mon-compte.twig', [

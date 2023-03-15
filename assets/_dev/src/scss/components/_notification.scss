@@ -1,0 +1,63 @@
+$green    : #50DC6C;
+$blue     : #3186EA;
+$red      : #FC5758;
+$yellow   : #FFD700;
+$greenBG  : $green*0.8;
+$blueBG   : $blue*0.8;
+$redBG    : $red*0.8;
+$yellowBG : $yellow*0.8;
+
+.notification {
+  position        : fixed;
+  font-family     : $mainFont;
+  top             : 100px;
+  right           : 0;
+  height          : fit-content;
+  min-width       : 500px;
+  z-index         : 50;
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  opacity         : 0;
+  visibility      : hidden;
+  transition      : all 0.3s ease-in-out;
+  border          : solid 4px $blue;
+  background      : $blueBG;
+  padding         : 1rem;
+  border-radius   : $borderRadius;
+  transform       : translateX(100%);
+
+  &.--active {
+    opacity    : 1;
+    visibility : visible;
+    transform  : translateX(0);
+  }
+
+
+  &__tag {
+    background-color : $blue;
+    border-radius    : 50%;
+    width            : 3em;
+    height           : 3em;
+    display          : flex;
+    align-items      : center;
+    justify-content  : center;
+  }
+
+  &__content {
+    color      : #fff;
+    margin    : 0 1rem;
+    max-width: 400px;
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+        margin-bottom: 0.5rem;
+    }
+
+  }
+
+  &__close {
+    cursor : pointer;
+  }
+}

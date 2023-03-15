@@ -25,12 +25,12 @@ class RendezVousController extends Template
     public function index()
     {
         if (!Session::isLogged()) {
-            header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($_GET['intervenant']);
         if ($intervenant == null) {
-            header('Location: /?action=search&error=Intervenant introuvable&c=message');
+            header('Location: /?action=search&message=Intervenant introuvable&c=message');
             exit;
         }
 
@@ -43,14 +43,14 @@ class RendezVousController extends Template
     public function createRDV()
     {
         if (Session::isLogged() == false) {
-            header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
 
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($_POST['idIntervenant']);
 
         if ($intervenant == null) {
-            header('Location: /?action=search&error=Intervenant introuvable&c=message');
+            header('Location: /?action=search&message=Intervenant introuvable&c=message');
             exit;
         }
         $horaireDebut = $_POST['horaire'];
@@ -80,7 +80,7 @@ class RendezVousController extends Template
         } catch (\Exception $e) {
             dump($e);
             die();
-            header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
+            header('Location: /?action=search&message=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
         header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
@@ -115,7 +115,7 @@ class RendezVousController extends Template
     public function displayMyRdv()
     {
         if (!Session::isLogged()) {
-            header('Location: /?action=search&error=Pour voir vos rendez vous, connectez vous!&c=connexion');
+            header('Location: /?action=search&message=Pour voir vos rendez vous, connectez vous!&c=connexion');
             exit;
         }
 

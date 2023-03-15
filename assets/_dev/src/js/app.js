@@ -1,4 +1,5 @@
 import './header'
+import './notification'
 import './popUp'
 import './autocomplete'
 import './password'
