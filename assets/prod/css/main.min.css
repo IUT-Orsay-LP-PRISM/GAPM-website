@@ -2670,6 +2670,10 @@ body.intervenant {
       border: none;
       color: #FFFFFF;
       background-color: #36A793; }
+    body.intervenant .btn.btn-modeIntervenant {
+      border-radius: 10px;
+      font-size: 16px;
+      padding: 0.1rem 0.6rem; }
     body.intervenant .btn.btn-red {
       border: none;
       color: #FFFFFF;
@@ -4332,6 +4336,10 @@ body.demandeur {
       border: none;
       color: #FFFFFF;
       background-color: #36A793; }
+    body.demandeur .btn.btn-modeIntervenant {
+      border-radius: 10px;
+      font-size: 16px;
+      padding: 0.1rem 0.6rem; }
     body.demandeur .btn.btn-red {
       border: none;
       color: #FFFFFF;

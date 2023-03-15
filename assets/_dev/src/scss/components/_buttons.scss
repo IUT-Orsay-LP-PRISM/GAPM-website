@@ -58,6 +58,12 @@
     background-color : $greenPrimary;
   }
 
+  &.btn-modeIntervenant {
+    border-radius    : $borderRadiusSmall;
+    font-size        : 16px;
+    padding          : 0.1rem 0.6rem;
+  }
+
   &.btn-red {
     border           : none;
     color            : $white;
