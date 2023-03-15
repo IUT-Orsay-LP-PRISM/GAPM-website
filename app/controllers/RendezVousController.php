@@ -2,6 +2,7 @@
 
 namespace App\controllers;
 
+use App\models\entity\Commentaire;
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
 use App\models\entity\RendezVous;
@@ -122,6 +123,8 @@ class RendezVousController extends Template
         $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
         $mesRdv = $demandeur->getRendezVous();
 
+        $avisALaisser = [];
+        $avisExistant = [];
         $mesRdvConfirme = [];
         $mesRdvEnAttente = [];
         $mesRdvAnnule = [];
@@ -141,13 +144,23 @@ class RendezVousController extends Template
                     $mesRdvAnnule[] = $rdv;
                     break;
             }
+            if (!$rdv->getCommentaire()->isNull()){
+                if($rdv->getStatus() == 'Effectue'){
+                    $avisALaisser[] = $rdv;
+                }
+            } else {
+                $avisExistant[] = $rdv;
+            }
+
         }
 
         $mesRdv = [
             'confirme' => $mesRdvConfirme,
             'attente' => $mesRdvEnAttente,
             'effectue' => $mesRdvEffectue,
-            'annule' => $mesRdvAnnule
+            'annule' => $mesRdvAnnule,
+            'avisALaisser' => $avisALaisser,
+            'avisExistant' => $avisExistant
         ];
 
         self::render('demandeur/mes-rdv.twig', [

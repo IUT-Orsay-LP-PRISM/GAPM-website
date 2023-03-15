@@ -109,4 +109,9 @@ class Commentaire
         $this->rendezVous = $rendezVous;
     }
 
+    public function isNull()
+    {
+        return $this->idCommentaire ?? null;
+    }
+
 }
