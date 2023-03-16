@@ -55,15 +55,13 @@ class IntervenantRepository extends EntityRepository
         return $results->getResult(); */
 
         $qb = $this->createQueryBuilder('i');
-        $qb->join('i.ville', 'v')
+        $qb->join('i.villePro', 'v')
             ->where($qb->expr()->orX(
                 $qb->expr()->like('i.nom', ':nom'),
                 $qb->expr()->like('i.prenom', ':nom')
             ))
             ->andWhere($qb->expr()->like('v.nom', ':city'))
-            ->andWhere($qb->expr()->like('v.nom', ':city'))
             ->setParameter('nom', '%' . $nom . '%')
-            ->setParameter('city', '%' . $city . '%')
             ->setParameter('city', '%' . $city . '%')
             ->orderBy('i.nom', 'ASC')
             ->setMaxResults(10);

@@ -20,7 +20,7 @@ class Intervenant extends Demandeur
     private $specialites;
 
     #[ORM\ManyToOne(targetEntity: Ville::class, fetch: 'EAGER')]
-    #[ORM\JoinColumn(name: 'idVille', referencedColumnName: 'idVille', nullable: false)]
+    #[ORM\JoinColumn(name: 'idVillePro', referencedColumnName: 'idVille', nullable: false)]
     private Ville $villePro;
 
     public function __construct()
