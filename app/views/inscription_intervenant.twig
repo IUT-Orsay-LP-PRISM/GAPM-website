@@ -29,13 +29,13 @@
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
-                    <input id="name" class="input" type="text" name="lastname" required/>
-                    <label class="label" for="name">Votre nom</label>
+                    <input id="first-name" class="input" type="text" name="firstname" required/>
+                    <label class="label" for="first-name">Prénom</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
-                    <input id="first-name" class="input" type="text" name="firstname" required/>
-                    <label class="label" for="first-name">Votre Prénom</label>
+                    <input id="name" class="input" type="text" name="lastname" required/>
+                    <label class="label" for="name">Nom</label>
                 </div>
             </div>
 
@@ -43,19 +43,19 @@
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
                     <input id="e-mail" class="input" type="email" placeholder=" " name="mail" required/>
-                    <label class="label" for="e-mail">Votre adresse e-mail</label>
+                    <label class="label" for="e-mail">E-mail</label>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-calendar"></i>
                     <input id="birthday" class="input" type="date" name="birthday" required/>
-                    <label class="label" for="birthday">Votre date de naissance</label>
+                    <label class="label" for="birthday">Date de naissance</label>
                 </div>
             </div>
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-home-location-alt"></i>
                     <input id="adress" class="input" type="text" name="address" required/>
-                    <label class="label" for="adress">Votre adresse (Numéro, Rue)</label>
+                    <label class="label" for="adress">Adresse (num, rue)</label>
                 </div>
             </div>
             <div class="inscr_intervenant__form-container-row">
@@ -70,6 +70,7 @@
                 <div class="input-container">
                     <i class="icon icon-fi-rr-venus-mars"></i>
                     <select id="sexe" class="input" type="text" name="sexe" required>
+                        <option value="" disabled selected></option>
                         <option value="M">Homme</option>
                         <option value="F">Femme</option>
                         <option value="A">Autre</option>
@@ -81,13 +82,13 @@
                 <div class="input-container">
                     <i class="icon icon-fi-rr-key"></i>
                     <input id="mdp-insc" class="input" type="password" name="password" required/>
-                    <label class="label" for="mdp-insc">Votre mot de passe</label>
+                    <label class="label" for="mdp-insc">Mot de passe</label>
                     <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
                 </div>
                 <div class="input-container">
                     <i class="icon icon-fi-rr-phone-call"></i>
                     <input id="tel" class="input" type="text" name="phone" required/>
-                    <label class="label" for="tel">Téléphone portable</label>
+                    <label class="label" for="tel">Téléphone</label>
                 </div>
             </div>
             <div class="separator">
@@ -97,17 +98,32 @@
                 <div class="input-container">
                     <i class="icon icon-fi-rr-doctor"></i>
                     <input id="specialite" class="input AC input_specialite" type="text"/>
-                    <label class="label" for="specialite">Vos spécialités</label>
+                    <label class="label" for="specialite">Spécialités</label>
                     <div class="notVisible auto_completion"></div>
                     <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="null">
                 </div>
+                <div class="input-container">
+                    <i class="icon icon-fi-rr-text"></i>
+                    <input id="adressPro" class="input" type="text" name="adressePro" required/>
+                    <label class="label" for="adressPro">Adresse Pro</label>
+                </div>
+            </div>
+
+            <div class="input-container overflow">
+                <i class="icon icon-fi-rr-map-marker"></i>
+                <input id="villePro" class="input AC input_ville" type="text" required/>
+                <label class="label" for="villePro">Ville</label>
+                <input id="hiddenValueCityProIntervenant" name="cityPro" type="number" hidden="hidden" required/>
+                <div class="notVisible auto_completion"></div>
+                <span class="code_postal"></span>
             </div>
             <div id="tag-container">
                 <p>Vos choix :</p>
                 <div class="container"></div>
             </div>
-            {% if error is not empty and containerError is not empty and containerError == "inscription-intervenant" %}
-                <p class="error">{{ error }}</p>
+
+            {% if message is not empty and containerMessage is not empty and containerMessage == "inscription-intervenant" %}
+                <p class="error">{{ message }}</p>
             {% endif %}
             <button class="btn btn-primary-nb" type="submit">
                 <i class="icon-w icon-fi-rr-user-add"></i>

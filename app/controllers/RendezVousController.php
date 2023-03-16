@@ -2,6 +2,7 @@
 
 namespace App\controllers;
 
+use App\models\entity\Commentaire;
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
 use App\models\entity\RendezVous;
@@ -24,12 +25,12 @@ class RendezVousController extends Template
     public function index()
     {
         if (!Session::isLogged()) {
-            header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($_GET['intervenant']);
         if ($intervenant == null) {
-            header('Location: /?action=search&error=Intervenant introuvable&c=message');
+            header('Location: /?action=search&message=Intervenant introuvable&c=message');
             exit;
         }
 
@@ -42,14 +43,14 @@ class RendezVousController extends Template
     public function createRDV()
     {
         if (Session::isLogged() == false) {
-            header('Location: /?action=search&error=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
             exit;
         }
 
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($_POST['idIntervenant']);
 
         if ($intervenant == null) {
-            header('Location: /?action=search&error=Intervenant introuvable&c=message');
+            header('Location: /?action=search&message=Intervenant introuvable&c=message');
             exit;
         }
         $horaireDebut = $_POST['horaire'];
@@ -77,7 +78,9 @@ class RendezVousController extends Template
             $this->entityManager->flush();
             $result = true;
         } catch (\Exception $e) {
-            header('Location: /?action=search&error=Une erreur est survenue lors de la création du rendez-vous&c=message');
+            dump($e);
+            die();
+            header('Location: /?action=search&message=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
         header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
@@ -112,7 +115,7 @@ class RendezVousController extends Template
     public function displayMyRdv()
     {
         if (!Session::isLogged()) {
-            header('Location: /?action=search&error=Pour voir vos rendez vous, connectez vous!&c=connexion');
+            header('Location: /?action=search&message=Pour voir vos rendez vous, connectez vous!&c=connexion');
             exit;
         }
 
@@ -120,6 +123,8 @@ class RendezVousController extends Template
         $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
         $mesRdv = $demandeur->getRendezVous();
 
+        $avisALaisser = [];
+        $avisExistant = [];
         $mesRdvConfirme = [];
         $mesRdvEnAttente = [];
         $mesRdvAnnule = [];
@@ -139,13 +144,23 @@ class RendezVousController extends Template
                     $mesRdvAnnule[] = $rdv;
                     break;
             }
+            if (!$rdv->getCommentaire()->isNull()){
+                if($rdv->getStatus() == 'Effectue'){
+                    $avisALaisser[] = $rdv;
+                }
+            } else {
+                $avisExistant[] = $rdv;
+            }
+
         }
 
         $mesRdv = [
             'confirme' => $mesRdvConfirme,
             'attente' => $mesRdvEnAttente,
             'effectue' => $mesRdvEffectue,
-            'annule' => $mesRdvAnnule
+            'annule' => $mesRdvAnnule,
+            'avisALaisser' => $avisALaisser,
+            'avisExistant' => $avisExistant
         ];
 
         self::render('demandeur/mes-rdv.twig', [

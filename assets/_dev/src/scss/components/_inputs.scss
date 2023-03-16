@@ -18,6 +18,9 @@
 
   .js-iconEyePassword {
     z-index : 1;
+    &:hover{
+    cursor: pointer;
+    }
   }
 
   i {

@@ -35,7 +35,7 @@ class IntervenantController extends Template
     {
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
-                $referer = self::addErrorToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
                 header("Location: $referer");
                 exit();
             }
@@ -62,7 +62,7 @@ class IntervenantController extends Template
                 $this->entityManager->flush();
                 Session::set('user', $currentDemandeur);
             } catch (\Exception $e) {
-                $referer = self::addErrorToUrl('Une erreur est survenue.', 'inscription-intervenant');
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'inscription-intervenant');
                 header("Location: $referer");
                 exit();
             }

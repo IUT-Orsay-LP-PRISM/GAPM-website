@@ -4,6 +4,7 @@ namespace App\controllers;
 
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
+use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\entity\Ville;
@@ -25,9 +26,8 @@ class DemandeurController extends Template
 
     public function index()
     {
-        $demandeurs = $this->demandeurRepository->findAll();
-
-        dump($demandeurs);
+        $rdvs = $this->entityManager->getRepository(RendezVous::class)->findAll();
+        dump($rdvs);
         die();
 
         $this->render('demandeur/liste-demandeur.twig', [
@@ -55,13 +55,13 @@ class DemandeurController extends Template
                 $password = $saltedAndHashed;
             }
         } else {
-            $referer = self::addErrorToUrl('Ancien mot de passe incorrect.', 'mon-compte');
+            $referer = self::addMessageToUrl('Ancien mot de passe incorrect.', 'mon-compte');
             header("Location: $referer");
             exit();
         }
 
         if ($userFromEmail && $userFromEmail->getIdDemandeur() != $demandeur->getIdDemandeur()) {
-            $referer = self::addErrorToUrl('Cette email est déjà utilisé.', 'mon-compte');
+            $referer = self::addMessageToUrl('Cette email est déjà utilisé.', 'mon-compte');
             header("Location: $referer");
             exit();
         } else {
@@ -88,7 +88,7 @@ class DemandeurController extends Template
                 $this->entityManager->persist($demandeur);
                 $this->entityManager->flush();
             } catch (\Exception $e) {
-                $referer = self::addErrorToUrl('Une erreur est survenue. Merci de réessayer.', 'mon-compte');
+                $referer = self::addMessageToUrl('Une erreur est survenue. Merci de réessayer.', 'mon-compte');
                 header("Location: $referer");
                 exit();
             }
@@ -159,15 +159,15 @@ class DemandeurController extends Template
                     $referer = removeErrorFromUrl();
                     header('Location: ' . $referer);
                 } else {
-                    $referer = self::addErrorToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
+                    $referer = self::addMessageToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
                     header("Location: $referer");
                 }
             } else {
-                $referer = self::addErrorToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
+                $referer = self::addMessageToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
                 header("Location: $referer");
             }
         } else {
-            $referer = self::addErrorToUrl('Veuillez remplir tous les champs.', 'connexion');
+            $referer = self::addMessageToUrl('Veuillez remplir tous les champs.', 'connexion');
             header("Location: $referer");
         }
     }
@@ -175,22 +175,20 @@ class DemandeurController extends Template
     public function register()
     {
         $inscriptionIntervenant = false;
-        $voiture = 0;
         $specialites = [];
-        $containerError = 'inscription';
+        $containerMessage = 'inscription';
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
-                $referer = self::addErrorToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
                 header("Location: $referer");
                 exit();
             }
             $inscriptionIntervenant = true;
-            $containerError = 'inscription-intervenant';
+            $containerMessage = 'inscription-intervenant';
             $specialitesString = $_POST['specialites'];
             if ($specialitesString != 'null') {
                 $specialites = explode('-', $specialitesString);
             }
-            $voiture = $_POST['voiture'] ?? 0;
         }
 
         // TODO vérifier champ
@@ -200,7 +198,7 @@ class DemandeurController extends Template
         $emailExists = !empty($demandeur);
 
         if ($emailExists) {
-            $referer = self::addErrorToUrl('Cette email est déjà utilisé.', $containerError);
+            $referer = self::addMessageToUrl('Cette email est déjà utilisé.', $containerMessage);
             header("Location: $referer");
         } else {
             // TODO vérifier chaque champs ; faire une classe de vérification ?
@@ -212,6 +210,7 @@ class DemandeurController extends Template
             $phone = $_POST['phone'];
             $address = $_POST['address'];
             $sexe = $_POST['sexe'];
+
 
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
@@ -236,15 +235,20 @@ class DemandeurController extends Template
             $demandeur->setType($type);
 
             if ($inscriptionIntervenant) {
+                $adressePro = $_POST['adressePro'];
+                $IdCityPro = $_POST['cityPro'];
                 $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
+                $villePro = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $IdCityPro]);
                 $demandeur->setSpecialites(new ArrayCollection($specialites));
+                $demandeur->setAdressePro($adressePro);
+                $demandeur->setVillePro($villePro);
             }
 
             try {
                 $this->entityManager->persist($demandeur);
                 $this->entityManager->flush();
             } catch (Exception $e) {
-                $referer = self::addErrorToUrl('Une erreur est survenue.', $containerError);
+                $referer = self::addMessageToUrl('Une erreur est survenue.', $containerMessage);
                 header("Location: $referer");
                 exit();
             }
@@ -263,9 +267,14 @@ class DemandeurController extends Template
     public function displayMyAccount()
     {
         $user = Session::get('user');
-
-        self::render('demandeur/mon-compte.twig', [
-            'title' => 'Mon compte'
-        ]);
+        if($user == null){
+            header('Location: /?message=Veuillez%20vous%20connecter%20pour%20accéder%20à%20votre%20compte&c=connexion');
+        }
+        else{
+            self::render('demandeur/mon-compte.twig', [
+                'title' => 'Mon compte'
+            ]);
+        }
+        
     }
 }
