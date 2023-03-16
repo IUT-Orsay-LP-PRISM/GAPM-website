@@ -9,7 +9,7 @@ if (btn_RDVS) {
             const isLogged = document.body.getAttribute('data-log');
             if (isLogged != 1) {
                 const currentQueryString = window.location.search;
-                const newUrl = currentQueryString + '&message=Pour prendre rendez-vous, veuillez vous identifier&c=msg';
+                const newUrl = currentQueryString + '&message=Pour prendre rendez-vous, veuillez vous identifier&c=msg-error';
                 window.location.href = newUrl;
             } else {
                 window.location.href = '/?action=prendre-rdv&intervenant=' + idIntervenant;

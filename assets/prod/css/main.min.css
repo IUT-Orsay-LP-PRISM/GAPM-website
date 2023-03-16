@@ -3470,8 +3470,6 @@ body.intervenant {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease-in-out;
-    border: solid 4px #3186EA;
-    background: #276bbb;
     padding: 1rem;
     border-radius: 25px;
     transform: translateX(100%); }
@@ -3480,13 +3478,32 @@ body.intervenant {
       visibility: visible;
       transform: translateX(0); }
     body.intervenant .notification__tag {
-      background-color: #3186EA;
       border-radius: 50%;
       width: 3em;
       height: 3em;
       display: flex;
       align-items: center;
       justify-content: center; }
+    body.intervenant .notification.--error {
+      border: solid 4px #FC5758;
+      background: #ca4646; }
+      body.intervenant .notification.--error .notification__tag {
+        background-color: #FC5758; }
+    body.intervenant .notification.--success {
+      border: solid 4px #50DC6C;
+      background: #40b056; }
+      body.intervenant .notification.--success .notification__tag {
+        background-color: #50DC6C; }
+    body.intervenant .notification.--warning {
+      border: solid 4px #FFD700;
+      background: #ccac00; }
+      body.intervenant .notification.--warning .notification__tag {
+        background-color: #FFD700; }
+    body.intervenant .notification.--info {
+      border: solid 4px #3186EA;
+      background: #276bbb; }
+      body.intervenant .notification.--info .notification__tag {
+        background-color: #3186EA; }
     body.intervenant .notification__content {
       color: #fff;
       margin: 0 1rem;
@@ -5185,8 +5202,6 @@ body.demandeur {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease-in-out;
-    border: solid 4px #3186EA;
-    background: #276bbb;
     padding: 1rem;
     border-radius: 25px;
     transform: translateX(100%); }
@@ -5195,13 +5210,32 @@ body.demandeur {
       visibility: visible;
       transform: translateX(0); }
     body.demandeur .notification__tag {
-      background-color: #3186EA;
       border-radius: 50%;
       width: 3em;
       height: 3em;
       display: flex;
       align-items: center;
       justify-content: center; }
+    body.demandeur .notification.--error {
+      border: solid 4px #FC5758;
+      background: #ca4646; }
+      body.demandeur .notification.--error .notification__tag {
+        background-color: #FC5758; }
+    body.demandeur .notification.--success {
+      border: solid 4px #50DC6C;
+      background: #40b056; }
+      body.demandeur .notification.--success .notification__tag {
+        background-color: #50DC6C; }
+    body.demandeur .notification.--warning {
+      border: solid 4px #FFD700;
+      background: #ccac00; }
+      body.demandeur .notification.--warning .notification__tag {
+        background-color: #FFD700; }
+    body.demandeur .notification.--info {
+      border: solid 4px #3186EA;
+      background: #276bbb; }
+      body.demandeur .notification.--info .notification__tag {
+        background-color: #3186EA; }
     body.demandeur .notification__content {
       color: #fff;
       margin: 0 1rem;

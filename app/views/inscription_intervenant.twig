@@ -122,8 +122,8 @@
                 <div class="container"></div>
             </div>
 
-            {% if error is not empty and containerError is not empty and containerError == "inscription-intervenant" %}
-                <p class="error">{{ error }}</p>
+            {% if message is not empty and containerMessage is not empty and containerMessage == "inscription-intervenant" %}
+                <p class="error">{{ message }}</p>
             {% endif %}
             <button class="btn btn-primary-nb" type="submit">
                 <i class="icon-w icon-fi-rr-user-add"></i>

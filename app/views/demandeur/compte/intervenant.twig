@@ -98,8 +98,8 @@
                         <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
                     </div>
                 </div>
-                {% if error is not empty and containerError is not empty and containerError == "mon-compte" %}
-                    <p class="error">{{ error }}</p>
+                {% if message is not empty and containerMessage is not empty and containerMessage == "mon-compte" %}
+                    <p class="error">{{ message }}</p>
                 {% endif %}
             </form>
         {% endif %}

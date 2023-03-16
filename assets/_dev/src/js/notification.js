@@ -1,4 +1,4 @@
-import {openPopUpConnexion,openPopUpInscription} from "./popUp";
+import {openPopUpConnexion, openPopUpInscription} from "./popUp";
 
 const modal = document.querySelector('#notificationModal');
 const modalClose = document.querySelector('#notificationModal .notification__close');
@@ -13,26 +13,44 @@ modalClose.addEventListener('click', () => {
 
 
 // gestion des erreurs
-if (window.location.search.includes('message')  ) {
+if (window.location.search.includes('message')) {
     const urlParams = new URLSearchParams(window.location.search);
-    const containerError = urlParams.get('c');
-    if (containerError === 'connexion') {
-        openPopUpConnexion();
-    } else if (containerError === 'inscription') {
-        console.log('inscription');
-        openPopUpInscription();
-    } else if (containerError === 'inscription-intervenant') {
-        const form = document.querySelector('#form');
-        form.scrollIntoView();
-    } else {
-        openNotification(urlParams.get('message'));
+    const containerMessage = urlParams.get('c');
+
+    switch (containerMessage) {
+        case 'connexion':
+            openPopUpConnexion();
+            break;
+        case 'inscription':
+            openPopUpInscription();
+            break;
+        case 'inscription-intervenant':
+            const form = document.querySelector('#form');
+            form.scrollIntoView();
+            break;
+        case 'msg-success':
+            openNotification(urlParams.get('message'), 'success');
+            break;
+        case 'msg-error':
+            openNotification(urlParams.get('message'), 'error');
+            break;
+        case 'msg-warning':
+            openNotification(urlParams.get('message'), 'warning');
+            break;
+        case 'msg-info':
+            openNotification(urlParams.get('message'), 'info');
+            break;
+        default:
+            openNotification(urlParams.get('message'));
+
     }
 }
 
 
-
-function openNotification($content) {
+function openNotification($content, $type = 'info') {
     modal.classList.add('--active');
+    modal.classList.add('--' + $type);
+    modalContent.children[0].innerHTML = $type;
     modalContent.children[1].innerHTML = $content;
 }
 
@@ -41,9 +59,9 @@ export function removeErrorInURL() {
     urlParams.delete('message');
     urlParams.delete('c');
     let newUrl = '';
-    if(urlParams.toString() === '') {
+    if (urlParams.toString() === '') {
         newUrl = window.location.pathname;
-    } else{
+    } else {
         newUrl = window.location.pathname + '?' + urlParams.toString();
     }
     window.history.pushState({path: newUrl}, '', newUrl);

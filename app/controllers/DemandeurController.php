@@ -55,13 +55,13 @@ class DemandeurController extends Template
                 $password = $saltedAndHashed;
             }
         } else {
-            $referer = self::addErrorToUrl('Ancien mot de passe incorrect.', 'mon-compte');
+            $referer = self::addMessageToUrl('Ancien mot de passe incorrect.', 'mon-compte');
             header("Location: $referer");
             exit();
         }
 
         if ($userFromEmail && $userFromEmail->getIdDemandeur() != $demandeur->getIdDemandeur()) {
-            $referer = self::addErrorToUrl('Cette email est déjà utilisé.', 'mon-compte');
+            $referer = self::addMessageToUrl('Cette email est déjà utilisé.', 'mon-compte');
             header("Location: $referer");
             exit();
         } else {
@@ -88,7 +88,7 @@ class DemandeurController extends Template
                 $this->entityManager->persist($demandeur);
                 $this->entityManager->flush();
             } catch (\Exception $e) {
-                $referer = self::addErrorToUrl('Une erreur est survenue. Merci de réessayer.', 'mon-compte');
+                $referer = self::addMessageToUrl('Une erreur est survenue. Merci de réessayer.', 'mon-compte');
                 header("Location: $referer");
                 exit();
             }
@@ -159,15 +159,15 @@ class DemandeurController extends Template
                     $referer = removeErrorFromUrl();
                     header('Location: ' . $referer);
                 } else {
-                    $referer = self::addErrorToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
+                    $referer = self::addMessageToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
                     header("Location: $referer");
                 }
             } else {
-                $referer = self::addErrorToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
+                $referer = self::addMessageToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
                 header("Location: $referer");
             }
         } else {
-            $referer = self::addErrorToUrl('Veuillez remplir tous les champs.', 'connexion');
+            $referer = self::addMessageToUrl('Veuillez remplir tous les champs.', 'connexion');
             header("Location: $referer");
         }
     }
@@ -176,15 +176,15 @@ class DemandeurController extends Template
     {
         $inscriptionIntervenant = false;
         $specialites = [];
-        $containerError = 'inscription';
+        $containerMessage = 'inscription';
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
-                $referer = self::addErrorToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
                 header("Location: $referer");
                 exit();
             }
             $inscriptionIntervenant = true;
-            $containerError = 'inscription-intervenant';
+            $containerMessage = 'inscription-intervenant';
             $specialitesString = $_POST['specialites'];
             if ($specialitesString != 'null') {
                 $specialites = explode('-', $specialitesString);
@@ -198,7 +198,7 @@ class DemandeurController extends Template
         $emailExists = !empty($demandeur);
 
         if ($emailExists) {
-            $referer = self::addErrorToUrl('Cette email est déjà utilisé.', $containerError);
+            $referer = self::addMessageToUrl('Cette email est déjà utilisé.', $containerMessage);
             header("Location: $referer");
         } else {
             // TODO vérifier chaque champs ; faire une classe de vérification ?
@@ -248,7 +248,7 @@ class DemandeurController extends Template
                 $this->entityManager->persist($demandeur);
                 $this->entityManager->flush();
             } catch (Exception $e) {
-                $referer = self::addErrorToUrl('Une erreur est survenue.', $containerError);
+                $referer = self::addMessageToUrl('Une erreur est survenue.', $containerMessage);
                 header("Location: $referer");
                 exit();
             }
