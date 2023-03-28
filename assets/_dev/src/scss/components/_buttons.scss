@@ -63,6 +63,11 @@
     color            : $white;
     background : $gradientRed;
   }
+  &.btn-yellow{
+    border           : none;
+    color            : $white;
+    background : linear-gradient(90.18deg, #D6AC41 0.16%, #C47601 100%);
+  }
 
   svg {
     vertical-align : text-top;
