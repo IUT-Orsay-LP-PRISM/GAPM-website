@@ -12,10 +12,7 @@
 			<div class="myrdv__content">
 				<div class="myrdv__nav">
 					<ul>
-						<li class="js-rdv-nav --active" data-count="{{ mesRdv.attente|length }}" data-id="waiting">
-							En attente de confirmation
-						</li>
-						<li class="js-rdv-nav" data-count="{{ mesRdv.confirme|length }}" data-id="confirm">
+						<li class="js-rdv-nav --active" data-count="{{ mesRdv.confirme|length }}" data-id="confirm">
 							À venir
 						</li>
 						<li class="js-rdv-nav" data-count="{{ mesRdv.effectue|length }}" data-id="passed">
@@ -25,17 +22,14 @@
 							Annulés
 						</li>
 						&nbsp;&nbsp;
-						<li class="js-rdv-nav" data-count="{{ mesRdv.avisALaisser|length }}" data-id="canceled">
+						<li class="js-rdv-nav" data-count="{{ mesRdv.avisALaisser|length }}" data-id="advices">
 							Laisser un avis
 						</li>
 					</ul>
 				</div>
 
 				<div class="myrdv__list">
-					<div id="waiting" class="js-rdv-content  --display">
-						{% include '/demandeur/rdv/rdv-attente.twig' with {'rdv': mesRdv.attente} %}
-					</div>
-					<div id="confirm" class="js-rdv-content">
+					<div id="confirm" class="js-rdv-content --display">
 						{% include '/demandeur/rdv/rdv-confirme.twig' with {'rdv': mesRdv.confirme} %}
 					</div>
 					<div id="passed" class="js-rdv-content">
@@ -45,6 +39,7 @@
 						{% include '/demandeur/rdv/rdv-annule.twig' with {'rdv': mesRdv.annule} %}
 					</div>
 					<div id="advices" class="js-rdv-content">
+						{% include '/demandeur/rdv/rdv-notice.twig' with {'rdv': mesRdv.avisALaisser} %}
 					</div>
 				</div>
 			</div>
