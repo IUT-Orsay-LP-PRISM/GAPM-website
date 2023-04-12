@@ -2697,7 +2697,6 @@ body.intervenant {
   body.intervenant .input-container {
     font-family: "Poppins", sans-serif;
     position: relative;
-    width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -4440,7 +4439,6 @@ body.demandeur {
   body.demandeur .input-container {
     font-family: "Poppins", sans-serif;
     position: relative;
-    width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;

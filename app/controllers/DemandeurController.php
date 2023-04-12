@@ -127,7 +127,7 @@ class DemandeurController extends Template
             $referer_parts = parse_url($referer);
             if (isset($referer_parts['query'])) {
                 parse_str($referer_parts['query'], $query_params);
-                unset($query_params['error']);
+                unset($query_params['message']);
                 unset($query_params['c']);
                 $referer_parts['query'] = http_build_query($query_params);
                 $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
