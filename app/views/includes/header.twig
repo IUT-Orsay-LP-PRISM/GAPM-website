@@ -1,20 +1,14 @@
 <header class="header">
 	<nav class="header__nav">
 		<ul class="header__menu menu-left">
-			<li class="menu-item"><a href="/" class="--active">Accueil</a></li>
-			<li class="menu-item"><a href="/?action=faq">Besoin d'aide ?</a></li>
-			<li class="menu-item"><a href="#">A propos</a></li>
+			<li data-page="accueil" class="menu-item"><a href="/" class="link">Accueil</a></li>
+			<li data-page="faq" class="menu-item"><a href="/?action=faq" class="link">Besoin d'aide ?</a></li>
+			<li data-page="info" class="menu-item"><a href="#" class="link">A propos</a></li>
 		</ul>
 		<ul class="header__menu menu-right">
 			{% if userLogged %}
-				<li class="menu-item">
-					<a href="/?action=search" class="link">
-						Prendre RDV
-					</a>
-				</li>
-				<li class="menu-item">
-					<a href="/?action=mes-rendez-vous" class="link">Mes rendez-vous</a>
-				</li>
+				<li data-page="search" class="menu-item"><a href="/?action=search" class="link">Prendre RDV</a></li>
+				<li data-page="mes-rendez-vous" class="menu-item"><a href="/?action=mes-rendez-vous" class="link">Mes rendez-vous</a></li>
 				<li class="dropdown">
 					<a href="#" class="btn btn-primary-nb">
 						<i class="icon-w icon-fi-rr-user"></i>
@@ -83,17 +77,9 @@
 								<a href="/?action=intervenant" class="btn btn-greenPrimary"><i class="icon-w icon-fi-rr-redo"></i>Mode intervenant</a>
 							</li>
 						{% endif %}
-						<li class="menu-item">
-							<a href="/?action=search" class="link">
-								Prendre RDV
-							</a>
-						</li>
-						<li class="menu-item">
-							<a href="/?action=mes-rendez-vous" class="link">Mes rendez-vous</a>
-						</li>
-						<li class="menu-item">
-							<a href="/?action=my-account" class="link">Mon compte</a>
-						</li>
+						<li data-page='search' class="menu-item"><a href="/?action=search" class="link">Prendre RDV</a></li>
+						<li data-page="mes-rendez-vous" class="menu-item"><a href="/?action=mes-rendez-vous" class="link">Mes rendez-vous</a></li>
+						<li class="menu-item"><a href="/?action=my-account" class="link">Mon compte</a></li>
 						<li class="--logout">
 							<a href="/?action=logout" class="dropdown-item">
 								<i class="icon icon-fi-rr-user-delete"></i>

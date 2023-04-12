@@ -2,6 +2,8 @@ const header = document.querySelector('.header .header__nav');
 const headerMobileB = document.querySelector('.header__mobile');
 const banner = document.querySelector('.hp__banner');
 const windowHeight = header ? header.offsetHeight : 0;
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
 
 if (header) {
     window.addEventListener('scroll', () => {
@@ -58,3 +60,17 @@ document.body.addEventListener('keydown', function(e) {
         document.body.style.overflowY = 'auto';
     }
 });
+
+if (urlParams.get('action')){
+    var page = urlParams.get('action');
+}
+else{
+    var page = 'accueil';
+}
+
+var navElements = document.querySelectorAll('.menu-item');
+navElements.forEach(element => {
+    if(element.dataset.page == page && element.parentNode.classList.contains("header__menu")){
+        element.querySelector('a.link').classList.add('--active');
+    }
+}); 
