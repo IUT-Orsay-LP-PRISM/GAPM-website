@@ -17,7 +17,7 @@
                     <div class="input-container">
                         <i class="icon icon-fi-rr-home-location-alt"></i>
                         <input id="adressePro" class="input" type="text" name="addressPro" required/>
-                        <label class="label" for="adressePro">Adresse Pro</label>
+                        <label class="label" for="adressePro">Adresse Professionnel</label>
                     </div>
                 </div>
                 <div class="myaccount__form__intervenant__item">
@@ -65,7 +65,7 @@
                             <i class="icon icon-fi-rr-text"></i>
                             <input id="adressePro" class="input" type="text" name="adressePro"
                                    value="{{ user.adressePro }}" required/>
-                            <label class="label" for="adressePro">Adresse Pro</label>
+                            <label class="label" for="adressePro">Adresse Professionnel</label>
                         </div>
                     </div>
                     <div class="myaccount__form__intervenant__item">
@@ -85,7 +85,7 @@
                             <i class="icon icon-fi-rr-map-marker"></i>
                             <input id="villeIntervenantUpdate" class="input AC input_ville" type="text"
                                    value="{{ user.villePro.nom|upper }}"/>
-                            <label class="label" for="villeIntervenantUpdate">Ville Pro</label>
+                            <label class="label" for="villeIntervenantUpdate">Ville Professionnel</label>
                             <input name="city" type="number" hidden="hidden" value="{{ user.villePro.idVille }}"/>
                             <div class="notVisible auto_completion"></div>
                             <span class="code_postal">{{ user.villePro.codePostal }}</span>
