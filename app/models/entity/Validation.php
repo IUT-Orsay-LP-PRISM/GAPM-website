@@ -4,7 +4,8 @@ namespace App\models\entity;
 
 class Validation{
 
-    function verifierNomPrenom(){
+    /* FONCTION A ADAPTER POUR AJOUTER ACCEDER AUX VALEUR A TRAVERS DES PARAMETRES !!!!!!!!!!!!!! */
+    public static function verifierNomPrenom(){
         $tab = ["firstname", "lastname"];
 
         foreach($tab as $value){
@@ -23,28 +24,26 @@ class Validation{
     }
 
 
-    public static function verifierEmail(){
+    public static function verifierEmail($mail){
         // Caractères autorisés : lettres, numèros, [.-_] et 1 seul @
         // Pas de début ou fin avec [.-_] 
         // ET pas de [.-_] consécutifs
         // Taille maximale 50 caractères
 
-        if(isset($_POST["mail"]) && $_POST["mail"] != "" && strlen($_POST["mail"])<=50){
-            return preg_match('/^(?![\.\-\_])(?!.*\.\.)(?!.*\-\-)(?!.*\_\_)[A-Za-z0-9\.\-\_]*[A-Za-z0-9]+@[A-Za-z0-9][A-Za-z0-9\-\_]*[A-Za-z0-9]\.[A-Za-z]{2,}$/', $_POST["mail"]);
+        if($mail != null && $mail != "" && strlen($mail)<=50){
+            return preg_match('/^(?![\.\-\_])(?!.*\.\.)(?!.*\-\-)(?!.*\_\_)[A-Za-z0-9\.\-\_]*[A-Za-z0-9]+@[A-Za-z0-9][A-Za-z0-9\-\_]*[A-Za-z0-9]\.[A-Za-z]{2,}$/', $mail) == 1 ? true : false;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
 
-    function verifierDateNaissance(){
-        if(isset($_POST["birthday"]) && $_POST["birthday"] != ""){
-            $datePostFormatTime = strtotime($_POST["birthday"]);
+    public static function verifierDateNaissance($birthday){
+        if($birthday != ""){
+            $datePostFormatTime = strtotime($birthday);
 
             if($datePostFormatTime != ''){
                 $aujourdhui = new DateTime(date('Y-m-d'));
-                $datePost = new DateTime($_POST["birthday"]);
+                $datePost = new DateTime($birthday);
 
                 $diff = $datePost->diff($aujourdhui);
 
@@ -64,17 +63,17 @@ class Validation{
     }
 
 
-    function verifierAdresse(){
-        if(isset($_POST["address"]) && $_POST["address"] != ""){
-            return preg_match('/^[A-Za-z0-9,\-\/\' ]{0,49}$/', $_POST["address"]);
+    public static function verifierAdresse($address){
+        if($address != ""){
+            return preg_match('/^[A-Za-z0-9,\-\/\' ]{0,49}$/', $address) == 1 ? true : false;
         }
         return false;
     }
 
 
-    function verifierVille(){
-        if(isset($_POST["city"]) && $_POST["city"] != ""){
-            if(is_numeric($_POST["city"]) && intval($_POST["city"]) >= 1 && intval($_POST["city"]) <= 36208 ){
+    public static function verifierVille($city){
+        if($city != ""){
+            if(is_numeric($city) && intval($city) >= 1 && intval($city) <= 36208 ){
                 return true;
             }
         }
@@ -82,42 +81,36 @@ class Validation{
     }
 
 
-    function verifierSexe(){
-        if(isset($_POST["sexe"]) && $_POST["sexe"] != ""){
-            return preg_match('/^[HFA]{1}$/', $_POST["sexe"]);
+    public static function verifierSexe($sex){
+        if($sex != ""){
+            return preg_match('/^[HFA]{1}$/', $sex) == 1 ? true : false;
         }
         return false;
     }
 
 
-    function verifierNumeroTelephone(){
-        if(isset($_POST["phone"]) && $_POST["phone"] != ""){
-            return preg_match('/(0|\+33|0033)[1-9][0-9]{8}/', $_POST["phone"]);
+    public static function verifierNumeroTelephone($telephone){
+        if($telephone != ""){
+            return preg_match('/(0|\+33|0033)[1-9][0-9]{8}/', $telephone) == 1 ? true : false;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
 
-    function verifierMdp(){
+    public static function verifierMdp($password){
         // >= 1 Majuscule + >= 1 minuscule + >= 1 chiffre + >= 1 caractère @$!%*?&
-        if(isset($_POST["password"]) && $_POST["password"] != ""){
-            return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,50}$/', $_POST["password"]);
+        if($password != ""){
+            return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,50}$/', $password) == 1 ? true : false;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
 
-    function verifierSpecialites(){
-        if(isset($_POST["specialites"]) && $_POST["specialites"] != ""){
-            return preg_match('/^[0-9]+(-[0-9]+)*$/', $_POST["specialites"]);
+    public static function verifierSpecialites($specialites){
+        if($specialites != ""){
+            return preg_match('/^[0-9]+(-[0-9]+)*$/', $specialites) == 1 ? true : false;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
 
@@ -146,39 +139,33 @@ class Validation{
 
 
 
-    function verifierLogin(){
+    public static function verifierLogin($login){
 
-        if(isset($_POST["NOMVARIABLE"]) && $_POST["NOMVARIABLE"] != ""){
-            return preg_match('/^[A-Za-z0-9\._]{4,50}$/', $_POST["NOMVARIABLE"]);
+        if($login != ""){
+            return preg_match('/^[A-Za-z0-9\._]{4,50}$/', $login) == 1 ? true : false;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
 
-    function verifierDateRendezVous(){
+    public static function verifierDateRendezVous($date){
 
         $jour = date("l");
         $mois = date("m");
         $annee = date("Y");
-        if(isset($_POST["NOMVARIABLE"]) && $_POST["NOMVARIABLE"] != ""){
-            return preg_match('/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19\d\d|20[0-2]\d)$/', $_POST["NOMVARIABLE"]);
+        if($date != ""){
+            return preg_match('/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19\d\d|20[0-2]\d)$/', $date) == 1 ? true : false;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
 
     /*
-    function verifierCodePostal(){
-        if(isset($_POST["NOMVARIABLE"]) && $_POST["NOMVARIABLE"] != ""){
-            return preg_match('/^(0[1-9]|[1-8]\d|9[0-8])([0-9]{3})$/', $_POST["NOMVARIABLE"]);
+    function verifierCodePostal($postalCode){
+        if($postalCode != ""){
+            return preg_match('/^(0[1-9]|[1-8]\d|9[0-8])([0-9]{3})$/', $postalCode) == 1 ? true : false;
         }
-        else{
-            return false;
-        }
+        return false;
     }
     */
 }
