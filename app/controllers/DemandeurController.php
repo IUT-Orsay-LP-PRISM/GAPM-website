@@ -7,6 +7,7 @@ use App\models\entity\Intervenant;
 use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
+use App\models\entity\Validation;
 use App\models\entity\Ville;
 use App\models\repository\DemandeurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -193,6 +194,12 @@ class DemandeurController extends Template
 
         // TODO vérifier champ
         $email = $_POST['mail'];
+
+        if(!Validation::verifierEmail()){
+            $referer = self::addErrorToUrl('Mauvais format. Ex : nomUtilisateur@domain.com', $containerError);
+            header("Location: $referer");
+            die;
+        }
 
         $demandeur = $this->demandeurRepository->findOneBy(['email' => $email]);
         $emailExists = !empty($demandeur);

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\models\entity;
+
 class Validation{
 
     function verifierNomPrenom(){
@@ -21,7 +23,7 @@ class Validation{
     }
 
 
-    function verifierEmail(){
+    public static function verifierEmail(){
         // Caractères autorisés : lettres, numèros, [.-_] et 1 seul @
         // Pas de début ou fin avec [.-_] 
         // ET pas de [.-_] consécutifs
