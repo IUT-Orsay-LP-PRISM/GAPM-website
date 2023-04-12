@@ -37,7 +37,9 @@
                     </div>
                 </div>
             </div>
-
+            {% if message is not empty and containerMessage is not empty and containerMessage == "mon-compte" %}
+                <p class="error">{{ message }}</p>
+            {% endif %}
             <button class="btn btn-primary" type="submit">
                 <i class="icon-w icon-fi-rr-check"></i>
                 Postuler en tant que praticien
@@ -61,12 +63,13 @@
                     <div class="myaccount__form__intervenant__item">
                         <div class="input-container">
                             <i class="icon icon-fi-rr-text"></i>
-                            <input id="user" class="input" type="text" name="adressePro" value="{{ user.adressePro }}"/>
-                            <label class="label" for="name">Adresse Pro</label>
+                            <input id="adressePro" class="input" type="text" name="adressePro"
+                                   value="{{ user.adressePro }}" required/>
+                            <label class="label" for="adressePro">Adresse Pro</label>
                         </div>
                     </div>
                     <div class="myaccount__form__intervenant__item">
-                        <div id="tag-container">
+                        <div id="tag-container" class="js-specialite">
                             <p>Vos choix :</p>
                             <div class="container">
                                 {% for specialite in user.specialites %}
@@ -74,7 +77,6 @@
                                         <span class="tag-text">{{ specialite.libelle|upper }}</span>
                                     </div>
                                 {% endfor %}
-
                             </div>
                         </div>
                     </div>
@@ -95,13 +97,17 @@
                     <div class="input-container">
                         <i class="icon icon-fi-rr-key"></i>
                         <input id="oldMdpIntervenant" name="oldPassword" class="input" type="password" required/>
-                        <label class="label" for="oldMdpIntervenant">Ancien mot de passe</label>
+                        <label class="label" for="oldMdpIntervenant">Mot de passe</label>
                         <i class="icon icon-fi-rr-eye-crossed js-iconEyePassword"></i>
                     </div>
                 </div>
-                {% if error is not empty and containerError is not empty and containerError == "mon-compte" %}
-                    <p class="error">{{ error }}</p>
+                {% if message is not empty and containerMessage is not empty and containerMessage == "mon-compte" %}
+                    <p class="error">{{ message }}</p>
                 {% endif %}
+                <button class="btn btn-primary" type="submit">
+                    <i class="icon-w icon-fi-rr-check"></i>
+                    Enregistrer les modifications
+                </button>
             </form>
         {% endif %}
     {% endif %}

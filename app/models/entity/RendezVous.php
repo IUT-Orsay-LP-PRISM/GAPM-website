@@ -29,7 +29,7 @@ class RendezVous
     #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
     private Demandeur $demandeur;
 
-    #[ORM\OneToOne(targetEntity: Intervenant::class, fetch: 'LAZY')]
+    #[ORM\ManyToOne(targetEntity: Intervenant::class, fetch: 'LAZY')]
     #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
     private Intervenant $intervenant;
 
@@ -37,6 +37,9 @@ class RendezVous
     #[ORM\JoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
     private Specialite $specialite;
 
+    #[ORM\OneToOne(targetEntity: Commentaire::class, fetch: 'EAGER')]
+    #[ORM\JoinColumn(name: 'idCommentaire', referencedColumnName: 'idCommentaire')]
+    private ?Commentaire $commentaire = null;
 
 
     /**
@@ -171,6 +174,25 @@ class RendezVous
     public function setIntervenant(Intervenant $intervenant): void
     {
         $this->intervenant = $intervenant;
+    }
+
+    /**
+     * @return Commentaire
+     */
+    public function getCommentaire(): Commentaire
+    {
+        if ($this->commentaire === null) {
+            $this->commentaire = new Commentaire();
+        }
+        return $this->commentaire;
+    }
+
+    /**
+     * @param Commentaire $commentaire
+     */
+    public function setCommentaire(Commentaire $commentaire): void
+    {
+        $this->commentaire = $commentaire;
     }
 
 

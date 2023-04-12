@@ -40,6 +40,7 @@ $screenXl          : 1440px;
 @import "components/footer";
 @import "components/popups";
 @import "components/link";
+@import "components/notification";
 
 .icon {
   background              : $gradientIcon;
@@ -50,6 +51,17 @@ $screenXl          : 1440px;
 
   &-w {
     color     : white;
+    padding   : 1px;
+    font-size : 1.5rem;
+  }
+  &-b {
+    color     : black;
+    padding   : 1px;
+    font-size : 1.5rem;
+  }
+
+  &-g{
+    color     : $greenPrimary;
     padding   : 1px;
     font-size : 1.5rem;
   }

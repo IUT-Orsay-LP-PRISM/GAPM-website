@@ -139,7 +139,7 @@
         }
       }
 
-      &-info {
+      &-info, &-info-notice {
         flex                  : 1;
         display               : grid;
         grid-template-areas   : "name speciality city date";
@@ -172,6 +172,11 @@
         }
       }
 
+      &-info-notice{
+        grid-template-areas: "name speciality city date notice";
+        grid-template-columns: repeat(5, 1fr) !important;
+      }
+
       &-name {
         grid-area : name;
       }
@@ -185,6 +190,14 @@
       }
       &-date{
         grid-area: date;
+      }
+      &-notice{
+        grid-area: notice;
+        .desc{
+          svg{
+            margin-right: .1rem;
+          }
+        }
       }
 
       &-btn {

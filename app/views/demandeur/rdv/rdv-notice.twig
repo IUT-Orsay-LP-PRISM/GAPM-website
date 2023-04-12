@@ -1,0 +1,72 @@
+{% for unrdv in rdv %}
+	<div class="myrdv__contents-user">
+		<div class="myrdv__contents-user-img">
+			<img src="assets/img/profils/exemple_doctor.jpg" alt="User">
+		</div>
+		<div class="myrdv__contents-user-info-notice ">
+			<div class="myrdv__contents-user-name">
+				<p class="title">
+					Nom
+				</p>
+				<p class="desc">
+					{{ unrdv.intervenant.nom }} {{ unrdv.intervenant.prenom }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-speciality">
+				<p class="title">
+					Spécialité
+				</p>
+				<ul class="desc">
+					<li>
+						{{ unrdv.specialite.libelle }}
+					</li>
+				</ul>
+			</div>
+			<div class="myrdv__contents-user-city">
+				<p class="title">
+					Ville
+				</p>
+				<p class="desc">
+					{{ unrdv.intervenant.ville.nom }}, {{ unrdv.intervenant.ville.codePostal }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-date">
+				<p class="title">
+					Date
+				</p>
+				<p class="desc">
+					Le {{ unrdv.dateRDV }} - {{ unrdv.heureDebut }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-notice">
+				<p class="title">
+					Avis laissé
+				</p>
+				<p class="desc">
+					<a href="#" class="btn btn-yellow">
+						<svg width="40" height="33" viewBox="0 0 40 33" fill="none"
+							 xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0_179_3366)">
+								<path d="M1.3267 21.4004L4.88671 24.0004L3.53471 28.1874C3.31622 28.8368 3.31345 29.5394 3.52681 30.1905C3.74018 30.8416 4.15825 31.4063 4.7187 31.8004C5.26956 32.2072 5.9371 32.4251 6.62186 32.4217C7.30662 32.4183 7.97195 32.1937 8.51871 31.7814L11.9997 29.2194L15.4817 31.7784C16.0316 32.1829 16.6955 32.4026 17.3781 32.4059C18.0607 32.4092 18.7267 32.196 19.2805 31.797C19.8342 31.3979 20.2472 30.8335 20.46 30.1849C20.6728 29.5363 20.6744 28.837 20.4647 28.1874L19.1127 24.0004L22.6727 21.4004C23.2218 20.999 23.6301 20.4342 23.8391 19.7868C24.048 19.1395 24.0471 18.4426 23.8364 17.7958C23.6257 17.149 23.2159 16.5854 22.6657 16.1853C22.1155 15.7853 21.453 15.5694 20.7727 15.5684H16.3997L15.0727 11.4324C14.864 10.7814 14.454 10.2135 13.9017 9.81051C13.3494 9.40756 12.6834 9.19043 11.9997 9.19043C11.316 9.19043 10.65 9.40756 10.0977 9.81051C9.54544 10.2135 9.13538 10.7814 8.92671 11.4324L7.59971 15.5684H3.2307C2.55045 15.5694 1.8879 15.7853 1.33768 16.1853C0.787473 16.5854 0.377745 17.149 0.167026 17.7958C-0.0436933 18.4426 -0.044626 19.1395 0.164361 19.7868C0.373348 20.4342 0.781566 20.999 1.3307 21.4004H1.3267Z"
+									  fill="white"/>
+							</g>
+							<path d="M33 11H29V7C29 6.73478 28.8946 6.48043 28.7071 6.29289C28.5196 6.10536 28.2652 6 28 6C27.7348 6 27.4804 6.10536 27.2929 6.29289C27.1054 6.48043 27 6.73478 27 7V11H23C22.7348 11 22.4804 11.1054 22.2929 11.2929C22.1054 11.4804 22 11.7348 22 12C22 12.2652 22.1054 12.5196 22.2929 12.7071C22.4804 12.8946 22.7348 13 23 13H27V17C27 17.2652 27.1054 17.5196 27.2929 17.7071C27.4804 17.8946 27.7348 18 28 18C28.2652 18 28.5196 17.8946 28.7071 17.7071C28.8946 17.5196 29 17.2652 29 17V13H33C33.2652 13 33.5196 12.8946 33.7071 12.7071C33.8946 12.5196 34 12.2652 34 12C34 11.7348 33.8946 11.4804 33.7071 11.2929C33.5196 11.1054 33.2652 11 33 11Z"
+								  fill="white"/>
+							<defs>
+								<clipPath id="clip0_179_3366">
+									<rect width="24" height="24" fill="white" transform="translate(0 9)"/>
+								</clipPath>
+							</defs>
+						</svg>
+						Ajouter un avis
+					</a>
+				</p>
+			</div>
+		</div>
+		<div class="myrdv__contents-user-btn">
+			{#            <a data-id="{{ unrdv.idRDV }}" href="#e" class="btn btn-primary js-btn-RDV">
+				Voir sa fiche
+			</a> #}
+		</div>
+	</div>
+{% endfor %}

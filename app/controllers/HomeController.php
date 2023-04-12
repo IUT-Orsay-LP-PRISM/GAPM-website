@@ -15,4 +15,11 @@ class HomeController extends Template
         ]);
     }
 
+    public function displayFAQ()
+    {
+        self::render('faq.twig', [
+            'title' => "Besoin d'\aide ",
+        ]);
+    }
+
 }

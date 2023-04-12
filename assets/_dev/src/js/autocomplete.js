@@ -125,7 +125,7 @@ function ajaxVille(div_auto_complete, input) {
                         const span = input.parentNode.querySelector('span.code_postal')
                         span ? span.innerHTML = element.code_postal : null;
 
-                        const input_city_hidden = input.parentNode.querySelector('input[name="city"]');
+                        const input_city_hidden = input.parentNode.querySelector('input[name="city"]') || input.parentNode.querySelector('input[name="cityPro"]');
                         input_city_hidden ? input_city_hidden.value = element.idVille : null;
                         div_auto_complete.classList.add('notVisible');
                     });

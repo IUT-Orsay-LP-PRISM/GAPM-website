@@ -36,7 +36,7 @@
 					Date
 				</p>
 				<p class="desc">
-					Le {{ unrdv.dateRDV }}, à {{ unrdv.heureDebut }}
+					Le {{ unrdv.dateRDV }} - {{ unrdv.heureDebut }}
 				</p>
 			</div>
 		</div>
@@ -45,9 +45,9 @@
 				<i class="icon-fi-rr-delete"></i>
 				Annuler RDV
 			</a>
-			<a data-id="{{ unrdv.idRDV }}" href="#" class="btn btn-primary js-btn-RDV">
+{#			<a data-id="{{ unrdv.idRDV }}" href="#" class="btn btn-primary js-btn-RDV">
 				Voir sa fiche
-			</a>
+			</a>#}
 		</div>
 	</div>
 {% endfor %}
