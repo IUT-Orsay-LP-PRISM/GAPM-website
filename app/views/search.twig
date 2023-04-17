@@ -35,7 +35,9 @@
 			</span>
             </h2>
         {% else %}
-            <h2>Liste des intervenants :</h2>
+            {% if intervenants is not empty %}
+                <h2>Liste des intervenants :</h2>
+            {% endif %}
         {% endif %}
 
         <div class="search__contents-list">
@@ -87,7 +89,12 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <p>Aucun médecin trouvé avec les champs donné !</p>
+                <div class="search__notfound">
+                    <div class="search__notfound-img">
+                        {% include 'svg/not_found.svg' %}
+                    </div>
+                    <h3>Aucun médecin trouvé avec les champs donnés !</h3>
+                </div>
             {% endif %}
         </div>
     </section>
