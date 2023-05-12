@@ -2581,31 +2581,34 @@ body.intervenant {
       body.intervenant .myrdv__contents-user-img img {
         max-width: 100px;
         border-radius: 50%; }
-      body.intervenant .myrdv__contents-user-info {
+      body.intervenant .myrdv__contents-user-info, body.intervenant .myrdv__contents-user-info-notice {
         flex: 1;
         display: grid;
         grid-template-areas: "name speciality city date";
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 3%;
         margin: 0 4rem; }
-        body.intervenant .myrdv__contents-user-info .title {
+        body.intervenant .myrdv__contents-user-info .title, body.intervenant .myrdv__contents-user-info-notice .title {
           font-family: "Poppins", sans-serif;
           font-size: 1rem;
           color: #257466;
           font-weight: 500;
           line-height: 2; }
-        body.intervenant .myrdv__contents-user-info .desc {
+        body.intervenant .myrdv__contents-user-info .desc, body.intervenant .myrdv__contents-user-info-notice .desc {
           font-size: 1rem;
           color: #144139;
           font-weight: 400;
           font-family: "Open Sans", sans-serif;
           line-height: 2; }
-        body.intervenant .myrdv__contents-user-info ul.desc {
+        body.intervenant .myrdv__contents-user-info ul.desc, body.intervenant .myrdv__contents-user-info-notice ul.desc {
           list-style: "- ";
           padding-left: .65rem;
           color: #257466; }
-          body.intervenant .myrdv__contents-user-info ul.desc li {
+          body.intervenant .myrdv__contents-user-info ul.desc li, body.intervenant .myrdv__contents-user-info-notice ul.desc li {
             color: #144139; }
+      body.intervenant .myrdv__contents-user-info-notice {
+        grid-template-areas: "name speciality city date notice";
+        grid-template-columns: repeat(5, 1fr) !important; }
       body.intervenant .myrdv__contents-user-name {
         grid-area: name; }
       body.intervenant .myrdv__contents-user-speciality {
@@ -2614,6 +2617,10 @@ body.intervenant {
         grid-area: city; }
       body.intervenant .myrdv__contents-user-date {
         grid-area: date; }
+      body.intervenant .myrdv__contents-user-notice {
+        grid-area: notice; }
+        body.intervenant .myrdv__contents-user-notice .desc svg {
+          margin-right: .1rem; }
       body.intervenant .myrdv__contents-user-btn {
         display: flex;
         align-items: center; }
@@ -2674,6 +2681,10 @@ body.intervenant {
       border: none;
       color: #FFFFFF;
       background: linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%); }
+    body.intervenant .btn.btn-yellow {
+      border: none;
+      color: #FFFFFF;
+      background: linear-gradient(90.18deg, #D6AC41 0.16%, #C47601 100%); }
     body.intervenant .btn svg {
       vertical-align: text-top; }
     body.intervenant .btn:hover {
@@ -2686,7 +2697,6 @@ body.intervenant {
   body.intervenant .input-container {
     font-family: "Poppins", sans-serif;
     position: relative;
-    width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -4313,31 +4323,34 @@ body.demandeur {
       body.demandeur .myrdv__contents-user-img img {
         max-width: 100px;
         border-radius: 50%; }
-      body.demandeur .myrdv__contents-user-info {
+      body.demandeur .myrdv__contents-user-info, body.demandeur .myrdv__contents-user-info-notice {
         flex: 1;
         display: grid;
         grid-template-areas: "name speciality city date";
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 3%;
         margin: 0 4rem; }
-        body.demandeur .myrdv__contents-user-info .title {
+        body.demandeur .myrdv__contents-user-info .title, body.demandeur .myrdv__contents-user-info-notice .title {
           font-family: "Poppins", sans-serif;
           font-size: 1rem;
           color: #393BAA;
           font-weight: 500;
           line-height: 2; }
-        body.demandeur .myrdv__contents-user-info .desc {
+        body.demandeur .myrdv__contents-user-info .desc, body.demandeur .myrdv__contents-user-info-notice .desc {
           font-size: 1rem;
           color: #1E1E3D;
           font-weight: 400;
           font-family: "Open Sans", sans-serif;
           line-height: 2; }
-        body.demandeur .myrdv__contents-user-info ul.desc {
+        body.demandeur .myrdv__contents-user-info ul.desc, body.demandeur .myrdv__contents-user-info-notice ul.desc {
           list-style: "- ";
           padding-left: .65rem;
           color: #393BAA; }
-          body.demandeur .myrdv__contents-user-info ul.desc li {
+          body.demandeur .myrdv__contents-user-info ul.desc li, body.demandeur .myrdv__contents-user-info-notice ul.desc li {
             color: #1E1E3D; }
+      body.demandeur .myrdv__contents-user-info-notice {
+        grid-template-areas: "name speciality city date notice";
+        grid-template-columns: repeat(5, 1fr) !important; }
       body.demandeur .myrdv__contents-user-name {
         grid-area: name; }
       body.demandeur .myrdv__contents-user-speciality {
@@ -4346,6 +4359,10 @@ body.demandeur {
         grid-area: city; }
       body.demandeur .myrdv__contents-user-date {
         grid-area: date; }
+      body.demandeur .myrdv__contents-user-notice {
+        grid-area: notice; }
+        body.demandeur .myrdv__contents-user-notice .desc svg {
+          margin-right: .1rem; }
       body.demandeur .myrdv__contents-user-btn {
         display: flex;
         align-items: center; }
@@ -4406,6 +4423,10 @@ body.demandeur {
       border: none;
       color: #FFFFFF;
       background: linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%); }
+    body.demandeur .btn.btn-yellow {
+      border: none;
+      color: #FFFFFF;
+      background: linear-gradient(90.18deg, #D6AC41 0.16%, #C47601 100%); }
     body.demandeur .btn svg {
       vertical-align: text-top; }
     body.demandeur .btn:hover {
@@ -4418,7 +4439,6 @@ body.demandeur {
   body.demandeur .input-container {
     font-family: "Poppins", sans-serif;
     position: relative;
-    width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;

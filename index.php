@@ -25,6 +25,7 @@ Route::post('confirm-RDV', 'RendezVousController', 'createRDV');
 Route::post('upgrade-to-intervenant', 'IntervenantController', 'devenirIntervenant');
 Route::post('update-intervenant', 'IntervenantController', 'update');
 
+Route::post('faq', 'HomeController', 'displayFAQ');
 
 
 

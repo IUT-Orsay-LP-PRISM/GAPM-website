@@ -124,43 +124,34 @@ class RendezVousController extends Template
         $mesRdv = $demandeur->getRendezVous();
 
         $avisALaisser = [];
-        $avisExistant = [];
         $mesRdvConfirme = [];
-        $mesRdvEnAttente = [];
         $mesRdvAnnule = [];
         $mesRdvEffectue = [];
         foreach ($mesRdv as $rdv) {
             switch ($rdv->getStatus()) {
-                case 'En attente':
-                    $mesRdvEnAttente[] = $rdv;
-                    break;
-                case 'Confirme':
+                case strtolower('Confirme'):
                     $mesRdvConfirme[] = $rdv;
                     break;
-                case 'Effectue':
+                case strtolower('Effectue'):
                     $mesRdvEffectue[] = $rdv;
                     break;
-                case 'Annule':
+                case strtolower('Annule'):
                     $mesRdvAnnule[] = $rdv;
                     break;
             }
             if (!$rdv->getCommentaire()->isNull()){
-                if($rdv->getStatus() == 'Effectue'){
+                if($rdv->getStatus() == strtolower('Effectue')){
                     $avisALaisser[] = $rdv;
                 }
-            } else {
-                $avisExistant[] = $rdv;
             }
 
         }
 
         $mesRdv = [
             'confirme' => $mesRdvConfirme,
-            'attente' => $mesRdvEnAttente,
             'effectue' => $mesRdvEffectue,
             'annule' => $mesRdvAnnule,
             'avisALaisser' => $avisALaisser,
-            'avisExistant' => $avisExistant
         ];
 
         self::render('demandeur/mes-rdv.twig', [

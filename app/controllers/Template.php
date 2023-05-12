@@ -3,9 +3,12 @@
 namespace App\controllers;
 
 use App\models\entity\Session;
+use Doctrine\ORM\Query\FilterCollection;
 use Twig\Extension\DebugExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\Markup;
+use Twig\TwigFilter as Filter;
 
 
 class Template
@@ -35,6 +38,9 @@ class Template
             $twig->addGlobal('user', Session::get('user'));
         }
         $twig->addExtension(new DebugExtension());
+        $twig->addFilter(new Filter('str_repeat', function ($string, $times) {
+            return str_repeat(new Markup($string, 'UTF-8'), $times);
+        }));
 
         echo $twig->render($view, $data);
     }
