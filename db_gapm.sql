@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `Administrateur`
 --
-
+DROP TABLE IF EXISTS `Administrateur`;
 CREATE TABLE `Administrateur`
 (
     `idAdministrateur` int(11)     NOT NULL,
@@ -41,7 +41,6 @@ CREATE TABLE `Administrateur`
 --
 -- Déchargement des données de la table `Administrateur`
 --
-
 INSERT INTO `Administrateur` (`idAdministrateur`, `login`, `nom`, `prenom`, `motDePasse`)
 VALUES (1, 'superAdmin', 'super', 'admin', '2023'),
        (2, 'masterkey', 'master', 'key', 'Acc3sGr4ant3d'),
@@ -54,6 +53,7 @@ VALUES (1, 'superAdmin', 'super', 'admin', '2023'),
 -- Structure de la table `Commentaire`
 --
 
+DROP TABLE IF EXISTS `Commentaire`;
 CREATE TABLE `Commentaire`
 (
     `idCommentaire` int(11)      NOT NULL,
@@ -82,6 +82,7 @@ VALUES (1, 'Le médecin était très à l\'écoute et a pris le temps de m\'expl
 -- Structure de la table `Demandeur`
 --
 
+DROP TABLE IF EXISTS `Demandeur`;
 CREATE TABLE `Demandeur`
 (
     `idDemandeur`  int(11)     NOT NULL,
@@ -117,6 +118,7 @@ INSERT INTO `Demandeur` (`idDemandeur`, `email`, `login`, `motDePasse`, `nom`, `
 -- Structure de la table `Emet`
 --
 
+DROP TABLE IF EXISTS `Emet`;
 CREATE TABLE `Emet` (
   `idIntervenant` int(11) NOT NULL,
   `idNoteFrais` int(11) NOT NULL
@@ -137,6 +139,7 @@ VALUES (1, 1),
 -- Structure de la table `Empechement`
 --
 
+DROP TABLE IF EXISTS `Empechement`;
 CREATE TABLE `Empechement`
 (
     `idEmpechement` int(11) NOT NULL,
@@ -162,6 +165,7 @@ VALUES (1, '2022-01-01', '2022-01-05', 1),
 -- Structure de la table `Emprunt`
 --
 
+DROP TABLE IF EXISTS `Emprunt`;
 CREATE TABLE `Emprunt`
 (
     `idEmprunt`     int(11) NOT NULL,
@@ -188,6 +192,7 @@ VALUES (1, '2022-06-10', '2022-06-01', 1, 2, 1),
 -- Structure de la table `Exercer`
 --
 
+DROP TABLE IF EXISTS `Exercer`;
 CREATE TABLE `Exercer`
 (
     `idIntervenant` int(11) NOT NULL,
@@ -211,6 +216,7 @@ VALUES (1, 1),
 -- Structure de la table `FichePaie`
 --
 
+DROP TABLE IF EXISTS `FichePaie`;
 CREATE TABLE `FichePaie`
 (
     `idFichePaie`   int(11)      NOT NULL,
@@ -234,6 +240,7 @@ INSERT INTO `FichePaie` (`idFichePaie`, `URL`, `idIntervenant`, `idPersonnel`) V
 -- Structure de la table `Intervenant`
 --
 
+DROP TABLE IF EXISTS `Intervenant`;
 CREATE TABLE `Intervenant`
 (
     `idDemandeur` int(11) NOT NULL,
@@ -260,6 +267,7 @@ INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`,`idVillePro`) VALUES
 -- Structure de la table `NoteFrais`
 --
 
+DROP TABLE IF EXISTS `NoteFrais`;
 CREATE TABLE `NoteFrais`
 (
     `idNoteFrais`    int(11)      NOT NULL,
@@ -289,6 +297,7 @@ VALUES (1, '2022-01-01', 'Frais 1', 'justificatif1.pdf', 100, 'Valider', 1),
 -- Structure de la table `Personnel`
 --
 
+DROP TABLE IF EXISTS `Personnel`;
 CREATE TABLE `Personnel`
 (
     `idPersonnel` int(11)     NOT NULL,
@@ -318,6 +327,7 @@ INSERT INTO `Personnel` (`idPersonnel`, `login`, `nom`, `prenom`, `motDePasse`, 
 -- Structure de la table `RDV`
 --
 
+DROP TABLE IF EXISTS `RDV`;
 CREATE TABLE `RDV`
 (
     `idRdv`         int(11)     NOT NULL,
@@ -339,9 +349,9 @@ CREATE TABLE `RDV`
 
 INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idSpecialite`,
                    `idIntervenant`)
-VALUES (1, 'Confirme', '2023-02-01', '10:00', '11:00', 1, 1, 1),
-       (2, 'En attente', '2023-02-02', '09:00', '10:00', 2, 2, 2),
-       (3, 'Annule', '2023-02-03', '08:00', '09:00', 3, 3, 5);
+VALUES (1, 'confirme', '2023-02-01', '10:00', '11:00', 6, 1, 1),
+       (2, 'effectue', '2023-02-02', '09:00', '10:00', 6, 2, 2),
+       (3, 'annule', '2023-02-03', '08:00', '09:00', 6, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -349,6 +359,7 @@ VALUES (1, 'Confirme', '2023-02-01', '10:00', '11:00', 1, 1, 1),
 -- Structure de la table `Realiser`
 --
 
+DROP TABLE IF EXISTS `Intervenant_Specialite`;
 CREATE TABLE `Intervenant_Specialite`
 (
     `idIntervenant` int(11) NOT NULL,
@@ -374,6 +385,7 @@ VALUES (1, 1),
 -- Structure de la table `Specialite`
 --
 
+DROP TABLE IF EXISTS `Specialite`;
 CREATE TABLE `Specialite`
 (
     `idSpecialite`  int(11)      NOT NULL,
@@ -406,6 +418,7 @@ VALUES (1, 'Généraliste', 'Medecin généraliste'),
 -- Structure de la table `TypeVoiture`
 --
 
+DROP TABLE IF EXISTS `TypeVoiture`;
 CREATE TABLE `TypeVoiture`
 (
     `idTypeVoiture` int(11)     NOT NULL,
@@ -417,6 +430,7 @@ CREATE TABLE `TypeVoiture`
 --
 -- Déchargement des données de la table `TypeVoiture`
 --
+
 
 INSERT INTO `TypeVoiture` (`idTypeVoiture`, `Modele`)
 VALUES (1, 'RENAULT'),
@@ -453,6 +467,7 @@ VALUES (1, 'RENAULT'),
 -- Structure de la table `Voiture`
 --
 
+DROP TABLE IF EXISTS `Voiture`;
 CREATE TABLE `Voiture`
 (
     `idVoiture`      int(11)     NOT NULL,

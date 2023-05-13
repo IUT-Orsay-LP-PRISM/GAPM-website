@@ -37,7 +37,7 @@ class RendezVous
     #[ORM\JoinColumn(name: 'idSpecialite', referencedColumnName: 'idSpecialite', nullable: false)]
     private Specialite $specialite;
 
-    #[ORM\OneToOne(targetEntity: Commentaire::class, fetch: 'EAGER')]
+    #[ORM\OneToOne(targetEntity: Commentaire::class, cascade: ['persist'], fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idCommentaire', referencedColumnName: 'idCommentaire')]
     private ?Commentaire $commentaire = null;
 

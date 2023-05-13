@@ -48,6 +48,19 @@ class Route
         }
     }
 
+    public static function ajax(string $str, string $controller)
+    {
+        global $entityManager;
+
+        $url = $_SERVER['REQUEST_URI'];
+        $url = explode('&', $url);
+        if ($url[0] == $str) {
+            $controller = "App\\controllers\\" . $controller . "Controller";
+            $controller = new $controller($entityManager);
+            $controller->ajax();
+        }
+    }
+
     public static function post(string $action, string $controller, string $method)
     {
         global $entityManager;

@@ -22,4 +22,11 @@ class HomeController extends Template
         ]);
     }
 
+    public function display404()
+    {
+        self::render('404.html', [
+            'title' => '404 - Page introuvable',
+        ]);
+    }
+
 }
