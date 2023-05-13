@@ -3551,6 +3551,7 @@ body.intervenant {
     font-size: 1.5rem; }
     body.intervenant .icon-w {
       color: white;
+      padding: 0;
       padding: 1px;
       font-size: 1.5rem; }
     body.intervenant .icon-b {
@@ -5316,6 +5317,7 @@ body.demandeur {
     font-size: 1.5rem; }
     body.demandeur .icon-w {
       color: white;
+      padding: 0;
       padding: 1px;
       font-size: 1.5rem; }
     body.demandeur .icon-b {

@@ -13,9 +13,11 @@ const div_errorInscription = document.querySelector('#popUp-inscription .error')
 import { removeErrorInURL } from './notification';
 import { ajaxPopupAvis } from "./autocomplete";
 
-openPopUpInsc.addEventListener('click', () => {
-    openPopUpInscription();
-});
+if (openPopUpInsc){
+    openPopUpInsc.addEventListener('click', () => {
+        openPopUpInscription();
+    });
+}
 
 btn_cross.forEach(btn => btn
     .addEventListener('click', () => {
