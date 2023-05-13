@@ -27,6 +27,7 @@ Route::post('update-intervenant', 'IntervenantController', 'update');
 
 Route::post('faq', 'HomeController', 'displayFAQ');
 
+Route::post('toggle-mode-intervenant', 'IntervenantController', 'toggleModeIntervenant');
 
 
 // route::search pour le système de recherche, différent de ::get()

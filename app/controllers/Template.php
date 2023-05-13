@@ -34,6 +34,8 @@ class Template
         $twig->addGlobal('userLogged', Session::isLogged());
         $twig->addGlobal('message', $_GET['message'] ?? null);
         $twig->addGlobal('containerMessage', $_GET['c'] ?? null);
+        $twig->addGlobal('modeIntervenant', Session::get("modeIntervenant") ?? null);
+
         if (Session::isLogged()) {
             $twig->addGlobal('user', Session::get('user'));
         }

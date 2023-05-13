@@ -119,4 +119,16 @@ class IntervenantController extends Template
             header("Location: /");
         }
     }
+
+
+    public function toggleModeIntervenant() {
+        $sessionMode = Session::get('modeIntervenant');
+        if ($sessionMode == null) {
+            Session::set('modeIntervenant', true);
+        } else {
+            Session::set('modeIntervenant', !$sessionMode);
+        }
+        header("Location: /");
+    }
+
 }

@@ -3557,8 +3557,12 @@ body.intervenant {
       color: black;
       padding: 1px;
       font-size: 1.5rem; }
-    body.intervenant .icon-g {
+    body.intervenant .icon-green {
       color: #36A793;
+      padding: 1px;
+      font-size: 1.5rem; }
+    body.intervenant .icon-blue {
+      color: #5154EC;
       padding: 1px;
       font-size: 1.5rem; }
   body.intervenant .banner_bg {
@@ -5318,8 +5322,12 @@ body.demandeur {
       color: black;
       padding: 1px;
       font-size: 1.5rem; }
-    body.demandeur .icon-g {
+    body.demandeur .icon-green {
       color: #36A793;
+      padding: 1px;
+      font-size: 1.5rem; }
+    body.demandeur .icon-blue {
+      color: #5154EC;
       padding: 1px;
       font-size: 1.5rem; }
   body.demandeur .banner_bg {

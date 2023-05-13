@@ -61,7 +61,7 @@
                             {% for specialite in user.specialites %}
                                 {% set ids = ids|merge([specialite.idSpecialite]) %}
                             {% endfor %}
-                            <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="{{ ids|join("-") }}">
+                                <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="{{ ids|join("-") }}">
                         </div>
                     </div>
                     <div class="myaccount__form__intervenant__item">
