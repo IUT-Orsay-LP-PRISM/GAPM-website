@@ -1832,6 +1832,11 @@ body.intervenant {
     font-weight: 700;
     color: #144139;
     font-size: 24px; }
+  body.intervenant h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: #144139;
+    font-size: 20px; }
   body.intervenant .text__underline {
     position: relative;
     display: inline-block; }
@@ -2111,6 +2116,20 @@ body.intervenant {
       body.intervenant .search__contents-user-btn a:hover svg {
         transition: all .5s ease-in-out;
         transform: rotate(180deg); }
+  body.intervenant .search__notfound {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    body.intervenant .search__notfound h3 {
+      margin-top: 2rem; }
+    body.intervenant .search__notfound-img {
+      display: flex;
+      justify-content: center;
+      width: 100%; }
+      body.intervenant .search__notfound-img svg {
+        min-width: 15rem;
+        width: 30%;
+        height: auto; }
   body.intervenant .inscr_intervenant__banner {
     padding: 2em;
     height: calc(100vh - 4em); }
@@ -3241,11 +3260,11 @@ body.intervenant {
       @media all and (max-width: 992px) {
         body.intervenant .footer__pre {
           line-height: 1.7; } }
-  body.intervenant #popUp-connexion, body.intervenant #popUp-inscription, body.intervenant #popUp-prendre-RDV {
+  body.intervenant .popup-closed {
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s ease-in-out; }
-    body.intervenant #popUp-connexion:after, body.intervenant #popUp-inscription:after, body.intervenant #popUp-prendre-RDV:after {
+    body.intervenant .popup-closed:after {
       content: "";
       display: block;
       clear: both;
@@ -3257,11 +3276,11 @@ body.intervenant {
       right: 0;
       bottom: 0;
       background-color: rgba(30, 30, 61, 0.82); }
-    body.intervenant #popUp-connexion.visible, body.intervenant #popUp-inscription.visible, body.intervenant #popUp-prendre-RDV.visible {
+    body.intervenant .popup-closed.visible {
       opacity: 1;
       visibility: visible;
       transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out; }
-      body.intervenant #popUp-connexion.visible .popup, body.intervenant #popUp-inscription.visible .popup, body.intervenant #popUp-prendre-RDV.visible .popup {
+      body.intervenant .popup-closed.visible .popup {
         transform: translateY(0);
         transition: all .8s ease-in-out; }
   body.intervenant .popup {
@@ -3574,6 +3593,11 @@ body.demandeur {
     font-weight: 700;
     color: #1E1E3D;
     font-size: 24px; }
+  body.demandeur h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: #1E1E3D;
+    font-size: 20px; }
   body.demandeur .text__underline {
     position: relative;
     display: inline-block; }
@@ -3853,6 +3877,20 @@ body.demandeur {
       body.demandeur .search__contents-user-btn a:hover svg {
         transition: all .5s ease-in-out;
         transform: rotate(180deg); }
+  body.demandeur .search__notfound {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    body.demandeur .search__notfound h3 {
+      margin-top: 2rem; }
+    body.demandeur .search__notfound-img {
+      display: flex;
+      justify-content: center;
+      width: 100%; }
+      body.demandeur .search__notfound-img svg {
+        min-width: 15rem;
+        width: 30%;
+        height: auto; }
   body.demandeur .inscr_intervenant__banner {
     padding: 2em;
     height: calc(100vh - 4em); }
@@ -4983,11 +5021,11 @@ body.demandeur {
       @media all and (max-width: 992px) {
         body.demandeur .footer__pre {
           line-height: 1.7; } }
-  body.demandeur #popUp-connexion, body.demandeur #popUp-inscription, body.demandeur #popUp-prendre-RDV {
+  body.demandeur .popup-closed {
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s ease-in-out; }
-    body.demandeur #popUp-connexion:after, body.demandeur #popUp-inscription:after, body.demandeur #popUp-prendre-RDV:after {
+    body.demandeur .popup-closed:after {
       content: "";
       display: block;
       clear: both;
@@ -4999,11 +5037,11 @@ body.demandeur {
       right: 0;
       bottom: 0;
       background-color: rgba(30, 30, 61, 0.82); }
-    body.demandeur #popUp-connexion.visible, body.demandeur #popUp-inscription.visible, body.demandeur #popUp-prendre-RDV.visible {
+    body.demandeur .popup-closed.visible {
       opacity: 1;
       visibility: visible;
       transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out; }
-      body.demandeur #popUp-connexion.visible .popup, body.demandeur #popUp-inscription.visible .popup, body.demandeur #popUp-prendre-RDV.visible .popup {
+      body.demandeur .popup-closed.visible .popup {
         transform: translateY(0);
         transition: all .8s ease-in-out; }
   body.demandeur .popup {

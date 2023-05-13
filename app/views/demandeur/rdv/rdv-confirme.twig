@@ -41,13 +41,10 @@
 			</div>
 		</div>
 		<div class="myrdv__contents-user-btn">
-			<a href="#" class="btn btn-red">
+			<a href="./?action=delete-rdv&idRdv={{ unrdv.idRdv }}" class="btn btn-red" data-rdv-id="">
 				<i class="icon-fi-rr-delete"></i>
 				Annuler RDV
 			</a>
-{#			<a data-id="{{ unrdv.idRDV }}" href="#" class="btn btn-primary js-btn-RDV">
-				Voir sa fiche
-			</a>#}
 		</div>
 	</div>
 {% endfor %}

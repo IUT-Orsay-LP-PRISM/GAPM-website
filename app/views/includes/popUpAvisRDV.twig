@@ -1,0 +1,28 @@
+<section class="popup popup-avisRDV">
+    <i class="cross"></i>
+
+    <section class="popup-container">
+        <h1 class="text__underline-light">Ajouter un avis</h1>
+        <form method="post" action="?action=ajout-avis">
+            <div class="js-avis-infos"></div>
+            <div class="popup-container-col">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-star"></i>
+                        <input type="number" id="notice-note" class="input" min="0" max="5" step="0.5" name="note">
+                        <label for="notice-note" class="label">Note</label>
+                    </div>
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-comment"></i>
+                        <textarea id="notice-comment" class="input" rows="10" name="commentaire"></textarea>
+                        <label for="notice-comment" class="label">Commentaire</label>
+                    </div>
+            </div>
+
+            <button id="js-btn-prendreRDV" class="btn btn-primary-nb" type="submit">
+                <i class="icon-w icon-fi-rr-add"></i>
+                <span>Ajouter mon avis</span>
+            </button>
+        </form>
+    </section>
+
+</section>

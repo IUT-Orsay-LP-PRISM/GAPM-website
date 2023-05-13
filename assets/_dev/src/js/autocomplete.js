@@ -97,6 +97,35 @@ function ajaxSpecialite(div_auto_complete,input) {
 
 
 
+export function ajaxPopupAvis(rdvId){
+    const xhr = new XMLHttpRequest();
+    const url = "?action=popupAvis&rdvId=" + rdvId;
+    xhr.open("GET", url, true);
+    xhr.onload = () => callback(xhr);
+    xhr.send();
+
+    function callback(xhr) {
+        if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            const popupContent = document.querySelector('.js-avis-infos');
+            const popupNewInput = document.querySelector('.js-avis-infos + .popup-container-col');
+            let date = data.date;
+            let heureDebut = data.heureDebut;
+            let heureFin = data.heureFin;
+            let specialite = data.specialite;
+            let intervenant = data.intervenant;
+            popupContent.innerHTML = 'Date : ' + date + ' <br><br> Horaires : ' + heureDebut + ' - ' + heureFin + ' <br><br> Spécialité : ' + specialite + ' <br><br> Intervenant : ' + intervenant;
+            let newInput = document.createElement('input');
+            newInput.setAttribute('type', 'hidden');
+            newInput.setAttribute('name', 'idRdv');
+            newInput.setAttribute('value', rdvId);
+            popupNewInput.appendChild(newInput);
+            document.querySelector("#popUp-avis-RDV").classList.toggle('visible');
+        }
+    }
+}
+
+
 function ajaxVille(div_auto_complete, input) {
     const xhr = new XMLHttpRequest();
     const url = "?action=autocompleteVille&query=" + input.value;

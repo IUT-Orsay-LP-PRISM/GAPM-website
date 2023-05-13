@@ -181,6 +181,7 @@ function placeEventListenerInDays() {
     });
 }
 
+
 function editDateInPopUp(fullDate) {
     const inputDate = document.querySelector('#inputDate');
     inputDate.value = fullDate;
