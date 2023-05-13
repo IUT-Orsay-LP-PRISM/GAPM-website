@@ -201,9 +201,11 @@ class RendezVousController extends Template
         $rdv = $this->entityManager->getRepository(RendezVous::class)->find($idRdv);
 
         $com = new Commentaire();
+        /** @var Demandeur $demandeur */
         $com->setDemandeur($demandeur);
         $com->setDescription($commentaire);
         $com->setNote($note);
+        /** @var RendezVous $rdv */
         $com->setRendezVous($rdv);
 
         $rdv->setCommentaire($com);
