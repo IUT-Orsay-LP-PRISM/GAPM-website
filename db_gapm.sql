@@ -603,8 +603,6 @@ ALTER TABLE `TypeVoiture`
 --
 -- Index pour la table `Ville`
 --
-ALTER TABLE `Ville`
-    ADD PRIMARY KEY (`idVille`);
 
 --
 -- Index pour la table `Voiture`
@@ -702,7 +700,7 @@ ALTER TABLE `TypeVoiture`
 ALTER TABLE `Ville`
     MODIFY `idVille` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 36209;
-ALTER TABLE ville ADD FULLTEXT(nom);
+ALTER TABLE Ville ADD FULLTEXT(nom);
 --
 -- AUTO_INCREMENT pour la table `Voiture`
 --
