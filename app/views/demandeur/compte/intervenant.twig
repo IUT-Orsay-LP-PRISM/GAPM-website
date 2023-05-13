@@ -57,7 +57,11 @@
                             <input id="specialite" class="input AC input_specialite" type="text"/>
                             <label class="label" for="specialite">Vos spécialités</label>
                             <div class="notVisible auto_completion"></div>
-                            <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="null">
+                            {% set ids = [] %}
+                            {% for specialite in user.specialites %}
+                                {% set ids = ids|merge([specialite.idSpecialite]) %}
+                            {% endfor %}
+                            <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="{{ ids|join("-") }}">
                         </div>
                     </div>
                     <div class="myaccount__form__intervenant__item">
@@ -75,6 +79,7 @@
                                 {% for specialite in user.specialites %}
                                     <div class="tag" data-id="{{ specialite.idSpecialite }}">
                                         <span class="tag-text">{{ specialite.libelle|upper }}</span>
+                                        <i class="icon icon-fi-rr-cross-small tag-close"></i>
                                     </div>
                                 {% endfor %}
                             </div>

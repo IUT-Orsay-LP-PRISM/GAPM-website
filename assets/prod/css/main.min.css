@@ -1832,6 +1832,11 @@ body.intervenant {
     font-weight: 700;
     color: #144139;
     font-size: 24px; }
+  body.intervenant h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: #144139;
+    font-size: 20px; }
   body.intervenant .text__underline {
     position: relative;
     display: inline-block; }
@@ -2111,6 +2116,20 @@ body.intervenant {
       body.intervenant .search__contents-user-btn a:hover svg {
         transition: all .5s ease-in-out;
         transform: rotate(180deg); }
+  body.intervenant .search__notfound {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    body.intervenant .search__notfound h3 {
+      margin-top: 2rem; }
+    body.intervenant .search__notfound-img {
+      display: flex;
+      justify-content: center;
+      width: 100%; }
+      body.intervenant .search__notfound-img svg {
+        min-width: 15rem;
+        width: 30%;
+        height: auto; }
   body.intervenant .inscr_intervenant__banner {
     padding: 2em;
     height: calc(100vh - 4em); }
@@ -3574,6 +3593,11 @@ body.demandeur {
     font-weight: 700;
     color: #1E1E3D;
     font-size: 24px; }
+  body.demandeur h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: #1E1E3D;
+    font-size: 20px; }
   body.demandeur .text__underline {
     position: relative;
     display: inline-block; }
@@ -3853,6 +3877,20 @@ body.demandeur {
       body.demandeur .search__contents-user-btn a:hover svg {
         transition: all .5s ease-in-out;
         transform: rotate(180deg); }
+  body.demandeur .search__notfound {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    body.demandeur .search__notfound h3 {
+      margin-top: 2rem; }
+    body.demandeur .search__notfound-img {
+      display: flex;
+      justify-content: center;
+      width: 100%; }
+      body.demandeur .search__notfound-img svg {
+        min-width: 15rem;
+        width: 30%;
+        height: auto; }
   body.demandeur .inscr_intervenant__banner {
     padding: 2em;
     height: calc(100vh - 4em); }

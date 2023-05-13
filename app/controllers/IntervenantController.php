@@ -69,4 +69,54 @@ class IntervenantController extends Template
             header("Location: /");
         }
     }
+
+    public function update()
+    {
+        if (isset($_POST['specialites'])) {
+            if ($_POST['specialites'] == 'null') {
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'my-account');
+                header("Location: $referer");
+                exit();
+            }
+            $specialitesString = $_POST['specialites'];
+            if ($specialitesString != 'null') {
+                $specialites = explode('-', $specialitesString);
+            }
+
+            $oldPassword = $_POST['oldPassword'];
+            $currentPassword = Session::get('user')->getMotDePasse();
+
+
+            $salt = "sel";
+            $saltedAndHashed = crypt($_POST['oldPassword'], $salt);
+            $oldPassword = $saltedAndHashed;
+            if ($oldPassword != $currentPassword) {
+                $referer = self::addMessageToUrl('Mot de passe incorrect.', 'msg-error');
+                header("Location: $referer");
+                exit();
+            }
+
+            $addressPro = $_POST['adressePro'];
+            $IdCityPro = $_POST['city'];
+            $villePro = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $IdCityPro]);
+
+            $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
+            $currentUser = Session::get('user');
+            $currentDemandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy(['idDemandeur' => $currentUser->getIdDemandeur()]);
+            $currentDemandeur->setSpecialites(new ArrayCollection($specialites));
+            $currentDemandeur->setAdressePro($addressPro);
+            $currentDemandeur->setVillePro($villePro);
+
+            try {
+                $this->entityManager->persist($currentDemandeur);
+                $this->entityManager->flush();
+                Session::set('user', $currentDemandeur);
+            } catch (\Exception $e) {
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+                header("Location: $referer");
+                exit();
+            }
+            header("Location: /");
+        }
+    }
 }
