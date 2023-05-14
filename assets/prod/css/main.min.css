@@ -2358,6 +2358,8 @@ body.intervenant {
         body.intervenant .myaccount__form__intervenant__item__emprunter .btn-emprunter, body.intervenant .wrapper__form__intervenant__item__emprunter .btn-emprunter {
           width: 100%;
           margin: 0; }
+      body.intervenant .myaccount__form__intervenant__oldEmprunts, body.intervenant .wrapper__form__intervenant__oldEmprunts {
+        margin-top: 5rem; }
     body.intervenant .myaccount__form .btn:not(.btn-emprunter), body.intervenant .wrapper__form .btn:not(.btn-emprunter) {
       margin: auto;
       margin-top: 2.4rem; }
@@ -4151,6 +4153,8 @@ body.demandeur {
         body.demandeur .myaccount__form__intervenant__item__emprunter .btn-emprunter, body.demandeur .wrapper__form__intervenant__item__emprunter .btn-emprunter {
           width: 100%;
           margin: 0; }
+      body.demandeur .myaccount__form__intervenant__oldEmprunts, body.demandeur .wrapper__form__intervenant__oldEmprunts {
+        margin-top: 5rem; }
     body.demandeur .myaccount__form .btn:not(.btn-emprunter), body.demandeur .wrapper__form .btn:not(.btn-emprunter) {
       margin: auto;
       margin-top: 2.4rem; }

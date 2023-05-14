@@ -198,7 +198,7 @@
           #img-vehicule {
             width      : 90%;
             height     : 15rem;
-            object-fit: contain;
+            object-fit : contain;
           }
 
           &__label {
@@ -223,6 +223,11 @@
           }
         }
       }
+
+      &__oldEmprunts {
+        margin-top : 5rem;
+      }
+
     }
 
     .btn:not(.btn-emprunter) {

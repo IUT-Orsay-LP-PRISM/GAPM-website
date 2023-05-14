@@ -20,7 +20,8 @@
             <div class="myaccount__form__intervenant__item">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-calendar"></i>
-                    <input id="dateDu" class="input" type="date" name="dateDu" min="{{ "now"|date('Y-m-d') }}" required/>
+                    <input id="dateDu" class="input" type="date" name="dateDu" min="{{ "now"|date('Y-m-d') }}"
+                           required/>
                     <label class="label" for="dateDu">Du</label>
                 </div>
             </div>
@@ -36,7 +37,8 @@
                 <div class="myaccount__form__intervenant__item__emprunter">
                     <div class="input-container">
                         <i class="icon icon-fi-rr-calendar"></i>
-                        <input id="dateAu" class="input" type="date" name="dateAu" min="{{ "now"|date('Y-m-d') }}" required/>
+                        <input id="dateAu" class="input" type="date" name="dateAu" min="{{ "now"|date('Y-m-d') }}"
+                               required/>
                         <label class="label" for="dateAu">Au</label>
                     </div>
                     <button class="btn btn-greenPrimary btn-emprunter" type="submit">
@@ -46,9 +48,16 @@
                 </div>
             </div>
         </div>
-
-        {% for emprunt in emprunts %}
-            {{ dump(emprunt.idEmprunt) }}
-        {% endfor %}
     </form>
+
+    <div class="myaccount__form__intervenant__oldEmprunts">
+        <h2 class="myaccount__form-title">Mes anciens emprunts</h2>
+        {% for emprunt in emprunts %}
+            <div class="myaccount__form__intervenant__item">
+                {{ emprunt.voiture.immatriculation }} - {{ emprunt.voiture.typeVoiture.marque }}
+                - {{ emprunt.voiture.typeVoiture.modele }}
+                - {{ emprunt.dateDebut }} - {{ emprunt.dateFin }}
+            </div>
+        {% endfor %}
+    </div>
 </section>
