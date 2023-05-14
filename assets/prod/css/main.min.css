@@ -2343,7 +2343,7 @@ body.intervenant {
           width: 90%;
           height: 15rem;
           object-fit: contain; }
-        body.intervenant .myaccount__form__intervenant__item__vehicule__immatriculation, body.intervenant .wrapper__form__intervenant__item__vehicule__immatriculation {
+        body.intervenant .myaccount__form__intervenant__item__vehicule__label, body.intervenant .wrapper__form__intervenant__item__vehicule__label {
           font-family: "Open Sans", sans-serif;
           font-weight: 600;
           font-size: 1.5rem;
@@ -4136,7 +4136,7 @@ body.demandeur {
           width: 90%;
           height: 15rem;
           object-fit: contain; }
-        body.demandeur .myaccount__form__intervenant__item__vehicule__immatriculation, body.demandeur .wrapper__form__intervenant__item__vehicule__immatriculation {
+        body.demandeur .myaccount__form__intervenant__item__vehicule__label, body.demandeur .wrapper__form__intervenant__item__vehicule__label {
           font-family: "Open Sans", sans-serif;
           font-weight: 600;
           font-size: 1.5rem;

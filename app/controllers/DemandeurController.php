@@ -7,6 +7,7 @@ use App\models\entity\Intervenant;
 use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
+use App\models\entity\TypeVoiture;
 use App\models\entity\Ville;
 use App\models\entity\Voiture;
 use App\models\repository\DemandeurRepository;
@@ -271,10 +272,10 @@ class DemandeurController extends Template
             header('Location: /?message=Veuillez%20vous%20connecter%20pour%20accéder%20à%20votre%20compte&c=connexion');
         } else {
             if(Session::get('user')->isIntervenant() && Session::get('modeIntervenant') ) {
-                $vehicule = $this->entityManager->getRepository(Voiture::class)->findAll();
+                $typeVehicule = $this->entityManager->getRepository(TypeVoiture::class)->findAll();
                 self::render('demandeur/mon-compte.twig', [
                     'title' => 'Mon compte',
-                    'vehicules' => $vehicule
+                    'typeVehicules' => $typeVehicule
                 ]);
             }else {
                 self::render('demandeur/mon-compte.twig', [
