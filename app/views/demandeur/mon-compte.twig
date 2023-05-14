@@ -15,7 +15,7 @@
         <div class="myaccount__content">
             <div class="myaccount__content__nav">
                 <ul>
-                    {% if modeIntervenant == false %}
+                    {% if not modeIntervenant %}
                     <li>
                         <a href="#perso"
                            class="js-account-nav myaccount__content__nav-link --active">
@@ -59,7 +59,7 @@
             </div>
             <div class="myaccount__content__body">
                 <div class="myaccount__content__body-form">
-                    <div id="perso" class="js-account-content {% if modeIntervenant == false %}--display{% endif %}">
+                    <div id="perso" class="js-account-content {% if not modeIntervenant %}--display{% endif %}">
                         {% include '/demandeur/compte/perso.twig' %}
                     </div>
                     <div id="intervenant" class="js-account-content {% if modeIntervenant %}--display{% endif %}">
