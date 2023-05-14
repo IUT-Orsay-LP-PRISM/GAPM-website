@@ -16,9 +16,11 @@
         </ul>
         <ul class="header__menu menu-right">
             {% if userLogged %}
+                {% if not modeIntervenant %}
                 <li data-page="search" class="menu-item"><a href="/?action=search" class="link">Prendre RDV</a></li>
                 <li data-page="mes-rendez-vous" class="menu-item"><a href="/?action=mes-rendez-vous" class="link">Mes
                         rendez-vous</a></li>
+                {% endif %}
                 <li class="dropdown">
                     <a href="#" class="btn btn-primary-nb">
                         <i class="icon-w icon-fi-rr-user"></i>
