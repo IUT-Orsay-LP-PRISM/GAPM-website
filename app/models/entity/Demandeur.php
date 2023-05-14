@@ -44,6 +44,7 @@ class Demandeur
     #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: Commentaire::class, fetch: 'LAZY')]
     private $commentaires;
 
+    private $type;
 
 
     #
@@ -291,6 +292,11 @@ class Demandeur
     public function setType(string $type): void
     {
         $this->type = $type;
+    }
+
+    public function isIntervenant(): bool
+    {
+        return $this->type === 'intervenant';
     }
 
 }
