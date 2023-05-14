@@ -9,6 +9,7 @@ use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\entity\TypeVoiture;
 use App\models\entity\Ville;
+use App\models\entity\Emprunt;
 use App\models\entity\Voiture;
 use App\models\repository\DemandeurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -271,13 +272,22 @@ class DemandeurController extends Template
         if ($user == null) {
             header('Location: /?message=Veuillez%20vous%20connecter%20pour%20accéder%20à%20votre%20compte&c=connexion');
         } else {
-            if(Session::get('user')->isIntervenant() && Session::get('modeIntervenant') ) {
-                $typeVehicule = $this->entityManager->getRepository(TypeVoiture::class)->findAll();
+            if (Session::get('user')->isIntervenant() && Session::get('modeIntervenant')) {
+                $voitures = $this->entityManager->getRepository(Voiture::class)->findAll();
+                $typesVoitureDisponible = $this->entityManager->getRepository(TypeVoiture::class)->findBy([
+                    'idTypeVoiture' => array_unique(array_map(function ($voiture) {
+                        return $voiture->isDisponible() ? $voiture->getTypeVoiture()->getIdTypeVoiture() : null;
+                    }, $voitures))
+                ]);
+
+                $emprunts = $this->entityManager->getRepository(Emprunt::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
                 self::render('demandeur/mon-compte.twig', [
                     'title' => 'Mon compte',
-                    'typeVehicules' => $typeVehicule
+                    'typeVehicules' => $typesVoitureDisponible,
+                    'emprunts' => $emprunts
+
                 ]);
-            }else {
+            } else {
                 self::render('demandeur/mon-compte.twig', [
                     'title' => 'Mon compte',
                 ]);

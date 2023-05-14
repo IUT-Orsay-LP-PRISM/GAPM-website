@@ -47,6 +47,8 @@
             </div>
         </div>
 
-
+        {% for emprunt in emprunts %}
+            {{ dump(emprunt.idEmprunt) }}
+        {% endfor %}
     </form>
 </section>
