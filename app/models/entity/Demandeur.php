@@ -35,7 +35,7 @@ class Demandeur
     private string $telephone;
     #[ORM\Column]
     private string $sexe;
-    #[ORM\ManyToOne(targetEntity: Ville::class, fetch: 'EAGER')]
+    #[ORM\ManyToOne(targetEntity: Ville::class, cascade: ['persist'], fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idVille', referencedColumnName: 'idVille', nullable: false)]
     private Ville $ville;
     #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: RendezVous::class, fetch: 'LAZY')]
@@ -44,6 +44,7 @@ class Demandeur
     #[ORM\OneToMany(mappedBy: 'demandeur', targetEntity: Commentaire::class, fetch: 'LAZY')]
     private $commentaires;
 
+    private $type;
 
 
     #
@@ -291,6 +292,11 @@ class Demandeur
     public function setType(string $type): void
     {
         $this->type = $type;
+    }
+
+    public function isIntervenant(): bool
+    {
+        return $this->type === 'intervenant';
     }
 
 }

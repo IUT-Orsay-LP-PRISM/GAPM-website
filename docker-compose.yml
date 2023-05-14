@@ -20,3 +20,12 @@ services:
       - 80:80
     volumes:
       - .:/var/www/html
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mariadb
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+    ports:
+      - 9080:80

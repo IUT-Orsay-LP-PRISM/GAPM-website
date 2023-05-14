@@ -2,6 +2,7 @@ const openPopUpInsc = document.querySelector('#openPopUpInsc');
 const popUp_connexion = document.querySelector('#popUp-connexion');
 const popUp_inscription = document.querySelector('#popUp-inscription');
 const popUp_prendreRDV = document.querySelector('#popUp-prendre-RDV');
+const popUp_ajouterAvis = document.querySelector('#popUp-avis-RDV');
 const btn_cross = document.querySelectorAll('.cross');
 const btn_connexion = document.querySelector('#btn-connexion');
 const btn_inscription = document.getElementById('btn-inscription');
@@ -10,15 +11,20 @@ const lien_inscription = document.getElementById('lien-inscription');
 const div_errorConnexion = document.querySelector('#popUp-connexion .error');
 const div_errorInscription = document.querySelector('#popUp-inscription .error');
 import { removeErrorInURL } from './notification';
-openPopUpInsc.addEventListener('click', () => {
-    openPopUpInscription();
-});
+import { ajaxPopupAvis } from "./autocomplete";
+
+if (openPopUpInsc){
+    openPopUpInsc.addEventListener('click', () => {
+        openPopUpInscription();
+    });
+}
 
 btn_cross.forEach(btn => btn
     .addEventListener('click', () => {
         popUp_connexion.classList.remove('visible');
         popUp_inscription.classList.remove('visible');
         popUp_prendreRDV.classList.remove('visible');
+        popUp_ajouterAvis.classList.remove('visible');
         document.body.style.overflowY = "auto";
         removeErrorInURL();
         div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
@@ -52,10 +58,11 @@ if (lien_connexion && lien_inscription) {
 // close div auto_completion when click outside
 const AC = document.querySelectorAll('.AC');
 window.onclick = function (event) { // When the user clicks anywhere outside of the modal, close it
-    if (event.target == popUp_connexion  || event.target == popUp_inscription || event.target == popUp_prendreRDV) {
+    if (event.target == popUp_connexion  || event.target == popUp_inscription || event.target == popUp_prendreRDV || event.target == popUp_ajouterAvis) {
         popUp_connexion.classList.remove('visible');
         popUp_inscription.classList.remove('visible');
         popUp_prendreRDV.classList.remove('visible');
+        popUp_ajouterAvis.classList.remove('visible');
         document.body.style.overflowY = "auto";
         removeErrorInURL();
         div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
@@ -95,3 +102,14 @@ export function openPopUpInscription() {
     /* window.scrollTo(0, 0); */
 }
 
+
+/*  Ajouter un avis popup  */
+let btn_ajouterAvis = document.querySelectorAll('.js-addnotice-rdv');
+if (btn_ajouterAvis.length > 0) {
+    btn_ajouterAvis.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let dataRdvId = btn.dataset.rdvId;
+            ajaxPopupAvis(dataRdvId);
+        })
+    })
+}

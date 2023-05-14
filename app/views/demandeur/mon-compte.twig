@@ -15,6 +15,7 @@
         <div class="myaccount__content">
             <div class="myaccount__content__nav">
                 <ul>
+                    {% if not modeIntervenant %}
                     <li>
                         <a href="#perso"
                            class="js-account-nav myaccount__content__nav-link --active">
@@ -22,6 +23,7 @@
                             <i class="icon icon-fi-rr-info"></i>
                         </a>
                     </li>
+                    {% endif %}
                     {% if user is defined and not user.isIntervenant() %}
                         <li>
                             <a href="#intervenant"
@@ -30,12 +32,19 @@
                                 <i class="icon icon-fi-rr-redo"></i>
                             </a>
                         </li>
-                    {% else %}
+                    {% elseif  user is defined and user.isIntervenant() and modeIntervenant %}
                         <li>
                             <a href="#intervenant"
-                               class="js-account-nav myaccount__content__nav-link">
+                               class="js-account-nav myaccount__content__nav-link --active">
                                 Informations professionnelle
                                 <i class="icon icon-fi-rr-redo"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#vehicule"
+                               class="js-account-nav myaccount__content__nav-link">
+                                Emprunt de véhicule
+                                <i class="icon icon-fi-rr-car"></i>
                             </a>
                         </li>
                     {% endif %}
@@ -50,17 +59,21 @@
             </div>
             <div class="myaccount__content__body">
                 <div class="myaccount__content__body-form">
-                    <div id="perso" class="js-account-content --display">
+                    <div id="perso" class="js-account-content {% if not modeIntervenant %}--display{% endif %}">
                         {% include '/demandeur/compte/perso.twig' %}
                     </div>
-                    <div id="intervenant" class="js-account-content">
+                    <div id="intervenant" class="js-account-content {% if modeIntervenant %}--display{% endif %}">
                         {% include '/demandeur/compte/intervenant.twig' %}
                     </div>
                     <div id="options" class="js-account-content">
                         {% include '/demandeur/compte/options.twig' %}
                     </div>
+                    <div id="vehicule" class="js-account-content">
+                        {% include '/demandeur/compte/vehicule.twig' %}
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 {% endblock %}

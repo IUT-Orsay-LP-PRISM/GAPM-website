@@ -7,9 +7,12 @@ use App\models\entity\Intervenant;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\entity\Ville;
+use App\models\entity\Voiture;
+use App\models\entity\Emprunt;
 use App\models\repository\IntervenantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+
 class IntervenantController extends Template
 {
     private IntervenantRepository $intervenantRepository;
@@ -67,6 +70,106 @@ class IntervenantController extends Template
                 exit();
             }
             header("Location: /");
+        }
+    }
+
+    public function update()
+    {
+        if (isset($_POST['specialites'])) {
+            if ($_POST['specialites'] == 'null') {
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'my-account');
+                header("Location: $referer");
+                exit();
+            }
+            $specialitesString = $_POST['specialites'];
+            if ($specialitesString != 'null') {
+                $specialites = explode('-', $specialitesString);
+            }
+
+            $oldPassword = $_POST['oldPassword'];
+            $currentPassword = Session::get('user')->getMotDePasse();
+
+
+            $salt = "sel";
+            $saltedAndHashed = crypt($_POST['oldPassword'], $salt);
+            $oldPassword = $saltedAndHashed;
+            if ($oldPassword != $currentPassword) {
+                $referer = self::addMessageToUrl('Mot de passe incorrect.', 'msg-error');
+                header("Location: $referer");
+                exit();
+            }
+
+            $addressPro = $_POST['adressePro'];
+            $IdCityPro = $_POST['city'];
+            $villePro = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $IdCityPro]);
+
+            $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
+            $currentUser = Session::get('user');
+            $currentDemandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy(['idDemandeur' => $currentUser->getIdDemandeur()]);
+            $currentDemandeur->setSpecialites(new ArrayCollection($specialites));
+            $currentDemandeur->setAdressePro($addressPro);
+            $currentDemandeur->setVillePro($villePro);
+
+            try {
+                $this->entityManager->persist($currentDemandeur);
+                $this->entityManager->flush();
+                Session::set('user', $currentDemandeur);
+            } catch (\Exception $e) {
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+                header("Location: $referer");
+                exit();
+            }
+            header("Location: /");
+        }
+    }
+
+
+    public function toggleModeIntervenant()
+    {
+        $sessionMode = Session::get('modeIntervenant');
+        if ($sessionMode == null) {
+            Session::set('modeIntervenant', true);
+        } else {
+            Session::set('modeIntervenant', !$sessionMode);
+        }
+        header("Location: /");
+    }
+
+    public function emprunterVehicule()
+    {
+        $idTypeVoiture = $_POST['typeVehicule'];
+        $dateDebut = $_POST['dateDu'];
+        $dateFin = $_POST['dateAu'];
+
+        $voitureDispo = $this->entityManager->getRepository(Voiture::class)->findOneBy(['typeVoiture' => $idTypeVoiture, 'disponible' => true]);
+
+        if ($voitureDispo == null) {
+            $referer = self::addMessageToUrl('Aucun véhicule disponible.', 'my-account');
+            header("Location: $referer");
+            exit();
+        }
+
+        $voitureDispo->setDisponible(false);
+
+        $idIntervenant = Session::get('user')->getIdDemandeur();
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+
+        $emprunt = new Emprunt();
+        $emprunt->setDateDebut($dateDebut);
+        $emprunt->setDateFin($dateFin);
+        $emprunt->setVoiture($voitureDispo);
+        $emprunt->setIntervenant($intervenant);
+
+        try {
+            $this->entityManager->persist($emprunt);
+            $this->entityManager->persist($voitureDispo);
+            $this->entityManager->flush();
+            $referer = self::addMessageToUrl('Véhicule emprunté.', 'msg-success');
+            header("Location: $referer");
+        } catch (\Exception $e) {
+            $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+            header("Location: $referer");
+            exit();
         }
     }
 }

@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="assets/prod/css/main.min.css">
-		<link rel="icon" href="assets/img/logo.svg" />
-		<title>{% block title %}{% endblock %} • GAPM</title>
-	</head>
-	<body class="{% if isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}" data-log="{{ userLogged }}">
-	<div id="loader"></div>
-	{% if not no_header %}
-		{% include "includes/header.twig" %}
-	{% endif %}
-		<div id="content">
-			{% block content %}
-			{% endblock %}
-		</div>
-		{% include "includes/footer.twig" %}
-		<i id="popUp-connexion">{% include 'includes/popupConnexion.twig' %}</i>
-		<i id="popUp-inscription">{% include 'includes/popUpInscription.twig' %}</i>
-	    <i id="popUp-prendre-RDV">{% include 'includes/popUpPrendreRDV.twig' %}</i>
-	    {% include 'includes/notification.twig' %}
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/prod/css/main.min.css">
+	<link rel="icon" href="assets/img/logo.svg"/>
+	<title>{% block title %}{% endblock %} • GAPM</title>
+</head>
+<body class="{% if modeIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}"
+	  data-log="{{ userLogged }}">
+<div id="loader"></div>
+{% if not no_header %}
+	{% include "includes/header.twig" %}
+{% endif %}
+<div id="content">
+	{% block content %}
+	{% endblock %}
+</div>
 
-		<script src="assets/prod/js/main.min.js"></script>
-	</body>
+{% include "includes/footer.twig" %}
+<i id="popUp-connexion" class="popup-closed">{% include 'includes/popUpConnexion.twig' %}</i>
+<i id="popUp-inscription" class="popup-closed">{% include 'includes/popUpInscription.twig' %}</i>
+<i id="popUp-prendre-RDV" class="popup-closed">{% include 'includes/popUpPrendreRDV.twig' %}</i>
+<i id="popUp-avis-RDV" class="popup-closed">{% include 'includes/popUpAvisRDV.twig' %}</i>
+{% include 'includes/notification.twig' %}
+
+<script src="assets/prod/js/main.min.js"></script>
+</body>
 </html>
 

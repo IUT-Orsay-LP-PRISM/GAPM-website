@@ -20,7 +20,7 @@ class Commentaire
     #[ORM\Column(type: 'float', nullable: false)]
     private float $note;
 
-    #[ORM\ManyToOne(targetEntity: Demandeur::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(targetEntity: Demandeur::class, cascade: ['persist'], fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idDemandeur', referencedColumnName: 'idDemandeur', nullable: false)]
     private Demandeur $demandeur;
 

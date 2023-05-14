@@ -40,6 +40,27 @@ class RendezVousController extends Template
         ]);
     }
 
+    public function deleteRdv()
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            exit;
+        }
+
+        $idRdv = $_GET['idRdv'];
+        $idDemandeur = Session::get('user')->getIdDemandeur();
+        $rdv = $this->entityManager->getRepository(RendezVous::class)->findOneBy(['idRdv' => $idRdv, 'demandeur' => $idDemandeur]);
+        if ($rdv == null) {
+            header('Location: /?action=mes-rendez-vous&message=Ce rendez-vous n\'existe pas !&c=msg-error');
+            exit;
+        }
+        $rdv->setStatus('annule');
+        $this->entityManager->persist($rdv);
+        $this->entityManager->flush();
+
+        header('Location: /?action=mes-rendez-vous&message=Votre rendez-vous a bien été annulé&c=msg-success');
+        exit;
+    }
     public function createRDV()
     {
         if (Session::isLogged() == false) {
@@ -56,7 +77,7 @@ class RendezVousController extends Template
         $horaireDebut = $_POST['horaire'];
         $horaireFin = date('H:i', strtotime($horaireDebut) + 1800);
         $date = $_POST['date'];
-        $status = 'En attente';
+        $status = 'confirme';
         $idUser = Session::get('user')->getIdDemandeur();
         $idSpecialite = $_POST['specialite'];
 
@@ -122,6 +143,9 @@ class RendezVousController extends Template
         $user = Session::get('user');
         $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
         $mesRdv = $demandeur->getRendezVous();
+        usort($mesRdv, function ($a, $b) {
+            return $b->getDateRdv() <=> $a->getDateRdv();
+        });
 
         $avisALaisser = [];
         $mesRdvConfirme = [];
@@ -159,5 +183,54 @@ class RendezVousController extends Template
             'user' => $demandeur,
             'mesRdv' => $mesRdv
         ]);
+    }
+
+    public function createNoticeOnRdv()
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour laisser un avis, connectez vous!&c=connexion');
+            exit;
+        }
+
+        $user = Session::get('user');
+
+        $idRdv = intval($_POST['idRdv']);
+        $commentaire = $_POST['commentaire'];
+        $note = $_POST['note'];
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
+        $rdv = $this->entityManager->getRepository(RendezVous::class)->find($idRdv);
+
+        $com = new Commentaire();
+        /** @var Demandeur $demandeur */
+        $com->setDemandeur($demandeur);
+        $com->setDescription($commentaire);
+        $com->setNote($note);
+        /** @var RendezVous $rdv */
+        $com->setRendezVous($rdv);
+
+        $rdv->setCommentaire($com);
+
+        $this->entityManager->persist($com);
+        $this->entityManager->persist($rdv);
+        $this->entityManager->flush();
+
+        header('Location: /?action=mes-rendez-vous&message=Votre avis a bien été enregistré&c=msg-success');
+    }
+
+    public function ajax()
+    {
+        $query = $_GET['rdvId'];
+
+        $rdv = $this->entityManager->getRepository(RendezVous::class)->find($query);
+
+        $rdv_json = [
+            'id' => $rdv->getIdRdv(),
+            'date' => $rdv->getDateRdv(),
+            'heureDebut' => $rdv->getHeureDebut(),
+            'heureFin' => $rdv->getHeureFin(),
+            'specialite' => $rdv->getSpecialite()->getLibelle(),
+            'intervenant' => $rdv->getIntervenant()->getNom() . ' ' . $rdv->getIntervenant()->getPrenom(),
+        ];
+        echo json_encode($rdv_json);
     }
 }

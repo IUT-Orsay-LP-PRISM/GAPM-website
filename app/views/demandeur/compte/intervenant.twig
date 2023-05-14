@@ -2,7 +2,7 @@
     {% if user is defined and not user.isIntervenant() %}
         <form method="post" action="?action=upgrade-to-intervenant">
             <h2 class="myaccount__form-title">Devenir intervenant</h2>
-            <p class="myaccount__form-subtitle">Choissisez vos domaînes de compétences :</p>
+            <p class="myaccount__form-subtitle">Choisissez vos domaines de compétences :</p>
             <div class="myaccount__form__intervenant">
                 <div class="myaccount__form__intervenant__item">
                     <div class="input-container overflow">
@@ -49,7 +49,7 @@
         {% if user.isIntervenant() %}
             <form method="post" action="?action=update-intervenant">
                 <h2 class="myaccount__form-title">Mes informations professionnelle</h2>
-                <p class="myaccount__form-subtitle">Choissisez vos domaînes de compétences :</p>
+                <p class="myaccount__form-subtitle">Choisissez vos domaines de compétences :</p>
                 <div class="myaccount__form__intervenant">
                     <div class="myaccount__form__intervenant__item">
                         <div class="input-container overflow">
@@ -57,7 +57,11 @@
                             <input id="specialite" class="input AC input_specialite" type="text"/>
                             <label class="label" for="specialite">Vos spécialités</label>
                             <div class="notVisible auto_completion"></div>
-                            <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="null">
+                            {% set ids = [] %}
+                            {% for specialite in user.specialites %}
+                                {% set ids = ids|merge([specialite.idSpecialite]) %}
+                            {% endfor %}
+                                <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="{{ ids|join("-") }}">
                         </div>
                     </div>
                     <div class="myaccount__form__intervenant__item">
@@ -75,6 +79,7 @@
                                 {% for specialite in user.specialites %}
                                     <div class="tag" data-id="{{ specialite.idSpecialite }}">
                                         <span class="tag-text">{{ specialite.libelle|upper }}</span>
+                                        <i class="icon icon-fi-rr-cross-small tag-close"></i>
                                     </div>
                                 {% endfor %}
                             </div>

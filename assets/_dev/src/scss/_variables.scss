@@ -51,6 +51,7 @@ $screenXl          : 1440px;
 
   &-w {
     color     : white;
+    padding: 0;
     padding   : 1px;
     font-size : 1.5rem;
   }
@@ -60,8 +61,13 @@ $screenXl          : 1440px;
     font-size : 1.5rem;
   }
 
-  &-g{
+  &-green{
     color     : $greenPrimary;
+    padding   : 1px;
+    font-size : 1.5rem;
+  }
+  &-blue{
+    color     : $bluePrimary;
     padding   : 1px;
     font-size : 1.5rem;
   }
@@ -70,6 +76,7 @@ $screenXl          : 1440px;
 .banner_bg {
   content : $srcBackgroundBanner;
 }
+
 p.error {
   color      : red;
   text-align : center;
