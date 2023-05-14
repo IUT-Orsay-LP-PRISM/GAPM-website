@@ -2333,10 +2333,22 @@ body.intervenant {
         justify-content: flex-start; }
       body.intervenant .myaccount__form__intervenant__item__vehicule, body.intervenant .wrapper__form__intervenant__item__vehicule {
         width: 100%;
-        height: 15rem;
         background-color: lightgray;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         border-radius: 10px; }
+        body.intervenant .myaccount__form__intervenant__item__vehicule #img-vehicule, body.intervenant .wrapper__form__intervenant__item__vehicule #img-vehicule {
+          width: 90%;
+          height: 15rem;
+          object-fit: contain; }
+        body.intervenant .myaccount__form__intervenant__item__vehicule__immatriculation, body.intervenant .wrapper__form__intervenant__item__vehicule__immatriculation {
+          font-family: "Open Sans", sans-serif;
+          font-weight: 600;
+          font-size: 1.5rem;
+          color: #144139;
+          margin: 1.2rem 0; }
       body.intervenant .myaccount__form__intervenant__item__emprunter, body.intervenant .wrapper__form__intervenant__item__emprunter {
         width: 100%;
         height: 100%;
@@ -4114,10 +4126,22 @@ body.demandeur {
         justify-content: flex-start; }
       body.demandeur .myaccount__form__intervenant__item__vehicule, body.demandeur .wrapper__form__intervenant__item__vehicule {
         width: 100%;
-        height: 15rem;
         background-color: lightgray;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         border-radius: 10px; }
+        body.demandeur .myaccount__form__intervenant__item__vehicule #img-vehicule, body.demandeur .wrapper__form__intervenant__item__vehicule #img-vehicule {
+          width: 90%;
+          height: 15rem;
+          object-fit: contain; }
+        body.demandeur .myaccount__form__intervenant__item__vehicule__immatriculation, body.demandeur .wrapper__form__intervenant__item__vehicule__immatriculation {
+          font-family: "Open Sans", sans-serif;
+          font-weight: 600;
+          font-size: 1.5rem;
+          color: #1E1E3D;
+          margin: 1.2rem 0; }
       body.demandeur .myaccount__form__intervenant__item__emprunter, body.demandeur .wrapper__form__intervenant__item__emprunter {
         width: 100%;
         height: 100%;
