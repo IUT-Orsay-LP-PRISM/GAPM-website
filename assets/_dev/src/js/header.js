@@ -24,10 +24,10 @@ if (header) {
         }
     });
 
-    if (document.querySelector('.demandeur.home') && window.scrollY === 0 && header) {
+    if (document.querySelector('.home') && window.scrollY === 0 && header) {
         header.classList.add('transparent');
         headerMobileB.classList.add('transparent');
-    } else if (document.querySelector('.demandeur.home')) {
+    } else if (document.querySelector('.home')) {
         header.classList.add('down');
         headerMobileB.classList.add('down');
     }

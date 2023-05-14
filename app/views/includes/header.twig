@@ -2,14 +2,25 @@
     <nav class="header__nav">
         <ul class="header__menu menu-left">
             <li data-page="accueil" class="menu-item"><a href="/" class="link">Accueil</a></li>
-            <li data-page="faq" class="menu-item"><a href="/?action=faq" class="link">Besoin d'aide ?</a></li>
-            <li data-page="info" class="menu-item"><a href="#" class="link">A propos</a></li>
+            {% if user.isIntervenant() and modeIntervenant %}
+                <li data-page="search" class="menu-item">
+                    <a href="/?action=planning" class="link">Planning</a>
+                </li>
+                <li data-page="mes-rendez-vous" class="menu-item">
+                    <a href="/?action=mes-rendez-vous" class="link">Mes rendez-vous</a>
+                </li>
+            {% else %}
+                <li data-page="faq" class="menu-item"><a href="/?action=faq" class="link">Besoin d'aide ?</a></li>
+                <li data-page="info" class="menu-item"><a href="#" class="link">A propos</a></li>
+            {% endif %}
         </ul>
         <ul class="header__menu menu-right">
             {% if userLogged %}
+                {% if not modeIntervenant %}
                 <li data-page="search" class="menu-item"><a href="/?action=search" class="link">Prendre RDV</a></li>
                 <li data-page="mes-rendez-vous" class="menu-item"><a href="/?action=mes-rendez-vous" class="link">Mes
                         rendez-vous</a></li>
+                {% endif %}
                 <li class="dropdown">
                     <a href="#" class="btn btn-primary-nb">
                         <i class="icon-w icon-fi-rr-user"></i>
