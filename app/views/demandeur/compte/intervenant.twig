@@ -2,7 +2,7 @@
     {% if user is defined and not user.isIntervenant() %}
         <form method="post" action="?action=upgrade-to-intervenant">
             <h2 class="myaccount__form-title">Devenir intervenant</h2>
-            <p class="myaccount__form-subtitle">Choissisez vos domaînes de compétences :</p>
+            <p class="myaccount__form-subtitle">Choisissez vos domaines de compétences :</p>
             <div class="myaccount__form__intervenant">
                 <div class="myaccount__form__intervenant__item">
                     <div class="input-container overflow">
@@ -49,7 +49,7 @@
         {% if user.isIntervenant() %}
             <form method="post" action="?action=update-intervenant">
                 <h2 class="myaccount__form-title">Mes informations professionnelle</h2>
-                <p class="myaccount__form-subtitle">Choissisez vos domaînes de compétences :</p>
+                <p class="myaccount__form-subtitle">Choisissez vos domaines de compétences :</p>
                 <div class="myaccount__form__intervenant">
                     <div class="myaccount__form__intervenant__item">
                         <div class="input-container overflow">

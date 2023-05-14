@@ -2331,7 +2331,22 @@ body.intervenant {
         width: 100%;
         align-items: center;
         justify-content: flex-start; }
-    body.intervenant .myaccount__form .btn, body.intervenant .wrapper__form .btn {
+      body.intervenant .myaccount__form__intervenant__item__vehicule, body.intervenant .wrapper__form__intervenant__item__vehicule {
+        width: 100%;
+        height: 15rem;
+        background-color: lightgray;
+        display: block;
+        border-radius: 10px; }
+      body.intervenant .myaccount__form__intervenant__item__emprunter, body.intervenant .wrapper__form__intervenant__item__emprunter {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column; }
+        body.intervenant .myaccount__form__intervenant__item__emprunter .btn-emprunter, body.intervenant .wrapper__form__intervenant__item__emprunter .btn-emprunter {
+          width: 100%;
+          margin: 0; }
+    body.intervenant .myaccount__form .btn:not(.btn-emprunter), body.intervenant .wrapper__form .btn:not(.btn-emprunter) {
       margin: auto;
       margin-top: 2.4rem; }
   body.intervenant .prendreRdv {
@@ -4097,7 +4112,22 @@ body.demandeur {
         width: 100%;
         align-items: center;
         justify-content: flex-start; }
-    body.demandeur .myaccount__form .btn, body.demandeur .wrapper__form .btn {
+      body.demandeur .myaccount__form__intervenant__item__vehicule, body.demandeur .wrapper__form__intervenant__item__vehicule {
+        width: 100%;
+        height: 15rem;
+        background-color: lightgray;
+        display: block;
+        border-radius: 10px; }
+      body.demandeur .myaccount__form__intervenant__item__emprunter, body.demandeur .wrapper__form__intervenant__item__emprunter {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column; }
+        body.demandeur .myaccount__form__intervenant__item__emprunter .btn-emprunter, body.demandeur .wrapper__form__intervenant__item__emprunter .btn-emprunter {
+          width: 100%;
+          margin: 0; }
+    body.demandeur .myaccount__form .btn:not(.btn-emprunter), body.demandeur .wrapper__form .btn:not(.btn-emprunter) {
       margin: auto;
       margin-top: 2.4rem; }
   body.demandeur .prendreRdv {

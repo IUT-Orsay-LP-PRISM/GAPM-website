@@ -422,7 +422,8 @@ DROP TABLE IF EXISTS `TypeVoiture`;
 CREATE TABLE `TypeVoiture`
 (
     `idTypeVoiture` int(11)     NOT NULL,
-    `Modele`         varchar(50) NOT NULL
+    `marque`         varchar(50) NOT NULL,
+    `modele`         varchar(50) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -432,27 +433,12 @@ CREATE TABLE `TypeVoiture`
 --
 
 
-INSERT INTO `TypeVoiture` (`idTypeVoiture`, `Modele`)
-VALUES (1, 'RENAULT'),
-       (2, 'Peugeot'),
-       (3, 'Citroen'),
-       (4, 'Audi'),
-       (5, 'Bmw'),
-       (6, 'Mercedes'),
-       (7, 'Skoda'),
-       (8, 'Volvo'),
-       (9, 'Volkswagen'),
-       (10, 'Dacia'),
-       (11, 'RENAULT'),
-       (12, 'Peugeot'),
-       (13, 'Citroen'),
-       (14, 'Audi'),
-       (15, 'Bmw'),
-       (16, 'Mercedes'),
-       (17, 'Skoda'),
-       (18, 'Volvo'),
-       (19, 'Volkswagen'),
-       (20, 'Dacia');
+INSERT INTO `TypeVoiture` (`idTypeVoiture`, `marque`, `modele`)
+VALUES (1, 'Renault', 'Clio'),
+       (2, 'Peugeot', '3008'),
+       (3, 'Peugeot', '208'),
+       (4, 'Renault', 'Mégane'),
+       (5, 'Volkswagen','Tiguan');
 
 -- --------------------------------------------------------
 
@@ -603,7 +589,8 @@ ALTER TABLE `TypeVoiture`
 --
 -- Index pour la table `Ville`
 --
-
+ALTER TABLE `Ville`
+    ADD PRIMARY KEY (`idVille`);
 --
 -- Index pour la table `Voiture`
 --

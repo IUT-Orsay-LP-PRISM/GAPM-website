@@ -8,6 +8,7 @@ use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\entity\Ville;
+use App\models\entity\Voiture;
 use App\models\repository\DemandeurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
@@ -116,7 +117,6 @@ class DemandeurController extends Template
             header('Location: /');
         }
     }
-
 
 
     public function login()
@@ -267,14 +267,20 @@ class DemandeurController extends Template
     public function displayMyAccount()
     {
         $user = Session::get('user');
-        if($user == null){
+        if ($user == null) {
             header('Location: /?message=Veuillez%20vous%20connecter%20pour%20accéder%20à%20votre%20compte&c=connexion');
+        } else {
+            if(Session::get('user')->isIntervenant() && Session::get('modeIntervenant') ) {
+                $vehicule = $this->entityManager->getRepository(Voiture::class)->findAll();
+                self::render('demandeur/mon-compte.twig', [
+                    'title' => 'Mon compte',
+                    'vehicules' => $vehicule
+                ]);
+            }else {
+                self::render('demandeur/mon-compte.twig', [
+                    'title' => 'Mon compte',
+                ]);
+            }
         }
-        else{
-            self::render('demandeur/mon-compte.twig', [
-                'title' => 'Mon compte'
-            ]);
-        }
-        
     }
 }

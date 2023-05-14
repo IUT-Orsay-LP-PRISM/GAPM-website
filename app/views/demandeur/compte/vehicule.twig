@@ -1,0 +1,48 @@
+<section class="myaccount__form myaccount__form__security" id="form">
+    <form method="post" action="?action=">
+        <h2 class="myaccount__form-title">Emprunt de véhicule</h2>
+        <div class="myaccount__form__intervenant">
+            <div class="myaccount__form__intervenant__item">
+                <div class="input-container overflow">
+                    <i class="icon icon-fi-rr-car"></i>
+                    <select id="vehicule" class="input" type="text" name="vehicule">
+                        {% if vehicules is defined %}
+                            {% for vehicule in vehicules %}
+                                <option value="{{ vehicule.idVoiture }}">{{ vehicule.getTypeVoiture().marque }}
+                                    ({{ vehicule.getTypeVoiture().modele }})
+                                </option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                    <label class="label" for="sexe">Choix du véhicule</label>
+                </div>
+            </div>
+            <div class="myaccount__form__intervenant__item">
+                <div class="input-container">
+                    <i class="icon icon-fi-rr-calendar"></i>
+                    <input id="dateDu" class="input" type="date" name="dateDu" required/>
+                    <label class="label" for="dateDu">Du</label>
+                </div>
+            </div>
+            <div class="myaccount__form__intervenant__item">
+                <div class="myaccount__form__intervenant__item__vehicule">
+                </div>
+            </div>
+            <div class="myaccount__form__intervenant__item">
+                <div class="myaccount__form__intervenant__item__emprunter">
+                    <div class="input-container">
+                        <i class="icon icon-fi-rr-calendar"></i>
+                        <input id="dateAu" class="input" type="date" name="dateAu" required/>
+                        <label class="label" for="dateAu">Au</label>
+                    </div>
+                    <button class="btn btn-greenPrimary btn-emprunter" type="submit">
+                        <i class="icon-w icon-fi-rr-check"></i>
+                        Emprunter ce véhicule
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</section>

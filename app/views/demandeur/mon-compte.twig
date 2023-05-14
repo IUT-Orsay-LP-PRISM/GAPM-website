@@ -30,12 +30,19 @@
                                 <i class="icon icon-fi-rr-redo"></i>
                             </a>
                         </li>
-                    {% else %}
+                    {% elseif  user is defined and user.isIntervenant() and modeIntervenant %}
                         <li>
                             <a href="#intervenant"
                                class="js-account-nav myaccount__content__nav-link">
                                 Informations professionnelle
                                 <i class="icon icon-fi-rr-redo"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#vehicule"
+                               class="js-account-nav myaccount__content__nav-link">
+                                Emprunt de véhicule
+                                <i class="icon icon-fi-rr-car"></i>
                             </a>
                         </li>
                     {% endif %}
@@ -58,6 +65,9 @@
                     </div>
                     <div id="options" class="js-account-content">
                         {% include '/demandeur/compte/options.twig' %}
+                    </div>
+                    <div id="vehicule" class="js-account-content">
+                        {% include '/demandeur/compte/vehicule.twig' %}
                     </div>
                 </div>
             </div>
