@@ -7,9 +7,12 @@ use App\models\entity\Intervenant;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\entity\Ville;
+use App\models\entity\Voiture;
+use App\models\entity\Emprunt;
 use App\models\repository\IntervenantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+
 class IntervenantController extends Template
 {
     private IntervenantRepository $intervenantRepository;
@@ -121,7 +124,8 @@ class IntervenantController extends Template
     }
 
 
-    public function toggleModeIntervenant() {
+    public function toggleModeIntervenant()
+    {
         $sessionMode = Session::get('modeIntervenant');
         if ($sessionMode == null) {
             Session::set('modeIntervenant', true);
@@ -131,4 +135,41 @@ class IntervenantController extends Template
         header("Location: /");
     }
 
+    public function emprunterVehicule()
+    {
+        $idTypeVoiture = $_POST['typeVehicule'];
+        $dateDebut = $_POST['dateDu'];
+        $dateFin = $_POST['dateAu'];
+
+        $voitureDispo = $this->entityManager->getRepository(Voiture::class)->findOneBy(['typeVoiture' => $idTypeVoiture, 'disponible' => true]);
+
+        if ($voitureDispo == null) {
+            $referer = self::addMessageToUrl('Aucun véhicule disponible.', 'my-account');
+            header("Location: $referer");
+            exit();
+        }
+
+        $voitureDispo->setDisponible(false);
+
+        $idIntervenant = Session::get('user')->getIdDemandeur();
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+
+        $emprunt = new Emprunt();
+        $emprunt->setDateDebut($dateDebut);
+        $emprunt->setDateFin($dateFin);
+        $emprunt->setVoiture($voitureDispo);
+        $emprunt->setIntervenant($intervenant);
+
+        try {
+            $this->entityManager->persist($emprunt);
+            $this->entityManager->persist($voitureDispo);
+            $this->entityManager->flush();
+            $referer = self::addMessageToUrl('Véhicule emprunté.', 'msg-success');
+            header("Location: $referer");
+        } catch (\Exception $e) {
+            $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+            header("Location: $referer");
+            exit();
+        }
+    }
 }

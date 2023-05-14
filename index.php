@@ -26,9 +26,11 @@ Route::post('confirm-RDV', 'RendezVousController', 'createRDV');
 Route::post('ajout-avis', 'RendezVousController', 'createNoticeOnRdv');
 Route::post('upgrade-to-intervenant', 'IntervenantController', 'devenirIntervenant');
 Route::post('update-intervenant', 'IntervenantController', 'update');
+Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 
 Route::post('faq', 'HomeController', 'displayFAQ');
 
+// route::pour le système de toggle du mode intervenant
 Route::post('toggle-mode-intervenant', 'IntervenantController', 'toggleModeIntervenant');
 
 

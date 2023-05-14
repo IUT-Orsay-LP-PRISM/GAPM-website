@@ -1,11 +1,11 @@
 <section class="myaccount__form myaccount__form__security" id="form">
-    <form method="post" action="?action=">
+    <form method="post" action="?action=emprunter-vehicule">
         <h2 class="myaccount__form-title">Emprunt de véhicule</h2>
         <div class="myaccount__form__intervenant">
             <div class="myaccount__form__intervenant__item">
                 <div class="input-container overflow">
                     <i class="icon icon-fi-rr-car"></i>
-                    <select id="js-vehicule" class="input" type="text" name="vehicule">
+                    <select id="js-vehicule" class="input" type="text" name="typeVehicule">
                         {% if typeVehicules is defined %}
                             {% for type in typeVehicules %}
                                 <option value="{{ type.idTypeVoiture }}">
@@ -20,7 +20,7 @@
             <div class="myaccount__form__intervenant__item">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-calendar"></i>
-                    <input id="dateDu" class="input" type="date" name="dateDu" required/>
+                    <input id="dateDu" class="input" type="date" name="dateDu" min="{{ "now"|date('Y-m-d') }}" required/>
                     <label class="label" for="dateDu">Du</label>
                 </div>
             </div>
@@ -36,12 +36,12 @@
                 <div class="myaccount__form__intervenant__item__emprunter">
                     <div class="input-container">
                         <i class="icon icon-fi-rr-calendar"></i>
-                        <input id="dateAu" class="input" type="date" name="dateAu" required/>
+                        <input id="dateAu" class="input" type="date" name="dateAu" min="{{ "now"|date('Y-m-d') }}" required/>
                         <label class="label" for="dateAu">Au</label>
                     </div>
                     <button class="btn btn-greenPrimary btn-emprunter" type="submit">
                         <i class="icon-w icon-fi-rr-check"></i>
-                        Emprunter ce véhicule
+                        Faire la demande d'emprunt
                     </button>
                 </div>
             </div>
