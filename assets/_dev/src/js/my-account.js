@@ -31,3 +31,16 @@ if(js_specialite) {
         });
     });
 }
+
+
+const vehicule = document.querySelector('#js-vehicule');
+if(vehicule) {
+    vehicule.addEventListener('change', (e) => {
+        const img_vehicule = document.querySelector('#img-vehicule');
+        img_vehicule.src = `/assets/img/vehicules/${e.target.value}.png`;
+        img_vehicule.alt = e.target.value;
+        const immat_vehicule = e.target.querySelector(':checked').dataset.immat;
+        const lbl_immatriculation = document.querySelector('#lbl-immatriculation');
+        lbl_immatriculation.innerHTML = immat_vehicule;
+    });
+}

@@ -188,23 +188,39 @@
       &__item {
         &__vehicule {
           width            : 100%;
-          height           : 15rem;
           background-color : lightgray;
-          display          : block;
-          border-radius: $borderRadiusSmall;
+          display          : flex;
+          justify-content  : center;
+          align-items      : center;
+          flex-direction   : column;
+          border-radius    : $borderRadiusSmall;
+
+          #img-vehicule {
+            width      : 90%;
+            height     : 15rem;
+            object-fit: contain;
+          }
+
+          &__immatriculation {
+            font-family : $mainFont;
+            font-weight : 600;
+            font-size   : 1.5rem;
+            color       : $black;
+            margin      : 1.2rem 0;
+          }
         }
 
         &__emprunter {
-          width            : 100%;
-          height           : 100%;
-          display          : flex;
-          justify-content  : space-between;
-          flex-direction: column;
+          width           : 100%;
+          height          : 100%;
+          display         : flex;
+          justify-content : space-between;
+          flex-direction  : column;
 
-            .btn-emprunter {
-                width: 100%;
-                margin: 0;
-            }
+          .btn-emprunter {
+            width  : 100%;
+            margin : 0;
+          }
         }
       }
     }

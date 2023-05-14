@@ -5,10 +5,10 @@
             <div class="myaccount__form__intervenant__item">
                 <div class="input-container overflow">
                     <i class="icon icon-fi-rr-car"></i>
-                    <select id="vehicule" class="input" type="text" name="vehicule">
+                    <select id="js-vehicule" class="input" type="text" name="vehicule">
                         {% if vehicules is defined %}
                             {% for vehicule in vehicules %}
-                                <option value="{{ vehicule.idVoiture }}">{{ vehicule.getTypeVoiture().marque }}
+                                <option value="{{ vehicule.idVoiture }}" data-immat="{{ vehicule.getImmatriculation() }}" >{{ vehicule.getTypeVoiture().marque }}
                                     ({{ vehicule.getTypeVoiture().modele }})
                                 </option>
                             {% endfor %}
@@ -26,6 +26,8 @@
             </div>
             <div class="myaccount__form__intervenant__item">
                 <div class="myaccount__form__intervenant__item__vehicule">
+                    <img id="img-vehicule" src="/assets/img/vehicules/1.png">
+                    <p id="lbl-immatriculation" class="myaccount__form__intervenant__item__vehicule__immatriculation">ZE-3445-RT</p>
                 </div>
             </div>
             <div class="myaccount__form__intervenant__item">
