@@ -7,7 +7,7 @@
 	<link rel="icon" href="assets/img/logo.svg"/>
 	<title>{% block title %}{% endblock %} • GAPM</title>
 </head>
-<body class="{% if modeIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}"
+<body class="{% if modeIntervenant or isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}"
 	  data-log="{{ userLogged }}">
 <div id="loader"></div>
 {% if not no_header %}
