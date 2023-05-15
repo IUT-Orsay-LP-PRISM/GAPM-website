@@ -10,15 +10,12 @@
 
 {% block content %}
 	<section class="hp__banner">
-		<img class="banner_bg" alt="Banner">
-
 		<section class="hp__banner-text">
 			<section class="hp__banner-title">
 				<h1 class="text__underline">G.A.P.M</h1>
 				<p class="home-title">
 					{% if modeIntervenant %}
-						Exercer dès maintenant votre métier<br>
-						Pour participer à la santé de tous les <span class="text__underline">citoyens.</span>
+						Participez à la santé de tous les <span class="text__underline">citoyens.</span>
 					{% else %}
 						Rechercher un prestataire<br>
 						<span class="text__underline">correspondant à vos besoins.</span>
@@ -58,16 +55,22 @@
 
 	<section class="hp__content">
 		<div class="hp__content-pilule">
-			<i class="hp__content-pilule-1">{% include "svg/pilule.svg" %}</i>
-			<i class="hp__content-pilule-2">{% include "svg/pilule.svg" %}</i>
-			<i class="hp__content-pilule-3">{% include "svg/pilule.svg" %}</i>
-			<i class="hp__content-pilule-4">{% include "svg/pilule2.svg" %}</i>
-			<i class="hp__content-pilule-5">{% include "svg/pilule2.svg" %}</i>
-			<i class="hp__content-pilule-6">{% include "svg/pilule2.svg" %}</i>
+			{% if not modeIntervenant %}
+				<i class="hp__content-pilule-1">{% include "svg/pilule.svg" %}</i>
+				<i class="hp__content-pilule-2">{% include "svg/pilule.svg" %}</i>
+				<i class="hp__content-pilule-3">{% include "svg/pilule.svg" %}</i>
+				<i class="hp__content-pilule-4">{% include "svg/pilule2.svg" %}</i>
+				<i class="hp__content-pilule-5">{% include "svg/pilule2.svg" %}</i>
+				<i class="hp__content-pilule-6">{% include "svg/pilule2.svg" %}</i>
+			{% endif %}
 		</div>
 		<section class="hp__content_row">
 			<section class="hp__content_row-img">
-				{% include 'svg/illu_home_content.svg' %}
+				{% if modeIntervenant %}
+					{% include 'svg/illu_home_content-inter.svg' %}
+				{% else %}
+					{% include 'svg/illu_home_content.svg' %}
+				{% endif %}
 			</section>
 
 			<section class="hp__content_row-text">

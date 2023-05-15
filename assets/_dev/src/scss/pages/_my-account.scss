@@ -176,7 +176,7 @@
     &__intervenant {
       display               : grid;
       grid-template-columns : 1fr 1fr;
-      grid-gap              : 1.3rem 3.2rem;
+      grid-gap              : .3rem 3.2rem;
       margin                : 2.4rem 0;
 
       .car {
@@ -221,6 +221,14 @@
             width  : 100%;
             margin : 0;
           }
+        }
+
+        &.--choices{
+          grid-column-start: 2;
+          grid-row: 1 / 3;
+        }
+        &.--vehicles{
+          grid-row: 1 / 4;
         }
       }
 

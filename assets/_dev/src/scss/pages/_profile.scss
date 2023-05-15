@@ -4,6 +4,10 @@
     padding: 2.5rem 0;
     max-width: 550px;
     margin: auto;
+    &.-search{
+      padding: 10rem 15.2rem 2.5rem;
+      max-width: unset;
+    }
   }
 
   &__content {

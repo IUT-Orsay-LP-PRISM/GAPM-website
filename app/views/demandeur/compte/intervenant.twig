@@ -64,15 +64,7 @@
                                 <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="{{ ids|join("-") }}">
                         </div>
                     </div>
-                    <div class="myaccount__form__intervenant__item">
-                        <div class="input-container">
-                            <i class="icon icon-fi-rr-text"></i>
-                            <input id="adressePro" class="input" type="text" name="adressePro"
-                                   value="{{ user.adressePro }}" required/>
-                            <label class="label" for="adressePro">Adresse Professionnel</label>
-                        </div>
-                    </div>
-                    <div class="myaccount__form__intervenant__item">
+                    <div class="myaccount__form__intervenant__item --choices">
                         <div id="tag-container" class="js-specialite">
                             <p>Vos choix :</p>
                             <div class="container">
@@ -83,6 +75,14 @@
                                     </div>
                                 {% endfor %}
                             </div>
+                        </div>
+                    </div>
+                    <div class="myaccount__form__intervenant__item">
+                        <div class="input-container">
+                            <i class="icon icon-fi-rr-text"></i>
+                            <input id="adressePro" class="input" type="text" name="adressePro"
+                                   value="{{ user.adressePro }}" required/>
+                            <label class="label" for="adressePro">Adresse Professionnel</label>
                         </div>
                     </div>
                     <div class="myaccount__form__intervenant__item">

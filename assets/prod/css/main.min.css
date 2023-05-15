@@ -1890,19 +1890,17 @@ body.intervenant {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    align-items: center; }
-    body.intervenant .hp__banner img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      width: 100vw;
-      height: 100vh; }
+    align-items: center;
+    background-color: #257466;
+    z-index: 0;
+    position: relative; }
     body.intervenant .hp__banner-text {
       display: grid;
       grid-template-areas: "title img";
       grid-gap: 5%;
-      grid-template-columns: 1fr 1fr; }
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      z-index: 1; }
       @media all and (max-width: 992px) {
         body.intervenant .hp__banner-text {
           grid-template-columns: 1fr;
@@ -2036,7 +2034,7 @@ body.intervenant {
   body.intervenant .search__inputs {
     display: flex;
     justify-content: center;
-    margin: 10rem 0 3rem 0; }
+    margin: 2rem 0 3rem 0; }
     body.intervenant .search__inputs .input-container:nth-child(3) {
       overflow: visible; }
     body.intervenant .search__inputs .input-container:first-child {
@@ -2329,7 +2327,7 @@ body.intervenant {
     body.intervenant .myaccount__form__intervenant, body.intervenant .wrapper__form__intervenant {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-gap: 1.3rem 3.2rem;
+      grid-gap: .3rem 3.2rem;
       margin: 2.4rem 0; }
       body.intervenant .myaccount__form__intervenant .car, body.intervenant .wrapper__form__intervenant .car {
         width: 100%;
@@ -2362,6 +2360,11 @@ body.intervenant {
         body.intervenant .myaccount__form__intervenant__item__emprunter .btn-emprunter, body.intervenant .wrapper__form__intervenant__item__emprunter .btn-emprunter {
           width: 100%;
           margin: 0; }
+      body.intervenant .myaccount__form__intervenant__item.--choices, body.intervenant .wrapper__form__intervenant__item.--choices {
+        grid-column-start: 2;
+        grid-row: 1 / 3; }
+      body.intervenant .myaccount__form__intervenant__item.--vehicles, body.intervenant .wrapper__form__intervenant__item.--vehicles {
+        grid-row: 1 / 4; }
       body.intervenant .myaccount__form__intervenant__oldEmprunts, body.intervenant .wrapper__form__intervenant__oldEmprunts {
         margin-top: 5rem; }
         body.intervenant .myaccount__form__intervenant__oldEmprunts__table, body.intervenant .wrapper__form__intervenant__oldEmprunts__table {
@@ -2649,7 +2652,8 @@ body.intervenant {
         grid-template-areas: "name speciality city date";
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 3%;
-        margin: 0 4rem; }
+        margin: 0 4rem;
+        align-items: center; }
         body.intervenant .myrdv__contents-user-info .title, body.intervenant .myrdv__contents-user-info-notice .title {
           font-family: "Poppins", sans-serif;
           font-size: 1rem;
@@ -2698,6 +2702,9 @@ body.intervenant {
     padding: 2.5rem 0;
     max-width: 550px;
     margin: auto; }
+    body.intervenant .sample__container.-search {
+      padding: 10rem 15.2rem 2.5rem;
+      max-width: unset; }
   body.intervenant .sample__content {
     padding: 1.85rem 2.53rem;
     background: white;
@@ -2784,6 +2791,8 @@ body.intervenant {
       border: none;
       color: #FFFFFF;
       background-color: #36A793; }
+      body.intervenant .btn.btn-greenPrimary:hover {
+        background-color: #257466; }
     body.intervenant .btn.btn-red {
       border: none;
       color: #FFFFFF;
@@ -2814,7 +2823,8 @@ body.intervenant {
     font-size: 18px;
     overflow: hidden;
     padding-right: 1rem;
-    background-color: #FFFFFF; }
+    background-color: #FFFFFF;
+    box-sizing: border-box; }
     body.intervenant .input-container:focus {
       border: 2px solid #257466; }
     body.intervenant .input-container .js-iconEyePassword {
@@ -3512,17 +3522,19 @@ body.intervenant {
         background: red; }
   body.intervenant .auto_completion {
     position: absolute;
-    top: 2.6rem;
+    top: 3.5rem;
     left: 0;
     width: 100%;
-    border-radius: 0 0 10px 10px;
+    border-radius: 10px;
     font-size: 18px;
     background-color: #FFFFFF;
     overflow: hidden;
     z-index: 1;
     overflow-y: scroll;
     font-family: "Open Sans", sans-serif;
-    max-height: 10em; }
+    max-height: 10em;
+    border: 1px solid #dad8d8;
+    box-sizing: border-box; }
     body.intervenant .auto_completion p {
       padding: 1em;
       font-size: 0.85em;
@@ -3745,19 +3757,17 @@ body.demandeur {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    align-items: center; }
-    body.demandeur .hp__banner img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      width: 100vw;
-      height: 100vh; }
+    align-items: center;
+    background-color: #393BAA;
+    z-index: 0;
+    position: relative; }
     body.demandeur .hp__banner-text {
       display: grid;
       grid-template-areas: "title img";
       grid-gap: 5%;
-      grid-template-columns: 1fr 1fr; }
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      z-index: 1; }
       @media all and (max-width: 992px) {
         body.demandeur .hp__banner-text {
           grid-template-columns: 1fr;
@@ -3891,7 +3901,7 @@ body.demandeur {
   body.demandeur .search__inputs {
     display: flex;
     justify-content: center;
-    margin: 10rem 0 3rem 0; }
+    margin: 2rem 0 3rem 0; }
     body.demandeur .search__inputs .input-container:nth-child(3) {
       overflow: visible; }
     body.demandeur .search__inputs .input-container:first-child {
@@ -4184,7 +4194,7 @@ body.demandeur {
     body.demandeur .myaccount__form__intervenant, body.demandeur .wrapper__form__intervenant {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-gap: 1.3rem 3.2rem;
+      grid-gap: .3rem 3.2rem;
       margin: 2.4rem 0; }
       body.demandeur .myaccount__form__intervenant .car, body.demandeur .wrapper__form__intervenant .car {
         width: 100%;
@@ -4217,6 +4227,11 @@ body.demandeur {
         body.demandeur .myaccount__form__intervenant__item__emprunter .btn-emprunter, body.demandeur .wrapper__form__intervenant__item__emprunter .btn-emprunter {
           width: 100%;
           margin: 0; }
+      body.demandeur .myaccount__form__intervenant__item.--choices, body.demandeur .wrapper__form__intervenant__item.--choices {
+        grid-column-start: 2;
+        grid-row: 1 / 3; }
+      body.demandeur .myaccount__form__intervenant__item.--vehicles, body.demandeur .wrapper__form__intervenant__item.--vehicles {
+        grid-row: 1 / 4; }
       body.demandeur .myaccount__form__intervenant__oldEmprunts, body.demandeur .wrapper__form__intervenant__oldEmprunts {
         margin-top: 5rem; }
         body.demandeur .myaccount__form__intervenant__oldEmprunts__table, body.demandeur .wrapper__form__intervenant__oldEmprunts__table {
@@ -4504,7 +4519,8 @@ body.demandeur {
         grid-template-areas: "name speciality city date";
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 3%;
-        margin: 0 4rem; }
+        margin: 0 4rem;
+        align-items: center; }
         body.demandeur .myrdv__contents-user-info .title, body.demandeur .myrdv__contents-user-info-notice .title {
           font-family: "Poppins", sans-serif;
           font-size: 1rem;
@@ -4553,6 +4569,9 @@ body.demandeur {
     padding: 2.5rem 0;
     max-width: 550px;
     margin: auto; }
+    body.demandeur .sample__container.-search {
+      padding: 10rem 15.2rem 2.5rem;
+      max-width: unset; }
   body.demandeur .sample__content {
     padding: 1.85rem 2.53rem;
     background: white;
@@ -4639,6 +4658,8 @@ body.demandeur {
       border: none;
       color: #FFFFFF;
       background-color: #36A793; }
+      body.demandeur .btn.btn-greenPrimary:hover {
+        background-color: #257466; }
     body.demandeur .btn.btn-red {
       border: none;
       color: #FFFFFF;
@@ -4669,7 +4690,8 @@ body.demandeur {
     font-size: 18px;
     overflow: hidden;
     padding-right: 1rem;
-    background-color: #FFFFFF; }
+    background-color: #FFFFFF;
+    box-sizing: border-box; }
     body.demandeur .input-container:focus {
       border: 2px solid #393BAA; }
     body.demandeur .input-container .js-iconEyePassword {
@@ -5367,17 +5389,19 @@ body.demandeur {
         background: red; }
   body.demandeur .auto_completion {
     position: absolute;
-    top: 2.6rem;
+    top: 3.5rem;
     left: 0;
     width: 100%;
-    border-radius: 0 0 10px 10px;
+    border-radius: 10px;
     font-size: 18px;
     background-color: #FFFFFF;
     overflow: hidden;
     z-index: 1;
     overflow-y: scroll;
     font-family: "Open Sans", sans-serif;
-    max-height: 10em; }
+    max-height: 10em;
+    border: 1px solid #dad8d8;
+    box-sizing: border-box; }
     body.demandeur .auto_completion p {
       padding: 1em;
       font-size: 0.85em;
