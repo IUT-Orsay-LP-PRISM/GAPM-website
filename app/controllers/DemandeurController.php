@@ -280,7 +280,26 @@ class DemandeurController extends Template
                     }, $voitures))
                 ]);
 
-                $emprunts = $this->entityManager->getRepository(Emprunt::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
+                $empruntsDeUser = $this->entityManager->getRepository(Emprunt::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
+
+                $empruntsWaiting = array_filter($empruntsDeUser, function ($emprunt) {
+                    return property_exists($emprunt, 'administration') && $emprunt->getAdministration() == null && $emprunt->getDateFin() > date('Y-m-d');
+                });
+
+                $empruntsPassed = array_filter($empruntsDeUser, function ($emprunt) {
+                    return $emprunt->getDateFin() < date('Y-m-d');
+                });
+
+                $empruntsCurrent = array_filter($empruntsDeUser, function ($emprunt) {
+                    return $emprunt->getDateDebut() <= date('Y-m-d') && $emprunt->getDateFin() >= date('Y-m-d') && property_exists($emprunt, 'administration') && $emprunt->getAdministration() != null;
+                });
+
+                $emprunts = [
+                    'waiting' => $empruntsWaiting,
+                    'passed' => $empruntsPassed,
+                    'current' => $empruntsCurrent
+                ];
+
                 self::render('demandeur/mon-compte.twig', [
                     'title' => 'Mon compte',
                     'typeVehicules' => $typesVoitureDisponible,

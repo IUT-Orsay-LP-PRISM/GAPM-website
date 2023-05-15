@@ -1,0 +1,21 @@
+<table class="myaccount__form__intervenant__oldEmprunts__table">
+    <thead>
+    <tr>
+        <td>Immatriculation</td>
+        <td>Modele</td>
+        <td>Du</td>
+        <td>Au</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for emprunt in emprunts %}
+        <tr>
+            <td>{{ emprunt.voiture.immatriculation }}</td>
+            <td>{{ emprunt.voiture.typeVoiture.marque }} - {{ emprunt.voiture.typeVoiture.modele }}</td>
+            <td>{{ emprunt.dateDebut|date('d/m/Y') }}</td>
+            <td>{{ emprunt.dateFin|date('d/m/Y') }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
