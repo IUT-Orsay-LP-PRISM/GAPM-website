@@ -19,6 +19,7 @@ class SearchController extends Template
         $nom = $_GET['s_name'] ?? null;
         $city = $_GET['s_city'] ?? null;
 
+
         $intervenantRepository = $this->entityManager->getRepository(Intervenant::class);
         $intervenants = $intervenantRepository->findByNameOrCity($nom, $city);
 

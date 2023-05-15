@@ -43,9 +43,11 @@
         <div class="search__contents-list">
             {% if intervenants is not empty %}
                 {% for intervenant in intervenants %}
-                    <div class="search__contents-user">
+                    <div class="search__contents-user" >
                         <div class="search__contents-user-img">
-                            <img src="assets/img/profils/exemple_doctor.jpg" alt="User">
+                            <a href="?action=profile&id={{ intervenant.idDemandeur }}">
+                                <img src="assets/img/profils/exemple_doctor.jpg" alt="User">
+                            </a>
                         </div>
                         <div class="search__contents-user-info">
                             <div class="search__contents-user-name">

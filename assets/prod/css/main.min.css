@@ -1869,6 +1869,12 @@ body.intervenant {
         transition: width 0.3s ease; }
   body.intervenant .text__light {
     font-weight: 400; }
+  body.intervenant .text__bold {
+    font-weight: 600; }
+  body.intervenant .text__primary {
+    color: #36A793; }
+  body.intervenant p {
+    font-family: "Open Sans", sans-serif; }
   body.intervenant ::-webkit-scrollbar {
     width: 10px; }
   body.intervenant ::-webkit-scrollbar-track {
@@ -2680,6 +2686,44 @@ body.intervenant {
         body.intervenant .myrdv__contents-user-btn a:hover svg {
           transition: all .5s ease-in-out;
           transform: rotate(180deg); }
+  body.intervenant .sample__container {
+    padding: 2.5rem 0;
+    max-width: 550px;
+    margin: auto; }
+  body.intervenant .sample__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+  body.intervenant .profile__infos-img {
+    text-align: center; }
+    body.intervenant .profile__infos-img img {
+      margin: auto;
+      max-width: 200px;
+      border-radius: 50%; }
+  body.intervenant .profile__infos-contact {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: flex-end; }
+    body.intervenant .profile__infos-contact a:not(:last-child) {
+      margin-right: 1rem; }
+  body.intervenant .profile__infos-adr {
+    margin: 1rem 0;
+    font-size: 1.2rem; }
+  body.intervenant .profile__infos-spe {
+    margin-top: 2rem; }
+  body.intervenant .profile__infos-spelist {
+    margin-top: .6rem; }
+  body.intervenant .profile__infos-speitem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.15rem; }
+    body.intervenant .profile__infos-speitem::before {
+      content: "•";
+      margin-right: 1rem;
+      font-size: 2rem;
+      color: #257466; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -3521,15 +3565,16 @@ body.intervenant {
     background-color: #e5e5e5;
     padding: 0.7rem;
     border-radius: 15px;
-    margin: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    width: max-content;
+    min-width: 500px;
     z-index: 9999;
     right: 13px;
-    bottom: 20px; }
+    bottom: 20px;
+    opacity: 0;
+    visibility: hidden; }
     body.intervenant .notification.--active {
       opacity: 1;
       visibility: visible;
@@ -3666,6 +3711,12 @@ body.demandeur {
         transition: width 0.3s ease; }
   body.demandeur .text__light {
     font-weight: 400; }
+  body.demandeur .text__bold {
+    font-weight: 600; }
+  body.demandeur .text__primary {
+    color: #5154EC; }
+  body.demandeur p {
+    font-family: "Open Sans", sans-serif; }
   body.demandeur ::-webkit-scrollbar {
     width: 10px; }
   body.demandeur ::-webkit-scrollbar-track {
@@ -4477,6 +4528,44 @@ body.demandeur {
         body.demandeur .myrdv__contents-user-btn a:hover svg {
           transition: all .5s ease-in-out;
           transform: rotate(180deg); }
+  body.demandeur .sample__container {
+    padding: 2.5rem 0;
+    max-width: 550px;
+    margin: auto; }
+  body.demandeur .sample__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+  body.demandeur .profile__infos-img {
+    text-align: center; }
+    body.demandeur .profile__infos-img img {
+      margin: auto;
+      max-width: 200px;
+      border-radius: 50%; }
+  body.demandeur .profile__infos-contact {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: flex-end; }
+    body.demandeur .profile__infos-contact a:not(:last-child) {
+      margin-right: 1rem; }
+  body.demandeur .profile__infos-adr {
+    margin: 1rem 0;
+    font-size: 1.2rem; }
+  body.demandeur .profile__infos-spe {
+    margin-top: 2rem; }
+  body.demandeur .profile__infos-spelist {
+    margin-top: .6rem; }
+  body.demandeur .profile__infos-speitem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.15rem; }
+    body.demandeur .profile__infos-speitem::before {
+      content: "•";
+      margin-right: 1rem;
+      font-size: 2rem;
+      color: #393BAA; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -5318,15 +5407,16 @@ body.demandeur {
     background-color: #e5e5e5;
     padding: 0.7rem;
     border-radius: 15px;
-    margin: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    width: max-content;
+    min-width: 500px;
     z-index: 9999;
     right: 13px;
-    bottom: 20px; }
+    bottom: 20px;
+    opacity: 0;
+    visibility: hidden; }
     body.demandeur .notification.--active {
       opacity: 1;
       visibility: visible;

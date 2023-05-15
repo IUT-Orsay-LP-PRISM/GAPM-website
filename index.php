@@ -28,6 +28,8 @@ Route::post('upgrade-to-intervenant', 'IntervenantController', 'devenirIntervena
 Route::post('update-intervenant', 'IntervenantController', 'update');
 Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 
+Route::get('profile', 'IntervenantController', 'profile');
+
 Route::post('faq', 'HomeController', 'displayFAQ');
 
 // route::pour le système de toggle du mode intervenant

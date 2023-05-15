@@ -68,5 +68,18 @@ h3 {
   &__light {
     font-weight : 400;
   }
+
+  &__bold{
+    font-weight: 600;
+  }
+
+  &__primary{
+    color: $primaryLight;
+  }
 }
+
+p{
+  font-family: $mainFont;
+}
+
 

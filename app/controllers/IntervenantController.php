@@ -2,8 +2,10 @@
 
 namespace App\controllers;
 
+use App\models\entity\Commentaire;
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
+use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\entity\Ville;
@@ -24,6 +26,19 @@ class IntervenantController extends Template
         $this->intervenantRepository = $entityManager->getRepository(Intervenant::class);
     }
 
+    public function profile()
+    {
+        $idIntervenant = htmlspecialchars($_GET['id']);
+
+        $intervenant = $this->intervenantRepository->find($idIntervenant);
+
+
+        self::render('intervenants/profile.twig', [
+            'title' => 'Profil de : ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
+            'int' => $intervenant,
+        ]);
+    }
+    
     public function index()
     {
         self::render('inscription_intervenant.twig', [
