@@ -1,5 +1,9 @@
 let navbar = document.querySelectorAll('.js-account-nav');
 const js_specialite = document.querySelector('.js-specialite');
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+console.log(urlParams);
 
 if (navbar.length){
     navbar.forEach((element) => {
@@ -11,6 +15,12 @@ if (navbar.length){
             event.target.classList.add('--active');
         });
     });
+    if(urlParams.has("intervenant")){
+        document.querySelector('#intervenant').classList.add('--display');
+        document.querySelector('#perso').classList.remove('--display');
+        document.querySelector('#intervenant-nav').classList.add('--active');
+        document.querySelector('#perso-nav').classList.remove('--active');
+    }
 }
 
 if(js_specialite) {

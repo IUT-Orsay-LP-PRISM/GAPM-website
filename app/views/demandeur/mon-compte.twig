@@ -17,7 +17,7 @@
                 <ul>
                     {% if not modeIntervenant %}
                     <li>
-                        <a href="#perso"
+                        <a id="perso-nav"href="#perso"
                            class="js-account-nav myaccount__content__nav-link --active">
                             Informations personnelles
                             <i class="icon icon-fi-rr-info"></i>
@@ -26,7 +26,7 @@
                     {% endif %}
                     {% if user is defined and not user.isIntervenant() %}
                         <li>
-                            <a href="#intervenant"
+                            <a id="intervenant-nav" href="#intervenant"
                                class="js-account-nav myaccount__content__nav-link">
                                 Devenir intervenant
                                 <i class="icon icon-fi-rr-redo"></i>
