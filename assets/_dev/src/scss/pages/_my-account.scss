@@ -94,7 +94,7 @@
       padding       : 1.85rem 2.53rem;
       background    : white;
       border-radius : 10px;
-      box-shadow    : 0px 2px 4px rgba(0, 0, 0, 0.25);
+      //box-shadow    : 0px 2px 4px rgba(0, 0, 0, 0.25);
       @include max-width($screenMd) {
         @include mx(2.5);
       }
@@ -176,7 +176,7 @@
     &__intervenant {
       display               : grid;
       grid-template-columns : 1fr 1fr;
-      grid-gap              : 1.3rem 3.2rem;
+      grid-gap              : .3rem 3.2rem;
       margin                : 2.4rem 0;
 
       .car {
@@ -221,6 +221,14 @@
             width  : 100%;
             margin : 0;
           }
+        }
+
+        &.--choices{
+          grid-column-start: 2;
+          grid-row: 1 / 3;
+        }
+        &.--vehicles{
+          grid-row: 1 / 4;
         }
       }
 

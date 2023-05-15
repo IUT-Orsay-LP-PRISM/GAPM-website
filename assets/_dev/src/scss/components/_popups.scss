@@ -238,18 +238,20 @@
 
 .auto_completion {
   position         : absolute;
-  top              : 2.6rem;
+  top              : 3.5rem;
   left             : 0;
   width            : 100%;
-  box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
-  border-radius    : 0 0 10px 10px;
+  //box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+  border-radius    : 10px;
   font-size        : 18px;
   background-color : $white;
   overflow         : hidden;
   z-index          : 1;
   overflow-y       : scroll;
   font-family      : $mainFont;
-  max-height       : 2em*5;
+  max-height       : 10em;
+  border: 1px solid #dad8d8;
+  box-sizing: border-box;
 
   p {
     padding        : 1em;

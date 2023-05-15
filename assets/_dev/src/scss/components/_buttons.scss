@@ -9,77 +9,97 @@
   border-radius   : $borderRadius;
   background-size : 200% 100%;
   padding         : .59rem 1rem;
-  box-shadow      : $boxShadowOut;
+  //box-shadow      : $boxShadowOut;
   display         : flex;
   align-items     : center;
   justify-content : center;
   width           : fit-content;
-  transition      : all .5s ease-in-out;
+  transition      : all .2s ease-in-out;
   text-align      : center;
   cursor          : pointer;
 
 
   /* Bouton Primaire - Bleu foncé vers bleu clair */
   &.btn-primary {
-    border           : none;
     color            : $white;
-    background-image : $gradientDarkToLight;
+    background-color : $primaryLight;
+    border: 2px solid transparent;
+
+    &:hover{
+      background-color : $primaryDark;
+      border-color: $primaryLight;
+    }
   }
 
   &.btn-primary-nb {
-    border           : none;
     border-radius    : 10px;
     color            : $white;
-    background-image : $gradientDarkToLight;
+    background-color : $primaryLight;
+    border: 2px solid transparent;
+    &:hover{
+      border-color : $primaryLight;
+      background-color : $primaryDark;
+    }
   }
 
   &.btn-secondary {
     border           : none;
     color            : $primaryDark;
-    background-image : $gradientSecondaryToLight;
+    background : $white;
   }
 
   &.btn-secondary-nb {
-    border           : none;
     border-radius    : 10px;
-    color            : $primaryDark;
-    background-image : $gradientSecondaryToLight;
+    color            : $white;
+    background : $secondary;
+    border: 2px solid transparent;
+
+    &:hover{
+      border-color : $secondary;
+    }
   }
 
   &.btn-greenLight {
     border           : none;
     color            : $primaryDark;
     background-color : $greenLight;
+
   }
 
   &.btn-greenPrimary {
     border           : none;
     color            : $white;
     background-color : $greenPrimary;
+
+    &:hover{
+      background-color : #257466;
+    }
   }
 
   &.btn-red {
     border           : none;
     color            : $white;
-    background : $gradientRed;
+    background : #be2626;
+    &:hover{
+      background-color : #a21f1f;
+    }
   }
   &.btn-yellow{
     border           : none;
     color            : $white;
-    background : linear-gradient(90.18deg, #D6AC41 0.16%, #C47601 100%);
+    background : #dcbb33;
+    &:hover{
+      background-color : #c5a22e;
+    }
   }
 
   svg {
     vertical-align : text-top;
   }
 
-  &:hover {
-    background-position : 100% 0;
-  }
-
   &:focus {
     outline    : none;
-    box-shadow : $boxShadowIn;
+    //box-shadow : $boxShadowIn;
   }
 
   i {

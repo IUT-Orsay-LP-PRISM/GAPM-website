@@ -33,7 +33,7 @@
       padding       : 1.85rem 2.53rem;
       background    : white;
       border-radius : 10px;
-      box-shadow    : 0px 2px 4px rgba(0, 0, 0, 0.25);
+      //box-shadow    : 0px 2px 4px rgba(0, 0, 0, 0.25);
       @include max-width($screenMd) {
         @include mx(2.5);
       }
@@ -119,7 +119,7 @@
                 width           : 2.5rem;
                 height          : 2.5rem;
                 border-radius   : 10px;
-                box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
+                //box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
               }
             }
           }

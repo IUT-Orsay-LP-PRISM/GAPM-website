@@ -9,7 +9,8 @@
     top              : 0;
     align-items      : center;
     justify-content  : space-between;
-    box-shadow       : $boxShadowOut;
+    //box-shadow       : $boxShadowOut;
+    border-bottom: 1px solid #dad8d8;
     transition       : all .3s ease-in-out;
     height           : 100px;
     @include max-width($screenMd) {
@@ -20,6 +21,7 @@
     &.transparent {
       background-color : transparent;
       box-shadow       : none;
+      border-bottom: 1px solid transparent;
       transition       : all .3s ease-in-out;
 
       .menu-left, .menu-right {
@@ -113,7 +115,9 @@
         width            : 100%;
         background-color : white;
         border-radius    : 10px;
-        box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.45);
+        //box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.45);
+        border: 1px solid #dad8d8;
+
         box-sizing       : border-box;
         overflow         : hidden;
         opacity          : 0;
@@ -182,7 +186,7 @@
     background      : $white;
     transition      : all .3s ease-in-out;
     height          : 100px;
-    box-shadow      : $boxShadowOut;
+    //box-shadow      : $boxShadowOut;
     @include px(2);
     @include py(1);
 
@@ -233,7 +237,7 @@
     &.down {
       background-color : $white;
       height           : 80px;
-      box-shadow       : $boxShadowOut;
+      //box-shadow       : $boxShadowOut;
     }
 
     .header__mobile__menu-btn {
