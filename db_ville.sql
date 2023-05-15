@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS gapm;
-CREATE DATABASE IF NOT EXISTS gapm;
-USE gapm;
+DROP DATABASE IF EXISTS projet;
+CREATE DATABASE IF NOT EXISTS projet;
+USE projet;
 
 --
 -- Structure de la table `Ville`

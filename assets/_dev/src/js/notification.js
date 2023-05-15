@@ -50,8 +50,7 @@ if (window.location.search.includes('message')) {
 function openNotification($content, $type = 'info') {
     modal.classList.add('--active');
     modal.classList.add('--' + $type);
-    modalContent.children[0].innerHTML = $type;
-    modalContent.children[1].innerHTML = $content;
+    modalContent.children[0].innerHTML = $content;
 }
 
 export function removeErrorInURL() {
