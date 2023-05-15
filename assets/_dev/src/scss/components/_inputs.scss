@@ -118,7 +118,8 @@ input, select, option, textarea {
       justify-content  : center;
       align-items      : center;
       background-color : $white;
-      box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
+      border: 1px solid #b5b5b5;
+      //box-shadow       : 0px 2px 4px rgba(0, 0, 0, 0.38);
       padding          : 0.5em;
       border-radius    : 10px;
       font-size        : 1em;
@@ -198,7 +199,7 @@ input, select, option, textarea {
         width           : 45px;
         height          : 42px;
         background      : $white;
-        box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
+        //box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
         border-radius   : 50%;
         transform       : translateY(-50%);
         transition      : all .5s;

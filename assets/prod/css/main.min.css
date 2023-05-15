@@ -2055,7 +2055,6 @@ body.intervenant {
           margin-bottom: 1rem; } }
   body.intervenant .search__contents {
     background-color: #FFFFFF;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     border-radius: 10px;
     padding: 2rem 3rem;
     max-width: 90rem;
@@ -2281,8 +2280,7 @@ body.intervenant {
         grid-area: body;
         padding: 1.85rem 2.53rem;
         background: white;
-        border-radius: 10px;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+        border-radius: 10px; }
         @media all and (max-width: 992px) {
           body.intervenant .myaccount__content__body, body.intervenant .wrapper__content__body {
             margin-left: 2.5rem;
@@ -2407,8 +2405,7 @@ body.intervenant {
         width: 60%;
         padding: 1.85rem 2.53rem;
         background: white;
-        border-radius: 10px;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+        border-radius: 10px; }
         @media all and (max-width: 992px) {
           body.intervenant .prendreRdv__content__body {
             margin-left: 2.5rem;
@@ -2467,8 +2464,7 @@ body.intervenant {
                 cursor: pointer;
                 width: 2.5rem;
                 height: 2.5rem;
-                border-radius: 10px;
-                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+                border-radius: 10px; }
           body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates {
             background-color: #DCE6F2;
             border-radius: 10px;
@@ -2561,8 +2557,7 @@ body.intervenant {
   body.intervenant .myrdv__content {
     padding: 1.85rem 2.53rem;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+    border-radius: 10px; }
   body.intervenant .myrdv__nav ul {
     margin-bottom: 1.5rem;
     display: flex;
@@ -2610,7 +2605,6 @@ body.intervenant {
       display: block; }
   body.intervenant .myrdv__contents {
     background-color: #FFFFFF;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     border-radius: 10px;
     padding: 2rem 3rem;
     max-width: 90rem;
@@ -2748,33 +2742,40 @@ body.intervenant {
     border-radius: 25px;
     background-size: 200% 100%;
     padding: .59rem 1rem;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     display: flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
-    transition: all .5s ease-in-out;
+    transition: all .2s ease-in-out;
     text-align: center;
     cursor: pointer;
     /* Bouton Primaire - Bleu foncé vers bleu clair */ }
     body.intervenant .btn.btn-primary {
-      border: none;
       color: #FFFFFF;
-      background-image: linear-gradient(90deg, #257466 0%, #36A793 50%); }
+      background-color: #36A793;
+      border: 2px solid transparent; }
+      body.intervenant .btn.btn-primary:hover {
+        background-color: #257466;
+        border-color: #36A793; }
     body.intervenant .btn.btn-primary-nb {
-      border: none;
       border-radius: 10px;
       color: #FFFFFF;
-      background-image: linear-gradient(90deg, #257466 0%, #36A793 50%); }
+      background-color: #36A793;
+      border: 2px solid transparent; }
+      body.intervenant .btn.btn-primary-nb:hover {
+        border-color: #36A793;
+        background-color: #257466; }
     body.intervenant .btn.btn-secondary {
       border: none;
       color: #257466;
-      background-image: linear-gradient(90deg, #FFFFFF 0%, #F1FAFB 50%); }
+      background: #FFFFFF; }
     body.intervenant .btn.btn-secondary-nb {
-      border: none;
       border-radius: 10px;
-      color: #257466;
-      background-image: linear-gradient(90deg, #FFFFFF 0%, #F1FAFB 50%); }
+      color: #FFFFFF;
+      background: #86CABE;
+      border: 2px solid transparent; }
+      body.intervenant .btn.btn-secondary-nb:hover {
+        border-color: #86CABE; }
     body.intervenant .btn.btn-greenLight {
       border: none;
       color: #257466;
@@ -2786,18 +2787,19 @@ body.intervenant {
     body.intervenant .btn.btn-red {
       border: none;
       color: #FFFFFF;
-      background: linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%); }
+      background: #be2626; }
+      body.intervenant .btn.btn-red:hover {
+        background-color: #a21f1f; }
     body.intervenant .btn.btn-yellow {
       border: none;
       color: #FFFFFF;
-      background: linear-gradient(90.18deg, #D6AC41 0.16%, #C47601 100%); }
+      background: #dcbb33; }
+      body.intervenant .btn.btn-yellow:hover {
+        background-color: #c5a22e; }
     body.intervenant .btn svg {
       vertical-align: text-top; }
-    body.intervenant .btn:hover {
-      background-position: 100% 0; }
     body.intervenant .btn:focus {
-      outline: none;
-      box-shadow: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+      outline: none; }
     body.intervenant .btn i {
       margin-right: calc(1.48rem / 2); }
   body.intervenant .input-container {
@@ -2885,7 +2887,7 @@ body.intervenant {
         justify-content: center;
         align-items: center;
         background-color: #FFFFFF;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        border: 1px solid #b5b5b5;
         padding: 0.5em;
         border-radius: 10px;
         font-size: 1em;
@@ -2947,7 +2949,6 @@ body.intervenant {
           width: 45px;
           height: 42px;
           background: #FFFFFF;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           border-radius: 50%;
           transform: translateY(-50%);
           transition: all .5s; }
@@ -2974,7 +2975,7 @@ body.intervenant {
     top: 0;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+    border-bottom: 1px solid #dad8d8;
     transition: all .3s ease-in-out;
     height: 100px; }
     @media all and (max-width: 992px) {
@@ -2983,6 +2984,7 @@ body.intervenant {
     body.intervenant .header__nav.transparent {
       background-color: transparent;
       box-shadow: none;
+      border-bottom: 1px solid transparent;
       transition: all .3s ease-in-out; }
       body.intervenant .header__nav.transparent .menu-left li a, body.intervenant .header__nav.transparent .menu-right li a {
         color: #FFFFFF !important; }
@@ -3098,7 +3100,7 @@ body.intervenant {
       width: 100%;
       background-color: white;
       border-radius: 10px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.45);
+      border: 1px solid #dad8d8;
       box-sizing: border-box;
       overflow: hidden;
       opacity: 0;
@@ -3144,7 +3146,6 @@ body.intervenant {
     background: #FFFFFF;
     transition: all .3s ease-in-out;
     height: 100px;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 1rem;
@@ -3176,8 +3177,7 @@ body.intervenant {
       visibility: visible; }
     body.intervenant .header__mobile.down {
       background-color: #FFFFFF;
-      height: 80px;
-      box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+      height: 80px; }
     body.intervenant .header__mobile .header__mobile__menu-btn span {
       background-color: #36A793; }
     body.intervenant .header__mobile .header__mobile__logo h1 {
@@ -3515,7 +3515,6 @@ body.intervenant {
     top: 2.6rem;
     left: 0;
     width: 100%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
     border-radius: 0 0 10px 10px;
     font-size: 18px;
     background-color: #FFFFFF;
@@ -3634,7 +3633,7 @@ body.intervenant {
     body.intervenant .notification__close {
       cursor: pointer; }
   body.intervenant .icon {
-    background: linear-gradient(180deg, #257466 0%, #36A793 100%);
+    background: #36A793;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 1px;
@@ -3911,7 +3910,6 @@ body.demandeur {
           margin-bottom: 1rem; } }
   body.demandeur .search__contents {
     background-color: #FFFFFF;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     border-radius: 10px;
     padding: 2rem 3rem;
     max-width: 90rem;
@@ -4137,8 +4135,7 @@ body.demandeur {
         grid-area: body;
         padding: 1.85rem 2.53rem;
         background: white;
-        border-radius: 10px;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+        border-radius: 10px; }
         @media all and (max-width: 992px) {
           body.demandeur .myaccount__content__body, body.demandeur .wrapper__content__body {
             margin-left: 2.5rem;
@@ -4263,8 +4260,7 @@ body.demandeur {
         width: 60%;
         padding: 1.85rem 2.53rem;
         background: white;
-        border-radius: 10px;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+        border-radius: 10px; }
         @media all and (max-width: 992px) {
           body.demandeur .prendreRdv__content__body {
             margin-left: 2.5rem;
@@ -4323,8 +4319,7 @@ body.demandeur {
                 cursor: pointer;
                 width: 2.5rem;
                 height: 2.5rem;
-                border-radius: 10px;
-                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+                border-radius: 10px; }
           body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates {
             background-color: #DCE6F2;
             border-radius: 10px;
@@ -4417,8 +4412,7 @@ body.demandeur {
   body.demandeur .myrdv__content {
     padding: 1.85rem 2.53rem;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); }
+    border-radius: 10px; }
   body.demandeur .myrdv__nav ul {
     margin-bottom: 1.5rem;
     display: flex;
@@ -4466,7 +4460,6 @@ body.demandeur {
       display: block; }
   body.demandeur .myrdv__contents {
     background-color: #FFFFFF;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     border-radius: 10px;
     padding: 2rem 3rem;
     max-width: 90rem;
@@ -4604,33 +4597,40 @@ body.demandeur {
     border-radius: 25px;
     background-size: 200% 100%;
     padding: .59rem 1rem;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     display: flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
-    transition: all .5s ease-in-out;
+    transition: all .2s ease-in-out;
     text-align: center;
     cursor: pointer;
     /* Bouton Primaire - Bleu foncé vers bleu clair */ }
     body.demandeur .btn.btn-primary {
-      border: none;
       color: #FFFFFF;
-      background-image: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
+      background-color: #5154EC;
+      border: 2px solid transparent; }
+      body.demandeur .btn.btn-primary:hover {
+        background-color: #393BAA;
+        border-color: #5154EC; }
     body.demandeur .btn.btn-primary-nb {
-      border: none;
       border-radius: 10px;
       color: #FFFFFF;
-      background-image: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
+      background-color: #5154EC;
+      border: 2px solid transparent; }
+      body.demandeur .btn.btn-primary-nb:hover {
+        border-color: #5154EC;
+        background-color: #393BAA; }
     body.demandeur .btn.btn-secondary {
       border: none;
       color: #393BAA;
-      background-image: linear-gradient(90deg, #FFFFFF 0%, #F1FAFB 50%); }
+      background: #FFFFFF; }
     body.demandeur .btn.btn-secondary-nb {
-      border: none;
       border-radius: 10px;
-      color: #393BAA;
-      background-image: linear-gradient(90deg, #FFFFFF 0%, #F1FAFB 50%); }
+      color: #FFFFFF;
+      background: #7EA6F4;
+      border: 2px solid transparent; }
+      body.demandeur .btn.btn-secondary-nb:hover {
+        border-color: #7EA6F4; }
     body.demandeur .btn.btn-greenLight {
       border: none;
       color: #393BAA;
@@ -4642,18 +4642,19 @@ body.demandeur {
     body.demandeur .btn.btn-red {
       border: none;
       color: #FFFFFF;
-      background: linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%); }
+      background: #be2626; }
+      body.demandeur .btn.btn-red:hover {
+        background-color: #a21f1f; }
     body.demandeur .btn.btn-yellow {
       border: none;
       color: #FFFFFF;
-      background: linear-gradient(90.18deg, #D6AC41 0.16%, #C47601 100%); }
+      background: #dcbb33; }
+      body.demandeur .btn.btn-yellow:hover {
+        background-color: #c5a22e; }
     body.demandeur .btn svg {
       vertical-align: text-top; }
-    body.demandeur .btn:hover {
-      background-position: 100% 0; }
     body.demandeur .btn:focus {
-      outline: none;
-      box-shadow: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+      outline: none; }
     body.demandeur .btn i {
       margin-right: calc(1.48rem / 2); }
   body.demandeur .input-container {
@@ -4741,7 +4742,7 @@ body.demandeur {
         justify-content: center;
         align-items: center;
         background-color: #FFFFFF;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
+        border: 1px solid #b5b5b5;
         padding: 0.5em;
         border-radius: 10px;
         font-size: 1em;
@@ -4803,7 +4804,6 @@ body.demandeur {
           width: 45px;
           height: 42px;
           background: #FFFFFF;
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           border-radius: 50%;
           transform: translateY(-50%);
           transition: all .5s; }
@@ -4830,7 +4830,7 @@ body.demandeur {
     top: 0;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
+    border-bottom: 1px solid #dad8d8;
     transition: all .3s ease-in-out;
     height: 100px; }
     @media all and (max-width: 992px) {
@@ -4839,6 +4839,7 @@ body.demandeur {
     body.demandeur .header__nav.transparent {
       background-color: transparent;
       box-shadow: none;
+      border-bottom: 1px solid transparent;
       transition: all .3s ease-in-out; }
       body.demandeur .header__nav.transparent .menu-left li a, body.demandeur .header__nav.transparent .menu-right li a {
         color: #FFFFFF !important; }
@@ -4954,7 +4955,7 @@ body.demandeur {
       width: 100%;
       background-color: white;
       border-radius: 10px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.45);
+      border: 1px solid #dad8d8;
       box-sizing: border-box;
       overflow: hidden;
       opacity: 0;
@@ -5000,7 +5001,6 @@ body.demandeur {
     background: #FFFFFF;
     transition: all .3s ease-in-out;
     height: 100px;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38);
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 1rem;
@@ -5032,8 +5032,7 @@ body.demandeur {
       visibility: visible; }
     body.demandeur .header__mobile.down {
       background-color: #FFFFFF;
-      height: 80px;
-      box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.38); }
+      height: 80px; }
     body.demandeur .header__mobile .header__mobile__menu-btn span {
       background-color: #5154EC; }
     body.demandeur .header__mobile .header__mobile__logo h1 {
@@ -5371,7 +5370,6 @@ body.demandeur {
     top: 2.6rem;
     left: 0;
     width: 100%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.38);
     border-radius: 0 0 10px 10px;
     font-size: 18px;
     background-color: #FFFFFF;
@@ -5490,7 +5488,7 @@ body.demandeur {
     body.demandeur .notification__close {
       cursor: pointer; }
   body.demandeur .icon {
-    background: linear-gradient(180deg, #393BAA 0%, #5154EC 100%);
+    background: #5154EC;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 1px;
