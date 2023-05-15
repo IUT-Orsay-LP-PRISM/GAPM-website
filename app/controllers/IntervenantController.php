@@ -6,6 +6,7 @@ use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
+use App\models\entity\TypeVoiture;
 use App\models\entity\Ville;
 use App\models\entity\Voiture;
 use App\models\entity\Emprunt;
@@ -141,15 +142,18 @@ class IntervenantController extends Template
         $dateDebut = $_POST['dateDu'];
         $dateFin = $_POST['dateAu'];
 
-        $voitureDispo = $this->entityManager->getRepository(Voiture::class)->findOneBy(['typeVoiture' => $idTypeVoiture, 'disponible' => true]);
+        $voituresByType = $this->entityManager->getRepository(Voiture::class)->findBy(['typeVoiture' => $idTypeVoiture]);
+        $emprunts = $this->entityManager->getRepository(Emprunt::class)->findAll();
+        $empruntsEnCours = array_filter($emprunts, fn($emprunt) => $emprunt->getDateFin() > (new \DateTime())->format('Y-m-d'));
+        $voitureDispo = array_filter($voituresByType, fn($voiture) => !in_array($voiture, array_map(fn($emprunt) => $emprunt->getVoiture(), $empruntsEnCours)));
+        $voitureDispo = reset($voitureDispo);
+
 
         if ($voitureDispo == null) {
             $referer = self::addMessageToUrl('Aucun véhicule disponible.', 'my-account');
             header("Location: $referer");
             exit();
         }
-
-        $voitureDispo->setDisponible(false);
 
         $idIntervenant = Session::get('user')->getIdDemandeur();
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);

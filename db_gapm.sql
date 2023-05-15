@@ -445,7 +445,6 @@ CREATE TABLE `Voiture`
 (
     `idVoiture`       int(11) NOT NULL,
     `immatriculation` varchar(50) NOT NULL,
-    `disponible`      tinyint(1) NOT NULL DEFAULT 1,
     `idTypeVoiture`   int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4

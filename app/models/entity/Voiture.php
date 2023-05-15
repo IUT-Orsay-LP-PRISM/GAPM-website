@@ -16,9 +16,6 @@ class Voiture
     #[ORM\Column]
     private string $immatriculation;
 
-    #[ORM\Column]
-    private bool $disponible;
-
     #[ORM\ManyToOne(targetEntity: TypeVoiture::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idTypeVoiture', referencedColumnName: 'idTypeVoiture', nullable: false)]
     private TypeVoiture $typeVoiture;
@@ -75,22 +72,4 @@ class Voiture
     {
         $this->typeVoiture = $typeVoiture;
     }
-
-    /**
-     * @return bool
-     */
-    public function isDisponible(): bool
-    {
-        return $this->disponible;
-    }
-
-    /**
-     * @param bool $disponible
-     */
-    public function setDisponible(bool $disponible): void
-    {
-        $this->disponible = $disponible;
-    }
-
-
 }

@@ -58,6 +58,9 @@
                 <li class="js-emprunt-nav --active" data-count="{{ emprunts.current|length }}" data-id="current">
                     Actuels
                 </li>
+                <li class="js-emprunt-nav" data-count="{{ emprunts.upcoming|length }}" data-id="upcoming">
+                    Prochains
+                </li>
                 <li class="js-emprunt-nav" data-count="{{ emprunts.waiting|length }}" data-id="waiting">
                     En attente de confirmation
                 </li>
@@ -68,6 +71,9 @@
             <div class="emprunt__list">
                 <div id="current" class="js-emprunt-content --display">
                     {% include '/intervenant/emprunt/emprunts.twig' with {'emprunts': emprunts.current} %}
+                </div>
+                <div id="upcoming" class="js-emprunt-content">
+                    {% include '/intervenant/emprunt/emprunts.twig' with {'emprunts': emprunts.upcoming} %}
                 </div>
                 <div id="waiting" class="js-emprunt-content">
                     {% include '/intervenant/emprunt/emprunts.twig' with {'emprunts': emprunts.waiting} %}
