@@ -2360,6 +2360,20 @@ body.intervenant {
           margin: 0; }
       body.intervenant .myaccount__form__intervenant__oldEmprunts, body.intervenant .wrapper__form__intervenant__oldEmprunts {
         margin-top: 5rem; }
+        body.intervenant .myaccount__form__intervenant__oldEmprunts__table, body.intervenant .wrapper__form__intervenant__oldEmprunts__table {
+          width: 100%;
+          font-family: "Open Sans", sans-serif; }
+          body.intervenant .myaccount__form__intervenant__oldEmprunts__table thead, body.intervenant .wrapper__form__intervenant__oldEmprunts__table thead {
+            color: #257466;
+            font-weight: 600;
+            border-bottom: solid #b5b5b5 1px; }
+            body.intervenant .myaccount__form__intervenant__oldEmprunts__table thead tr td, body.intervenant .wrapper__form__intervenant__oldEmprunts__table thead tr td {
+              padding: 0 0 1rem 0; }
+          body.intervenant .myaccount__form__intervenant__oldEmprunts__table tbody, body.intervenant .wrapper__form__intervenant__oldEmprunts__table tbody {
+            color: #144139;
+            font-weight: 400; }
+            body.intervenant .myaccount__form__intervenant__oldEmprunts__table tbody tr td, body.intervenant .wrapper__form__intervenant__oldEmprunts__table tbody tr td {
+              padding: 1rem 0; }
     body.intervenant .myaccount__form .btn:not(.btn-emprunter), body.intervenant .wrapper__form .btn:not(.btn-emprunter) {
       margin: auto;
       margin-top: 2.4rem; }
@@ -4155,6 +4169,20 @@ body.demandeur {
           margin: 0; }
       body.demandeur .myaccount__form__intervenant__oldEmprunts, body.demandeur .wrapper__form__intervenant__oldEmprunts {
         margin-top: 5rem; }
+        body.demandeur .myaccount__form__intervenant__oldEmprunts__table, body.demandeur .wrapper__form__intervenant__oldEmprunts__table {
+          width: 100%;
+          font-family: "Open Sans", sans-serif; }
+          body.demandeur .myaccount__form__intervenant__oldEmprunts__table thead, body.demandeur .wrapper__form__intervenant__oldEmprunts__table thead {
+            color: #393BAA;
+            font-weight: 600;
+            border-bottom: solid #b5b5b5 1px; }
+            body.demandeur .myaccount__form__intervenant__oldEmprunts__table thead tr td, body.demandeur .wrapper__form__intervenant__oldEmprunts__table thead tr td {
+              padding: 0 0 1rem 0; }
+          body.demandeur .myaccount__form__intervenant__oldEmprunts__table tbody, body.demandeur .wrapper__form__intervenant__oldEmprunts__table tbody {
+            color: #1E1E3D;
+            font-weight: 400; }
+            body.demandeur .myaccount__form__intervenant__oldEmprunts__table tbody tr td, body.demandeur .wrapper__form__intervenant__oldEmprunts__table tbody tr td {
+              padding: 1rem 0; }
     body.demandeur .myaccount__form .btn:not(.btn-emprunter), body.demandeur .wrapper__form .btn:not(.btn-emprunter) {
       margin: auto;
       margin-top: 2.4rem; }

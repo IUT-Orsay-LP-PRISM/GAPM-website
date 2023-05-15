@@ -226,8 +226,31 @@
 
       &__oldEmprunts {
         margin-top : 5rem;
-      }
 
+        &__table {
+          width : 100%;
+          font-family : $mainFont;
+          thead {
+            color : $primaryDark;
+            font-weight: 600;
+            border-bottom: solid $greyLight 1px;
+            tr {
+              td {
+                padding: 0 0 1rem 0;
+              }
+            }
+          }
+          tbody {
+            color : $black;
+            font-weight: 400;
+            tr {
+              td {
+                padding: 1rem 0;
+              }
+            }
+          }
+        }
+      }
     }
 
     .btn:not(.btn-emprunter) {
