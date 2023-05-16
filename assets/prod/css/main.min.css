@@ -1844,14 +1844,14 @@ body.intervenant {
       content: "";
       transition: all .3s ease-out;
       position: absolute;
-      bottom: 5px;
+      bottom: 7.5px;
       z-index: -1;
       left: 0;
       right: 0;
       margin: auto;
       width: 100%;
-      height: 15px;
-      background-color: #36A793; }
+      height: 10px;
+      background-color: #86CABE; }
     body.intervenant .text__underline-light {
       position: relative;
       display: inline-block; }
@@ -3711,14 +3711,14 @@ body.demandeur {
       content: "";
       transition: all .3s ease-out;
       position: absolute;
-      bottom: 5px;
+      bottom: 7.5px;
       z-index: -1;
       left: 0;
       right: 0;
       margin: auto;
       width: 100%;
-      height: 15px;
-      background-color: #5154EC; }
+      height: 10px;
+      background-color: #7EA6F4; }
     body.demandeur .text__underline-light {
       position: relative;
       display: inline-block; }
