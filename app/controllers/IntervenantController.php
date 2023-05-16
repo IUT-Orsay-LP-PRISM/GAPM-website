@@ -2,13 +2,10 @@
 
 namespace App\controllers;
 
-use App\models\entity\Commentaire;
 use App\models\entity\Demandeur;
 use App\models\entity\Intervenant;
-use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
-use App\models\entity\TypeVoiture;
 use App\models\entity\Ville;
 use App\models\entity\Voiture;
 use App\models\entity\Emprunt;
@@ -27,20 +24,36 @@ class IntervenantController extends Template
         $this->intervenantRepository = $entityManager->getRepository(Intervenant::class);
     }
 
-    public function profile()
+    public function profile(): void
     {
         $idIntervenant = htmlspecialchars($_GET['id']);
-
         $intervenant = $this->intervenantRepository->find($idIntervenant);
 
+        if ($intervenant == null || !is_numeric($idIntervenant)) {
+            $referer = self::addMessageToUrl('Cette Intervenant n\'existe pas.', 'msg-error');
+            header("Location: $referer");
+            exit();
+        }
 
-        self::render('intervenants/profile.twig', [
+        $notes = $this->intervenantRepository->findNoteById($idIntervenant);
+        $avg = null;
+        if ($notes != null){
+            foreach ($notes as $note) {
+                $avg += $note['note'];
+            }
+            $avg = $avg / count($notes);
+            $avg = round($avg, 1);
+        }
+
+        self::render('intervenant/profile.twig', [
             'title' => 'Profil de : ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
+            'notes' => $notes,
+            'note' => $avg,
             'int' => $intervenant,
         ]);
     }
     
-    public function index()
+    public function index(): void
     {
         self::render('inscription_intervenant.twig', [
             'title' => "Inscription d'un intervenant",
@@ -50,7 +63,7 @@ class IntervenantController extends Template
         ]);
     }
 
-    public function devenirIntervenant()
+    public function devenirIntervenant(): void
     {
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
@@ -89,7 +102,7 @@ class IntervenantController extends Template
         }
     }
 
-    public function update()
+    public function update(): void
     {
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
@@ -140,7 +153,7 @@ class IntervenantController extends Template
     }
 
 
-    public function toggleModeIntervenant()
+    public function toggleModeIntervenant(): void
     {
         $sessionMode = Session::get('modeIntervenant');
         if ($sessionMode == null) {
@@ -151,7 +164,7 @@ class IntervenantController extends Template
         header("Location: /");
     }
 
-    public function emprunterVehicule()
+    public function emprunterVehicule(): void
     {
         $idTypeVoiture = $_POST['typeVehicule'];
         $dateDebut = $_POST['dateDu'];

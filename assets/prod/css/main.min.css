@@ -1844,14 +1844,14 @@ body.intervenant {
       content: "";
       transition: all .3s ease-out;
       position: absolute;
-      bottom: 5px;
+      bottom: 7.5px;
       z-index: -1;
       left: 0;
       right: 0;
       margin: auto;
       width: 100%;
-      height: 15px;
-      background-color: #36A793; }
+      height: 10px;
+      background-color: #86CABE; }
     body.intervenant .text__underline-light {
       position: relative;
       display: inline-block; }
@@ -1873,6 +1873,10 @@ body.intervenant {
     font-weight: 600; }
   body.intervenant .text__primary {
     color: #36A793; }
+  body.intervenant .text__small {
+    font-size: 1rem;
+    color: grey;
+    font-weight: 500; }
   body.intervenant p {
     font-family: "Open Sans", sans-serif; }
   body.intervenant ::-webkit-scrollbar {
@@ -2728,17 +2732,24 @@ body.intervenant {
     margin-top: 2rem; }
   body.intervenant .profile__infos-spelist {
     margin-top: .6rem; }
-  body.intervenant .profile__infos-speitem {
+  body.intervenant .profile__infos-speitem, body.intervenant .profile__infos-note {
     display: flex;
     flex-direction: row;
     align-items: center;
     font-family: "Open Sans", sans-serif;
     font-size: 1.15rem; }
-    body.intervenant .profile__infos-speitem::before {
+    body.intervenant .profile__infos-speitem::before, body.intervenant .profile__infos-note::before {
       content: "•";
       margin-right: 1rem;
       font-size: 2rem;
       color: #257466; }
+  body.intervenant .profile__infos-note {
+    margin-top: .5rem;
+    font-weight: 600; }
+    body.intervenant .profile__infos-note svg {
+      width: 25px;
+      height: auto;
+      margin-right: .35rem; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -3711,14 +3722,14 @@ body.demandeur {
       content: "";
       transition: all .3s ease-out;
       position: absolute;
-      bottom: 5px;
+      bottom: 7.5px;
       z-index: -1;
       left: 0;
       right: 0;
       margin: auto;
       width: 100%;
-      height: 15px;
-      background-color: #5154EC; }
+      height: 10px;
+      background-color: #7EA6F4; }
     body.demandeur .text__underline-light {
       position: relative;
       display: inline-block; }
@@ -3740,6 +3751,10 @@ body.demandeur {
     font-weight: 600; }
   body.demandeur .text__primary {
     color: #5154EC; }
+  body.demandeur .text__small {
+    font-size: 1rem;
+    color: grey;
+    font-weight: 500; }
   body.demandeur p {
     font-family: "Open Sans", sans-serif; }
   body.demandeur ::-webkit-scrollbar {
@@ -4595,17 +4610,24 @@ body.demandeur {
     margin-top: 2rem; }
   body.demandeur .profile__infos-spelist {
     margin-top: .6rem; }
-  body.demandeur .profile__infos-speitem {
+  body.demandeur .profile__infos-speitem, body.demandeur .profile__infos-note {
     display: flex;
     flex-direction: row;
     align-items: center;
     font-family: "Open Sans", sans-serif;
     font-size: 1.15rem; }
-    body.demandeur .profile__infos-speitem::before {
+    body.demandeur .profile__infos-speitem::before, body.demandeur .profile__infos-note::before {
       content: "•";
       margin-right: 1rem;
       font-size: 2rem;
       color: #393BAA; }
+  body.demandeur .profile__infos-note {
+    margin-top: .5rem;
+    font-weight: 600; }
+    body.demandeur .profile__infos-note svg {
+      width: 25px;
+      height: auto;
+      margin-right: .35rem; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;

@@ -2,10 +2,26 @@
 
 namespace App\models\repository;
 
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityRepository;
 
 class IntervenantRepository extends EntityRepository
 {
+
+    /**
+     * @throws Exception
+     */
+    public function findNoteById($id){
+        return $this->getEntityManager()->getConnection()->executeQuery(
+            "SELECT idIntervenant, note, description  FROM Commentaire 
+            INNER JOIN RDV R on Commentaire.idCommentaire = R.idCommentaire 
+            WHERE idIntervenant = :id",
+            [
+                'id' => $id
+            ]
+        )->fetchAllAssociative();
+    }
+
     public function findByNameOrCity($nom, $city)
     {
         /* $newnom = '%'.$nom.'%';
@@ -67,4 +83,5 @@ class IntervenantRepository extends EntityRepository
             ->setMaxResults(10);
         return $qb->distinct()->getQuery()->getResult();
     }
+
 }

@@ -70,16 +70,16 @@
         </div>
             <div class="emprunt__list">
                 <div id="current" class="js-emprunt-content --display">
-                    {% include '/intervenant/emprunt/emprunts.twig' with {'emprunts': emprunts.current} %}
+                    {% include '/intervenant/emprunts.twig' with {'emprunts': emprunts.current} %}
                 </div>
                 <div id="upcoming" class="js-emprunt-content">
-                    {% include '/intervenant/emprunt/emprunts.twig' with {'emprunts': emprunts.upcoming} %}
+                    {% include '/intervenant/emprunts.twig' with {'emprunts': emprunts.upcoming} %}
                 </div>
                 <div id="waiting" class="js-emprunt-content">
-                    {% include '/intervenant/emprunt/emprunts.twig' with {'emprunts': emprunts.waiting} %}
+                    {% include '/intervenant/emprunts.twig' with {'emprunts': emprunts.waiting} %}
                 </div>
                 <div id="passed" class="js-emprunt-content">
-                    {% include '/intervenant/emprunt/emprunts.twig' with {'emprunts': emprunts.passed} %}
+                    {% include '/intervenant/emprunts.twig' with {'emprunts': emprunts.passed} %}
                 </div>
             </div>
     </div>

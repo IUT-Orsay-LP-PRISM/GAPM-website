@@ -1,0 +1,64 @@
+{% extends "base.twig" %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<div class="sample wrapper">
+		<h1>Médecin : <span class="text__light">{{ int.nom }} {{ int.prenom }}</span></h1>
+		<div class="sample__container">
+			<div class="sample__content profile">
+				<div class="profile__infos">
+					<div class="profile__infos-img">
+						<img src="assets/img/profils/exemple_doctor.jpg" alt="User">
+					</div>
+					<div class="profile__infos-content">
+						<p class="profile__infos-adr">
+							<span class="text__bold">Adresse :</span> {{ int.adressePro }}<br>
+						</p>
+						<p class="profile__infos-adr">
+							<span class="text__bold">Ville :</span> {{ int.ville.nom }} - <span class="text__primary text__bold">{{ int.ville.codePostal }}</span>
+						</p>
+						{% if int.specialites is not empty %}
+						<h3 class="profile__infos-spe">
+							Specialité(s) exercée(s) :
+						</h3>
+						<ul class="profile__infos-spelist">
+							{% for spe in int.specialites %}
+								<li class="profile__infos-speitem">
+									{{ spe.libelle }}
+								</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
+						{% if notes is not empty %}
+						<h3 class="profile__infos-spe">
+							Avis reçus :
+						</h3>
+						<ul class="profile__infos-notelist">
+							<li class="profile__infos-note">
+								<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_179_3118)"><path d="M1.05057 9.81714L3.86891 11.8755L2.79857 15.1902C2.6256 15.7043 2.62341 16.2605 2.79233 16.776C2.96124 17.2914 3.29221 17.7385 3.73591 18.0505C4.172 18.3725 4.70047 18.545 5.24257 18.5423C5.78467 18.5396 6.31139 18.3618 6.74424 18.0354L9.50003 16.0072L12.2566 18.0331C12.6919 18.3532 13.2175 18.5272 13.7579 18.5298C14.2983 18.5324 14.8256 18.3636 15.264 18.0477C15.7024 17.7318 16.0293 17.285 16.1978 16.7715C16.3662 16.2581 16.3675 15.7044 16.2015 15.1902L15.1312 11.8755L17.9495 9.81714C18.3842 9.49929 18.7074 9.05219 18.8728 8.5397C19.0383 8.02721 19.0376 7.47554 18.8707 6.96349C18.7039 6.45144 18.3795 6.00521 17.944 5.68852C17.5084 5.37184 16.9839 5.20091 16.4453 5.20014H12.9834L11.9328 1.92581C11.7676 1.4104 11.443 0.960775 11.0058 0.641774C10.5685 0.322773 10.0413 0.150879 9.50003 0.150879C8.95879 0.150879 8.43154 0.322773 7.99431 0.641774C7.55707 0.960775 7.23244 1.4104 7.06724 1.92581L6.0167 5.20014H2.55791C2.01937 5.20091 1.49485 5.37184 1.05926 5.68852C0.62368 6.00521 0.299313 6.45144 0.132493 6.96349C-0.0343261 7.47554 -0.0350644 8.02721 0.130384 8.5397C0.295832 9.05219 0.619004 9.49929 1.05374 9.81714H1.05057Z" fill="#D6AC41"></path></g><defs><clipPath id="clip0_179_3118"><rect width="19" height="19" fill="white"></rect></clipPath></defs></svg>
+								&nbsp;{{ note }} / 5&nbsp;
+								<span class="text__small">sur {{ notes|length }} avis</span>
+							</li>
+						</ul>
+						{% endif %}
+						<div class="profile__infos-contact">
+							<a href="mailto:{{ int.email }}" class="btn btn-primary-nb">
+								<i class="icon-fi-rr-envelope"></i>
+								Contacter
+							</a>
+							<a href="tel:{{ int.telephone }}" class="btn btn-greenPrimary">
+								<i class="icon-fi-rr-phone-call"></i>
+								Appeler
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="profile__gmap">
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
