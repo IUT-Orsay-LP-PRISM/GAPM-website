@@ -27,11 +27,28 @@ class IntervenantController extends Template
     public function profile(): void
     {
         $idIntervenant = htmlspecialchars($_GET['id']);
-
         $intervenant = $this->intervenantRepository->find($idIntervenant);
+
+        if ($intervenant == null || !is_numeric($idIntervenant)) {
+            $referer = self::addMessageToUrl('Cette Intervenant n\'existe pas.', 'msg-error');
+            header("Location: $referer");
+            exit();
+        }
+
+        $notes = $this->intervenantRepository->findNoteById($idIntervenant);
+        $avg = null;
+        if ($notes != null){
+            foreach ($notes as $note) {
+                $avg += $note['note'];
+            }
+            $avg = $avg / count($notes);
+            $avg = round($avg, 1);
+        }
 
         self::render('intervenant/profile.twig', [
             'title' => 'Profil de : ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
+            'notes' => $notes,
+            'note' => $avg,
             'int' => $intervenant,
         ]);
     }

@@ -76,6 +76,11 @@ h3 {
   &__primary{
     color: $primaryLight;
   }
+  &__small{
+    font-size: 1rem;
+    color: grey;
+    font-weight: 500;
+  }
 }
 
 p{
