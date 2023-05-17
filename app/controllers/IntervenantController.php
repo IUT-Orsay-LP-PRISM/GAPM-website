@@ -143,12 +143,14 @@ class IntervenantController extends Template
                 $this->entityManager->persist($currentDemandeur);
                 $this->entityManager->flush();
                 Session::set('user', $currentDemandeur);
+
             } catch (\Exception $e) {
                 $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
                 header("Location: $referer");
                 exit();
             }
-            header("Location: /");
+            $referer = self::addMessageToUrl('Vos informations ont bien été modifiées.', 'my-account');
+            header("Location: $referer");
         }
     }
 
