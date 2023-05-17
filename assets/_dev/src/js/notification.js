@@ -51,6 +51,15 @@ function openNotification($content, $type = 'info') {
     modal.classList.add('--active');
     modal.classList.add('--' + $type);
     modalContent.children[0].innerHTML = $content;
+
+    setTimeout(() => {
+        modal.classList.remove('--active');
+        setTimeout(() => {
+            modal.classList.remove('--' + $type);
+            modalContent.children[0].innerHTML = '';
+            removeErrorInURL();
+        }, 300);
+    }, 5000);
 }
 
 export function removeErrorInURL() {

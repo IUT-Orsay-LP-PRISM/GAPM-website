@@ -3650,11 +3650,13 @@ body.intervenant {
     right: 13px;
     bottom: 20px;
     opacity: 0;
-    visibility: hidden; }
+    visibility: hidden;
+    transition: all 0.3s ease-in-out; }
     body.intervenant .notification.--active {
       opacity: 1;
       visibility: visible;
-      transform: translateX(0); }
+      transform: translateX(0);
+      transition: all 0.3s ease-in-out; }
     body.intervenant .notification p {
       color: #434040;
       font-family: "Poppins", sans-serif;
@@ -5568,11 +5570,13 @@ body.demandeur {
     right: 13px;
     bottom: 20px;
     opacity: 0;
-    visibility: hidden; }
+    visibility: hidden;
+    transition: all 0.3s ease-in-out; }
     body.demandeur .notification.--active {
       opacity: 1;
       visibility: visible;
-      transform: translateX(0); }
+      transform: translateX(0);
+      transition: all 0.3s ease-in-out; }
     body.demandeur .notification p {
       color: #434040;
       font-family: "Poppins", sans-serif;
