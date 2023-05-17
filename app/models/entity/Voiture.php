@@ -2,7 +2,7 @@
 
 namespace App\models\entity;
 
-use App\models\Repository\VoitureRepository;
+use App\models\repository\VoitureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VoitureRepository::class)]

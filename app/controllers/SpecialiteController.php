@@ -6,7 +6,7 @@ namespace App\controllers;
 use App\models\entity\Demandeur;
 use App\models\entity\Specialite;
 use App\models\repository\DemandeurRepository;
-use App\models\Repository\SpecialiteRepository;
+use App\models\repository\SpecialiteRepository;
 use Doctrine\ORM\EntityManager;
 
 class SpecialiteController extends Template
