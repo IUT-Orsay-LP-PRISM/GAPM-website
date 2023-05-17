@@ -106,7 +106,7 @@ class IntervenantController extends Template
     {
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
-                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'my-account');
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'msg-warning');
                 header("Location: $referer");
                 exit();
             }
@@ -145,11 +145,11 @@ class IntervenantController extends Template
                 Session::set('user', $currentDemandeur);
 
             } catch (\Exception $e) {
-                $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'msg-error');
                 header("Location: $referer");
                 exit();
             }
-            $referer = self::addMessageToUrl('Vos informations ont bien été modifiées.', 'my-account');
+            $referer = self::addMessageToUrl('Vos informations ont bien été modifiées.', 'msg-success');
             header("Location: $referer");
         }
     }
