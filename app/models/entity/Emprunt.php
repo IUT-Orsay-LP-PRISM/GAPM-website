@@ -2,7 +2,7 @@
 
 namespace App\models\entity;
 
-use App\models\Repository\EmpruntRepository;
+use App\models\repository\EmpruntRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EmpruntRepository::class)]
