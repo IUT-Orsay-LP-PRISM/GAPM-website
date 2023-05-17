@@ -274,13 +274,40 @@ class DemandeurController extends Template
         } else {
             if (Session::get('user')->isIntervenant() && Session::get('modeIntervenant')) {
                 $voitures = $this->entityManager->getRepository(Voiture::class)->findAll();
-                $typesVoitureDisponible = $this->entityManager->getRepository(TypeVoiture::class)->findBy([
-                    'idTypeVoiture' => array_unique(array_map(function ($voiture) {
-                        return $voiture->isDisponible() ? $voiture->getTypeVoiture()->getIdTypeVoiture() : null;
-                    }, $voitures))
-                ]);
+                $typesVoiture = $this->entityManager->getRepository(TypeVoiture::class)->findAll();
+                $emprunts = $this->entityManager->getRepository(Emprunt::class)->findAll();
 
-                $emprunts = $this->entityManager->getRepository(Emprunt::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
+                $empruntsEnCours = array_filter($emprunts, fn($emprunt) => $emprunt->getDateFin() > (new \DateTime())->format('Y-m-d'));
+                $voituresDisponibles = array_filter($voitures, fn($voiture) => !in_array($voiture, array_map(fn($emprunt) => $emprunt->getVoiture(), $empruntsEnCours)));
+                $typesVoitureDisponible = array_values((array_filter($typesVoiture, fn($typeVoiture) => in_array($typeVoiture, array_map(fn($voiture) => $voiture->getTypeVoiture(), $voituresDisponibles)))));
+
+                $empruntsDeUser = $this->entityManager->getRepository(Emprunt::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
+
+                $empruntsWaiting = array_filter($empruntsDeUser, function ($emprunt) {
+                    return property_exists($emprunt, 'administration') && $emprunt->getAdministration() == null && $emprunt->getDateFin() >= date('Y-m-d');
+                });
+
+                $empruntsPassed = array_filter($empruntsDeUser, function ($emprunt) {
+                    return $emprunt->getDateFin() < date('Y-m-d');
+                });
+
+                $empruntsCurrent = array_filter($empruntsDeUser, function ($emprunt) {
+                    return $emprunt->getDateDebut() <= date('Y-m-d') && $emprunt->getDateFin() >= date('Y-m-d') && property_exists($emprunt, 'administration') && $emprunt->getAdministration() != null;
+                });
+
+                $empruntsUpcoming = array_filter($empruntsDeUser, function ($emprunt) use ($empruntsCurrent) {
+                    return $emprunt->getDateFin() >= date('Y-m-d') && property_exists($emprunt, 'administration') && $emprunt->getAdministration() != null && !in_array($emprunt, $empruntsCurrent);
+                });
+
+
+                $emprunts = [
+                    'waiting' => $empruntsWaiting,
+                    'passed' => $empruntsPassed,
+                    'current' => $empruntsCurrent,
+                    'upcoming' => $empruntsUpcoming
+                ];
+
+
                 self::render('demandeur/mon-compte.twig', [
                     'title' => 'Mon compte',
                     'typeVehicules' => $typesVoitureDisponible,

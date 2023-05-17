@@ -7,14 +7,16 @@
 	<link rel="icon" href="assets/img/logo.svg"/>
 	<title>{% block title %}{% endblock %} • GAPM</title>
 </head>
-<body class="{% if modeIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}"
+<body class="{% if modeIntervenant or isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}"
 	  data-log="{{ userLogged }}">
 <div id="loader"></div>
 {% if not no_header %}
 	{% include "includes/header.twig" %}
 {% endif %}
 <div id="content">
+
 	{% block content %}
+
 	{% endblock %}
 </div>
 
@@ -24,6 +26,7 @@
 <i id="popUp-prendre-RDV" class="popup-closed">{% include 'includes/popUpPrendreRDV.twig' %}</i>
 <i id="popUp-avis-RDV" class="popup-closed">{% include 'includes/popUpAvisRDV.twig' %}</i>
 {% include 'includes/notification.twig' %}
+
 
 <script src="assets/prod/js/main.min.js"></script>
 </body>

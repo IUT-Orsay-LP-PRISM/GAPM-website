@@ -24,7 +24,36 @@ class IntervenantController extends Template
         $this->intervenantRepository = $entityManager->getRepository(Intervenant::class);
     }
 
-    public function index()
+    public function profile(): void
+    {
+        $idIntervenant = htmlspecialchars($_GET['id']);
+        $intervenant = $this->intervenantRepository->find($idIntervenant);
+
+        if ($intervenant == null || !is_numeric($idIntervenant)){
+            $referer = self::addMessageToUrl('Cette Intervenant n\'existe pas.', 'msg-error');
+            header("Location: $referer");
+            exit();
+        }
+
+        $notes = $this->intervenantRepository->findNoteById($idIntervenant);
+        $avg = null;
+        if ($notes != null){
+            foreach ($notes as $note) {
+                $avg += $note['note'];
+            }
+            $avg = $avg / count($notes);
+            $avg = round($avg, 1);
+        }
+
+        self::render('intervenant/profile.twig', [
+            'title' => 'Profil de : ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
+            'notes' => $notes,
+            'note' => $avg,
+            'int' => $intervenant,
+        ]);
+    }
+    
+    public function index(): void
     {
         self::render('inscription_intervenant.twig', [
             'title' => "Inscription d'un intervenant",
@@ -34,7 +63,7 @@ class IntervenantController extends Template
         ]);
     }
 
-    public function devenirIntervenant()
+    public function devenirIntervenant(): void
     {
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
@@ -73,7 +102,7 @@ class IntervenantController extends Template
         }
     }
 
-    public function update()
+    public function update(): void
     {
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
@@ -124,7 +153,7 @@ class IntervenantController extends Template
     }
 
 
-    public function toggleModeIntervenant()
+    public function toggleModeIntervenant(): void
     {
         $sessionMode = Session::get('modeIntervenant');
         if ($sessionMode == null) {
@@ -135,21 +164,24 @@ class IntervenantController extends Template
         header("Location: /");
     }
 
-    public function emprunterVehicule()
+    public function emprunterVehicule(): void
     {
         $idTypeVoiture = $_POST['typeVehicule'];
         $dateDebut = $_POST['dateDu'];
         $dateFin = $_POST['dateAu'];
 
-        $voitureDispo = $this->entityManager->getRepository(Voiture::class)->findOneBy(['typeVoiture' => $idTypeVoiture, 'disponible' => true]);
+        $voituresByType = $this->entityManager->getRepository(Voiture::class)->findBy(['typeVoiture' => $idTypeVoiture]);
+        $emprunts = $this->entityManager->getRepository(Emprunt::class)->findAll();
+        $empruntsEnCours = array_filter($emprunts, fn($emprunt) => $emprunt->getDateFin() > (new \DateTime())->format('Y-m-d'));
+        $voitureDispo = array_filter($voituresByType, fn($voiture) => !in_array($voiture, array_map(fn($emprunt) => $emprunt->getVoiture(), $empruntsEnCours)));
+        $voitureDispo = reset($voitureDispo);
+
 
         if ($voitureDispo == null) {
             $referer = self::addMessageToUrl('Aucun véhicule disponible.', 'my-account');
             header("Location: $referer");
             exit();
         }
-
-        $voitureDispo->setDisponible(false);
 
         $idIntervenant = Session::get('user')->getIdDemandeur();
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
@@ -171,5 +203,35 @@ class IntervenantController extends Template
             header("Location: $referer");
             exit();
         }
+    }
+
+    public function updatePicture()
+    {
+        $idIntervenant = Session::get('user')->getIdDemandeur();
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+        $img = $_FILES['image'];
+
+        if ($intervenant != null){
+            $pathToSave = 'public/img/intervenants/';
+            $random = bin2hex(random_bytes(10));
+            $extension = pathinfo($img['name'], PATHINFO_EXTENSION);
+            $path = $pathToSave . $idIntervenant . '-' . $random . '.' . $extension;
+            //
+
+            $intervenant->setImgUrl($path);
+            try {
+                $this->entityManager->persist($intervenant);
+                $this->entityManager->flush();
+                Session::set('user', $intervenant);
+                move_uploaded_file($img['tmp_name'], $path);
+                $referer = self::addMessageToUrl('Photo de profil mise à jour.', 'msg-success');
+                header("Location: $referer");
+            } catch (\Exception $e) {
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+                header("Location: $referer");
+                exit();
+            }
+        }
+
     }
 }

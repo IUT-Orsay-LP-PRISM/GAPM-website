@@ -33,14 +33,14 @@ h3 {
       content          : "";
       transition: all .3s ease-out;
       position         : absolute;
-      bottom           : 5px;
+      bottom           : 7.5px;
       z-index          : -1;
       left             : 0;
       right            : 0;
       margin           : auto;
       width            : 100%;
-      height           : 15px;
-      background-color : $primaryLight;
+      height           : 10px;
+      background-color : $secondary;
     }
 
 
@@ -68,5 +68,23 @@ h3 {
   &__light {
     font-weight : 400;
   }
+
+  &__bold{
+    font-weight: 600;
+  }
+
+  &__primary{
+    color: $primaryLight;
+  }
+  &__small{
+    font-size: 1rem;
+    color: grey;
+    font-weight: 500;
+  }
 }
+
+p{
+  font-family: $mainFont;
+}
+
 

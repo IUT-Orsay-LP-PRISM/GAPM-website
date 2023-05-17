@@ -229,6 +229,7 @@ CREATE TABLE `Intervenant`
 (
     `idDemandeur` int(11) NOT NULL,
     `adressePro`  varchar(255) DEFAULT NULL,
+    `imgUrl`      varchar(255) DEFAULT 'public/img/default.jpg',
     `idVillePro`  int(11) DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -445,7 +446,6 @@ CREATE TABLE `Voiture`
 (
     `idVoiture`       int(11) NOT NULL,
     `immatriculation` varchar(50) NOT NULL,
-    `disponible`      tinyint(1) NOT NULL DEFAULT 1,
     `idTypeVoiture`   int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4

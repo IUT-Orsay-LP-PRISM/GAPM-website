@@ -2,7 +2,7 @@
 
 namespace App\models\entity;
 
-use App\models\Repository\SpecialiteRepository;
+use App\models\repository\SpecialiteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SpecialiteRepository::class)]

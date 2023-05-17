@@ -2,7 +2,7 @@
 
 namespace App\models\entity;
 
-use App\models\Repository\EmpruntRepository;
+use App\models\repository\EmpruntRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EmpruntRepository::class)]
@@ -25,7 +25,7 @@ class Emprunt
 
     #[ORM\ManyToOne(targetEntity: Administration::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idAdministration', referencedColumnName: 'idAdministration', nullable: true)]
-    private Administration $administration;
+    private ?Administration $administration = null;
 
     #[ORM\ManyToOne(targetEntity: Voiture::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idVoiture', referencedColumnName: 'idVoiture', nullable: false)]
@@ -103,7 +103,7 @@ class Emprunt
     /**
      * @return Administration
      */
-    public function getAdministration(): Administration
+    public function getAdministration(): ?Administration
     {
         return $this->administration;
     }

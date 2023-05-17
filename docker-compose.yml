@@ -28,4 +28,4 @@ services:
       PMA_HOST: mariadb
       PMA_PORT: 3306
     ports:
-      - 9080:80
+      - 8080:80

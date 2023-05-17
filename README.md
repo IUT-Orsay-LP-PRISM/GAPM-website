@@ -8,7 +8,7 @@
 - Si WampServer (xampp, uwamp, ...) faire un **Virtual Host**
 
 ## Description
-Projet GAPM avancement : **30%**
+Projet GAPM avancement : **50%**
 
 
 ## Installation
@@ -41,14 +41,14 @@ Lorsque votre installation a été faite, exécutez la commande suivante dans le
 composer install
 ```
 
-Faites ce qu'il faut pour l'installation du Virtual Host si vous avez WampServer. (Je ne sais pas comment fonctionne les autres serveurs web Windows).
-
+Faites ce qu'il faut pour l'installation du Virtual Host si vous avez WampServer.
 Normalement tout est bon, vous pouvez maintenant lancer le projet. 
 
-##### Attention : 
-Cependant, vous ne pourrez faire du CSS. Pour cela il faut suivre les étapes suivantes.
+### <span style="color:orange;">Attention ⚠️ :</span> 
+Cependant, aucune modification du CSS sera possible. 
+En effet, pour démarrer le projet il suffit juste d'avoir **Composer**. La suite node.js est nécessaire pour compiler le SCSS en CSS avec Webpack.
 
-#### NPM - Node.JS
+### NPM - Node.JS
 NPM est le gestionnaire de dépendances de NodeJS, il va nous permettre d'intégrer directement des bibliothèques JavaScript dans notre projet. Les futurs libs de Stats par exemple.
 
 ##### Installation de Node.JS
@@ -61,19 +61,18 @@ Normalement, tout est bon, NPM ne vous servira uniquement que si vous souhaitez 
 ## Utilisation de NodeJS - Webpack
 
 Après avoir installé NodeJS vous pouvez utiliser Webpack pour compiler les fichiers SCSS et JS.
+
 ### Installation de Webpack
 ```bash
 npm install
 ```
 
 ### Compilation des fichiers SCSS et JS
-#### Compilation en mode développement : Compile un fichier automatiquement, type "watch"
+#### Mode dév : Compile un fichier automatiquement à chaque modification
 ```bash
 npm run dev 
 ```
-#### Compilation en mode production : Compile tous les fichiers une seule fois, type "build"
+#### Mode prod : Compile tous les fichiers une seule fois
 ```bash
 npm run build
 ```
-
-Vous pouvez désormais utiliser webpack.

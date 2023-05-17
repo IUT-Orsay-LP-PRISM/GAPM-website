@@ -25,7 +25,7 @@
                     <label class="label" for="dateDu">Du</label>
                 </div>
             </div>
-            <div class="myaccount__form__intervenant__item">
+            <div class="myaccount__form__intervenant__item --vehicles">
                 <div class="myaccount__form__intervenant__item__vehicule">
                     <img id="img-vehicule" src="/assets/img/vehicules/{{ typeVehicules[0].idTypeVoiture }}.png">
                     <p id="vehicule-label" class="myaccount__form__intervenant__item__vehicule__label">
@@ -51,13 +51,37 @@
     </form>
 
     <div class="myaccount__form__intervenant__oldEmprunts">
-        <h2 class="myaccount__form-title">Mes anciens emprunts</h2>
-        {% for emprunt in emprunts %}
-            <div class="myaccount__form__intervenant__item">
-                {{ emprunt.voiture.immatriculation }} - {{ emprunt.voiture.typeVoiture.marque }}
-                - {{ emprunt.voiture.typeVoiture.modele }}
-                - {{ emprunt.dateDebut }} - {{ emprunt.dateFin }}
+        <h2 class="myaccount__form-title">Mes emprunts</h2>
+
+        <div class="emprunt__nav">
+            <ul>
+                <li class="js-emprunt-nav --active" data-count="{{ emprunts.current|length }}" data-id="current">
+                    Actuels
+                </li>
+                <li class="js-emprunt-nav" data-count="{{ emprunts.upcoming|length }}" data-id="upcoming">
+                    Prochains
+                </li>
+                <li class="js-emprunt-nav" data-count="{{ emprunts.waiting|length }}" data-id="waiting">
+                    En attente de confirmation
+                </li>
+                <li class="js-emprunt-nav" data-count="{{ emprunts.passed|length }}" data-id="passed">
+                    Passés
+            </ul>
+        </div>
+            <div class="emprunt__list">
+                <div id="current" class="js-emprunt-content --display">
+                    {% include '/intervenant/emprunts.twig' with {'emprunts': emprunts.current} %}
+                </div>
+                <div id="upcoming" class="js-emprunt-content">
+                    {% include '/intervenant/emprunts.twig' with {'emprunts': emprunts.upcoming} %}
+                </div>
+                <div id="waiting" class="js-emprunt-content">
+                    {% include '/intervenant/emprunts.twig' with {'emprunts': emprunts.waiting} %}
+                </div>
+                <div id="passed" class="js-emprunt-content">
+                    {% include '/intervenant/emprunts.twig' with {'emprunts': emprunts.passed} %}
+                </div>
             </div>
-        {% endfor %}
     </div>
 </section>
+{# inversion des date de début et date de fin, voir si c'est backend ou juste la table #}
