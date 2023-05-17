@@ -27,6 +27,8 @@ Route::post('ajout-avis', 'RendezVousController', 'createNoticeOnRdv');
 Route::post('upgrade-to-intervenant', 'IntervenantController', 'devenirIntervenant');
 Route::post('update-intervenant', 'IntervenantController', 'update');
 Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
+Route::post('picture-edit', 'IntervenantController', 'updatePicture');
+
 
 Route::get('profile', 'IntervenantController', 'profile');
 

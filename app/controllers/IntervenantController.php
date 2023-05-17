@@ -29,7 +29,7 @@ class IntervenantController extends Template
         $idIntervenant = htmlspecialchars($_GET['id']);
         $intervenant = $this->intervenantRepository->find($idIntervenant);
 
-        if ($intervenant == null || !is_numeric($idIntervenant)) {
+        if ($intervenant == null || !is_numeric($idIntervenant)){
             $referer = self::addMessageToUrl('Cette Intervenant n\'existe pas.', 'msg-error');
             header("Location: $referer");
             exit();
@@ -203,5 +203,35 @@ class IntervenantController extends Template
             header("Location: $referer");
             exit();
         }
+    }
+
+    public function updatePicture()
+    {
+        $idIntervenant = Session::get('user')->getIdDemandeur();
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+        $img = $_FILES['image'];
+
+        if ($intervenant != null){
+            $pathToSave = 'public/img/intervenants/';
+            $random = bin2hex(random_bytes(10));
+            $extension = pathinfo($img['name'], PATHINFO_EXTENSION);
+            $path = $pathToSave . $idIntervenant . '-' . $random . '.' . $extension;
+            //
+
+            $intervenant->setImgUrl($path);
+            try {
+                $this->entityManager->persist($intervenant);
+                $this->entityManager->flush();
+                Session::set('user', $intervenant);
+                move_uploaded_file($img['tmp_name'], $path);
+                $referer = self::addMessageToUrl('Photo de profil mise à jour.', 'msg-success');
+                header("Location: $referer");
+            } catch (\Exception $e) {
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+                header("Location: $referer");
+                exit();
+            }
+        }
+
     }
 }

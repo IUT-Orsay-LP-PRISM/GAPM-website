@@ -266,4 +266,49 @@
       margin-top : 2.4rem;
     }
   }
+
+  &__pfp{
+    margin-top : 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    p{
+      font-family: $mainFont;
+      font-weight: 500;
+      font-size: 1rem;
+      color: $black;
+      margin: 1.2rem 0;
+    }
+    img{
+      max-width: 200px;
+      outline: 2px solid $black;
+      border-radius: 5px;
+    }
+    &__original{
+      position: relative;
+      &::after{
+        width: 84px;
+        height: 84px;
+        content: '';
+        position: absolute;
+        top: calc(50% - 25px);
+        right: 20%;
+        background-image: url("data:image/svg+xml,%3Csvg width='84' height='84' viewBox='0 0 84 84' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_979_4863)'%3E%3Cpath d='M80.92 34.6851L67.375 21.0001C67.0496 20.6721 66.6625 20.4117 66.236 20.234C65.8095 20.0563 65.352 19.9648 64.89 19.9648C64.428 19.9648 63.9705 20.0563 63.544 20.234C63.1175 20.4117 62.7304 20.6721 62.405 21.0001V21.0001C61.7531 21.6559 61.3872 22.543 61.3872 23.4676C61.3872 24.3923 61.7531 25.2794 62.405 25.9351L74.865 38.5001H3.5C2.57174 38.5001 1.6815 38.8689 1.02513 39.5253C0.368749 40.1816 0 41.0719 0 42.0001H0C0 42.9284 0.368749 43.8186 1.02513 44.475C1.6815 45.1314 2.57174 45.5001 3.5 45.5001H75.075L62.405 58.1351C62.077 58.4605 61.8166 58.8476 61.6389 59.2741C61.4612 59.7006 61.3697 60.1581 61.3697 60.6201C61.3697 61.0822 61.4612 61.5396 61.6389 61.9662C61.8166 62.3927 62.077 62.7798 62.405 63.1051C62.7304 63.4332 63.1175 63.6936 63.544 63.8713C63.9705 64.0489 64.428 64.1404 64.89 64.1404C65.352 64.1404 65.8095 64.0489 66.236 63.8713C66.6625 63.6936 67.0496 63.4332 67.375 63.1051L80.92 49.5251C82.8863 47.5564 83.9908 44.8876 83.9908 42.1051C83.9908 39.3226 82.8863 36.6539 80.92 34.6851V34.6851Z' fill='%23257466'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_979_4863'%3E%3Crect width='84' height='84' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+      }
+    }
+    &__display{
+      img{
+        border-radius: 50%;
+      }
+    }
+    &__input{
+      margin-top : 2rem;
+      p{
+        font-family: $mainFont;
+        font-weight: 500;
+        font-size: 1rem;
+        color: $black;
+        margin: 1rem 0;
+      }
+    }
+  }
 }

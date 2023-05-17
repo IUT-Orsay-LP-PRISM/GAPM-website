@@ -23,6 +23,10 @@ class Intervenant extends Demandeur
     #[ORM\JoinColumn(name: 'idVillePro', referencedColumnName: 'idVille', nullable: false)]
     private Ville $villePro;
 
+    #[ORM\Column]
+    private string $imgUrl;
+
+
     public float $note;
 
     public function __construct()
@@ -91,5 +95,15 @@ class Intervenant extends Demandeur
     public function setNoteAvg(float $note): void
     {
         $this->note = $note;
+    }
+
+    public function getImgUrl(): string
+    {
+        return $this->imgUrl;
+    }
+
+    public function setImgUrl(string $imgUrl): void
+    {
+        $this->imgUrl = $imgUrl;
     }
 }

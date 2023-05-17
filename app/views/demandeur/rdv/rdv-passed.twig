@@ -1,7 +1,7 @@
 {% for unrdv in rdv %}
 	<div class="myrdv__contents-user">
 		<div class="myrdv__contents-user-img">
-			<img src="assets/img/profils/exemple_doctor.jpg" alt="User">
+			<img src="{{ unrdv.intervenant.imgUrl }}" alt="User">
 		</div>
 		<div class="myrdv__contents-user-info-notice ">
 			<div class="myrdv__contents-user-name">

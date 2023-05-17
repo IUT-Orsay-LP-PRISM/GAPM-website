@@ -1,0 +1,32 @@
+<section class="myaccount__form" id="form">
+	<form method="post" action="?action=picture-edit" enctype="multipart/form-data">
+		<h2 class="myaccount__form__title">Ma photo de profil</h2>
+		<div class="myaccount__pfp">
+			<div class="myaccount__pfp__col myaccount__pfp__original">
+				<p>
+					Photo de profil actuel (sans bordures) :
+				</p>
+				<img src="{{ user.imgUrl }}" alt="Photo de profil de (Originel): {{ user.nom }}{{ user.prenom }}">
+			</div>
+			<div class="myaccount__pfp__col myaccount__pfp__display">
+				<p>
+					Photo de profil affichée sur le site :
+				</p>
+				<img src="{{ user.imgUrl }}" alt="Photo de profil de (Visible): {{ user.nom }}{{ user.prenom }}">
+			</div>
+		</div>
+ 		<div class="myaccount__pfp__input">
+			<p>
+				Choisissez une nouvelle photo de profil : <span class="text__small">(Formats acceptés : .jpg, .jpeg, .png)</span>
+			</p>
+			<div class="input-container">
+				<i class="icon icon-fi-rr-upload"></i>
+				<input id="picture" class="input" type="file" accept="image/png, image/jpg, image/jpeg, image/gif" name="image" style="padding-top: .8rem"/>
+			</div>
+		</div>
+		<button class="btn btn-primary" type="submit">
+			<i class="icon-w icon-fi-rr-upload"></i>
+			Changer de photo de profil
+		</button>
+	</form>
+</section>

@@ -41,6 +41,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="#visibility" class="js-account-nav myaccount__content__nav-link">
+                                Photo de profil
+                                <i class="icon icon-fi-rr-picture"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a href="#vehicule"
                                class="js-account-nav myaccount__content__nav-link">
                                 Emprunt de véhicule
@@ -69,7 +75,10 @@
                         {% include '/demandeur/compte/options.twig' %}
                     </div>
                     <div id="vehicule" class="js-account-content">
-                        {% include '/demandeur/compte/vehicule.twig' %}
+                        {% include '/intervenant/vehicule.twig' %}
+                    </div>
+                    <div id="visibility" class="js-account-content">
+                        {% include '/intervenant/picture.twig' %}
                     </div>
                 </div>
             </div>
