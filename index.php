@@ -29,6 +29,8 @@ Route::post('update-intervenant', 'IntervenantController', 'update');
 Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 Route::post('picture-edit', 'IntervenantController', 'updatePicture');
 
+Route::post('intervenant-unsubscribe-request', 'IntervenantController', 'unsubscribeRequest');
+Route::post('intervenant-cancel-unsubscribe-request', 'IntervenantController', 'cancelUnsubscribe');
 
 Route::get('profile', 'IntervenantController', 'profile');
 

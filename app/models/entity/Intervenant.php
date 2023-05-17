@@ -26,6 +26,8 @@ class Intervenant extends Demandeur
     #[ORM\Column]
     private string $imgUrl;
 
+    #[ORM\Column]
+    private bool $demandeSupp;
 
     public float $note;
 
@@ -106,4 +108,21 @@ class Intervenant extends Demandeur
     {
         $this->imgUrl = $imgUrl;
     }
+
+    /**
+     * @return bool
+     */
+    public function isDemandeSupp(): bool
+    {
+        return $this->demandeSupp;
+    }
+
+    /**
+     * @param bool $demandeSupp
+     */
+    public function setDemandeSupp(bool $demandeSupp): void
+    {
+        $this->demandeSupp = $demandeSupp;
+    }
+
 }

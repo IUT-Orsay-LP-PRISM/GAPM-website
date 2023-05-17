@@ -1,33 +1,47 @@
 {% if user.isIntervenant() and  modeIntervenant %}
-    <section class="myaccount__form myaccount__form__security" id="form">
-        <form method="post" action="?action=my-account-delete">
-            <h2 class="myaccount__form-title">Activité professionnelle</h2>
-            <div class="myaccount__form-alert">
-                <i class="icon icon-fi-rr-shield-exclamation"></i>
-                <p>Option dangereuse</p>
-            </div>
-            <div class="myaccount__form-subtitle">
-                <p>Vous souhaitez faire une demande afin de cesser votre activité auprès de GAPM ?</p>
-                <p>Attention, cette action est <span>irréversible.</span></p>
-                <p>P.S. : Vous ne pourrez reprendre votre activité qu’après avoir repasser à nouveau toutes les étapes
-                    de recrutement GAPM.</p>
-            </div>
-            <br>
-            <p class="myaccount__form-subtitle">Entrez votre adresse mail ci-dessous, puis cliquez sur
-                confirmer. </p>
-            </br>
-            <div class="input-container validEmail">
-                <i class="icon icon-fi-rr-user-remove"></i>
-                <input id="email" name="email" class="input" type="email" placeholder=" " required/>
-                <label class="label" for="email">Email</label>
-            </div>
 
-            <button class="btn btn-red" type="submit">
+    {% if user.isDemandeSupp() %}
+        <section class="myaccount__cancelUnsubscribe"  style="">
+            <h2 class="myaccount__form-title">
+                Votre demande de cessation d'activité a bien été prise en compte.
+            </h2>
+            <a class="btn btn-red" href="?action=intervenant-cancel-unsubscribe-request">
                 <i class="icon-w icon-fi-rr-check"></i>
-                Confirmer la suppression
-            </button>
-        </form>
-    </section>
+                Annuler la demande de cessation d'activité
+            </a>
+        </section>
+    {% else %}
+        <section class="myaccount__form myaccount__form__security" id="form">
+            <form method="post" action="?action=intervenant-unsubscribe-request">
+                <h2 class="myaccount__form-title">Activité professionnelle</h2>
+                <div class="myaccount__form-alert">
+                    <i class="icon icon-fi-rr-shield-exclamation"></i>
+                    <p>Option dangereuse</p>
+                </div>
+                <div class="myaccount__form-subtitle">
+                    <p>Vous souhaitez faire une demande afin de cesser votre activité auprès de GAPM ?</p>
+                    <p>Attention, cette action est <span>irréversible.</span></p>
+                    <p>P.S. : Vous ne pourrez reprendre votre activité qu’après avoir repasser à nouveau toutes les
+                        étapes
+                        de recrutement GAPM.</p>
+                </div>
+                <br>
+                <p class="myaccount__form-subtitle">Entrez votre adresse mail ci-dessous, puis cliquez sur
+                    confirmer. </p>
+                </br>
+                <div class="input-container validEmail">
+                    <i class="icon icon-fi-rr-user-remove"></i>
+                    <input id="email" name="email" class="input" type="email" placeholder=" " required/>
+                    <label class="label" for="email">Email</label>
+                </div>
+
+                <button class="btn btn-red" type="submit">
+                    <i class="icon-w icon-fi-rr-check"></i>
+                    Confirmer la suppression
+                </button>
+            </form>
+        </section>
+    {% endif %}
 {% else %}
     <section class="myaccount__form myaccount__form__security" id="form">
         <form method="post" action="?action=my-account-delete">
