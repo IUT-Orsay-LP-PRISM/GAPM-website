@@ -2422,6 +2422,12 @@ body.intervenant {
           font-size: 1rem;
           color: #144139;
           margin: 1rem 0; }
+    body.intervenant .myaccount__cancelUnsubscribe, body.intervenant .wrapper__cancelUnsubscribe {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+      height: 8rem; }
   body.intervenant .prendreRdv {
     background-color: #DCE6F2;
     padding-top: calc(130px + 2.5rem);
@@ -3644,11 +3650,13 @@ body.intervenant {
     right: 13px;
     bottom: 20px;
     opacity: 0;
-    visibility: hidden; }
+    visibility: hidden;
+    transition: all 0.3s ease-in-out; }
     body.intervenant .notification.--active {
       opacity: 1;
       visibility: visible;
-      transform: translateX(0); }
+      transform: translateX(0);
+      transition: all 0.3s ease-in-out; }
     body.intervenant .notification p {
       color: #434040;
       font-family: "Poppins", sans-serif;
@@ -4334,6 +4342,12 @@ body.demandeur {
           font-size: 1rem;
           color: #1E1E3D;
           margin: 1rem 0; }
+    body.demandeur .myaccount__cancelUnsubscribe, body.demandeur .wrapper__cancelUnsubscribe {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+      height: 8rem; }
   body.demandeur .prendreRdv {
     background-color: #DCE6F2;
     padding-top: calc(130px + 2.5rem);
@@ -5556,11 +5570,13 @@ body.demandeur {
     right: 13px;
     bottom: 20px;
     opacity: 0;
-    visibility: hidden; }
+    visibility: hidden;
+    transition: all 0.3s ease-in-out; }
     body.demandeur .notification.--active {
       opacity: 1;
       visibility: visible;
-      transform: translateX(0); }
+      transform: translateX(0);
+      transition: all 0.3s ease-in-out; }
     body.demandeur .notification p {
       color: #434040;
       font-family: "Poppins", sans-serif;

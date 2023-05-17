@@ -47,11 +47,37 @@ if (window.location.search.includes('message')) {
 }
 
 
-function openNotification($content, $type = 'info') {
-    modal.classList.add('--active');
-    modal.classList.add('--' + $type);
-    modalContent.children[0].innerHTML = $content;
+let modalHovered = false;
+modal.addEventListener('mouseenter', () => {
+    modalHovered = true;
+});
+modal.addEventListener('mouseleave', () => {
+    modalHovered = false;
+    setNotificationTimeout();
+});
+
+function setNotificationTimeout(type) {
+    setTimeout(() => {
+        if (!modalHovered) {
+            modal.classList.remove('--active');
+            setTimeout(() => {
+                modal.classList.remove('--' + type);
+                modalContent.children[0].innerHTML = '';
+                removeErrorInURL();
+            }, 300);
+        }
+    }, 5000);
 }
+
+function openNotification(content, type = 'info') {
+    modal.classList.add('--active');
+    modal.classList.add('--' + type);
+    modalContent.children[0].innerHTML = content;
+
+    setNotificationTimeout(type);
+}
+
+
 
 export function removeErrorInURL() {
     const urlParams = new URLSearchParams(window.location.search);

@@ -29,7 +29,7 @@ class IntervenantController extends Template
         $idIntervenant = htmlspecialchars($_GET['id']);
         $intervenant = $this->intervenantRepository->find($idIntervenant);
 
-        if ($intervenant == null || !is_numeric($idIntervenant)){
+        if ($intervenant == null || !is_numeric($idIntervenant)) {
             $referer = self::addMessageToUrl('Cette Intervenant n\'existe pas.', 'msg-error');
             header("Location: $referer");
             exit();
@@ -37,7 +37,7 @@ class IntervenantController extends Template
 
         $notes = $this->intervenantRepository->findNoteById($idIntervenant);
         $avg = null;
-        if ($notes != null){
+        if ($notes != null) {
             foreach ($notes as $note) {
                 $avg += $note['note'];
             }
@@ -52,7 +52,7 @@ class IntervenantController extends Template
             'int' => $intervenant,
         ]);
     }
-    
+
     public function index(): void
     {
         self::render('inscription_intervenant.twig', [
@@ -106,7 +106,7 @@ class IntervenantController extends Template
     {
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
-                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'my-account');
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'msg-warning');
                 header("Location: $referer");
                 exit();
             }
@@ -143,12 +143,14 @@ class IntervenantController extends Template
                 $this->entityManager->persist($currentDemandeur);
                 $this->entityManager->flush();
                 Session::set('user', $currentDemandeur);
+
             } catch (\Exception $e) {
-                $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'msg-error');
                 header("Location: $referer");
                 exit();
             }
-            header("Location: /");
+            $referer = self::addMessageToUrl('Vos informations ont bien été modifiées.', 'msg-success');
+            header("Location: $referer");
         }
     }
 
@@ -211,7 +213,7 @@ class IntervenantController extends Template
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
         $img = $_FILES['image'];
 
-        if ($intervenant != null){
+        if ($intervenant != null) {
             $pathToSave = 'public/img/intervenants/';
             $random = bin2hex(random_bytes(10));
             $extension = pathinfo($img['name'], PATHINFO_EXTENSION);
@@ -232,6 +234,49 @@ class IntervenantController extends Template
                 exit();
             }
         }
+    }
 
+    public function unsubscribeRequest()
+    {
+        $email = $_POST['email'];
+        if ($email != $_SESSION['user']->getEmail()) {
+            $referer = self::addMessageToUrl('Email incorrect.', 'msg-error');
+            header("Location: $referer");
+        } else {
+            $idIntervenant = Session::get('user')->getIdDemandeur();
+            $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+            $intervenant->setDemandeSupp(true);
+            try {
+                $this->entityManager->persist($intervenant);
+                $this->entityManager->flush();
+                Session::set('user', $intervenant);
+                $referer = self::addMessageToUrl('Votre demande de cessation d\'activité a bien été prise en compte.', 'msg-success');
+                header("Location: $referer");
+                exit();
+            } catch (\Exception $e) {
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+                header("Location: $referer");
+                exit();
+            }
+        }
+    }
+
+    public function cancelUnsubscribe()
+    {
+        $idIntervenant = Session::get('user')->getIdDemandeur();
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+        $intervenant->setDemandeSupp(false);
+        try {
+            $this->entityManager->persist($intervenant);
+            $this->entityManager->flush();
+            Session::set('user', $intervenant);
+            $referer = self::addMessageToUrl('Votre demande de cessation d\'activité a bien été annulée.', 'msg-success');
+            header("Location: $referer");
+            exit();
+        } catch (\Exception $e) {
+            $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+            header("Location: $referer");
+            exit();
+        }
     }
 }

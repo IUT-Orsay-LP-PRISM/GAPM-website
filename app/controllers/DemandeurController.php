@@ -104,7 +104,8 @@ class DemandeurController extends Template
     {
         $email = $_POST['email'];
         if ($email != $_SESSION['user']->getEmail()) {
-            header('Location: /?action=my-account');
+            $referer = self::addMessageToUrl('Email incorrect.', 'msg-error');
+            header("Location: $referer");
         } else {
             $user = Session::get('user');
             $demandeur = $this->demandeurRepository->findOneBy(['idDemandeur' => $user->getIdDemandeur()]);
