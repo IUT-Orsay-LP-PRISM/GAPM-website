@@ -43,4 +43,71 @@
             </div>
         </section>
     {% endif %}
+
+    <div id="sidebar-add-depense">
+        <div id="sidebar-add-depense--content">
+            <form action="?action=" method="post" id="sidebar-add-depense--content__form">
+                <div id="sidebar-add-depense--content__form__justificatif">
+                    <div class="justificatif--content">
+                        {% include 'svg/illu_noteFrais_create.svg' %}
+                        <label for="justificatif">Choisir fichier</label>
+                        <input type="file" name="justificatif" id="justificatif">
+                        <p>Les formats PDF, PNG, JPG, JPEG, DOC <br/> inférieurs à 100 Mo sont acceptés.</p>
+                    </div>
+                </div>
+                <div>
+                    <div id="sidebar-add-depense--content__form--title">
+                        <p>Essence</p>
+                        <button type="button" class="close-btn">
+                            <i class="icon icon-fi-rr-cross-small tag-close"></i>
+                        </button>
+                    </div>
+                    <div id="sidebar-add-depense--content__form__inputs">
+                        <div class="sidebar-add-depense-row">
+                            <div class="sidebar-add-depense-row__content">
+                                <label for="nature">Nature</label>
+                                <select name="nature" id="nature" class="sidebar-add-depense-row__content--input">
+                                    <option value="essence">Essence</option>
+                                    <option value="repas">Repas</option>
+                                    <option value="hebergement">Hébergement</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+                            <div class="sidebar-add-depense-row__content">
+                                <label for="date">Date</label>
+                                <input type="date" name="date" id="date"
+                                       class="sidebar-add-depense-row__content--input">
+                            </div>
+                        </div>
+                        <div class="sidebar-add-depense-row">
+                            <div class="sidebar-add-depense-row__content">
+                                <label for="montant">Montant déclaré</label>
+                                <input type="number" name="montant" id="montant"
+                                       class="sidebar-add-depense-row__content--input">
+                            </div>
+                            <div class="sidebar-add-depense-row__content">
+                                <label class="notRequired">Devise</label>
+                                <p>€</p>
+                            </div>
+                        </div>
+                        <div class="sidebar-add-depense-row">
+                            <div class="sidebar-add-depense-row__content">
+                                <label for="fournisseur">Fournisseur</label>
+                                <input type="text" name="montant" id="fournisseur"
+                                       class="sidebar-add-depense-row__content--input">
+                            </div>
+                        </div>
+                        <div class="sidebar-add-depense-row">
+                            <div class="sidebar-add-depense-row__content commentaire">
+                                <label for="commentaire">Commentaire</label>
+                                <textarea name="commentaire" id="commentaire" cols="30" rows="10"
+                                          class="sidebar-add-depense-row__content--input"></textarea>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+
 {% endblock %}

@@ -4,6 +4,59 @@ $orangeLightNote : #FEF5F0;
 $greenLightNote  : #F7FEF6;
 
 .noteFrais {
+  &--empty {
+    &__content {
+      display         : flex;
+      justify-content : center;
+      align-items     : center;
+      flex-direction  : column;
+      font-family     : $titleFont;
+
+      &--title {
+        font-size   : 1em;
+        text-align  : center;
+        margin      : 2rem 0;
+        line-height : 1.5;
+
+        p:first-child {
+          font-weight : 600;
+        }
+      }
+    }
+  }
+
+  &__row {
+    width           : 100%;
+    display         : flex;
+    justify-content : flex-end;
+    align-items     : center;
+    font-family     : $titleFont;
+
+    &.new {
+      margin-bottom : 4rem;
+    }
+
+    &.prepare {
+      margin-top : 4rem;
+    }
+
+    &--total {
+      height          : 100%;
+      display         : flex;
+      justify-content : space-between;
+      align-items     : flex-end;
+      flex-direction  : column;
+      margin-right    : 1rem;
+      line-height     : 1.5;
+
+      span {
+        font-size   : 1.4rem;
+        font-weight : 600;
+      }
+    }
+  }
+
+
   &__table {
     width           : 100%;
     border-collapse : collapse;
@@ -69,7 +122,7 @@ $greenLightNote  : #F7FEF6;
           display  : inline-block;
 
           .icon {
-            cursor           : pointer;
+            cursor : pointer;
           }
 
           .noteFrais__table__content--comment__message {
@@ -141,3 +194,148 @@ $greenLightNote  : #F7FEF6;
   }
 }
 
+
+#sidebar-add-depense {
+  position         : fixed;
+  top              : 0;
+  right            : 0;
+  width            : 100%;
+  height           : 100%;
+  background-color : rgba(0, 0, 0, 0.3);
+  visibility       : hidden;
+  z-index          : 20;
+  transition       : all 0.3s ease-in-out;
+  opacity          : 0;
+
+  &--content {
+    box-sizing       : border-box;
+    position         : fixed;
+    top              : 0;
+    right            : -60%;
+    width            : 60%;
+    height           : 100%;
+    background-color : $primaryWhite;
+    padding          : 20px;
+    transition       : right 0.3s ease-in-out;
+
+    button.close-btn {
+      border           : none;
+      outline          : none;
+      cursor           : pointer;
+      background-color : transparent;
+
+      .icon {
+        font-size : 2rem;
+      }
+    }
+
+    &__form {
+      display               : grid;
+      grid-template-columns : 40% 60%;
+      grid-gap              : 1rem;
+      height                : 100%;
+      font-family           : $mainFont;
+
+      &--title {
+        display         : flex;
+        justify-content : space-between;
+        align-items     : flex-start;
+        font-size       : 1.8rem;
+        font-weight     : 600;
+        color           : $black;
+        height          : 1.8em;
+      }
+
+      &__inputs {
+        display       : block;
+        border        : 1px solid $greyDark;
+        border-radius : $borderRadiusSmall;
+
+
+        .sidebar-add-depense-row {
+          display : flex;
+
+          &__content {
+            display         : flex;
+            justify-content : center;
+            align-items     : flex-start;
+            flex-direction  : column;
+            padding         : 0.5rem 1rem;
+            width           : 100%;
+            font-size       : 1.2rem;
+            font-weight     : 600;
+            color           : $black;
+
+            label {
+              font-size     : 1rem;
+              margin-bottom : 0.5rem;
+            }
+
+            &:not(.commentaire) {
+              border-bottom : 1px solid $greyDark;
+            }
+
+            &:not(:last-child) {
+              border-right : 1px solid $greyDark;
+            }
+
+            label:not(.notRequired):after {
+              content : " *";
+              color   : red;
+            }
+
+
+            &--input {
+              border           : none;
+              outline          : none;
+              cursor           : pointer;
+              background-color : transparent;
+              width            : 100%;
+              font-size        : 1.1rem;
+
+            }
+
+            textarea {
+              resize     : vertical;
+              min-height : 100px;
+            }
+          }
+        }
+      }
+
+      &__justificatif {
+        display         : flex;
+        justify-content : center;
+        align-items     : flex-start;
+        border          : 1px solid $greyDark;
+        border-radius   : $borderRadiusSmall;
+
+        .justificatif--content {
+          margin-top      : 5rem;
+          display         : flex;
+          justify-content : flex-start;
+          align-items     : center;
+          flex-direction  : column;
+          text-align      : center;
+          line-height     : 1.5;
+
+          input {
+            display : none;
+          }
+
+          label {
+            margin           : 1rem 0;
+            padding          : 1rem 4rem;
+            background-color : $white;
+            border-radius    : $borderRadiusSmall;
+            cursor           : pointer;
+          }
+
+          label:hover {
+            background-color : $greenLight;
+          }
+        }
+      }
+    }
+  }
+}

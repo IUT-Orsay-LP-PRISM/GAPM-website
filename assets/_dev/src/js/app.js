@@ -7,6 +7,7 @@ import './my-account'
 import './search'
 import './my-rdv'
 import './emprunt'
+import './noteFrais'
 
 window.addEventListener('load', function () {
     document.querySelector('#loader').classList.add('--hidden');
