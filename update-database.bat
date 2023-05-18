@@ -2,19 +2,25 @@
 chcp 65001 > nul
 setlocal enabledelayedexpansion
 
-echo Choisissez l'option correspondant à votre environnement :
-echo 1. Docker
-echo 2. Wamp
-
-set /p choice="Votre choix : "
-
-if "%choice%"=="1" (
+if "%1"=="-d" (
   set "DOCKER=true"
-) else if "%choice%"=="2" (
+) else if "%1"=="-w" (
   set "DOCKER=false"
 ) else (
-  echo Option invalide.
-  exit /b
+  echo Choisissez l'option correspondant à votre environnement :
+  echo 1. Docker
+  echo 2. Wamp
+
+  set /p choice="Votre choix : "
+
+  if "!choice!"=="1" (
+    set "DOCKER=true"
+  ) else if "!choice!"=="2" (
+    set "DOCKER=false"
+  ) else (
+    echo Option invalide.
+    exit /b
+  )
 )
 
 if %DOCKER%==true (
