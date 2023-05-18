@@ -1,0 +1,13 @@
+<section>
+    {% for depense in depenses %}
+        <p>
+            {{ depense.idDepense }}
+            {{ depense.nature }}
+            {{ depense.datePaiement }}
+            {{ depense.montant }}
+            {{ depense.fournisseur }}
+            {{ depense.description }}
+            {{ depense.urlJustificatif }}
+        </p>
+    {% endfor %}
+</section>

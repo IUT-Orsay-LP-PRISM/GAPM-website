@@ -1,0 +1,46 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block type %}
+    {{ type }}
+{% endblock %}
+
+{% block content %}
+    {% if user is defined and user.isIntervenant() and modeIntervenant %}
+        <section class="myaccount">
+            <h1>Dépenses et notes de frais</h1>
+            <div class="myaccount__content">
+                <div class="myaccount__content__nav">
+                    <ul>
+                        <li>
+                            <a href="#depenses"
+                               class="js-account-nav myaccount__content__nav-link --active">
+                                Dépenses
+                                <i class="icon icon-fi-rr-credit-card"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#noteFrais" class="js-account-nav myaccount__content__nav-link">
+                                Situation et notes de frais
+                                <i class="icon icon-fi-rr-receipt"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="myaccount__content__body">
+                    <div class="myaccount__content__body-form">
+                        <div id="depenses" class="js-account-content --display">
+                            {% include '/intervenant/depenses.twig' with { 'depenses': depenses } %}
+                        </div>
+                        <div id="noteFrais" class="js-account-content">
+                            {% include '/intervenant/noteFrais.twig' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}

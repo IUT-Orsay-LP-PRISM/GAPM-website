@@ -20,7 +20,7 @@ time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `prj-prism-vchreti`
+-- Base de données : `gapm`
 --
 
 -- --------------------------------------------------------
@@ -258,11 +258,8 @@ DROP TABLE IF EXISTS `NoteFrais`;
 CREATE TABLE `NoteFrais`
 (
     `idNoteFrais`      int(11) NOT NULL,
-    `dateNote`         date         NOT NULL,
-    `description`      varchar(280) NOT NULL,
-    `urlJustificatif`  varchar(280) NOT NULL,
-    `montant`          float        NOT NULL,
-    `status`           varchar(50)  NOT NULL,
+    `dateNote`         date        NOT NULL,
+    `status`           varchar(50) NOT NULL,
     `idAdministration` int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -272,11 +269,45 @@ CREATE TABLE `NoteFrais`
 -- Déchargement des données de la table `NoteFrais`
 --
 
-INSERT INTO `NoteFrais` (`idNoteFrais`, `dateNote`, `description`, `urlJustificatif`, `montant`, `status`,
+INSERT INTO `NoteFrais` (`idNoteFrais`, `dateNote`, `status`,
                          `idAdministration`)
-VALUES (1, '2022-01-01', 'Frais 1', 'justificatif1.pdf', 100, 'Valider', 1),
-       (2, '2022-02-01', 'Frais 2', 'justificatif2.pdf', 200, 'Validation', 2),
-       (3, '2022-03-01', 'Frais 3', 'justificatif3.pdf', 300, 'Annuler', 3);
+VALUES (1, '2022-01-01', 'Valider', 1),
+       (2, '2022-02-01', 'Validation', 2),
+       (3, '2022-03-01', 'Annuler', 3);
+
+-- --------------------------------------------------------
+
+
+--
+-- Structure de la table `NoteFrais`
+--
+
+DROP TABLE IF EXISTS `Depense`;
+CREATE TABLE `Depense`
+(
+    `idDepense`       int(11) NOT NULL,
+    `nature`          varchar(50)  NOT NULL,
+    `datePaiement`    date         NOT NULL,
+    `montant`         float        NOT NULL,
+    `fournisseur`     varchar(50)  NOT NULL,
+    `description`     varchar(255) NOT NULL,
+    `urlJustificatif` varchar(255) NOT NULL,
+    `idIntervenant`   int(11) NOT NULL,
+    `idNoteFrais`     int(11) DEFAULT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Depense`
+--
+
+INSERT INTO `Depense` (`idDepense`, `nature`, `datePaiement`, `montant`, `fournisseur`, `description`,
+                       `urlJustificatif`, `idIntervenant`, `idNoteFrais`)
+VALUES (1, 'Transport', '2022-01-01', 100, 'SNCF', 'Paris - Lyon', 'https://example.com/justificatif1.pdf', 1, 1),
+       (2, 'Transport', '2022-02-01', 200, 'SNCF', 'Paris - Lyon', 'https://example.com/justificatif2.pdf', 2, 2),
+       (3, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'https://example.com/justificatif3.pdf', 6, NULL),
+       (4, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'https://example.com/justificatif3.pdf', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -433,13 +464,6 @@ VALUES (1, 'Renault', 'Clio'),
 -- --------------------------------------------------------
 
 --
--- Déchargement des données de la table `Ville`
---
-
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `Voiture`
 --
 
@@ -463,7 +487,7 @@ VALUES (1, 'EM-007-LX', 1),
        (3, 'RT-918-CD', 3),
        (4, 'QD-885-AZ', 4),
        (5, 'WC-478-BN', 5),
-        (6, 'WC-478-BN', 1);
+       (6, 'WC-478-BN', 1);
 
 --
 -- Index pour les tables déchargées
@@ -534,6 +558,14 @@ ALTER TABLE `Intervenant`
 ALTER TABLE `NoteFrais`
     ADD PRIMARY KEY (`idNoteFrais`),
     ADD KEY `idAdministration` (`idAdministration`);
+
+--
+-- Index pour la table `Depense`
+--
+ALTER TABLE `Depense`
+    ADD PRIMARY KEY (`idDepense`),
+    ADD KEY `idIntervenant` (`idIntervenant`),
+    ADD KEY `idNoteFrais` (`idNoteFrais`);
 
 --
 -- Index pour la table `Administration`
@@ -628,6 +660,13 @@ ALTER TABLE `FichePaie`
 --
 ALTER TABLE `NoteFrais`
     MODIFY `idNoteFrais` int (11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 4;
+
+--
+-- AUTO_INCREMENT pour la table `Depense`
+--
+ALTER TABLE `Depense`
+    MODIFY `idDepense` int (11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 4;
 
 --
@@ -759,6 +798,14 @@ UPDATE CASCADE;
 --
 ALTER TABLE `NoteFrais`
     ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`idAdministration`) REFERENCES `Administration` (`idAdministration`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+--
+-- Contraintes pour la table `Depense`
+--
+ALTER TABLE `Depense`
+    ADD CONSTRAINT `Depense_ibfk_1` FOREIGN KEY (`idNoteFrais`) REFERENCES `NoteFrais` (`idNoteFrais`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 --
 -- Contraintes pour la table `RDV`

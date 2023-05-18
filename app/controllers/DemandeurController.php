@@ -313,7 +313,6 @@ class DemandeurController extends Template
                     'title' => 'Mon compte',
                     'typeVehicules' => $typesVoitureDisponible,
                     'emprunts' => $emprunts
-
                 ]);
             } else {
                 self::render('demandeur/mon-compte.twig', [
