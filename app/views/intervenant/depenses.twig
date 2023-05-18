@@ -6,7 +6,7 @@
         <td>Statut</td>
         <td>Créée</td>
         <td>Justificatif <br/> Commentaire</td>
-        <td>Montant</td>
+        <td>Montant <br/> en € </td>
     </tr>
     </thead>
     <tbody>
@@ -25,11 +25,30 @@
             <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
             <td>{{ depense.datePaiement }}</td>
             <td class="noteFrais__table__content--tag noteFrais__table__content--Atraiter__tag">
-                {{ depense.status }}
+                <span>{{ depense.status }}</span>
             </td>
-            <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
-            <td>{{ depense.urlJustificatif }} {{ depense.commentaire }}</td>
-            <td>{{ depense.montant }}</td>
+            {% if depense.dateCreation|date("d/m/Y") == "now"|date("d/m/Y") %}
+                <td>Aujourd'hui</td>
+            {% elseif depense.dateCreation|date("d/m/Y") == "now"|date_modify("-1 day")|date("d/m/Y") %}
+                <td>Hier</td>
+            {% else %}
+                <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
+            {% endif %}
+            <td class="noteFrais__table__content--comment">
+                <div class="icon-container">
+                    <i class="icon icon-fi-rr-link"></i>
+                    <div class="noteFrais__table__content--comment__message">
+                        <img src="https://picsum.photos/200/300" alt="justificatif">
+                    </div>
+                </div>
+                <div class="icon-container">
+                    <i class="icon icon-fi-rr-comment"></i>
+                    <div class="noteFrais__table__content--comment__message">
+                        <p class="tooltip-content">{{ depense.commentaire }}</p>
+                    </div>
+                </div>
+            </td>
+            <td>{{ depense.montant }}€</td>
         </tr>
     {% endfor %}
 
@@ -46,12 +65,30 @@
             <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
             <td>{{ depense.datePaiement }}</td>
             <td class="noteFrais__table__content--tag noteFrais__table__content--Adeclarer__tag">
-                {{ depense.status }}
+                <span>{{ depense.status }}</span>
             </td>
-            <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
-            {#            <td>{{ depense.urlJustificatif }} {{ depense.commentaire }}</td> #}
-            <td>O - O</td>
-            <td>{{ depense.montant }}</td>
+            {% if depense.dateCreation|date("d/m/Y") == "now"|date("d/m/Y") %}
+                <td>Aujourd'hui</td>
+            {% elseif depense.dateCreation|date("d/m/Y") == "now"|date_modify("-1 day")|date("d/m/Y") %}
+                <td>Hier</td>
+            {% else %}
+                <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
+            {% endif %}
+            <td class="noteFrais__table__content--comment">
+                <div class="icon-container">
+                    <i class="icon icon-fi-rr-link"></i>
+                    <div class="noteFrais__table__content--comment__message">
+                        <img src="https://picsum.photos/200/300" alt="justificatif">
+                    </div>
+                </div>
+                <div class="icon-container">
+                    <i class="icon icon-fi-rr-comment"></i>
+                    <div class="noteFrais__table__content--comment__message">
+                        <p class="tooltip-content">{{ depense.commentaire }}</p>
+                    </div>
+                </div>
+            </td>
+            <td>{{ depense.montant }}€</td>
         </tr>
     {% endfor %}
 

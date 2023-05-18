@@ -21,8 +21,9 @@ $greenLightNote  : #F7FEF6;
     }
 
     td {
-      text-align : center;
-      padding    : .8em;
+      text-align     : center;
+      vertical-align : middle;
+      padding        : .8em;
     }
 
 
@@ -31,7 +32,7 @@ $greenLightNote  : #F7FEF6;
       &--Atraiter {
         color : $orangeNote;
 
-        &__tag {
+        &__tag span {
           background-color : $orangeLightNote;
         }
       }
@@ -39,20 +40,74 @@ $greenLightNote  : #F7FEF6;
       &--Adeclarer {
         color : $greenNote;
 
-        &__tag {
+        &__tag span {
           background-color : $greenLightNote;
         }
       }
 
       &--tag {
-        width           : 5rem;
-        border-radius   : 5rem;
-        font-size       : 0.8rem;
+        span {
+          width           : 5rem;
+          border-radius   : 5rem;
+          font-size       : 0.8rem;
+          display         : flex;
+          align-items     : center;
+          justify-content : center;
+          font-weight     : 600;
+          margin          : auto;
+          padding         : 0.5rem 0.8rem;
+        }
+      }
+
+      &--comment {
         display         : flex;
+        justify-content : space-evenly;
         align-items     : center;
-        justify-content : center;
-        font-weight     : 600;
-        margin          : auto;
+
+        .icon-container {
+          position : relative;
+          display  : inline-block;
+
+          .icon {
+            cursor           : pointer;
+          }
+
+          .noteFrais__table__content--comment__message {
+            visibility       : hidden;
+            width            : 200px;
+            background-color : #333;
+            color            : #fff;
+            text-align       : center;
+            border-radius    : 6px;
+            padding          : 5px;
+            position         : absolute;
+            z-index          : 11;
+            bottom           : 125%;
+            left             : 50%;
+            transform        : translateX(-50%);
+            opacity          : 0;
+            transition       : opacity 0.3s;
+
+            .tooltip-content {
+              display : block;
+              margin  : 0;
+            }
+          }
+
+          .image-message {
+            left      : auto;
+            right     : 50%;
+            transform : translateX(50%);
+          }
+
+          &:hover {
+            .noteFrais__table__content--comment__message {
+              visibility : visible;
+              opacity    : 1;
+            }
+          }
+        }
+
       }
     }
 
