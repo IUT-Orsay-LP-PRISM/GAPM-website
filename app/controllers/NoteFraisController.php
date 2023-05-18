@@ -25,12 +25,20 @@ class NoteFraisController extends Template
             header('Location: /?action=search&message=Pour voir vos notes de frais, veuillez vous identifier&c=connexion');
             exit;
         }
-        $depenses = $this->entityManager->getRepository(Depense::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
+        $depensesAtraiter = $this->entityManager->getRepository(Depense::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur(), 'noteFrais' => null, 'status' => 'À traiter']);
+        $depensesAdeclarer = $this->entityManager->getRepository(Depense::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur(), 'noteFrais' => null, 'status' => 'À déclarer']);
 
+        $noteFrais = $this->noteFraisRepository->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
+
+        $depenses = [
+            'Atraiter' => $depensesAtraiter,
+            'Adeclarer' => $depensesAdeclarer
+        ];
 
         self::render('demandeur/notes-de-frais.twig', [
             'title' => 'Notes de frais',
-            'depenses' => $depenses
+            'depenses' => $depenses,
+            'noteFrais' => $noteFrais
         ]);
 
     }

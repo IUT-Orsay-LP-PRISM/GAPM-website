@@ -1,13 +1,68 @@
-<section>
-    {% for depense in depenses %}
-        <p>
-            {{ depense.idDepense }}
-            {{ depense.nature }}
-            {{ depense.datePaiement }}
-            {{ depense.montant }}
-            {{ depense.fournisseur }}
-            {{ depense.description }}
-            {{ depense.urlJustificatif }}
-        </p>
+<table class="noteFrais__table">
+    <thead>
+    <tr>
+        <td>Motif <br/> Source</td>
+        <td>Date</td>
+        <td>Statut</td>
+        <td>Créée</td>
+        <td>Justificatif <br/> Commentaire</td>
+        <td>Montant</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="noteFrais__table--title">
+        <td colspan="6">
+            <div class="noteFrais__table--title__content">
+                <span>{{ depenses.Atraiter|length }}</span>
+                <p>À traiter</p>
+            </div>
+        </td>
+    </tr>
+
+
+    {% for depense in depenses.Atraiter %}
+        <tr class="noteFrais__table__content--Atraiter">
+            <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
+            <td>{{ depense.datePaiement }}</td>
+            <td class="noteFrais__table__content--tag noteFrais__table__content--Atraiter__tag">
+                {{ depense.status }}
+            </td>
+            <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
+            <td>{{ depense.urlJustificatif }} {{ depense.commentaire }}</td>
+            <td>{{ depense.montant }}</td>
+        </tr>
     {% endfor %}
-</section>
+
+    <tr class="noteFrais__table--title">
+        <td colspan="6">
+            <div class="noteFrais__table--title__content">
+                <span>{{ depenses.Adeclarer|length }}</span>
+                <p>À déclarer</p>
+            </div>
+        </td>
+    </tr>
+    {% for depense in depenses.Adeclarer %}
+        <tr class="noteFrais__table__content--Adeclarer">
+            <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
+            <td>{{ depense.datePaiement }}</td>
+            <td class="noteFrais__table__content--tag noteFrais__table__content--Adeclarer__tag">
+                {{ depense.status }}
+            </td>
+            <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
+            {#            <td>{{ depense.urlJustificatif }} {{ depense.commentaire }}</td> #}
+            <td>O - O</td>
+            <td>{{ depense.montant }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+{# <section> #}
+{#    {% for depense in depenses %} #}
+{#        <p> #}
+{#            {{ depense.description }} #}
+{#        </p> #}
+{#    {% endfor %} #}
+{# </section> #}

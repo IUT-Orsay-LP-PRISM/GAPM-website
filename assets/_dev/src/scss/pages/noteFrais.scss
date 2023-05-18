@@ -1,0 +1,88 @@
+$orangeNote      : #E55006;
+$greenNote       : #3C9933;
+$orangeLightNote : #FEF5F0;
+$greenLightNote  : #F7FEF6;
+
+.noteFrais {
+  &__table {
+    width           : 100%;
+    border-collapse : collapse;
+    border-spacing  : 0;
+    color           : $black;
+    font-family     : $titleFont;
+    font-weight     : 400;
+
+    thead {
+      td {
+        vertical-align : middle;
+        padding        : 0 0 2rem 0;
+        font-weight    : 500;
+      }
+    }
+
+    td {
+      text-align : center;
+      padding    : .8em;
+    }
+
+
+    &__content {
+
+      &--Atraiter {
+        color : $orangeNote;
+
+        &__tag {
+          background-color : $orangeLightNote;
+        }
+      }
+
+      &--Adeclarer {
+        color : $greenNote;
+
+        &__tag {
+          background-color : $greenLightNote;
+        }
+      }
+
+      &--tag {
+        width           : 5rem;
+        border-radius   : 5rem;
+        font-size       : 0.8rem;
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+        font-weight     : 600;
+        margin          : auto;
+      }
+    }
+
+
+    &--title {
+      background-color : $primaryWhite;
+      color            : $black;
+      text-align       : center;
+      font-size        : 1em;
+      padding          : 10px;
+
+      &__content {
+        display         : flex;
+        justify-content : flex-start;
+        align-items     : center;
+
+        span {
+          font-weight      : bold;
+          background-color : $greenLight;
+          border-radius    : 50%;
+          width            : 20px;
+          height           : 20px;
+          display          : flex;
+          justify-content  : center;
+          align-items      : center;
+          padding          : 0.2rem;
+          margin-right     : 1rem;
+        }
+      }
+    }
+  }
+}
+

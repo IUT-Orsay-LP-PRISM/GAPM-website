@@ -28,10 +28,16 @@ class Depense
     private string $fournisseur;
 
     #[ORM\Column]
-    private string $description;
+    private string $commentaire;
 
     #[ORM\Column]
-    private string $urlJustificatif;
+    private string $status;
+
+    #[ORM\Column]
+    private string $dateCreation;
+
+    #[ORM\Column]
+    private string|null $urlJustificatif;
 
     #[ORM\ManyToOne(targetEntity: Intervenant::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
@@ -121,37 +127,6 @@ class Depense
         $this->fournisseur = $fournisseur;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrlJustificatif(): string
-    {
-        return $this->urlJustificatif;
-    }
-
-    /**
-     * @param string $urlJustificatif
-     */
-    public function setUrlJustificatif(string $urlJustificatif): void
-    {
-        $this->urlJustificatif = $urlJustificatif;
-    }
 
     /**
      * @return NoteFrais|null
@@ -183,6 +158,70 @@ class Depense
     public function setIntervenant(Intervenant $intervenant): void
     {
         $this->intervenant = $intervenant;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateCreation(): string
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * @param string $dateCreation
+     */
+    public function setDateCreation(string $dateCreation): void
+    {
+        $this->dateCreation = $dateCreation;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUrlJustificatif(): ?string
+    {
+        return $this->urlJustificatif;
+    }
+
+    /**
+     * @param string|null $urlJustificatif
+     */
+    public function setUrlJustificatif(?string $urlJustificatif): void
+    {
+        $this->urlJustificatif = $urlJustificatif;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommentaire(): string
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * @param string $commentaire
+     */
+    public function setCommentaire(string $commentaire): void
+    {
+        $this->commentaire = $commentaire;
     }
 
 

@@ -21,6 +21,11 @@ class NoteFrais
     #[ORM\Column]
     private string $status;
 
+    #[ORM\ManyToOne(targetEntity: Intervenant::class, fetch: 'EAGER')]
+    #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
+    private Intervenant $intervenant;
+
+
     #[ORM\ManyToOne(targetEntity: Administration::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idAdministration', referencedColumnName: 'idAdministration', nullable: true)]
     private ?Administration $administration = null;
@@ -88,6 +93,22 @@ class NoteFrais
     public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return Intervenant
+     */
+    public function getIntervenant(): Intervenant
+    {
+        return $this->intervenant;
+    }
+
+    /**
+     * @param Intervenant $intervenant
+     */
+    public function setIntervenant(Intervenant $intervenant): void
+    {
+        $this->intervenant = $intervenant;
     }
 
 

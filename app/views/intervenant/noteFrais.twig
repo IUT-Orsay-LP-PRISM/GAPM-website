@@ -1,3 +1,10 @@
 <section>
-   <p>Notes de frais</p>
+   {% for note in noteFrais %}
+      <p>
+         {{ note.idNoteFrais }}
+         {{ note.dateNote }}
+         {{ note.status }}
+         {{ dump(note.getAdministration()) }}
+      </p>
+   {% endfor %}
 </section>

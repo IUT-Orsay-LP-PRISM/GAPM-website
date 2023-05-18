@@ -97,27 +97,6 @@ VALUES (1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '
         '0123456789', 'F', 8, 'intervenant');
 -- --------------------------------------------------------
 
---
--- Structure de la table `Emet`
---
-
-DROP TABLE IF EXISTS `Emet`;
-CREATE TABLE `Emet`
-(
-    `idIntervenant` int(11) NOT NULL,
-    `idNoteFrais`   int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `Emet`
---
-
-INSERT INTO `Emet` (`idIntervenant`, `idNoteFrais`)
-VALUES (1, 1),
-       (2, 2),
-       (5, 3);
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `Empechement`
@@ -260,6 +239,7 @@ CREATE TABLE `NoteFrais`
     `idNoteFrais`      int(11) NOT NULL,
     `dateNote`         date        NOT NULL,
     `status`           varchar(50) NOT NULL,
+    `idIntervenant`    int(11) NOT NULL,
     `idAdministration` int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -269,11 +249,10 @@ CREATE TABLE `NoteFrais`
 -- Déchargement des données de la table `NoteFrais`
 --
 
-INSERT INTO `NoteFrais` (`idNoteFrais`, `dateNote`, `status`,
-                         `idAdministration`)
-VALUES (1, '2022-01-01', 'Valider', 1),
-       (2, '2022-02-01', 'Validation', 2),
-       (3, '2022-03-01', 'Annuler', 3);
+INSERT INTO `NoteFrais` (`idNoteFrais`, `dateNote`, `status`, `idIntervenant`, `idAdministration`)
+VALUES (1, '2022-01-01', 'En attente', 1, 1),
+       (2, '2022-02-01', 'En attente', 2, 2),
+       (3, '2022-03-01', 'En attente', 6, 5);
 
 -- --------------------------------------------------------
 
@@ -290,8 +269,10 @@ CREATE TABLE `Depense`
     `datePaiement`    date         NOT NULL,
     `montant`         float        NOT NULL,
     `fournisseur`     varchar(50)  NOT NULL,
-    `description`     varchar(255) NOT NULL,
-    `urlJustificatif` varchar(255) NOT NULL,
+    `commentaire`     varchar(255) NOT NULL,
+    `status`          varchar(50)  NOT NULL DEFAULT 'À traiter',
+    `dateCreation`    date        NOT NULL,
+    `urlJustificatif` varchar(255) DEFAULT NULL,
     `idIntervenant`   int(11) NOT NULL,
     `idNoteFrais`     int(11) DEFAULT NULL
 ) ENGINE = InnoDB
@@ -302,12 +283,14 @@ CREATE TABLE `Depense`
 -- Déchargement des données de la table `Depense`
 --
 
-INSERT INTO `Depense` (`idDepense`, `nature`, `datePaiement`, `montant`, `fournisseur`, `description`,
-                       `urlJustificatif`, `idIntervenant`, `idNoteFrais`)
-VALUES (1, 'Transport', '2022-01-01', 100, 'SNCF', 'Paris - Lyon', 'https://example.com/justificatif1.pdf', 1, 1),
-       (2, 'Transport', '2022-02-01', 200, 'SNCF', 'Paris - Lyon', 'https://example.com/justificatif2.pdf', 2, 2),
-       (3, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'https://example.com/justificatif3.pdf', 6, NULL),
-       (4, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'https://example.com/justificatif3.pdf', 6, 1);
+INSERT INTO `Depense` (`idDepense`, `nature`, `datePaiement`, `montant`, `fournisseur`, `commentaire`, `status`, `dateCreation`, `urlJustificatif`, `idIntervenant`, `idNoteFrais`)
+VALUES (1, 'Transport', '2022-01-01', 100, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-01-01', 'https://example.com/justificatif1.pdf', 1, 1),
+       (2, 'Transport', '2022-02-01', 200, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-02-01', 'https://example.com/justificatif2.pdf', 2, 2),
+       (3, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À traiter', '2022-03-01', NULL, 6, NULL),
+       (4, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2022-03-01', 'https://example.com/justificatif3.pdf', 6, NULL),
+       (5, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2022-03-01', 'https://example.com/justificatif3.pdf', 6, NULL),
+       (6, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-03-01', 'https://example.com/justificatif3.pdf', 6, 3);
+
 
 -- --------------------------------------------------------
 
@@ -507,12 +490,6 @@ ALTER TABLE `Demandeur`
     ADD PRIMARY KEY (`idDemandeur`),
     ADD KEY `idVille` (`idVille`);
 
---
--- Index pour la table `Emet`
---
-ALTER TABLE `Emet`
-    ADD PRIMARY KEY (`idIntervenant`, `idNoteFrais`),
-    ADD KEY `idNoteFrais` (`idNoteFrais`);
 
 --
 -- Index pour la table `Empechement`
@@ -557,6 +534,7 @@ ALTER TABLE `Intervenant`
 --
 ALTER TABLE `NoteFrais`
     ADD PRIMARY KEY (`idNoteFrais`),
+    ADD KEY `idIntervenant` (`idIntervenant`),
     ADD KEY `idAdministration` (`idAdministration`);
 
 --
@@ -731,15 +709,6 @@ UPDATE CASCADE;
 ALTER TABLE `Demandeur`
     ADD CONSTRAINT `Demandeur_ibfk_1` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Contraintes pour la table `Emet`
---
-ALTER TABLE `Emet`
-    ADD CONSTRAINT `Emet_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Emet_ibfk_2` FOREIGN KEY (`idNoteFrais`) REFERENCES `NoteFrais` (`idNoteFrais`) ON
-DELETE
-CASCADE ON
-UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Empechement`
@@ -797,7 +766,8 @@ UPDATE CASCADE;
 -- Contraintes pour la table `NoteFrais`
 --
 ALTER TABLE `NoteFrais`
-    ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`idAdministration`) REFERENCES `Administration` (`idAdministration`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `NoteFrais_ibfk_2` FOREIGN KEY (`idAdministration`) REFERENCES `Administration` (`idAdministration`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 --

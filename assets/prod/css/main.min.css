@@ -2790,6 +2790,58 @@ body.intervenant {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.intervenant .noteFrais__table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #144139;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400; }
+    body.intervenant .noteFrais__table thead td {
+      vertical-align: middle;
+      padding: 0 0 2rem 0;
+      font-weight: 500; }
+    body.intervenant .noteFrais__table td {
+      text-align: center;
+      padding: .8em; }
+    body.intervenant .noteFrais__table__content--Atraiter {
+      color: #E55006; }
+      body.intervenant .noteFrais__table__content--Atraiter__tag {
+        background-color: #FEF5F0; }
+    body.intervenant .noteFrais__table__content--Adeclarer {
+      color: #3C9933; }
+      body.intervenant .noteFrais__table__content--Adeclarer__tag {
+        background-color: #F7FEF6; }
+    body.intervenant .noteFrais__table__content--tag {
+      width: 5rem;
+      border-radius: 5rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin: auto; }
+    body.intervenant .noteFrais__table--title {
+      background-color: #F1FAFB;
+      color: #144139;
+      text-align: center;
+      font-size: 1em;
+      padding: 10px; }
+      body.intervenant .noteFrais__table--title__content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; }
+        body.intervenant .noteFrais__table--title__content span {
+          font-weight: bold;
+          background-color: #AEDBD3;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.2rem;
+          margin-right: 1rem; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -4710,6 +4762,58 @@ body.demandeur {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.demandeur .noteFrais__table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #1E1E3D;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400; }
+    body.demandeur .noteFrais__table thead td {
+      vertical-align: middle;
+      padding: 0 0 2rem 0;
+      font-weight: 500; }
+    body.demandeur .noteFrais__table td {
+      text-align: center;
+      padding: .8em; }
+    body.demandeur .noteFrais__table__content--Atraiter {
+      color: #E55006; }
+      body.demandeur .noteFrais__table__content--Atraiter__tag {
+        background-color: #FEF5F0; }
+    body.demandeur .noteFrais__table__content--Adeclarer {
+      color: #3C9933; }
+      body.demandeur .noteFrais__table__content--Adeclarer__tag {
+        background-color: #F7FEF6; }
+    body.demandeur .noteFrais__table__content--tag {
+      width: 5rem;
+      border-radius: 5rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin: auto; }
+    body.demandeur .noteFrais__table--title {
+      background-color: #F1FAFB;
+      color: #1E1E3D;
+      text-align: center;
+      font-size: 1em;
+      padding: 10px; }
+      body.demandeur .noteFrais__table--title__content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; }
+        body.demandeur .noteFrais__table--title__content span {
+          font-weight: bold;
+          background-color: #AEDBD3;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.2rem;
+          margin-right: 1rem; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
