@@ -2,11 +2,12 @@ const sidebar_container = document.querySelector('#sidebar-add-depense');
 const sidebar = document.querySelector('#sidebar-add-depense--content');
 const btn_create = document.querySelector('.noteFrais button#create');
 const selectNature = document.querySelector('#nature.sidebar-add-depense-row__content--input');
-
 if (sidebar) {
-    const btn_close = sidebar.querySelector('.close-btn');
-    btn_close.addEventListener('click', () => {
-        closeSidebar();
+    const btn_close = sidebar.querySelectorAll('.close-btn');
+    btn_close.forEach(btn => {
+        btn.addEventListener('click', () => {
+            closeSidebar();
+        });
     });
 }
 
@@ -33,6 +34,8 @@ function closeSidebar() {
     sidebar_container.style.visibility = "hidden";
     sidebar_container.style.opacity = "0";
     sidebar.style.right = "-60%";
+    const form = document.querySelector('#sidebar-add-depense--content__form');
+    form.reset();
 }
 
 if (selectNature) {
