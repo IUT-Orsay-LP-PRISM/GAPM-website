@@ -36,6 +36,8 @@ function closeSidebar() {
     sidebar.style.right = "-60%";
     const form = document.querySelector('#sidebar-add-depense--content__form');
     form.reset();
+    form.action = `?action=add-depense`;
+    form.querySelector('#sidebar-add-depense--content__form--btnSubmit__row > button > p').innerHTML = 'Enregistrer la dépense'
 }
 
 if (selectNature) {
@@ -44,4 +46,53 @@ if (selectNature) {
         const selectedOption = selectNature.options[selectNature.selectedIndex].innerHTML;
         title.innerHTML = selectedOption
     });
+}
+
+const depenses = document.querySelectorAll('.noteFrais__table__content--Adeclarer, .noteFrais__table__content--Atraiter');
+
+depenses.forEach(depense => {
+    depense.addEventListener('click', (event) => {
+        const target = event.target;
+        if (target.classList.contains('icon-fi-rr-trash')) {
+            event.stopPropagation(); // Arrête la propagation de l'événement
+        } else {
+            const id = depense.dataset.id;
+            const form = document.querySelector('#sidebar-add-depense--content__form');
+            form.action = `?action=edit-depense&idDepense=${id}`;
+            ajaxEditDepense(id);
+        }
+    });
+});
+
+
+function ajaxEditDepense(depenseId) {
+    const xhr = new XMLHttpRequest();
+    const url = '/?action=get-depense&idDepense=' + depenseId;
+    xhr.open("GET", url, false);
+    xhr.onload = () => callback(xhr);
+    xhr.send();
+
+    function callback(xhr) {
+        if (xhr.status === 200) {
+            const depense = JSON.parse(xhr.responseText);
+            const form = document.querySelector('#sidebar-add-depense--content__form');
+
+            const select = form.querySelector('#nature')
+            const optionSelected = depense.nature;
+            Array.from(select.options).forEach(option => {
+                if (option.value === optionSelected) {
+                    option.selected = true;
+                }
+            });
+
+            form.querySelector('#datePaiement').value = depense.datePaiement;
+            form.querySelector('#montant').value = depense.montant;
+            form.querySelector('#fournisseur').value = depense.fournisseur;
+            form.querySelector('#commentaire').value = depense.commentaire;
+            form.querySelector('#sidebar-add-depense--content__form--btnSubmit__row > button > p').innerHTML = 'Modifier la dépense'
+            openSidebar();
+        } else {
+            console.log('Erreur');
+        }
+    }
 }

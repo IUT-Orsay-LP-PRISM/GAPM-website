@@ -51,7 +51,7 @@
                     <div class="justificatif--content">
                         {% include 'svg/illu_noteFrais_create.svg' %}
                         <label for="justificatif">Choisir fichier</label>
-                        <input type="file" name="urlJustificatif" id="justificatif">
+                        <input type="file" name="urlJustificatif" id="urlJustificatif">
                         <p>Les formats PDF, PNG, JPG, JPEG, DOC <br/> inférieurs à 100 Mo sont acceptés.</p>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                             </div>
                             <div class="sidebar-add-depense-row__content">
                                 <label for="date">Date</label>
-                                <input type="date" name="datePaiement" id="date"
+                                <input type="date" name="datePaiement" id="datePaiement"
                                        class="sidebar-add-depense-row__content--input" required>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                         <div id="sidebar-add-depense--content__form--btnSubmit__row">
                             <button type="submit" class="btn btn-primary-nb">
                                 <i class="icon-w icon-fi-rr-check"></i>
-                                Enregistrer la dépense
+                                <p>Enregistrer la dépense</p>
                             </button>
                             <button type="button" class="btn btn--secondary close-btn">Annuler</button>
                         </div>

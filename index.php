@@ -31,6 +31,8 @@ Route::post('update-intervenant', 'IntervenantController', 'update');
 Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 Route::post('picture-edit', 'IntervenantController', 'updatePicture');
 Route::post('add-depense', 'NoteFraisController', 'createDepense');
+Route::post('edit-depense', 'NoteFraisController', 'updateDepense');
+
 
 Route::post('intervenant-unsubscribe-request', 'IntervenantController', 'unsubscribeRequest');
 Route::post('intervenant-cancel-unsubscribe-request', 'IntervenantController', 'cancelUnsubscribe');
@@ -50,6 +52,7 @@ Route::search('/?action=search');
 Route::autocomplete('/?action=autocompleteSpecialite','Specialite');
 Route::autocomplete('/?action=autocompleteVille','Ville');
 Route::ajax('/?action=popupAvis','RendezVous');
+Route::ajax('/?action=get-depense','NoteFrais');
 
 // route::Ajax pour retiré les date deja use d'un rdv
 Route::get("getHoraireNotAvailable", "RendezVousController", "getHoraireNotAvailableByIntervenant");

@@ -104,4 +104,64 @@ class NoteFraisController extends Template
         exit;
     }
 
+    public function updateDepense()
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour modifier une dépense, veuillez vous identifier&c=connexion');
+            exit;
+        }
+
+        $idDepense = $_GET['idDepense'];
+        if (!isset($idDepense) || empty($idDepense)) {
+            header('Location: /?action=notes-de-frais&message=Une erreur est survenue lors de la modification de votre dépense&c=msg-error');
+            exit;
+        }
+
+        $urlJustificatif = $_POST['urlJustificatif'];
+        $nature = $_POST['nature'];
+        $datePaiement = $_POST['datePaiement'];
+        $montant = $_POST['montant'];
+        $fournisseur = $_POST['fournisseur'];
+        $commentaire = $_POST['commentaire'];
+        $status = 'À traiter';
+
+        $depense = $this->entityManager->getRepository(Depense::class)->find($idDepense);
+        $depense->setNature($nature);
+        $depense->setDatePaiement($datePaiement);
+        $depense->setMontant($montant);
+        $depense->setFournisseur($fournisseur);
+        $depense->setCommentaire($commentaire);
+
+        if ($urlJustificatif != '') {
+            $depense->setUrlJustificatif($urlJustificatif);
+            $status = 'À déclarer';
+        }
+        $depense->setStatus($status);
+        $this->entityManager->persist($depense);
+        $this->entityManager->flush();
+        header('Location: /?action=notes-de-frais&message=Votre dépense a bien été modifiée&c=msg-success');
+        exit;
+    }
+
+
+    public function ajax()
+    {
+        $idDepense = $_GET['idDepense'];
+        if (!isset($idDepense) || empty($idDepense)) {
+            echo json_encode(['error' => 'Une erreur est survenue lors de la modification de votre dépense']);
+            exit;
+        }
+        $depense = $this->entityManager->getRepository(Depense::class)->find($idDepense);
+        $depense_json = json_encode(
+            [
+                'nature' => $depense->getNature(),
+                'datePaiement' => $depense->getDatePaiement(),
+                'montant' => $depense->getMontant(),
+                'fournisseur' => $depense->getFournisseur(),
+                'commentaire' => $depense->getCommentaire(),
+                'urlJustificatif' => $depense->getUrlJustificatif()
+            ]
+        );
+        echo $depense_json;
+    }
 }

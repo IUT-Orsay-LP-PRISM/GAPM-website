@@ -39,7 +39,7 @@
                     </td>
                 </tr>
                 {% for depense in depenses.Atraiter %}
-                    <tr class="noteFrais__table__content--Atraiter">
+                    <tr class="noteFrais__table__content--Atraiter" data-id="{{ depense.idDepense }}" >
                         <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
                         <td>{{ depense.datePaiement|date("d/m/Y") }}</td>
                         <td class="noteFrais__table__content--tag noteFrais__table__content--Atraiter__tag">
@@ -87,7 +87,7 @@
                     </td>
                 </tr>
                 {% for depense in depenses.Adeclarer %}
-                    <tr class="noteFrais__table__content--Adeclarer">
+                    <tr class="noteFrais__table__content--Adeclarer" data-id="{{ depense.idDepense }}">
                         <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
                         <td>{{ depense.datePaiement|date("d/m/Y") }}</td>
                         <td class="noteFrais__table__content--tag noteFrais__table__content--Adeclarer__tag">
