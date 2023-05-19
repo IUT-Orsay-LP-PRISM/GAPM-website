@@ -213,6 +213,11 @@ class IntervenantController extends Template
     {
         $idIntervenant = Session::get('user')->getIdDemandeur();
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+
+        $oldPictureUrl = $intervenant->getImgUrl();
+        if($oldPictureUrl != 'public/img/default.jpg'){
+            unlink($oldPictureUrl);
+        }
         $img = $_FILES['image'];
 
         // Vérification si le fichier a bien été téléchargé via HTTP POST (donc qu'il a bien été upload)
@@ -233,7 +238,8 @@ class IntervenantController extends Template
 
         // Vérification si l'intervenant existe
         if ($intervenant != null) {
-            $pathToSave = 'public/img/intervenants/';
+            $pathToSave = 'public/uploads/intervenants/imgs/';
+
             $random = bin2hex(random_bytes(10));
             $extension = pathinfo($img['name'], PATHINFO_EXTENSION);
 

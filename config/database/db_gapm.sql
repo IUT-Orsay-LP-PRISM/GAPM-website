@@ -216,7 +216,6 @@ CREATE TABLE `Intervenant`
   COLLATE = utf8mb4_general_ci;
 
 
-
 --
 -- Déchargement des données de la table `Intervenant`
 --
@@ -224,8 +223,12 @@ CREATE TABLE `Intervenant`
 INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`, `idVillePro`, `demandeSupp`)
 VALUES (1, '100 rue des Intervenants', 26, 0),
        (2, '200 rue des Experts', 87, 0),
-       (5, '500 chemin des Professionnels', 85, 0),
-       (6, '500 chemin des Professionnels', 256, 0);
+       (5, '500 chemin des Professionnels', 85, 0);
+
+INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`, `imgUrl`, `idVillePro`, `demandeSupp`)
+VALUES (6, '500 chemin des Professionnels', 'public/uploads/intervenants/imgs/6-dbd94cb6b271525ffa5d.jpeg', 256, 0);
+
+
 
 -- --------------------------------------------------------
 
@@ -271,8 +274,8 @@ CREATE TABLE `Depense`
     `fournisseur`     varchar(50)  NOT NULL,
     `commentaire`     varchar(255) NOT NULL,
     `status`          varchar(50)  NOT NULL DEFAULT 'À traiter',
-    `dateCreation`    date        NOT NULL,
-    `urlJustificatif` varchar(255) DEFAULT NULL,
+    `dateCreation`    date         NOT NULL,
+    `urlJustificatif` varchar(255)          DEFAULT NULL,
     `idIntervenant`   int(11) NOT NULL,
     `idNoteFrais`     int(11) DEFAULT NULL
 ) ENGINE = InnoDB
@@ -283,13 +286,18 @@ CREATE TABLE `Depense`
 -- Déchargement des données de la table `Depense`
 --
 
-INSERT INTO `Depense` (`idDepense`, `nature`, `datePaiement`, `montant`, `fournisseur`, `commentaire`, `status`, `dateCreation`, `urlJustificatif`, `idIntervenant`, `idNoteFrais`)
-VALUES (1, 'Transport', '2022-01-01', 100, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-01-01', 'public/uploads/intervenants/docs/1-1357013fc451a6b9f39c.jpg', 1, 1),
+INSERT INTO `Depense` (`idDepense`, `nature`, `datePaiement`, `montant`, `fournisseur`, `commentaire`, `status`,
+                       `dateCreation`, `urlJustificatif`, `idIntervenant`, `idNoteFrais`)
+VALUES (1, 'Transport', '2022-01-01', 100, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-01-01',
+        'public/uploads/intervenants/docs/1-1357013fc451a6b9f39c.jpg', 1, 1),
        (2, 'Transport', '2022-02-01', 200, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-02-01', NULL, 2, 2),
        (3, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À traiter', '2023-05-17', NULL, 6, NULL),
-       (4, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2023-05-18', 'public/uploads/intervenants/docs/6-86a7f91489b52336caf3.jpg', 6, NULL),
-       (5, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2022-03-01', 'public/uploads/intervenants/docs/6-0e948b7ba1132ea8f2f8.jpg', 6, NULL),
-       (6, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-03-01', 'public/uploads/intervenants/docs/6-deace0847a24453a851b.jpg', 6, 3);
+       (4, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2023-05-18',
+        'public/uploads/intervenants/docs/6-86a7f91489b52336caf3.jpg', 6, NULL),
+       (5, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2022-03-01',
+        'public/uploads/intervenants/docs/6-0e948b7ba1132ea8f2f8.jpg', 6, NULL),
+       (6, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-03-01',
+        'public/uploads/intervenants/docs/6-deace0847a24453a851b.jpg', 6, 3);
 
 
 -- --------------------------------------------------------
@@ -767,7 +775,9 @@ UPDATE CASCADE;
 --
 ALTER TABLE `NoteFrais`
     ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `NoteFrais_ibfk_2` FOREIGN KEY (`idAdministration`) REFERENCES `Administration` (`idAdministration`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `NoteFrais_ibfk_2` FOREIGN KEY (`idAdministration`) REFERENCES `Administration` (`idAdministration`) ON
+DELETE
+CASCADE ON UPDATE CASCADE;
 
 
 --
