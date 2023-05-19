@@ -2,7 +2,7 @@
 use App\controllers\Route;
 use App\models\entity\Session;
 require 'vendor/autoload.php';
-require_once 'bootstrap.php';
+require_once 'config/bootstrap.php';
 
 Session::start();
 

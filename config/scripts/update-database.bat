@@ -36,8 +36,8 @@ if %DOCKER%==true (
   set "MYSQL_PASSWORD="
 )
 
-set "SQL_FILE_DB_VILLE=db_ville.sql"
-set "SQL_FILE_DB_GAPM=db_gapm.sql"
+set "SQL_FILE_DB_VILLE=../database/db_ville.sql"
+set "SQL_FILE_DB_GAPM=../database/db_gapm.sql"
 set "DATABASE_NAME=gapm"
 
 echo ========================================
