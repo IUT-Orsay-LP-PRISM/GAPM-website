@@ -1,53 +1,61 @@
 <?php
-use App\controllers\Route;
-use App\models\entity\Session;
-require 'vendor/autoload.php';
-require_once 'bootstrap.php';
 
-Session::start();
+use App\controllers\Router;
+use App\models\entity\Session;
+
+require_once 'vendor/autoload.php';
+require_once 'bootstrap.php';
+require "Router.php";
 
 global $entityManagerFactory;
 $entityManager = $entityManagerFactory();
 
-Route::get('demandeur', 'DemandeurController', 'index');
-Route::get('inscription-intervenant', 'IntervenantController', 'index');
-Route::get('logout', 'DemandeurController', 'logout');
-Route::get('my-account', 'DemandeurController', 'displayMyAccount');
-Route::get('prendre-rdv', 'RendezVousController', 'index');
-Route::get('delete-rdv', 'RendezVousController', 'deleteRdv');
-Route::get('success-rdv', 'RendezVousController', 'success');
-Route::get('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
-Route::get('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
+Session::start();
 
-Route::post('login-user', 'DemandeurController', 'login');
-Route::post('register-user', 'DemandeurController', 'register');
-Route::post('my-account-edit/', 'DemandeurController', 'update');
-Route::post('my-account-delete', 'DemandeurController', 'delete');
-Route::post('confirm-RDV', 'RendezVousController', 'createRDV');
-Route::post('ajout-avis', 'RendezVousController', 'createNoticeOnRdv');
-Route::post('upgrade-to-intervenant', 'IntervenantController', 'devenirIntervenant');
-Route::post('update-intervenant', 'IntervenantController', 'update');
-Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
-Route::post('picture-edit', 'IntervenantController', 'updatePicture');
+// Exemple d'utilisation
+$router = new Router();
 
-Route::post('intervenant-unsubscribe-request', 'IntervenantController', 'unsubscribeRequest');
-Route::post('intervenant-cancel-unsubscribe-request', 'IntervenantController', 'cancelUnsubscribe');
+// Ajouter des routes
+// Routes GET
+$router->addRoute('/\?action=demandeur', 'DemandeurController', 'index');
+$router->addRoute('/\?action=inscription-intervenant', 'IntervenantController', 'index');
+$router->addRoute('/\?action=logout', 'DemandeurController', 'logout');
+$router->addRoute('/\?action=prendre-rdv&intervenant={intervenant}', 'RendezVousController', 'index');
+$router->addRoute('/\?action=getHoraireNotAvailable&date={date}&idIntervenant={idIntervenant}', 'RendezVousController', 'getHoraireNotAvailableByIntervenant');
 
-Route::get('profile', 'IntervenantController', 'profile');
+$router->addRoute('/\?action=my-account', 'DemandeurController', 'displayMyAccount');
+$router->addRoute('/\?action=delete-rdv', 'RendezVousController', 'deleteRdv');
+$router->addRoute('/\?action=success-rdv', 'RendezVousController', 'success');
+$router->addRoute('/\?action=mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
+$router->addRoute('/\?action=notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
+$router->addRoute('/\?action=profile', 'IntervenantController', 'profile');
 
-Route::post('faq', 'HomeController', 'displayFAQ');
+// Routes POST
+$router->addRoute('/\?action=login-user', 'DemandeurController', 'login');
+$router->addRoute('/\?action=register-user', 'DemandeurController', 'register');
+$router->addRoute('/\?action=my-account-edit/', 'DemandeurController', 'update');
+$router->addRoute('/\?action=my-account-delete', 'DemandeurController', 'delete');
+$router->addRoute('/\?action=confirm-RDV', 'RendezVousController', 'createRDV');
+$router->addRoute('/\?action=ajout-avis', 'RendezVousController', 'createNoticeOnRdv');
+$router->addRoute('/\?action=upgrade-to-intervenant', 'IntervenantController', 'devenirIntervenant');
+$router->addRoute('/\?action=update-intervenant', 'IntervenantController', 'update');
+$router->addRoute('/\?action=emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
+$router->addRoute('/\?action=picture-edit', 'IntervenantController', 'updatePicture');
+$router->addRoute('/\?action=intervenant-unsubscribe-request', 'IntervenantController', 'unsubscribeRequest');
+$router->addRoute('/\?action=intervenant-cancel-unsubscribe-request', 'IntervenantController', 'cancelUnsubscribe');
+$router->addRoute('/\?action=faq', 'HomeController', 'displayFAQ');
+$router->addRoute('/\?action=toggle-mode-intervenant', 'IntervenantController', 'toggleModeIntervenant');
 
-// route::pour le système de toggle du mode intervenant
-Route::post('toggle-mode-intervenant', 'IntervenantController', 'toggleModeIntervenant');
+// Route Search
+$router->addRoute('/\?action=search&s_name={name}&s_city={lol}', 'SearchController', 'index');
 
+// Route Autocomplete
+$router->addRoute('/\?action=autocompleteSpecialite', 'SpecialiteController', 'autocomplete');
+$router->addRoute('/\?action=autocompleteVille', 'VilleController', 'autocomplete');
 
-// route::search pour le système de recherche, différent de ::get()
-Route::search('/?action=search');
+// Route Ajax
+$router->addRoute('/\?action=popupAvis', 'RendezVousController', 'ajax');
 
-// route::search pour le système de autocomplete, différent de ::get()
-Route::autocomplete('/?action=autocompleteSpecialite','Specialite');
-Route::autocomplete('/?action=autocompleteVille','Ville');
-Route::ajax('/?action=popupAvis','RendezVous');
-
-// route::Ajax pour retiré les date deja use d'un rdv
-Route::get("getHoraireNotAvailable", "RendezVousController", "getHoraireNotAvailableByIntervenant");
+// Traiter la requête actuelle
+$requestUrl = $_SERVER['REQUEST_URI'];
+$router->handleRequest($requestUrl);
