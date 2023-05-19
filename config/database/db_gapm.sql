@@ -284,12 +284,12 @@ CREATE TABLE `Depense`
 --
 
 INSERT INTO `Depense` (`idDepense`, `nature`, `datePaiement`, `montant`, `fournisseur`, `commentaire`, `status`, `dateCreation`, `urlJustificatif`, `idIntervenant`, `idNoteFrais`)
-VALUES (1, 'Transport', '2022-01-01', 100, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-01-01', 'https://example.com/justificatif1.pdf', 1, 1),
-       (2, 'Transport', '2022-02-01', 200, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-02-01', 'https://example.com/justificatif2.pdf', 2, 2),
+VALUES (1, 'Transport', '2022-01-01', 100, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-01-01', 'public/uploads/intervenants/docs/1-1357013fc451a6b9f39c.jpg', 1, 1),
+       (2, 'Transport', '2022-02-01', 200, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-02-01', NULL, 2, 2),
        (3, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À traiter', '2023-05-17', NULL, 6, NULL),
-       (4, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2023-05-18', 'https://example.com/justificatif3.pdf', 6, NULL),
-       (5, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2022-03-01', 'https://example.com/justificatif3.pdf', 6, NULL),
-       (6, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-03-01', 'https://example.com/justificatif3.pdf', 6, 3);
+       (4, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2023-05-18', 'public/uploads/intervenants/docs/6-86a7f91489b52336caf3.jpg', 6, NULL),
+       (5, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2022-03-01', 'public/uploads/intervenants/docs/6-0e948b7ba1132ea8f2f8.jpg', 6, NULL),
+       (6, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-03-01', 'public/uploads/intervenants/docs/6-deace0847a24453a851b.jpg', 6, 3);
 
 
 -- --------------------------------------------------------

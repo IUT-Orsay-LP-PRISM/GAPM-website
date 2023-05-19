@@ -88,7 +88,8 @@ $greenLightNote  : #F7FEF6;
       }
 
       &--Atraiter {
-        color : $orangeNote;
+        color  : $orangeNote;
+        cursor : pointer;
 
         &__tag span {
           background-color : $orangeLightNote;
@@ -100,7 +101,8 @@ $greenLightNote  : #F7FEF6;
       }
 
       &--Adeclarer {
-        color : $greenNote;
+        color  : $greenNote;
+        cursor : pointer;
 
         &__tag span {
           background-color : $greenLightNote;
@@ -165,7 +167,7 @@ $greenLightNote  : #F7FEF6;
 
           .noteFrais__table__content--comment__message {
             visibility       : hidden;
-            width            : 200px;
+            width            : 300px;
             background-color : #333;
             color            : #fff;
             text-align       : center;
@@ -178,6 +180,14 @@ $greenLightNote  : #F7FEF6;
             transform        : translateX(-50%);
             opacity          : 0;
             transition       : opacity 0.3s;
+
+            img {
+              width      : auto;
+              height     : auto;
+              max-width  : 100%;
+              max-height : 30rem;
+            }
+
 
             .tooltip-content {
               display : block;

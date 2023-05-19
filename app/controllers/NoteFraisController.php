@@ -50,10 +50,15 @@ class NoteFraisController extends Template
             header('Location: /?action=search&message=Pour ajouter une dépense, veuillez vous identifier&c=connexion');
             exit;
         }
-
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find(Session::get('user')->getIdDemandeur());
 
-        $urlJustificatif = $_POST['urlJustificatif'];
+        if ($intervenant == null) {
+            header('Location: /?action=notes-de-frais&message=Une erreur est survenue lors de l\'ajout de votre dépense&c=msg-error');
+            exit;
+        }
+
+        $urlJustificatif = $this->uploadJustificatif($intervenant);
+
         $nature = $_POST['nature'];
         $datePaiement = $_POST['datePaiement'];
         $montant = $_POST['montant'];
@@ -97,12 +102,68 @@ class NoteFraisController extends Template
         }
 
         $depense = $this->entityManager->getRepository(Depense::class)->find($idDepense);
+
+        $urlJustificatif = $depense->getUrlJustificatif();
+        if ($urlJustificatif != '') {
+            unlink($urlJustificatif);
+        }
+
         $this->entityManager->remove($depense);
         $this->entityManager->flush();
 
         header('Location: /?action=notes-de-frais&message=Votre dépense a bien été supprimée&c=msg-success');
         exit;
     }
+
+    private function uploadJustificatif($intervenant,$oldUrlJustificatif = '')
+    {
+        if($oldUrlJustificatif != ''){
+            unlink($oldUrlJustificatif);
+        }
+        $urlJustificatif = '';
+        $justificatif = $_FILES['urlJustificatif'];
+
+        // Vérification si le fichier a été uploadé (si le champ est vide, c'est qu'il n'a pas été uploadé)
+        if (isset($justificatif['tmp_name']) && !empty($justificatif['tmp_name'])) {
+            // Vérification si le fichier a bien été téléchargé via HTTP POST (donc qu'il a bien été upload)
+            if (!is_uploaded_file($justificatif['tmp_name'])) {
+                $referer = self::addMessageToUrl('Le fichier n\'a pas été téléchargé via HTTP POST.', 'msg-warning');
+                header("Location: $referer");
+                exit();
+            }
+
+            // Vérification si le fichier est une image ou un pdf
+            $check = getimagesize($justificatif['tmp_name']);
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+            if (!in_array($check['mime'], $allowedTypes)) {
+                $referer = self::addMessageToUrl('Le fichier n\'est pas une image ou un pdf.', 'msg-warning');
+                header("Location: $referer");
+                exit();
+            }
+
+            $pathToSave = 'public/uploads/intervenants/docs/';
+            $random = bin2hex(random_bytes(10));
+            $extension = pathinfo($justificatif['name'], PATHINFO_EXTENSION);
+
+            // Vérification de l'extension
+            if (!in_array($extension, ['jpg', 'jpeg', 'png', 'pdf'])) {
+                $referer = self::addMessageToUrl('Extension de fichier non autorisée.', 'msg-error');
+                header("Location: $referer");
+                exit();
+            }
+
+            $urlJustificatif = $pathToSave . $intervenant->getIdDemandeur() . '-' . $random . '.' . $extension;
+
+            // Déplacement du fichier
+            if (!move_uploaded_file($justificatif['tmp_name'], $urlJustificatif)) {
+                $referer = self::addMessageToUrl('Une erreur est survenue lors de l\'upload du fichier.', 'msg-error');
+                header("Location: $referer");
+                exit();
+            }
+        }
+        return $urlJustificatif;
+    }
+
 
     public function updateDepense()
     {
@@ -117,7 +178,17 @@ class NoteFraisController extends Template
             exit;
         }
 
-        $urlJustificatif = $_POST['urlJustificatif'];
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find(Session::get('user')->getIdDemandeur());
+
+        if ($intervenant == null) {
+            header('Location: /?action=notes-de-frais&message=Une erreur est survenue lors de l\'ajout de votre dépense&c=msg-error');
+            exit;
+        }
+
+        $depense = $this->entityManager->getRepository(Depense::class)->find($idDepense);
+
+        $urlJustificatif = $this->uploadJustificatif($intervenant, $depense->getUrlJustificatif());
+
         $nature = $_POST['nature'];
         $datePaiement = $_POST['datePaiement'];
         $montant = $_POST['montant'];
@@ -125,7 +196,6 @@ class NoteFraisController extends Template
         $commentaire = $_POST['commentaire'];
         $status = 'À traiter';
 
-        $depense = $this->entityManager->getRepository(Depense::class)->find($idDepense);
         $depense->setNature($nature);
         $depense->setDatePaiement($datePaiement);
         $depense->setMontant($montant);

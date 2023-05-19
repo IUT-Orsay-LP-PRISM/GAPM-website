@@ -224,7 +224,8 @@ class IntervenantController extends Template
 
         // Vérification si le fichier est une image
         $check = getimagesize($img['tmp_name']);
-        if ($check === false) {
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+        if (!in_array($check['mime'], $allowedTypes)) {
             $referer = self::addMessageToUrl('Le fichier n\'est pas une image.', 'msg-error');
             header("Location: $referer");
             exit();

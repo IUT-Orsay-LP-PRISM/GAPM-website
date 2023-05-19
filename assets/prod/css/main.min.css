@@ -2843,13 +2843,15 @@ body.intervenant {
     body.intervenant .noteFrais__table__content--Adeclarer:hover .noteFrais__table__content--trash a {
       opacity: 1; }
     body.intervenant .noteFrais__table__content--Atraiter {
-      color: #E55006; }
+      color: #E55006;
+      cursor: pointer; }
       body.intervenant .noteFrais__table__content--Atraiter__tag span {
         background-color: #FEF5F0; }
       body.intervenant .noteFrais__table__content--Atraiter:hover {
         background-color: #FEF5F0; }
     body.intervenant .noteFrais__table__content--Adeclarer {
-      color: #3C9933; }
+      color: #3C9933;
+      cursor: pointer; }
       body.intervenant .noteFrais__table__content--Adeclarer__tag span {
         background-color: #F7FEF6; }
       body.intervenant .noteFrais__table__content--Adeclarer:hover {
@@ -2892,7 +2894,7 @@ body.intervenant {
           cursor: pointer; }
         body.intervenant .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message {
           visibility: hidden;
-          width: 200px;
+          width: 300px;
           background-color: #333;
           color: #fff;
           text-align: center;
@@ -2905,6 +2907,11 @@ body.intervenant {
           transform: translateX(-50%);
           opacity: 0;
           transition: opacity 0.3s; }
+          body.intervenant .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 30rem; }
           body.intervenant .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message .tooltip-content {
             display: block;
             margin: 0; }
@@ -5041,13 +5048,15 @@ body.demandeur {
     body.demandeur .noteFrais__table__content--Adeclarer:hover .noteFrais__table__content--trash a {
       opacity: 1; }
     body.demandeur .noteFrais__table__content--Atraiter {
-      color: #E55006; }
+      color: #E55006;
+      cursor: pointer; }
       body.demandeur .noteFrais__table__content--Atraiter__tag span {
         background-color: #FEF5F0; }
       body.demandeur .noteFrais__table__content--Atraiter:hover {
         background-color: #FEF5F0; }
     body.demandeur .noteFrais__table__content--Adeclarer {
-      color: #3C9933; }
+      color: #3C9933;
+      cursor: pointer; }
       body.demandeur .noteFrais__table__content--Adeclarer__tag span {
         background-color: #F7FEF6; }
       body.demandeur .noteFrais__table__content--Adeclarer:hover {
@@ -5090,7 +5099,7 @@ body.demandeur {
           cursor: pointer; }
         body.demandeur .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message {
           visibility: hidden;
-          width: 200px;
+          width: 300px;
           background-color: #333;
           color: #fff;
           text-align: center;
@@ -5103,6 +5112,11 @@ body.demandeur {
           transform: translateX(-50%);
           opacity: 0;
           transition: opacity 0.3s; }
+          body.demandeur .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 30rem; }
           body.demandeur .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message .tooltip-content {
             display: block;
             margin: 0; }
