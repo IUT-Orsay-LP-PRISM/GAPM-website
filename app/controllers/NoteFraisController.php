@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use App\models\entity\Depense;
+use App\models\entity\Intervenant;
 use App\models\entity\NoteFrais;
 use App\models\entity\Session;
 use App\models\repository\NoteFraisRepository;
@@ -41,5 +42,44 @@ class NoteFraisController extends Template
             'noteFrais' => $noteFrais
         ]);
 
+    }
+
+    public function createDepense()
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour ajouter une dépense, veuillez vous identifier&c=connexion');
+            exit;
+        }
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find(Session::get('user')->getIdDemandeur());
+
+        $urlJustificatif = $_POST['urlJustificatif'];
+        $nature = $_POST['nature'];
+        $datePaiement = $_POST['datePaiement'];
+        $montant = $_POST['montant'];
+        $fournisseur = $_POST['fournisseur'];
+        $commentaire = $_POST['commentaire'];
+        $dateCreation = date('Y-m-d');
+        $status = 'À traiter';
+
+        $depense = new Depense();
+        $depense->setNature($nature);
+        $depense->setDatePaiement($datePaiement);
+        $depense->setMontant($montant);
+        $depense->setFournisseur($fournisseur);
+        $depense->setCommentaire($commentaire);
+        $depense->setDateCreation($dateCreation);
+        $depense->setIntervenant($intervenant);
+
+        if ($urlJustificatif != '') {
+            $depense->setUrlJustificatif($urlJustificatif);
+            $status = 'À déclarer';
+        }
+        $depense->setStatus($status);
+        $this->entityManager->persist($depense);
+        $this->entityManager->flush();
+
+        header('Location: /?action=notes-de-frais&message=Votre dépense a bien été ajoutée&c=msg-success');
+        exit;
     }
 }

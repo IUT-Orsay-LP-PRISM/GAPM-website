@@ -46,12 +46,12 @@
 
     <div id="sidebar-add-depense">
         <div id="sidebar-add-depense--content">
-            <form action="?action=" method="post" id="sidebar-add-depense--content__form">
+            <form action="?action=add-depense" method="post" id="sidebar-add-depense--content__form">
                 <div id="sidebar-add-depense--content__form__justificatif">
                     <div class="justificatif--content">
                         {% include 'svg/illu_noteFrais_create.svg' %}
                         <label for="justificatif">Choisir fichier</label>
-                        <input type="file" name="justificatif" id="justificatif">
+                        <input type="file" name="urlJustificatif" id="justificatif">
                         <p>Les formats PDF, PNG, JPG, JPEG, DOC <br/> inférieurs à 100 Mo sont acceptés.</p>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                 <label for="nature">Nature</label>
                                 <div class="sidebar-add-depense-row__content--inputNature">
                                     <i class="icon-b icon-fi-rr-car"></i>
-                                    <select name="nature" id="nature" class="sidebar-add-depense-row__content--input">
+                                    <select name="nature" id="nature" class="sidebar-add-depense-row__content--input" required>
                                         <option value="essence">Essence</option>
                                         <option value="repas">Repas</option>
                                         <option value="hebergement">Hébergement</option>
@@ -78,15 +78,15 @@
                             </div>
                             <div class="sidebar-add-depense-row__content">
                                 <label for="date">Date</label>
-                                <input type="date" name="date" id="date"
-                                       class="sidebar-add-depense-row__content--input">
+                                <input type="date" name="datePaiement" id="date"
+                                       class="sidebar-add-depense-row__content--input" required>
                             </div>
                         </div>
                         <div class="sidebar-add-depense-row">
                             <div class="sidebar-add-depense-row__content">
                                 <label for="montant">Montant déclaré</label>
                                 <input type="number" name="montant" id="montant"
-                                       class="sidebar-add-depense-row__content--input">
+                                       class="sidebar-add-depense-row__content--input" required>
                             </div>
                             <div class="sidebar-add-depense-row__content">
                                 <label class="notRequired">Devise</label>
@@ -96,15 +96,15 @@
                         <div class="sidebar-add-depense-row">
                             <div class="sidebar-add-depense-row__content">
                                 <label for="fournisseur">Fournisseur</label>
-                                <input type="text" name="montant" id="fournisseur"
-                                       class="sidebar-add-depense-row__content--input">
+                                <input type="text" name="fournisseur" id="fournisseur"
+                                       class="sidebar-add-depense-row__content--input" required>
                             </div>
                         </div>
                         <div class="sidebar-add-depense-row">
                             <div class="sidebar-add-depense-row__content commentaire">
                                 <label for="commentaire">Commentaire</label>
                                 <textarea name="commentaire" id="commentaire" cols="30" rows="10"
-                                          class="sidebar-add-depense-row__content--input"></textarea>
+                                          class="sidebar-add-depense-row__content--input" required></textarea>
                             </div>
                         </div>
                     </div>

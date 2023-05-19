@@ -29,6 +29,7 @@ Route::post('upgrade-to-intervenant', 'IntervenantController', 'devenirIntervena
 Route::post('update-intervenant', 'IntervenantController', 'update');
 Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 Route::post('picture-edit', 'IntervenantController', 'updatePicture');
+Route::post('add-depense', 'NoteFraisController', 'createDepense');
 
 Route::post('intervenant-unsubscribe-request', 'IntervenantController', 'unsubscribeRequest');
 Route::post('intervenant-cancel-unsubscribe-request', 'IntervenantController', 'cancelUnsubscribe');
