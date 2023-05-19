@@ -29,87 +29,101 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="noteFrais__table--title">
-                <td colspan="6">
-                    <div class="noteFrais__table--title__content">
-                        <span>{{ depenses.Atraiter|length }}</span>
-                        <p>À traiter</p>
-                    </div>
-                </td>
-            </tr>
-            {% for depense in depenses.Atraiter %}
-                <tr class="noteFrais__table__content--Atraiter">
-                    <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
-                    <td>{{ depense.datePaiement|date("d/m/Y") }}</td>
-                    <td class="noteFrais__table__content--tag noteFrais__table__content--Atraiter__tag">
-                        <span>{{ depense.status }}</span>
-                    </td>
-                    {% if depense.dateCreation|date("d/m/Y") == "now"|date("d/m/Y") %}
-                        <td>Aujourd'hui</td>
-                    {% elseif depense.dateCreation|date("d/m/Y") == "now"|date_modify("-1 day")|date("d/m/Y") %}
-                        <td>Hier</td>
-                    {% else %}
-                        <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
-                    {% endif %}
-                    <td class="noteFrais__table__content--comment">
-                        <div class="icon-container">
-                            <i class="icon icon-fi-rr-link"></i>
-                            <div class="noteFrais__table__content--comment__message">
-                                <img src="https://picsum.photos/200/300" alt="justificatif">
-                            </div>
-                        </div>
-                        <div class="icon-container">
-                            <i class="icon icon-fi-rr-comment"></i>
-                            <div class="noteFrais__table__content--comment__message">
-                                <p class="tooltip-content">{{ depense.commentaire }}</p>
-                            </div>
+            {% if depenses.Atraiter|length > 0 %}
+                <tr class="noteFrais__table--title">
+                    <td colspan="6">
+                        <div class="noteFrais__table--title__content">
+                            <span>{{ depenses.Atraiter|length }}</span>
+                            <p>À traiter</p>
                         </div>
                     </td>
-                    <td>{{ depense.montant }}€</td>
                 </tr>
-                {% set total = total + depense.montant %}
-            {% endfor %}
+                {% for depense in depenses.Atraiter %}
+                    <tr class="noteFrais__table__content--Atraiter">
+                        <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
+                        <td>{{ depense.datePaiement|date("d/m/Y") }}</td>
+                        <td class="noteFrais__table__content--tag noteFrais__table__content--Atraiter__tag">
+                            <span>{{ depense.status }}</span>
+                        </td>
+                        {% if depense.dateCreation|date("d/m/Y") == "now"|date("d/m/Y") %}
+                            <td>Aujourd'hui</td>
+                        {% elseif depense.dateCreation|date("d/m/Y") == "now"|date_modify("-1 day")|date("d/m/Y") %}
+                            <td>Hier</td>
+                        {% else %}
+                            <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
+                        {% endif %}
+                        <td class="noteFrais__table__content--comment">
+                            <div class="icon-container">
+                                <i class="icon icon-fi-rr-link"></i>
+                                <div class="noteFrais__table__content--comment__message">
+                                    <img src="https://picsum.photos/200/300" alt="justificatif">
+                                </div>
+                            </div>
+                            <div class="icon-container">
+                                <i class="icon icon-fi-rr-comment"></i>
+                                <div class="noteFrais__table__content--comment__message">
+                                    <p class="tooltip-content">{{ depense.commentaire }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="noteFrais__table__content--trash">
+                            {{ depense.montant }}€
+                            <a href="?action=delete-depense&idDepense={{ depense.idDepense }}">
+                                <i class="icon icon-fi-rr-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% set total = total + depense.montant %}
+                {% endfor %}
+            {% endif %}
 
-            <tr class="noteFrais__table--title">
-                <td colspan="6">
-                    <div class="noteFrais__table--title__content">
-                        <span>{{ depenses.Adeclarer|length }}</span>
-                        <p>À déclarer</p>
-                    </div>
-                </td>
-            </tr>
-            {% for depense in depenses.Adeclarer %}
-                <tr class="noteFrais__table__content--Adeclarer">
-                    <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
-                    <td>{{ depense.datePaiement|date("d/m/Y") }}</td>
-                    <td class="noteFrais__table__content--tag noteFrais__table__content--Adeclarer__tag">
-                        <span>{{ depense.status }}</span>
-                    </td>
-                    {% if depense.dateCreation|date("d/m/Y") == "now"|date("d/m/Y") %}
-                        <td>Aujourd'hui</td>
-                    {% elseif depense.dateCreation|date("d/m/Y") == "now"|date_modify("-1 day")|date("d/m/Y") %}
-                        <td>Hier</td>
-                    {% else %}
-                        <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
-                    {% endif %}
-                    <td class="noteFrais__table__content--comment">
-                        <div class="icon-container">
-                            <i class="icon icon-fi-rr-link"></i>
-                            <div class="noteFrais__table__content--comment__message">
-                                <img src="https://picsum.photos/200/300" alt="justificatif">
-                            </div>
-                        </div>
-                        <div class="icon-container">
-                            <i class="icon icon-fi-rr-comment"></i>
-                            <div class="noteFrais__table__content--comment__message">
-                                <p class="tooltip-content">{{ depense.commentaire }}</p>
-                            </div>
+            {% if depenses.Adeclarer|length > 0 %}
+                <tr class="noteFrais__table--title">
+                    <td colspan="6">
+                        <div class="noteFrais__table--title__content">
+                            <span>{{ depenses.Adeclarer|length }}</span>
+                            <p>À déclarer</p>
                         </div>
                     </td>
-                    <td>{{ depense.montant }}€</td>
                 </tr>
-                {% set total = total + depense.montant %}
-            {% endfor %}
+                {% for depense in depenses.Adeclarer %}
+                    <tr class="noteFrais__table__content--Adeclarer">
+                        <td>{{ depense.nature }} <br/> {{ depense.fournisseur }}</td>
+                        <td>{{ depense.datePaiement|date("d/m/Y") }}</td>
+                        <td class="noteFrais__table__content--tag noteFrais__table__content--Adeclarer__tag">
+                            <span>{{ depense.status }}</span>
+                        </td>
+                        {% if depense.dateCreation|date("d/m/Y") == "now"|date("d/m/Y") %}
+                            <td>Aujourd'hui</td>
+                        {% elseif depense.dateCreation|date("d/m/Y") == "now"|date_modify("-1 day")|date("d/m/Y") %}
+                            <td>Hier</td>
+                        {% else %}
+                            <td>{{ depense.dateCreation|date("d/m/Y") }}</td>
+                        {% endif %}
+                        <td class="noteFrais__table__content--comment">
+                            <div class="icon-container">
+                                <i class="icon icon-fi-rr-link"></i>
+                                <div class="noteFrais__table__content--comment__message">
+                                    <img src="https://picsum.photos/200/300" alt="justificatif">
+                                </div>
+                            </div>
+                            <div class="icon-container">
+                                <i class="icon icon-fi-rr-comment"></i>
+                                <div class="noteFrais__table__content--comment__message">
+                                    <p class="tooltip-content">{{ depense.commentaire }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="noteFrais__table__content--trash">
+                            {{ depense.montant }}€
+                            <a href="?action=delete-depense&idDepense={{ depense.idDepense }}">
+                                <i class="icon icon-fi-rr-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% set total = total + depense.montant %}
+                {% endfor %}
+            {% endif %}
             </tbody>
         </table>
 

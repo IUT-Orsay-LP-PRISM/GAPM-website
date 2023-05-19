@@ -82,4 +82,26 @@ class NoteFraisController extends Template
         header('Location: /?action=notes-de-frais&message=Votre dépense a bien été ajoutée&c=msg-success');
         exit;
     }
+
+    public function deleteDepense()
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour supprimer une dépense, veuillez vous identifier&c=connexion');
+            exit;
+        }
+
+        $idDepense = $_GET['idDepense'];
+        if (!isset($idDepense) || empty($idDepense)) {
+            header('Location: /?action=notes-de-frais&message=Une erreur est survenue lors de la suppression de votre dépense&c=msg-error');
+            exit;
+        }
+
+        $depense = $this->entityManager->getRepository(Depense::class)->find($idDepense);
+        $this->entityManager->remove($depense);
+        $this->entityManager->flush();
+
+        header('Location: /?action=notes-de-frais&message=Votre dépense a bien été supprimée&c=msg-success');
+        exit;
+    }
+
 }

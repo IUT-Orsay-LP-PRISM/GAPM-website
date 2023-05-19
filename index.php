@@ -18,6 +18,7 @@ Route::get('delete-rdv', 'RendezVousController', 'deleteRdv');
 Route::get('success-rdv', 'RendezVousController', 'success');
 Route::get('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
 Route::get('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
+Route::get('delete-depense', 'NoteFraisController', 'deleteDepense');
 
 Route::post('login-user', 'DemandeurController', 'login');
 Route::post('register-user', 'DemandeurController', 'register');

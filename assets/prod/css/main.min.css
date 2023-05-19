@@ -2839,14 +2839,38 @@ body.intervenant {
       text-align: center;
       vertical-align: middle;
       padding: .8em; }
+    body.intervenant .noteFrais__table__content--Atraiter:hover .noteFrais__table__content--trash a,
+    body.intervenant .noteFrais__table__content--Adeclarer:hover .noteFrais__table__content--trash a {
+      opacity: 1; }
     body.intervenant .noteFrais__table__content--Atraiter {
       color: #E55006; }
       body.intervenant .noteFrais__table__content--Atraiter__tag span {
+        background-color: #FEF5F0; }
+      body.intervenant .noteFrais__table__content--Atraiter:hover {
         background-color: #FEF5F0; }
     body.intervenant .noteFrais__table__content--Adeclarer {
       color: #3C9933; }
       body.intervenant .noteFrais__table__content--Adeclarer__tag span {
         background-color: #F7FEF6; }
+      body.intervenant .noteFrais__table__content--Adeclarer:hover {
+        background-color: #F7FEF6; }
+    body.intervenant .noteFrais__table__content--trash {
+      position: relative; }
+      body.intervenant .noteFrais__table__content--trash a {
+        position: absolute;
+        top: 50%;
+        right: -2.5rem;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 0.5rem;
+        opacity: 0;
+        text-decoration: none; }
+        body.intervenant .noteFrais__table__content--trash a .icon {
+          background-color: #B61414; }
     body.intervenant .noteFrais__table__content--tag span {
       width: 5rem;
       border-radius: 5rem;
@@ -5013,14 +5037,38 @@ body.demandeur {
       text-align: center;
       vertical-align: middle;
       padding: .8em; }
+    body.demandeur .noteFrais__table__content--Atraiter:hover .noteFrais__table__content--trash a,
+    body.demandeur .noteFrais__table__content--Adeclarer:hover .noteFrais__table__content--trash a {
+      opacity: 1; }
     body.demandeur .noteFrais__table__content--Atraiter {
       color: #E55006; }
       body.demandeur .noteFrais__table__content--Atraiter__tag span {
+        background-color: #FEF5F0; }
+      body.demandeur .noteFrais__table__content--Atraiter:hover {
         background-color: #FEF5F0; }
     body.demandeur .noteFrais__table__content--Adeclarer {
       color: #3C9933; }
       body.demandeur .noteFrais__table__content--Adeclarer__tag span {
         background-color: #F7FEF6; }
+      body.demandeur .noteFrais__table__content--Adeclarer:hover {
+        background-color: #F7FEF6; }
+    body.demandeur .noteFrais__table__content--trash {
+      position: relative; }
+      body.demandeur .noteFrais__table__content--trash a {
+        position: absolute;
+        top: 50%;
+        right: -2.5rem;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 0.5rem;
+        opacity: 0;
+        text-decoration: none; }
+        body.demandeur .noteFrais__table__content--trash a .icon {
+          background-color: #B61414; }
     body.demandeur .noteFrais__table__content--tag span {
       width: 5rem;
       border-radius: 5rem;

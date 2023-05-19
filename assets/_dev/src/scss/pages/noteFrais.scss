@@ -82,10 +82,19 @@ $greenLightNote  : #F7FEF6;
 
     &__content {
 
+      &--Atraiter:hover .noteFrais__table__content--trash a,
+      &--Adeclarer:hover .noteFrais__table__content--trash a {
+        opacity : 1;
+      }
+
       &--Atraiter {
         color : $orangeNote;
 
         &__tag span {
+          background-color : $orangeLightNote;
+        }
+
+        &:hover {
           background-color : $orangeLightNote;
         }
       }
@@ -96,7 +105,36 @@ $greenLightNote  : #F7FEF6;
         &__tag span {
           background-color : $greenLightNote;
         }
+
+        &:hover {
+          background-color : $greenLightNote;
+        }
       }
+
+      &--trash {
+        position : relative;
+
+        a {
+          position        : absolute;
+          top             : 50%;
+          right           : -2.5rem;
+          transform       : translateY(-50%);
+          display         : flex;
+          justify-content : center;
+          align-items     : center;
+          border-radius   : $borderRadiusSmall;
+          cursor          : pointer;
+          padding         : 0.5rem;
+          opacity         : 0;
+          text-decoration : none;
+
+          .icon {
+            background-color : $redDark;
+          }
+
+        }
+      }
+
 
       &--tag {
         span {
@@ -257,7 +295,7 @@ $greenLightNote  : #F7FEF6;
         display       : block;
         border        : 1px solid $greyDark;
         border-radius : $borderRadiusSmall;
-        flex            : inherit;
+        flex          : inherit;
 
         .sidebar-add-depense-row {
           display : flex;
@@ -357,10 +395,10 @@ $greenLightNote  : #F7FEF6;
       }
 
       &--btnSubmit {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
+        flex            : 1;
+        display         : flex;
+        justify-content : flex-end;
+        align-items     : flex-end;
 
         &__row {
           display         : flex;
