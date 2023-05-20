@@ -3,6 +3,7 @@ const sidebar = document.querySelector('#sidebar-add-depense--content');
 const btn_create = document.querySelector('.notefrais button#create');
 const selectNature = document.querySelector('#nature.sidebar-add-depense-row__content--input');
 const urlJustificatifInput = document.getElementById('urlJustificatif');
+import {addMessageInURL} from "./notification.js";
 
 if (sidebar) {
     const btn_close = sidebar.querySelectorAll('.close-btn');
@@ -137,14 +138,45 @@ function previewImage(event) {
 const btn_prepare = document.querySelector('.notefrais button#prepare');
 const checkbox_total = document.querySelector('.notefrais-checkbox.--total');
 const checkboxs = document.querySelectorAll('.notefrais-checkbox:not(.--total)');
+const lbl_total = document.querySelector('.notefrais div#lbl-total');
 
 if (btn_prepare) {
     btn_prepare.addEventListener('click', () => {
-        checkbox_total.checked = true;
-        checkboxs.forEach(checkbox => {
-            checkbox.checked = true;
-        });
-        changeTextButton();
+        if (!btn_prepare.classList.contains('--active')) {
+            checkbox_total.checked = true;
+            checkboxs.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            changeTextButton();
+            btn_prepare.classList.add('--active');
+        } else {
+            const checkboxs_checked = [...checkboxs].filter(checkbox => checkbox.checked);
+
+            if (checkboxs_checked.length != 0) {
+                const arrayIds = checkboxs_checked.map(checkbox => checkbox.dataset.id);
+
+                const xhr = new XMLHttpRequest();
+                const url = '/?action=prepare-depenses';
+                xhr.open("POST", url, false);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onload = () => callback(xhr);
+                xhr.send(`arrayIds=${arrayIds}`);
+
+                function callback(xhr) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            addMessageInURL('Note de frais préparée avec succès', 'msg-success');
+                        } else {
+                            addMessageInURL('Erreur lors de la préparation de la note de frais', 'msg-error');
+                        }
+                    } else {
+                        addMessageInURL('Erreur lors de la préparation de la note de frais', 'msg-error');
+                    }
+                    window.location.reload();
+                }
+            }
+        }
     });
 }
 
@@ -156,7 +188,6 @@ if (checkbox_total) {
         changeTextButton();
     });
 }
-
 
 if (checkboxs.length > 0) {
     checkboxs.forEach(checkbox => {
@@ -173,11 +204,35 @@ if (checkboxs.length > 0) {
 
 function changeTextButton() {
     const nbChecked = [...checkboxs].filter(checkbox => checkbox.checked).length;
+    const container = lbl_total.querySelector('.notefrais__row--total');
+    const value_selected = container.querySelector('#value-selected');
+
     if (nbChecked > 0) {
         const txt = nbChecked > 1 ? 'les dépenses' : 'la dépense';
         btn_prepare.innerHTML = 'Déclarer ' + txt;
+
+        const total = [...checkboxs].filter(checkbox => checkbox.checked).reduce((acc, checkbox) => {
+            const montant = parseFloat(checkbox.dataset.montant);
+            return acc + montant;
+        }, 0);
+
+        const txt_total = total % 1 === 0 ? total.toFixed(0) + ' €' : total.toFixed(2) + ' €';
+        container.querySelector('p').innerHTML = "Total sélectionné";
+        value_selected.innerHTML = txt_total;
+        container.querySelector('#value-total').style.display = 'none';
+        value_selected.style.display = 'block';
+
+        btn_prepare.classList.add('--active');
     } else {
         btn_prepare.innerHTML = 'Préparer la note de frais';
+        if (btn_prepare.classList.contains('--active')) {
+            btn_prepare.classList.remove('--active');
+        }
+
+        container.querySelector('p').innerHTML = "Total des dépenses";
+        value_selected.innerHTML = '';
+        container.querySelector('#value-total').style.display = 'block';
+        value_selected.style.display = 'none';
     }
 }
 

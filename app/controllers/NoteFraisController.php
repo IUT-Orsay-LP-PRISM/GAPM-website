@@ -115,9 +115,9 @@ class NoteFraisController extends Template
         exit;
     }
 
-    private function uploadJustificatif($intervenant,$oldUrlJustificatif = '')
+    private function uploadJustificatif($intervenant, $oldUrlJustificatif = '')
     {
-        if($oldUrlJustificatif != ''){
+        if ($oldUrlJustificatif != '') {
             unlink($oldUrlJustificatif);
         }
         $urlJustificatif = '';
@@ -233,5 +233,47 @@ class NoteFraisController extends Template
             ]
         );
         echo $depense_json;
+    }
+
+    public function prepareDepenses()
+    {
+
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour modifier une dépense, veuillez vous identifier&c=connexion');
+            exit;
+        }
+
+        $arrayIds = explode(',', $_POST['arrayIds']);
+        if (!isset($arrayIds) || empty($arrayIds)) {
+            header('Location: /?action=notes-de-frais&message=Une erreur est survenue lors de la modification de votre dépense&c=msg-error');
+            exit;
+        }
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find(Session::get('user')->getIdDemandeur());
+
+        if ($intervenant == null) {
+            header('Location: /?action=notes-de-frais&message=Une erreur est survenue lors de l\'ajout de votre dépense&c=msg-error');
+            exit;
+        }
+
+        $depenses = $this->entityManager->getRepository(Depense::class)->findBy(['idDepense' => $arrayIds]);
+
+        $notesDeFrais = new NoteFrais();
+        $notesDeFrais->setDateNote(date('Y-m-d'));
+        $notesDeFrais->setStatus('À traiter');
+        $notesDeFrais->setIntervenant($intervenant);
+        $this->entityManager->persist($notesDeFrais);
+
+        foreach ($depenses as $depense) {
+            $depense->setNoteFrais($notesDeFrais);
+            $depense->setStatus('déclarer');
+            $this->entityManager->persist($depense);
+        }
+        $this->entityManager->flush();
+
+        echo json_encode([
+            'message' => 'Vos dépenses ont bien été déclarées',
+            'success' => 'true'
+        ]);
     }
 }

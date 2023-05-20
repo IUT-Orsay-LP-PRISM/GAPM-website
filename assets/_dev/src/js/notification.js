@@ -42,7 +42,6 @@ if (window.location.search.includes('message')) {
             break;
         default:
             openNotification(urlParams.get('message'));
-
     }
 }
 
@@ -83,6 +82,19 @@ export function removeErrorInURL() {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete('message');
     urlParams.delete('c');
+    let newUrl = '';
+    if (urlParams.toString() === '') {
+        newUrl = window.location.pathname;
+    } else {
+        newUrl = window.location.pathname + '?' + urlParams.toString();
+    }
+    window.history.pushState({path: newUrl}, '', newUrl);
+}
+
+export function addMessageInURL(message, container) {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('message', message);
+    urlParams.set('c', container);
     let newUrl = '';
     if (urlParams.toString() === '') {
         newUrl = window.location.pathname;

@@ -36,7 +36,7 @@ Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 Route::post('picture-edit', 'IntervenantController', 'updatePicture');
 Route::post('add-depense', 'NoteFraisController', 'createDepense');
 Route::post('edit-depense', 'NoteFraisController', 'updateDepense');
-
+Route::post('prepare-depenses', 'NoteFraisController', 'prepareDepenses');
 
 
 Route::post('intervenant-unsubscribe-request', 'IntervenantController', 'unsubscribeRequest');
