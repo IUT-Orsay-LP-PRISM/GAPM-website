@@ -2209,7 +2209,7 @@ body.intervenant {
         background-color: #86CABE;
         margin: 1em 0; }
   body.intervenant .myaccount, body.intervenant .wrapper {
-    background-color: #DCE6F2;
+    background-color: #dee7e8;
     padding-top: calc(130px + 2.5rem);
     padding-bottom: 12.2rem; }
     body.intervenant .myaccount h1, body.intervenant .wrapper h1 {
@@ -2429,7 +2429,7 @@ body.intervenant {
       align-items: center;
       height: 8rem; }
   body.intervenant .prendreRdv {
-    background-color: #DCE6F2;
+    background-color: #dee7e8;
     padding-top: calc(130px + 2.5rem);
     padding-bottom: 12.2rem; }
     body.intervenant .prendreRdv h1 {
@@ -2513,7 +2513,7 @@ body.intervenant {
                 height: 2.5rem;
                 border-radius: 10px; }
           body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates {
-            background-color: #DCE6F2;
+            background-color: #dee7e8;
             border-radius: 10px;
             height: 100%;
             width: 100%; }
@@ -2558,7 +2558,7 @@ body.intervenant {
                   background-color: #257466;
                   color: white; }
                 body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled {
-                  background-color: #DCE6F2;
+                  background-color: #dee7e8;
                   color: #144139;
                   cursor: not-allowed; }
                   body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled .day-number {
@@ -2605,6 +2605,9 @@ body.intervenant {
     padding: 1.85rem 2.53rem;
     background: white;
     border-radius: 10px; }
+  body.intervenant .myrdv__nav.--space-between, body.intervenant .emprunt__nav.--space-between {
+    display: flex;
+    justify-content: space-between; }
   body.intervenant .myrdv__nav ul, body.intervenant .emprunt__nav ul {
     margin-bottom: 1.5rem;
     display: flex;
@@ -2646,6 +2649,12 @@ body.intervenant {
         margin-right: 1.5rem; }
   body.intervenant .myrdv__list, body.intervenant .emprunt__list {
     margin-top: 3rem; }
+    body.intervenant .myrdv__list.myrdv__inter, body.intervenant .emprunt__list.myrdv__inter {
+      margin-top: 1rem; }
+      body.intervenant .myrdv__list.myrdv__inter h3, body.intervenant .emprunt__list.myrdv__inter h3 {
+        margin-bottom: 1rem; }
+      body.intervenant .myrdv__list.myrdv__inter p.text__small, body.intervenant .emprunt__list.myrdv__inter p.text__small {
+        margin-bottom: 2rem; }
     body.intervenant .myrdv__list > div, body.intervenant .emprunt__list > div {
       display: none; }
     body.intervenant .myrdv__list .--display, body.intervenant .emprunt__list .--display {
@@ -2666,8 +2675,9 @@ body.intervenant {
       transition: all .2s ease-in-out;
       position: relative; }
       body.intervenant .myrdv__contents-user.--disabled, body.intervenant .emprunt__contents-user.--disabled {
-        opacity: .5;
-        cursor: not-allowed; }
+        opacity: .8;
+        cursor: not-allowed;
+        user-select: none; }
         body.intervenant .myrdv__contents-user.--disabled:hover, body.intervenant .emprunt__contents-user.--disabled:hover {
           background-color: white; }
       body.intervenant .myrdv__contents-user.--passed, body.intervenant .emprunt__contents-user.--passed {
@@ -2677,6 +2687,14 @@ body.intervenant {
       body.intervenant .myrdv__contents-user:hover, body.intervenant .emprunt__contents-user:hover {
         background-color: #F1FAFB;
         border-radius: 10px; }
+      body.intervenant .myrdv__contents-user-head, body.intervenant .emprunt__contents-user-head {
+        margin-top: 2rem;
+        border-radius: 10px 10px 0 0;
+        background-color: #F1FAFB;
+        box-sizing: border-box;
+        padding: 1rem 165px 1rem 1rem; }
+        body.intervenant .myrdv__contents-user-head.--full, body.intervenant .emprunt__contents-user-head.--full {
+          padding-right: 1rem; }
       body.intervenant .myrdv__contents-user:not(:last-child)::after, body.intervenant .emprunt__contents-user:not(:last-child)::after {
         content: "";
         position: absolute;
@@ -2687,6 +2705,25 @@ body.intervenant {
         height: 1px;
         background-color: lightgrey;
         margin: 1rem 0; }
+      body.intervenant .myrdv__contents-user.--tag-value, body.intervenant .emprunt__contents-user.--tag-value {
+        position: relative; }
+        body.intervenant .myrdv__contents-user.--tag-value::before, body.intervenant .emprunt__contents-user.--tag-value::before {
+          content: attr(data-value);
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: .5rem 1rem;
+          color: white;
+          border-radius: 0 0 0 5px;
+          font-family: "Poppins", sans-serif;
+          min-width: 100px;
+          box-sizing: border-box;
+          text-align: center; }
+        body.intervenant .myrdv__contents-user.--tag-value[data-value="Effectué"]::before, body.intervenant .emprunt__contents-user.--tag-value[data-value="Effectué"]::before {
+          background-color: #AEDBD3; }
+        body.intervenant .myrdv__contents-user.--tag-value[data-value="Annulé"]::before, body.intervenant .emprunt__contents-user.--tag-value[data-value="Annulé"]::before {
+          background-color: #B61414;
+          opacity: .8; }
       body.intervenant .myrdv__contents-user-img img, body.intervenant .emprunt__contents-user-img img {
         max-width: 100px;
         border-radius: 50%; }
@@ -2716,6 +2753,11 @@ body.intervenant {
           color: #257466; }
           body.intervenant .myrdv__contents-user-info ul.desc li, body.intervenant .myrdv__contents-user-info-notice ul.desc li, body.intervenant .emprunt__contents-user-info ul.desc li, body.intervenant .emprunt__contents-user-info-notice ul.desc li {
             color: #144139; }
+      body.intervenant .myrdv__contents-user-inter, body.intervenant .emprunt__contents-user-inter {
+        margin: 0; }
+        body.intervenant .myrdv__contents-user-inter .myrdv__contents-user-date .desc, body.intervenant .emprunt__contents-user-inter .myrdv__contents-user-date .desc {
+          font-weight: 600;
+          font-size: 1.2rem; }
       body.intervenant .myrdv__contents-user-info-notice, body.intervenant .emprunt__contents-user-info-notice {
         grid-template-areas: "name speciality city date notice";
         grid-template-columns: repeat(5, 1fr) !important; }
@@ -2734,14 +2776,17 @@ body.intervenant {
       body.intervenant .myrdv__contents-user-btn, body.intervenant .emprunt__contents-user-btn {
         display: flex;
         align-items: center; }
-        body.intervenant .myrdv__contents-user-btn a:not(:last-child), body.intervenant .emprunt__contents-user-btn a:not(:last-child) {
-          margin-right: 1rem; }
-        body.intervenant .myrdv__contents-user-btn a svg, body.intervenant .emprunt__contents-user-btn a svg {
-          transition: all .3s ease-in-out;
-          transform: rotate(0); }
-        body.intervenant .myrdv__contents-user-btn a:hover svg, body.intervenant .emprunt__contents-user-btn a:hover svg {
-          transition: all .5s ease-in-out;
-          transform: rotate(180deg); }
+        body.intervenant .myrdv__contents-user-btn a, body.intervenant .emprunt__contents-user-btn a {
+          min-width: 150px;
+          box-sizing: border-box; }
+          body.intervenant .myrdv__contents-user-btn a:not(:last-child), body.intervenant .emprunt__contents-user-btn a:not(:last-child) {
+            margin-right: 1rem; }
+          body.intervenant .myrdv__contents-user-btn a svg, body.intervenant .emprunt__contents-user-btn a svg {
+            transition: all .3s ease-in-out;
+            transform: rotate(0); }
+          body.intervenant .myrdv__contents-user-btn a:hover svg, body.intervenant .emprunt__contents-user-btn a:hover svg {
+            transition: all .5s ease-in-out;
+            transform: rotate(180deg); }
   body.intervenant .sample__container {
     padding: 2.5rem 0;
     max-width: 550px;
@@ -3900,7 +3945,7 @@ body.intervenant {
       user-select: none;
       cursor: pointer; }
     body.intervenant .auto_completion p:hover {
-      background-color: #DCE6F2; }
+      background-color: #dee7e8; }
     body.intervenant .auto_completion.notVisible {
       display: none; }
   body.intervenant .link {
@@ -4832,6 +4877,9 @@ body.demandeur {
     padding: 1.85rem 2.53rem;
     background: white;
     border-radius: 10px; }
+  body.demandeur .myrdv__nav.--space-between, body.demandeur .emprunt__nav.--space-between {
+    display: flex;
+    justify-content: space-between; }
   body.demandeur .myrdv__nav ul, body.demandeur .emprunt__nav ul {
     margin-bottom: 1.5rem;
     display: flex;
@@ -4873,6 +4921,12 @@ body.demandeur {
         margin-right: 1.5rem; }
   body.demandeur .myrdv__list, body.demandeur .emprunt__list {
     margin-top: 3rem; }
+    body.demandeur .myrdv__list.myrdv__inter, body.demandeur .emprunt__list.myrdv__inter {
+      margin-top: 1rem; }
+      body.demandeur .myrdv__list.myrdv__inter h3, body.demandeur .emprunt__list.myrdv__inter h3 {
+        margin-bottom: 1rem; }
+      body.demandeur .myrdv__list.myrdv__inter p.text__small, body.demandeur .emprunt__list.myrdv__inter p.text__small {
+        margin-bottom: 2rem; }
     body.demandeur .myrdv__list > div, body.demandeur .emprunt__list > div {
       display: none; }
     body.demandeur .myrdv__list .--display, body.demandeur .emprunt__list .--display {
@@ -4893,8 +4947,9 @@ body.demandeur {
       transition: all .2s ease-in-out;
       position: relative; }
       body.demandeur .myrdv__contents-user.--disabled, body.demandeur .emprunt__contents-user.--disabled {
-        opacity: .5;
-        cursor: not-allowed; }
+        opacity: .8;
+        cursor: not-allowed;
+        user-select: none; }
         body.demandeur .myrdv__contents-user.--disabled:hover, body.demandeur .emprunt__contents-user.--disabled:hover {
           background-color: white; }
       body.demandeur .myrdv__contents-user.--passed, body.demandeur .emprunt__contents-user.--passed {
@@ -4904,6 +4959,14 @@ body.demandeur {
       body.demandeur .myrdv__contents-user:hover, body.demandeur .emprunt__contents-user:hover {
         background-color: #F1FAFB;
         border-radius: 10px; }
+      body.demandeur .myrdv__contents-user-head, body.demandeur .emprunt__contents-user-head {
+        margin-top: 2rem;
+        border-radius: 10px 10px 0 0;
+        background-color: #F1FAFB;
+        box-sizing: border-box;
+        padding: 1rem 165px 1rem 1rem; }
+        body.demandeur .myrdv__contents-user-head.--full, body.demandeur .emprunt__contents-user-head.--full {
+          padding-right: 1rem; }
       body.demandeur .myrdv__contents-user:not(:last-child)::after, body.demandeur .emprunt__contents-user:not(:last-child)::after {
         content: "";
         position: absolute;
@@ -4914,6 +4977,25 @@ body.demandeur {
         height: 1px;
         background-color: lightgrey;
         margin: 1rem 0; }
+      body.demandeur .myrdv__contents-user.--tag-value, body.demandeur .emprunt__contents-user.--tag-value {
+        position: relative; }
+        body.demandeur .myrdv__contents-user.--tag-value::before, body.demandeur .emprunt__contents-user.--tag-value::before {
+          content: attr(data-value);
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: .5rem 1rem;
+          color: white;
+          border-radius: 0 0 0 5px;
+          font-family: "Poppins", sans-serif;
+          min-width: 100px;
+          box-sizing: border-box;
+          text-align: center; }
+        body.demandeur .myrdv__contents-user.--tag-value[data-value="Effectué"]::before, body.demandeur .emprunt__contents-user.--tag-value[data-value="Effectué"]::before {
+          background-color: #AEDBD3; }
+        body.demandeur .myrdv__contents-user.--tag-value[data-value="Annulé"]::before, body.demandeur .emprunt__contents-user.--tag-value[data-value="Annulé"]::before {
+          background-color: #B61414;
+          opacity: .8; }
       body.demandeur .myrdv__contents-user-img img, body.demandeur .emprunt__contents-user-img img {
         max-width: 100px;
         border-radius: 50%; }
@@ -4943,6 +5025,11 @@ body.demandeur {
           color: #393BAA; }
           body.demandeur .myrdv__contents-user-info ul.desc li, body.demandeur .myrdv__contents-user-info-notice ul.desc li, body.demandeur .emprunt__contents-user-info ul.desc li, body.demandeur .emprunt__contents-user-info-notice ul.desc li {
             color: #1E1E3D; }
+      body.demandeur .myrdv__contents-user-inter, body.demandeur .emprunt__contents-user-inter {
+        margin: 0; }
+        body.demandeur .myrdv__contents-user-inter .myrdv__contents-user-date .desc, body.demandeur .emprunt__contents-user-inter .myrdv__contents-user-date .desc {
+          font-weight: 600;
+          font-size: 1.2rem; }
       body.demandeur .myrdv__contents-user-info-notice, body.demandeur .emprunt__contents-user-info-notice {
         grid-template-areas: "name speciality city date notice";
         grid-template-columns: repeat(5, 1fr) !important; }
@@ -4961,14 +5048,17 @@ body.demandeur {
       body.demandeur .myrdv__contents-user-btn, body.demandeur .emprunt__contents-user-btn {
         display: flex;
         align-items: center; }
-        body.demandeur .myrdv__contents-user-btn a:not(:last-child), body.demandeur .emprunt__contents-user-btn a:not(:last-child) {
-          margin-right: 1rem; }
-        body.demandeur .myrdv__contents-user-btn a svg, body.demandeur .emprunt__contents-user-btn a svg {
-          transition: all .3s ease-in-out;
-          transform: rotate(0); }
-        body.demandeur .myrdv__contents-user-btn a:hover svg, body.demandeur .emprunt__contents-user-btn a:hover svg {
-          transition: all .5s ease-in-out;
-          transform: rotate(180deg); }
+        body.demandeur .myrdv__contents-user-btn a, body.demandeur .emprunt__contents-user-btn a {
+          min-width: 150px;
+          box-sizing: border-box; }
+          body.demandeur .myrdv__contents-user-btn a:not(:last-child), body.demandeur .emprunt__contents-user-btn a:not(:last-child) {
+            margin-right: 1rem; }
+          body.demandeur .myrdv__contents-user-btn a svg, body.demandeur .emprunt__contents-user-btn a svg {
+            transition: all .3s ease-in-out;
+            transform: rotate(0); }
+          body.demandeur .myrdv__contents-user-btn a:hover svg, body.demandeur .emprunt__contents-user-btn a:hover svg {
+            transition: all .5s ease-in-out;
+            transform: rotate(180deg); }
   body.demandeur .sample__container {
     padding: 2.5rem 0;
     max-width: 550px;

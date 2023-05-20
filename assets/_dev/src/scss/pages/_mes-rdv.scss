@@ -11,7 +11,12 @@
     //box-shadow     : 0px 2px 4px rgba(0, 0, 0, 0.25);
   }
 
+
   &__nav {
+    &.--space-between{
+      display: flex;
+      justify-content: space-between;
+    }
     ul {
       margin-bottom   : 1.5rem;
       display         : flex;
@@ -69,6 +74,16 @@
 
   &__list{
     margin-top: 3rem;
+    &.myrdv__inter{
+      margin-top: 1rem;
+      h3{
+        margin-bottom: 1rem;
+      }
+      p.text__small{
+        margin-bottom: 2rem;
+      }
+    }
+
 
     & > div {
       display: none;
@@ -100,8 +115,10 @@
       position        : relative;
 
       &.--disabled{
-        opacity: .5;
+        opacity: .8;
         cursor: not-allowed;
+        user-select: none;
+
         &:hover{
           background-color: white;
         }
@@ -117,6 +134,16 @@
         background-color : #F1FAFB;
         border-radius    : 10px;
       }
+      &-head{
+        margin-top : 2rem;
+        border-radius: 10px 10px 0 0;
+        background-color : #F1FAFB;
+        box-sizing: border-box;
+        padding : 1rem 165px 1rem 1rem;
+        &.--full{
+          padding-right: 1rem;
+        }
+      }
 
       &:not(:last-child) {
         &::after {
@@ -131,6 +158,35 @@
           margin           : 1rem 0;
         }
       }
+
+      &.--tag-value{
+        position: relative;
+        &::before{
+          content: attr(data-value);
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: .5rem 1rem;
+          color: white;
+          border-radius: 0 0 0 5px;
+          font-family: $titleFont;
+          min-width: 100px;
+          box-sizing: border-box;
+          text-align: center;
+        }
+        &[data-value="Effectué"]{
+          &::before{
+            background-color: $greenLight;
+          }
+        }
+        &[data-value="Annulé"]{
+          &::before{
+            background-color: $redDark;
+            opacity: .8;
+          }
+        }
+      }
+
 
       &-img {
         img {
@@ -173,6 +229,17 @@
         }
       }
 
+      &-inter{
+        margin: 0;
+
+        .myrdv__contents-user-date{
+          .desc{
+            font-weight: 600;
+            font-size: 1.2rem;
+          }
+        }
+      }
+
       &-info-notice{
         grid-template-areas: "name speciality city date notice";
         grid-template-columns: repeat(5, 1fr) !important;
@@ -205,6 +272,8 @@
         display: flex;
         align-items: center;
         a {
+          min-width: 150px;
+          box-sizing: border-box;
           &:not(:last-child){
             margin-right : 1rem;
           }

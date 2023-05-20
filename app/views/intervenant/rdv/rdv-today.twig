@@ -1,0 +1,63 @@
+<div class="myrdv__contents-user-head">
+	<div class="myrdv__contents-user-info myrdv__contents-user-inter">
+		<p class="title">
+			Demandeur
+		</p>
+		<p class="title">
+			Specialité choisie
+		</p>
+		<p class="title">
+			Adresse
+		</p>
+		<p class="title">
+			Horaires choisis
+		</p>
+	</div>
+</div>
+{% for unrdv in rdv %}
+	<div class="myrdv__contents-user">
+		<div class="myrdv__contents-user-info myrdv__contents-user-inter">
+			<div class="myrdv__contents-user-name">
+
+				<p class="desc">
+					{{ unrdv.demandeur.nom }} {{ unrdv.demandeur.prenom }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-speciality">
+
+				<ul class="desc">
+					<li>
+						{{ unrdv.specialite.libelle }}
+					</li>
+				</ul>
+			</div>
+			<div class="myrdv__contents-user-city">
+
+				<p class="desc">
+					{{ unrdv.demandeur.adresse }} <br>
+					{{ unrdv.demandeur.ville.nom }}, {{ unrdv.demandeur.ville.codePostal }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-date">
+
+				<p class="desc">
+					{{ unrdv.heureDebut }} - {{ unrdv.heureFin }}
+				</p>
+			</div>
+		</div>
+		<div class="myrdv__contents-user-btn">
+			{% set now = "now"|date("H:i", "Europe/Paris") %}
+			{% if now > unrdv.heureFin %}
+				<a href="./?action=effectue-rdv-inter&idRdv={{ unrdv.idRdv }}" class="btn btn-greenPrimary">
+					<i class="icon-fi-rr-check"></i>
+					Effectué ?
+				</a>
+			{% else %}
+				<a href="./?action=delete-rdv-inter&idRdv={{ unrdv.idRdv }}" class="btn btn-red">
+					<i class="icon-fi-rr-delete"></i>
+					Annuler
+				</a>
+			{% endif %}
+		</div>
+	</div>
+{% endfor %}
