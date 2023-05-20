@@ -1,0 +1,57 @@
+<div class="myrdv__contents-user-head --full">
+	<div class="myrdv__contents-user-info myrdv__contents-user-inter">
+		<p class="title">
+			Demandeur
+		</p>
+		<p class="title">
+			Specialité choisie
+		</p>
+		<p class="title">
+			Adresse
+		</p>
+		<p class="title">
+			Horaires choisis
+		</p>
+	</div>
+</div>
+{% for unrdv in rdv %}
+	<div class="myrdv__contents-user --disabled --tag-value" data-value="{{ unrdv.status }}">
+		<div class="myrdv__contents-user-info myrdv__contents-user-inter">
+			<div class="myrdv__contents-user-name">
+				<p class="title">
+					Nom
+				</p>
+				<p class="desc">
+					{{ unrdv.demandeur.nom }} {{ unrdv.demandeur.prenom }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-speciality">
+				<p class="title">
+					Spécialité
+				</p>
+				<ul class="desc">
+					<li>
+						{{ unrdv.specialite.libelle }}
+					</li>
+				</ul>
+			</div>
+			<div class="myrdv__contents-user-city">
+				<p class="title">
+					Son adresse
+				</p>
+				<p class="desc">
+					{{ unrdv.demandeur.adresse }} <br>
+					{{ unrdv.demandeur.ville.nom }}, {{ unrdv.demandeur.ville.codePostal }}
+				</p>
+			</div>
+			<div class="myrdv__contents-user-date">
+				<p class="title">
+					Date
+				</p>
+				<p class="desc">
+					Le {{ unrdv.dateRDV }} - entre {{ unrdv.heureDebut }} et {{ unrdv.heureFin }}
+				</p>
+			</div>
+		</div>
+	</div>
+{% endfor %}

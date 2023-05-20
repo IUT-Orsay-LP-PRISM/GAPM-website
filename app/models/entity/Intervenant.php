@@ -29,6 +29,9 @@ class Intervenant extends Demandeur
     #[ORM\Column]
     private bool $demandeSupp;
 
+    #[ORM\OneToMany(mappedBy: 'intervenant', targetEntity: RendezVous::class, fetch: 'LAZY')]
+    private Collection $mesRendezVous;
+
     public float $note;
 
     public function __construct()
@@ -123,6 +126,22 @@ class Intervenant extends Demandeur
     public function setDemandeSupp(bool $demandeSupp): void
     {
         $this->demandeSupp = $demandeSupp;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMesRendezVous(): array
+    {
+        return $this->mesRendezVous->toArray();
+    }
+
+    /**
+     * @param Collection $rendezVous
+     */
+    public function setMesRendezVous(Collection $rendezVous): Demandeur
+    {
+        $this->mesRendezVous = $rendezVous;
     }
 
 }

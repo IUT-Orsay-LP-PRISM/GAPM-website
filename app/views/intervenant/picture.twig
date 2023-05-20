@@ -6,13 +6,13 @@
 				<p>
 					Photo de profil actuel (sans bordures) :
 				</p>
-				<img src="{{ user.imgUrl }}" alt="Photo de profil de (Originel): {{ user.nom }}{{ user.prenom }}">
+				<img id="previewOriginal" src="{{ user.imgUrl }}" alt="Photo de profil de (Originel): {{ user.nom }}{{ user.prenom }}">
 			</div>
 			<div class="myaccount__pfp__col myaccount__pfp__display">
 				<p>
 					Photo de profil affichée sur le site :
 				</p>
-				<img src="{{ user.imgUrl }}" alt="Photo de profil de (Visible): {{ user.nom }}{{ user.prenom }}">
+				<img id="previewDisplay" src="{{ user.imgUrl }}" alt="Photo de profil de (Visible): {{ user.nom }}{{ user.prenom }}">
 			</div>
 		</div>
  		<div class="myaccount__pfp__input">

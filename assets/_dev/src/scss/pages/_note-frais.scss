@@ -3,7 +3,7 @@ $greenNote       : #3C9933;
 $orangeLightNote : #FEF5F0;
 $greenLightNote  : #F7FEF6;
 
-.noteFrais {
+.notefrais {
   &--empty {
     &__content {
       display         : flex;
@@ -53,6 +53,11 @@ $greenLightNote  : #F7FEF6;
         font-size   : 1.4rem;
         font-weight : 600;
       }
+
+      #value-selected {
+        display : none;
+      }
+
     }
   }
 
@@ -82,9 +87,13 @@ $greenLightNote  : #F7FEF6;
 
     &__content {
 
-      &--Atraiter:hover .noteFrais__table__content--trash a,
-      &--Adeclarer:hover .noteFrais__table__content--trash a {
+      &--Atraiter:hover .notefrais__table__content--trash a,
+      &--Adeclarer:hover .notefrais__table__content--trash a {
         opacity : 1;
+      }
+
+      &--checkbox {
+        position : relative;
       }
 
       &--Atraiter {
@@ -110,6 +119,18 @@ $greenLightNote  : #F7FEF6;
 
         &:hover {
           background-color : $greenLightNote;
+        }
+
+        &__checkbox {
+          margin        : 0;
+          font          : inherit;
+          width         : 1.25em;
+          height        : 1.25em;
+          border-radius : 0.15em;
+          position      : absolute;
+          top           : 50%;
+          left          : -0.1rem;
+          transform     : translateY(-50%);
         }
       }
 
@@ -165,7 +186,7 @@ $greenLightNote  : #F7FEF6;
             cursor : pointer;
           }
 
-          .noteFrais__table__content--comment__message {
+          .notefrais__table__content--comment__message {
             visibility       : hidden;
             width            : 300px;
             background-color : #333;
@@ -202,7 +223,7 @@ $greenLightNote  : #F7FEF6;
           }
 
           &:hover {
-            .noteFrais__table__content--comment__message {
+            .notefrais__table__content--comment__message {
               visibility : visible;
               opacity    : 1;
             }
@@ -235,8 +256,24 @@ $greenLightNote  : #F7FEF6;
           justify-content  : center;
           align-items      : center;
           padding          : 0.2rem;
-          margin-right     : 1rem;
+          margin           : 0 1rem;
         }
+      }
+
+      td {
+        position : relative;
+      }
+
+      &__checkbox {
+        margin        : 0;
+        font          : inherit;
+        width         : 1.25em;
+        height        : 1.25em;
+        border-radius : 0.15em;
+        position      : absolute;
+        top           : 50%;
+        left          : -0.1rem;
+        transform     : translateY(-50%);
       }
     }
   }
@@ -271,6 +308,7 @@ $greenLightNote  : #F7FEF6;
       outline          : none;
       cursor           : pointer;
       background-color : transparent;
+      color            : $redDark;
 
       .icon {
         font-size : 2rem;
@@ -302,10 +340,11 @@ $greenLightNote  : #F7FEF6;
       }
 
       &__inputs {
-        display       : block;
-        border        : 1px solid $greyDark;
-        border-radius : $borderRadiusSmall;
-        flex          : inherit;
+        display          : block;
+        border           : 1px solid $greyLight;
+        background-color : $white;
+        border-radius    : $borderRadiusSmall;
+        flex             : inherit;
 
         .sidebar-add-depense-row {
           display : flex;
@@ -327,11 +366,11 @@ $greenLightNote  : #F7FEF6;
             }
 
             &:not(.commentaire) {
-              border-bottom : 1px solid $greyDark;
+              border-bottom : 1px solid $greyLight;
             }
 
             &:not(:last-child) {
-              border-right : 1px solid $greyDark;
+              border-right : 1px solid $greyLight;
             }
 
             label:not(.notRequired):after {
@@ -371,11 +410,11 @@ $greenLightNote  : #F7FEF6;
       }
 
       &__justificatif {
-        display         : flex;
-        justify-content : center;
-        align-items     : flex-start;
-        border          : 1px solid $greyDark;
-        border-radius   : $borderRadiusSmall;
+        display          : flex;
+        justify-content  : center;
+        align-items      : flex-start;
+        border-radius    : $borderRadiusSmall;
+        background-color : $white;
 
         .justificatif--content {
 
@@ -418,13 +457,16 @@ $greenLightNote  : #F7FEF6;
             label {
               margin           : 1rem 0;
               padding          : 1rem 4rem;
-              background-color : $white;
+              background-color : $greenLight;
               border-radius    : $borderRadiusSmall;
               cursor           : pointer;
+              font-weight      : 500;
+              transition       : all 0.3s ease-in-out;
             }
 
             label:hover {
-              background-color : $greenLight;
+              background-color : $primaryLight;
+              color            : $white;
             }
           }
         }

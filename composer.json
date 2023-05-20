@@ -27,7 +27,8 @@
         "symfony/cache": "5.4.x-dev",
         "doctrine/annotations": "2.0.x-dev",
         "doctrine/dbal": "^3.7",
-        "intervention/image": "^2.7"
+        "intervention/image": "^2.7",
+      "ext-gd": "*"
     },
     "require-dev": {
         "symfony/var-dumper": "5.4.x-dev"

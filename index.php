@@ -15,8 +15,12 @@ Route::get('logout', 'DemandeurController', 'logout');
 Route::get('my-account', 'DemandeurController', 'displayMyAccount');
 Route::get('prendre-rdv', 'RendezVousController', 'index');
 Route::get('delete-rdv', 'RendezVousController', 'deleteRdv');
+Route::get('delete-rdv-inter', 'RendezVousController', 'deleteRdvIntervenant');
+Route::get('effectue-rdv-inter', 'RendezVousController', 'effectueRdvIntervenant');
+
 Route::get('success-rdv', 'RendezVousController', 'success');
 Route::get('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
+Route::get('liste-rdv', 'RendezVousController', 'displayMyRdvIntervenant');
 Route::get('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
 Route::get('delete-depense', 'NoteFraisController', 'deleteDepense');
 
@@ -32,6 +36,7 @@ Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 Route::post('picture-edit', 'IntervenantController', 'updatePicture');
 Route::post('add-depense', 'NoteFraisController', 'createDepense');
 Route::post('edit-depense', 'NoteFraisController', 'updateDepense');
+Route::post('prepare-depenses', 'NoteFraisController', 'prepareDepenses');
 
 
 Route::post('intervenant-unsubscribe-request', 'IntervenantController', 'unsubscribeRequest');

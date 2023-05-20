@@ -243,7 +243,7 @@ CREATE TABLE `NoteFrais`
     `dateNote`         date        NOT NULL,
     `status`           varchar(50) NOT NULL,
     `idIntervenant`    int(11) NOT NULL,
-    `idAdministration` int(11) NOT NULL
+    `idAdministration` int(11) DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -258,6 +258,7 @@ VALUES (1, '2022-01-01', 'En attente', 1, 1),
        (3, '2022-03-01', 'En attente', 6, 5);
 
 -- --------------------------------------------------------
+
 
 
 --
