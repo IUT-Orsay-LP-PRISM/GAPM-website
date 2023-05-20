@@ -91,7 +91,7 @@ export function removeErrorInURL() {
     window.history.pushState({path: newUrl}, '', newUrl);
 }
 
-export function addErrorInURL(message, container) {
+export function addMessageInURL(message, container) {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set('message', message);
     urlParams.set('c', container);

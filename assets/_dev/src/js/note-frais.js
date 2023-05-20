@@ -3,7 +3,7 @@ const sidebar = document.querySelector('#sidebar-add-depense--content');
 const btn_create = document.querySelector('.notefrais button#create');
 const selectNature = document.querySelector('#nature.sidebar-add-depense-row__content--input');
 const urlJustificatifInput = document.getElementById('urlJustificatif');
-import {addErrorInURL} from "./notification.js";
+import {addMessageInURL} from "./notification.js";
 
 if (sidebar) {
     const btn_close = sidebar.querySelectorAll('.close-btn');
@@ -166,11 +166,12 @@ if (btn_prepare) {
                     if (xhr.status === 200) {
                         const response = JSON.parse(xhr.responseText);
                         if (response.success) {
+                            addMessageInURL('Note de frais préparée avec succès', 'msg-success');
                         } else {
-                            addErrorInURL('Erreur lors de la préparation des dépenses', 'msg-error');
+                            addMessageInURL('Erreur lors de la préparation de la note de frais', 'msg-error');
                         }
                     } else {
-                        addErrorInURL('Erreur lors de la préparation des dépenses', 'msg-error');
+                        addMessageInURL('Erreur lors de la préparation de la note de frais', 'msg-error');
                     }
                     window.location.reload();
                 }
