@@ -65,7 +65,7 @@ const depenses = document.querySelectorAll('.notefrais__table__content--Adeclare
 depenses.forEach(depense => {
     depense.addEventListener('click', (event) => {
         const target = event.target;
-        if (target.classList.contains('icon-fi-rr-trash')) {
+        if (target.classList.contains('icon-fi-rr-trash') || target.classList.contains('notefrais__table__content--Adeclarer__checkbox')) {
             event.stopPropagation(); // Arrête la propagation de l'événement
         } else {
             const id = depense.dataset.id;
@@ -104,7 +104,7 @@ function ajaxEditDepense(depenseId) {
             form.querySelector('#sidebar-add-depense--content__form--btnSubmit__row > button > p').innerHTML = 'Modifier la dépense'
 
             const preview = form.querySelector('#preview');
-            if(depense.urlJustificatif) {
+            if (depense.urlJustificatif) {
                 preview.src = depense.urlJustificatif;
                 preview.parentElement.style.display = 'flex';
                 preview.parentElement.parentElement.querySelector('.justificatif--content__container').style.display = 'none';
@@ -131,5 +131,48 @@ function previewImage(event) {
         content.style.display = 'none';
     }
     reader.readAsDataURL(event.target.files[0]);
+}
+
+
+const btn_prepare = document.querySelector('.notefrais button#prepare');
+const checkbox_total = document.querySelector('.notefrais-checkbox.--total');
+const checkboxs = document.querySelectorAll('.notefrais-checkbox:not(.--total)');
+
+if (btn_prepare) {
+    btn_prepare.addEventListener('click', () => {
+        checkbox_total.checked = true;
+        checkboxs.forEach(checkbox => {
+            checkbox.checked = true;
+        });
+        changeTextButton();
+    });
+}
+
+checkbox_total.addEventListener('change', () => {
+    checkboxs.forEach(checkbox => {
+        checkbox.checked = checkbox_total.checked;
+    });
+    changeTextButton();
+});
+
+checkboxs.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+        if (!checkbox.checked) {
+            checkbox_total.checked = [...checkboxs].some(checkbox => checkbox.checked);
+        } else {
+            checkbox_total.checked = true;
+        }
+        changeTextButton();
+    });
+});
+
+function changeTextButton() {
+    const nbChecked = [...checkboxs].filter(checkbox => checkbox.checked).length;
+    if (nbChecked > 0) {
+        const txt = nbChecked > 1 ? 'les dépenses' : 'la dépense';
+        btn_prepare.innerHTML = 'Déclarer ' + txt;
+    } else {
+        btn_prepare.innerHTML = 'Préparer la note de frais';
+    }
 }
 

@@ -2842,6 +2842,8 @@ body.intervenant {
     body.intervenant .notefrais__table__content--Atraiter:hover .notefrais__table__content--trash a,
     body.intervenant .notefrais__table__content--Adeclarer:hover .notefrais__table__content--trash a {
       opacity: 1; }
+    body.intervenant .notefrais__table__content--checkbox {
+      position: relative; }
     body.intervenant .notefrais__table__content--Atraiter {
       color: #E55006;
       cursor: pointer; }
@@ -2856,6 +2858,16 @@ body.intervenant {
         background-color: #F7FEF6; }
       body.intervenant .notefrais__table__content--Adeclarer:hover {
         background-color: #F7FEF6; }
+      body.intervenant .notefrais__table__content--Adeclarer__checkbox {
+        margin: 0;
+        font: inherit;
+        width: 1.25em;
+        height: 1.25em;
+        border-radius: 0.15em;
+        position: absolute;
+        top: 50%;
+        left: -0.1rem;
+        transform: translateY(-50%); }
     body.intervenant .notefrais__table__content--trash {
       position: relative; }
       body.intervenant .notefrais__table__content--trash a {
@@ -2942,7 +2954,19 @@ body.intervenant {
           justify-content: center;
           align-items: center;
           padding: 0.2rem;
-          margin-right: 1rem; }
+          margin: 0 1rem; }
+      body.intervenant .notefrais__table--title td {
+        position: relative; }
+      body.intervenant .notefrais__table--title__checkbox {
+        margin: 0;
+        font: inherit;
+        width: 1.25em;
+        height: 1.25em;
+        border-radius: 0.15em;
+        position: absolute;
+        top: 50%;
+        left: -0.1rem;
+        transform: translateY(-50%); }
   body.intervenant #sidebar-add-depense {
     position: fixed;
     top: 0;
@@ -5069,6 +5093,8 @@ body.demandeur {
     body.demandeur .notefrais__table__content--Atraiter:hover .notefrais__table__content--trash a,
     body.demandeur .notefrais__table__content--Adeclarer:hover .notefrais__table__content--trash a {
       opacity: 1; }
+    body.demandeur .notefrais__table__content--checkbox {
+      position: relative; }
     body.demandeur .notefrais__table__content--Atraiter {
       color: #E55006;
       cursor: pointer; }
@@ -5083,6 +5109,16 @@ body.demandeur {
         background-color: #F7FEF6; }
       body.demandeur .notefrais__table__content--Adeclarer:hover {
         background-color: #F7FEF6; }
+      body.demandeur .notefrais__table__content--Adeclarer__checkbox {
+        margin: 0;
+        font: inherit;
+        width: 1.25em;
+        height: 1.25em;
+        border-radius: 0.15em;
+        position: absolute;
+        top: 50%;
+        left: -0.1rem;
+        transform: translateY(-50%); }
     body.demandeur .notefrais__table__content--trash {
       position: relative; }
       body.demandeur .notefrais__table__content--trash a {
@@ -5169,7 +5205,19 @@ body.demandeur {
           justify-content: center;
           align-items: center;
           padding: 0.2rem;
-          margin-right: 1rem; }
+          margin: 0 1rem; }
+      body.demandeur .notefrais__table--title td {
+        position: relative; }
+      body.demandeur .notefrais__table--title__checkbox {
+        margin: 0;
+        font: inherit;
+        width: 1.25em;
+        height: 1.25em;
+        border-radius: 0.15em;
+        position: absolute;
+        top: 50%;
+        left: -0.1rem;
+        transform: translateY(-50%); }
   body.demandeur #sidebar-add-depense {
     position: fixed;
     top: 0;
