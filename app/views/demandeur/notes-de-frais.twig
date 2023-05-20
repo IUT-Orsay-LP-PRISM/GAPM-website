@@ -1,0 +1,136 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block type %}
+    {{ type }}
+{% endblock %}
+
+{% block content %}
+    {% if user is defined and user.isIntervenant() and modeIntervenant %}
+        <section class="myaccount">
+            <h1>Dépenses et notes de frais</h1>
+            <div class="myaccount__content">
+                <div class="myaccount__content__nav">
+                    <ul>
+                        <li>
+                            <a href="#depenses"
+                               class="js-account-nav myaccount__content__nav-link --active">
+                                Dépenses
+                                <i class="icon icon-fi-rr-credit-card"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#noteFrais" class="js-account-nav myaccount__content__nav-link">
+                                Situation et notes de frais
+                                <i class="icon icon-fi-rr-receipt"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="myaccount__content__body">
+                    <div class="myaccount__content__body-form">
+                        <div id="depenses" class="js-account-content --display">
+                            {% include '/intervenant/depenses.twig' with { 'depenses': depenses } %}
+                        </div>
+                        <div id="noteFrais" class="js-account-content">
+                            {% include '/intervenant/noteFrais.twig' with { 'noteFrais': noteFrais } %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <div id="sidebar-add-depense">
+        <div id="sidebar-add-depense--content">
+            <form action="?action=add-depense" method="post" id="sidebar-add-depense--content__form"
+                  enctype="multipart/form-data">
+                <div id="sidebar-add-depense--content__form__justificatif">
+                    <div class="justificatif--content">
+                        <div class="justificatif--content__preview">
+                            <img id="preview" src="#" alt="Aperçu de l'image">
+                        </div>
+                        <div class="justificatif--content__container">
+                            {% include 'svg/illu_noteFrais_create.svg' %}
+                        </div>
+                        <div class="justificatif--content__input">
+                            <label for="urlJustificatif">Choisir fichier</label>
+                            <input type="file" name="urlJustificatif" id="urlJustificatif"
+                                   accept="image/png, image/jpg, image/jpeg, application/pdf">
+                            <p>Les formats PDF, PNG, JPG, JPEG<br/> inférieurs à 100 Mo sont acceptés.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="sidebar-add-depense--content__form--container">
+                    <div id="sidebar-add-depense--content__form--title">
+                        <p>Essence</p>
+                        <button type="button" class="close-btn">
+                            <i class="icon icon-fi-rr-cross-small tag-close"></i>
+                        </button>
+                    </div>
+                    <div id="sidebar-add-depense--content__form__inputs">
+                        <div class="sidebar-add-depense-row">
+                            <div class="sidebar-add-depense-row__content">
+                                <label for="nature">Nature</label>
+                                <div class="sidebar-add-depense-row__content--inputNature">
+                                    <i class="icon-b icon-fi-rr-car"></i>
+                                    <select name="nature" id="nature" class="sidebar-add-depense-row__content--input"
+                                            required>
+                                        <option value="essence">Essence</option>
+                                        <option value="repas">Repas</option>
+                                        <option value="hebergement">Hébergement</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sidebar-add-depense-row__content">
+                                <label for="date">Date</label>
+                                <input type="date" name="datePaiement" id="datePaiement"
+                                       class="sidebar-add-depense-row__content--input" required>
+                            </div>
+                        </div>
+                        <div class="sidebar-add-depense-row">
+                            <div class="sidebar-add-depense-row__content">
+                                <label for="montant">Montant déclaré</label>
+                                <input type="number" name="montant" id="montant"
+                                       class="sidebar-add-depense-row__content--input" required>
+                            </div>
+                            <div class="sidebar-add-depense-row__content">
+                                <label class="notRequired">Devise</label>
+                                <p>€</p>
+                            </div>
+                        </div>
+                        <div class="sidebar-add-depense-row">
+                            <div class="sidebar-add-depense-row__content">
+                                <label for="fournisseur">Fournisseur</label>
+                                <input type="text" name="fournisseur" id="fournisseur"
+                                       class="sidebar-add-depense-row__content--input" required>
+                            </div>
+                        </div>
+                        <div class="sidebar-add-depense-row">
+                            <div class="sidebar-add-depense-row__content commentaire">
+                                <label for="commentaire">Commentaire</label>
+                                <textarea name="commentaire" id="commentaire" cols="30" rows="10"
+                                          class="sidebar-add-depense-row__content--input" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sidebar-add-depense--content__form--btnSubmit">
+                        <div id="sidebar-add-depense--content__form--btnSubmit__row">
+                            <button type="submit" class="btn btn-primary-nb">
+                                <i class="icon-w icon-fi-rr-check"></i>
+                                <p>Enregistrer la dépense</p>
+                            </button>
+                            <button type="button" class="btn btn--secondary close-btn">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

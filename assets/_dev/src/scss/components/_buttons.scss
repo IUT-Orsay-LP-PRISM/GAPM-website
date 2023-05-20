@@ -23,11 +23,11 @@
   &.btn-primary {
     color            : $white;
     background-color : $primaryLight;
-    border: 2px solid transparent;
+    border           : 2px solid transparent;
 
-    &:hover{
+    &:hover {
       background-color : $primaryDark;
-      border-color: $primaryLight;
+      border-color     : $primaryLight;
     }
   }
 
@@ -35,26 +35,27 @@
     border-radius    : 10px;
     color            : $white;
     background-color : $primaryLight;
-    border: 2px solid transparent;
-    &:hover{
-      border-color : $primaryLight;
+    border           : 2px solid transparent;
+
+    &:hover {
+      border-color     : $primaryLight;
       background-color : $primaryDark;
     }
   }
 
   &.btn-secondary {
-    border           : none;
-    color            : $primaryDark;
+    border     : none;
+    color      : $primaryDark;
     background : $white;
   }
 
   &.btn-secondary-nb {
-    border-radius    : 10px;
-    color            : $white;
-    background : $secondary;
-    border: 2px solid transparent;
+    border-radius : 10px;
+    color         : $white;
+    background    : $secondary;
+    border        : 2px solid transparent;
 
-    &:hover{
+    &:hover {
       border-color : $secondary;
     }
   }
@@ -71,24 +72,38 @@
     color            : $white;
     background-color : $greenPrimary;
 
-    &:hover{
+    &:hover {
       background-color : #257466;
     }
   }
 
-  &.btn-red {
+  &.btn-white {
     border           : none;
-    color            : $white;
+    color            : $primaryDark;
+    background-color : $white;
+    border           : 1px solid #e0e0e0;
+    &:hover {
+      background-color : #f2f2f2;
+    }
+  }
+
+
+  &.btn-red {
+    border     : none;
+    color      : $white;
     background : #be2626;
-    &:hover{
+
+    &:hover {
       background-color : #a21f1f;
     }
   }
-  &.btn-yellow{
-    border           : none;
-    color            : $white;
+
+  &.btn-yellow {
+    border     : none;
+    color      : $white;
     background : #dcbb33;
-    &:hover{
+
+    &:hover {
       background-color : #c5a22e;
     }
   }
@@ -98,7 +113,7 @@
   }
 
   &:focus {
-    outline    : none;
+    outline : none;
     //box-shadow : $boxShadowIn;
   }
 

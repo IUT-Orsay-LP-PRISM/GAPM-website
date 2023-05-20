@@ -9,20 +9,19 @@
 {% endblock %}
 
 {% block content %}
-
     <section class="myaccount">
         <h1>Mon compte</h1>
         <div class="myaccount__content">
             <div class="myaccount__content__nav">
                 <ul>
                     {% if not modeIntervenant %}
-                    <li>
-                        <a id="perso-nav"href="#perso"
-                           class="js-account-nav myaccount__content__nav-link --active">
-                            Informations personnelles
-                            <i class="icon icon-fi-rr-info"></i>
-                        </a>
-                    </li>
+                        <li>
+                            <a id="perso-nav"href="#perso"
+                               class="js-account-nav myaccount__content__nav-link --active">
+                                Informations personnelles
+                                <i class="icon icon-fi-rr-info"></i>
+                            </a>
+                        </li>
                     {% endif %}
                     {% if user is defined and not user.isIntervenant() %}
                         <li>
@@ -51,6 +50,13 @@
                                class="js-account-nav myaccount__content__nav-link">
                                 Emprunt de véhicule
                                 <i class="icon icon-fi-rr-car"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="?action=notes-de-frais"
+                               class="myaccount__content__nav-link">
+                                Notes de frais
+                                <i class="icon icon-fi-rr-receipt"></i>
                             </a>
                         </li>
                     {% endif %}

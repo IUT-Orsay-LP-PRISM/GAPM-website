@@ -20,7 +20,7 @@ time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `prj-prism-vchreti`
+-- Base de données : `gapm`
 --
 
 -- --------------------------------------------------------
@@ -97,27 +97,6 @@ VALUES (1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '
         '0123456789', 'F', 8, 'intervenant');
 -- --------------------------------------------------------
 
---
--- Structure de la table `Emet`
---
-
-DROP TABLE IF EXISTS `Emet`;
-CREATE TABLE `Emet`
-(
-    `idIntervenant` int(11) NOT NULL,
-    `idNoteFrais`   int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `Emet`
---
-
-INSERT INTO `Emet` (`idIntervenant`, `idNoteFrais`)
-VALUES (1, 1),
-       (2, 2),
-       (5, 3);
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `Empechement`
@@ -237,7 +216,6 @@ CREATE TABLE `Intervenant`
   COLLATE = utf8mb4_general_ci;
 
 
-
 --
 -- Déchargement des données de la table `Intervenant`
 --
@@ -245,8 +223,12 @@ CREATE TABLE `Intervenant`
 INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`, `idVillePro`, `demandeSupp`)
 VALUES (1, '100 rue des Intervenants', 26, 0),
        (2, '200 rue des Experts', 87, 0),
-       (5, '500 chemin des Professionnels', 85, 0),
-       (6, '500 chemin des Professionnels', 256, 0);
+       (5, '500 chemin des Professionnels', 85, 0);
+
+INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`, `imgUrl`, `idVillePro`, `demandeSupp`)
+VALUES (6, '500 chemin des Professionnels', 'public/uploads/intervenants/imgs/6-dbd94cb6b271525ffa5d.jpeg', 256, 0);
+
+
 
 -- --------------------------------------------------------
 
@@ -258,11 +240,9 @@ DROP TABLE IF EXISTS `NoteFrais`;
 CREATE TABLE `NoteFrais`
 (
     `idNoteFrais`      int(11) NOT NULL,
-    `dateNote`         date         NOT NULL,
-    `description`      varchar(280) NOT NULL,
-    `urlJustificatif`  varchar(280) NOT NULL,
-    `montant`          float        NOT NULL,
-    `status`           varchar(50)  NOT NULL,
+    `dateNote`         date        NOT NULL,
+    `status`           varchar(50) NOT NULL,
+    `idIntervenant`    int(11) NOT NULL,
     `idAdministration` int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -272,11 +252,53 @@ CREATE TABLE `NoteFrais`
 -- Déchargement des données de la table `NoteFrais`
 --
 
-INSERT INTO `NoteFrais` (`idNoteFrais`, `dateNote`, `description`, `urlJustificatif`, `montant`, `status`,
-                         `idAdministration`)
-VALUES (1, '2022-01-01', 'Frais 1', 'justificatif1.pdf', 100, 'Valider', 1),
-       (2, '2022-02-01', 'Frais 2', 'justificatif2.pdf', 200, 'Validation', 2),
-       (3, '2022-03-01', 'Frais 3', 'justificatif3.pdf', 300, 'Annuler', 3);
+INSERT INTO `NoteFrais` (`idNoteFrais`, `dateNote`, `status`, `idIntervenant`, `idAdministration`)
+VALUES (1, '2022-01-01', 'En attente', 1, 1),
+       (2, '2022-02-01', 'En attente', 2, 2),
+       (3, '2022-03-01', 'En attente', 6, 5);
+
+-- --------------------------------------------------------
+
+
+--
+-- Structure de la table `NoteFrais`
+--
+
+DROP TABLE IF EXISTS `Depense`;
+CREATE TABLE `Depense`
+(
+    `idDepense`       int(11) NOT NULL,
+    `nature`          varchar(50)  NOT NULL,
+    `datePaiement`    date         NOT NULL,
+    `montant`         float        NOT NULL,
+    `fournisseur`     varchar(50)  NOT NULL,
+    `commentaire`     varchar(255) NOT NULL,
+    `status`          varchar(50)  NOT NULL DEFAULT 'À traiter',
+    `dateCreation`    date         NOT NULL,
+    `urlJustificatif` varchar(255)          DEFAULT NULL,
+    `idIntervenant`   int(11) NOT NULL,
+    `idNoteFrais`     int(11) DEFAULT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Depense`
+--
+
+INSERT INTO `Depense` (`idDepense`, `nature`, `datePaiement`, `montant`, `fournisseur`, `commentaire`, `status`,
+                       `dateCreation`, `urlJustificatif`, `idIntervenant`, `idNoteFrais`)
+VALUES (1, 'Transport', '2022-01-01', 100, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-01-01',
+        'public/uploads/intervenants/docs/1-1357013fc451a6b9f39c.jpg', 1, 1),
+       (2, 'Transport', '2022-02-01', 200, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-02-01', NULL, 2, 2),
+       (3, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À traiter', '2023-05-17', NULL, 6, NULL),
+       (4, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2023-05-18',
+        'public/uploads/intervenants/docs/6-86a7f91489b52336caf3.jpg', 6, NULL),
+       (5, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'À déclarer', '2022-03-01',
+        'public/uploads/intervenants/docs/6-0e948b7ba1132ea8f2f8.jpg', 6, NULL),
+       (6, 'Transport', '2022-03-01', 300, 'SNCF', 'Paris - Lyon', 'déclarer', '2022-03-01',
+        'public/uploads/intervenants/docs/6-deace0847a24453a851b.jpg', 6, 3);
+
 
 -- --------------------------------------------------------
 
@@ -433,13 +455,6 @@ VALUES (1, 'Renault', 'Clio'),
 -- --------------------------------------------------------
 
 --
--- Déchargement des données de la table `Ville`
---
-
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `Voiture`
 --
 
@@ -463,7 +478,7 @@ VALUES (1, 'EM-007-LX', 1),
        (3, 'RT-918-CD', 3),
        (4, 'QD-885-AZ', 4),
        (5, 'WC-478-BN', 5),
-        (6, 'WC-478-BN', 1);
+       (6, 'WC-478-BN', 1);
 
 --
 -- Index pour les tables déchargées
@@ -483,12 +498,6 @@ ALTER TABLE `Demandeur`
     ADD PRIMARY KEY (`idDemandeur`),
     ADD KEY `idVille` (`idVille`);
 
---
--- Index pour la table `Emet`
---
-ALTER TABLE `Emet`
-    ADD PRIMARY KEY (`idIntervenant`, `idNoteFrais`),
-    ADD KEY `idNoteFrais` (`idNoteFrais`);
 
 --
 -- Index pour la table `Empechement`
@@ -533,7 +542,16 @@ ALTER TABLE `Intervenant`
 --
 ALTER TABLE `NoteFrais`
     ADD PRIMARY KEY (`idNoteFrais`),
+    ADD KEY `idIntervenant` (`idIntervenant`),
     ADD KEY `idAdministration` (`idAdministration`);
+
+--
+-- Index pour la table `Depense`
+--
+ALTER TABLE `Depense`
+    ADD PRIMARY KEY (`idDepense`),
+    ADD KEY `idIntervenant` (`idIntervenant`),
+    ADD KEY `idNoteFrais` (`idNoteFrais`);
 
 --
 -- Index pour la table `Administration`
@@ -631,6 +649,13 @@ ALTER TABLE `NoteFrais`
     AUTO_INCREMENT = 4;
 
 --
+-- AUTO_INCREMENT pour la table `Depense`
+--
+ALTER TABLE `Depense`
+    MODIFY `idDepense` int (11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 4;
+
+--
 -- AUTO_INCREMENT pour la table `Administration`
 --
 ALTER TABLE `Administration`
@@ -692,15 +717,6 @@ UPDATE CASCADE;
 ALTER TABLE `Demandeur`
     ADD CONSTRAINT `Demandeur_ibfk_1` FOREIGN KEY (`idVille`) REFERENCES `Ville` (`idVille`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Contraintes pour la table `Emet`
---
-ALTER TABLE `Emet`
-    ADD CONSTRAINT `Emet_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `Emet_ibfk_2` FOREIGN KEY (`idNoteFrais`) REFERENCES `NoteFrais` (`idNoteFrais`) ON
-DELETE
-CASCADE ON
-UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Empechement`
@@ -758,7 +774,18 @@ UPDATE CASCADE;
 -- Contraintes pour la table `NoteFrais`
 --
 ALTER TABLE `NoteFrais`
-    ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`idAdministration`) REFERENCES `Administration` (`idAdministration`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `NoteFrais_ibfk_2` FOREIGN KEY (`idAdministration`) REFERENCES `Administration` (`idAdministration`) ON
+DELETE
+CASCADE ON UPDATE CASCADE;
+
+
+--
+-- Contraintes pour la table `Depense`
+--
+ALTER TABLE `Depense`
+    ADD CONSTRAINT `Depense_ibfk_1` FOREIGN KEY (`idNoteFrais`) REFERENCES `NoteFrais` (`idNoteFrais`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 --
 -- Contraintes pour la table `RDV`

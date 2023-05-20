@@ -2,7 +2,7 @@
 use App\controllers\Route;
 use App\models\entity\Session;
 require 'vendor/autoload.php';
-require_once 'bootstrap.php';
+require_once 'config/bootstrap.php';
 
 Session::start();
 
@@ -17,6 +17,8 @@ Route::get('prendre-rdv', 'RendezVousController', 'index');
 Route::get('delete-rdv', 'RendezVousController', 'deleteRdv');
 Route::get('success-rdv', 'RendezVousController', 'success');
 Route::get('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
+Route::get('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
+Route::get('delete-depense', 'NoteFraisController', 'deleteDepense');
 
 Route::post('login-user', 'DemandeurController', 'login');
 Route::post('register-user', 'DemandeurController', 'register');
@@ -28,6 +30,9 @@ Route::post('upgrade-to-intervenant', 'IntervenantController', 'devenirIntervena
 Route::post('update-intervenant', 'IntervenantController', 'update');
 Route::post('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 Route::post('picture-edit', 'IntervenantController', 'updatePicture');
+Route::post('add-depense', 'NoteFraisController', 'createDepense');
+Route::post('edit-depense', 'NoteFraisController', 'updateDepense');
+
 
 Route::post('intervenant-unsubscribe-request', 'IntervenantController', 'unsubscribeRequest');
 Route::post('intervenant-cancel-unsubscribe-request', 'IntervenantController', 'cancelUnsubscribe');
@@ -47,6 +52,7 @@ Route::search('/?action=search');
 Route::autocomplete('/?action=autocompleteSpecialite','Specialite');
 Route::autocomplete('/?action=autocompleteVille','Ville');
 Route::ajax('/?action=popupAvis','RendezVous');
+Route::ajax('/?action=get-depense','NoteFrais');
 
 // route::Ajax pour retiré les date deja use d'un rdv
 Route::get("getHoraireNotAvailable", "RendezVousController", "getHoraireNotAvailableByIntervenant");

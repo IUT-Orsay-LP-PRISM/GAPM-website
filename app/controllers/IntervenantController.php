@@ -12,6 +12,8 @@ use App\models\entity\Emprunt;
 use App\models\repository\IntervenantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use Intervention\Image\ImageManagerStatic as Image;
+
 
 class IntervenantController extends Template
 {
@@ -207,36 +209,72 @@ class IntervenantController extends Template
         }
     }
 
-    public function updatePicture()
+    public function updatePicture(): void
     {
         $idIntervenant = Session::get('user')->getIdDemandeur();
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+
+        $oldPictureUrl = $intervenant->getImgUrl();
+        if($oldPictureUrl != 'public/img/default.jpg'){
+            unlink($oldPictureUrl);
+        }
         $img = $_FILES['image'];
 
+        // Vérification si le fichier a bien été téléchargé via HTTP POST (donc qu'il a bien été upload)
+        if (!is_uploaded_file($img['tmp_name'])) {
+            $referer = self::addMessageToUrl('Le fichier n\'a pas été téléchargé via HTTP POST.', 'msg-warning');
+            header("Location: $referer");
+            exit();
+        }
+
+        // Vérification si le fichier est une image
+        $check = getimagesize($img['tmp_name']);
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+        if (!in_array($check['mime'], $allowedTypes)) {
+            $referer = self::addMessageToUrl('Le fichier n\'est pas une image.', 'msg-error');
+            header("Location: $referer");
+            exit();
+        }
+
+        // Vérification si l'intervenant existe
         if ($intervenant != null) {
-            $pathToSave = 'public/img/intervenants/';
+            $pathToSave = 'public/uploads/intervenants/imgs/';
+
             $random = bin2hex(random_bytes(10));
             $extension = pathinfo($img['name'], PATHINFO_EXTENSION);
-            $path = $pathToSave . $idIntervenant . '-' . $random . '.' . $extension;
-            //
 
+            // Vérification de l'extension
+            if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+                $referer = self::addMessageToUrl('Extension de fichier non autorisée.', 'msg-error');
+                header("Location: $referer");
+                exit();
+            }
+            $path = $pathToSave . $idIntervenant . '-' . $random . '.' . $extension;
+
+            // Mise à jour de l'intervenant
             $intervenant->setImgUrl($path);
             try {
                 $this->entityManager->persist($intervenant);
                 $this->entityManager->flush();
                 Session::set('user', $intervenant);
                 move_uploaded_file($img['tmp_name'], $path);
+
+                $image = Image::make($path);
+                $image->fit(300, 300);
+                $image->save();
+
                 $referer = self::addMessageToUrl('Photo de profil mise à jour.', 'msg-success');
                 header("Location: $referer");
             } catch (\Exception $e) {
-                $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
+                $referer = self::addMessageToUrl('Votre photo de profil n\'a pas pu être mise à jour : .' . $e, 'msg-error');
                 header("Location: $referer");
                 exit();
             }
         }
     }
 
-    public function unsubscribeRequest()
+
+    public function unsubscribeRequest(): void
     {
         $email = $_POST['email'];
         if ($email != $_SESSION['user']->getEmail()) {
@@ -261,7 +299,7 @@ class IntervenantController extends Template
         }
     }
 
-    public function cancelUnsubscribe()
+    public function cancelUnsubscribe(): void
     {
         $idIntervenant = Session::get('user')->getIdDemandeur();
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
@@ -279,4 +317,5 @@ class IntervenantController extends Template
             exit();
         }
     }
+
 }
