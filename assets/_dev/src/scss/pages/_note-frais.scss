@@ -87,6 +87,10 @@ $greenLightNote  : #F7FEF6;
         opacity : 1;
       }
 
+      &--checkbox {
+        position : relative;
+      }
+
       &--Atraiter {
         color  : $orangeNote;
         cursor : pointer;
@@ -110,6 +114,18 @@ $greenLightNote  : #F7FEF6;
 
         &:hover {
           background-color : $greenLightNote;
+        }
+
+        &__checkbox {
+          margin        : 0;
+          font          : inherit;
+          width         : 1.25em;
+          height        : 1.25em;
+          border-radius : 0.15em;
+          position      : absolute;
+          top           : 50%;
+          left          : -0.1rem;
+          transform     : translateY(-50%);
         }
       }
 
@@ -235,8 +251,24 @@ $greenLightNote  : #F7FEF6;
           justify-content  : center;
           align-items      : center;
           padding          : 0.2rem;
-          margin-right     : 1rem;
+          margin           : 0 1rem;
         }
+      }
+
+      td {
+        position : relative;
+      }
+
+      &__checkbox {
+        margin        : 0;
+        font          : inherit;
+        width         : 1.25em;
+        height        : 1.25em;
+        border-radius : 0.15em;
+        position      : absolute;
+        top           : 50%;
+        left          : -0.1rem;
+        transform     : translateY(-50%);
       }
     }
   }
@@ -271,7 +303,7 @@ $greenLightNote  : #F7FEF6;
       outline          : none;
       cursor           : pointer;
       background-color : transparent;
-      color: $redDark;
+      color            : $redDark;
 
       .icon {
         font-size : 2rem;
@@ -303,11 +335,11 @@ $greenLightNote  : #F7FEF6;
       }
 
       &__inputs {
-        display       : block;
-        border        : 1px solid $greyLight;
+        display          : block;
+        border           : 1px solid $greyLight;
         background-color : $white;
-        border-radius : $borderRadiusSmall;
-        flex          : inherit;
+        border-radius    : $borderRadiusSmall;
+        flex             : inherit;
 
         .sidebar-add-depense-row {
           display : flex;
@@ -373,10 +405,10 @@ $greenLightNote  : #F7FEF6;
       }
 
       &__justificatif {
-        display         : flex;
-        justify-content : center;
-        align-items     : flex-start;
-        border-radius   : $borderRadiusSmall;
+        display          : flex;
+        justify-content  : center;
+        align-items      : flex-start;
+        border-radius    : $borderRadiusSmall;
         background-color : $white;
 
         .justificatif--content {
@@ -423,13 +455,13 @@ $greenLightNote  : #F7FEF6;
               background-color : $greenLight;
               border-radius    : $borderRadiusSmall;
               cursor           : pointer;
-              font-weight: 500;
-              transition: all 0.3s ease-in-out;
+              font-weight      : 500;
+              transition       : all 0.3s ease-in-out;
             }
 
             label:hover {
               background-color : $primaryLight;
-              color: $white;
+              color            : $white;
             }
           }
         }

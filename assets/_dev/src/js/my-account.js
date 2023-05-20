@@ -54,3 +54,56 @@ if(vehicule) {
         label.innerHTML = nom.innerHTML;
     });
 }
+
+
+const profilInput = document.querySelector('.myaccount__pfp__input input#picture');
+if (profilInput) {
+    profilInput.addEventListener('change', previewImage);
+}
+function previewImage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function () {
+        const image = new Image();
+
+        image.onload = function() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const size = 300;
+
+            canvas.width = size;
+            canvas.height = size;
+
+            const imageAspectRatio = image.width / image.height;
+            const canvasAspectRatio = canvas.width / canvas.height;
+            let renderableWidth, renderableHeight, xStart, yStart;
+
+            if (imageAspectRatio < canvasAspectRatio) {
+                renderableWidth = canvas.width;
+                renderableHeight = renderableWidth / imageAspectRatio;
+                xStart = 0;
+                yStart = (canvas.height - renderableHeight) / 2;
+            } else if (imageAspectRatio > canvasAspectRatio) {
+                renderableHeight = canvas.height;
+                renderableWidth = renderableHeight * imageAspectRatio;
+                yStart = 0;
+                xStart = (canvas.width - renderableWidth) / 2;
+            } else {
+                renderableHeight = canvas.height;
+                renderableWidth = canvas.width;
+                xStart = 0;
+                yStart = 0;
+            }
+            context.drawImage(image, xStart, yStart, renderableWidth, renderableHeight);
+
+            const previewOriginal = document.querySelector(".myaccount__pfp__original img#previewOriginal");
+            const previewDisplay = document.querySelector(".myaccount__pfp__display img#previewDisplay");
+            previewOriginal.src = canvas.toDataURL('image/jpeg');
+            previewDisplay.src = canvas.toDataURL('image/jpeg');
+        };
+
+        image.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+}
