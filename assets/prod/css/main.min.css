@@ -2083,9 +2083,28 @@ body.intervenant {
         height: 1px;
         background-color: lightgrey;
         margin: 1rem 0; }
-      body.intervenant .search__contents-user-img img {
-        max-width: 100px;
-        border-radius: 50%; }
+      body.intervenant .search__contents-user-img {
+        position: relative; }
+        body.intervenant .search__contents-user-img img {
+          max-width: 100px;
+          border-radius: 50%; }
+      body.intervenant .search__contents-user-note {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        box-sizing: border-box;
+        right: -25px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        max-width: 65px;
+        min-width: 65px;
+        background-color: #dee7e8;
+        padding: .5rem 0.75rem;
+        border-radius: 1000px; }
+        body.intervenant .search__contents-user-note svg {
+          margin-left: 0.2rem; }
       body.intervenant .search__contents-user-info {
         flex: 1;
         display: grid;
@@ -4394,9 +4413,28 @@ body.demandeur {
         height: 1px;
         background-color: lightgrey;
         margin: 1rem 0; }
-      body.demandeur .search__contents-user-img img {
-        max-width: 100px;
-        border-radius: 50%; }
+      body.demandeur .search__contents-user-img {
+        position: relative; }
+        body.demandeur .search__contents-user-img img {
+          max-width: 100px;
+          border-radius: 50%; }
+      body.demandeur .search__contents-user-note {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        box-sizing: border-box;
+        right: -25px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        max-width: 65px;
+        min-width: 65px;
+        background-color: #DCE6F2;
+        padding: .5rem 0.75rem;
+        border-radius: 1000px; }
+        body.demandeur .search__contents-user-note svg {
+          margin-left: 0.2rem; }
       body.demandeur .search__contents-user-info {
         flex: 1;
         display: grid;
