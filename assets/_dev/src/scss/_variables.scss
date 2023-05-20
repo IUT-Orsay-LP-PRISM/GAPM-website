@@ -80,6 +80,9 @@ $screenXl          : 1440px;
   content : $srcBackgroundBanner;
 }
 
+a{
+  color: $primaryDark;
+}
 p.error {
   color      : red;
   text-align : center;

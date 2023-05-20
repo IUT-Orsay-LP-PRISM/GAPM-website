@@ -74,17 +74,12 @@
 
   &__list{
     margin-top: 3rem;
-    &.myrdv__inter{
-      margin-top: 1rem;
-      h3{
-        margin-bottom: 1rem;
-      }
-      p.text__small{
-        margin-bottom: 2rem;
-      }
+    h3{
+      margin-bottom: 1rem;
     }
-
-
+    p.text__small{
+      margin-bottom: 2rem;
+    }
     & > div {
       display: none;
     }
