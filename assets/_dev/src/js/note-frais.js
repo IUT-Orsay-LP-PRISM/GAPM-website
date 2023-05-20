@@ -148,23 +148,28 @@ if (btn_prepare) {
     });
 }
 
-checkbox_total.addEventListener('change', () => {
-    checkboxs.forEach(checkbox => {
-        checkbox.checked = checkbox_total.checked;
-    });
-    changeTextButton();
-});
-
-checkboxs.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-        if (!checkbox.checked) {
-            checkbox_total.checked = [...checkboxs].some(checkbox => checkbox.checked);
-        } else {
-            checkbox_total.checked = true;
-        }
+if (checkbox_total) {
+    checkbox_total.addEventListener('change', () => {
+        checkboxs.forEach(checkbox => {
+            checkbox.checked = checkbox_total.checked;
+        });
         changeTextButton();
     });
-});
+}
+
+
+if (checkboxs.length > 0) {
+    checkboxs.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (!checkbox.checked) {
+                checkbox_total.checked = [...checkboxs].some(checkbox => checkbox.checked);
+            } else {
+                checkbox_total.checked = true;
+            }
+            changeTextButton();
+        });
+    });
+}
 
 function changeTextButton() {
     const nbChecked = [...checkboxs].filter(checkbox => checkbox.checked).length;
