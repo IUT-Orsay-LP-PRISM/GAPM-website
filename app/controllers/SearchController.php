@@ -27,8 +27,10 @@ class SearchController extends Template
 
         // On récupère la note moyenne de chaque intervenant, s'il en a une
         foreach ($intervenants as $intervenant){
-            if ($intervenant->getIdDemandeur() == Session::get('user')->getIdDemandeur() && Session::get('user')->isIntervenant()){
-                $idToDel = $intervenant->getIdDemandeur();
+            if (Session::isLogged()){
+                if ($intervenant->getIdDemandeur() == Session::get('user')->getIdDemandeur() && Session::get('user')->isIntervenant()){
+                    $idToDel = $intervenant->getIdDemandeur();
+                }
             }
             $avg = null;
             $note = $intervenantRepository->findNoteById($intervenant->getIdDemandeur());
