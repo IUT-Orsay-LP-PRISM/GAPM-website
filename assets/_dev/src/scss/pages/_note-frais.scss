@@ -3,7 +3,7 @@ $greenNote       : #3C9933;
 $orangeLightNote : #FEF5F0;
 $greenLightNote  : #F7FEF6;
 
-.noteFrais {
+.notefrais {
   &--empty {
     &__content {
       display         : flex;
@@ -82,8 +82,8 @@ $greenLightNote  : #F7FEF6;
 
     &__content {
 
-      &--Atraiter:hover .noteFrais__table__content--trash a,
-      &--Adeclarer:hover .noteFrais__table__content--trash a {
+      &--Atraiter:hover .notefrais__table__content--trash a,
+      &--Adeclarer:hover .notefrais__table__content--trash a {
         opacity : 1;
       }
 
@@ -165,7 +165,7 @@ $greenLightNote  : #F7FEF6;
             cursor : pointer;
           }
 
-          .noteFrais__table__content--comment__message {
+          .notefrais__table__content--comment__message {
             visibility       : hidden;
             width            : 300px;
             background-color : #333;
@@ -202,7 +202,7 @@ $greenLightNote  : #F7FEF6;
           }
 
           &:hover {
-            .noteFrais__table__content--comment__message {
+            .notefrais__table__content--comment__message {
               visibility : visible;
               opacity    : 1;
             }

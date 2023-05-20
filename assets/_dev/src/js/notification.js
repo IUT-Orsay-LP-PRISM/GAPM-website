@@ -1,4 +1,4 @@
-import {openPopUpConnexion, openPopUpInscription} from "./popUp";
+import {openPopUpConnexion, openPopUpInscription} from "./pop-up";
 
 const modal = document.querySelector('#notificationModal');
 const modalClose = document.querySelector('#notificationModal .notification__close');

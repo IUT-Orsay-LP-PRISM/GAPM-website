@@ -1,6 +1,6 @@
 const sidebar_container = document.querySelector('#sidebar-add-depense');
 const sidebar = document.querySelector('#sidebar-add-depense--content');
-const btn_create = document.querySelector('.noteFrais button#create');
+const btn_create = document.querySelector('.notefrais button#create');
 const selectNature = document.querySelector('#nature.sidebar-add-depense-row__content--input');
 const urlJustificatifInput = document.getElementById('urlJustificatif');
 
@@ -60,7 +60,7 @@ if (selectNature) {
     });
 }
 
-const depenses = document.querySelectorAll('.noteFrais__table__content--Adeclarer, .noteFrais__table__content--Atraiter');
+const depenses = document.querySelectorAll('.notefrais__table__content--Adeclarer, .notefrais__table__content--Atraiter');
 
 depenses.forEach(depense => {
     depense.addEventListener('click', (event) => {

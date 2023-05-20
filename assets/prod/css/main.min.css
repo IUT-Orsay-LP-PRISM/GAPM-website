@@ -2790,30 +2790,30 @@ body.intervenant {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
-  body.intervenant .noteFrais--empty__content {
+  body.intervenant .notefrais--empty__content {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-family: "Poppins", sans-serif; }
-    body.intervenant .noteFrais--empty__content--title {
+    body.intervenant .notefrais--empty__content--title {
       font-size: 1em;
       text-align: center;
       margin: 2rem 0;
       line-height: 1.5; }
-      body.intervenant .noteFrais--empty__content--title p:first-child {
+      body.intervenant .notefrais--empty__content--title p:first-child {
         font-weight: 600; }
-  body.intervenant .noteFrais__row {
+  body.intervenant .notefrais__row {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     font-family: "Poppins", sans-serif; }
-    body.intervenant .noteFrais__row.new {
+    body.intervenant .notefrais__row.new {
       margin-bottom: 4rem; }
-    body.intervenant .noteFrais__row.prepare {
+    body.intervenant .notefrais__row.prepare {
       margin-top: 4rem; }
-    body.intervenant .noteFrais__row--total {
+    body.intervenant .notefrais__row--total {
       height: 100%;
       display: flex;
       justify-content: space-between;
@@ -2821,44 +2821,44 @@ body.intervenant {
       flex-direction: column;
       margin-right: 1rem;
       line-height: 1.5; }
-      body.intervenant .noteFrais__row--total span {
+      body.intervenant .notefrais__row--total span {
         font-size: 1.4rem;
         font-weight: 600; }
-  body.intervenant .noteFrais__table {
+  body.intervenant .notefrais__table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     color: #144139;
     font-family: "Poppins", sans-serif;
     font-weight: 400; }
-    body.intervenant .noteFrais__table thead td {
+    body.intervenant .notefrais__table thead td {
       vertical-align: middle;
       padding: 0 0 2rem 0;
       font-weight: 500; }
-    body.intervenant .noteFrais__table td {
+    body.intervenant .notefrais__table td {
       text-align: center;
       vertical-align: middle;
       padding: .8em; }
-    body.intervenant .noteFrais__table__content--Atraiter:hover .noteFrais__table__content--trash a,
-    body.intervenant .noteFrais__table__content--Adeclarer:hover .noteFrais__table__content--trash a {
+    body.intervenant .notefrais__table__content--Atraiter:hover .notefrais__table__content--trash a,
+    body.intervenant .notefrais__table__content--Adeclarer:hover .notefrais__table__content--trash a {
       opacity: 1; }
-    body.intervenant .noteFrais__table__content--Atraiter {
+    body.intervenant .notefrais__table__content--Atraiter {
       color: #E55006;
       cursor: pointer; }
-      body.intervenant .noteFrais__table__content--Atraiter__tag span {
+      body.intervenant .notefrais__table__content--Atraiter__tag span {
         background-color: #FEF5F0; }
-      body.intervenant .noteFrais__table__content--Atraiter:hover {
+      body.intervenant .notefrais__table__content--Atraiter:hover {
         background-color: #FEF5F0; }
-    body.intervenant .noteFrais__table__content--Adeclarer {
+    body.intervenant .notefrais__table__content--Adeclarer {
       color: #3C9933;
       cursor: pointer; }
-      body.intervenant .noteFrais__table__content--Adeclarer__tag span {
+      body.intervenant .notefrais__table__content--Adeclarer__tag span {
         background-color: #F7FEF6; }
-      body.intervenant .noteFrais__table__content--Adeclarer:hover {
+      body.intervenant .notefrais__table__content--Adeclarer:hover {
         background-color: #F7FEF6; }
-    body.intervenant .noteFrais__table__content--trash {
+    body.intervenant .notefrais__table__content--trash {
       position: relative; }
-      body.intervenant .noteFrais__table__content--trash a {
+      body.intervenant .notefrais__table__content--trash a {
         position: absolute;
         top: 50%;
         right: -2.5rem;
@@ -2871,9 +2871,9 @@ body.intervenant {
         padding: 0.5rem;
         opacity: 0;
         text-decoration: none; }
-        body.intervenant .noteFrais__table__content--trash a .icon {
+        body.intervenant .notefrais__table__content--trash a .icon {
           background-color: #B61414; }
-    body.intervenant .noteFrais__table__content--tag span {
+    body.intervenant .notefrais__table__content--tag span {
       width: 5rem;
       border-radius: 5rem;
       font-size: 0.8rem;
@@ -2883,16 +2883,16 @@ body.intervenant {
       font-weight: 600;
       margin: auto;
       padding: 0.5rem 0.8rem; }
-    body.intervenant .noteFrais__table__content--comment {
+    body.intervenant .notefrais__table__content--comment {
       display: flex;
       justify-content: space-evenly;
       align-items: center; }
-      body.intervenant .noteFrais__table__content--comment .icon-container {
+      body.intervenant .notefrais__table__content--comment .icon-container {
         position: relative;
         display: inline-block; }
-        body.intervenant .noteFrais__table__content--comment .icon-container .icon {
+        body.intervenant .notefrais__table__content--comment .icon-container .icon {
           cursor: pointer; }
-        body.intervenant .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message {
+        body.intervenant .notefrais__table__content--comment .icon-container .notefrais__table__content--comment__message {
           visibility: hidden;
           width: 300px;
           background-color: #333;
@@ -2907,32 +2907,32 @@ body.intervenant {
           transform: translateX(-50%);
           opacity: 0;
           transition: opacity 0.3s; }
-          body.intervenant .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message img {
+          body.intervenant .notefrais__table__content--comment .icon-container .notefrais__table__content--comment__message img {
             width: auto;
             height: auto;
             max-width: 100%;
             max-height: 30rem; }
-          body.intervenant .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message .tooltip-content {
+          body.intervenant .notefrais__table__content--comment .icon-container .notefrais__table__content--comment__message .tooltip-content {
             display: block;
             margin: 0; }
-        body.intervenant .noteFrais__table__content--comment .icon-container .image-message {
+        body.intervenant .notefrais__table__content--comment .icon-container .image-message {
           left: auto;
           right: 50%;
           transform: translateX(50%); }
-        body.intervenant .noteFrais__table__content--comment .icon-container:hover .noteFrais__table__content--comment__message {
+        body.intervenant .notefrais__table__content--comment .icon-container:hover .notefrais__table__content--comment__message {
           visibility: visible;
           opacity: 1; }
-    body.intervenant .noteFrais__table--title {
+    body.intervenant .notefrais__table--title {
       background-color: #F1FAFB;
       color: #144139;
       text-align: center;
       font-size: 1em;
       padding: 10px; }
-      body.intervenant .noteFrais__table--title__content {
+      body.intervenant .notefrais__table--title__content {
         display: flex;
         justify-content: flex-start;
         align-items: center; }
-        body.intervenant .noteFrais__table--title__content span {
+        body.intervenant .notefrais__table--title__content span {
           font-weight: bold;
           background-color: #AEDBD3;
           border-radius: 50%;
@@ -5012,30 +5012,30 @@ body.demandeur {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
-  body.demandeur .noteFrais--empty__content {
+  body.demandeur .notefrais--empty__content {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-family: "Poppins", sans-serif; }
-    body.demandeur .noteFrais--empty__content--title {
+    body.demandeur .notefrais--empty__content--title {
       font-size: 1em;
       text-align: center;
       margin: 2rem 0;
       line-height: 1.5; }
-      body.demandeur .noteFrais--empty__content--title p:first-child {
+      body.demandeur .notefrais--empty__content--title p:first-child {
         font-weight: 600; }
-  body.demandeur .noteFrais__row {
+  body.demandeur .notefrais__row {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     font-family: "Poppins", sans-serif; }
-    body.demandeur .noteFrais__row.new {
+    body.demandeur .notefrais__row.new {
       margin-bottom: 4rem; }
-    body.demandeur .noteFrais__row.prepare {
+    body.demandeur .notefrais__row.prepare {
       margin-top: 4rem; }
-    body.demandeur .noteFrais__row--total {
+    body.demandeur .notefrais__row--total {
       height: 100%;
       display: flex;
       justify-content: space-between;
@@ -5043,44 +5043,44 @@ body.demandeur {
       flex-direction: column;
       margin-right: 1rem;
       line-height: 1.5; }
-      body.demandeur .noteFrais__row--total span {
+      body.demandeur .notefrais__row--total span {
         font-size: 1.4rem;
         font-weight: 600; }
-  body.demandeur .noteFrais__table {
+  body.demandeur .notefrais__table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     color: #1E1E3D;
     font-family: "Poppins", sans-serif;
     font-weight: 400; }
-    body.demandeur .noteFrais__table thead td {
+    body.demandeur .notefrais__table thead td {
       vertical-align: middle;
       padding: 0 0 2rem 0;
       font-weight: 500; }
-    body.demandeur .noteFrais__table td {
+    body.demandeur .notefrais__table td {
       text-align: center;
       vertical-align: middle;
       padding: .8em; }
-    body.demandeur .noteFrais__table__content--Atraiter:hover .noteFrais__table__content--trash a,
-    body.demandeur .noteFrais__table__content--Adeclarer:hover .noteFrais__table__content--trash a {
+    body.demandeur .notefrais__table__content--Atraiter:hover .notefrais__table__content--trash a,
+    body.demandeur .notefrais__table__content--Adeclarer:hover .notefrais__table__content--trash a {
       opacity: 1; }
-    body.demandeur .noteFrais__table__content--Atraiter {
+    body.demandeur .notefrais__table__content--Atraiter {
       color: #E55006;
       cursor: pointer; }
-      body.demandeur .noteFrais__table__content--Atraiter__tag span {
+      body.demandeur .notefrais__table__content--Atraiter__tag span {
         background-color: #FEF5F0; }
-      body.demandeur .noteFrais__table__content--Atraiter:hover {
+      body.demandeur .notefrais__table__content--Atraiter:hover {
         background-color: #FEF5F0; }
-    body.demandeur .noteFrais__table__content--Adeclarer {
+    body.demandeur .notefrais__table__content--Adeclarer {
       color: #3C9933;
       cursor: pointer; }
-      body.demandeur .noteFrais__table__content--Adeclarer__tag span {
+      body.demandeur .notefrais__table__content--Adeclarer__tag span {
         background-color: #F7FEF6; }
-      body.demandeur .noteFrais__table__content--Adeclarer:hover {
+      body.demandeur .notefrais__table__content--Adeclarer:hover {
         background-color: #F7FEF6; }
-    body.demandeur .noteFrais__table__content--trash {
+    body.demandeur .notefrais__table__content--trash {
       position: relative; }
-      body.demandeur .noteFrais__table__content--trash a {
+      body.demandeur .notefrais__table__content--trash a {
         position: absolute;
         top: 50%;
         right: -2.5rem;
@@ -5093,9 +5093,9 @@ body.demandeur {
         padding: 0.5rem;
         opacity: 0;
         text-decoration: none; }
-        body.demandeur .noteFrais__table__content--trash a .icon {
+        body.demandeur .notefrais__table__content--trash a .icon {
           background-color: #B61414; }
-    body.demandeur .noteFrais__table__content--tag span {
+    body.demandeur .notefrais__table__content--tag span {
       width: 5rem;
       border-radius: 5rem;
       font-size: 0.8rem;
@@ -5105,16 +5105,16 @@ body.demandeur {
       font-weight: 600;
       margin: auto;
       padding: 0.5rem 0.8rem; }
-    body.demandeur .noteFrais__table__content--comment {
+    body.demandeur .notefrais__table__content--comment {
       display: flex;
       justify-content: space-evenly;
       align-items: center; }
-      body.demandeur .noteFrais__table__content--comment .icon-container {
+      body.demandeur .notefrais__table__content--comment .icon-container {
         position: relative;
         display: inline-block; }
-        body.demandeur .noteFrais__table__content--comment .icon-container .icon {
+        body.demandeur .notefrais__table__content--comment .icon-container .icon {
           cursor: pointer; }
-        body.demandeur .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message {
+        body.demandeur .notefrais__table__content--comment .icon-container .notefrais__table__content--comment__message {
           visibility: hidden;
           width: 300px;
           background-color: #333;
@@ -5129,32 +5129,32 @@ body.demandeur {
           transform: translateX(-50%);
           opacity: 0;
           transition: opacity 0.3s; }
-          body.demandeur .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message img {
+          body.demandeur .notefrais__table__content--comment .icon-container .notefrais__table__content--comment__message img {
             width: auto;
             height: auto;
             max-width: 100%;
             max-height: 30rem; }
-          body.demandeur .noteFrais__table__content--comment .icon-container .noteFrais__table__content--comment__message .tooltip-content {
+          body.demandeur .notefrais__table__content--comment .icon-container .notefrais__table__content--comment__message .tooltip-content {
             display: block;
             margin: 0; }
-        body.demandeur .noteFrais__table__content--comment .icon-container .image-message {
+        body.demandeur .notefrais__table__content--comment .icon-container .image-message {
           left: auto;
           right: 50%;
           transform: translateX(50%); }
-        body.demandeur .noteFrais__table__content--comment .icon-container:hover .noteFrais__table__content--comment__message {
+        body.demandeur .notefrais__table__content--comment .icon-container:hover .notefrais__table__content--comment__message {
           visibility: visible;
           opacity: 1; }
-    body.demandeur .noteFrais__table--title {
+    body.demandeur .notefrais__table--title {
       background-color: #F1FAFB;
       color: #1E1E3D;
       text-align: center;
       font-size: 1em;
       padding: 10px; }
-      body.demandeur .noteFrais__table--title__content {
+      body.demandeur .notefrais__table--title__content {
         display: flex;
         justify-content: flex-start;
         align-items: center; }
-        body.demandeur .noteFrais__table--title__content span {
+        body.demandeur .notefrais__table--title__content span {
           font-weight: bold;
           background-color: #AEDBD3;
           border-radius: 50%;
