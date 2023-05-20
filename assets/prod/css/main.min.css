@@ -2664,16 +2664,14 @@ body.intervenant {
           }*/ }
       body.intervenant .myrdv__nav ul li:not(:last-child), body.intervenant .emprunt__nav ul li:not(:last-child) {
         margin-right: 1.5rem; }
-  body.intervenant .myrdv__list, body.intervenant .emprunt__list {
-    margin-top: 3rem; }
-    body.intervenant .myrdv__list h3, body.intervenant .emprunt__list h3 {
-      margin-bottom: 1rem; }
-    body.intervenant .myrdv__list p.text__small, body.intervenant .emprunt__list p.text__small {
-      margin-bottom: 2rem; }
-    body.intervenant .myrdv__list > div, body.intervenant .emprunt__list > div {
-      display: none; }
-    body.intervenant .myrdv__list .--display, body.intervenant .emprunt__list .--display {
-      display: block; }
+  body.intervenant .myrdv__list h3, body.intervenant .emprunt__list h3 {
+    margin-bottom: 1rem; }
+  body.intervenant .myrdv__list p.text__small, body.intervenant .emprunt__list p.text__small {
+    margin-bottom: 2rem; }
+  body.intervenant .myrdv__list > div, body.intervenant .emprunt__list > div {
+    display: none; }
+  body.intervenant .myrdv__list .--display, body.intervenant .emprunt__list .--display {
+    display: block; }
   body.intervenant .myrdv__contents, body.intervenant .emprunt__contents {
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -4977,16 +4975,14 @@ body.demandeur {
           }*/ }
       body.demandeur .myrdv__nav ul li:not(:last-child), body.demandeur .emprunt__nav ul li:not(:last-child) {
         margin-right: 1.5rem; }
-  body.demandeur .myrdv__list, body.demandeur .emprunt__list {
-    margin-top: 3rem; }
-    body.demandeur .myrdv__list h3, body.demandeur .emprunt__list h3 {
-      margin-bottom: 1rem; }
-    body.demandeur .myrdv__list p.text__small, body.demandeur .emprunt__list p.text__small {
-      margin-bottom: 2rem; }
-    body.demandeur .myrdv__list > div, body.demandeur .emprunt__list > div {
-      display: none; }
-    body.demandeur .myrdv__list .--display, body.demandeur .emprunt__list .--display {
-      display: block; }
+  body.demandeur .myrdv__list h3, body.demandeur .emprunt__list h3 {
+    margin-bottom: 1rem; }
+  body.demandeur .myrdv__list p.text__small, body.demandeur .emprunt__list p.text__small {
+    margin-bottom: 2rem; }
+  body.demandeur .myrdv__list > div, body.demandeur .emprunt__list > div {
+    display: none; }
+  body.demandeur .myrdv__list .--display, body.demandeur .emprunt__list .--display {
+    display: block; }
   body.demandeur .myrdv__contents, body.demandeur .emprunt__contents {
     background-color: #FFFFFF;
     border-radius: 10px;
