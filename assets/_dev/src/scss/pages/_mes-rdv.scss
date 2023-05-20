@@ -26,23 +26,23 @@
       li {
         color       : $primaryDark;
         font-family : $titleFont;
+        background-color: $primaryWhite;
         font-weight : 500;
         font-size   : 1em;
         cursor      : pointer;
         position    : relative;
         transition: all .3s ease;
-        padding: 0.6rem;
+        padding: 0.8rem;
         border: 1px solid transparent;
         border-radius: 4px;
         &.--active{
-          color : $primaryLight;
-          border: 1px solid $primaryLight;
+          background-color : $light;
           &::before{
             width: 20%;
           }
         }
 
-        &:before {
+/*        &:before {
           content          : '';
           position         : absolute;
           width            : 0;
@@ -51,17 +51,33 @@
           left             : 0;
           transition: all .2s ease-out;
           background-color : $primaryLight;
-        }
+        }*/
         &::after{
-          content: '• ' attr(data-count);
-          font-weight: 700;
+          content: attr(data-count);
+          position: absolute;
+          top: -12.5px;
+          right: -12.5px;
+          background-color: $primaryLight;
+          color: $primaryWhite;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+        &[data-count="0"]::after{
+          content: "";
+          display: none;
         }
 
         &:hover {
           color : $primaryLight;
-          &::before{
+/*          &::before{
             width: 20%;
-          }
+          }*/
         }
 
         &:not(:last-child) {
