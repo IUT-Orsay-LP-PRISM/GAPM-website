@@ -25,7 +25,7 @@ if (urlJustificatifInput) {
 
 
 window.addEventListener('click', (e) => {
-        if (sidebar_container.style.visibility === "visible" && e.target === sidebar_container && e.target !== sidebar && e.target !== btn_create) {
+        if (sidebar_container && sidebar_container.style.visibility === "visible" && e.target === sidebar_container && e.target !== sidebar && e.target !== btn_create) {
             closeSidebar();
         }
     }
