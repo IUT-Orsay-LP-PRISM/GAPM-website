@@ -4,7 +4,6 @@
 
 body {
   $greenLight   : #AEDBD3;
-  $light        : #DCE6F2;
   $redDark      : #B61414;
   $gradientRed  : linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%);
   $white        : #FFFFFF;
@@ -15,6 +14,7 @@ body {
 
 
   &.intervenant {
+    $light        : #dee7e8;
     $primaryLight             : #36A793;
     $primaryDark              : #257466;
     $primaryWhite             : #F1FAFB;
@@ -35,6 +35,7 @@ body {
   }
 
   &.demandeur {
+    $light        : #DCE6F2;
     $primaryLight             : #5154EC;
     $primaryDark              : #393BAA;
     $primaryWhite             : #F1FAFB;

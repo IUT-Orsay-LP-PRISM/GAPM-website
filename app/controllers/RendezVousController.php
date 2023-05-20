@@ -10,6 +10,7 @@ use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\repository\RendezVousRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Exception\ORMException;
 
 class RendezVousController extends Template
 {
@@ -22,7 +23,7 @@ class RendezVousController extends Template
         $this->rendezVousRepository = $entityManager->getRepository(RendezVous::class);
     }
 
-    public function index()
+    public function index(): void
     {
         if (!Session::isLogged()) {
             header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
@@ -40,7 +41,7 @@ class RendezVousController extends Template
         ]);
     }
 
-    public function deleteRdv()
+    public function deleteRdv(): void
     {
         if (!Session::isLogged()) {
             header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
@@ -61,7 +62,72 @@ class RendezVousController extends Template
         header('Location: /?action=mes-rendez-vous&message=Votre rendez-vous a bien été annulé&c=msg-success');
         exit;
     }
-    public function createRDV()
+    public function deleteRdvIntervenant(): void
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            exit;
+        }
+
+        if (!Session::get('user')->isIntervenant()){
+            header('Location: /?action=mes-rendez-vous&message=Vous n\'êtes pas un intervenant&c=msg-error');
+            exit;
+        }
+
+        $idRdv = htmlspecialchars($_GET['idRdv']);
+        $idIntervenant = Session::get('user')->getIdDemandeur();
+        $rdv = $this->entityManager->getRepository(RendezVous::class)->findOneBy(['idRdv' => $idRdv, 'intervenant' => $idIntervenant]);
+        if ($rdv == null) {
+            header('Location: /?action=liste-rdv&message=Ce rendez-vous n\'existe pas !&c=msg-error');
+            exit;
+        }
+        try {
+            $rdv->setStatus('annule');
+            $this->entityManager->persist($rdv);
+            $this->entityManager->flush();
+
+            header('Location: /?action=liste-rdv&message=Le rendez-vous a bien été annulé&c=msg-success');
+            exit;
+
+        } catch (ORMException $e) {
+            header('Location: /?action=liste-rdv&message=Une erreur est survenue lors de l\'annulation du rendez-vous&c=msg-error');
+            exit;
+        }
+    }
+
+    public function effectueRdvIntervenant(): void
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
+            exit;
+        }
+
+        if (!Session::get('user')->isIntervenant()){
+            header('Location: /?action=mes-rendez-vous&message=Vous n\'êtes pas un intervenant&c=msg-error');
+            exit;
+        }
+
+        $idRdv = htmlspecialchars($_GET['idRdv']);
+        $idIntervenant = Session::get('user')->getIdDemandeur();
+        $rdv = $this->entityManager->getRepository(RendezVous::class)->findOneBy(['idRdv' => $idRdv, 'intervenant' => $idIntervenant]);
+        if ($rdv == null) {
+            header('Location: /?action=liste-rdv&message=Ce rendez-vous n\'existe pas !&c=msg-error');
+            exit;
+        }
+        try {
+            $rdv->setStatus('effectue');
+            $this->entityManager->persist($rdv);
+            $this->entityManager->flush();
+            header('Location: /?action=liste-rdv&message=Le rendez-vous a bien été effectué !&c=msg-success');
+            exit;
+
+        } catch (ORMException $e) {
+            header('Location: /?action=liste-rdv&message=Une erreur est survenue lors de la validation du rendez-vous&c=msg-error');
+            exit;
+        }
+    }
+
+    public function createRDV(): void
     {
         if (Session::isLogged() == false) {
             header('Location: /?action=search&message=Pour prendre rendez-vous, veuillez vous identifier&c=connexion');
@@ -107,7 +173,7 @@ class RendezVousController extends Template
         header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
     }
 
-    public function success()
+    public function success(): void
     {
 
         $date = $_GET['date'];
@@ -124,7 +190,7 @@ class RendezVousController extends Template
         ]);
     }
 
-    public function getHoraireNotAvailableByIntervenant()
+    public function getHoraireNotAvailableByIntervenant(): void
     {
         $date = $_GET['date'];
         $idIntervenant = $_GET['idIntervenant'];
@@ -133,7 +199,7 @@ class RendezVousController extends Template
         echo json_encode($horaire);
     }
 
-    public function displayMyRdv()
+    public function displayMyRdv(): void
     {
         if (!Session::isLogged()) {
             header('Location: /?action=search&message=Pour voir vos rendez vous, connectez vous!&c=connexion');
@@ -144,7 +210,7 @@ class RendezVousController extends Template
         $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
         $mesRdv = $demandeur->getRendezVous();
         usort($mesRdv, function ($a, $b) {
-            return $b->getDateRdv() <=> $a->getDateRdv();
+            return $a->getDateRdv() <=> $b->getDateRdv();
         });
 
         $avisALaisser = [];
@@ -185,7 +251,62 @@ class RendezVousController extends Template
         ]);
     }
 
-    public function createNoticeOnRdv()
+    public function displayMyRdvIntervenant(): void
+    {
+        if (!Session::isLogged()) {
+            header('Location: /?action=search&message=Pour voir vos rendez vous, connectez vous!&c=connexion');
+            exit;
+        }
+        if (!Session::get('user')->isIntervenant()){
+            header('Location: /?action=search&message=Vous n\'êtes pas un intervenant!&c=connexion');
+            exit;
+        }
+
+        $user = Session::get('user');
+        $intervenant = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
+        $rdvIntervenant = $intervenant->getMesRendezVous();
+
+
+
+        $mesRdvAjd = [];
+        $mesRdvAVenir = [];
+        $allRdvsAfter = [];
+        foreach ($rdvIntervenant as $rdv) {
+            if ($rdv->getDateRdv() == date('Y-m-d') && $rdv->getStatus() == 'confirme') {
+                $mesRdvAjd[] = $rdv;
+            } elseif ($rdv->getDateRdv() > date('Y-m-d') && $rdv->getStatus() == 'confirme') {
+                $rdv->setDateRdv(date('d/m', strtotime($rdv->getDateRdv())));
+                $mesRdvAVenir[] = $rdv;
+            } elseif ($rdv->getStatus() == 'effectue' || $rdv->getStatus() == 'annule') {
+                $rdv->setDateRdv(date('d/m', strtotime($rdv->getDateRdv())));
+                if ($rdv->getStatus() == 'effectue') {
+                    $rdv->setStatus('Effectué');
+                } else {
+                    $rdv->setStatus('Annulé');
+                }
+                $allRdvsAfter[] = $rdv;
+            }
+        }
+
+        usort($mesRdvAVenir, function ($a, $b) {
+            return $a->getDateRdv() <=> $b->getDateRdv();
+        });
+
+        $mesRdv = [
+            'today' => $mesRdvAjd,
+            'next' => $mesRdvAVenir,
+            'all' => $allRdvsAfter,
+        ];
+
+        self::render('intervenant/mes-rdv.twig', [
+            'title' => 'Mes rendez-vous',
+            'user' => $intervenant,
+            'mesRdv' => $mesRdv
+        ]);
+    }
+
+
+    public function createNoticeOnRdv(): void
     {
         if (!Session::isLogged()) {
             header('Location: /?action=search&message=Pour laisser un avis, connectez vous!&c=connexion');
@@ -217,7 +338,7 @@ class RendezVousController extends Template
         header('Location: /?action=mes-rendez-vous&message=Votre avis a bien été enregistré&c=msg-success');
     }
 
-    public function ajax()
+    public function ajax(): void
     {
         $query = $_GET['rdvId'];
 

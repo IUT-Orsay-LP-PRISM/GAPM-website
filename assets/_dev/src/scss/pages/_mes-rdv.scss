@@ -11,7 +11,12 @@
     //box-shadow     : 0px 2px 4px rgba(0, 0, 0, 0.25);
   }
 
+
   &__nav {
+    &.--space-between{
+      display: flex;
+      justify-content: space-between;
+    }
     ul {
       margin-bottom   : 1.5rem;
       display         : flex;
@@ -21,23 +26,23 @@
       li {
         color       : $primaryDark;
         font-family : $titleFont;
+        background-color: $primaryWhite;
         font-weight : 500;
         font-size   : 1em;
         cursor      : pointer;
         position    : relative;
         transition: all .3s ease;
-        padding: 0.6rem;
+        padding: 0.8rem;
         border: 1px solid transparent;
         border-radius: 4px;
         &.--active{
-          color : $primaryLight;
-          border: 1px solid $primaryLight;
+          background-color : $light;
           &::before{
             width: 20%;
           }
         }
 
-        &:before {
+/*        &:before {
           content          : '';
           position         : absolute;
           width            : 0;
@@ -46,17 +51,33 @@
           left             : 0;
           transition: all .2s ease-out;
           background-color : $primaryLight;
-        }
+        }*/
         &::after{
-          content: '• ' attr(data-count);
-          font-weight: 700;
+          content: attr(data-count);
+          position: absolute;
+          top: -12.5px;
+          right: -12.5px;
+          background-color: $primaryLight;
+          color: $primaryWhite;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+        &[data-count="0"]::after{
+          content: "";
+          display: none;
         }
 
         &:hover {
           color : $primaryLight;
-          &::before{
+/*          &::before{
             width: 20%;
-          }
+          }*/
         }
 
         &:not(:last-child) {
@@ -68,8 +89,12 @@
 
 
   &__list{
-    margin-top: 3rem;
-
+    h3{
+      margin-bottom: 1rem;
+    }
+    p.text__small{
+      margin-bottom: 2rem;
+    }
     & > div {
       display: none;
     }
@@ -100,8 +125,10 @@
       position        : relative;
 
       &.--disabled{
-        opacity: .5;
+        opacity: .8;
         cursor: not-allowed;
+        user-select: none;
+
         &:hover{
           background-color: white;
         }
@@ -117,6 +144,16 @@
         background-color : #F1FAFB;
         border-radius    : 10px;
       }
+      &-head{
+        margin-top : 2rem;
+        border-radius: 10px 10px 0 0;
+        background-color : #F1FAFB;
+        box-sizing: border-box;
+        padding : 1rem 165px 1rem 1rem;
+        &.--full{
+          padding-right: 1rem;
+        }
+      }
 
       &:not(:last-child) {
         &::after {
@@ -131,6 +168,35 @@
           margin           : 1rem 0;
         }
       }
+
+      &.--tag-value{
+        position: relative;
+        &::before{
+          content: attr(data-value);
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: .5rem 1rem;
+          color: white;
+          border-radius: 0 0 0 5px;
+          font-family: $titleFont;
+          min-width: 100px;
+          box-sizing: border-box;
+          text-align: center;
+        }
+        &[data-value="Effectué"]{
+          &::before{
+            background-color: $greenLight;
+          }
+        }
+        &[data-value="Annulé"]{
+          &::before{
+            background-color: $redDark;
+            opacity: .8;
+          }
+        }
+      }
+
 
       &-img {
         img {
@@ -173,6 +239,17 @@
         }
       }
 
+      &-inter{
+        margin: 0;
+
+        .myrdv__contents-user-date{
+          .desc{
+            font-weight: 600;
+            font-size: 1.2rem;
+          }
+        }
+      }
+
       &-info-notice{
         grid-template-areas: "name speciality city date notice";
         grid-template-columns: repeat(5, 1fr) !important;
@@ -205,6 +282,8 @@
         display: flex;
         align-items: center;
         a {
+          min-width: 150px;
+          box-sizing: border-box;
           &:not(:last-child){
             margin-right : 1rem;
           }
