@@ -3040,7 +3040,17 @@ body.intervenant {
           align-items: flex-start;
           border: 1px solid #787878;
           border-radius: 10px; }
-          body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content {
+          body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content__preview {
+            display: none;
+            justify-content: center;
+            align-items: center; }
+            body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content__preview img {
+              width: auto;
+              height: auto;
+              max-width: 100%;
+              max-height: 40rem;
+              border-radius: 10px; }
+          body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content__container {
             margin-top: 5rem;
             display: flex;
             justify-content: flex-start;
@@ -3048,15 +3058,22 @@ body.intervenant {
             flex-direction: column;
             text-align: center;
             line-height: 1.5; }
-            body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content input {
+          body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content__input {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            line-height: 1.5; }
+            body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content__input input {
               display: none; }
-            body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content label {
+            body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content__input label {
               margin: 1rem 0;
               padding: 1rem 4rem;
               background-color: #FFFFFF;
               border-radius: 10px;
               cursor: pointer; }
-            body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content label:hover {
+            body.intervenant #sidebar-add-depense--content__form__justificatif .justificatif--content__input label:hover {
               background-color: #AEDBD3; }
         body.intervenant #sidebar-add-depense--content__form--btnSubmit {
           flex: 1;
@@ -5245,7 +5262,17 @@ body.demandeur {
           align-items: flex-start;
           border: 1px solid #787878;
           border-radius: 10px; }
-          body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content {
+          body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content__preview {
+            display: none;
+            justify-content: center;
+            align-items: center; }
+            body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content__preview img {
+              width: auto;
+              height: auto;
+              max-width: 100%;
+              max-height: 40rem;
+              border-radius: 10px; }
+          body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content__container {
             margin-top: 5rem;
             display: flex;
             justify-content: flex-start;
@@ -5253,15 +5280,22 @@ body.demandeur {
             flex-direction: column;
             text-align: center;
             line-height: 1.5; }
-            body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content input {
+          body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content__input {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            line-height: 1.5; }
+            body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content__input input {
               display: none; }
-            body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content label {
+            body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content__input label {
               margin: 1rem 0;
               padding: 1rem 4rem;
               background-color: #FFFFFF;
               border-radius: 10px;
               cursor: pointer; }
-            body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content label:hover {
+            body.demandeur #sidebar-add-depense--content__form__justificatif .justificatif--content__input label:hover {
               background-color: #AEDBD3; }
         body.demandeur #sidebar-add-depense--content__form--btnSubmit {
           flex: 1;

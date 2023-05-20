@@ -378,28 +378,54 @@ $greenLightNote  : #F7FEF6;
         border-radius   : $borderRadiusSmall;
 
         .justificatif--content {
-          margin-top      : 5rem;
-          display         : flex;
-          justify-content : flex-start;
-          align-items     : center;
-          flex-direction  : column;
-          text-align      : center;
-          line-height     : 1.5;
 
-          input {
-            display : none;
+          &__preview {
+            display         : none;
+            justify-content : center;
+            align-items     : center;
+
+            img {
+              width         : auto;
+              height        : auto;
+              max-width     : 100%;
+              max-height    : 40rem;
+              border-radius : $borderRadiusSmall;
+            }
           }
 
-          label {
-            margin           : 1rem 0;
-            padding          : 1rem 4rem;
-            background-color : $white;
-            border-radius    : $borderRadiusSmall;
-            cursor           : pointer;
+          &__container {
+            margin-top      : 5rem;
+            display         : flex;
+            justify-content : flex-start;
+            align-items     : center;
+            flex-direction  : column;
+            text-align      : center;
+            line-height     : 1.5;
           }
 
-          label:hover {
-            background-color : $greenLight;
+          &__input {
+            display         : flex;
+            justify-content : flex-start;
+            align-items     : center;
+            flex-direction  : column;
+            text-align      : center;
+            line-height     : 1.5;
+
+            input {
+              display : none;
+            }
+
+            label {
+              margin           : 1rem 0;
+              padding          : 1rem 4rem;
+              background-color : $white;
+              border-radius    : $borderRadiusSmall;
+              cursor           : pointer;
+            }
+
+            label:hover {
+              background-color : $greenLight;
+            }
           }
         }
       }

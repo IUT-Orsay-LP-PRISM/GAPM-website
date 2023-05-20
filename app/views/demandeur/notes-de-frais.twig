@@ -46,13 +46,22 @@
 
     <div id="sidebar-add-depense">
         <div id="sidebar-add-depense--content">
-            <form action="?action=add-depense" method="post" id="sidebar-add-depense--content__form" enctype="multipart/form-data">
+            <form action="?action=add-depense" method="post" id="sidebar-add-depense--content__form"
+                  enctype="multipart/form-data">
                 <div id="sidebar-add-depense--content__form__justificatif">
                     <div class="justificatif--content">
-                        {% include 'svg/illu_noteFrais_create.svg' %}
-                        <label for="urlJustificatif">Choisir fichier</label>
-                        <input type="file" name="urlJustificatif" id="urlJustificatif" accept="image/png, image/jpg, image/jpeg, application/pdf">
-                        <p>Les formats PDF, PNG, JPG, JPEG<br/> inférieurs à 100 Mo sont acceptés.</p>
+                        <div class="justificatif--content__preview">
+                            <img id="preview" src="#" alt="Aperçu de l'image">
+                        </div>
+                        <div class="justificatif--content__container">
+                            {% include 'svg/illu_noteFrais_create.svg' %}
+                        </div>
+                        <div class="justificatif--content__input">
+                            <label for="urlJustificatif">Choisir fichier</label>
+                            <input type="file" name="urlJustificatif" id="urlJustificatif"
+                                   accept="image/png, image/jpg, image/jpeg, application/pdf">
+                            <p>Les formats PDF, PNG, JPG, JPEG<br/> inférieurs à 100 Mo sont acceptés.</p>
+                        </div>
                     </div>
                 </div>
                 <div id="sidebar-add-depense--content__form--container">
@@ -68,7 +77,8 @@
                                 <label for="nature">Nature</label>
                                 <div class="sidebar-add-depense-row__content--inputNature">
                                     <i class="icon-b icon-fi-rr-car"></i>
-                                    <select name="nature" id="nature" class="sidebar-add-depense-row__content--input" required>
+                                    <select name="nature" id="nature" class="sidebar-add-depense-row__content--input"
+                                            required>
                                         <option value="essence">Essence</option>
                                         <option value="repas">Repas</option>
                                         <option value="hebergement">Hébergement</option>

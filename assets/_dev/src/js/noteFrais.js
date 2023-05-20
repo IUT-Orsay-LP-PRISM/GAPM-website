@@ -2,6 +2,8 @@ const sidebar_container = document.querySelector('#sidebar-add-depense');
 const sidebar = document.querySelector('#sidebar-add-depense--content');
 const btn_create = document.querySelector('.noteFrais button#create');
 const selectNature = document.querySelector('#nature.sidebar-add-depense-row__content--input');
+const urlJustificatifInput = document.getElementById('urlJustificatif');
+
 if (sidebar) {
     const btn_close = sidebar.querySelectorAll('.close-btn');
     btn_close.forEach(btn => {
@@ -16,6 +18,11 @@ if (btn_create) {
         openSidebar();
     });
 }
+
+if (urlJustificatifInput) {
+    urlJustificatifInput.addEventListener('change', previewImage);
+}
+
 
 window.addEventListener('click', (e) => {
         if (sidebar_container.style.visibility === "visible" && e.target === sidebar_container && e.target !== sidebar && e.target !== btn_create) {
@@ -35,9 +42,14 @@ function closeSidebar() {
     sidebar_container.style.opacity = "0";
     sidebar.style.right = "-60%";
     const form = document.querySelector('#sidebar-add-depense--content__form');
+    const preview = document.getElementById('preview');
+    const content = preview.parentElement.parentElement.querySelector('.justificatif--content__container');
     form.reset();
     form.action = `?action=add-depense`;
     form.querySelector('#sidebar-add-depense--content__form--btnSubmit__row > button > p').innerHTML = 'Enregistrer la dépense'
+    preview.src = "#";
+    preview.parentElement.style.display = 'none';
+    content.style.display = 'block';
 }
 
 if (selectNature) {
@@ -90,9 +102,34 @@ function ajaxEditDepense(depenseId) {
             form.querySelector('#fournisseur').value = depense.fournisseur;
             form.querySelector('#commentaire').value = depense.commentaire;
             form.querySelector('#sidebar-add-depense--content__form--btnSubmit__row > button > p').innerHTML = 'Modifier la dépense'
+
+            const preview = form.querySelector('#preview');
+            if(depense.urlJustificatif) {
+                preview.src = depense.urlJustificatif;
+                preview.parentElement.style.display = 'flex';
+                preview.parentElement.parentElement.querySelector('.justificatif--content__container').style.display = 'none';
+            } else {
+                preview.parentElement.style.display = 'none';
+                preview.parentElement.parentElement.querySelector('.justificatif--content__container').style.display = 'block';
+            }
+
             openSidebar();
         } else {
             console.log('Erreur');
         }
     }
 }
+
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function () {
+        const preview = document.getElementById('preview');
+        preview.src = reader.result;
+        preview.parentElement.style.display = 'flex';
+
+        const content = preview.parentElement.parentElement.querySelector('.justificatif--content__container');
+        content.style.display = 'none';
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+
