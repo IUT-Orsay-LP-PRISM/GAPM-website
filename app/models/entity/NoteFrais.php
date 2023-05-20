@@ -30,6 +30,7 @@ class NoteFrais
     #[ORM\JoinColumn(name: 'idAdministration', referencedColumnName: 'idAdministration', nullable: true)]
     private ?Administration $administration = null;
 
+
     /**
      * @return int
      */
@@ -109,6 +110,22 @@ class NoteFrais
     public function setIntervenant(Intervenant $intervenant): void
     {
         $this->intervenant = $intervenant;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDepenses()
+    {
+        return $this->depenses;
+    }
+
+    /**
+     * @param mixed $depenses
+     */
+    public function setDepenses($depenses): void
+    {
+        $this->depenses = $depenses;
     }
 
 

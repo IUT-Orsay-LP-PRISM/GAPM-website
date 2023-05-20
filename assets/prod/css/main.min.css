@@ -2824,6 +2824,8 @@ body.intervenant {
       body.intervenant .notefrais__row--total span {
         font-size: 1.4rem;
         font-weight: 600; }
+      body.intervenant .notefrais__row--total #value-selected {
+        display: none; }
   body.intervenant .notefrais__table {
     width: 100%;
     border-collapse: collapse;
@@ -5075,6 +5077,8 @@ body.demandeur {
       body.demandeur .notefrais__row--total span {
         font-size: 1.4rem;
         font-weight: 600; }
+      body.demandeur .notefrais__row--total #value-selected {
+        display: none; }
   body.demandeur .notefrais__table {
     width: 100%;
     border-collapse: collapse;

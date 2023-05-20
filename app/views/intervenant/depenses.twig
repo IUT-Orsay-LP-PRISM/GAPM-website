@@ -84,7 +84,7 @@
                 {% for depense in depenses.Adeclarer %}
                     <tr class="notefrais__table__content--Adeclarer" data-id="{{ depense.idDepense }}">
                         <td class="notefrais__table__content--checkbox">
-                            <input class="notefrais__table__content--Adeclarer__checkbox notefrais-checkbox" type="checkbox" data-id="{{ depense.idDepense }}">
+                            <input class="notefrais__table__content--Adeclarer__checkbox notefrais-checkbox" type="checkbox" data-id="{{ depense.idDepense }}" data-montant="{{ depense.montant }}">
                             {{ depense.nature }} <br/> {{ depense.fournisseur }}
                         </td>
                         <td>{{ depense.datePaiement|date("d/m/Y") }}</td>
@@ -125,10 +125,11 @@
             </tbody>
         </table>
 
-        <div class="notefrais__row prepare">
+        <div id="lbl-total" class="notefrais__row prepare">
             <div class="notefrais__row--total">
                 <p>Total des dépenses</p>
-                <span>{{ total }}€</span>
+                <span id="value-total">{{ total }}€</span>
+                <span id="value-selected"></span>
             </div>
             <button id="prepare" class="btn btn-primary-nb">
                 Préparer la note de frais
