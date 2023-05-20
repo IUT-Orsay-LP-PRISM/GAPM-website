@@ -241,7 +241,7 @@ CREATE TABLE `NoteFrais`
 (
     `idNoteFrais`      int(11) NOT NULL,
     `dateNote`         date        NOT NULL,
-    `status`           varchar(50) NOT NULL,
+    `status`           varchar(50) DEFAULT 'En attente',
     `idIntervenant`    int(11) NOT NULL,
     `idAdministration` int(11) DEFAULT NULL
 ) ENGINE = InnoDB
@@ -252,10 +252,12 @@ CREATE TABLE `NoteFrais`
 -- Déchargement des données de la table `NoteFrais`
 --
 
+-- Liste des status possibles : en attente, validée, refusée , payée
+
 INSERT INTO `NoteFrais` (`idNoteFrais`, `dateNote`, `status`, `idIntervenant`, `idAdministration`)
-VALUES (1, '2022-01-01', 'En attente', 1, 1),
-       (2, '2022-02-01', 'En attente', 2, 2),
-       (3, '2022-03-01', 'En attente', 6, 5);
+VALUES (1, '2022-01-01', 'en attente', 1, NULL),
+       (2, '2022-02-01', 'en attente', 2, NULL),
+       (3, '2022-03-01', 'validée', 6, 5);
 
 -- --------------------------------------------------------
 

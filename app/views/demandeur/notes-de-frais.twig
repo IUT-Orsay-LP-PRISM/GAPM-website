@@ -33,10 +33,10 @@
                 <div class="myaccount__content__body">
                     <div class="myaccount__content__body-form">
                         <div id="depenses" class="js-account-content --display">
-                            {% include '/intervenant/depenses.twig' with { 'depenses': depenses } %}
+                            {% include '/intervenant/depenses.twig' %}
                         </div>
                         <div id="noteFrais" class="js-account-content">
-                            {% include '/intervenant/noteFrais.twig' with { 'noteFrais': noteFrais } %}
+                            {% include '/intervenant/noteFrais.twig' with {'depenses': depenses.Declarer } %} {# le with override la variables depenses de base #}
                         </div>
                     </div>
                 </div>

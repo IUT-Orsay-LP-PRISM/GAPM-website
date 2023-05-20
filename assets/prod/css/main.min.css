@@ -2311,7 +2311,8 @@ body.intervenant {
           body.intervenant .myaccount__content__body-form .js-account-content.--display, body.intervenant .wrapper__content__body-form .js-account-content.--display {
             display: block; }
     body.intervenant .myaccount__form-title, body.intervenant .wrapper__form-title {
-      margin-bottom: 1.2rem; }
+      margin-bottom: 1.2rem;
+      display: flex; }
     body.intervenant .myaccount__form-subtitle, body.intervenant .wrapper__form-subtitle {
       font-family: "Open Sans", sans-serif;
       font-weight: 400;
@@ -4643,7 +4644,8 @@ body.demandeur {
           body.demandeur .myaccount__content__body-form .js-account-content.--display, body.demandeur .wrapper__content__body-form .js-account-content.--display {
             display: block; }
     body.demandeur .myaccount__form-title, body.demandeur .wrapper__form-title {
-      margin-bottom: 1.2rem; }
+      margin-bottom: 1.2rem;
+      display: flex; }
     body.demandeur .myaccount__form-subtitle, body.demandeur .wrapper__form-subtitle {
       font-family: "Open Sans", sans-serif;
       font-weight: 400;
