@@ -159,8 +159,7 @@ class DemandeurController extends Template
                 if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('user', $user);
 
-                    $referer = removeErrorFromUrl();
-                    header('Location: ' . $referer);
+                    header('Location: /?message=Vous êtes connecté.&c=success');
                 } else {
                     $referer = self::addMessageToUrl('Adresse email ou mot de passe incorrect.', 'connexion');
                     header("Location: $referer");
@@ -244,6 +243,7 @@ class DemandeurController extends Template
                 $villePro = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $IdCityPro]);
                 $demandeur->setSpecialites(new ArrayCollection($specialites));
                 $demandeur->setAdressePro($adressePro);
+                $demandeur->setImgUrl("public/img/default.jpg");
                 $demandeur->setVillePro($villePro);
             }
 

@@ -88,6 +88,7 @@ class IntervenantController extends Template
             $currentDemandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy(['idDemandeur' => $currentUser->getIdDemandeur()]);
 
             $currentDemandeur->setSpecialites(new ArrayCollection($specialites));
+            $currentDemandeur->setImgUrl("public/img/default.jpg");
             $currentDemandeur->setAdressePro($addressPro);
             $currentDemandeur->setVillePro($villePro);
 

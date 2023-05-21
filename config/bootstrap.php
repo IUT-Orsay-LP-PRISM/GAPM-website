@@ -11,8 +11,6 @@ use Doctrine\DBAL\Configuration;
 $dotenv = new Dotenv();
 $dotenv->load('.env.local');
 
-require_once 'vendor/autoload.php';
-
 $isDevMode = true;
 $proxyDir = null;
 $cache = null;
