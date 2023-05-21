@@ -3,9 +3,8 @@ const js_specialite = document.querySelector('.js-specialite');
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-console.log(urlParams);
 
-if (navbar.length){
+if (navbar.length) {
     navbar.forEach((element) => {
         element.addEventListener('click', (event) => {
             event.preventDefault();
@@ -15,15 +14,19 @@ if (navbar.length){
             event.target.classList.add('--active');
         });
     });
-    if(urlParams.has("intervenant")){
-        document.querySelector('#intervenant').classList.add('--display');
-        document.querySelector('#perso').classList.remove('--display');
-        document.querySelector('#intervenant-nav').classList.add('--active');
-        document.querySelector('#perso-nav').classList.remove('--active');
+
+
+    if (urlParams.has("nav")) {
+        //remove old active
+        document.querySelector('.js-account-nav.--active').classList.remove('--active');
+        document.querySelector('.js-account-content.--display').classList.remove('--display');
+        // add new active
+        document.querySelector('#' + urlParams.get("nav")).classList.add('--display')
+        document.querySelector('#' + urlParams.get("nav") + '-nav').classList.add('--active')
     }
 }
 
-if(js_specialite) {
+if (js_specialite) {
     js_specialite.querySelectorAll('.tag').forEach((element) => {
         element.querySelector('.tag-close').addEventListener('click', (e) => {
             e.preventDefault();
@@ -44,7 +47,7 @@ if(js_specialite) {
 
 
 const vehicule = document.querySelector('#js-vehicule');
-if(vehicule) {
+if (vehicule) {
     vehicule.addEventListener('change', (e) => {
         const img_vehicule = document.querySelector('#img-vehicule');
         img_vehicule.src = `/assets/img/vehicules/${e.target.value}.png`;
@@ -60,6 +63,7 @@ const profilInput = document.querySelector('.myaccount__pfp__input input#picture
 if (profilInput) {
     profilInput.addEventListener('change', previewImage);
 }
+
 function previewImage(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -67,7 +71,7 @@ function previewImage(event) {
     reader.onload = function () {
         const image = new Image();
 
-        image.onload = function() {
+        image.onload = function () {
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
             const size = 300;

@@ -20,8 +20,8 @@ $router = new Router();
 $router->addRoute('demandeur', 'DemandeurController', 'index');
 $router->addRoute('search', 'SearchController', 'index');
 $router->addRoute('logout', 'DemandeurController', 'logout');
-$router->addRoute('inscription-intervenant', 'IntervenantController', 'index');
 $router->addRoute('my-account', 'DemandeurController', 'displayMyAccount');
+$router->addRoute('inscription-intervenant', 'IntervenantController', 'index');
 $router->addRoute('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
 $router->addRoute('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
 $router->addRoute('liste-rdv', 'RendezVousController', 'displayMyRdvIntervenant');
@@ -49,6 +49,8 @@ $router->addRoute('emprunter-vehicule', 'IntervenantController', 'emprunterVehic
 /*
  * Routes avec paramètres
  */
+$router->addRoute('my-account&nav=<nav>', 'DemandeurController', 'displayMyAccount');
+
 $router->addRoute('profile&id=<id>', 'IntervenantController', 'profile');
 
 $router->addRoute('success-rdv&date=<date>&horaire=<hours>', 'RendezVousController', 'success');
