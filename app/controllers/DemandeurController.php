@@ -114,7 +114,7 @@ class DemandeurController extends Template
                 $this->entityManager->remove($demandeur);
                 $this->entityManager->flush();
             } catch (\Exception $e) {
-                header('Location: /?action=my-account');
+                header('Location: /?action=my-account'."&nav=options");
             }
             Session::destroy();
             header('Location: /');

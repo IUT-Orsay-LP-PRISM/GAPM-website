@@ -69,8 +69,8 @@ class IntervenantController extends Template
     {
         if (isset($_POST['specialites'])) {
             if ($_POST['specialites'] == 'null') {
-                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'inscription-intervenant');
-                header("Location: $referer");
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'msg-warning');
+                header("Location: $referer"."&nav=intervenant");
                 exit();
             }
             $specialitesString = $_POST['specialites'];
@@ -97,8 +97,8 @@ class IntervenantController extends Template
                 $this->entityManager->flush();
                 Session::set('user', $currentDemandeur);
             } catch (\Exception $e) {
-                $referer = self::addMessageToUrl('Une erreur est survenue.', 'inscription-intervenant');
-                header("Location: $referer");
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'msg-error');
+                header("Location: $referer"."&nav=intervenant");
                 exit();
             }
             header("Location: /");
@@ -184,7 +184,7 @@ class IntervenantController extends Template
 
         if ($voitureDispo == null) {
             $referer = self::addMessageToUrl('Aucun véhicule disponible.', 'my-account');
-            header("Location: $referer");
+            header("Location: $referer"."&nav=vehicule");
             exit();
         }
 
@@ -202,10 +202,10 @@ class IntervenantController extends Template
             $this->entityManager->persist($voitureDispo);
             $this->entityManager->flush();
             $referer = self::addMessageToUrl('Véhicule emprunté.', 'msg-success');
-            header("Location: $referer");
+            header("Location: $referer"."&nav=vehicule");
         } catch (\Exception $e) {
-            $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
-            header("Location: $referer");
+            $referer = self::addMessageToUrl('Une erreur est survenue.', 'msg-error');
+            header("Location: $referer"."&nav=vehicule");
             exit();
         }
     }
@@ -224,7 +224,7 @@ class IntervenantController extends Template
         // Vérification si le fichier a bien été téléchargé via HTTP POST (donc qu'il a bien été upload)
         if (!is_uploaded_file($img['tmp_name'])) {
             $referer = self::addMessageToUrl('Le fichier n\'a pas été téléchargé via HTTP POST.', 'msg-warning');
-            header("Location: $referer");
+            header("Location: $referer"."&nav=visibility");
             exit();
         }
 
@@ -233,7 +233,7 @@ class IntervenantController extends Template
         $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
         if (!in_array($check['mime'], $allowedTypes)) {
             $referer = self::addMessageToUrl('Le fichier n\'est pas une image.', 'msg-error');
-            header("Location: $referer");
+            header("Location: $referer"."&nav=visibility");
             exit();
         }
 
@@ -247,7 +247,7 @@ class IntervenantController extends Template
             // Vérification de l'extension
             if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
                 $referer = self::addMessageToUrl('Extension de fichier non autorisée.', 'msg-error');
-                header("Location: $referer");
+                header("Location: $referer"."&nav=visibility");
                 exit();
             }
             $path = $pathToSave . $idIntervenant . '-' . $random . '.' . $extension;
@@ -265,10 +265,10 @@ class IntervenantController extends Template
                 $image->save();
 
                 $referer = self::addMessageToUrl('Photo de profil mise à jour.', 'msg-success');
-                header("Location: $referer");
+                header("Location: $referer"."&nav=visibility");
             } catch (\Exception $e) {
                 $referer = self::addMessageToUrl('Votre photo de profil n\'a pas pu être mise à jour : .' . $e, 'msg-error');
-                header("Location: $referer");
+                header("Location: $referer"."&nav=visibility");
                 exit();
             }
         }
@@ -280,7 +280,7 @@ class IntervenantController extends Template
         $email = $_POST['email'];
         if ($email != $_SESSION['user']->getEmail()) {
             $referer = self::addMessageToUrl('Email incorrect.', 'msg-error');
-            header("Location: $referer");
+            header("Location: $referer"."&nav=options");
         } else {
             $idIntervenant = Session::get('user')->getIdDemandeur();
             $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
@@ -290,11 +290,11 @@ class IntervenantController extends Template
                 $this->entityManager->flush();
                 Session::set('user', $intervenant);
                 $referer = self::addMessageToUrl('Votre demande de cessation d\'activité a bien été prise en compte.', 'msg-success');
-                header("Location: $referer");
+                header("Location: $referer"."&nav=options");
                 exit();
             } catch (\Exception $e) {
                 $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
-                header("Location: $referer");
+                header("Location: $referer"."&nav=options");
                 exit();
             }
         }
@@ -310,11 +310,11 @@ class IntervenantController extends Template
             $this->entityManager->flush();
             Session::set('user', $intervenant);
             $referer = self::addMessageToUrl('Votre demande de cessation d\'activité a bien été annulée.', 'msg-success');
-            header("Location: $referer");
+            header("Location: $referer"."&nav=options");
             exit();
         } catch (\Exception $e) {
             $referer = self::addMessageToUrl('Une erreur est survenue.', 'my-account');
-            header("Location: $referer");
+            header("Location: $referer"."&nav=options");
             exit();
         }
     }
