@@ -1,4 +1,5 @@
 RewriteEngine On
 Options +FollowSymLinks
+
 ErrorDocument 404 /app/views/404.html
 

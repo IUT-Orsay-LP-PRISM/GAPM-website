@@ -16,7 +16,7 @@
                 <ul>
                     {% if not modeIntervenant %}
                         <li>
-                            <a id="perso-nav"href="#perso"
+                            <a id="perso-nav" href="#perso"
                                class="js-account-nav myaccount__content__nav-link --active">
                                 Informations personnelles
                                 <i class="icon icon-fi-rr-info"></i>
@@ -33,20 +33,20 @@
                         </li>
                     {% elseif  user is defined and user.isIntervenant() and modeIntervenant %}
                         <li>
-                            <a href="#intervenant"
+                            <a id="intervenant-nav" href="#intervenant"
                                class="js-account-nav myaccount__content__nav-link --active">
                                 Informations professionnelle
                                 <i class="icon icon-fi-rr-redo"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#visibility" class="js-account-nav myaccount__content__nav-link">
+                            <a id="visibility-nav" href="#visibility" class="js-account-nav myaccount__content__nav-link">
                                 Photo de profil
                                 <i class="icon icon-fi-rr-picture"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#vehicule"
+                            <a id="vehicule-nav" href="#vehicule"
                                class="js-account-nav myaccount__content__nav-link">
                                 Emprunt de véhicule
                                 <i class="icon icon-fi-rr-car"></i>
@@ -61,7 +61,7 @@
                         </li>
                     {% endif %}
                     <li>
-                        <a href="#options"
+                        <a id="options-nav" href="#options"
                            class="js-account-nav myaccount__content__nav-link">
                             Options
                             <i class="icon icon-fi-rr-comment-user"></i>

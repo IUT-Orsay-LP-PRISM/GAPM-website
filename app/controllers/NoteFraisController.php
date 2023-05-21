@@ -28,18 +28,37 @@ class NoteFraisController extends Template
         }
         $depensesAtraiter = $this->entityManager->getRepository(Depense::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur(), 'noteFrais' => null, 'status' => 'À traiter']);
         $depensesAdeclarer = $this->entityManager->getRepository(Depense::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur(), 'noteFrais' => null, 'status' => 'À déclarer']);
+        $depensesDeclarer = $this->entityManager->getRepository(Depense::class)->findBy(['intervenant' => Session::get('user')->getIdDemandeur(), 'status' => 'déclarer']);
 
-        $noteFrais = $this->noteFraisRepository->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
+        $allNoteFrais = $this->noteFraisRepository->findBy(['intervenant' => Session::get('user')->getIdDemandeur()]);
 
         $depenses = [
             'Atraiter' => $depensesAtraiter,
-            'Adeclarer' => $depensesAdeclarer
+            'Adeclarer' => $depensesAdeclarer,
+            'Declarer' => $depensesDeclarer
         ];
+
+        $TotalRemboursementsEnAttente = 0;
+        foreach ($depensesDeclarer as $depense) {
+            $noteFrais = $depense->getNoteFrais();
+            $TotalRemboursementsEnAttente += ($noteFrais->getStatus() == 'en attente' && $noteFrais->getAdministration() == null) ? $depense->getMontant() : 0;
+        }
+
+        // montant total pour render
+        $montantTotal = 0;
+        foreach ($allNoteFrais as $noteFraisForTotal) {
+            $depensesForTotal = $this->entityManager->getRepository(Depense::class)->findBy((['noteFrais' => $noteFrais->getIdNoteFrais()]));
+            foreach ($depensesForTotal as $depenseForTotal) {
+                $montantTotal += $depenseForTotal->getMontant();
+            }
+            $noteFraisForTotal->setMontantTotal($montantTotal);
+        }
 
         self::render('demandeur/notes-de-frais.twig', [
             'title' => 'Notes de frais',
             'depenses' => $depenses,
-            'noteFrais' => $noteFrais
+            'noteFrais' => $allNoteFrais,
+            'TotalRemboursementsEnAttente' => $TotalRemboursementsEnAttente
         ]);
 
     }
@@ -260,7 +279,7 @@ class NoteFraisController extends Template
 
         $notesDeFrais = new NoteFrais();
         $notesDeFrais->setDateNote(date('Y-m-d'));
-        $notesDeFrais->setStatus('À traiter');
+        $notesDeFrais->setStatus('en attente');
         $notesDeFrais->setIntervenant($intervenant);
         $this->entityManager->persist($notesDeFrais);
 

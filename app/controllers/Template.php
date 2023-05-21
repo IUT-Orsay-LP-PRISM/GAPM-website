@@ -57,6 +57,13 @@ class Template
             $query_params['c'] = $containerMessage;
             $referer_parts['query'] = http_build_query($query_params);
             $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
+
+            if (isset($query_params['nav'])) {
+                unset($query_params['nav']);
+                $referer_parts['query'] = http_build_query($query_params);
+                $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . '?' . $referer_parts['query'];
+            }
+
         } else {
             $referer .= '?message=' . $message . '&c=' . $containerMessage;
         }
