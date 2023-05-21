@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="assets/prod/css/main.min.css">
-		<link rel="icon" href="assets/img/logo.svg"/>
+	  <link rel="stylesheet" href="{{ app.request.getSchemeAndHttpHost() }}/assets/prod/css/main.min.css">
+	  <link rel="icon" href="{{ app.request.getSchemeAndHttpHost() }}/assets/img/logo.svg"/>
 		<title>{% block title %}{% endblock %} • GAPM</title>
 	</head>
 	<body class="{% if modeIntervenant or isIntervenant %}intervenant{% else %}demandeur{% endif %} {% block type %}{% endblock %}"
@@ -14,7 +14,6 @@
 			{% include "includes/header.twig" %}
 		{% endif %}
 		<div id="content">
-
 			{% block content %}
 
 			{% endblock %}
@@ -27,8 +26,6 @@
 		<i id="popUp-avis-RDV" class="popup-closed">{% include 'includes/popUpAvisRDV.twig' %}</i>
 		{% include 'includes/notification.twig' %}
 
-
-		<script src="assets/prod/js/main.min.js"></script>
-	</body>
+		<script src="{{ app.request.getSchemeAndHttpHost() }}/assets/prod/js/main.min.js"></script>
+	</body
 </html>
-
