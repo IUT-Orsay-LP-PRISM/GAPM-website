@@ -78,6 +78,7 @@
       }
 
       .input-container {
+        border: none;
         &:not(:last-child) {
           margin-right : 1rem;
         }

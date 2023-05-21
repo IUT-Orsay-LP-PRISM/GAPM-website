@@ -1944,10 +1944,12 @@ body.intervenant {
         display: flex; }
         body.intervenant .hp__banner-inputs-list .input-container:nth-child(2) {
           overflow: visible; }
-      body.intervenant .hp__banner-inputs .input-container:not(:last-child) {
-        margin-right: 1rem; }
-      body.intervenant .hp__banner-inputs .input-container:last-child {
-        width: 170px; }
+      body.intervenant .hp__banner-inputs .input-container {
+        border: none; }
+        body.intervenant .hp__banner-inputs .input-container:not(:last-child) {
+          margin-right: 1rem; }
+        body.intervenant .hp__banner-inputs .input-container:last-child {
+          width: 170px; }
       body.intervenant .hp__banner-inputs a {
         margin-top: 1.5rem; }
       body.intervenant .hp__banner-inputs button {
@@ -4279,10 +4281,12 @@ body.demandeur {
         display: flex; }
         body.demandeur .hp__banner-inputs-list .input-container:nth-child(2) {
           overflow: visible; }
-      body.demandeur .hp__banner-inputs .input-container:not(:last-child) {
-        margin-right: 1rem; }
-      body.demandeur .hp__banner-inputs .input-container:last-child {
-        width: 170px; }
+      body.demandeur .hp__banner-inputs .input-container {
+        border: none; }
+        body.demandeur .hp__banner-inputs .input-container:not(:last-child) {
+          margin-right: 1rem; }
+        body.demandeur .hp__banner-inputs .input-container:last-child {
+          width: 170px; }
       body.demandeur .hp__banner-inputs a {
         margin-top: 1.5rem; }
       body.demandeur .hp__banner-inputs button {
