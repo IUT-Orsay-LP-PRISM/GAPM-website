@@ -16,13 +16,25 @@ if (navbar.length) {
     });
 
 
-    if (urlParams.has("nav")) {
-        //remove old active
-        document.querySelector('.js-account-nav.--active').classList.remove('--active');
-        document.querySelector('.js-account-content.--display').classList.remove('--display');
-        // add new active
-        document.querySelector('#' + urlParams.get("nav")).classList.add('--display')
-        document.querySelector('#' + urlParams.get("nav") + '-nav').classList.add('--active')
+    if (urlParams.has("nav") && urlParams.get("nav") !== '') {
+        const oldActive = document.querySelector('.js-account-nav.--active');
+        const oldDisplay = document.querySelector('.js-account-content.--display');
+        const newActive = document.querySelector('#' + urlParams.get("nav") + '-nav');
+        const newDisplay = document.querySelector('#' + urlParams.get("nav"));
+
+        if (newActive && newDisplay && oldActive && oldDisplay) {
+            //remove old active and display
+            oldActive.classList.remove('--active');
+            oldDisplay.classList.remove('--display');
+
+            //add new active and display
+            newActive.classList.add('--active');
+            newDisplay.classList.add('--display');
+        } else {
+            // out of condition => remove param
+            urlParams.delete("nav");
+            window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+        }
     }
 }
 
