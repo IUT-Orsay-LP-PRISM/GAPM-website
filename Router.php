@@ -8,7 +8,7 @@ class Router {
     public function addRoute($url, $controller, $method): void
     {
         $this->routes[] = [
-            'url' => '/\?action='. $url . '(&.+)?',
+            'url' => '/\?action=' . $url . '(&message=.+)?(&c=.+)?',
             'controller' => $controller,
             'method' => $method
         ];
