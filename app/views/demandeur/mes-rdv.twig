@@ -21,7 +21,6 @@
 						<li class="js-rdv-nav" data-count="{{ mesRdv.annule|length }}" data-id="canceled">
 							Annulés
 						</li>
-						&nbsp;&nbsp;
 						<li class="js-rdv-nav" data-count="{{ mesRdv.avisALaisser|length }}" data-id="advices">
 							Laisser un avis
 						</li>
@@ -30,16 +29,60 @@
 
 				<div class="myrdv__list">
 					<div id="confirm" class="js-rdv-content --display">
-						{% include '/demandeur/rdv/rdv-confirme.twig' with {'rdv': mesRdv.confirme} %}
+						{% if mesRdv.confirme is not empty %}
+							<h3>Mes prochains rendez-vous</h3>
+							<p class="text__small">
+								La liste de vos prochains rendez-vous. Prévoyez d'arriver 10 minutes avant l'heure de votre rendez-vous.
+							</p>
+							{% include '/demandeur/rdv/rdv-confirme.twig' with {'rdv': mesRdv.confirme} %}
+						{% else %}
+							<h3>Vous n'avez pas de rendez-vous à venir</h3>
+							<p class="text__small">
+								Commencez par prendre un rendez-vous <a href="?action=search">ici</a> !
+							</p>
+						{% endif %}
 					</div>
 					<div id="passed" class="js-rdv-content">
-						{% include '/demandeur/rdv/rdv-passed.twig' with {'rdv': mesRdv.effectue} %}
+						{% if mesRdv.effectue is not empty %}
+							<h3>Mes rendez-vous passés</h3>
+							<p class="text__small">
+								La liste de vos rendez-vous passés. Vous pouvez laisser un avis sur le professionnel qui vous a reçu.
+							</p>
+							{% include '/demandeur/rdv/rdv-passed.twig' with {'rdv': mesRdv.effectue} %}
+						{% else %}
+							<h3>Vous n'avez effectué aucun rendez-vous</h3>
+							<p class="text__small">
+								Commencez par prendre un rendez-vous <a href="?action=search">ici</a> !
+							</p>
+						{% endif %}
 					</div>
 					<div id="canceled" class="js-rdv-content">
-						{% include '/demandeur/rdv/rdv-annule.twig' with {'rdv': mesRdv.annule} %}
+						{% if mesRdv.annule is not empty %}
+							<h3>Mes rendez-vous annulés</h3>
+							<p class="text__small">
+								La liste de vos rendez-vous annulés. Ils sont supprimés au bout de deux semaines après la date d'annulation.
+							</p>
+							{% include '/demandeur/rdv/rdv-annule.twig' with {'rdv': mesRdv.annule} %}
+						{% else %}
+							<h3>Vous n'avez pas annulé de rendez-vous</h3>
+							<p class="text__small">
+								Commencez par prendre un rendez-vous <a href="?action=search">ici</a> !
+							</p>
+						{% endif %}
 					</div>
 					<div id="advices" class="js-rdv-content">
-						{% include '/demandeur/rdv/rdv-notice.twig' with {'rdv': mesRdv.avisALaisser} %}
+						{% if mesRdv.avisALaisser is not empty %}
+							<h3>Mes avis à laisser</h3>
+							<p class="text__small">
+								La liste de vos rendez-vous passés pour lesquels vous n'avez pas encore laissé d'avis. Il est important de laisser un avis sur le professionnel qui vous a reçu, afin de l'aider à améliorer ses services.
+							</p>
+							{% include '/demandeur/rdv/rdv-notice.twig' with {'rdv': mesRdv.avisALaisser} %}
+						{% else %}
+							<h3>Vous n'avez aucun avis à laisser !</h3>
+							<p class="text__small">
+								C'est parfait ! Continuez comme ça !
+							</p>
+						{% endif %}
 					</div>
 				</div>
 			</div>

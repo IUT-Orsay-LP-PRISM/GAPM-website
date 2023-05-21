@@ -3,7 +3,7 @@ $greenNote       : #3C9933;
 $orangeLightNote : #FEF5F0;
 $greenLightNote  : #F7FEF6;
 
-.noteFrais {
+.notefrais {
   &--empty {
     &__content {
       display         : flex;
@@ -53,6 +53,11 @@ $greenLightNote  : #F7FEF6;
         font-size   : 1.4rem;
         font-weight : 600;
       }
+
+      #value-selected {
+        display : none;
+      }
+
     }
   }
 
@@ -82,21 +87,77 @@ $greenLightNote  : #F7FEF6;
 
     &__content {
 
+      &--Atraiter:hover .notefrais__table__content--trash a,
+      &--Adeclarer:hover .notefrais__table__content--trash a {
+        opacity : 1;
+      }
+
+      &--checkbox {
+        position : relative;
+      }
+
       &--Atraiter {
-        color : $orangeNote;
+        color  : $orangeNote;
+        cursor : pointer;
 
         &__tag span {
+          background-color : $orangeLightNote;
+        }
+
+        &:hover {
           background-color : $orangeLightNote;
         }
       }
 
       &--Adeclarer {
-        color : $greenNote;
+        color  : $greenNote;
+        cursor : pointer;
 
         &__tag span {
           background-color : $greenLightNote;
         }
+
+        &:hover {
+          background-color : $greenLightNote;
+        }
+
+        &__checkbox {
+          margin        : 0;
+          font          : inherit;
+          width         : 1.25em;
+          height        : 1.25em;
+          border-radius : 0.15em;
+          position      : absolute;
+          top           : 50%;
+          left          : -0.1rem;
+          transform     : translateY(-50%);
+        }
       }
+
+      &--trash {
+        position : relative;
+
+        a {
+          position        : absolute;
+          top             : 50%;
+          right           : -2.5rem;
+          transform       : translateY(-50%);
+          display         : flex;
+          justify-content : center;
+          align-items     : center;
+          border-radius   : $borderRadiusSmall;
+          cursor          : pointer;
+          padding         : 0.5rem;
+          opacity         : 0;
+          text-decoration : none;
+
+          .icon {
+            background-color : $redDark;
+          }
+
+        }
+      }
+
 
       &--tag {
         span {
@@ -125,9 +186,9 @@ $greenLightNote  : #F7FEF6;
             cursor : pointer;
           }
 
-          .noteFrais__table__content--comment__message {
+          .notefrais__table__content--comment__message {
             visibility       : hidden;
-            width            : 200px;
+            width            : 300px;
             background-color : #333;
             color            : #fff;
             text-align       : center;
@@ -140,6 +201,14 @@ $greenLightNote  : #F7FEF6;
             transform        : translateX(-50%);
             opacity          : 0;
             transition       : opacity 0.3s;
+
+            img {
+              width      : auto;
+              height     : auto;
+              max-width  : 100%;
+              max-height : 30rem;
+            }
+
 
             .tooltip-content {
               display : block;
@@ -154,7 +223,7 @@ $greenLightNote  : #F7FEF6;
           }
 
           &:hover {
-            .noteFrais__table__content--comment__message {
+            .notefrais__table__content--comment__message {
               visibility : visible;
               opacity    : 1;
             }
@@ -187,8 +256,24 @@ $greenLightNote  : #F7FEF6;
           justify-content  : center;
           align-items      : center;
           padding          : 0.2rem;
-          margin-right     : 1rem;
+          margin           : 0 1rem;
         }
+      }
+
+      td {
+        position : relative;
+      }
+
+      &__checkbox {
+        margin        : 0;
+        font          : inherit;
+        width         : 1.25em;
+        height        : 1.25em;
+        border-radius : 0.15em;
+        position      : absolute;
+        top           : 50%;
+        left          : -0.1rem;
+        transform     : translateY(-50%);
       }
     }
   }
@@ -223,6 +308,7 @@ $greenLightNote  : #F7FEF6;
       outline          : none;
       cursor           : pointer;
       background-color : transparent;
+      color            : $redDark;
 
       .icon {
         font-size : 2rem;
@@ -236,6 +322,12 @@ $greenLightNote  : #F7FEF6;
       height                : 100%;
       font-family           : $mainFont;
 
+
+      &--container {
+        display        : flex;
+        flex-direction : column;
+      }
+
       &--title {
         display         : flex;
         justify-content : space-between;
@@ -244,13 +336,15 @@ $greenLightNote  : #F7FEF6;
         font-weight     : 600;
         color           : $black;
         height          : 1.8em;
+        flex            : inherit;
       }
 
       &__inputs {
-        display       : block;
-        border        : 1px solid $greyDark;
-        border-radius : $borderRadiusSmall;
-
+        display          : block;
+        border           : 1px solid $greyLight;
+        background-color : $white;
+        border-radius    : $borderRadiusSmall;
+        flex             : inherit;
 
         .sidebar-add-depense-row {
           display : flex;
@@ -272,16 +366,27 @@ $greenLightNote  : #F7FEF6;
             }
 
             &:not(.commentaire) {
-              border-bottom : 1px solid $greyDark;
+              border-bottom : 1px solid $greyLight;
             }
 
             &:not(:last-child) {
-              border-right : 1px solid $greyDark;
+              border-right : 1px solid $greyLight;
             }
 
             label:not(.notRequired):after {
               content : " *";
               color   : red;
+            }
+
+            &--inputNature {
+              display         : flex;
+              justify-content : center;
+              align-items     : center;
+              width           : 100%;
+
+              i {
+                margin-right : 0.5rem;
+              }
             }
 
 
@@ -298,42 +403,86 @@ $greenLightNote  : #F7FEF6;
             textarea {
               resize     : vertical;
               min-height : 100px;
+              max-height : 400px;
             }
           }
         }
       }
 
       &__justificatif {
-        display         : flex;
-        justify-content : center;
-        align-items     : flex-start;
-        border          : 1px solid $greyDark;
-        border-radius   : $borderRadiusSmall;
+        display          : flex;
+        justify-content  : center;
+        align-items      : flex-start;
+        border-radius    : $borderRadiusSmall;
+        background-color : $white;
 
         .justificatif--content {
-          margin-top      : 5rem;
+
+          &__preview {
+            display         : none;
+            justify-content : center;
+            align-items     : center;
+
+            img {
+              width         : auto;
+              height        : auto;
+              max-width     : 100%;
+              max-height    : 40rem;
+              border-radius : $borderRadiusSmall;
+            }
+          }
+
+          &__container {
+            margin-top      : 5rem;
+            display         : flex;
+            justify-content : flex-start;
+            align-items     : center;
+            flex-direction  : column;
+            text-align      : center;
+            line-height     : 1.5;
+          }
+
+          &__input {
+            display         : flex;
+            justify-content : flex-start;
+            align-items     : center;
+            flex-direction  : column;
+            text-align      : center;
+            line-height     : 1.5;
+
+            input {
+              display : none;
+            }
+
+            label {
+              margin           : 1rem 0;
+              padding          : 1rem 4rem;
+              background-color : $greenLight;
+              border-radius    : $borderRadiusSmall;
+              cursor           : pointer;
+              font-weight      : 500;
+              transition       : all 0.3s ease-in-out;
+            }
+
+            label:hover {
+              background-color : $primaryLight;
+              color            : $white;
+            }
+          }
+        }
+      }
+
+      &--btnSubmit {
+        flex            : 1;
+        display         : flex;
+        justify-content : flex-end;
+        align-items     : flex-end;
+
+        &__row {
           display         : flex;
-          justify-content : flex-start;
+          justify-content : flex-end;
           align-items     : center;
-          flex-direction  : column;
-          text-align      : center;
-          line-height     : 1.5;
-
-          input {
-            display : none;
-          }
-
-          label {
-            margin           : 1rem 0;
-            padding          : 1rem 4rem;
-            background-color : $white;
-            border-radius    : $borderRadiusSmall;
-            cursor           : pointer;
-          }
-
-          label:hover {
-            background-color : $greenLight;
-          }
+          flex            : 1;
         }
       }
     }

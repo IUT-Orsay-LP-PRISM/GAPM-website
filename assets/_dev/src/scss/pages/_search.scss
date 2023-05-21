@@ -10,6 +10,7 @@
     margin          : 2rem 0 3rem 0;
 
     .input-container {
+      border: none;
       &:nth-child(3) {
         overflow : visible;
       }
@@ -79,9 +80,30 @@
       }
 
       &-img {
+        position: relative;
         img {
           max-width     : 100px;
           border-radius : 50%;
+        }
+      }
+
+      &-note{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        box-sizing: border-box;
+        right: -25px;
+        font-family: $titleFont;
+        font-weight: 500;
+        max-width: 65px;
+        min-width: 65px;
+        background-color : $light;
+        padding: .5rem 0.75rem;
+        border-radius: 1000px;
+        svg{
+          margin-left: 0.2rem;
         }
       }
 

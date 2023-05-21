@@ -30,6 +30,8 @@ class NoteFrais
     #[ORM\JoinColumn(name: 'idAdministration', referencedColumnName: 'idAdministration', nullable: true)]
     private ?Administration $administration = null;
 
+    private float $montantTotal = 0;
+
     /**
      * @return int
      */
@@ -111,5 +113,19 @@ class NoteFrais
         $this->intervenant = $intervenant;
     }
 
+    /**
+     * @return float
+     */
+    public function getMontantTotal(): float
+    {
+        return $this->montantTotal;
+    }
 
+    /**
+     * @param float $montantTotal
+     */
+    public function setMontantTotal(float $montantTotal): void
+    {
+        $this->montantTotal = $montantTotal;
+    }
 }
