@@ -30,7 +30,12 @@
         <p>Accès</p>
         <ul>
             <li><a href="/?action=my-account">Mon compte</a></li>
-            <li><a href="/?action=inscription-intervenant">Devenir praticien</a></li>
+            {% if userLogged %}
+					<li><a href="/?action=my-account&nav=intervenant">Devenir praticien</a></li>
+				{% else %}
+					<li><a href="/?action=inscription-intervenant">Devenir praticien</a></li>
+				{% endif %}
+            
             <li><a href="#">Personnel administratif</a></li>
             <li><a href="#">Administrateur</a></li>
         </ul>
