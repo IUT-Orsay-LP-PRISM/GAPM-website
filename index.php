@@ -62,8 +62,8 @@ $router->addRoute('effectue-rdv-inter&idRdv=<id>', 'RendezVousController', 'effe
 $router->addRoute('delete-rdv-inter&idRdv=<id>', 'RendezVousController', 'deleteRdvIntervenant');
 
 $router->addRoute('add-depense', 'NoteFraisController', 'createDepense');
-$router->addRoute('edit-depense', 'NoteFraisController', 'updateDepense');
-$router->addRoute('delete-depense', 'NoteFraisController', 'deleteDepense');
+$router->addRoute('edit-depense&idDepense=<id>', 'NoteFraisController', 'updateDepense');
+$router->addRoute('delete-depense&idDepense=<id>', 'NoteFraisController', 'deleteDepense');
 $router->addRoute('prepare-depenses', 'NoteFraisController', 'prepareDepenses');
 
 $router->addRoute('autocompleteSpecialite&query<query>', 'SpecialiteController', 'autocomplete');
