@@ -2160,6 +2160,8 @@ body.intervenant {
         min-width: 15rem;
         width: 30%;
         height: auto; }
+  body.intervenant .inscr_intervenant-btn {
+    position: absolute; }
   body.intervenant .inscr_intervenant__banner {
     padding: 2em;
     height: calc(100vh - 4em); }
@@ -2167,6 +2169,7 @@ body.intervenant {
       display: flex;
       flex-direction: row;
       align-items: center;
+      height: 100%;
       justify-content: space-around; }
     body.intervenant .inscr_intervenant__banner h1 {
       font-size: 4em;
@@ -2185,7 +2188,7 @@ body.intervenant {
     align-items: center;
     flex-direction: column;
     padding: 2em;
-    height: auto; }
+    height: 100vh; }
     body.intervenant .inscr_intervenant__form h2 {
       font-size: 2.5em;
       margin-bottom: 2rem;
@@ -2207,7 +2210,7 @@ body.intervenant {
         width: 12em;
         margin-top: 1em; }
     body.intervenant .inscr_intervenant__form-container-row {
-      margin: 1.5em 0; }
+      margin: .85rem 0; }
       body.intervenant .inscr_intervenant__form-container-row {
         display: flex;
         flex-direction: row;
@@ -4497,6 +4500,8 @@ body.demandeur {
         min-width: 15rem;
         width: 30%;
         height: auto; }
+  body.demandeur .inscr_intervenant-btn {
+    position: absolute; }
   body.demandeur .inscr_intervenant__banner {
     padding: 2em;
     height: calc(100vh - 4em); }
@@ -4504,6 +4509,7 @@ body.demandeur {
       display: flex;
       flex-direction: row;
       align-items: center;
+      height: 100%;
       justify-content: space-around; }
     body.demandeur .inscr_intervenant__banner h1 {
       font-size: 4em;
@@ -4522,7 +4528,7 @@ body.demandeur {
     align-items: center;
     flex-direction: column;
     padding: 2em;
-    height: auto; }
+    height: 100vh; }
     body.demandeur .inscr_intervenant__form h2 {
       font-size: 2.5em;
       margin-bottom: 2rem;
@@ -4544,7 +4550,7 @@ body.demandeur {
         width: 12em;
         margin-top: 1em; }
     body.demandeur .inscr_intervenant__form-container-row {
-      margin: 1.5em 0; }
+      margin: .85rem 0; }
       body.demandeur .inscr_intervenant__form-container-row {
         display: flex;
         flex-direction: row;
