@@ -96,11 +96,9 @@
             </div>
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
-                    <i class="icon icon-fi-rr-doctor"></i>
-                    <input id="specialite" class="input AC input_specialite" type="text"/>
-                    <label class="label" for="specialite">Spécialités</label>
-                    <div class="notVisible auto_completion"></div>
-                    <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="null">
+                    <i class="icon icon-fi-rr-text"></i>
+                    <input id="adressPro" class="input" type="text" name="adressePro" required/>
+                    <label class="label" for="adressPro">Adresse Pro</label>
                 </div>
                 <div class="input-container overflow">
                     <i class="icon icon-fi-rr-map-marker"></i>
@@ -111,10 +109,12 @@
                     <span class="code_postal"></span>
                 </div>
             </div>
-            <div class="input-container">
-                <i class="icon icon-fi-rr-text"></i>
-                <input id="adressPro" class="input" type="text" name="adressePro" required/>
-                <label class="label" for="adressPro">Adresse Pro</label>
+            <div class="input-container overflow">
+                <i class="icon icon-fi-rr-doctor"></i>
+                <input id="specialite" class="input AC input_specialite" type="text"/>
+                <label class="label" for="specialite">Spécialités</label>
+                <div class="notVisible auto_completion"></div>
+                <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="null">
             </div>
 
 
