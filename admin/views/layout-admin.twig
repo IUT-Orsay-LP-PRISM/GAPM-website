@@ -7,10 +7,9 @@
         <link rel="icon" href="{{ app.request.getSchemeAndHttpHost() }}/assets/img/logo.svg"/>
         <title>{% block title %}{% endblock %} • GAPM-Admin</title>
     </head>
-    <body>
-        <div id="content">
+    <body class="admin">
+        <div class="admin__login">
             {% block content %}
-    
             {% endblock %}
         </div>
 

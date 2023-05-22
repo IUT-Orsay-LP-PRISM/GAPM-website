@@ -8,6 +8,7 @@ require_once "Router.php";
 require_once 'vendor/autoload.php';
 require_once 'config/bootstrap.php';
 
+session_name('user');
 Session::start();
 
 global $entityManagerFactory;

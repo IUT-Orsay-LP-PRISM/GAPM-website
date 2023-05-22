@@ -1,3 +1,104 @@
-.admin{
+.admin {
+  &__login {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondaryLight;
+  }
 
+  &__block {
+    background-color: $white;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    font-family: $mainFont;
+
+    p{
+      margin-top: 1.5rem;
+      font-weight: 500;
+      color: $secondary;
+    }
+  }
+
+  &__form {
+    margin: 2.4rem 1rem;
+  }
 }
+
+/* Inputs */
+
+.admin__input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  &::after{
+    content: "";
+    transition: all .5s ease-in-out;
+    width: 0;
+    left: 48px;
+    position: absolute;
+    bottom: 0;
+  }
+  &:hover{
+    &::after{
+      content: "";
+      width: calc(100% - 48px);
+      height: 3px;
+      left: 48px;
+      background-color: $secondary;
+    }
+  }
+
+
+  i, svg {
+    color: $primaryLight;
+    font-size: 1.7rem;
+    padding-right: 1.3rem;
+  }
+  svg{
+    path{
+      fill: $primaryLight;
+    }
+  }
+
+  input {
+    font-family: $mainFont;
+    border: none;
+    padding: 1rem 2rem;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    width: 100%;
+    display: block;
+    position: relative;
+
+    &:focus {
+      outline: none;
+
+    }
+
+    &::placeholder {
+      color: $black;
+      font-family: $mainFont;
+      font-size: 1rem;
+    }
+  }
+
+  input[type="submit"] {
+    background-color: $primaryLight;
+    color: $white;
+    font-family: $titleFont;
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover {
+      background-color: $primaryDark;
+    }
+  }
+}
+
