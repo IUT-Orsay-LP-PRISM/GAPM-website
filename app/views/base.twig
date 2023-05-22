@@ -20,12 +20,18 @@
 		</div>
 
 		{% include "includes/footer.twig" %}
-		<i id="popUp-connexion" class="popup-closed">{% include 'includes/popUpConnexion.twig' %}</i>
-		<i id="popUp-inscription" class="popup-closed">{% include 'includes/popUpInscription.twig' %}</i>
-		<i id="popUp-prendre-RDV" class="popup-closed">{% include 'includes/popUpPrendreRDV.twig' %}</i>
-		<i id="popUp-avis-RDV" class="popup-closed">{% include 'includes/popUpAvisRDV.twig' %}</i>
 		{% include 'includes/notification.twig' %}
 
+		{% if not userLogged %}
+			<i id="popUp-connexion" class="popup-closed">{% include 'includes/popUpConnexion.twig' %}</i>
+			<i id="popUp-inscription" class="popup-closed">{% include 'includes/popUpInscription.twig' %}</i>
+		{% endif %}
+
+		{% if userLogged %}
+            <i id="popUp-prendre-RDV" class="popup-closed">{% include 'includes/popUpPrendreRDV.twig' %}</i>
+            <i id="popUp-avis-RDV" class="popup-closed">{% include 'includes/popUpAvisRDV.twig' %}</i>
+		{% endif %}
+
 		<script src="{{ app.request.getSchemeAndHttpHost() }}/assets/prod/js/main.min.js"></script>
-	</body
+	</body>
 </html>
