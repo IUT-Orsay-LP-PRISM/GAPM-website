@@ -331,9 +331,14 @@ class RendezVousController extends Template
 
         $rdv->setCommentaire($com);
 
-        $this->entityManager->persist($com);
-        $this->entityManager->persist($rdv);
-        $this->entityManager->flush();
+        try {
+            $this->entityManager->persist($com);
+            $this->entityManager->persist($rdv);
+            $this->entityManager->flush();
+        } catch (ORMException $e) {
+            header('Location: /?action=mes-rendez-vous&message=Une erreur est survenue lors de l\'enregistrement de votre avis&c=msg-error');
+            exit;
+        }
 
         header('Location: /?action=mes-rendez-vous&message=Votre avis a bien été enregistré&c=msg-success');
     }

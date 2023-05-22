@@ -10,15 +10,15 @@
 
 {% block content %}
     <section class="inscr_intervenant__banner">
-        <a href="/" class="btn btn-greenLight"><i class="icon icon-fi-rr-arrow-left"></i> Retour à l'accueil</a>
+        <a href="/" class="btn btn-greenLight inscr_intervenant-btn"><i class="icon icon-fi-rr-arrow-left"></i> Retour à l'accueil</a>
         <div class="row">
             <div>
-                <h1>Vous souhaitez </br> exercer votre <span class="text__underline-light">métier ?</span></h1>
+                <h1>Vous souhaitez <br> exercer votre <span class="text__underline-light">métier ?</span></h1>
                 <h2>N'attendez plus, postulez dès maintenant.</h2>
                 <a class="btn btn-primary-nb" href="#form">S'inscrire dès maintenant !</a>
             </div>
             <div>
-                {% include 'svg/illu_banner.svg' %}
+                {% include 'svg/illu_banner-inter.svg' %}
             </div>
         </div>
     </section>
@@ -96,27 +96,28 @@
             </div>
             <div class="inscr_intervenant__form-container-row">
                 <div class="input-container">
-                    <i class="icon icon-fi-rr-doctor"></i>
-                    <input id="specialite" class="input AC input_specialite" type="text"/>
-                    <label class="label" for="specialite">Spécialités</label>
-                    <div class="notVisible auto_completion"></div>
-                    <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="null">
-                </div>
-                <div class="input-container">
                     <i class="icon icon-fi-rr-text"></i>
                     <input id="adressPro" class="input" type="text" name="adressePro" required/>
                     <label class="label" for="adressPro">Adresse Pro</label>
                 </div>
+                <div class="input-container overflow">
+                    <i class="icon icon-fi-rr-map-marker"></i>
+                    <input id="villePro" class="input AC input_ville" type="text" required/>
+                    <label class="label" for="villePro">Ville</label>
+                    <input id="hiddenValueCityProIntervenant" name="cityPro" type="number" hidden="hidden" required/>
+                    <div class="notVisible auto_completion"></div>
+                    <span class="code_postal"></span>
+                </div>
+            </div>
+            <div class="input-container overflow">
+                <i class="icon icon-fi-rr-doctor"></i>
+                <input id="specialite" class="input AC input_specialite" type="text"/>
+                <label class="label" for="specialite">Spécialités</label>
+                <div class="notVisible auto_completion"></div>
+                <input id="hiddenValueSpecialites" type="hidden" name="specialites" value="null">
             </div>
 
-            <div class="input-container overflow">
-                <i class="icon icon-fi-rr-map-marker"></i>
-                <input id="villePro" class="input AC input_ville" type="text" required/>
-                <label class="label" for="villePro">Ville</label>
-                <input id="hiddenValueCityProIntervenant" name="cityPro" type="number" hidden="hidden" required/>
-                <div class="notVisible auto_completion"></div>
-                <span class="code_postal"></span>
-            </div>
+
             <div id="tag-container">
                 <p>Vos choix :</p>
                 <div class="container"></div>

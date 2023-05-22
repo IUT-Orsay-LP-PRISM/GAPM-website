@@ -8,6 +8,7 @@ require_once "Router.php";
 require_once 'vendor/autoload.php';
 require_once 'config/bootstrap.php';
 
+session_name('user');
 Session::start();
 
 global $entityManagerFactory;
@@ -43,6 +44,8 @@ $router->addRoute('intervenant-cancel-unsubscribe-request', 'IntervenantControll
 
 $router->addRoute('picture-edit', 'IntervenantController', 'updatePicture');
 $router->addRoute('faq', 'HomeController', 'displayFAQ');
+$router->addRoute('oubli', 'HomeController', 'displayForgotten');
+$router->addRoute('forgotten', 'DemandeurController', 'forgottenMail');
 $router->addRoute('toggle-mode-intervenant', 'IntervenantController', 'toggleModeIntervenant');
 $router->addRoute('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
 
@@ -62,8 +65,8 @@ $router->addRoute('effectue-rdv-inter&idRdv=<id>', 'RendezVousController', 'effe
 $router->addRoute('delete-rdv-inter&idRdv=<id>', 'RendezVousController', 'deleteRdvIntervenant');
 
 $router->addRoute('add-depense', 'NoteFraisController', 'createDepense');
-$router->addRoute('edit-depense', 'NoteFraisController', 'updateDepense');
-$router->addRoute('delete-depense', 'NoteFraisController', 'deleteDepense');
+$router->addRoute('edit-depense&idDepense=<id>', 'NoteFraisController', 'updateDepense');
+$router->addRoute('delete-depense&idDepense=<id>', 'NoteFraisController', 'deleteDepense');
 $router->addRoute('prepare-depenses', 'NoteFraisController', 'prepareDepenses');
 
 $router->addRoute('autocompleteSpecialite&query<query>', 'SpecialiteController', 'autocomplete');

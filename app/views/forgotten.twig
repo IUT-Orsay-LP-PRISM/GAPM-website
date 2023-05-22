@@ -1,0 +1,22 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="sample__container -search wrapper">
+        <h1>Mot de passe oublié</h1>
+        <form method="POST" action="/?action=forgotten">
+            <section class="search__inputs">
+                <div class="input-container">
+                    <i class="icon icon-fi-rr-at"></i>
+                    <input id="e-mailOubli" class="input" type="email" name="email" placeholder=" " required/>
+                    <label class="label" for="e-mailOubli">Email</label>
+                </div>
+                <button type="submit" class="btn btn-primary-nb">Envoyer mail</button>
+            </section>
+        </form>
+    </div>
+
+{% endblock %}

@@ -55,6 +55,27 @@ body {
 
     @import "variables";
   }
+
+  &.admin{
+    $light : #F5F5F5;
+    $primaryDark : #4B0082;
+    $primaryLight : #8A2BE2;
+    $primaryWhite : #D3A9DD;
+
+    $secondary: #9370DB;
+    $secondaryLight: #E6E6FA;
+
+    $black : #302053;
+
+    $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
+    $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
+    $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
+    $gradientIcon             : linear-gradient(180deg, $primaryDark 0%, $primaryLight 100%);
+
+    $srcBackgroundBanner      : url("../../../img/banner_gradient.png");
+
+    @import "variables";
+  }
 }
 
 html {

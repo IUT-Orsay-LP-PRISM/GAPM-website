@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ app.request.getSchemeAndHttpHost() }}/assets/prod/css/main.min.css">
+        <link rel="icon" href="{{ app.request.getSchemeAndHttpHost() }}/assets/img/logo.svg"/>
+        <title>{% block title %}{% endblock %} • GAPM-Admin</title>
+    </head>
+    <body class="admin">
+        <div class="admin__login">
+            {% block content %}
+            {% endblock %}
+        </div>
+        {% include 'notifications.twig' %}
+
+        <script src="{{ app.request.getSchemeAndHttpHost() }}/assets/prod/js/main.min.js"></script>
+    </body>
+</html>

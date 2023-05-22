@@ -11,7 +11,7 @@
     <div class="footer__misc">
         <p>Divers</p>
         <ul>
-            <li><a href="#">Besoin d'aide ?</a ></li >
+            <li><a href="/?action=faq">Besoin d'aide ?</a ></li >
             <li ><a href="#">A propos </a ></li >
             <li><a class="clickable" id="lien-connexion">Se connecter </a ></li >
             <li><a class="clickable" id="lien-inscription">S'inscrire</a></li>
@@ -30,12 +30,17 @@
         <p>Accès</p>
         <ul>
             <li><a href="/?action=my-account">Mon compte</a></li>
-            <li><a href="/?action=inscription-intervenant">Devenir praticien</a></li>
+            {% if userLogged %}
+					<li><a href="/?action=my-account&nav=intervenant">Devenir praticien</a></li>
+				{% else %}
+					<li><a href="/?action=inscription-intervenant">Devenir praticien</a></li>
+				{% endif %}
+            
             <li><a href="#">Personnel administratif</a></li>
             <li><a href="#">Administrateur</a></li>
         </ul>
     </div>
 </footer>
 <section class="footer__pre">
-    Projet Sujet 2 G.A.P.M. - M. Gagné • Christopher D, Louis L, Frédéric D., Mathieu M. Valentin, Taisong, Enolah, Joël.
+    Projet Sujet 2 G.A.P.M. - M. Gagné • Christopher D. • Louis L. • Frédéric D. • Mathieu M. • Valentin C. • Taisong M. • Enolha D. • Joël S.
 </section>
