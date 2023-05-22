@@ -2692,6 +2692,7 @@ body.intervenant {
       body.intervenant .myrdv__nav ul li:not(:last-child), body.intervenant .emprunt__nav ul li:not(:last-child) {
         margin-right: 1.5rem; }
   body.intervenant .myrdv__list h3, body.intervenant .emprunt__list h3 {
+    margin-top: .5rem;
     margin-bottom: 1rem; }
   body.intervenant .myrdv__list p.text__small, body.intervenant .emprunt__list p.text__small {
     margin-bottom: 2rem; }
@@ -3296,10 +3297,8 @@ body.intervenant {
     box-sizing: border-box; }
     body.intervenant .input-container:focus {
       border: 2px solid #257466; }
-    body.intervenant .input-container .js-iconEyePassword {
-      z-index: 1; }
-      body.intervenant .input-container .js-iconEyePassword:hover {
-        cursor: pointer; }
+    body.intervenant .input-container .js-iconEyePassword:hover {
+      cursor: pointer; }
     body.intervenant .input-container i {
       margin: 0 1rem; }
     body.intervenant .input-container .input {
@@ -5032,6 +5031,7 @@ body.demandeur {
       body.demandeur .myrdv__nav ul li:not(:last-child), body.demandeur .emprunt__nav ul li:not(:last-child) {
         margin-right: 1.5rem; }
   body.demandeur .myrdv__list h3, body.demandeur .emprunt__list h3 {
+    margin-top: .5rem;
     margin-bottom: 1rem; }
   body.demandeur .myrdv__list p.text__small, body.demandeur .emprunt__list p.text__small {
     margin-bottom: 2rem; }
@@ -5636,10 +5636,8 @@ body.demandeur {
     box-sizing: border-box; }
     body.demandeur .input-container:focus {
       border: 2px solid #393BAA; }
-    body.demandeur .input-container .js-iconEyePassword {
-      z-index: 1; }
-      body.demandeur .input-container .js-iconEyePassword:hover {
-        cursor: pointer; }
+    body.demandeur .input-container .js-iconEyePassword:hover {
+      cursor: pointer; }
     body.demandeur .input-container i {
       margin: 0 1rem; }
     body.demandeur .input-container .input {

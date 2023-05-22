@@ -28,7 +28,8 @@
         "doctrine/annotations": "2.0.x-dev",
         "doctrine/dbal": "^3.7",
         "intervention/image": "^2.7",
-      "ext-gd": "*"
+      "ext-gd": "*",
+        "phpmailer/phpmailer": "dev-master"
     },
     "require-dev": {
         "symfony/var-dumper": "5.4.x-dev"

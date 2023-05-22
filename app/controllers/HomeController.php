@@ -22,6 +22,13 @@ class HomeController extends Template
         ]);
     }
 
+    public function displayForgotten()
+    {
+        self::render('forgotten.twig', [
+            'title' => "Oubli de mot de passe ",
+        ]);
+    }
+
     public function display404()
     {
         self::render('404.html', [
