@@ -10,10 +10,10 @@ const lien_connexion = document.querySelector('#lien-connexion');
 const lien_inscription = document.getElementById('lien-inscription');
 const div_errorConnexion = document.querySelector('#popUp-connexion .error');
 const div_errorInscription = document.querySelector('#popUp-inscription .error');
-import { removeErrorInURL } from './notification';
-import { ajaxPopupAvis } from "./autocomplete";
+import {removeErrorInURL} from './notification';
+import {ajaxPopupAvis} from "./autocomplete";
 
-if (openPopUpInsc){
+if (openPopUpInsc) {
     openPopUpInsc.addEventListener('click', () => {
         openPopUpInscription();
     });
@@ -21,8 +21,9 @@ if (openPopUpInsc){
 
 btn_cross.forEach(btn => btn
     .addEventListener('click', () => {
-        popUp_connexion.classList.remove('visible');
-        popUp_inscription.classList.remove('visible');
+        popUp_connexion && popUp_connexion.classList.remove('visible');
+        popUp_inscription && popUp_inscription.classList.remove('visible');
+
         popUp_prendreRDV.classList.remove('visible');
         popUp_ajouterAvis.classList.remove('visible');
         document.body.style.overflowY = "auto";
@@ -44,12 +45,12 @@ if (btn_connexion && btn_inscription) {
 }
 
 if (lien_connexion && lien_inscription) {
-    lien_connexion.addEventListener('click', function(e){
+    lien_connexion.addEventListener('click', function (e) {
         e.preventDefault();
         openPopUpConnexion();
     });
 
-    lien_inscription.addEventListener('click', function(e){
+    lien_inscription.addEventListener('click', function (e) {
         e.preventDefault();
         openPopUpInscription();
     });
@@ -58,9 +59,9 @@ if (lien_connexion && lien_inscription) {
 // close div auto_completion when click outside
 const AC = document.querySelectorAll('.AC');
 window.onclick = function (event) { // When the user clicks anywhere outside of the modal, close it
-    if (event.target == popUp_connexion  || event.target == popUp_inscription || event.target == popUp_prendreRDV || event.target == popUp_ajouterAvis) {
-        popUp_connexion.classList.remove('visible');
-        popUp_inscription.classList.remove('visible');
+    if (event.target == popUp_connexion || event.target == popUp_inscription || event.target == popUp_prendreRDV || event.target == popUp_ajouterAvis) {
+        popUp_connexion && popUp_connexion.classList.remove('visible');
+        popUp_inscription && popUp_inscription.classList.remove('visible');
         popUp_prendreRDV.classList.remove('visible');
         popUp_ajouterAvis.classList.remove('visible');
         document.body.style.overflowY = "auto";
@@ -76,8 +77,6 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
         });
     }
 }
-
-
 
 
 export function openPopUpConnexion() {
