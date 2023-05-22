@@ -34,28 +34,25 @@
   align-items: center;
   margin-bottom: 2rem;
   position: relative;
+
   &::after{
     content: "";
-    transition: all .5s ease-in-out;
-    width: 0;
-    left: 48px;
+    left: 52.8px;
     position: absolute;
+    transition: all .4s ease-in-out;
     bottom: 0;
   }
   &:hover{
     &::after{
       content: "";
-      width: calc(100% - 48px);
+      width: calc(100% - 52.8px);
       height: 3px;
-      left: 48px;
       background-color: $secondary;
     }
   }
 
 
-  i, svg {
-    color: $primaryLight;
-    font-size: 1.7rem;
+  svg {
     padding-right: 1.3rem;
   }
   svg{

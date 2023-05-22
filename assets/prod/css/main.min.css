@@ -3229,20 +3229,16 @@ body.intervenant {
     position: relative; }
     body.intervenant .admin__input::after {
       content: "";
-      transition: all .5s ease-in-out;
-      width: 0;
-      left: 48px;
+      left: 52.8px;
       position: absolute;
+      transition: all .4s ease-in-out;
       bottom: 0; }
     body.intervenant .admin__input:hover::after {
       content: "";
-      width: calc(100% - 48px);
+      width: calc(100% - 52.8px);
       height: 3px;
-      left: 48px;
       background-color: #86CABE; }
-    body.intervenant .admin__input i, body.intervenant .admin__input svg {
-      color: #36A793;
-      font-size: 1.7rem;
+    body.intervenant .admin__input svg {
       padding-right: 1.3rem; }
     body.intervenant .admin__input svg path {
       fill: #36A793; }
@@ -5639,20 +5635,16 @@ body.demandeur {
     position: relative; }
     body.demandeur .admin__input::after {
       content: "";
-      transition: all .5s ease-in-out;
-      width: 0;
-      left: 48px;
+      left: 52.8px;
       position: absolute;
+      transition: all .4s ease-in-out;
       bottom: 0; }
     body.demandeur .admin__input:hover::after {
       content: "";
-      width: calc(100% - 48px);
+      width: calc(100% - 52.8px);
       height: 3px;
-      left: 48px;
       background-color: #7EA6F4; }
-    body.demandeur .admin__input i, body.demandeur .admin__input svg {
-      color: #5154EC;
-      font-size: 1.7rem;
+    body.demandeur .admin__input svg {
       padding-right: 1.3rem; }
     body.demandeur .admin__input svg path {
       fill: #5154EC; }
@@ -8049,20 +8041,16 @@ body.admin {
     position: relative; }
     body.admin .admin__input::after {
       content: "";
-      transition: all .5s ease-in-out;
-      width: 0;
-      left: 48px;
+      left: 52.8px;
       position: absolute;
+      transition: all .4s ease-in-out;
       bottom: 0; }
     body.admin .admin__input:hover::after {
       content: "";
-      width: calc(100% - 48px);
+      width: calc(100% - 52.8px);
       height: 3px;
-      left: 48px;
       background-color: #9370DB; }
-    body.admin .admin__input i, body.admin .admin__input svg {
-      color: #8A2BE2;
-      font-size: 1.7rem;
+    body.admin .admin__input svg {
       padding-right: 1.3rem; }
     body.admin .admin__input svg path {
       fill: #8A2BE2; }
