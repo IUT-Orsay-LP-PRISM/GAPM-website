@@ -2,11 +2,11 @@
 
 namespace App\models\entity;
 
-use App\models\repository\RendezVousRepository;
+use App\models\repository\AdminRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RendezVousRepository::class)]
+#[ORM\Entity(repositoryClass: AdminRepository::class)]
 #[ORM\Table(name: 'Administration')]
 class Administration
 {
