@@ -41,6 +41,7 @@ class Template
         }
         $twig->addExtension(new DebugExtension());
         $twig->addFilter(new Filter('str_repeat', function ($string, $times) {
+            $times = ceil($times);
             return str_repeat(new Markup($string, 'UTF-8'), $times);
         }));
 

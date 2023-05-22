@@ -2692,6 +2692,7 @@ body.intervenant {
       body.intervenant .myrdv__nav ul li:not(:last-child), body.intervenant .emprunt__nav ul li:not(:last-child) {
         margin-right: 1.5rem; }
   body.intervenant .myrdv__list h3, body.intervenant .emprunt__list h3 {
+    margin-top: .5rem;
     margin-bottom: 1rem; }
   body.intervenant .myrdv__list p.text__small, body.intervenant .emprunt__list p.text__small {
     margin-bottom: 2rem; }
@@ -5032,6 +5033,7 @@ body.demandeur {
       body.demandeur .myrdv__nav ul li:not(:last-child), body.demandeur .emprunt__nav ul li:not(:last-child) {
         margin-right: 1.5rem; }
   body.demandeur .myrdv__list h3, body.demandeur .emprunt__list h3 {
+    margin-top: .5rem;
     margin-bottom: 1rem; }
   body.demandeur .myrdv__list p.text__small, body.demandeur .emprunt__list p.text__small {
     margin-bottom: 2rem; }
