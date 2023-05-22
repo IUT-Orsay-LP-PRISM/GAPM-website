@@ -7,13 +7,12 @@
 {% block content %}
     <div class="sample__container -search wrapper">
         <h1>Mot de passe oublié</h1>
-        <form method="get">
+        <form method="POST" action="/?action=forgotten">
             <section class="search__inputs">
-                <input type="hidden" name="action" value="forgotten">
                 <div class="input-container">
                     <i class="icon icon-fi-rr-at"></i>
-                    <input id="e-mailPopUp" class="input" type="email" name="mail" placeholder=" " required/>
-                    <label class="label" for="e-mailPopUp">Email</label>
+                    <input id="e-mailOubli" class="input" type="email" name="email" placeholder=" " required/>
+                    <label class="label" for="e-mailOubli">Email</label>
                 </div>
                 <button type="submit" class="btn btn-primary-nb">Envoyer mail</button>
             </section>

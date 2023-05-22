@@ -14,7 +14,11 @@ use App\models\entity\Voiture;
 use App\models\repository\DemandeurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
+require 'vendor/autoload.php';
 
 class DemandeurController extends Template
 {
@@ -319,6 +323,63 @@ class DemandeurController extends Template
                     'title' => 'Mon compte',
                 ]);
             }
+        }
+    }
+
+    public function forgottenMail(){
+        $isValid = !empty($_POST['email']) && isset($_POST['email']);
+
+        if ($isValid) {
+
+            //TODO vérifier chaque champs avec regex
+            $email = $_POST['email'];
+
+            // TODO changer le sel par un vrai sel
+            $random_hex = bin2hex(random_bytes(10));
+
+            $salt = "sel";
+            $saltedAndHashed = crypt($random_hex, $salt);
+            $password = $saltedAndHashed;
+
+            $demandeur = $this->demandeurRepository->findOneBy(['email' => $email]);
+            $emailExists = !empty($demandeur);
+
+            if ($emailExists) {
+                    $demandeur->setMotDePasse($password);
+                    try {
+                        $this->entityManager->persist($demandeur);
+                        $this->entityManager->flush();
+                    } catch (\Exception $e) {
+                        $referer = self::addMessageToUrl('Une erreur est survenue. Merci de réessayer.', 'connexion');
+                        header("Location: $referer");
+                        exit();
+                    }
+
+                    $phpmailer = new PHPMailer();
+                    $phpmailer->isSMTP();
+                    $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+                    $phpmailer->SMTPAuth = true;
+                    $phpmailer->Port = 2525;
+                    $phpmailer->Username = '87aafa94a4e2c8';
+                    $phpmailer->Password = '2b192b0e9179d3';
+                    $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+                    $phpmailer->addAddress($email, $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
+                    $phpmailer->Subject = 'Mot de passe oublie';
+                    $phpmailer->Body = 'Voici votre mot de passe temporaire : ' . $random_hex;
+                    //send the message, check for errors
+                    if (!$phpmailer->send()) {
+                        echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+                    } else {
+                        $referer = self::addMessageToUrl('Si le compte existe, le message a ete envoye', 'connexion');
+                        header("Location: $referer");
+                    }
+            } else {
+                $referer = self::addMessageToUrl('Email inconnu', 'connexion');
+                header("Location: $referer");
+            }
+        } else {
+            $referer = self::addMessageToUrl('Le champ n\'a pas ete remplis correctement', 'connexion');
+            header("Location: $referer");
         }
     }
 }
