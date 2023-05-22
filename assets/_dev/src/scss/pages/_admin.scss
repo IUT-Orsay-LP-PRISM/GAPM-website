@@ -10,6 +10,8 @@
 
   &__block {
     background-color: $white;
+    position: relative;
+    z-index: 4;
     border-radius: 10px;
     padding: 2rem;
     text-align: center;
@@ -35,21 +37,25 @@
   margin-bottom: 2rem;
   position: relative;
 
-  &::after{
-    content: "";
-    left: 52.8px;
-    position: absolute;
-    transition: all .4s ease-in-out;
-    bottom: 0;
-  }
-  &:hover{
-    &::after{
+  &__hover {
+    &::after {
       content: "";
-      width: calc(100% - 52.8px);
-      height: 3px;
-      background-color: $secondary;
+      left: 52.8px;
+      position: absolute;
+      transition: all .4s ease-in-out;
+      bottom: 0;
+    }
+
+    &:hover {
+      &::after {
+        content: "";
+        width: calc(100% - 52.8px);
+        height: 3px;
+        background-color: $secondary;
+      }
     }
   }
+
 
 
   svg {

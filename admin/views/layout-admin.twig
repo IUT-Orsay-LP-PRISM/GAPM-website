@@ -12,6 +12,7 @@
             {% block content %}
             {% endblock %}
         </div>
+        {% include 'notifications.twig' %}
 
         <script src="{{ app.request.getSchemeAndHttpHost() }}/assets/prod/js/main.min.js"></script>
     </body>
