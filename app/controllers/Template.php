@@ -23,10 +23,15 @@ class Template
      * @param array $data Les données à passer au template
      */
 
-    public static function render(string $view, array $data = null)
+    public static function render(string $view, array $data = null, $admin = false)
     {
-        $loader = new FilesystemLoader('app/views');
-        $loader->addPath('assets');
+        if ($admin){
+            $loader = new FilesystemLoader('../admin/views');
+            $loader->addPath('../assets');
+        } else  {
+            $loader = new FilesystemLoader('app/views');
+            $loader->addPath('assets');
+        }
         $twig = new Environment($loader, [
             'cache' => false,
             'debug' => true

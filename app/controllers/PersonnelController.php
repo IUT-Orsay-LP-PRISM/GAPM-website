@@ -2,12 +2,21 @@
 
 namespace App\controllers;
 
-use App\models\repository\AdminRepository;
 use Doctrine\ORM\EntityManager;
 
 class PersonnelController extends Template
 {
-    private AdminRepository $personnelRepository;
     private EntityManager $entityManager;
 
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    public function index()
+    {
+        self::render('/personnel/home.twig', [
+
+        ], true);
+    }
 }

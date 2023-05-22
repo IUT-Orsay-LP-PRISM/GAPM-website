@@ -4,11 +4,22 @@ namespace App\controllers;
 
 class Router {
     private array $routes = [];
+    private string $type = 'utilisateur';
 
     public function addRoute($url, $controller, $method): void
     {
         $this->routes[] = [
             'url' => '/\?action=' . $url . '(&message=.+)?(&c=.+)?',
+            'controller' => $controller,
+            'method' => $method
+        ];
+    }
+
+    public function addAdminRoute($url, $controller, $method): void
+    {
+        $this->type = 'admin';
+        $this->routes[] = [
+            'url' => '/admin/\?action=' . $url . '(&message=.+)?(&c=.+)?',
             'controller' => $controller,
             'method' => $method
         ];
@@ -40,8 +51,15 @@ class Router {
         }
 
         // Route par défaut si aucune correspondance
-        $controller = new HomeController($entityManager);
-        $controller->index();
+        if ($this->type == 'admin') {
+            // Si page admin, rediriger vers la page de login
+            $controller = new PersonnelController($entityManager);
+            $controller->index();
+        } else {
+            // Si page utilisateur, rediriger vers la page d'accueil
+            $controller = new HomeController();
+            $controller->index();
+        }
     }
 
     private function convertUrlToPattern($url): string
