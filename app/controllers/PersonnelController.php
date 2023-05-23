@@ -15,7 +15,7 @@ class PersonnelController extends Template
         $this->entityManager = $entityManager;
     }
 
-    public function index()
+    public function index(): void
     {
 
         dump(Session::get('admin'));
@@ -24,7 +24,7 @@ class PersonnelController extends Template
         ], true);
     }
 
-    public function loginView()
+    public function loginView(): void
     {
         self::render('login.twig', [
             'title' => 'Connexion Personnel',
@@ -32,7 +32,7 @@ class PersonnelController extends Template
         ], true);
     }
 
-    public function loginSubmit()
+    public function loginSubmit(): void
     {
         $id = $_POST['login'];
         $password = $_POST['password'];
