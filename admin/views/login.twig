@@ -4,41 +4,43 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <div class="admin__bg">
-        <div class="admin__block">
-            <h1>Connexion</h1>
-            <p>
-                Personnel d'administration
-            </p>
-            <form class="admin__form" method="post" action="./?action=login-submit">
-                <div class="admin__input admin__input__hover">
-                    <label for="username">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 16C20.4183 16 24 12.4183 24 8C24 3.58172 20.4183 0 16 0C11.5817 0 8 3.58172 8 8C8 12.4183 11.5817 16 16 16Z" fill="#374957"/>
-                            <path d="M16 18.6655C9.37563 18.6728 4.00738 24.0411 4 30.6655C4 31.4018 4.59694 31.9988 5.33331 31.9988H26.6666C27.403 31.9988 27.9999 31.4018 27.9999 30.6655C27.9926 24.0411 22.6244 18.6728 16 18.6655Z" fill="#374957"/>
-                        </svg>
-                    </label>
-                    <input type="text" name="login" id="username" placeholder="Nom d'utilisateur">
-                </div>
-                <div class="admin__input admin__input__hover">
-                    <label for="password">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_105_5823)">
-                                <path d="M22.6659 10.6696H9.33463V9.33649C9.33363 5.65517 12.3171 2.67 15.9984 2.669C18.424 2.66831 20.6585 3.9853 21.8327 6.10767C22.1902 6.75151 23.0019 6.98372 23.6458 6.62628C24.2896 6.26883 24.5218 5.45708 24.1644 4.81324C21.668 0.304352 15.989 -1.32709 11.4801 1.16935C8.50994 2.81379 6.66722 5.94157 6.66834 9.33656V11.235C4.24208 12.2939 2.67244 14.6881 2.66895 17.3354V25.3341C2.67338 29.0137 5.65512 31.9954 9.33463 31.9998H22.6659C26.3454 31.9955 29.3272 29.0137 29.3316 25.3341V17.3354C29.3272 13.6557 26.3454 10.674 22.6659 10.6696ZM17.3334 22.6678C17.3334 23.4041 16.7366 24.0009 16.0003 24.0009C15.2641 24.0009 14.6672 23.4041 14.6672 22.6678V20.0015C14.6672 19.2652 15.2641 18.6684 16.0003 18.6684C16.7366 18.6684 17.3334 19.2652 17.3334 20.0015V22.6678V22.6678Z" fill="#374957"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_105_5823">
-                                    <rect width="32" height="32" fill="white"/>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </label>
-                    <input type="password" name="password" id="password" placeholder="Mot de passe">
-                </div>
-                <div class="admin__input">
-                    <input type="submit" value="Se connecter">
-                </div>
-            </form>
+    <div class="admin__login">
+        <div class="admin__bg">
+            <div class="admin__block">
+                <h1>Connexion</h1>
+                <p>
+                    <span>Personnel</span> <span>/</span> <span>Administrateur</span>
+                </p>
+                <form class="admin__form" method="post" action="./?action=login-submit">
+                    <div class="admin__input admin__input__hover">
+                        <label for="username">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 16C20.4183 16 24 12.4183 24 8C24 3.58172 20.4183 0 16 0C11.5817 0 8 3.58172 8 8C8 12.4183 11.5817 16 16 16Z" fill="#374957"/>
+                                <path d="M16 18.6655C9.37563 18.6728 4.00738 24.0411 4 30.6655C4 31.4018 4.59694 31.9988 5.33331 31.9988H26.6666C27.403 31.9988 27.9999 31.4018 27.9999 30.6655C27.9926 24.0411 22.6244 18.6728 16 18.6655Z" fill="#374957"/>
+                            </svg>
+                        </label>
+                        <input type="text" name="login" id="username" placeholder="Nom d'utilisateur">
+                    </div>
+                    <div class="admin__input admin__input__hover">
+                        <label for="password">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_105_5823)">
+                                    <path d="M22.6659 10.6696H9.33463V9.33649C9.33363 5.65517 12.3171 2.67 15.9984 2.669C18.424 2.66831 20.6585 3.9853 21.8327 6.10767C22.1902 6.75151 23.0019 6.98372 23.6458 6.62628C24.2896 6.26883 24.5218 5.45708 24.1644 4.81324C21.668 0.304352 15.989 -1.32709 11.4801 1.16935C8.50994 2.81379 6.66722 5.94157 6.66834 9.33656V11.235C4.24208 12.2939 2.67244 14.6881 2.66895 17.3354V25.3341C2.67338 29.0137 5.65512 31.9954 9.33463 31.9998H22.6659C26.3454 31.9955 29.3272 29.0137 29.3316 25.3341V17.3354C29.3272 13.6557 26.3454 10.674 22.6659 10.6696ZM17.3334 22.6678C17.3334 23.4041 16.7366 24.0009 16.0003 24.0009C15.2641 24.0009 14.6672 23.4041 14.6672 22.6678V20.0015C14.6672 19.2652 15.2641 18.6684 16.0003 18.6684C16.7366 18.6684 17.3334 19.2652 17.3334 20.0015V22.6678V22.6678Z" fill="#374957"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_105_5823">
+                                        <rect width="32" height="32" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </label>
+                        <input type="password" name="password" id="password" placeholder="Mot de passe">
+                    </div>
+                    <div class="admin__input">
+                        <input type="submit" value="Se connecter">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

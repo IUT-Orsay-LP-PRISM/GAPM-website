@@ -3236,7 +3236,11 @@ body.intervenant {
     body.intervenant .admin__block p {
       margin-top: 1.5rem;
       font-weight: 500;
-      color: #86CABE; }
+      color: grey; }
+      body.intervenant .admin__block p span:first-child {
+        color: #86CABE; }
+      body.intervenant .admin__block p span:last-child {
+        color: #DB7070; }
   body.intervenant .admin__form {
     margin: 2.4rem 1rem; }
   body.intervenant .admin__input {
@@ -5659,7 +5663,11 @@ body.demandeur {
     body.demandeur .admin__block p {
       margin-top: 1.5rem;
       font-weight: 500;
-      color: #7EA6F4; }
+      color: grey; }
+      body.demandeur .admin__block p span:first-child {
+        color: #7EA6F4; }
+      body.demandeur .admin__block p span:last-child {
+        color: #DB7070; }
   body.demandeur .admin__form {
     margin: 2.4rem 1rem; }
   body.demandeur .admin__input {
@@ -8082,7 +8090,11 @@ body.admin {
     body.admin .admin__block p {
       margin-top: 1.5rem;
       font-weight: 500;
-      color: #9370DB; }
+      color: grey; }
+      body.admin .admin__block p span:first-child {
+        color: #9370DB; }
+      body.admin .admin__block p span:last-child {
+        color: #DB7070; }
   body.admin .admin__form {
     margin: 2.4rem 1rem; }
   body.admin .admin__input {

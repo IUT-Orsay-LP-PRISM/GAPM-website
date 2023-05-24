@@ -20,7 +20,15 @@
     p{
       margin-top: 1.5rem;
       font-weight: 500;
-      color: $secondary;
+      color: grey;
+      span{
+        &:first-child{
+          color: $secondary;
+        }
+        &:last-child{
+          color: #DB7070;
+        }
+      }
     }
   }
 
