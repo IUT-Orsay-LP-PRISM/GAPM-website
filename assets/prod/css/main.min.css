@@ -3056,6 +3056,21 @@ body.intervenant {
         top: 50%;
         left: -0.1rem;
         transform: translateY(-50%); }
+  body.intervenant .notefrais--selectStatus {
+    margin: 0 1rem; }
+  body.intervenant .notefrais--situation {
+    border-radius: 10px;
+    border: 2px solid #36A793;
+    width: 20em;
+    overflow: hidden;
+    margin-bottom: 2rem; }
+    body.intervenant .notefrais--situation__title {
+      background-color: #36A793;
+      padding: 0.5rem 1rem; }
+    body.intervenant .notefrais--situation__total {
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem; }
   body.intervenant #sidebar-add-depense {
     position: fixed;
     top: 0;
@@ -5464,6 +5479,21 @@ body.demandeur {
         top: 50%;
         left: -0.1rem;
         transform: translateY(-50%); }
+  body.demandeur .notefrais--selectStatus {
+    margin: 0 1rem; }
+  body.demandeur .notefrais--situation {
+    border-radius: 10px;
+    border: 2px solid #5154EC;
+    width: 20em;
+    overflow: hidden;
+    margin-bottom: 2rem; }
+    body.demandeur .notefrais--situation__title {
+      background-color: #5154EC;
+      padding: 0.5rem 1rem; }
+    body.demandeur .notefrais--situation__total {
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem; }
   body.demandeur #sidebar-add-depense {
     position: fixed;
     top: 0;
@@ -7872,6 +7902,21 @@ body.admin {
         top: 50%;
         left: -0.1rem;
         transform: translateY(-50%); }
+  body.admin .notefrais--selectStatus {
+    margin: 0 1rem; }
+  body.admin .notefrais--situation {
+    border-radius: 10px;
+    border: 2px solid #8A2BE2;
+    width: 20em;
+    overflow: hidden;
+    margin-bottom: 2rem; }
+    body.admin .notefrais--situation__title {
+      background-color: #8A2BE2;
+      padding: 0.5rem 1rem; }
+    body.admin .notefrais--situation__total {
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem; }
   body.admin #sidebar-add-depense {
     position: fixed;
     top: 0;

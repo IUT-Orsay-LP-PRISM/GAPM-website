@@ -277,6 +277,30 @@ $greenLightNote  : #F7FEF6;
       }
     }
   }
+
+  &--selectStatus {
+    margin : 0 1rem;
+  }
+
+  &--situation {
+    border-radius : $borderRadiusSmall;
+    border        : 2px solid $primaryLight;
+    width         : 20em;
+    overflow      : hidden;
+    margin-bottom : 2rem;
+
+    &__title {
+      background-color : $primaryLight;
+      padding          : 0.5rem 1rem;
+    }
+
+    &__total {
+      padding     : 1rem;
+      font-weight : bold;
+      font-size   : 1.2rem;
+    }
+
+  }
 }
 
 
