@@ -23,6 +23,7 @@ class PersonnelController extends Template
 
         self::render('/personnel/home.twig', [
             'title' => 'Accueil Personnel',
+            'nav' => 'home',
         ], true);
     }
 
@@ -71,5 +72,11 @@ class PersonnelController extends Template
         } else {
             header("Location: ./?action=login&message=Veuillez compléter les champs.&c=msg-warning");
         }
+    }
+
+    public function logoutSubmit(): void
+    {
+        Session::destroy(false);
+        header('Location: ./?action=login&message=Vous êtes déconnecté.&c=msg-success');
     }
 }
