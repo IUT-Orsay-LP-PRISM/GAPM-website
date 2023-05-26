@@ -3442,7 +3442,7 @@ body.intervenant {
       background: #86CABE;
       border: 2px solid transparent; }
       body.intervenant .btn.btn-secondary-nb:hover {
-        border-color: #86CABE; }
+        border-color: #A0E4F1; }
     body.intervenant .btn.btn-greenLight {
       border: none;
       color: #257466;
@@ -5978,7 +5978,7 @@ body.demandeur {
       background: #7EA6F4;
       border: 2px solid transparent; }
       body.demandeur .btn.btn-secondary-nb:hover {
-        border-color: #7EA6F4; }
+        border-color: #A0E4F1; }
     body.demandeur .btn.btn-greenLight {
       border: none;
       color: #393BAA;
@@ -8514,7 +8514,7 @@ body.admin {
       background: #9370DB;
       border: 2px solid transparent; }
       body.admin .btn.btn-secondary-nb:hover {
-        border-color: #9370DB; }
+        border-color: #E6E6FA; }
     body.admin .btn.btn-greenLight {
       border: none;
       color: #4B0082;
