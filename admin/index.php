@@ -15,7 +15,6 @@ $entityManager = $entityManagerFactory();
 
 $router = new Router();
 $router->addAdminRoute('login', 'PersonnelController', 'loginView');
-
 $router->addAdminRoute('login-submit', 'PersonnelController', 'loginSubmit');
 
 $requestUrl = $_SERVER['REQUEST_URI'];

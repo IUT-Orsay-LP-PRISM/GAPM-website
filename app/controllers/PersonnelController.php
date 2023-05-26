@@ -17,8 +17,10 @@ class PersonnelController extends Template
 
     public function index(): void
     {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
 
-        dump(Session::get('admin'));
         self::render('/personnel/home.twig', [
             'title' => 'Accueil Personnel',
         ], true);
@@ -26,6 +28,10 @@ class PersonnelController extends Template
 
     public function loginView(): void
     {
+        if (Session::isLoggedAdmin()){
+            header('Location: ./?action=home');
+        }
+
         self::render('login.twig', [
             'title' => 'Connexion Personnel',
 
