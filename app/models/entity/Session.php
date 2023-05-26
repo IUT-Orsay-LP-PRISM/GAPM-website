@@ -35,4 +35,9 @@ abstract class Session
         return isset($_SESSION['user']);
     }
 
+    public static function isLoggedAdmin(): bool
+    {
+        return isset($_SESSION['admin']);
+    }
+
 }
