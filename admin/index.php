@@ -18,5 +18,10 @@ $router->addAdminRoute('login', 'PersonnelController', 'loginView');
 $router->addAdminRoute('logout', 'PersonnelController', 'logoutSubmit');
 $router->addAdminRoute('login-submit', 'PersonnelController', 'loginSubmit');
 
+$router->addAdminRoute('intervenants', 'PersonnelController', 'intervenantsView');
+$router->addAdminRoute('plannings', 'PersonnelController', 'planningsView');
+$router->addAdminRoute('notes-frais', 'PersonnelController', 'notesFraisView');
+$router->addAdminRoute('emprunts', 'PersonnelController', 'empruntsVehiculesView');
+
 $requestUrl = $_SERVER['REQUEST_URI'];
 $router->handleRequest($requestUrl);

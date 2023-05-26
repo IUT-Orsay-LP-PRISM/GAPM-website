@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use App\models\entity\Administration;
+use App\models\entity\Intervenant;
 use App\models\entity\Session;
 use Doctrine\ORM\EntityManager;
 
@@ -22,7 +23,7 @@ class PersonnelController extends Template
         }
 
         self::render('/personnel/home.twig', [
-            'title' => 'Accueil Personnel',
+            'title' => 'Accueil',
             'nav' => 'home',
         ], true);
     }
@@ -78,5 +79,57 @@ class PersonnelController extends Template
     {
         Session::destroy(false);
         header('Location: ./?action=login&message=Vous êtes déconnecté.&c=msg-success');
+    }
+
+    public function intervenantsView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        $intervenantRepository = $this->entityManager->getRepository(Intervenant::class);
+        $intervenants = $intervenantRepository->findAll();
+
+        self::render('/personnel/intervenants.twig', [
+            'title' => 'Gestion des intervenants',
+            'nav' => 'intervenants',
+            'intervenants' => $intervenants,
+        ], true);
+    }
+
+    public function planningsView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        self::render('/personnel/plannings.twig', [
+            'title' => 'Gestion des plannings',
+            'nav' => 'plannings',
+        ], true);
+    }
+
+    public function notesFraisView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        self::render('/personnel/notes-frais.twig', [
+            'title' => 'Gestion des notes de frais',
+            'nav' => 'notes',
+        ], true);
+    }
+
+    public function empruntsVehiculesView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        self::render('/personnel/emprunts.twig', [
+            'title' => 'Gestion des emprunts de véhicules',
+            'nav' => 'vehicles',
+        ], true);
     }
 }
