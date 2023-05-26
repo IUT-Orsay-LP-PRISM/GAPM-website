@@ -3292,7 +3292,7 @@ body.intervenant {
     body.intervenant .admin__input svg {
       padding-right: 1.3rem; }
     body.intervenant .admin__input svg path {
-      fill: #36A793; }
+      fill: #86CABE; }
     body.intervenant .admin__input input {
       font-family: "Open Sans", sans-serif;
       border: none;
@@ -3311,7 +3311,7 @@ body.intervenant {
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
     body.intervenant .admin__input input[type="submit"] {
-      background-color: #36A793;
+      background-color: #86CABE;
       color: #FFFFFF;
       font-family: "Poppins", sans-serif;
       font-weight: 600;
@@ -3319,7 +3319,7 @@ body.intervenant {
       cursor: pointer;
       transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); }
       body.intervenant .admin__input input[type="submit"]:hover {
-        background-color: #257466; }
+        background-color: #6d4eac; }
   body.intervenant .admin__wrapper {
     display: flex; }
     body.intervenant .admin__wrapper .main {
@@ -5828,7 +5828,7 @@ body.demandeur {
     body.demandeur .admin__input svg {
       padding-right: 1.3rem; }
     body.demandeur .admin__input svg path {
-      fill: #5154EC; }
+      fill: #7EA6F4; }
     body.demandeur .admin__input input {
       font-family: "Open Sans", sans-serif;
       border: none;
@@ -5847,7 +5847,7 @@ body.demandeur {
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
     body.demandeur .admin__input input[type="submit"] {
-      background-color: #5154EC;
+      background-color: #7EA6F4;
       color: #FFFFFF;
       font-family: "Poppins", sans-serif;
       font-weight: 600;
@@ -5855,7 +5855,7 @@ body.demandeur {
       cursor: pointer;
       transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); }
       body.demandeur .admin__input input[type="submit"]:hover {
-        background-color: #393BAA; }
+        background-color: #6d4eac; }
   body.demandeur .admin__wrapper {
     display: flex; }
     body.demandeur .admin__wrapper .main {
@@ -8364,7 +8364,7 @@ body.admin {
     body.admin .admin__input svg {
       padding-right: 1.3rem; }
     body.admin .admin__input svg path {
-      fill: #8A2BE2; }
+      fill: #9370DB; }
     body.admin .admin__input input {
       font-family: "Open Sans", sans-serif;
       border: none;
@@ -8383,7 +8383,7 @@ body.admin {
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
     body.admin .admin__input input[type="submit"] {
-      background-color: #8A2BE2;
+      background-color: #9370DB;
       color: #FFFFFF;
       font-family: "Poppins", sans-serif;
       font-weight: 600;
@@ -8391,7 +8391,7 @@ body.admin {
       cursor: pointer;
       transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); }
       body.admin .admin__input input[type="submit"]:hover {
-        background-color: #4B0082; }
+        background-color: #6d4eac; }
   body.admin .admin__wrapper {
     display: flex; }
     body.admin .admin__wrapper .main {

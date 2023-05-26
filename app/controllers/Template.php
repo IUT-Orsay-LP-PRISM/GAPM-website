@@ -41,9 +41,13 @@ class Template
         $twig->addGlobal('containerMessage', $_GET['c'] ?? null);
         $twig->addGlobal('modeIntervenant', Session::get("modeIntervenant") ?? null);
 
+        if (Session::isLoggedAdmin()){
+            $twig->addGlobal('user', Session::get('admin'));
+        }
         if (Session::isLogged()) {
             $twig->addGlobal('user', Session::get('user'));
         }
+
         $twig->addExtension(new DebugExtension());
         $twig->addFilter(new Filter('str_repeat', function ($string, $times) {
             $times = ceil($times);

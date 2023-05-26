@@ -71,7 +71,7 @@
   }
   svg{
     path{
-      fill: $primaryLight;
+      fill: $secondary;
     }
   }
 
@@ -100,7 +100,7 @@
   }
 
   input[type="submit"] {
-    background-color: $primaryLight;
+    background-color: $secondary;
     color: $white;
     font-family: $titleFont;
     font-weight: 600;
@@ -108,7 +108,7 @@
     cursor: pointer;
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     &:hover {
-      background-color: $primaryDark;
+      background-color: rgb(109, 78, 172);
     }
   }
 }

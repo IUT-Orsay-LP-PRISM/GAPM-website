@@ -3,7 +3,7 @@
         <div class="admin__sidebar__title">
             <h2>G.A.P.M</h2>
             <p>
-                Personnel
+                Administration
             </p>
         </div>
     </div>
@@ -11,13 +11,13 @@
         <nav class="admin__nav">
             <ul>
                 <li>
-                    <a href="#" {% if nav == 'home' %}class="--active"{% endif %}>
+                    <a href="./?action=home" {% if nav == 'home' %}class="--active"{% endif %}>
                         {% include 'svg/house.svg' %}
                         Accueil
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="">
                         <i class="icon-fi-rr-doctor"></i>
                         Gestion des praticiens
                     </a>
