@@ -63,7 +63,7 @@ class PersonnelController extends Template
                 if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('admin', $user);
 
-                    header('Location: ./?action=home&message=Vous êtes connecté.&c=msg-success');
+                    header('Location: ./?action=intervenants&message=Vous êtes connecté.&c=msg-success');
                 } else {
                     header("Location: ./?action=login&message=Adresse email ou mot de passe incorrect.&c=msg-error");
                 }
@@ -87,13 +87,39 @@ class PersonnelController extends Template
             header('Location: ./?action=login');
         }
 
+        $page = $_GET['page'] ?? 0;
+
         $intervenantRepository = $this->entityManager->getRepository(Intervenant::class);
         $intervenants = $intervenantRepository->findAll();
+        $intervenantsChunked = array_chunk($intervenants, 5);
+        $intervenants = $intervenantsChunked[$page];
+        $pageNumbers = count($intervenantsChunked);
 
         self::render('/personnel/intervenants.twig', [
             'title' => 'Gestion des intervenants',
             'nav' => 'intervenants',
             'intervenants' => $intervenants,
+            'page' => $page,
+            'pageNumbers' => $pageNumbers,
+            'pageDisplay' => true,
+        ], true);
+    }
+
+    public function searchIntervenantsView(): void{
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        $query = $_GET['search'];
+
+        $intervenantRepository = $this->entityManager->getRepository(Intervenant::class);
+        $intervenants = $intervenantRepository->findByNameLike($query);
+
+        self::render('/personnel/intervenants.twig', [
+            'title' => 'Gestion des intervenants',
+            'nav' => 'intervenants',
+            'intervenants' => $intervenants,
+            'pageDisplay' => false,
         ], true);
     }
 
@@ -132,4 +158,5 @@ class PersonnelController extends Template
             'nav' => 'vehicles',
         ], true);
     }
+
 }
