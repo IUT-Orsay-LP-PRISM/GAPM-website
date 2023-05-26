@@ -3026,7 +3026,6 @@ body.intervenant {
     body.intervenant .notefrais__table--title {
       background-color: #F1FAFB;
       color: #144139;
-      text-align: center;
       font-size: 1em;
       padding: 10px; }
       body.intervenant .notefrais__table--title__content {
@@ -3056,8 +3055,36 @@ body.intervenant {
         top: 50%;
         left: -0.1rem;
         transform: translateY(-50%); }
+  body.intervenant .notefrais--titleFilter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem; }
   body.intervenant .notefrais--selectStatus {
-    margin: 0 1rem; }
+    /* styling */
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    display: inline-block;
+    display: inline-block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    padding: 0.5em 3em 0.5em 1em;
+    margin: 0;
+    outline: none;
+    background-image: linear-gradient(45deg, transparent 50%, #FFFFFF 50%), linear-gradient(135deg, #FFFFFF 50%, transparent 50%), linear-gradient(to right, #36A793, #36A793);
+    background-position: calc(100% - 18px) calc(1em), calc(100% - 13px) calc(1em), 100% 0;
+    background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none; }
+  body.intervenant .notefrais--titleTable {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
   body.intervenant .notefrais--situation {
     border-radius: 10px;
     border: 2px solid #36A793;
@@ -5453,7 +5480,6 @@ body.demandeur {
     body.demandeur .notefrais__table--title {
       background-color: #F1FAFB;
       color: #1E1E3D;
-      text-align: center;
       font-size: 1em;
       padding: 10px; }
       body.demandeur .notefrais__table--title__content {
@@ -5483,8 +5509,36 @@ body.demandeur {
         top: 50%;
         left: -0.1rem;
         transform: translateY(-50%); }
+  body.demandeur .notefrais--titleFilter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem; }
   body.demandeur .notefrais--selectStatus {
-    margin: 0 1rem; }
+    /* styling */
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    display: inline-block;
+    display: inline-block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    padding: 0.5em 3em 0.5em 1em;
+    margin: 0;
+    outline: none;
+    background-image: linear-gradient(45deg, transparent 50%, #FFFFFF 50%), linear-gradient(135deg, #FFFFFF 50%, transparent 50%), linear-gradient(to right, #5154EC, #5154EC);
+    background-position: calc(100% - 18px) calc(1em), calc(100% - 13px) calc(1em), 100% 0;
+    background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none; }
+  body.demandeur .notefrais--titleTable {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
   body.demandeur .notefrais--situation {
     border-radius: 10px;
     border: 2px solid #5154EC;
@@ -7880,7 +7934,6 @@ body.admin {
     body.admin .notefrais__table--title {
       background-color: #D3A9DD;
       color: #302053;
-      text-align: center;
       font-size: 1em;
       padding: 10px; }
       body.admin .notefrais__table--title__content {
@@ -7910,8 +7963,36 @@ body.admin {
         top: 50%;
         left: -0.1rem;
         transform: translateY(-50%); }
+  body.admin .notefrais--titleFilter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem; }
   body.admin .notefrais--selectStatus {
-    margin: 0 1rem; }
+    /* styling */
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    display: inline-block;
+    display: inline-block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    padding: 0.5em 3em 0.5em 1em;
+    margin: 0;
+    outline: none;
+    background-image: linear-gradient(45deg, transparent 50%, #FFFFFF 50%), linear-gradient(135deg, #FFFFFF 50%, transparent 50%), linear-gradient(to right, #8A2BE2, #8A2BE2);
+    background-position: calc(100% - 18px) calc(1em), calc(100% - 13px) calc(1em), 100% 0;
+    background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none; }
+  body.admin .notefrais--titleTable {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
   body.admin .notefrais--situation {
     border-radius: 10px;
     border: 2px solid #8A2BE2;
