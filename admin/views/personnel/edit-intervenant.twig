@@ -1,0 +1,40 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title">
+		<h1>{{ title }}</h1>
+	</div>
+	<div class="admin__page__content admin__inter__see">
+	<div class="admin__inter admin__inter__edit">
+		<div class="admin__inter__img">
+			<img src="../{{ int.imgUrl }}" alt="{{ int.nom }} {{ int.prenom }}">
+		</div>
+		<div class="admin__inter__noms admin__input admin__input-edit">
+			<label for="editname">
+				Nom
+			</label>
+			<input type="text" id="editname" value="{{ int.nom }}">
+		</div>
+		<div class="admin__input admin__input-edit">
+			<label for="editnamef">
+				Prénom
+			</label>
+			<input type="text" id="editnamef" value="{{ int.prenom }}">
+		</div>
+		<div class="admin__inter__spe">
+			{% for spe in int.specialites %}
+				• {{ spe.libelle }}
+				<br>
+			{% endfor %}
+		</div>
+		<div class="admin__inter__adresse admin__input admin__input-edit">
+			<label for="">
+				Adresse
+			</label>
+			<input type="text" value="{{ int.adressePro }}">
+			{{ int.villePro.codePostal }} {{ int.villePro.nom }}
+		</div>
+	</div>
+{% endblock %}

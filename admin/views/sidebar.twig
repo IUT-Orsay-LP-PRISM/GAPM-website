@@ -17,19 +17,25 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="./?action=intervenants" {% if nav == 'intervenants' %}class="--active"{% endif %}>
                         <i class="icon-fi-rr-doctor"></i>
                         Gestion des praticiens
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="./?action=plannings"  {% if nav == 'plannings' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-notebook"></i>
+                        Gestion des plannings
+                    </a>
+                </li>
+                <li>
+                    <a href="./?action=notes-frais" {% if nav == 'notes' %}class="--active"{% endif %}>
                         <i class="icon-fi-rr-receipt"></i>
                         Notes de frais
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="./?action=emprunts" {% if nav == 'vehicles' %}class="--active"{% endif %}>
                         <i class="icon-fi-rr-car"></i>
                         Emprunts de véhicules
                     </a>

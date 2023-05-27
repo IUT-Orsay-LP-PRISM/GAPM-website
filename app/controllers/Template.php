@@ -37,13 +37,13 @@ class Template
             'debug' => true
         ]);
         $twig->addGlobal('userLogged', Session::isLogged());
+        $twig->addGlobal('adminLogged', Session::isLoggedAdmin());
         $twig->addGlobal('message', $_GET['message'] ?? null);
         $twig->addGlobal('containerMessage', $_GET['c'] ?? null);
         $twig->addGlobal('modeIntervenant', Session::get("modeIntervenant") ?? null);
+        $twig->addGlobal('admin', Session::get('admin') ?? null);
 
-        if (Session::isLoggedAdmin()){
-            $twig->addGlobal('user', Session::get('admin'));
-        }
+
         if (Session::isLogged()) {
             $twig->addGlobal('user', Session::get('user'));
         }
