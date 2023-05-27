@@ -3495,6 +3495,21 @@ body.intervenant {
     width: 75px; }
   body.intervenant .admin__inter__adresse, body.intervenant .admin__inter__spe {
     line-height: 2; }
+  body.intervenant .admin__inter__see .admin__inter__head {
+    grid-template-columns: 200px 1fr 1fr 1fr; }
+  body.intervenant .admin__inter__see .admin__inter__item {
+    grid-template-columns: 200px 1fr 1fr 1fr; }
+  body.intervenant .admin__inter__see .admin__inter__img img {
+    border-radius: 50%;
+    width: 200px; }
+  body.intervenant .admin__inter__see .admin__inter__rdv .admin__inter__head {
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr; }
+  body.intervenant .admin__inter__see .admin__inter__rdv .admin__inter__item {
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr; }
+  body.intervenant .admin__inter__see h2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 500; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -6127,6 +6142,21 @@ body.demandeur {
     width: 75px; }
   body.demandeur .admin__inter__adresse, body.demandeur .admin__inter__spe {
     line-height: 2; }
+  body.demandeur .admin__inter__see .admin__inter__head {
+    grid-template-columns: 200px 1fr 1fr 1fr; }
+  body.demandeur .admin__inter__see .admin__inter__item {
+    grid-template-columns: 200px 1fr 1fr 1fr; }
+  body.demandeur .admin__inter__see .admin__inter__img img {
+    border-radius: 50%;
+    width: 200px; }
+  body.demandeur .admin__inter__see .admin__inter__rdv .admin__inter__head {
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr; }
+  body.demandeur .admin__inter__see .admin__inter__rdv .admin__inter__item {
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr; }
+  body.demandeur .admin__inter__see h2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 500; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -8759,6 +8789,21 @@ body.admin {
     width: 75px; }
   body.admin .admin__inter__adresse, body.admin .admin__inter__spe {
     line-height: 2; }
+  body.admin .admin__inter__see .admin__inter__head {
+    grid-template-columns: 200px 1fr 1fr 1fr; }
+  body.admin .admin__inter__see .admin__inter__item {
+    grid-template-columns: 200px 1fr 1fr 1fr; }
+  body.admin .admin__inter__see .admin__inter__img img {
+    border-radius: 50%;
+    width: 200px; }
+  body.admin .admin__inter__see .admin__inter__rdv .admin__inter__head {
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr; }
+  body.admin .admin__inter__see .admin__inter__rdv .admin__inter__item {
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr; }
+  body.admin .admin__inter__see h2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 500; }
   body.admin .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;

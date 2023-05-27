@@ -353,5 +353,37 @@
   &__adresse, &__spe{
     line-height: 2;
   }
+}
 
+.admin__inter__see{
+  .admin__inter{
+    &__head{
+      grid-template-columns: 200px 1fr 1fr 1fr;
+    }
+    &__item{
+      grid-template-columns: 200px 1fr 1fr 1fr;
+    }
+    &__img{
+      img{
+        border-radius: 50%;
+        width: 200px;
+      }
+    }
+  }
+  .admin__inter__rdv{
+    .admin__inter {
+      &__head {
+        grid-template-columns : 200px 1fr 1fr 1fr 1fr;
+      }
+
+      &__item {
+        grid-template-columns : 200px 1fr 1fr 1fr 1fr;
+      }
+    }
+  }
+  h2{
+    margin-top : 2rem;
+    margin-bottom : 2rem;
+    font-weight: 500;
+  }
 }

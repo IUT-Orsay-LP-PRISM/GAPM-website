@@ -18,11 +18,12 @@ $router->addAdminRoute('login', 'PersonnelController', 'loginView');
 $router->addAdminRoute('logout', 'PersonnelController', 'logoutSubmit');
 $router->addAdminRoute('login-submit', 'PersonnelController', 'loginSubmit');
 
-/* Personnel */
+/* Intervenants */
 $router->addAdminRoute('intervenants', 'PersonnelController', 'intervenantsView');
 $router->addAdminRoute('intervenants&page=<num>', 'PersonnelController', 'intervenantsView');
-
 $router->addAdminRoute('intervenants&search=<query>', 'PersonnelController', 'searchIntervenantsView');
+$router->addAdminRoute('intervenant&id=<id>', 'PersonnelController', 'intervenantView');
+
 $router->addAdminRoute('plannings', 'PersonnelController', 'planningsView');
 $router->addAdminRoute('notes-frais', 'PersonnelController', 'notesFraisView');
 $router->addAdminRoute('emprunts', 'PersonnelController', 'empruntsVehiculesView');
