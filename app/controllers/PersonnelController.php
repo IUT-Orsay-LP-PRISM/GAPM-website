@@ -7,7 +7,10 @@ use App\models\entity\Demandeur;
 use App\models\entity\Depense;
 use App\models\entity\Intervenant;
 use App\models\entity\Session;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use function Symfony\Component\String\u;
 
 class PersonnelController extends Template
@@ -145,13 +148,48 @@ class PersonnelController extends Template
 
         self::render('/personnel/intervenant.twig', [
             'title' => 'Profil de l\'intervenant ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
-            'nav' => 'intervenants',
             'int' => $intervenant,
             'rdv' => $rdvIntervenant,
             'depenses' => $depenses,
         ], true);
     }
 
+    public function editIntervenantView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        self::render('/personnel/edit-intervenant.twig', [
+            'title' => 'Modifier l\'intervenant ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
+            'int' => $intervenant,
+        ], true);
+
+    }
+
+    public function deleteIntervenantView(): void{
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        try {
+            $this->entityManager->remove($intervenant);
+            $this->entityManager->flush();
+            header('Location: ./?action=intervenants&message=Intervenant supprimé.&c=msg-success');
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=intervenants&message=Erreur lors de la suppression de l\'intervenant.&c=msg-error');
+        }
+    }
 
     public function planningsView(): void
     {

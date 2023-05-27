@@ -88,25 +88,37 @@
     position: relative;
 
     &:focus {
-      outline: none;
+      outline : none;
 
     }
 
     &::placeholder {
-      color: $black;
-      font-family: $mainFont;
-      font-size: 1rem;
+      color       : $black;
+      font-family : $mainFont;
+      font-size   : 1rem;
+    }
+  }
+
+  &-edit {
+    input {
+      background-color : $white;
+      color            : $black;
+
+      &::placeholder {
+        color : $black;
+      }
     }
   }
 
   input[type="submit"] {
-    background-color: $secondary;
-    color: $white;
-    font-family: $titleFont;
-    font-weight: 600;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color : $secondary;
+    color            : $white;
+    font-family      : $titleFont;
+    font-weight      : 600;
+    font-size        : 1.2rem;
+    cursor           : pointer;
+    transition       : all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
     &:hover {
       background-color: rgb(109, 78, 172);
     }
@@ -381,9 +393,27 @@
       }
     }
   }
-  h2{
-    margin-top : 2rem;
+
+  h2 {
+    margin-top    : 2rem;
     margin-bottom : 2rem;
+    font-weight   : 500;
+  }
+}
+
+.admin__inter__edit {
+  padding          : 2rem;
+  border-radius    : 10px;
+  display          : flex;
+  flex-direction   : column;
+  background-color : $light;
+  justify-content: center;
+  align-items: center;
+
+  label{
+    font-family: $titleFont;
     font-weight: 500;
+    font-size: 1rem;
+    color: $primaryDark;
   }
 }

@@ -3310,6 +3310,11 @@ body.intervenant {
         color: #144139;
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
+    body.intervenant .admin__input-edit input {
+      background-color: #FFFFFF;
+      color: #144139; }
+      body.intervenant .admin__input-edit input::placeholder {
+        color: #144139; }
     body.intervenant .admin__input input[type="submit"] {
       background-color: #86CABE;
       color: #FFFFFF;
@@ -3510,6 +3515,19 @@ body.intervenant {
     margin-top: 2rem;
     margin-bottom: 2rem;
     font-weight: 500; }
+  body.intervenant .admin__inter__edit {
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #dee7e8;
+    justify-content: center;
+    align-items: center; }
+    body.intervenant .admin__inter__edit label {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #257466; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -5957,6 +5975,11 @@ body.demandeur {
         color: #1E1E3D;
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
+    body.demandeur .admin__input-edit input {
+      background-color: #FFFFFF;
+      color: #1E1E3D; }
+      body.demandeur .admin__input-edit input::placeholder {
+        color: #1E1E3D; }
     body.demandeur .admin__input input[type="submit"] {
       background-color: #7EA6F4;
       color: #FFFFFF;
@@ -6157,6 +6180,19 @@ body.demandeur {
     margin-top: 2rem;
     margin-bottom: 2rem;
     font-weight: 500; }
+  body.demandeur .admin__inter__edit {
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #DCE6F2;
+    justify-content: center;
+    align-items: center; }
+    body.demandeur .admin__inter__edit label {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #393BAA; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -8604,6 +8640,11 @@ body.admin {
         color: #302053;
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
+    body.admin .admin__input-edit input {
+      background-color: #FFFFFF;
+      color: #302053; }
+      body.admin .admin__input-edit input::placeholder {
+        color: #302053; }
     body.admin .admin__input input[type="submit"] {
       background-color: #9370DB;
       color: #FFFFFF;
@@ -8804,6 +8845,19 @@ body.admin {
     margin-top: 2rem;
     margin-bottom: 2rem;
     font-weight: 500; }
+  body.admin .admin__inter__edit {
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+    justify-content: center;
+    align-items: center; }
+    body.admin .admin__inter__edit label {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #4B0082; }
   body.admin .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;

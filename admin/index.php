@@ -23,6 +23,8 @@ $router->addAdminRoute('intervenants', 'PersonnelController', 'intervenantsView'
 $router->addAdminRoute('intervenants&page=<num>', 'PersonnelController', 'intervenantsView');
 $router->addAdminRoute('intervenants&search=<query>', 'PersonnelController', 'searchIntervenantsView');
 $router->addAdminRoute('intervenant&id=<id>', 'PersonnelController', 'intervenantView');
+$router->addAdminRoute('intervenant-edit&id=<id>', 'PersonnelController', 'editIntervenantView');
+$router->addAdminRoute('intervenant-delete&id=<id>', 'PersonnelController', 'deleteIntervenantView');
 
 $router->addAdminRoute('plannings', 'PersonnelController', 'planningsView');
 $router->addAdminRoute('notes-frais', 'PersonnelController', 'notesFraisView');
