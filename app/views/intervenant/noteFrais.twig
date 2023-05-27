@@ -1,22 +1,22 @@
 <section class="notefrais">
     <h2 class="myaccount__form-title">Situation financière</h2>
     <div class="notefrais--situation">
-        <p>Remboursements en attente</p>
-        <p>{{ TotalRemboursementsEnAttente }} €</p>
+        <p class="notefrais--situation__title" >Remboursements en attente</p>
+        <p class="notefrais--situation__total">{{ TotalRemboursementsEnAttente }} €</p>
     </div>
 
-    <h2 class="myaccount__form-title">
-        <p>Notes de frais</p>
-        <select name="status">
+    <h2 class="myaccount__form-title notefrais--titleFilter">
+        <p class="notefrais--titleTable">Notes de frais</p>
+        <select class="notefrais--selectStatus" id="noteFrais-filter"  name="status">
             <option value="all">Tous les statuts</option>
-            <option value="en attente">En attente</option>
-            <option value="validée">Validée</option>
-            <option value="refusée">Refusée</option>
-            <option value="payée">Payée</option>
+            <option value="En attente">En attente</option>
+            <option value="Validée">Validée</option>
+            <option value="Refusée">Refusée</option>
+            <option value="Payée">Payée</option>
         </select>
     </h2>
 
-    <table class="notefrais__table">
+    <table class="notefrais__table" id="noteFrais-table-filter" >
         <thead>
         <tr>
             <td>N°</td>
@@ -31,7 +31,7 @@
                 <td>{{ note.idNoteFrais }}</td>
                 <td>{{ note.dateNote|date('d/m/Y') }}</td>
                 <td>{{ note.montantTotal }}€</td>
-                <td>{{ note.status|capitalize }}</td>
+                <td class="notefrais--status" >{{ note.status|capitalize }}</td>
             </tr>
         {% endfor %}
         </tbody>

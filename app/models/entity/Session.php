@@ -14,10 +14,13 @@ abstract class Session
     {
         return $_SESSION;
     }
-    public static function destroy(): void
+    public static function destroy($user = true): void
     {
-        session_unset();
-        session_destroy();
+        if ($user) {
+            unset($_SESSION['user']);
+        } else {
+            unset($_SESSION['admin']);
+        }
     }
 
     public static function set(string $key, $value): void
@@ -33,6 +36,11 @@ abstract class Session
     public static function isLogged(): bool
     {
         return isset($_SESSION['user']);
+    }
+
+    public static function isLoggedAdmin(): bool
+    {
+        return isset($_SESSION['admin']);
     }
 
 }

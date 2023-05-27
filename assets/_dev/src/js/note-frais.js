@@ -236,3 +236,38 @@ function changeTextButton() {
     }
 }
 
+
+const SelectFilter = document.querySelector('#noteFrais-filter');
+const tableNoteFrais = document.querySelector('.notefrais .notefrais__table#noteFrais-table-filter');
+console.log(SelectFilter);
+console.log(tableNoteFrais);
+
+if (SelectFilter) {
+    SelectFilter.addEventListener('change', () => {
+        const allRows = tableNoteFrais.querySelectorAll('tbody tr');
+
+        if (SelectFilter.value === 'all') {
+            allRows.forEach(row => {
+                row.style.display = 'table-row';
+            });
+        } else {
+            const rowsValideFilter = [...allRows].filter(row => {
+                const status = row.querySelector('td.notefrais--status').innerHTML;
+                return status === SelectFilter.value;
+            });
+
+            const rowsNonValideFilter = [...allRows].filter(row => {
+                const status = row.querySelector('td.notefrais--status').innerHTML;
+                return status !== SelectFilter.value;
+            });
+
+            rowsValideFilter.forEach(row => {
+                row.style.display = 'table-row';
+            });
+
+            rowsNonValideFilter.forEach(row => {
+                row.style.display = 'none';
+            });
+        }
+    });
+}

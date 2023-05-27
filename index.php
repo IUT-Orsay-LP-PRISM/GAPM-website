@@ -53,6 +53,7 @@ $router->addRoute('emprunter-vehicule', 'IntervenantController', 'emprunterVehic
  * Routes avec paramètres
  */
 $router->addRoute('my-account&nav=<nav>', 'DemandeurController', 'displayMyAccount');
+$router->addRoute('notes-de-frais&nav=<nav>', 'NoteFraisController', 'displayNoteFrais');
 
 $router->addRoute('profile&id=<id>', 'IntervenantController', 'profile');
 

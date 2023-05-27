@@ -3,8 +3,15 @@
 namespace App\controllers;
 
 use App\models\entity\Administration;
+use App\models\entity\Demandeur;
+use App\models\entity\Depense;
+use App\models\entity\Intervenant;
 use App\models\entity\Session;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use function Symfony\Component\String\u;
 
 class PersonnelController extends Template
 {
@@ -15,24 +22,31 @@ class PersonnelController extends Template
         $this->entityManager = $entityManager;
     }
 
-    public function index()
+    public function index(): void
     {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
 
-        dump(Session::get('admin'));
         self::render('/personnel/home.twig', [
-            'title' => 'Accueil Personnel',
+            'title' => 'Accueil',
+            'nav' => 'home',
         ], true);
     }
 
-    public function loginView()
+    public function loginView(): void
     {
+        if (Session::isLoggedAdmin()){
+            header('Location: ./?action=home');
+        }
+
         self::render('login.twig', [
             'title' => 'Connexion Personnel',
 
         ], true);
     }
 
-    public function loginSubmit()
+    public function loginSubmit(): void
     {
         $id = $_POST['login'];
         $password = $_POST['password'];
@@ -55,7 +69,7 @@ class PersonnelController extends Template
                 if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('admin', $user);
 
-                    header('Location: ./?action=home&message=Vous êtes connecté.&c=msg-success');
+                    header('Location: ./?action=intervenants&message=Vous êtes connecté.&c=msg-success');
                 } else {
                     header("Location: ./?action=login&message=Adresse email ou mot de passe incorrect.&c=msg-error");
                 }
@@ -66,4 +80,151 @@ class PersonnelController extends Template
             header("Location: ./?action=login&message=Veuillez compléter les champs.&c=msg-warning");
         }
     }
+
+    public function logoutSubmit(): void
+    {
+        Session::destroy(false);
+        header('Location: ./?action=login&message=Vous êtes déconnecté.&c=msg-success');
+    }
+
+    public function intervenantsView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        $page = $_GET['page'] ?? 0;
+
+        $intervenantRepository = $this->entityManager->getRepository(Intervenant::class);
+        $intervenants = $intervenantRepository->findAll();
+        $intervenantsChunked = array_chunk($intervenants, 5);
+        $intervenants = $intervenantsChunked[$page];
+        $pageNumbers = count($intervenantsChunked);
+
+        self::render('/personnel/intervenants.twig', [
+            'title' => 'Gestion des intervenants',
+            'nav' => 'intervenants',
+            'intervenants' => $intervenants,
+            'page' => $page,
+            'pageNumbers' => $pageNumbers,
+            'pageDisplay' => true,
+        ], true);
+    }
+
+    public function searchIntervenantsView(): void{
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        $query = $_GET['search'];
+
+        $intervenantRepository = $this->entityManager->getRepository(Intervenant::class);
+        $intervenants = $intervenantRepository->findByNameLike($query);
+
+        self::render('/personnel/intervenants.twig', [
+            'title' => 'Gestion des intervenants',
+            'nav' => 'intervenants',
+            'intervenants' => $intervenants,
+            'pageDisplay' => false,
+        ], true);
+    }
+
+
+    public function intervenantView(): void{
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+
+        $intervenant = $this->entityManager->getRepository(Demandeur::class)->find($id);
+        $rdvIntervenant = $intervenant->getMesRendezVous();
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+        $depenses = $this->entityManager->getRepository(Depense::class)->findBy([
+            'intervenant' => $intervenant->getIdDemandeur(),
+        ]);
+
+        self::render('/personnel/intervenant.twig', [
+            'title' => 'Profil de l\'intervenant ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
+            'int' => $intervenant,
+            'rdv' => $rdvIntervenant,
+            'depenses' => $depenses,
+        ], true);
+    }
+
+    public function editIntervenantView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        self::render('/personnel/edit-intervenant.twig', [
+            'title' => 'Modifier l\'intervenant ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
+            'int' => $intervenant,
+        ], true);
+
+    }
+
+    public function deleteIntervenantView(): void{
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        try {
+            $this->entityManager->remove($intervenant);
+            $this->entityManager->flush();
+            header('Location: ./?action=intervenants&message=Intervenant supprimé.&c=msg-success');
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=intervenants&message=Erreur lors de la suppression de l\'intervenant.&c=msg-error');
+        }
+    }
+
+    public function planningsView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        self::render('/personnel/plannings.twig', [
+            'title' => 'Gestion des plannings',
+            'nav' => 'plannings',
+        ], true);
+    }
+
+    public function notesFraisView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        self::render('/personnel/notes-frais.twig', [
+            'title' => 'Gestion des notes de frais',
+            'nav' => 'notes',
+        ], true);
+    }
+
+    public function empruntsVehiculesView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        self::render('/personnel/emprunts.twig', [
+            'title' => 'Gestion des emprunts de véhicules',
+            'nav' => 'vehicles',
+        ], true);
+    }
+
 }

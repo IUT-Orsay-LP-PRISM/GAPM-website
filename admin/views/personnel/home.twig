@@ -1,7 +1,9 @@
-{% extends 'layout-admin.twig' %}
+{% extends 'layouts/layout-admin.twig' %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h1>Accueil</h1>
+    <div class="admin__page__title">
+        <h1>{{ title }}</h1>
+    </div>
 {% endblock %}

@@ -8,12 +8,13 @@
         <title>{% block title %}{% endblock %} • GAPM-Admin</title>
     </head>
     <body class="admin">
-        <div class="admin__login">
-            {% block content %}
-            {% endblock %}
+        <div class="admin__wrapper">
+            {% include 'sidebar.twig' %}
+            <main class="main">
+                {% block content %}{% endblock %}
+            </main>
         </div>
         {% include 'notifications.twig' %}
-
         <script src="{{ app.request.getSchemeAndHttpHost() }}/assets/prod/js/main.min.js"></script>
     </body>
 </html>

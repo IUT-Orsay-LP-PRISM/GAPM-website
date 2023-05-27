@@ -1,0 +1,54 @@
+<section class="admin__sidebar">
+    <div class="admin__sidebar__head">
+        <div class="admin__sidebar__title">
+            <h2>G.A.P.M</h2>
+            <p>
+                Administration
+            </p>
+        </div>
+    </div>
+    <div class="admin__sidebar__content">
+        <nav class="admin__nav">
+            <ul>
+                <li>
+                    <a href="./?action=home" {% if nav == 'home' %}class="--active"{% endif %}>
+                        {% include 'svg/house.svg' %}
+                        Accueil
+                    </a>
+                </li>
+                <li>
+                    <a href="./?action=intervenants" {% if nav == 'intervenants' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-doctor"></i>
+                        Gestion des praticiens
+                    </a>
+                </li>
+                <li>
+                    <a href="./?action=plannings"  {% if nav == 'plannings' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-notebook"></i>
+                        Gestion des plannings
+                    </a>
+                </li>
+                <li>
+                    <a href="./?action=notes-frais" {% if nav == 'notes' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-receipt"></i>
+                        Notes de frais
+                    </a>
+                </li>
+                <li>
+                    <a href="./?action=emprunts" {% if nav == 'vehicles' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-car"></i>
+                        Emprunts de véhicules
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="admin__sidebar__footer">
+        <ul>
+            <li>
+                <a href="./?action=logout"><i class="icon-fi-rr-user"></i>Se déconnecter</a>
+            </li>
+        </ul>
+    </div>
+</section>
