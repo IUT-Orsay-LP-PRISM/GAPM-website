@@ -29,7 +29,7 @@ $router->addAdminRoute('update-intervenant', 'IntervenantController', 'updateFro
 $router->addAdminRoute('delete-intervenant', 'PersonnelController', 'deleteIntervenantSubmit');
 
 
-$router->addAdminRoute('plannings', 'PersonnelController', 'planningsView');
+$router->addAdminRoute('demandeurs', 'PersonnelController', 'demandeursView');
 $router->addAdminRoute('notes-frais', 'PersonnelController', 'notesFraisView');
 $router->addAdminRoute('emprunts', 'PersonnelController', 'empruntsVehiculesView');
 

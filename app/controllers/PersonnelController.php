@@ -102,7 +102,7 @@ class PersonnelController extends Template
         $intervenants = $intervenantsChunked[$page];
         $pageNumbers = count($intervenantsChunked);
 
-        self::render('/personnel/intervenants.twig', [
+        self::render('/personnel/intervenants/intervenants.twig', [
             'title' => 'Gestion des intervenants',
             'nav' => 'intervenants',
             'intervenants' => $intervenants,
@@ -122,14 +122,13 @@ class PersonnelController extends Template
         $intervenantRepository = $this->entityManager->getRepository(Intervenant::class);
         $intervenants = $intervenantRepository->findByNameLike($query);
 
-        self::render('/personnel/intervenants.twig', [
+        self::render('/personnel/intervenants/intervenants.twig', [
             'title' => 'Gestion des intervenants',
             'nav' => 'intervenants',
             'intervenants' => $intervenants,
             'pageDisplay' => false,
         ], true);
     }
-
 
     public function intervenantView(): void{
         if (!Session::isLoggedAdmin()){
@@ -147,7 +146,7 @@ class PersonnelController extends Template
             'intervenant' => $intervenant->getIdDemandeur(),
         ]);
 
-        self::render('/personnel/intervenant.twig', [
+        self::render('/personnel/intervenants/intervenant.twig', [
             'title' => 'Profil de l\'intervenant ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
             'int' => $intervenant,
             'rdv' => $rdvIntervenant,
@@ -166,7 +165,7 @@ class PersonnelController extends Template
             'idDemandeur' => $id,
         ]);
 
-        self::render('/personnel/edit-intervenant.twig', [
+        self::render('/personnel/intervenants/edit-intervenant.twig', [
             'title' => 'Modifier l\'intervenant ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
             'int' => $intervenant,
         ], true);
@@ -183,7 +182,7 @@ class PersonnelController extends Template
             'idDemandeur' => $id,
         ]);
 
-        self::render('/personnel/delete-intervenant.twig', [
+        self::render('/personnel/intervenants/delete-intervenant.twig', [
             'title' => 'Supprimer l\'intervenant',
             'id' => $id,
             'int' => $intervenant,
@@ -210,15 +209,15 @@ class PersonnelController extends Template
         }
     }
 
-    public function planningsView(): void
+    public function demandeursView(): void
     {
         if (!Session::isLoggedAdmin()){
             header('Location: ./?action=login');
         }
 
-        self::render('/personnel/plannings.twig', [
-            'title' => 'Gestion des plannings',
-            'nav' => 'plannings',
+        self::render('/personnel/demandeurs/demandeurs.twig', [
+            'title' => 'Gestion des demandeurs',
+            'nav' => 'demandeurs',
         ], true);
     }
 
