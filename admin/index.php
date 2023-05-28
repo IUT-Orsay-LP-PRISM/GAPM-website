@@ -25,10 +25,15 @@ $router->addAdminRoute('intervenants&search=<query>', 'PersonnelController', 'se
 $router->addAdminRoute('intervenant&id=<id>', 'PersonnelController', 'intervenantView');
 $router->addAdminRoute('intervenant-edit&id=<id>', 'PersonnelController', 'editIntervenantView');
 $router->addAdminRoute('intervenant-delete&id=<id>', 'PersonnelController', 'deleteIntervenantView');
+$router->addAdminRoute('update-intervenant', 'IntervenantController', 'updateFromAdmin');
+
 
 $router->addAdminRoute('plannings', 'PersonnelController', 'planningsView');
 $router->addAdminRoute('notes-frais', 'PersonnelController', 'notesFraisView');
 $router->addAdminRoute('emprunts', 'PersonnelController', 'empruntsVehiculesView');
+
+$router->addAdminRoute('autocompleteSpecialite&query<query>', 'SpecialiteController', 'autocomplete');
+$router->addAdminRoute('autocompleteVille&query=<query>', 'VilleController', 'autocomplete');
 
 $requestUrl = $_SERVER['REQUEST_URI'];
 $router->handleRequest($requestUrl);

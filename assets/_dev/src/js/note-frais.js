@@ -164,6 +164,7 @@ if (btn_prepare) {
 
                 function callback(xhr) {
                     if (xhr.status === 200) {
+                        console.log(xhr)
                         const response = JSON.parse(xhr.responseText);
                         if (response.success) {
                             addMessageInURL('Note de frais préparée avec succès', 'msg-success');

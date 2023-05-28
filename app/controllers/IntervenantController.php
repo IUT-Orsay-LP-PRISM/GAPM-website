@@ -157,6 +157,47 @@ class IntervenantController extends Template
         }
     }
 
+    public function updateFromAdmin(): void
+    {
+        if (isset($_POST['specialites'])) {
+            if ($_POST['specialites'] == 'null') {
+                $referer = self::addMessageToUrl('Veuillez choisir au moins une spécialité.', 'msg-warning');
+                header("Location: $referer");
+                exit();
+            }
+            $specialitesString = $_POST['specialites'];
+            if ($specialitesString != 'null') {
+                $specialites = explode('-', $specialitesString);
+            }
+
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $id = $_POST['id'];
+            $addressPro = $_POST['adressePro'];
+            $IdCityPro = $_POST['city'];
+            $villePro = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $IdCityPro]);
+
+            $specialites = $this->entityManager->getRepository(Specialite::class)->findBy(['idSpecialite' => $specialites]);
+            $demandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy(['idDemandeur' => $id]);
+            $demandeur->setNom($nom);
+            $demandeur->setPrenom($prenom);
+            $demandeur->setSpecialites(new ArrayCollection($specialites));
+            $demandeur->setAdressePro($addressPro);
+            $demandeur->setVillePro($villePro);
+
+            try {
+                $this->entityManager->persist($demandeur);
+                $this->entityManager->flush();
+
+            } catch (\Exception $e) {
+                $referer = self::addMessageToUrl('Une erreur est survenue.', 'msg-error');
+                header("Location: $referer");
+                exit();
+            }
+            $referer = self::addMessageToUrl('Les informations ont bien été modifiées.', 'msg-success');
+            header("Location: $referer");
+        }
+    }
 
     public function toggleModeIntervenant(): void
     {

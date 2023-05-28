@@ -3528,6 +3528,14 @@ body.intervenant {
       font-weight: 500;
       font-size: 1rem;
       color: #257466; }
+    body.intervenant .admin__inter__edit .admin__inter__img {
+      margin-bottom: 2rem; }
+    body.intervenant .admin__inter__edit .admin__input-edit {
+      display: grid;
+      grid-template-columns: 200px 2fr;
+      grid-gap: .5rem;
+      margin-bottom: 1rem;
+      width: 50%; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -6193,6 +6201,14 @@ body.demandeur {
       font-weight: 500;
       font-size: 1rem;
       color: #393BAA; }
+    body.demandeur .admin__inter__edit .admin__inter__img {
+      margin-bottom: 2rem; }
+    body.demandeur .admin__inter__edit .admin__input-edit {
+      display: grid;
+      grid-template-columns: 200px 2fr;
+      grid-gap: .5rem;
+      margin-bottom: 1rem;
+      width: 50%; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -8858,6 +8874,14 @@ body.admin {
       font-weight: 500;
       font-size: 1rem;
       color: #4B0082; }
+    body.admin .admin__inter__edit .admin__inter__img {
+      margin-bottom: 2rem; }
+    body.admin .admin__inter__edit .admin__input-edit {
+      display: grid;
+      grid-template-columns: 200px 2fr;
+      grid-gap: .5rem;
+      margin-bottom: 1rem;
+      width: 50%; }
   body.admin .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;

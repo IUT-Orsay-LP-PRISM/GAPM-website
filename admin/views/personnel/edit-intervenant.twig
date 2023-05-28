@@ -7,7 +7,8 @@
 		<h1>{{ title }}</h1>
 	</div>
 	<div class="admin__page__content admin__inter__see">
-	<div class="admin__inter admin__inter__edit">
+	<form class="admin__inter admin__inter__edit" method="post" action="./?action=update-intervenant">
+		<input type="hidden" name="id" value="{{ int.idDemandeur }}">
 		<div class="admin__inter__img">
 			<img src="../{{ int.imgUrl }}" alt="{{ int.nom }} {{ int.prenom }}">
 		</div>
@@ -15,26 +16,54 @@
 			<label for="editname">
 				Nom
 			</label>
-			<input type="text" id="editname" value="{{ int.nom }}">
+			<input type="text" id="editname" value="{{ int.nom }}" name="nom">
 		</div>
 		<div class="admin__input admin__input-edit">
 			<label for="editnamef">
 				Prénom
 			</label>
-			<input type="text" id="editnamef" value="{{ int.prenom }}">
-		</div>
-		<div class="admin__inter__spe">
-			{% for spe in int.specialites %}
-				• {{ spe.libelle }}
-				<br>
-			{% endfor %}
+			<input type="text" id="editnamef" value="{{ int.prenom }}" name="prenom">
 		</div>
 		<div class="admin__inter__adresse admin__input admin__input-edit">
-			<label for="">
+			<label for="adrPro">
 				Adresse
 			</label>
-			<input type="text" value="{{ int.adressePro }}">
-			{{ int.villePro.codePostal }} {{ int.villePro.nom }}
+			<input type="text" value="{{ int.adressePro }}" name="adressePro" id="adrPro">
 		</div>
-	</div>
+		<div class="admin__input admin__input-edit overflow">
+			<label class="label" for="villeIntervenantUpdate">Ville Professionnel</label>
+			<div>
+				<input id="villeIntervenantUpdate" class="input AC input_ville" type="text"
+					   value="{{ int.villePro.nom|upper }}"/>
+				<input name="city" type="hidden" hidden="hidden" value="{{ int.villePro.idVille }}"/>
+				<div class="notVisible auto_completion"></div>
+			</div>
+		</div>
+		<div class="admin__input admin__input-edit overflow">
+			<label class="label" for="specialite">Ses spécialité(s)</label>
+			<input id="specialite" class="input AC input_specialite" type="text"
+				   placeholder="Choisir votre spécialité"/>
+			<div class="notVisible auto_completion"></div>
+			{% set ids = [] %}
+			{% for specialite in int.specialites %}
+				{% set ids = ids|merge([specialite.idSpecialite]) %}
+			{% endfor %}
+			<input id="hiddenValueSpecialites" type="hidden" name="specialites" value="{{ ids|join("-") }}">
+		</div>
+		<div id="tag-container" class="js-specialite admin__input admin__input-edit" style="width: 50%">
+			<div class="container">
+				{% for specialite in int.specialites %}
+					<div class="tag" data-id="{{ specialite.idSpecialite }}">
+						<span class="tag-text">{{ specialite.libelle|upper }}</span>
+						<i class="icon icon-fi-rr-cross-small tag-close"></i>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-secondary-nb">
+			<i class="icon-fi-rr-edit"></i>
+			Modifier
+		</button>
+	</form>
 {% endblock %}
