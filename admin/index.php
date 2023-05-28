@@ -26,6 +26,7 @@ $router->addAdminRoute('intervenant&id=<id>', 'PersonnelController', 'intervenan
 $router->addAdminRoute('intervenant-edit&id=<id>', 'PersonnelController', 'editIntervenantView');
 $router->addAdminRoute('intervenant-delete&id=<id>', 'PersonnelController', 'deleteIntervenantView');
 $router->addAdminRoute('update-intervenant', 'IntervenantController', 'updateFromAdmin');
+$router->addAdminRoute('delete-intervenant', 'PersonnelController', 'deleteIntervenantSubmit');
 
 
 $router->addAdminRoute('plannings', 'PersonnelController', 'planningsView');

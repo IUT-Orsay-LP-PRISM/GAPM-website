@@ -48,6 +48,7 @@
 		<h2>
 			Ses rendez-vous
 		</h2>
+		{% if rdv is not empty %}
 		<div class="admin__inter__rdv admin__inter">
 			<div class="admin__inter__head">
 				<div class="admin__inter__date-head">
@@ -92,52 +93,61 @@
 				</div>
 			{% endfor %}
 		</div>
+		{% else %}
+			<p>
+				Aucun rendez-vous n'a été enregistré pour cet Intervenant.
+			</p>
+		{% endif %}
 		<h2>
-			Ses dépenses
+			Ses notes de frais
 		</h2>
+		{% if notes is not empty %}
 		<div class="admin__inter__rdv admin__inter">
 			<div class="admin__inter__head">
 				<div class="admin__inter__date-head">
-					Date Paiement
+					Date de paiement
 				</div>
 				<div class="admin__inter__heure-head">
-					Nature
+					Nb. dépenses
 				</div>
 				<div class="admin__inter__patient-head">
 					Montant
 				</div>
 				<div class="admin__inter__spe-head">
-					Fournisseur
+					Validé par
 				</div>
 				<div class="admin__inter__etat-head">
 					État
 				</div>
 			</div>
-			{% for dp in depenses %}
+			{% for note in notes %}
 				<div class="admin__inter__item">
 					<div class="admin__inter__rdv__date">
-						{{ dp.dateRdv|date('d/m/Y') }}
+						{{ note.dateRdv|date('d/m/Y') }}
 					</div>
-					<div class="admin__inter__rdv__heure">
-						{{ dp.nature }}
+					<div class="admin__inter__depense">
+						{{ note.depenses|length }}
 					</div>
 					<div class="admin__inter__rdv__patient">
-						{{ dp.montant }} €
+						{% set total = 0 %}
+						{% for dp in note.depenses %}
+							{% set total = total + dp.montant %}
+						{% endfor %}
+						{{ total }} €
 					</div>
 					<div class="admin__inter__rdv__spe">
-						{{ dp.fournisseur }}
+						{{ note.administration.nom }} {{ note.administration.prenom }}
 					</div>
 					<div class="admin__inter__rdv__etat">
-						{% if dp.status == "déclarer" %}
-							Déclaré
-						{% elseif dp.status == "À traiter" %}
-							À traiter
-						{% elseif dp.status == "traiter" %}
-							Traité
-						{% endif %}
+						{{ note.status }}
 					</div>
 				</div>
 			{% endfor %}
 		</div>
+		{% else %}
+			<p>
+				Aucune note de frais n'a été enregistrée pour cet Intervenant.
+			</p>
+		{% endif %}
 	</div>
 {% endblock %}

@@ -6,6 +6,7 @@ use App\models\entity\Administration;
 use App\models\entity\Demandeur;
 use App\models\entity\Depense;
 use App\models\entity\Intervenant;
+use App\models\entity\NoteFrais;
 use App\models\entity\Session;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManager;
@@ -142,7 +143,7 @@ class PersonnelController extends Template
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
             'idDemandeur' => $id,
         ]);
-        $depenses = $this->entityManager->getRepository(Depense::class)->findBy([
+        $notes = $this->entityManager->getRepository(NoteFrais::class)->findBy([
             'intervenant' => $intervenant->getIdDemandeur(),
         ]);
 
@@ -150,7 +151,7 @@ class PersonnelController extends Template
             'title' => 'Profil de l\'intervenant ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
             'int' => $intervenant,
             'rdv' => $rdvIntervenant,
-            'depenses' => $depenses,
+            'notes' => $notes,
         ], true);
     }
 
@@ -177,6 +178,24 @@ class PersonnelController extends Template
             header('Location: ./?action=login');
         }
         $id = htmlspecialchars($_GET['id']);
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        self::render('/personnel/delete-intervenant.twig', [
+            'title' => 'Supprimer l\'intervenant',
+            'id' => $id,
+            'int' => $intervenant,
+        ], true);
+    }
+
+    public function deleteIntervenantSubmit(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_POST['id']);
 
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
             'idDemandeur' => $id,

@@ -25,6 +25,8 @@ class NoteFrais
     #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
     private Intervenant $intervenant;
 
+    #[ORM\OneToMany(mappedBy: 'noteFrais', targetEntity: Depense::class, fetch: 'EAGER')]
+    private $depenses;
 
     #[ORM\ManyToOne(targetEntity: Administration::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idAdministration', referencedColumnName: 'idAdministration', nullable: true)]
@@ -127,5 +129,21 @@ class NoteFrais
     public function setMontantTotal(float $montantTotal): void
     {
         $this->montantTotal = $montantTotal;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDepenses(): array
+    {
+        return $this->depenses->toArray();
+    }
+
+    /**
+     * @param array $depenses
+     */
+    public function setDepenses(array $depenses): void
+    {
+        $this->depenses = $depenses;
     }
 }
