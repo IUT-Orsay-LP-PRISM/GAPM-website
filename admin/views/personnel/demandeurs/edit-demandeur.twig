@@ -1,0 +1,70 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title">
+		<h1>{{ title }}</h1>
+	</div>
+	<div class="admin__page__content admin__inter__see">
+	<form class="admin__inter admin__inter__edit" method="post" action="./?action=update-demandeur">
+		<input type="hidden" name="id" value="{{ dem.idDemandeur }}">
+		<div class="admin__inter__noms admin__input admin__input-edit">
+			<label for="editname">
+				Nom
+			</label>
+			<input type="text" id="editname" value="{{ dem.nom }}" name="nom">
+		</div>
+		<div class="admin__input admin__input-edit">
+			<label for="editnamef">
+				Prénom
+			</label>
+			<input type="text" id="editnamef" value="{{ dem.prenom }}" name="prenom">
+		</div>
+		<br>&nbsp;<br>
+		<div class="admin__inter__noms admin__input admin__input-edit">
+			<label for="editlogin">
+				Login
+			</label>
+			<input type="text" id="editlogin" value="{{ dem.login }}" name="login" disabled>
+		</div>
+		<div class="admin__inter__noms admin__input admin__input-edit">
+			<label for="editemail">
+				E-mail
+			</label>
+			<input type="text" id="editemail" value="{{ dem.email }}" name="email">
+		</div>
+		<div class="admin__inter__adresse admin__input admin__input-edit">
+			<label for="sexe">
+				Sexe
+			</label>
+			<input type="text" value="{{ dem.sexe }}" name="sexe" id="sexe" disabled>
+		</div>
+		<br>&nbsp;<br>
+		<div class="admin__inter__adresse admin__input admin__input-edit">
+			<label for="phone">
+				Téléphone
+			</label>
+			<input type="text" value="{{ dem.telephone }}" name="telephone" id="phone">
+		</div>
+		<div class="admin__inter__adresse admin__input admin__input-edit">
+			<label for="adr">
+				Adresse
+			</label>
+			<input type="text" value="{{ dem.adresse }}" name="adresse" id="adr">
+		</div>
+		<div class="admin__input admin__input-edit overflow">
+			<label class="label" for="villeIntervenantUpdate">Ville</label>
+			<div>
+				<input id="villeIntervenantUpdate" class="input AC input_ville" type="text"
+					   value="{{ dem.ville.nom|upper }}"/>
+				<input name="city" type="hidden" hidden="hidden" value="{{ dem.ville.idVille }}"/>
+				<div class="notVisible auto_completion"></div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-secondary-nb">
+			<i class="icon-fi-rr-edit"></i>
+			Modifier
+		</button>
+	</form>
+{% endblock %}

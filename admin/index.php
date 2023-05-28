@@ -30,6 +30,14 @@ $router->addAdminRoute('delete-intervenant', 'PersonnelController', 'deleteInter
 
 
 $router->addAdminRoute('demandeurs', 'PersonnelController', 'demandeursView');
+$router->addAdminRoute('demandeurs&page=<num>', 'PersonnelController', 'demandeursView');
+$router->addAdminRoute('demandeurs&search=<query>', 'PersonnelController', 'searchDemandeursView');
+$router->addAdminRoute('demandeur&id=<id>', 'PersonnelController', 'demandeurView');
+$router->addAdminRoute('demandeur-edit&id=<id>', 'PersonnelController', 'editDemandeurView');
+$router->addAdminRoute('demandeur-delete&id=<id>', 'PersonnelController', 'deleteDemandeurView');
+$router->addAdminRoute('update-demandeur', 'PersonnelController', 'updateDemandeurSubmit');
+$router->addAdminRoute('delete-demandeur', 'PersonnelController', 'deleteDemandeurSubmit');
+
 $router->addAdminRoute('notes-frais', 'PersonnelController', 'notesFraisView');
 $router->addAdminRoute('emprunts', 'PersonnelController', 'empruntsVehiculesView');
 

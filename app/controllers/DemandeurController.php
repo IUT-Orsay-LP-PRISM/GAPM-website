@@ -20,7 +20,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
 
-class DemandeurController extends Template
+class  DemandeurController extends Template
 {
     private DemandeurRepository $demandeurRepository;
     private EntityManager $entityManager;

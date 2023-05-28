@@ -421,11 +421,22 @@
       margin-bottom : 2rem;
     }
   }
-  .admin__input-edit{
-    display: grid;
-    grid-template-columns: 200px 2fr;
-    grid-gap: .5rem;
-    margin-bottom : 1rem;
-    width: 50%;
+
+  .admin__input-edit {
+    display               : grid;
+    grid-template-columns : 200px 2fr;
+    grid-gap              : .5rem;
+    margin-bottom         : 1rem;
+    width                 : 50%;
+  }
+}
+
+.admin__demandeur {
+  &__head {
+    grid-template-columns : 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  &__item {
+    grid-template-columns : 1fr 1fr 1fr 1fr 1fr;
   }
 }

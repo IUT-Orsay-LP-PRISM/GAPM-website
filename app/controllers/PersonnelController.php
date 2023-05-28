@@ -8,6 +8,7 @@ use App\models\entity\Depense;
 use App\models\entity\Intervenant;
 use App\models\entity\NoteFrais;
 use App\models\entity\Session;
+use App\models\entity\Ville;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
@@ -200,6 +201,8 @@ class PersonnelController extends Template
             'idDemandeur' => $id,
         ]);
 
+        // TODO: check si l'intervenant n'a pas de rdv en cours, notes de frais, véhicules etc
+
         try {
             $this->entityManager->remove($intervenant);
             $this->entityManager->flush();
@@ -215,10 +218,158 @@ class PersonnelController extends Template
             header('Location: ./?action=login');
         }
 
+        $page = $_GET['page'] ?? 0;
+
+        $demandeurRepository = $this->entityManager->getRepository(Demandeur::class);
+        $demandeurs = $demandeurRepository->findAll();
+        $demandeursNotIntervenant = [];
+        foreach ($demandeurs as $demandeur){
+            if (!$demandeur instanceof Intervenant){
+                $demandeursNotIntervenant[] = $demandeur;
+            }
+        }
+        $demandeursChunked = array_chunk($demandeursNotIntervenant, 6);
+        $demandeurs = $demandeursChunked[$page];
+        $pageNumbers = count($demandeursChunked);
+
         self::render('/personnel/demandeurs/demandeurs.twig', [
             'title' => 'Gestion des demandeurs',
             'nav' => 'demandeurs',
+            'demandeurs' => $demandeurs,
+            'page' => $page,
+            'pageNumbers' => $pageNumbers,
+            'pageDisplay' => true,
         ], true);
+    }
+
+    public function searchDemandeursView(): void{
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        $query = $_GET['search'];
+
+        $demandeurRepository = $this->entityManager->getRepository(Demandeur::class);
+        $demandeurs = $demandeurRepository->findByNameLike($query);
+
+        self::render('/personnel/demandeurs/demandeurs.twig', [
+            'title' => 'Gestion des demandeurs - Recherche' . $query,
+            'nav' => 'demandeurs',
+            'demandeurs' => $demandeurs,
+            'pageDisplay' => false,
+        ], true);
+    }
+
+    public function demandeurView(): void{
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+        $rdvs = $demandeur->getRendezVous();
+
+        self::render('/personnel/demandeurs/demandeur.twig', [
+            'title' => 'Profil du demandeur ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom(),
+            'demandeur' => $demandeur,
+            'rdv' => $rdvs,
+        ], true);
+    }
+
+    public function editDemandeurView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+
+        $dem = $this->entityManager->getRepository(Demandeur::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        self::render('/personnel/demandeurs/edit-demandeur.twig', [
+            'title' => 'Modifier le demandeur : ' . $dem->getPrenom() . ' ' . $dem->getNom(),
+            'dem' => $dem,
+        ], true);
+
+    }
+
+    public function updateDemandeurSubmit(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        $id = htmlspecialchars($_POST['id']);
+        $nom = htmlspecialchars($_POST['nom']);
+        $prenom = htmlspecialchars($_POST['prenom']);
+        $email = htmlspecialchars($_POST['email']);
+        $tel = htmlspecialchars($_POST['telephone']);
+        $adresse = htmlspecialchars($_POST['adresse']);
+        $ville = htmlspecialchars($_POST['city']);
+
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+        $ville = $this->entityManager->getRepository(Ville::class)->findOneBy(['idVille' => $ville]);
+
+
+        $demandeur->setNom($nom);
+        $demandeur->setPrenom($prenom);
+        $demandeur->setEmail($email);
+        $demandeur->setTelephone($tel);
+        $demandeur->setAdresse($adresse);
+        $demandeur->setVille($ville);
+
+        try {
+            $this->entityManager->persist($demandeur);
+            $this->entityManager->flush();
+            header('Location: ./?action=demandeur-edit&id=' . $id . '&message=Demandeur modifié.&c=msg-success');
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=demandeurs&message=Erreur lors de la modification du demandeur.&c=msg-error');
+        }
+    }
+
+    public function deleteDemandeurView(): void{
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        // TODO : Vérifier que le demandeur n'a pas de rendez-vous en cours
+
+        self::render('/personnel/demandeurs/delete-demandeur.twig', [
+            'title' => 'Supprimer le demandeur : ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom(),
+            'id' => $id,
+            'dem' => $demandeur,
+        ], true);
+    }
+
+    public function deleteDemandeurSubmit(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        $id = htmlspecialchars($_POST['id']);
+
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        try {
+            $this->entityManager->remove($demandeur);
+            $this->entityManager->flush();
+            header('Location: ./?action=demandeurs&message=Demandeur supprimé.&c=msg-success');
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=demandeurs&message=Erreur lors de la suppression du demandeur.&c=msg-error');
+        }
     }
 
     public function notesFraisView(): void

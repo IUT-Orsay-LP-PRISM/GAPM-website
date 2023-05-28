@@ -3536,6 +3536,10 @@ body.intervenant {
       grid-gap: .5rem;
       margin-bottom: 1rem;
       width: 50%; }
+  body.intervenant .admin__demandeur__head {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  body.intervenant .admin__demandeur__item {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -6209,6 +6213,10 @@ body.demandeur {
       grid-gap: .5rem;
       margin-bottom: 1rem;
       width: 50%; }
+  body.demandeur .admin__demandeur__head {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  body.demandeur .admin__demandeur__item {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -8882,6 +8890,10 @@ body.admin {
       grid-gap: .5rem;
       margin-bottom: 1rem;
       width: 50%; }
+  body.admin .admin__demandeur__head {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  body.admin .admin__demandeur__item {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
   body.admin .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
