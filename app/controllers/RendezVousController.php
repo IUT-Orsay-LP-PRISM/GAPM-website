@@ -11,6 +11,9 @@ use App\models\entity\Specialite;
 use App\models\repository\RendezVousRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class RendezVousController extends Template
 {
@@ -59,7 +62,35 @@ class RendezVousController extends Template
         $this->entityManager->persist($rdv);
         $this->entityManager->flush();
 
-        header('Location: /?action=mes-rendez-vous&message=Votre rendez-vous a bien été annulé&c=msg-success');
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($idDemandeur);
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($rdv->getIntervenant());
+        $referer = $_SERVER['HTTP_REFERER'];
+        $referer_parts = parse_url($referer);
+        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->CharSet = "UTF-8";
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = 2525;
+        $phpmailer->Username = '87aafa94a4e2c8';
+        $phpmailer->Password = '2b192b0e9179d3';
+        $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
+        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom()); 
+        $phpmailer->Subject = 'Annulation du rendez-vous';
+        $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() . ' à ' . $rdv->getHeureFin() .
+        ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() . ' avec ' . $intervenant->getPrenom() . ' '
+        . $intervenant->getNom() . ', a été annulé<br>
+
+Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rendez-vous</a>';
+        //send the message, check for errors
+        if (!$phpmailer->send()) {
+            echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+        } else {
+            header('Location: /?action=mes-rendez-vous&message=Votre rendez-vous a bien été annulé&c=msg-success');
+        }
         exit;
     }
     public function deleteRdvIntervenant(): void
@@ -170,7 +201,34 @@ class RendezVousController extends Template
             header('Location: /?action=search&message=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
-        header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
+
+        $referer = $_SERVER['HTTP_REFERER'];
+        $referer_parts = parse_url($referer);
+        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->CharSet = "UTF-8";
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = 2525;
+        $phpmailer->Username = '87aafa94a4e2c8';
+        $phpmailer->Password = '2b192b0e9179d3';
+        $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
+        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom()); 
+        $phpmailer->Subject = 'Confirmation rendez-vous';
+        $phpmailer->Body = 'Le rendez-vous du ' . $date . ' de ' . $horaireDebut .' à '. $horaireFin .
+        ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '
+        . $intervenant->getNom() .', a bien été pris en compte.<br>
+
+Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rendez-vous</a>';
+        //send the message, check for errors
+        if (!$phpmailer->send()) {
+            echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+        } else {
+            header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
+        }
     }
 
     public function success(): void

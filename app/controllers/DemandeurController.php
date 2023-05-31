@@ -364,13 +364,13 @@ class  DemandeurController extends Template
                     $phpmailer->Password = '2b192b0e9179d3';
                     $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
                     $phpmailer->addAddress($email, $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
-                    $phpmailer->Subject = 'Mot de passe oublie';
+                    $phpmailer->Subject = 'Mot de passe oublié';
                     $phpmailer->Body = 'Voici votre mot de passe temporaire : ' . $random_hex;
                     //send the message, check for errors
                     if (!$phpmailer->send()) {
                         echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
                     } else {
-                        $referer = self::addMessageToUrl('Si le compte existe, le message a ete envoye', 'connexion');
+                        $referer = self::addMessageToUrl('Si le compte existe, le message a été envoyé', 'connexion');
                         header("Location: $referer");
                     }
             } else {
