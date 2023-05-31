@@ -8,6 +8,7 @@ use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\entity\TypeVoiture;
+use App\models\entity\Validation;
 use App\models\entity\Ville;
 use App\models\entity\Emprunt;
 use App\models\entity\Voiture;
@@ -34,11 +35,9 @@ class  DemandeurController extends Template
     public function index()
     {
         $rdvs = $this->entityManager->getRepository(RendezVous::class)->findAll();
-        dump($rdvs);
-        die();
 
         $this->render('demandeur/liste-demandeur.twig', [
-            'lesDemandeurs' => $demandeurs,
+            'lesDemandeurs' => $rdvs,
         ]);
     }
 
@@ -180,6 +179,7 @@ class  DemandeurController extends Template
 
     public function register()
     {
+
         $inscriptionIntervenant = false;
         $specialites = [];
         $containerMessage = 'inscription';
@@ -217,6 +217,14 @@ class  DemandeurController extends Template
             $address = $_POST['address'];
             $sexe = $_POST['sexe'];
 
+            $verif = Validation::verifierFormulaire(Validation::$inscriptionDemandeurFonctions);
+            foreach ($verif as $key => $value) {
+                if ($value != null) {
+                    $referer = self::addMessageToUrl($value, $containerMessage);
+                    header("Location: $referer");
+                    exit();
+                }
+            }
 
             $salt = "sel";
             $saltedAndHashed = crypt($password, $salt);
