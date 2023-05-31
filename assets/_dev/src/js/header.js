@@ -42,14 +42,11 @@ if (headerMobileButton) {
     headerMobileButton.addEventListener('click', () => {
         headerMobileBg.classList.add('--fade');
         headerMobile.classList.add('--open');
-
-        document.body.style.overflowY = document.body.style.overflowY === 'hidden' ? 'auto' : 'hidden';
     });
 
     document.querySelector('.js-close-menu').addEventListener('click', () => {
         headerMobileBg.classList.remove('--fade');
         headerMobile.classList.remove('--open');
-        document.body.style.overflowY = 'auto';
     })
 }
 
@@ -57,7 +54,6 @@ document.body.addEventListener('keydown', function(e) {
     if (e.key === "Escape") {
         headerMobileBg.classList.remove('--fade');
         headerMobile.classList.remove('--open');
-        document.body.style.overflowY = 'auto';
     }
 });
 
