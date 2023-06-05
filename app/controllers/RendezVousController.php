@@ -246,7 +246,7 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
         $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
         $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
         $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom()); 
-        $phpmailer->Subject = 'Confirmation rendez-vous';
+        $phpmailer->Subject = 'Confirmation d\'un rendez-vous';
         $phpmailer->Body = 'Le rendez-vous du ' . $date . ' de ' . $horaireDebut .' à '. $horaireFin .
         ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '
         . $intervenant->getNom() .', a bien été pris en compte.<br>
@@ -405,8 +405,9 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
         $idRdv = intval($_POST['idRdv']);
         $commentaire = $_POST['commentaire'];
         $note = $_POST['note'];
-        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
         $rdv = $this->entityManager->getRepository(RendezVous::class)->find($idRdv);
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($rdv->getIntervenant());
 
         $com = new Commentaire();
         /** @var Demandeur $demandeur */
@@ -422,12 +423,38 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
             $this->entityManager->persist($com);
             $this->entityManager->persist($rdv);
             $this->entityManager->flush();
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+
+            $phpmailer = new PHPMailer();
+            $phpmailer->isSMTP();
+            $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+            $phpmailer->CharSet = "UTF-8";
+            $phpmailer->SMTPAuth = true;
+            $phpmailer->Port = 2525;
+            $phpmailer->Username = '87aafa94a4e2c8';
+            $phpmailer->Password = '2b192b0e9179d3';
+            $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
+            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom()); 
+            $phpmailer->Subject = 'Commentaire d\'un Rendez-vous';
+            $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() .' à '. $rdv->getHeureFin() .
+            ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '
+            . $intervenant->getNom() .', à recu un commentaire.<br>
+
+Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir les rendez-vous</a>';
+            //send the message, check for errors
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: /?action=mes-rendez-vous&message=Votre avis a bien été enregistré&c=msg-success');
+            }
         } catch (ORMException $e) {
             header('Location: /?action=mes-rendez-vous&message=Une erreur est survenue lors de l\'enregistrement de votre avis&c=msg-error');
             exit;
         }
-
-        header('Location: /?action=mes-rendez-vous&message=Votre avis a bien été enregistré&c=msg-success');
     }
 
     public function ajax(): void
