@@ -34,7 +34,7 @@ class SearchController extends Template
             }
             $avg = null;
             $note = $intervenantRepository->findNoteById($intervenant->getIdDemandeur());
-            if ($note != null){
+            if ($note != null) {
                 foreach ($note as $n) {
                     $avg += $n['note'];
                 }
@@ -44,10 +44,10 @@ class SearchController extends Template
             }
         }
 
-        // Si l'utilisateur est un intervenant, on supprime son profil de la liste
-        if ($idToDel != null){
-            foreach ($intervenants as $key => $intervenant){
-                if ($intervenant->getIdDemandeur() == $idToDel){
+        // Si l'utilisateur est un intervenant, on supprime son profil de la liste & si il ne demande pasu ne cessation d'activité
+        foreach ($intervenants as $key => $intervenant) {
+            if ($idToDel != null || $intervenant->isDemandeSupp()) {
+                if ($intervenant->getIdDemandeur() == $idToDel || $intervenant->isDemandeSupp()) {
                     unset($intervenants[$key]);
                 }
             }

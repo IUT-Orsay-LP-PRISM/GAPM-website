@@ -1,0 +1,13 @@
+.planning {
+  &__container {
+    padding: 2.5rem 0;
+    max-width: 65em;
+    margin: auto;
+  }
+
+  &__content {
+    padding       : 1.85rem 2.53rem;
+    background    : white;
+    border-radius : 10px;
+  }
+}

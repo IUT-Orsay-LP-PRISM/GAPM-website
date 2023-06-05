@@ -17,15 +17,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./?action=intervenants" {% if nav == 'intervenants' %}class="--active"{% endif %}>
-                        <i class="icon-fi-rr-doctor"></i>
-                        Gestion des praticiens
+                    <a href="./?action=demandeurs"  {% if nav == 'demandeurs' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-notebook"></i>
+                        Gestion des demandeurs
                     </a>
                 </li>
                 <li>
-                    <a href="./?action=plannings"  {% if nav == 'plannings' %}class="--active"{% endif %}>
-                        <i class="icon-fi-rr-notebook"></i>
-                        Gestion des plannings
+                    <a href="./?action=intervenants" {% if nav == 'intervenants' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-doctor"></i>
+                        Gestion des praticiens
                     </a>
                 </li>
                 <li>
@@ -40,7 +40,18 @@
                         Emprunts de véhicules
                     </a>
                 </li>
-
+                <li>
+                    <a href="./?action=cessation" {% if nav == 'activity' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-trash"></i>
+                        Cessation d'activité
+                    </a>
+                </li>
+                <li>
+                    <a href="./?action=demande" {% if nav == 'beinter' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-apps"></i>
+                        Application d'intervenant
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

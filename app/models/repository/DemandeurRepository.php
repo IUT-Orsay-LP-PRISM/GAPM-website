@@ -23,4 +23,17 @@ class DemandeurRepository extends EntityRepository
             ]
         );
     }
+
+    public function findByNameLike($query)
+    {
+        $qb = $this->createQueryBuilder('i');
+        $qb->where($qb->expr()->orX(
+            $qb->expr()->like('i.nom', ':nom'),
+            $qb->expr()->like('i.prenom', ':nom')
+        ))
+            ->setParameter('nom', '%' . $query . '%')
+            ->orderBy('i.nom', 'ASC');
+        return $qb->distinct()->getQuery()->getResult();
+
+    }
 }

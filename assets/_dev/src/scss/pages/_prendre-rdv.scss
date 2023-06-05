@@ -23,13 +23,15 @@
   }
 
   &__content {
-    margin-top      : 2.35rem;
     display         : flex;
     justify-content : center;
     align-items     : flex-start;
+    padding         : 2.5rem 0;
+    max-width       : 65em;
+    margin          : auto;
 
     &__body {
-      width         : 60%;
+      width         : 100%;
       padding       : 1.85rem 2.53rem;
       background    : white;
       border-radius : 10px;
@@ -89,122 +91,10 @@
           }
         }
 
-        .js-calendar {
-          font-family : $mainFont;
-          user-select : none;
-
-          .header {
-            display         : flex;
-            justify-content : space-between;
-            align-items     : center;
-            margin-bottom   : 1.5rem;
-
-            .current-month {
-              font-size   : 1.5rem;
-              font-weight : 600;
-            }
-
-            .buttons {
-              display         : flex;
-              justify-content : space-around;
-              align-items     : center;
-              width           : 10rem;
-
-              i {
-                display         : flex;
-                justify-content : center;
-                align-items     : center;
-                font-size       : 1.5rem;
-                cursor          : pointer;
-                width           : 2.5rem;
-                height          : 2.5rem;
-                border-radius   : 10px;
-                //box-shadow      : 0px 2px 4px rgba(0, 0, 0, 0.25);
-              }
-            }
-          }
-
-
-          .container-dates {
-            background-color : $light;
-            border-radius    : 10px;
-            height           : 100%;
-            width            : 100%;
-
-
-            .weekdays {
-              display         : flex;
-              justify-content : space-around;
-              align-items     : center;
-              margin          : 1.5rem 0 0 0;
-              padding-top     : 1.5rem;
-              color           : $primaryDark;
-              font-weight     : 600;
-
-              .weekday {
-                font-size : 1.2rem;
-              }
-            }
-
-            .days {
-              display         : flex;
-              justify-content : space-around;
-              align-items     : center;
-              flex-wrap       : wrap;
-              margin          : 1.5rem 0 0 0;
-
-              .row {
-                display         : flex;
-                justify-content : space-around;
-                align-items     : center;
-                width           : 100%;
-              }
-
-              .day {
-                display          : flex;
-                justify-content  : center;
-                align-items      : center;
-                width            : calc(100% / 7);
-                aspect-ratio     : 1/1;
-                cursor           : pointer;
-                background-color : $white;
-                margin           : 1px;
-                position         : relative;
-
-                .day-number {
-                  position    : absolute;
-                  top         : 5%;
-                  right       : 5%;
-                  font-size   : 1.5em;
-                  font-weight : 600;
-                }
-
-                &.--today {
-                  background-color : $primaryDark;
-                  color            : white;
-                }
-
-                &.--disabled {
-                  .day-number {
-                    color : $greyLight;
-                  }
-
-                  background-color : $light;
-                  color            : $black;
-                  cursor           : not-allowed;
-                }
-
-                &:hover:not(.--disabled) {
-                  background-color : $secondary;
-                  color            : white;
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
+
 
   &.success {
     .small span {
@@ -216,6 +106,7 @@
       justify-content : space-around;
       align-items     : center;
       height          : 50vh;
+      gap: 2.5rem;
 
       svg {
         width  : 30em;
@@ -240,7 +131,6 @@
           span {
             color : $primaryDark;
           }
-
         }
 
         h3 {
@@ -249,8 +139,8 @@
         }
 
         p {
-          font-size   : 1.5rem;
-          color       : $black;
+          font-size : 1.5rem;
+          color     : $black;
 
           span {
             font-weight : bold;
@@ -261,7 +151,3 @@
     }
   }
 }
-
-
-
-

@@ -210,6 +210,7 @@ CREATE TABLE `Intervenant`
     `adressePro`  varchar(255) DEFAULT NULL,
     `imgUrl`      varchar(255) DEFAULT 'public/img/default.jpg',
     `idVillePro`  int(11) DEFAULT NULL,
+    `travailSamedi` tinyint(1) DEFAULT 0,
     `demandeSupp` tinyint(1) DEFAULT 0
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -243,7 +244,8 @@ CREATE TABLE `NoteFrais`
     `dateNote`         date        NOT NULL,
     `status`           varchar(50) DEFAULT 'En attente',
     `idIntervenant`    int(11) NOT NULL,
-    `idAdministration` int(11) DEFAULT NULL
+    `idAdministration` int(11) DEFAULT NULL,
+    `message`          varchar(255) DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;

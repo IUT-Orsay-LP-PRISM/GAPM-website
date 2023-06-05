@@ -26,6 +26,7 @@ $router->addRoute('inscription-intervenant', 'IntervenantController', 'index');
 $router->addRoute('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
 $router->addRoute('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
 $router->addRoute('liste-rdv', 'RendezVousController', 'displayMyRdvIntervenant');
+$router->addRoute('planning', 'IntervenantController', 'displayPlanning');
 
 /*
  * Routes POST
@@ -77,6 +78,10 @@ $router->addRoute('search&s_name=<name>&s_city=<city>', 'SearchController', 'ind
 
 $router->addRoute('popupAvis&rdvId=<id>', 'RendezVousController', 'ajax');
 $router->addRoute('get-depense&idDepense=<id>', 'NoteFraisController', 'ajax');
+
+$router->addRoute('getNumberOfRdvInDay', 'IntervenantController', 'getNumberOfRdvInDays');
+
+$router->addRoute('liste-rdv&date=<date>', 'RendezVousController', 'displayMyRdvIntervenant');
 
 
 $requestUrl = $_SERVER['REQUEST_URI'];

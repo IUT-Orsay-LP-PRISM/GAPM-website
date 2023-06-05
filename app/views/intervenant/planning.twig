@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="planning wrapper">
+        <h1>Planning</h1>
+        <div class="planning__container">
+            <div class="planning__content">
+                <div class="js-calendar">
+                    <div class="header">
+                        <p class="current-month">September 2023 </p>
+                        <div class="buttons">
+                            <i class="icon icon-fi-rr-mode-portrait now"></i>
+                            <i class="icon icon-fi-rr-angle-small-left prev"></i>
+                            <i class="icon icon-fi-rr-angle-small-right next"></i>
+                        </div>
+                    </div>
+                    {% set travailSamedi = intervenant.travailSamedi %}
+                    <div class="container-dates"
+                         data-value="{{ travailSamedi ? '03063e73002b4a89e44b283f0d8da951' : '372af29d60742341ffa001ead728fd88' }}">
+                        <ul class="weekdays">
+                            <li class="weekday">Dim</li>
+                            <li class="weekday">Lun</li>
+                            <li class="weekday">Mar</li>
+                            <li class="weekday">Mer</li>
+                            <li class="weekday">Jeu</li>
+                            <li class="weekday">Ven</li>
+                            <li class="weekday">Sam</li>
+                        </ul>
+                        <div class="days"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

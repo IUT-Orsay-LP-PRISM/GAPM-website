@@ -5,5 +5,67 @@
 {% block content %}
 	<div class="admin__page__title">
 		<h1>{{ title }}</h1>
+		<p>
+			{% if emprunts is not empty %}
+				{{ emprunts|length }} emprunt(s) en attente de validation
+			{% else %}
+				Aucun emprunt en attente de validation
+			{% endif %}
+		</p>
+	</div>
+	<div class="admin__page__content ">
+		<div class="admin__inter">
+			<div class="admin__inter__head admin__demandeur__item">
+				<div class="admin__inter__noms-head">
+					Date Début & Fin
+				</div>
+				<div class="admin__inter__montant-head">
+					Intervenant
+				</div>
+				<div class="admin__inter__adresse-head">
+					Véhicule
+				</div>
+				<div>
+					Immatriculation
+				</div>
+				<div class="admin__inter__adresse-head">
+					Action
+				</div>
+			</div>
+			{% if emprunts is not empty %}
+				{% for emp in emprunts %}
+					<div class="admin__inter__item admin__demandeur__item ">
+						<div class="admin__inter__noms">
+							du <span class="text__bold">{{ emp.dateDebut|date('d/m/Y') }}</span> <br><br>au <span class="text__bold">{{ emp.dateFin|date('d/m/Y') }}</span>
+						</div>
+						<div class="admin__inter__montant">
+							{{ emp.intervenant.nom }} {{ emp.intervenant.prenom }}
+						</div>
+						<div class="admin__inter__adresse">
+							{{ emp.voiture.typeVoiture.marque }} {{ emp.voiture.typeVoiture.modele }}
+						</div>
+						<div>
+							{{ emp.voiture.immatriculation }}
+						</div>
+						<div class="admin__forms__flex">
+							<form class="admin__inter__actions" method="post" action="./?action=validate-emprunt">
+								<input type="hidden" name="id" value="{{ emp.idEmprunt }}" hidden>
+								<button class="btn-greenPrimary btn btn-secondary-nb">
+									<i class="icon-fi-rr-comment-check"></i>
+									<span class="text__small text__white">Valider</span>
+								</button>
+							</form>
+							<form class="admin__inter__actions" method="post" action="./?action=denied-emprunt">
+								<input type="hidden" name="id" value="{{ emp.idEmprunt }}" hidden>
+								<button class="btn btn-secondary-nb btn-red">
+									<i class="icon-fi-rr-cross-circle"></i>
+									<span class="text__small text__white">Refuser</span>
+								</button>
+							</form>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}

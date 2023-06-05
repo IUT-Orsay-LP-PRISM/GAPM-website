@@ -164,6 +164,7 @@ if (btn_prepare) {
 
                 function callback(xhr) {
                     if (xhr.status === 200) {
+                        console.log(xhr)
                         const response = JSON.parse(xhr.responseText);
                         if (response.success) {
                             addMessageInURL('Note de frais préparée avec succès', 'msg-success');
@@ -239,8 +240,6 @@ function changeTextButton() {
 
 const SelectFilter = document.querySelector('#noteFrais-filter');
 const tableNoteFrais = document.querySelector('.notefrais .notefrais__table#noteFrais-table-filter');
-console.log(SelectFilter);
-console.log(tableNoteFrais);
 
 if (SelectFilter) {
     SelectFilter.addEventListener('change', () => {

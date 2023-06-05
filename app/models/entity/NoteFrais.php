@@ -25,10 +25,15 @@ class NoteFrais
     #[ORM\JoinColumn(name: 'idIntervenant', referencedColumnName: 'idDemandeur', nullable: false)]
     private Intervenant $intervenant;
 
+    #[ORM\OneToMany(mappedBy: 'noteFrais', targetEntity: Depense::class, fetch: 'EAGER')]
+    private $depenses;
 
     #[ORM\ManyToOne(targetEntity: Administration::class, fetch: 'EAGER')]
     #[ORM\JoinColumn(name: 'idAdministration', referencedColumnName: 'idAdministration', nullable: true)]
     private ?Administration $administration = null;
+
+    #[ORM\Column]
+    private string $message;
 
     private float $montantTotal = 0;
 
@@ -127,5 +132,37 @@ class NoteFrais
     public function setMontantTotal(float $montantTotal): void
     {
         $this->montantTotal = $montantTotal;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDepenses(): array
+    {
+        return $this->depenses->toArray();
+    }
+
+    /**
+     * @param array $depenses
+     */
+    public function setDepenses(array $depenses): void
+    {
+        $this->depenses = $depenses;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
     }
 }

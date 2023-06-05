@@ -1,0 +1,80 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title admin__page__title--form">
+		<div>
+			<h1>{{ title }}</h1>
+			<p>
+				Modifier ou supprimer un intervenant.
+			</p>
+		</div>
+		<form method="get" class="admin__input">
+			<input type="hidden" name="action" value="intervenants">
+			<input type="text" name="search" placeholder="Rechercher un intervenant" value="{{ search }}" class="">
+			<button type="submit">
+				<i class="icon-fi-rr-search"></i>
+			</button>
+		</form>
+	</div>
+	<div class="admin__page__content">
+		<div class="admin__inter">
+			<div class="admin__inter__head">
+				<div class="admin__inter__img-head">
+					#
+				</div>
+				<div class="admin__inter__noms-head">
+					Nom
+				</div>
+				<div class="admin__inter__spe-head">
+					Spécialités
+				</div>
+				<div class="admin__inter__adresse-head">
+					Adresse
+				</div>
+				<div class="admin__inter__actions-head">
+					Actions
+				</div>
+			</div>
+			{% for int in intervenants %}
+				<div class="admin__inter__item">
+					<div class="admin__inter__img">
+						<img src="../{{ int.imgUrl }}" alt="{{ int.nom }} {{ int.prenom }}">
+					</div>
+					<div class="admin__inter__noms">
+						{{ int.nom }} {{ int.prenom }}
+					</div>
+					<div class="admin__inter__spe">
+						{% for spe in int.specialites %}
+							• {{ spe.libelle }}
+							<br>
+						{% endfor %}
+					</div>
+					<div class="admin__inter__adresse">
+						{{ int.adressePro }}<br> {{ int.villePro.codePostal }} {{ int.villePro.nom }}
+					</div>
+					<div class="admin__inter__actions">
+						<a href="./?action=intervenant&id={{ int.idDemandeur }}">
+							<i class="icon-fi-rr-eye"></i>
+						</a>
+						<a href="./?action=intervenant-edit&id={{ int.idDemandeur }}">
+							<i class="icon-fi-rr-edit"></i>
+						</a>
+						<a href="./?action=intervenant-delete&id={{ int.idDemandeur }}">
+							<i class="icon-fi-rr-trash"></i>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+
+			{% if pageDisplay != false %}
+				<div class="admin__inter__pages">
+					{% for i in 0..pageNumbers-1 %}
+						<a href="?action=intervenants&page={{ i }}" class="admin__inter__page {% if i == page %}admin__inter__page --active{% endif %}">{{ i+1 }}</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title">
+		<h1>{{ title }}</h1>
+	</div>
+	<div class="admin__page__content admin__inter__see">
+		<div class="admin__inter">
+			<div class="admin__inter__head admin__demandeur__head">
+				<div class="admin__inter__noms-head">
+					Nom (login)
+				</div>
+				<div class="admin__inter__spe-head">
+					Email
+				</div>
+				<div class="admin__inter__adresse-head">
+					Adresse
+				</div>
+				<div class="admin__inter__adresse-head">
+					Téléphone
+				</div>
+
+			</div>
+			<div class="admin__inter__item admin__demandeur__item">
+				<div class="admin__inter__noms">
+					{{ demandeur.nom }} {{ demandeur.prenom }} <br><br> ({{ demandeur.login }})
+				</div>
+				<div class="admin__inter__spe">
+					{{ demandeur.email }}
+				</div>
+				<div class="admin__inter__adresse">
+					{{ demandeur.adresse }}<br> {{ demandeur.ville.codePostal }} {{ demandeur.ville.nom }}
+				</div>
+				<div class="admin__inter__phone">
+					{{ demandeur.telephone }}
+				</div>
+			</div>
+		</div>
+		{% if adminLogged %}
+			<p>
+				{{ admins.nom }}
+			</p>
+		{% endif %}
+		<h2>
+			Ses rendez-vous pris
+		</h2>
+		{% if rdv is not empty %}
+		<div class="admin__inter__rdv admin__inter">
+			<div class="admin__inter__head">
+				<div class="admin__inter__date-head">
+					Date
+				</div>
+				<div class="admin__inter__heure-head">
+					Heure
+				</div>
+				<div class="admin__inter__patient-head">
+					Intervenant
+				</div>
+				<div class="admin__inter__spe-head">
+					Spécialité concernée
+				</div>
+				<div class="admin__inter__etat-head">
+					État
+				</div>
+			</div>
+			{% for rdv in rdv %}
+				<div class="admin__inter__item">
+					<div class="admin__inter__rdv__date">
+						{{ rdv.dateRdv|date('d/m/Y') }}
+					</div>
+					<div class="admin__inter__rdv__heure">
+						{{ rdv.heureDebut }} - {{ rdv.heureFin }}
+					</div>
+					<div class="admin__inter__rdv__patient">
+						{{ rdv.intervenant.nom }} {{ rdv.intervenant.prenom }}
+					</div>
+					<div class="admin__inter__rdv__spe">
+						{{ rdv.specialite.libelle }}
+					</div>
+					<div class="admin__inter__rdv__etat">
+						{% if rdv.status == "confirme" %}
+							Confirmé
+						{% elseif rdv.status == "annule" %}
+							Annulé
+						{% elseif rdv.status == "attente" %}
+							En attente
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		{% else %}
+			<p>
+				Aucun rendez-vous n'a été enregistré pour cet Intervenant.
+			</p>
+		{% endif %}
+	</div>
+{% endblock %}

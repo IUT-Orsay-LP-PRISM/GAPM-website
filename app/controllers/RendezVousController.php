@@ -11,6 +11,9 @@ use App\models\entity\Specialite;
 use App\models\repository\RendezVousRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class RendezVousController extends Template
 {
@@ -34,7 +37,6 @@ class RendezVousController extends Template
             header('Location: /?action=search&message=Intervenant introuvable&c=message');
             exit;
         }
-
         self::render('demandeur/search/prendre-rdv.twig', [
             'intervenant' => $intervenant,
             'title' => 'Prendre RDV'
@@ -59,7 +61,36 @@ class RendezVousController extends Template
         $this->entityManager->persist($rdv);
         $this->entityManager->flush();
 
-        header('Location: /?action=mes-rendez-vous&message=Votre rendez-vous a bien été annulé&c=msg-success');
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($idDemandeur);
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($rdv->getIntervenant());
+
+        $referer = $_SERVER['HTTP_REFERER'];
+        $referer_parts = parse_url($referer);
+        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->CharSet = "UTF-8";
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = 2525;
+        $phpmailer->Username = '87aafa94a4e2c8';
+        $phpmailer->Password = '2b192b0e9179d3';
+        $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
+        $phpmailer->Subject = 'Annulation du rendez-vous';
+        $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() . ' à ' . $rdv->getHeureFin() .
+        ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() . ' avec ' . $intervenant->getPrenom() . ' '
+        . $intervenant->getNom() . ', a été annulé par le demandeur<br>
+
+Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rendez-vous</a>';
+        //send the message, check for errors
+        if (!$phpmailer->send()) {
+            echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+        } else {
+            header('Location: /?action=mes-rendez-vous&message=Votre rendez-vous a bien été annulé&c=msg-success');
+        }
         exit;
     }
     public function deleteRdvIntervenant(): void
@@ -86,9 +117,37 @@ class RendezVousController extends Template
             $this->entityManager->persist($rdv);
             $this->entityManager->flush();
 
-            header('Location: /?action=liste-rdv&message=Le rendez-vous a bien été annulé&c=msg-success');
-            exit;
+            $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($rdv->getDemandeur());
+            $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($rdv->getIntervenant());
 
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+
+            $phpmailer = new PHPMailer();
+            $phpmailer->isSMTP();
+            $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+            $phpmailer->CharSet = "UTF-8";
+            $phpmailer->SMTPAuth = true;
+            $phpmailer->Port = 2525;
+            $phpmailer->Username = '87aafa94a4e2c8';
+            $phpmailer->Password = '2b192b0e9179d3';
+            $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
+            $phpmailer->Subject = 'Annulation du rendez-vous';
+            $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() . ' à ' . $rdv->getHeureFin() .
+            ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() . ' avec ' . $intervenant->getPrenom() . ' '
+            . $intervenant->getNom() . ', a été annulé par l\'intervenant<br>
+
+Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rendez-vous</a>';
+            //send the message, check for errors
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: /?action=liste-rdv&message=Le rendez-vous a bien été annulé&c=msg-success');
+            }
+            exit;
         } catch (ORMException $e) {
             header('Location: /?action=liste-rdv&message=Une erreur est survenue lors de l\'annulation du rendez-vous&c=msg-error');
             exit;
@@ -165,12 +224,37 @@ class RendezVousController extends Template
             $this->entityManager->flush();
             $result = true;
         } catch (\Exception $e) {
-            dump($e);
-            die();
             header('Location: /?action=search&message=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
-        header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
+
+        $referer = $_SERVER['HTTP_REFERER'];
+        $referer_parts = parse_url($referer);
+        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->CharSet = "UTF-8";
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = 2525;
+        $phpmailer->Username = '87aafa94a4e2c8';
+        $phpmailer->Password = '2b192b0e9179d3';
+        $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
+        $phpmailer->Subject = 'Confirmation d\'un rendez-vous';
+        $phpmailer->Body = 'Le rendez-vous du ' . $date . ' de ' . $horaireDebut .' à '. $horaireFin .
+        ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '
+        . $intervenant->getNom() .', a bien été pris en compte.<br>
+
+Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rendez-vous</a>';
+        //send the message, check for errors
+        if (!$phpmailer->send()) {
+            echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+        } else {
+            header('Location: /?action=success-rdv&date=' . $date . '&horaire=' . $horaireDebut);
+        }
     }
 
     public function success(): void
@@ -266,11 +350,18 @@ class RendezVousController extends Template
         $intervenant = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
         $rdvIntervenant = $intervenant->getMesRendezVous();
 
-
-
         $mesRdvAjd = [];
         $mesRdvAVenir = [];
         $allRdvsAfter = [];
+        $mesRdvFilter = [];
+        if(!empty($_GET['date'])){
+            foreach ($rdvIntervenant as $rdv) {
+                if ($rdv->getDateRdv() == $_GET['date']) {
+                    $mesRdvFilter[] = $rdv;
+                }
+            }
+        }
+
         foreach ($rdvIntervenant as $rdv) {
             if ($rdv->getDateRdv() == date('Y-m-d') && $rdv->getStatus() == 'confirme') {
                 $mesRdvAjd[] = $rdv;
@@ -296,12 +387,16 @@ class RendezVousController extends Template
             'today' => $mesRdvAjd,
             'next' => $mesRdvAVenir,
             'all' => $allRdvsAfter,
+            'filter' => [
+                'date' => $_GET['date'] ?? null,
+                'rdv' => $mesRdvFilter,
+            ],
         ];
 
         self::render('intervenant/mes-rdv.twig', [
             'title' => 'Mes rendez-vous',
             'user' => $intervenant,
-            'mesRdv' => $mesRdv
+            'mesRdv' => $mesRdv,
         ]);
     }
 
@@ -318,8 +413,9 @@ class RendezVousController extends Template
         $idRdv = intval($_POST['idRdv']);
         $commentaire = $_POST['commentaire'];
         $note = $_POST['note'];
-        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
         $rdv = $this->entityManager->getRepository(RendezVous::class)->find($idRdv);
+        $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($rdv->getIntervenant());
 
         $com = new Commentaire();
         /** @var Demandeur $demandeur */
@@ -335,12 +431,38 @@ class RendezVousController extends Template
             $this->entityManager->persist($com);
             $this->entityManager->persist($rdv);
             $this->entityManager->flush();
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+
+            $phpmailer = new PHPMailer();
+            $phpmailer->isSMTP();
+            $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+            $phpmailer->CharSet = "UTF-8";
+            $phpmailer->SMTPAuth = true;
+            $phpmailer->Port = 2525;
+            $phpmailer->Username = '87aafa94a4e2c8';
+            $phpmailer->Password = '2b192b0e9179d3';
+            $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
+            $phpmailer->Subject = 'Commentaire d\'un Rendez-vous';
+            $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() .' à '. $rdv->getHeureFin() .
+            ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '
+            . $intervenant->getNom() .', à recu un commentaire.<br>
+
+Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir les rendez-vous</a>';
+            //send the message, check for errors
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: /?action=mes-rendez-vous&message=Votre avis a bien été enregistré&c=msg-success');
+            }
         } catch (ORMException $e) {
             header('Location: /?action=mes-rendez-vous&message=Une erreur est survenue lors de l\'enregistrement de votre avis&c=msg-error');
             exit;
         }
-
-        header('Location: /?action=mes-rendez-vous&message=Votre avis a bien été enregistré&c=msg-success');
     }
 
     public function ajax(): void

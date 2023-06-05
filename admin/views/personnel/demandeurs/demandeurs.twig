@@ -1,0 +1,77 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title admin__page__title--form">
+		<div>
+			<h1>{{ title }}</h1>
+			<p>
+				Modifier ou supprimer un intervenant.
+			</p>
+		</div>
+		<form method="get" class="admin__input">
+			<input type="hidden" name="action" value="demandeurs">
+			<input type="text" name="search" placeholder="Rechercher un demandeur" value="{{ search }}" class="">
+			<button type="submit">
+				<i class="icon-fi-rr-search"></i>
+			</button>
+		</form>
+	</div>
+	<div class="admin__page__content">
+		<div class="admin__demandeur">
+			<div class="admin__inter__head admin__demandeur__head">
+				<div class="admin__inter__noms-head">
+					Nom (login)
+				</div>
+				<div class="admin__inter__spe-head">
+					Email
+				</div>
+				<div class="admin__inter__adresse-head">
+					Adresse
+				</div>
+				<div class="admin__inter__adresse-head">
+					Téléphone
+				</div>
+				<div class="admin__inter__actions-head">
+					Actions
+				</div>
+			</div>
+			{% for dm in demandeurs %}
+				<div class="admin__inter__item admin__demandeur__item">
+					<div class="admin__inter__noms">
+						{{ dm.nom }} {{ dm.prenom }}  ({{ dm.login }})
+					</div>
+					<div class="admin__inter__spe">
+						{{ dm.email }}
+ 					</div>
+					<div class="admin__inter__adresse">
+						{{ dm.adresse }}<br> {{ dm.ville.codePostal }} {{ dm.ville.nom }}
+					</div>
+					<div class="admin__inter__phone">
+						{{ dm.telephone }}
+					</div>
+					<div class="admin__inter__actions">
+						<a href="./?action=demandeur&id={{ dm.idDemandeur }}">
+							<i class="icon-fi-rr-eye"></i>
+						</a>
+						<a href="./?action=demandeur-edit&id={{ dm.idDemandeur }}">
+							<i class="icon-fi-rr-edit"></i>
+						</a>
+						<a href="./?action=demandeur-delete&id={{ dm.idDemandeur }}">
+							<i class="icon-fi-rr-trash"></i>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+
+			{% if pageDisplay != false %}
+				<div class="admin__inter__pages">
+					{% for i in 0..pageNumbers-1 %}
+						<a href="?action=demandeurs&page={{ i }}" class="admin__inter__page {% if i == page %}admin__inter__page --active{% endif %}">{{ i+1 }}</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

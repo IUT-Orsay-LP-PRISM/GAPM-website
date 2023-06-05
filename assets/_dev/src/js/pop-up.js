@@ -24,9 +24,8 @@ btn_cross.forEach(btn => btn
         popUp_connexion && popUp_connexion.classList.remove('visible');
         popUp_inscription && popUp_inscription.classList.remove('visible');
 
-        popUp_prendreRDV.classList.remove('visible');
-        popUp_ajouterAvis.classList.remove('visible');
-        document.body.style.overflowY = "auto";
+        popUp_prendreRDV && popUp_prendreRDV.classList.remove('visible');
+        popUp_ajouterAvis && popUp_ajouterAvis.classList.remove('visible');
         removeErrorInURL();
         div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
         div_errorInscription ? div_errorInscription.innerHTML = '' : null;
@@ -62,9 +61,8 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
     if (event.target == popUp_connexion || event.target == popUp_inscription || event.target == popUp_prendreRDV || event.target == popUp_ajouterAvis) {
         popUp_connexion && popUp_connexion.classList.remove('visible');
         popUp_inscription && popUp_inscription.classList.remove('visible');
-        popUp_prendreRDV.classList.remove('visible');
-        popUp_ajouterAvis.classList.remove('visible');
-        document.body.style.overflowY = "auto";
+        popUp_prendreRDV && popUp_prendreRDV.classList.remove('visible');
+        popUp_ajouterAvis && popUp_ajouterAvis.classList.remove('visible');
         removeErrorInURL();
         div_errorConnexion ? div_errorConnexion.innerHTML = '' : null;
         div_errorInscription ? div_errorInscription.innerHTML = '' : null;
@@ -82,23 +80,11 @@ window.onclick = function (event) { // When the user clicks anywhere outside of 
 export function openPopUpConnexion() {
     popUp_connexion.classList.toggle('visible');
     popUp_inscription.classList.remove('visible');
-    if (popUp_connexion.classList.contains('visible')) {
-        document.body.style.overflowY = "hidden";
-    } else {
-        document.body.style.overflowY = "auto";
-    }
-    /* window.scrollTo(0, 0); */
 }
 
 export function openPopUpInscription() {
     popUp_inscription.classList.toggle('visible');
     popUp_connexion.classList.remove('visible');
-    if (popUp_inscription.classList.contains('visible')) {
-        document.body.style.overflowY = "hidden";
-    } else {
-        document.body.style.overflowY = "auto";
-    }
-    /* window.scrollTo(0, 0); */
 }
 
 

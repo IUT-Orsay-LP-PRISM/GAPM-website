@@ -23,8 +23,12 @@ class Intervenant extends Demandeur
     #[ORM\JoinColumn(name: 'idVillePro', referencedColumnName: 'idVille', nullable: false)]
     private Ville $villePro;
 
+
     #[ORM\Column]
     private string $imgUrl;
+
+    #[ORM\Column]
+    private bool $travailSamedi;
 
     #[ORM\Column]
     private bool $demandeSupp;
@@ -33,6 +37,8 @@ class Intervenant extends Demandeur
     private Collection $mesRendezVous;
 
     public float $note;
+
+    private $status;
 
     public function __construct()
     {
@@ -69,6 +75,26 @@ class Intervenant extends Demandeur
     public function setSpecialites(ArrayCollection $specialites): void
     {
         $this->specialites = $specialites;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function isValid(): bool
+    {
+        if($this->status == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public function isIntervenant(): bool
@@ -142,6 +168,22 @@ class Intervenant extends Demandeur
     public function setMesRendezVous(Collection $rendezVous): Demandeur
     {
         $this->mesRendezVous = $rendezVous;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTravailSamedi(): bool
+    {
+        return $this->travailSamedi;
+    }
+
+    /**
+     * @param bool $travailSamedi
+     */
+    public function setTravailSamedi(bool $travailSamedi): void
+    {
+        $this->travailSamedi = $travailSamedi;
     }
 
 }
