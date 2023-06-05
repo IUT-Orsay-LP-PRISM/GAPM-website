@@ -100,6 +100,9 @@
   }
 
   &-edit {
+    &-width{
+      width: 90% !important;
+    }
     input {
       background-color : $white;
       color            : $black;
@@ -239,6 +242,10 @@
       background: white;
       position: sticky;
       top: 0;
+      p{
+        margin-top : 1rem;
+        font-size: 1.2rem;
+      }
       &--form{
         display: flex;
         justify-content: space-between;
@@ -409,6 +416,8 @@
   background-color : $light;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  height: 100%;
 
   label{
     font-family: $titleFont;
@@ -438,5 +447,15 @@
 
   &__item {
     grid-template-columns : 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+.admin__forms{
+  &__twice{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center;
   }
 }

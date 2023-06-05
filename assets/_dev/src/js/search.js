@@ -63,8 +63,9 @@ function creerCalendrier(annee, mois) {
     const days = calendar.querySelector('.days');
     days.innerHTML = '';
     const btnPreviousMonth = calendar.querySelector('.buttons .prev');
-
     let day = 1 - jourSemaine;
+    const hashTravailSamedi = document.querySelector('.container-dates').getAttribute('data-value');
+    let travailSamedi = hashTravailSamedi === '03063e73002b4a89e44b283f0d8da951';
     while (day <= nbJoursMois) {
         const row = document.createElement('div');
         row.classList.add('row');
@@ -73,6 +74,10 @@ function creerCalendrier(annee, mois) {
             dayDiv.classList.add('day');
             const dayNumber = document.createElement('div');
             dayNumber.classList.add('day-number');
+            // if day is dimanche
+            dayOfWeek === 0 ? dayDiv.classList.add('--disabled') : null;
+            // if day is samedi
+            dayOfWeek === 6 && !travailSamedi ? dayDiv.classList.add('--disabled') : null;
 
             if (day + dayOfWeek < 1 || day + dayOfWeek > nbJoursMois) {
                 const previousMonthYear = mois === 1 ? annee - 1 : annee;

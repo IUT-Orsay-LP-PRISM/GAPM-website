@@ -26,7 +26,6 @@ $router->addRoute('inscription-intervenant', 'IntervenantController', 'index');
 $router->addRoute('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
 $router->addRoute('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
 $router->addRoute('liste-rdv', 'RendezVousController', 'displayMyRdvIntervenant');
-
 /*
  * Routes POST
  */

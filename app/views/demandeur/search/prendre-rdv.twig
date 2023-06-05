@@ -38,7 +38,8 @@
                                 <i class="icon icon-fi-rr-angle-small-right next"></i>
                             </div>
                         </div>
-                        <div class="container-dates">
+                        {% set travailSamedi = intervenant.travailSamedi %}
+                        <div class="container-dates" data-value="{{ travailSamedi ? '03063e73002b4a89e44b283f0d8da951' : '372af29d60742341ffa001ead728fd88' }}" >
                             <ul class="weekdays">
                                 <li class="weekday">Dim</li>
                                 <li class="weekday">Lun</li>

@@ -6,7 +6,7 @@ use App\models\repository\AdministrationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: AdministrationRepository::class)]
 #[ORM\Table(name: 'Administration')]
 class Administration
 {
@@ -32,11 +32,6 @@ class Administration
 
     #[ORM\Column]
     private bool $isAdmin;
-
-    public function __construct()
-    {
-
-    }
 
     /**
      * @return int

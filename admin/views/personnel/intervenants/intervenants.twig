@@ -4,7 +4,12 @@
 
 {% block content %}
 	<div class="admin__page__title admin__page__title--form">
-		<h1>{{ title }}</h1>
+		<div>
+			<h1>{{ title }}</h1>
+			<p>
+				Modifier ou supprimer un intervenant.
+			</p>
+		</div>
 		<form method="get" class="admin__input">
 			<input type="hidden" name="action" value="intervenants">
 			<input type="text" name="search" placeholder="Rechercher un intervenant" value="{{ search }}" class="">
