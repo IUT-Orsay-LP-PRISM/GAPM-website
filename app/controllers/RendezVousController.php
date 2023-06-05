@@ -37,7 +37,6 @@ class RendezVousController extends Template
             header('Location: /?action=search&message=Intervenant introuvable&c=message');
             exit;
         }
-
         self::render('demandeur/search/prendre-rdv.twig', [
             'intervenant' => $intervenant,
             'title' => 'Prendre RDV'

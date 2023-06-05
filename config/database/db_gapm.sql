@@ -210,6 +210,7 @@ CREATE TABLE `Intervenant`
     `adressePro`  varchar(255) DEFAULT NULL,
     `imgUrl`      varchar(255) DEFAULT 'public/img/default.jpg',
     `idVillePro`  int(11) DEFAULT NULL,
+    `travailSamedi` tinyint(1) DEFAULT 0,
     `demandeSupp` tinyint(1) DEFAULT 0
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
