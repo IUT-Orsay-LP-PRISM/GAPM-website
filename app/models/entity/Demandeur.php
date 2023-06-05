@@ -298,5 +298,4 @@ class Demandeur
     {
         return $this->type === 'intervenant';
     }
-
 }
