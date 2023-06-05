@@ -6,7 +6,11 @@
 	<div class="admin__page__title">
 		<h1>{{ title }}</h1>
 		<p>
-			Liste des notes de frais à refuser ou à valider
+			{% if notes is not empty %}
+				Liste des notes de frais à refuser ou à valider
+			{% else %}
+				Aucune note de frais en attente de validation
+			{% endif %}
 		</p>
 	</div>
 	<div class="admin__page__content ">
@@ -28,29 +32,31 @@
 					Action
 				</div>
 			</div>
-			{% for note in notes %}
-			<div class="admin__inter__item admin__demandeur__item">
-				<div class="admin__inter__noms">
-					{{ note.dateNote|date('d/m/Y') }}
+			{% if notes is not empty %}
+				{% for note in notes %}
+				<div class="admin__inter__item admin__demandeur__item">
+					<div class="admin__inter__noms">
+						{{ note.dateNote|date('d/m/Y') }}
+					</div>
+					<div class="admin__inter__spe">
+						{% if note.status == "en attente" %}
+							En attente
+						{% endif %}
+					</div>
+					<div class="admin__inter__montant">
+						{{ note.montantTotal }} €
+					</div>
+					<div class="admin__inter__adresse">
+						{{ note.intervenant.nom }} {{ note.intervenant.prenom }}
+					</div>
+					<div class="admin__inter__actions">
+						<a href="./?action=note-frais&id={{ note.idNoteFrais }}">
+							Voir les dépenses
+						</a>
+					</div>
 				</div>
-				<div class="admin__inter__spe">
-					{% if note.status == "en attente" %}
-						En attente
-					{% endif %}
-				</div>
-				<div class="admin__inter__montant">
-					{{ note.montantTotal }} €
-				</div>
-				<div class="admin__inter__adresse">
-					{{ note.intervenant.nom }} {{ note.intervenant.prenom }}
-				</div>
-				<div class="admin__inter__actions">
-					<a href="./?action=note-frais&id={{ note.idNoteFrais }}">
-						Voir les dépenses
-					</a>
-				</div>
-			</div>
-			{% endfor %}
+				{% endfor %}
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
