@@ -117,7 +117,7 @@ class  DemandeurController extends Template
                 $this->entityManager->remove($demandeur);
                 $this->entityManager->flush();
             } catch (\Exception $e) {
-                header('Location: /?action=my-account'."&nav=options");
+                header('Location: /?action=my-account' . "&nav=options");
             }
             Session::destroy();
             header('Location: /');
@@ -275,6 +275,7 @@ class  DemandeurController extends Template
 
     public static function logout()
     {
+        Session::set('modeIntervenant', false);
         Session::destroy();
         header('Location: /');
     }
@@ -334,7 +335,8 @@ class  DemandeurController extends Template
         }
     }
 
-    public function forgottenMail(){
+    public function forgottenMail()
+    {
         $isValid = !empty($_POST['email']) && isset($_POST['email']);
 
         if ($isValid) {
@@ -353,34 +355,34 @@ class  DemandeurController extends Template
             $emailExists = !empty($demandeur);
 
             if ($emailExists) {
-                    $demandeur->setMotDePasse($password);
-                    try {
-                        $this->entityManager->persist($demandeur);
-                        $this->entityManager->flush();
-                    } catch (\Exception $e) {
-                        $referer = self::addMessageToUrl('Une erreur est survenue. Merci de réessayer.', 'connexion');
-                        header("Location: $referer");
-                        exit();
-                    }
+                $demandeur->setMotDePasse($password);
+                try {
+                    $this->entityManager->persist($demandeur);
+                    $this->entityManager->flush();
+                } catch (\Exception $e) {
+                    $referer = self::addMessageToUrl('Une erreur est survenue. Merci de réessayer.', 'connexion');
+                    header("Location: $referer");
+                    exit();
+                }
 
-                    $phpmailer = new PHPMailer();
-                    $phpmailer->isSMTP();
-                    $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
-                    $phpmailer->SMTPAuth = true;
-                    $phpmailer->Port = 2525;
-                    $phpmailer->Username = '87aafa94a4e2c8';
-                    $phpmailer->Password = '2b192b0e9179d3';
-                    $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-                    $phpmailer->addAddress($email, $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
-                    $phpmailer->Subject = 'Mot de passe oublié';
-                    $phpmailer->Body = 'Voici votre mot de passe temporaire : ' . $random_hex;
-                    //send the message, check for errors
-                    if (!$phpmailer->send()) {
-                        echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
-                    } else {
-                        $referer = self::addMessageToUrl('Si le compte existe, le message a été envoyé', 'connexion');
-                        header("Location: $referer");
-                    }
+                $phpmailer = new PHPMailer();
+                $phpmailer->isSMTP();
+                $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+                $phpmailer->SMTPAuth = true;
+                $phpmailer->Port = 2525;
+                $phpmailer->Username = '87aafa94a4e2c8';
+                $phpmailer->Password = '2b192b0e9179d3';
+                $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
+                $phpmailer->addAddress($email, $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+                $phpmailer->Subject = 'Mot de passe oublié';
+                $phpmailer->Body = 'Voici votre mot de passe temporaire : ' . $random_hex;
+                //send the message, check for errors
+                if (!$phpmailer->send()) {
+                    echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+                } else {
+                    $referer = self::addMessageToUrl('Si le compte existe, le message a été envoyé', 'connexion');
+                    header("Location: $referer");
+                }
             } else {
                 $referer = self::addMessageToUrl('Email inconnu', 'connexion');
                 header("Location: $referer");

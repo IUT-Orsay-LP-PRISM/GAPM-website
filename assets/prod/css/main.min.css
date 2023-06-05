@@ -2364,7 +2364,7 @@ body.intervenant {
       grid-template-columns: 1fr 1fr;
       grid-gap: .3rem 3.2rem;
       margin: 2.4rem 0; }
-      body.intervenant .myaccount__form__intervenant .car, body.intervenant .wrapper__form__intervenant .car {
+      body.intervenant .myaccount__form__intervenant .inputSamedi, body.intervenant .wrapper__form__intervenant .inputSamedi {
         width: 100%;
         align-items: center;
         justify-content: flex-start; }
@@ -3723,29 +3723,29 @@ body.intervenant {
           -webkit-text-fill-color: transparent; }
   body.intervenant .input-container.overflow {
     overflow: visible; }
-  body.intervenant .car {
+  body.intervenant .inputSamedi {
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: row;
     width: 40%; }
-    body.intervenant .car p {
+    body.intervenant .inputSamedi p {
       margin-right: 2em;
       color: #787878;
       font-family: "Open Sans", sans-serif; }
-    body.intervenant .car .switch {
+    body.intervenant .inputSamedi .switch {
       display: inline-block;
       position: relative;
       width: 70px;
       height: 30px;
       cursor: pointer; }
-      body.intervenant .car .switch input {
+      body.intervenant .inputSamedi .switch input {
         position: absolute;
         top: -30px;
         left: -30px;
         width: 0;
         height: 0; }
-        body.intervenant .car .switch input + span {
+        body.intervenant .inputSamedi .switch input + span {
           position: absolute;
           top: 0;
           bottom: 0;
@@ -3753,7 +3753,7 @@ body.intervenant {
           right: 0;
           background: #86CABE;
           border-radius: 20px; }
-        body.intervenant .car .switch input + span:before {
+        body.intervenant .inputSamedi .switch input + span:before {
           content: "";
           font-family: "Open Sans", sans-serif;
           position: absolute;
@@ -3764,13 +3764,14 @@ body.intervenant {
           left: -4px;
           width: 45px;
           height: 42px;
-          background: #FFFFFF;
+          background: white;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           border-radius: 50%;
           transform: translateY(-50%);
           transition: all .5s; }
-        body.intervenant .car .switch input:checked + span {
+        body.intervenant .inputSamedi .switch input:checked + span {
           background: linear-gradient(90deg, #257466 0%, #36A793 50%); }
-        body.intervenant .car .switch input:checked + span:before {
+        body.intervenant .inputSamedi .switch input:checked + span:before {
           left: 34px;
           content: "Oui"; }
   body.intervenant .sr-only {
@@ -5041,7 +5042,7 @@ body.demandeur {
       grid-template-columns: 1fr 1fr;
       grid-gap: .3rem 3.2rem;
       margin: 2.4rem 0; }
-      body.demandeur .myaccount__form__intervenant .car, body.demandeur .wrapper__form__intervenant .car {
+      body.demandeur .myaccount__form__intervenant .inputSamedi, body.demandeur .wrapper__form__intervenant .inputSamedi {
         width: 100%;
         align-items: center;
         justify-content: flex-start; }
@@ -6400,29 +6401,29 @@ body.demandeur {
           -webkit-text-fill-color: transparent; }
   body.demandeur .input-container.overflow {
     overflow: visible; }
-  body.demandeur .car {
+  body.demandeur .inputSamedi {
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: row;
     width: 40%; }
-    body.demandeur .car p {
+    body.demandeur .inputSamedi p {
       margin-right: 2em;
       color: #787878;
       font-family: "Open Sans", sans-serif; }
-    body.demandeur .car .switch {
+    body.demandeur .inputSamedi .switch {
       display: inline-block;
       position: relative;
       width: 70px;
       height: 30px;
       cursor: pointer; }
-      body.demandeur .car .switch input {
+      body.demandeur .inputSamedi .switch input {
         position: absolute;
         top: -30px;
         left: -30px;
         width: 0;
         height: 0; }
-        body.demandeur .car .switch input + span {
+        body.demandeur .inputSamedi .switch input + span {
           position: absolute;
           top: 0;
           bottom: 0;
@@ -6430,7 +6431,7 @@ body.demandeur {
           right: 0;
           background: #7EA6F4;
           border-radius: 20px; }
-        body.demandeur .car .switch input + span:before {
+        body.demandeur .inputSamedi .switch input + span:before {
           content: "";
           font-family: "Open Sans", sans-serif;
           position: absolute;
@@ -6441,13 +6442,14 @@ body.demandeur {
           left: -4px;
           width: 45px;
           height: 42px;
-          background: #FFFFFF;
+          background: white;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           border-radius: 50%;
           transform: translateY(-50%);
           transition: all .5s; }
-        body.demandeur .car .switch input:checked + span {
+        body.demandeur .inputSamedi .switch input:checked + span {
           background: linear-gradient(90deg, #393BAA 0%, #5154EC 50%); }
-        body.demandeur .car .switch input:checked + span:before {
+        body.demandeur .inputSamedi .switch input:checked + span:before {
           left: 34px;
           content: "Oui"; }
   body.demandeur .sr-only {
@@ -7718,7 +7720,7 @@ body.admin {
       grid-template-columns: 1fr 1fr;
       grid-gap: .3rem 3.2rem;
       margin: 2.4rem 0; }
-      body.admin .myaccount__form__intervenant .car, body.admin .wrapper__form__intervenant .car {
+      body.admin .myaccount__form__intervenant .inputSamedi, body.admin .wrapper__form__intervenant .inputSamedi {
         width: 100%;
         align-items: center;
         justify-content: flex-start; }
@@ -9077,29 +9079,29 @@ body.admin {
           -webkit-text-fill-color: transparent; }
   body.admin .input-container.overflow {
     overflow: visible; }
-  body.admin .car {
+  body.admin .inputSamedi {
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: row;
     width: 40%; }
-    body.admin .car p {
+    body.admin .inputSamedi p {
       margin-right: 2em;
       color: #787878;
       font-family: "Open Sans", sans-serif; }
-    body.admin .car .switch {
+    body.admin .inputSamedi .switch {
       display: inline-block;
       position: relative;
       width: 70px;
       height: 30px;
       cursor: pointer; }
-      body.admin .car .switch input {
+      body.admin .inputSamedi .switch input {
         position: absolute;
         top: -30px;
         left: -30px;
         width: 0;
         height: 0; }
-        body.admin .car .switch input + span {
+        body.admin .inputSamedi .switch input + span {
           position: absolute;
           top: 0;
           bottom: 0;
@@ -9107,7 +9109,7 @@ body.admin {
           right: 0;
           background: #9370DB;
           border-radius: 20px; }
-        body.admin .car .switch input + span:before {
+        body.admin .inputSamedi .switch input + span:before {
           content: "";
           font-family: "Open Sans", sans-serif;
           position: absolute;
@@ -9118,13 +9120,14 @@ body.admin {
           left: -4px;
           width: 45px;
           height: 42px;
-          background: #FFFFFF;
+          background: white;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           border-radius: 50%;
           transform: translateY(-50%);
           transition: all .5s; }
-        body.admin .car .switch input:checked + span {
+        body.admin .inputSamedi .switch input:checked + span {
           background: linear-gradient(90deg, #4B0082 0%, #8A2BE2 50%); }
-        body.admin .car .switch input:checked + span:before {
+        body.admin .inputSamedi .switch input:checked + span:before {
           left: 34px;
           content: "Oui"; }
   body.admin .sr-only {

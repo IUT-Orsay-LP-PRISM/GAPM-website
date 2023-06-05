@@ -96,7 +96,18 @@
                             <span class="code_postal">{{ user.villePro.codePostal }}</span>
                         </div>
                     </div>
+                    <div></div>
+                    <div class="myaccount__form__intervenant__item">
+                        <div class="inputSamedi">
+                            <p>Autorisé le travail </br> les Samedi</p>
+                            <label class="switch">
+                                <input type="checkbox" name="travailSamedi" {% if user.isTravailSamedi == 1 %} checked {% endif %}>
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
+
                 <h2 class="myaccount__form-title">Sécurité</h2>
                 <div class="myaccount__form__perso__security">
                     <div class="input-container">

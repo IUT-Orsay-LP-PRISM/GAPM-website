@@ -240,8 +240,6 @@ function changeTextButton() {
 
 const SelectFilter = document.querySelector('#noteFrais-filter');
 const tableNoteFrais = document.querySelector('.notefrais .notefrais__table#noteFrais-table-filter');
-console.log(SelectFilter);
-console.log(tableNoteFrais);
 
 if (SelectFilter) {
     SelectFilter.addEventListener('change', () => {
