@@ -34,6 +34,8 @@ class Intervenant extends Demandeur
 
     public float $note;
 
+    private $status;
+
     public function __construct()
     {
         $this->specialites = new ArrayCollection();
@@ -69,6 +71,26 @@ class Intervenant extends Demandeur
     public function setSpecialites(ArrayCollection $specialites): void
     {
         $this->specialites = $specialites;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function isValid(): bool
+    {
+        if($this->status == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public function isIntervenant(): bool
