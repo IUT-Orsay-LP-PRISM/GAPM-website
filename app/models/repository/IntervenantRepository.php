@@ -13,7 +13,7 @@ class IntervenantRepository extends EntityRepository
      */
     public function findNoteById($id){
         return $this->getEntityManager()->getConnection()->executeQuery(
-            "SELECT idIntervenant, note, description  FROM Commentaire 
+            "SELECT idIntervenant, r.idDemandeur, note, description  FROM Commentaire 
             INNER JOIN RDV R on Commentaire.idCommentaire = R.idCommentaire 
             WHERE idIntervenant = :id",
             [
