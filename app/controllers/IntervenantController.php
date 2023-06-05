@@ -47,10 +47,16 @@ class IntervenantController extends Template
             $avg = round($avg, 1);
         }
 
+        foreach ($notes as $key => $note){
+            $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($note['idDemandeur']);
+            $notes[$key]['nom'] = $demandeur->getNom();
+            $notes[$key]['prenom'] = $demandeur->getPrenom();
+        }
+
         self::render('intervenant/profile.twig', [
             'title' => 'Profil de : ' . $intervenant->getPrenom() . ' ' . $intervenant->getNom(),
             'notes' => $notes,
-            'note' => $avg,
+            'moyenne' => $avg,
             'int' => $intervenant,
         ]);
     }
