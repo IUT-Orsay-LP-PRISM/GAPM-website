@@ -32,6 +32,9 @@ class NoteFrais
     #[ORM\JoinColumn(name: 'idAdministration', referencedColumnName: 'idAdministration', nullable: true)]
     private ?Administration $administration = null;
 
+    #[ORM\Column]
+    private string $message;
+
     private float $montantTotal = 0;
 
     /**
@@ -145,5 +148,21 @@ class NoteFrais
     public function setDepenses(array $depenses): void
     {
         $this->depenses = $depenses;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
     }
 }

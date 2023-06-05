@@ -3310,6 +3310,8 @@ body.intervenant {
         color: #144139;
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
+    body.intervenant .admin__input-edit-width {
+      width: 90% !important; }
     body.intervenant .admin__input-edit input {
       background-color: #FFFFFF;
       color: #144139; }
@@ -3408,6 +3410,9 @@ body.intervenant {
     background: white;
     position: sticky;
     top: 0; }
+    body.intervenant .admin__page__title p {
+      margin-top: 1rem;
+      font-size: 1.2rem; }
     body.intervenant .admin__page__title--form {
       display: flex;
       justify-content: space-between;
@@ -3522,7 +3527,9 @@ body.intervenant {
     flex-direction: column;
     background-color: #dee7e8;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%; }
     body.intervenant .admin__inter__edit label {
       font-family: "Poppins", sans-serif;
       font-weight: 500;
@@ -3540,6 +3547,12 @@ body.intervenant {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
   body.intervenant .admin__demandeur__item {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  body.intervenant .admin__forms__twice {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -5988,6 +6001,8 @@ body.demandeur {
         color: #1E1E3D;
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
+    body.demandeur .admin__input-edit-width {
+      width: 90% !important; }
     body.demandeur .admin__input-edit input {
       background-color: #FFFFFF;
       color: #1E1E3D; }
@@ -6086,6 +6101,9 @@ body.demandeur {
     background: white;
     position: sticky;
     top: 0; }
+    body.demandeur .admin__page__title p {
+      margin-top: 1rem;
+      font-size: 1.2rem; }
     body.demandeur .admin__page__title--form {
       display: flex;
       justify-content: space-between;
@@ -6200,7 +6218,9 @@ body.demandeur {
     flex-direction: column;
     background-color: #DCE6F2;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%; }
     body.demandeur .admin__inter__edit label {
       font-family: "Poppins", sans-serif;
       font-weight: 500;
@@ -6218,6 +6238,12 @@ body.demandeur {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
   body.demandeur .admin__demandeur__item {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  body.demandeur .admin__forms__twice {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -8666,6 +8692,8 @@ body.admin {
         color: #302053;
         font-family: "Open Sans", sans-serif;
         font-size: 1rem; }
+    body.admin .admin__input-edit-width {
+      width: 90% !important; }
     body.admin .admin__input-edit input {
       background-color: #FFFFFF;
       color: #302053; }
@@ -8764,6 +8792,9 @@ body.admin {
     background: white;
     position: sticky;
     top: 0; }
+    body.admin .admin__page__title p {
+      margin-top: 1rem;
+      font-size: 1.2rem; }
     body.admin .admin__page__title--form {
       display: flex;
       justify-content: space-between;
@@ -8878,7 +8909,9 @@ body.admin {
     flex-direction: column;
     background-color: #F5F5F5;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%; }
     body.admin .admin__inter__edit label {
       font-family: "Poppins", sans-serif;
       font-weight: 500;
@@ -8896,6 +8929,12 @@ body.admin {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
   body.admin .admin__demandeur__item {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
+  body.admin .admin__forms__twice {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center; }
   body.admin .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;

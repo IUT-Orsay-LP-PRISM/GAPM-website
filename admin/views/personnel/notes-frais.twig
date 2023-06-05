@@ -5,5 +5,52 @@
 {% block content %}
 	<div class="admin__page__title">
 		<h1>{{ title }}</h1>
+		<p>
+			Liste des notes de frais à refuser ou à valider
+		</p>
+	</div>
+	<div class="admin__page__content ">
+		<div class="admin__inter">
+			<div class="admin__inter__head admin__demandeur__item">
+				<div class="admin__inter__noms-head">
+					Date
+				</div>
+				<div class="admin__inter__spe-head">
+					Status
+				</div>
+				<div class="admin__inter__montant-head">
+					Montant
+				</div>
+				<div class="admin__inter__adresse-head">
+					Intervenant
+				</div>
+				<div class="admin__inter__adresse-head">
+					Action
+				</div>
+			</div>
+			{% for note in notes %}
+			<div class="admin__inter__item admin__demandeur__item">
+				<div class="admin__inter__noms">
+					{{ note.dateNote|date('d/m/Y') }}
+				</div>
+				<div class="admin__inter__spe">
+					{% if note.status == "en attente" %}
+						En attente
+					{% endif %}
+				</div>
+				<div class="admin__inter__montant">
+					{{ note.montantTotal }} €
+				</div>
+				<div class="admin__inter__adresse">
+					{{ note.intervenant.nom }} {{ note.intervenant.prenom }}
+				</div>
+				<div class="admin__inter__actions">
+					<a href="./?action=note-frais&id={{ note.idNoteFrais }}">
+						Voir les dépenses
+					</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}

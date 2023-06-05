@@ -9,19 +9,19 @@ use App\models\entity\Intervenant;
 use App\models\entity\NoteFrais;
 use App\models\entity\Session;
 use App\models\entity\Ville;
-use Doctrine\DBAL\Exception;
+use App\models\repository\AdministrationRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
-use function Symfony\Component\String\u;
 
 class PersonnelController extends Template
 {
     private EntityManager $entityManager;
+    private AdministrationRepository $administrationRepository;
 
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
+        $this->administrationRepository = $entityManager->getRepository(Administration::class);
     }
 
     public function index(): void
@@ -35,6 +35,8 @@ class PersonnelController extends Template
             'nav' => 'home',
         ], true);
     }
+
+    // Auth
 
     public function loginView(): void
     {
@@ -69,7 +71,14 @@ class PersonnelController extends Template
                 $user = $personnel;
 
                 if ($user->getMotDePasse() == $saltedAndHashed) {
-                    Session::set('admin', $user);
+                    $admin = new Administration();
+                    $admin->setIdAdministration($personnel->getIdAdministration());
+                    $admin->setLogin($id);
+                    $admin->setNom($personnel->getNom());
+                    $admin->setPrenom($personnel->getPrenom());
+                    $admin->setEmail($personnel->getEmail());
+
+                    Session::set('admin', $admin);
 
                     header('Location: ./?action=intervenants&message=Vous êtes connecté.&c=msg-success');
                 } else {
@@ -89,6 +98,7 @@ class PersonnelController extends Template
         header('Location: ./?action=login&message=Vous êtes déconnecté.&c=msg-success');
     }
 
+    // Intervenants
     public function intervenantsView(): void
     {
         if (!Session::isLoggedAdmin()){
@@ -212,6 +222,7 @@ class PersonnelController extends Template
         }
     }
 
+    // Demandeurs
     public function demandeursView(): void
     {
         if (!Session::isLoggedAdmin()){
@@ -259,7 +270,6 @@ class PersonnelController extends Template
             'pageDisplay' => false,
         ], true);
     }
-
     public function demandeurView(): void{
         if (!Session::isLoggedAdmin()){
             header('Location: ./?action=login');
@@ -372,18 +382,113 @@ class PersonnelController extends Template
         }
     }
 
+    // Notes de frais
     public function notesFraisView(): void
     {
         if (!Session::isLoggedAdmin()){
             header('Location: ./?action=login');
         }
 
+        $notesFrais = $this->entityManager->getRepository(NoteFrais::class)->findBy([
+            'administration' => null,
+        ]);
+
+        foreach ($notesFrais as $noteFrais) {
+            $depenses = $noteFrais->getDepenses();
+            $montantTotal = 0;
+            foreach ($depenses as $depense) {
+                $montantTotal += $depense->getMontant();
+            }
+            $noteFrais->setMontantTotal($montantTotal);
+        }
+
         self::render('/personnel/notes-frais.twig', [
             'title' => 'Gestion des notes de frais',
             'nav' => 'notes',
+            'notes' => $notesFrais,
         ], true);
     }
 
+    public function noteFraisOneView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+
+        $id = htmlspecialchars($_GET['id']);
+        $noteFrais = $this->entityManager->getRepository(NoteFrais::class)->findOneBy([
+            'idNoteFrais' => $id,
+        ]);
+
+        $depenses = $noteFrais->getDepenses();
+        $montantTotal = 0;
+        foreach ($depenses as $depense) {
+            $montantTotal += $depense->getMontant();
+        }
+        $noteFrais->setMontantTotal($montantTotal);
+
+        $depenses = $this->entityManager->getRepository(Depense::class)->findBy([
+            'noteFrais' => $noteFrais,
+        ]);
+
+        self::render('/personnel/notes-frais/note-frais.twig', [
+            'title' => 'Note de frais n°' . $noteFrais->getIdNoteFrais(),
+            'nav' => 'notes',
+            'note' => $noteFrais,
+            'depenses' => $depenses,
+        ], true);
+
+    }
+
+    public function notesFraisValidateSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+
+        $noteFrais = $this->entityManager->getRepository(NoteFrais::class)->findOneBy([
+            'idNoteFrais' => $id,
+        ]);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => Session::get('admin')->getIdAdministration(),
+        ]);
+
+        $noteFrais->setStatus('Validée');
+        $noteFrais->setMessage("Note de frais validée par " . $admin->getPrenom() . " " . $admin->getNom() . ".");
+        $noteFrais->setAdministration($admin);
+        try {
+            $this->entityManager->persist($noteFrais);
+            $this->entityManager->flush();
+            header('Location: ./?action=notes-frais&message=Note de frais validée.&c=msg-success');
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=notes-frais&message=Erreur lors de la validation de la note de frais.&c=msg-error');
+        }
+    }
+
+    public function notesFraisDeniedSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+        $message = htmlspecialchars($_POST['message']);
+
+        $noteFrais = $this->entityManager->getRepository(NoteFrais::class)->findOneBy([
+            'idNoteFrais' => $id,
+        ]);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => Session::get('admin')->getIdAdministration(),
+        ]);
+
+        $noteFrais->setStatus('Refusée');
+        $noteFrais->setMessage("Note de frais refusée par " . $admin->getPrenom() . " " . $admin->getNom() . ". Motif : " . $message);
+        $noteFrais->setAdministration($admin);
+        try {
+            $this->entityManager->persist($noteFrais);
+            $this->entityManager->flush();
+            header('Location: ./?action=notes-frais&message=Note de frais refusée.&c=msg-success');
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=notes-frais&message=Erreur lors du refus de la note de frais.&c=msg-error');
+        }
+
+    }
+
+    // Emprunts de véhicules
     public function empruntsVehiculesView(): void
     {
         if (!Session::isLoggedAdmin()){

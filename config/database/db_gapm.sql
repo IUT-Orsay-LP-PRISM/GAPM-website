@@ -244,7 +244,8 @@ CREATE TABLE `NoteFrais`
     `dateNote`         date        NOT NULL,
     `status`           varchar(50) DEFAULT 'En attente',
     `idIntervenant`    int(11) NOT NULL,
-    `idAdministration` int(11) DEFAULT NULL
+    `idAdministration` int(11) DEFAULT NULL,
+    `message`          varchar(255) DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;

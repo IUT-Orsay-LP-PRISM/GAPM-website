@@ -1,0 +1,113 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title">
+		<h1>{{ title }}</h1>
+	</div>
+	<div class="admin__page__content admin__inter__see">
+	<div class="admin__inter ">
+		<div class="admin__inter__head admin__demandeur__item">
+			<div class="admin__inter__noms-head">
+				Date
+			</div>
+			<div class="admin__inter__spe-head">
+				Status
+			</div>
+			<div class="admin__inter__montant-head">
+				Montant
+			</div>
+			<div class="admin__inter__adresse-head">
+				Intervenant
+			</div>
+		</div>
+		<div class="admin__inter__item admin__demandeur__item">
+			<div class="admin__inter__noms">
+				{{ note.dateNote|date('d/m/Y') }}
+			</div>
+			<div class="admin__inter__spe">
+				{% if note.status == "en attente" %}
+					En attente
+				{% endif %}
+			</div>
+			<div class="admin__inter__montant">
+				{{ note.montantTotal }} €
+			</div>
+			<div class="admin__inter__adresse">
+				{{ note.intervenant.nom }} {{ note.intervenant.prenom }}
+			</div>
+		</div>
+	</div>
+	<h2>
+		Les dépenses
+	</h2>
+	<div class="admin__inter__rdv">
+		<div class="admin__inter__head admin__demandeur__item">
+			<div class="admin__inter__date-head">
+				Date de paiement
+			</div>
+			<div class="admin__inter__nature-head">
+				Nature
+			</div>
+			<div class="admin__inter__montant-head">
+				Montant
+			</div>
+			<div class="admin__inter__commentaire-head">
+				Fournisseur - Commentaire
+			</div>
+			<div class="admin__inter__actions-head">
+				Actions
+			</div>
+		</div>
+		{% for depense in depenses %}
+			<div class="admin__inter__item admin__demandeur__item">
+				<div class="admin__inter__noms">
+					{{ depense.dateDepense|date('d/m/Y') }}
+				</div>
+				<div class="admin__inter__nature">
+					{{ depense.nature }}
+				</div>
+				<div class="admin__inter__montant">
+					{{ depense.montant }} €
+				</div>
+				<div class="admin__inter__fournisseur">
+					{{ depense.fournisseur }}
+					<br><br>
+					{{ depense.commentaire }}
+				</div>
+				<div class="admin__inter__actions">
+					<a href="../{{ depense.urlJustificatif }}" target="_blank">
+						Voir le justificatif
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<h2>
+		Validation ou refus
+	</h2>
+	<div class="admin__forms__twice">
+		<form action="./?action=validate-notefrais" class="notesfrais__validate admin__inter admin__inter__edit" method="post">
+			<input type="hidden" name="id" value="{{ note.idNoteFrais }}">
+			<button type="submit" class="btn btn-secondary-nb btn-greenPrimary">
+				<i class="icon-fi-rr-comment-check"></i>
+				Valider la note de frais
+			</button>
+		</form>
+		<form action="./?action=refuse-notefrais" class="notesfrais__refuse admin__inter admin__inter__edit" method="post">
+			<input type="hidden" name="id" value="{{ note.idNoteFrais }}">
+			<div class="admin__inter__noms admin__input admin__input-edit admin__input-edit-width">
+				<label for="message">
+					La raison du refus
+				</label>
+				<input type="text" name="message" id="message" required>
+			</div>
+			<button type="submit" class="btn btn-secondary-nb btn-red">
+				<i class="icon-fi-rr-cross-circle"></i>
+				Refuser la note de frais
+			</button>
+		</form>
+	</div>
+
+{% endblock %}
