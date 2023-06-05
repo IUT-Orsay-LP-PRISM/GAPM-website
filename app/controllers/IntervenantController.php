@@ -366,4 +366,30 @@ class IntervenantController extends Template
             exit();
         }
     }
+
+    public function displayPlanning(): void
+    {
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find(Session::get('user')->getIdDemandeur());
+        $this->render('intervenant/planning.twig', [
+            'title' => 'Planning',
+            'intervenant' => $intervenant
+        ]);
+    }
+
+
+    public function getNumberOfRdvInDays($days) : void
+    {
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find(Session::get('user')->getIdDemandeur());
+        // create array associatif with dateRdv as key and number of rdv as value
+        $rdv = [];
+        foreach ($intervenant->getMesRendezVous() as $rendezVous) {
+            $dateRdv = $rendezVous->getDateRdv();
+            if (array_key_exists($dateRdv, $rdv)) {
+                $rdv[$dateRdv] += 1;
+            } else {
+                $rdv[$dateRdv] = 1;
+            }
+        }
+        echo json_encode($rdv);
+    }
 }

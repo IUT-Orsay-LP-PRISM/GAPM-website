@@ -36,6 +36,7 @@ $screenXl          : 1440px;
 @import "pages/faq";
 @import "pages/note-frais";
 @import "pages/admin";
+@import "pages/planning";
 
 // Import du style de tous les composants
 @import "components/buttons";
@@ -45,6 +46,7 @@ $screenXl          : 1440px;
 @import "components/popups";
 @import "components/link";
 @import "components/notification";
+@import "components/jsCalendar";
 
 .icon {
   background              : $primaryLight;

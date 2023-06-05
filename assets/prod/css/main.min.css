@@ -2475,12 +2475,14 @@ body.intervenant {
         body.intervenant .prendreRdv h1 .small span {
           color: #36A793; }
     body.intervenant .prendreRdv__content {
-      margin-top: 2.35rem;
       display: flex;
       justify-content: center;
-      align-items: flex-start; }
+      align-items: flex-start;
+      padding: 2.5rem 0;
+      max-width: 65em;
+      margin: auto; }
       body.intervenant .prendreRdv__content__body {
-        width: 60%;
+        width: 100%;
         padding: 1.85rem 2.53rem;
         background: white;
         border-radius: 10px; }
@@ -2518,92 +2520,14 @@ body.intervenant {
           display: none; }
           body.intervenant .prendreRdv__content__body-form .js-account-content.--display {
             display: block; }
-        body.intervenant .prendreRdv__content__body-form .js-calendar {
-          font-family: "Open Sans", sans-serif;
-          user-select: none; }
-          body.intervenant .prendreRdv__content__body-form .js-calendar .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem; }
-            body.intervenant .prendreRdv__content__body-form .js-calendar .header .current-month {
-              font-size: 1.5rem;
-              font-weight: 600; }
-            body.intervenant .prendreRdv__content__body-form .js-calendar .header .buttons {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              width: 10rem; }
-              body.intervenant .prendreRdv__content__body-form .js-calendar .header .buttons i {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 1.5rem;
-                cursor: pointer;
-                width: 2.5rem;
-                height: 2.5rem;
-                border-radius: 10px; }
-          body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates {
-            background-color: #dee7e8;
-            border-radius: 10px;
-            height: 100%;
-            width: 100%; }
-            body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .weekdays {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              margin: 1.5rem 0 0 0;
-              padding-top: 1.5rem;
-              color: #257466;
-              font-weight: 600; }
-              body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .weekdays .weekday {
-                font-size: 1.2rem; }
-            body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              flex-wrap: wrap;
-              margin: 1.5rem 0 0 0; }
-              body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .row {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                width: 100%; }
-              body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: calc(100% / 7);
-                aspect-ratio: 1/1;
-                cursor: pointer;
-                background-color: #FFFFFF;
-                margin: 1px;
-                position: relative; }
-                body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day .day-number {
-                  position: absolute;
-                  top: 5%;
-                  right: 5%;
-                  font-size: 1.5em;
-                  font-weight: 600; }
-                body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--today {
-                  background-color: #257466;
-                  color: white; }
-                body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled {
-                  background-color: #dee7e8;
-                  color: #144139;
-                  cursor: not-allowed; }
-                  body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled .day-number {
-                    color: #b5b5b5; }
-                body.intervenant .prendreRdv__content__body-form .js-calendar .container-dates .days .day:hover:not(.--disabled) {
-                  background-color: #86CABE;
-                  color: white; }
     body.intervenant .prendreRdv.success .small span {
       color: #36A793; }
     body.intervenant .prendreRdv.success .prendreRdv__content__body {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      height: 50vh; }
+      height: 50vh;
+      gap: 2.5rem; }
       body.intervenant .prendreRdv.success .prendreRdv__content__body svg {
         width: 30em;
         height: auto; }
@@ -3553,6 +3477,14 @@ body.intervenant {
     grid-gap: 2rem;
     align-items: center;
     text-align: center; }
+  body.intervenant .planning__container {
+    padding: 2.5rem 0;
+    max-width: 65em;
+    margin: auto; }
+  body.intervenant .planning__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -4466,6 +4398,95 @@ body.intervenant {
       margin: 0 2rem; }
     body.intervenant .notification__close {
       cursor: pointer; }
+  body.intervenant .js-calendar {
+    font-family: "Open Sans", sans-serif;
+    user-select: none; }
+    body.intervenant .js-calendar .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem; }
+      body.intervenant .js-calendar .header .current-month {
+        font-size: 1.5rem;
+        font-weight: 600; }
+      body.intervenant .js-calendar .header .buttons {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 10rem; }
+        body.intervenant .js-calendar .header .buttons i {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.5rem;
+          cursor: pointer;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 10px; }
+    body.intervenant .js-calendar .container-dates {
+      background-color: #dee7e8;
+      border-radius: 10px;
+      height: 100%;
+      width: 100%; }
+      body.intervenant .js-calendar .container-dates .weekdays {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 1.5rem 0 0 0;
+        padding-top: 1.5rem;
+        color: #257466;
+        font-weight: 600; }
+        body.intervenant .js-calendar .container-dates .weekdays .weekday {
+          font-size: 1.2rem; }
+      body.intervenant .js-calendar .container-dates .days {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 1.5rem 0 0 0; }
+        body.intervenant .js-calendar .container-dates .days .row {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%; }
+        body.intervenant .js-calendar .container-dates .days .day {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(100% / 7);
+          aspect-ratio: 1/1;
+          cursor: pointer;
+          background-color: #FFFFFF;
+          margin: 1px;
+          position: relative; }
+          body.intervenant .js-calendar .container-dates .days .day .day-number {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            font-size: 1.5em;
+            font-weight: 600; }
+          body.intervenant .js-calendar .container-dates .days .day .day-rdv {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            background-color: #F1FAFB;
+            padding: 0.2rem;
+            text-align: center;
+            width: 85%;
+            transform: translateY(-50%); }
+          body.intervenant .js-calendar .container-dates .days .day.--today {
+            background-color: #257466;
+            color: white; }
+          body.intervenant .js-calendar .container-dates .days .day.--disabled {
+            background-color: #dee7e8;
+            color: #144139;
+            cursor: not-allowed; }
+            body.intervenant .js-calendar .container-dates .days .day.--disabled .day-number {
+              color: #b5b5b5; }
+          body.intervenant .js-calendar .container-dates .days .day:hover:not(.--disabled) {
+            background-color: #86CABE; }
+            body.intervenant .js-calendar .container-dates .days .day:hover:not(.--disabled) .day-number {
+              color: white; }
   body.intervenant .icon {
     background: #36A793;
     -webkit-background-clip: text;
@@ -5166,12 +5187,14 @@ body.demandeur {
         body.demandeur .prendreRdv h1 .small span {
           color: #5154EC; }
     body.demandeur .prendreRdv__content {
-      margin-top: 2.35rem;
       display: flex;
       justify-content: center;
-      align-items: flex-start; }
+      align-items: flex-start;
+      padding: 2.5rem 0;
+      max-width: 65em;
+      margin: auto; }
       body.demandeur .prendreRdv__content__body {
-        width: 60%;
+        width: 100%;
         padding: 1.85rem 2.53rem;
         background: white;
         border-radius: 10px; }
@@ -5209,92 +5232,14 @@ body.demandeur {
           display: none; }
           body.demandeur .prendreRdv__content__body-form .js-account-content.--display {
             display: block; }
-        body.demandeur .prendreRdv__content__body-form .js-calendar {
-          font-family: "Open Sans", sans-serif;
-          user-select: none; }
-          body.demandeur .prendreRdv__content__body-form .js-calendar .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem; }
-            body.demandeur .prendreRdv__content__body-form .js-calendar .header .current-month {
-              font-size: 1.5rem;
-              font-weight: 600; }
-            body.demandeur .prendreRdv__content__body-form .js-calendar .header .buttons {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              width: 10rem; }
-              body.demandeur .prendreRdv__content__body-form .js-calendar .header .buttons i {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 1.5rem;
-                cursor: pointer;
-                width: 2.5rem;
-                height: 2.5rem;
-                border-radius: 10px; }
-          body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates {
-            background-color: #DCE6F2;
-            border-radius: 10px;
-            height: 100%;
-            width: 100%; }
-            body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .weekdays {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              margin: 1.5rem 0 0 0;
-              padding-top: 1.5rem;
-              color: #393BAA;
-              font-weight: 600; }
-              body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .weekdays .weekday {
-                font-size: 1.2rem; }
-            body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              flex-wrap: wrap;
-              margin: 1.5rem 0 0 0; }
-              body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .row {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                width: 100%; }
-              body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: calc(100% / 7);
-                aspect-ratio: 1/1;
-                cursor: pointer;
-                background-color: #FFFFFF;
-                margin: 1px;
-                position: relative; }
-                body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day .day-number {
-                  position: absolute;
-                  top: 5%;
-                  right: 5%;
-                  font-size: 1.5em;
-                  font-weight: 600; }
-                body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--today {
-                  background-color: #393BAA;
-                  color: white; }
-                body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled {
-                  background-color: #DCE6F2;
-                  color: #1E1E3D;
-                  cursor: not-allowed; }
-                  body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled .day-number {
-                    color: #b5b5b5; }
-                body.demandeur .prendreRdv__content__body-form .js-calendar .container-dates .days .day:hover:not(.--disabled) {
-                  background-color: #7EA6F4;
-                  color: white; }
     body.demandeur .prendreRdv.success .small span {
       color: #36A793; }
     body.demandeur .prendreRdv.success .prendreRdv__content__body {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      height: 50vh; }
+      height: 50vh;
+      gap: 2.5rem; }
       body.demandeur .prendreRdv.success .prendreRdv__content__body svg {
         width: 30em;
         height: auto; }
@@ -6244,6 +6189,14 @@ body.demandeur {
     grid-gap: 2rem;
     align-items: center;
     text-align: center; }
+  body.demandeur .planning__container {
+    padding: 2.5rem 0;
+    max-width: 65em;
+    margin: auto; }
+  body.demandeur .planning__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -7157,6 +7110,95 @@ body.demandeur {
       margin: 0 2rem; }
     body.demandeur .notification__close {
       cursor: pointer; }
+  body.demandeur .js-calendar {
+    font-family: "Open Sans", sans-serif;
+    user-select: none; }
+    body.demandeur .js-calendar .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem; }
+      body.demandeur .js-calendar .header .current-month {
+        font-size: 1.5rem;
+        font-weight: 600; }
+      body.demandeur .js-calendar .header .buttons {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 10rem; }
+        body.demandeur .js-calendar .header .buttons i {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.5rem;
+          cursor: pointer;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 10px; }
+    body.demandeur .js-calendar .container-dates {
+      background-color: #DCE6F2;
+      border-radius: 10px;
+      height: 100%;
+      width: 100%; }
+      body.demandeur .js-calendar .container-dates .weekdays {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 1.5rem 0 0 0;
+        padding-top: 1.5rem;
+        color: #393BAA;
+        font-weight: 600; }
+        body.demandeur .js-calendar .container-dates .weekdays .weekday {
+          font-size: 1.2rem; }
+      body.demandeur .js-calendar .container-dates .days {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 1.5rem 0 0 0; }
+        body.demandeur .js-calendar .container-dates .days .row {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%; }
+        body.demandeur .js-calendar .container-dates .days .day {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(100% / 7);
+          aspect-ratio: 1/1;
+          cursor: pointer;
+          background-color: #FFFFFF;
+          margin: 1px;
+          position: relative; }
+          body.demandeur .js-calendar .container-dates .days .day .day-number {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            font-size: 1.5em;
+            font-weight: 600; }
+          body.demandeur .js-calendar .container-dates .days .day .day-rdv {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            background-color: #F1FAFB;
+            padding: 0.2rem;
+            text-align: center;
+            width: 85%;
+            transform: translateY(-50%); }
+          body.demandeur .js-calendar .container-dates .days .day.--today {
+            background-color: #393BAA;
+            color: white; }
+          body.demandeur .js-calendar .container-dates .days .day.--disabled {
+            background-color: #DCE6F2;
+            color: #1E1E3D;
+            cursor: not-allowed; }
+            body.demandeur .js-calendar .container-dates .days .day.--disabled .day-number {
+              color: #b5b5b5; }
+          body.demandeur .js-calendar .container-dates .days .day:hover:not(.--disabled) {
+            background-color: #7EA6F4; }
+            body.demandeur .js-calendar .container-dates .days .day:hover:not(.--disabled) .day-number {
+              color: white; }
   body.demandeur .icon {
     background: #5154EC;
     -webkit-background-clip: text;
@@ -7857,12 +7899,14 @@ body.admin {
         body.admin .prendreRdv h1 .small span {
           color: #8A2BE2; }
     body.admin .prendreRdv__content {
-      margin-top: 2.35rem;
       display: flex;
       justify-content: center;
-      align-items: flex-start; }
+      align-items: flex-start;
+      padding: 2.5rem 0;
+      max-width: 65em;
+      margin: auto; }
       body.admin .prendreRdv__content__body {
-        width: 60%;
+        width: 100%;
         padding: 1.85rem 2.53rem;
         background: white;
         border-radius: 10px; }
@@ -7900,92 +7944,14 @@ body.admin {
           display: none; }
           body.admin .prendreRdv__content__body-form .js-account-content.--display {
             display: block; }
-        body.admin .prendreRdv__content__body-form .js-calendar {
-          font-family: "Open Sans", sans-serif;
-          user-select: none; }
-          body.admin .prendreRdv__content__body-form .js-calendar .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem; }
-            body.admin .prendreRdv__content__body-form .js-calendar .header .current-month {
-              font-size: 1.5rem;
-              font-weight: 600; }
-            body.admin .prendreRdv__content__body-form .js-calendar .header .buttons {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              width: 10rem; }
-              body.admin .prendreRdv__content__body-form .js-calendar .header .buttons i {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 1.5rem;
-                cursor: pointer;
-                width: 2.5rem;
-                height: 2.5rem;
-                border-radius: 10px; }
-          body.admin .prendreRdv__content__body-form .js-calendar .container-dates {
-            background-color: #F5F5F5;
-            border-radius: 10px;
-            height: 100%;
-            width: 100%; }
-            body.admin .prendreRdv__content__body-form .js-calendar .container-dates .weekdays {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              margin: 1.5rem 0 0 0;
-              padding-top: 1.5rem;
-              color: #4B0082;
-              font-weight: 600; }
-              body.admin .prendreRdv__content__body-form .js-calendar .container-dates .weekdays .weekday {
-                font-size: 1.2rem; }
-            body.admin .prendreRdv__content__body-form .js-calendar .container-dates .days {
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              flex-wrap: wrap;
-              margin: 1.5rem 0 0 0; }
-              body.admin .prendreRdv__content__body-form .js-calendar .container-dates .days .row {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                width: 100%; }
-              body.admin .prendreRdv__content__body-form .js-calendar .container-dates .days .day {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: calc(100% / 7);
-                aspect-ratio: 1/1;
-                cursor: pointer;
-                background-color: #FFFFFF;
-                margin: 1px;
-                position: relative; }
-                body.admin .prendreRdv__content__body-form .js-calendar .container-dates .days .day .day-number {
-                  position: absolute;
-                  top: 5%;
-                  right: 5%;
-                  font-size: 1.5em;
-                  font-weight: 600; }
-                body.admin .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--today {
-                  background-color: #4B0082;
-                  color: white; }
-                body.admin .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled {
-                  background-color: #F5F5F5;
-                  color: #302053;
-                  cursor: not-allowed; }
-                  body.admin .prendreRdv__content__body-form .js-calendar .container-dates .days .day.--disabled .day-number {
-                    color: #b5b5b5; }
-                body.admin .prendreRdv__content__body-form .js-calendar .container-dates .days .day:hover:not(.--disabled) {
-                  background-color: #9370DB;
-                  color: white; }
     body.admin .prendreRdv.success .small span {
       color: #36A793; }
     body.admin .prendreRdv.success .prendreRdv__content__body {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      height: 50vh; }
+      height: 50vh;
+      gap: 2.5rem; }
       body.admin .prendreRdv.success .prendreRdv__content__body svg {
         width: 30em;
         height: auto; }
@@ -8935,6 +8901,14 @@ body.admin {
     grid-gap: 2rem;
     align-items: center;
     text-align: center; }
+  body.admin .planning__container {
+    padding: 2.5rem 0;
+    max-width: 65em;
+    margin: auto; }
+  body.admin .planning__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
   body.admin .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -9848,6 +9822,95 @@ body.admin {
       margin: 0 2rem; }
     body.admin .notification__close {
       cursor: pointer; }
+  body.admin .js-calendar {
+    font-family: "Open Sans", sans-serif;
+    user-select: none; }
+    body.admin .js-calendar .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem; }
+      body.admin .js-calendar .header .current-month {
+        font-size: 1.5rem;
+        font-weight: 600; }
+      body.admin .js-calendar .header .buttons {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 10rem; }
+        body.admin .js-calendar .header .buttons i {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.5rem;
+          cursor: pointer;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 10px; }
+    body.admin .js-calendar .container-dates {
+      background-color: #F5F5F5;
+      border-radius: 10px;
+      height: 100%;
+      width: 100%; }
+      body.admin .js-calendar .container-dates .weekdays {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 1.5rem 0 0 0;
+        padding-top: 1.5rem;
+        color: #4B0082;
+        font-weight: 600; }
+        body.admin .js-calendar .container-dates .weekdays .weekday {
+          font-size: 1.2rem; }
+      body.admin .js-calendar .container-dates .days {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 1.5rem 0 0 0; }
+        body.admin .js-calendar .container-dates .days .row {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%; }
+        body.admin .js-calendar .container-dates .days .day {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(100% / 7);
+          aspect-ratio: 1/1;
+          cursor: pointer;
+          background-color: #FFFFFF;
+          margin: 1px;
+          position: relative; }
+          body.admin .js-calendar .container-dates .days .day .day-number {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            font-size: 1.5em;
+            font-weight: 600; }
+          body.admin .js-calendar .container-dates .days .day .day-rdv {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            background-color: #D3A9DD;
+            padding: 0.2rem;
+            text-align: center;
+            width: 85%;
+            transform: translateY(-50%); }
+          body.admin .js-calendar .container-dates .days .day.--today {
+            background-color: #4B0082;
+            color: white; }
+          body.admin .js-calendar .container-dates .days .day.--disabled {
+            background-color: #F5F5F5;
+            color: #302053;
+            cursor: not-allowed; }
+            body.admin .js-calendar .container-dates .days .day.--disabled .day-number {
+              color: #b5b5b5; }
+          body.admin .js-calendar .container-dates .days .day:hover:not(.--disabled) {
+            background-color: #9370DB; }
+            body.admin .js-calendar .container-dates .days .day:hover:not(.--disabled) .day-number {
+              color: white; }
   body.admin .icon {
     background: #8A2BE2;
     -webkit-background-clip: text;

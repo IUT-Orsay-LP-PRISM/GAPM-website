@@ -63,7 +63,7 @@ class RendezVousController extends Template
 
         $demandeur = $this->entityManager->getRepository(Demandeur::class)->find($idDemandeur);
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($rdv->getIntervenant());
-        
+
         $referer = $_SERVER['HTTP_REFERER'];
         $referer_parts = parse_url($referer);
         $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
@@ -77,8 +77,8 @@ class RendezVousController extends Template
         $phpmailer->Username = '87aafa94a4e2c8';
         $phpmailer->Password = '2b192b0e9179d3';
         $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
-        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom()); 
+        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
         $phpmailer->Subject = 'Annulation du rendez-vous';
         $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() . ' à ' . $rdv->getHeureFin() .
         ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() . ' avec ' . $intervenant->getPrenom() . ' '
@@ -133,8 +133,8 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
             $phpmailer->Username = '87aafa94a4e2c8';
             $phpmailer->Password = '2b192b0e9179d3';
             $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
-            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom()); 
+            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
             $phpmailer->Subject = 'Annulation du rendez-vous';
             $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() . ' à ' . $rdv->getHeureFin() .
             ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() . ' avec ' . $intervenant->getPrenom() . ' '
@@ -224,8 +224,6 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
             $this->entityManager->flush();
             $result = true;
         } catch (\Exception $e) {
-            dump($e);
-            die();
             header('Location: /?action=search&message=Une erreur est survenue lors de la création du rendez-vous&c=message');
             exit;
         }
@@ -243,8 +241,8 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
         $phpmailer->Username = '87aafa94a4e2c8';
         $phpmailer->Password = '2b192b0e9179d3';
         $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
-        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom()); 
+        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
         $phpmailer->Subject = 'Confirmation d\'un rendez-vous';
         $phpmailer->Body = 'Le rendez-vous du ' . $date . ' de ' . $horaireDebut .' à '. $horaireFin .
         ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '
@@ -352,11 +350,18 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
         $intervenant = $this->entityManager->getRepository(Demandeur::class)->find($user->getIdDemandeur());
         $rdvIntervenant = $intervenant->getMesRendezVous();
 
-
-
         $mesRdvAjd = [];
         $mesRdvAVenir = [];
         $allRdvsAfter = [];
+        $mesRdvFilter = [];
+        if(!empty($_GET['date'])){
+            foreach ($rdvIntervenant as $rdv) {
+                if ($rdv->getDateRdv() == $_GET['date']) {
+                    $mesRdvFilter[] = $rdv;
+                }
+            }
+        }
+
         foreach ($rdvIntervenant as $rdv) {
             if ($rdv->getDateRdv() == date('Y-m-d') && $rdv->getStatus() == 'confirme') {
                 $mesRdvAjd[] = $rdv;
@@ -382,12 +387,16 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
             'today' => $mesRdvAjd,
             'next' => $mesRdvAVenir,
             'all' => $allRdvsAfter,
+            'filter' => [
+                'date' => $_GET['date'] ?? null,
+                'rdv' => $mesRdvFilter,
+            ],
         ];
 
         self::render('intervenant/mes-rdv.twig', [
             'title' => 'Mes rendez-vous',
             'user' => $intervenant,
-            'mesRdv' => $mesRdv
+            'mesRdv' => $mesRdv,
         ]);
     }
 
@@ -436,8 +445,8 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
             $phpmailer->Username = '87aafa94a4e2c8';
             $phpmailer->Password = '2b192b0e9179d3';
             $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom()); 
-            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom()); 
+            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
+            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
             $phpmailer->Subject = 'Commentaire d\'un Rendez-vous';
             $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() .' à '. $rdv->getHeureFin() .
             ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '

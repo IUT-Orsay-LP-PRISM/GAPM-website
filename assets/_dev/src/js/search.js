@@ -1,5 +1,6 @@
 const btn_RDVS = document.querySelectorAll('.js-btn-RDV');
 const popUp_prendreRDV = document.querySelector('#popUp-prendre-RDV');
+import {getNumberOfRdvInDay} from './planning.js';
 
 if (btn_RDVS) {
     btn_RDVS.forEach(btn => {
@@ -20,6 +21,7 @@ if (btn_RDVS) {
 
 
 const calendar = document.querySelector('.js-calendar');
+
 if (calendar) {
     StartCalendar();
 }
@@ -66,57 +68,76 @@ function creerCalendrier(annee, mois) {
     let day = 1 - jourSemaine;
     const hashTravailSamedi = document.querySelector('.container-dates').getAttribute('data-value');
     let travailSamedi = hashTravailSamedi === '03063e73002b4a89e44b283f0d8da951';
-    while (day <= nbJoursMois) {
-        const row = document.createElement('div');
-        row.classList.add('row');
-        for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
-            const dayDiv = document.createElement('div');
-            dayDiv.classList.add('day');
-            const dayNumber = document.createElement('div');
-            dayNumber.classList.add('day-number');
-            // if day is dimanche
-            dayOfWeek === 0 ? dayDiv.classList.add('--disabled') : null;
-            // if day is samedi
-            dayOfWeek === 6 && !travailSamedi ? dayDiv.classList.add('--disabled') : null;
 
-            if (day + dayOfWeek < 1 || day + dayOfWeek > nbJoursMois) {
-                const previousMonthYear = mois === 1 ? annee - 1 : annee;
-                const previousMonthMonth = mois === 1 ? 12 : mois - 1;
-                const previousMonthDays = nbJours(previousMonthYear, previousMonthMonth);
-                const previousMonthDay = day + dayOfWeek < 1 ? previousMonthDays + day + dayOfWeek : day + dayOfWeek - nbJoursMois;
-                dayDiv.classList.add('--disabled');
-                dayNumber.innerHTML = previousMonthDay;
-            } else {
-                dayNumber.innerHTML = day + dayOfWeek;
-                const dateObj = new Date(annee, mois - 1, dayNumber.innerHTML);
-                const datasetDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
-                dayDiv.dataset.date = datasetDate;
+    const jsonNumberOfRdvInDays = getNumberOfRdvInDay();
+    Promise.all([jsonNumberOfRdvInDays]).then((values) => {
+        while (day <= nbJoursMois) {
+            const row = document.createElement('div');
+            row.classList.add('row');
+            for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('day');
+                const dayNumber = document.createElement('div');
+                dayNumber.classList.add('day-number');
+                // if day is dimanche
+                dayOfWeek === 0 ? dayDiv.classList.add('--disabled') : null;
+                // if day is samedi
+                dayOfWeek === 6 && !travailSamedi ? dayDiv.classList.add('--disabled') : null;
+
+                if (day + dayOfWeek < 1 || day + dayOfWeek > nbJoursMois) {
+                    const previousMonthYear = mois === 1 ? annee - 1 : annee;
+                    const previousMonthMonth = mois === 1 ? 12 : mois - 1;
+                    const previousMonthDays = nbJours(previousMonthYear, previousMonthMonth);
+                    const previousMonthDay = day + dayOfWeek < 1 ? previousMonthDays + day + dayOfWeek : day + dayOfWeek - nbJoursMois;
+                    dayDiv.classList.add('--disabled');
+                    dayNumber.innerHTML = previousMonthDay;
+                } else {
+                    dayNumber.innerHTML = day + dayOfWeek;
+                    const dateObj = new Date(annee, mois - 1, dayNumber.innerHTML);
+                    const datasetDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
+                    dayDiv.dataset.date = datasetDate;
+                }
+
+                if (annee < currentYear || (annee === currentYear && mois < currentMonth) || (annee === currentYear && mois === currentMonth && day + dayOfWeek < currentDay)) {
+                    dayDiv.classList.add('--disabled');
+                }
+
+                if (annee === currentYear && mois === currentMonth) {
+                    btnPreviousMonth.classList.add('--disabled');
+                } else {
+                    btnPreviousMonth.classList.remove('--disabled');
+                }
+
+                if (annee === currentYear && mois === currentMonth && day + dayOfWeek === currentDay) {
+                    dayDiv.classList.add('--today');
+                }
+
+                dayDiv.appendChild(dayNumber);
+                const fulldate = convertDate(dayDiv.dataset.date)
+
+                if(fulldate in values[0]) {
+                    const div = document.createElement('div');
+                    div.classList.add('day-rdv');
+                    div.innerHTML = values[0][fulldate] + "<br/>Rendez-vous...";
+                    dayDiv.append(div)
+                }
+
+                row.appendChild(dayDiv);
             }
-
-            if (annee < currentYear || (annee === currentYear && mois < currentMonth) || (annee === currentYear && mois === currentMonth && day + dayOfWeek < currentDay)) {
-                dayDiv.classList.add('--disabled');
-            }
-
-            if (annee === currentYear && mois === currentMonth) {
-                btnPreviousMonth.classList.add('--disabled');
-            } else {
-                btnPreviousMonth.classList.remove('--disabled');
-            }
-
-            if (annee === currentYear && mois === currentMonth && day + dayOfWeek === currentDay) {
-                dayDiv.classList.add('--today');
-            }
-
-            dayDiv.appendChild(dayNumber);
-            row.appendChild(dayDiv);
+            days.appendChild(row);
+            day += 7;
         }
-        days.appendChild(row);
-        day += 7;
-    }
-
-    placeEventListenerInDays();
+        placeEventListenerInDays();
+    });
 }
-
+function convertDate(dateString) {
+    if(dateString === undefined) return;
+    const parts = dateString.split('-');
+    const year = parts[0];
+    const month = parts[1].padStart(2, '0');
+    const day = parts[2].padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
 
 function StartCalendar() {
     const now = new Date();
@@ -169,20 +190,35 @@ function StartCalendar() {
 
 function placeEventListenerInDays() {
     document.querySelectorAll('.day:not(.--disabled)').forEach(divDay => {
-        divDay.addEventListener('click', () => {
-            popUp_prendreRDV.classList.toggle('visible');
 
-            const [year, month, day] = divDay.dataset.date.split('-');
-            const options = {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
-            const fullDate = new Date(year, month - 1, day).toLocaleDateString('fr-FR', options)
-                .replace(/^\w|\s\w/g, (c) => c.toUpperCase());
+        const URL = window.location.href;
+        const urlParams = new URLSearchParams(URL);
+        const queryString = URL.split('?')[1];
+        const regex = /action=([^&]+)/;
+        const match = queryString.match(regex);
+        const actionValue = match ? match[1] : null;
+        if (actionValue === 'planning') {
+            divDay.addEventListener('click', () => {
+                const date = convertDate(divDay.dataset.date)
+                window.location.href = `?action=liste-rdv&date=${date}`;
+            });
 
-            popUp_prendreRDV.querySelector('.popup-container-col__date').innerText = fullDate;
+        } else {
+            divDay.addEventListener('click', () => {
+                popUp_prendreRDV.classList.toggle('visible');
 
-            const newFullDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-            editDateInPopUp(newFullDate);
-            removeHeureNotAvailable(newFullDate);
-        });
+                const [year, month, day] = divDay.dataset.date.split('-');
+                const options = {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
+                const fullDate = new Date(year, month - 1, day).toLocaleDateString('fr-FR', options)
+                    .replace(/^\w|\s\w/g, (c) => c.toUpperCase());
+
+                popUp_prendreRDV.querySelector('.popup-container-col__date').innerText = fullDate;
+
+                const newFullDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+                editDateInPopUp(newFullDate);
+                removeHeureNotAvailable(newFullDate);
+            });
+        }
     });
 }
 

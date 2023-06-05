@@ -8,6 +8,7 @@ import './search'
 import './my-rdv'
 import './emprunt'
 import './note-frais'
+import './planning'
 
 window.addEventListener('load', function () {
     document.querySelector('#loader').classList.add('--hidden');

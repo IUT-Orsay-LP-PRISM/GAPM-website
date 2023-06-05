@@ -1,76 +1,100 @@
 {% extends "base.twig" %}
 
 {% block title %}
-	{{ title }}
+    {{ title }}
 {% endblock %}
 
 {% block content %}
-	<section class="myrdv wrapper">
-		<h1>Mes prochains rendez-vous</h1>
+<section class="myrdv wrapper">
+    <h1>Mes prochains rendez-vous</h1>
 
-		<div class="myrdv__container">
-			<div class="myrdv__content">
-				<div class="myrdv__nav --space-between">
-					<ul>
-						<li class="js-rdv-nav --active" data-count="{{ mesRdv.today|length }}" data-id="today">
-							Aujourd'hui
-						</li>
-						<li class="js-rdv-nav" data-count="{{ mesRdv.next|length }}" data-id="next">
-							Prochainement
-						</li>
-						<li class="js-rdv-nav" data-count="{{ mesRdv.all|length }}" data-id="all">
-							Anciens
-						</li>
-					</ul>
-				</div>
+    <div class="myrdv__container">
+        <div class="myrdv__content">
+            <div class="myrdv__nav --space-between">
+                <ul>
+                    {% if mesRdv.filter.rdv is defined and mesRdv.filter.rdv|length > 0 %}
+                        <li class="js-rdv-nav {% if mesRdv.filter.rdv|length > 0 %}--active {% endif %}"  data-count="{{ mesRdv.filter.rdv|length }}" data-id="filter">
+                            {{ mesRdv.filter.date|date("d/m/Y") }}
+                        </li>
+                    {% endif %}
+                    <li class="js-rdv-nav {% if mesRdv.filter.rdv|length <= 0 %} --active {% endif %}" data-count="{{ mesRdv.today|length }}" data-id="today">
+                        Aujourd'hui
+                    </li>
+                    <li class="js-rdv-nav" data-count="{{ mesRdv.next|length }}" data-id="next">
+                        Prochainement
+                    </li>
+                    <li class="js-rdv-nav" data-count="{{ mesRdv.all|length }}" data-id="all">
+                        Anciens
+                    </li>
+                </ul>
+            </div>
 
-				<div class="myrdv__list myrdv__inter">
-					<div id="today" class="js-rdv-content --display">
-						{% if mesRdv.today is not empty %}
-							<h3>Mes rendez-vous d'aujourd'hui :</h3>
-							<p class="text__small">
-								Si le patient n'est pas venu lors du rendez-vous, attendez que l'heure soit passé et lors de la validation, sélectionnez "Le patient ne s'est pas présenté".
-							</p>
-							{% include '/intervenant/rdv/rdv-today.twig' with {'rdv': mesRdv.today } %}
-						{% else %}
-							<h3>Aucun rendez-vous aujourd'hui</h3>
-							<p class="text__small">
-								Vous n'avez aucun rendez-vous de prévu pour aujourd'hui.
-							</p>
-						{% endif %}
-					</div>
-					<div id="next" class="js-rdv-content">
-						{% if mesRdv.next is not empty %}
-							<h3>Mes rendez-vous dès demain : </h3>
-							<p class="text__small">
-								Les rendez-vous sont affichés 24h à l'avance.
-							</p>
-							{% include '/intervenant/rdv/rdv-next.twig' with {'rdv': mesRdv.next} %}
-						{% else %}
-							<h3>Aucun rendez-vous de prévu</h3>
-							<p class="text__small">
-								Vous n'avez aucun rendez-vous de prévu pour les prochains jours.
-							</p>
-						{% endif %}
-					</div>
-					<div id="all" class="js-rdv-content">
-						{% if mesRdv.all is not empty %}
-							<h3>Mes anciens rendez-vous</h3>
-							<p class="text__small">
-								Les anciens rendez-vous ayant été effectués ou annulés. Ils sont classés par ordre chronologique.
-								<br><br>
-								A partir de 2 semaines après la date du rendez-vous, ils sont supprimés.
-							</p>
-							{% include '/intervenant/rdv/rdv-state.twig' with {'rdv': mesRdv.all } %}
-						{% else %}
-							<h3>Aucun ancien rendez-vous de moins de 15 jours.</h3>
-							<p class="text__small">
-								S'il n'y a rien d'affiché, c'est que vous n'avez pas encore eu de rendez-vous ou que tous vos rendez-vous sont trop anciens.
-							</p>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+            <div class="myrdv__list myrdv__inter">
+                <div id="filter" class="js-rdv-content {% if mesRdv.filter.rdv|length > 0 %} --display {% endif %}">
+                    {% if mesRdv.filter.rdv is not empty %}
+                        <h3>Les rendez-vous du : {{ mesRdv.filter.date|date("d/m/Y") }}</h3>
+                        <p class="text__small">
+                            Les rendez-vous du : {{ mesRdv.filter.date|date("d/m/Y") }}.
+                            Ils sont classés par ordre chronologique.
+                            <br><br>
+                        </p>
+                        {% include '/intervenant/rdv/rdv-state.twig' with {'rdv': mesRdv.filter.rdv } %}
+                    {% else %}
+                        <h3>Aucun rendez-vous aujourd'hui</h3>
+                        <p class="text__small">
+                            Vous n'avez aucun rendez-vous de prévu pour aujourd'hui.
+                        </p>
+                    {% endif %}
+                </div>
+                <div id="today" class="js-rdv-content {% if mesRdv.filter.rdv|length <= 0 %} --display {% endif %}">
+                    {% if mesRdv.today is not empty %}
+                        <h3>Mes rendez-vous d'aujourd'hui :</h3>
+                        <p class="text__small">
+                            Si le patient n'est pas venu lors du rendez-vous, attendez que l'heure soit passé et
+                            lors de la validation, sélectionnez "Le patient ne s'est pas présenté".
+                        </p>
+                        {% include '/intervenant/rdv/rdv-today.twig' with {'rdv': mesRdv.today } %}
+                    {% else %}
+                        <h3>Aucun rendez-vous aujourd'hui</h3>
+                        <p class="text__small">
+                            Vous n'avez aucun rendez-vous de prévu pour aujourd'hui.
+                        </p>
+                    {% endif %}
+                </div>
+                <div id="next" class="js-rdv-content">
+                    {% if mesRdv.next is not empty %}
+                        <h3>Mes rendez-vous dès demain : </h3>
+                        <p class="text__small">
+                            Les rendez-vous sont affichés 24h à l'avance.
+                        </p>
+                        {% include '/intervenant/rdv/rdv-next.twig' with {'rdv': mesRdv.next} %}
+                    {% else %}
+                        <h3>Aucun rendez-vous de prévu</h3>
+                        <p class="text__small">
+                            Vous n'avez aucun rendez-vous de prévu pour les prochains jours.
+                        </p>
+                    {% endif %}
+                </div>
+                <div id="all" class="js-rdv-content">
+                    {% if mesRdv.all is not empty %}
+                        <h3>Mes anciens rendez-vous</h3>
+                        <p class="text__small">
+                            Les anciens rendez-vous ayant été effectués ou annulés. Ils sont classés par ordre
+                            chronologique.
+                            <br><br>
+                            A partir de 2 semaines après la date du rendez-vous, ils sont supprimés.
+                        </p>
+                        {% include '/intervenant/rdv/rdv-state.twig' with {'rdv': mesRdv.all } %}
+                    {% else %}
+                        <h3>Aucun ancien rendez-vous de moins de 15 jours.</h3>
+                        <p class="text__small">
+                            S'il n'y a rien d'affiché, c'est que vous n'avez pas encore eu de rendez-vous ou que
+                            tous vos rendez-vous sont trop anciens.
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
