@@ -111,15 +111,23 @@ function creerCalendrier(annee, mois) {
                 if (annee === currentYear && mois === currentMonth && day + dayOfWeek === currentDay) {
                     dayDiv.classList.add('--today');
                 }
-
                 dayDiv.appendChild(dayNumber);
-                const fulldate = convertDate(dayDiv.dataset.date)
 
-                if(fulldate in values[0]) {
-                    const div = document.createElement('div');
-                    div.classList.add('day-rdv');
-                    div.innerHTML = values[0][fulldate] + "<br/>Rendez-vous...";
-                    dayDiv.append(div)
+
+                const URL = window.location.href;
+                const urlParams = new URLSearchParams(URL);
+                const queryString = URL.split('?')[1];
+                const regex = /action=([^&]+)/;
+                const match = queryString.match(regex);
+                const actionValue = match ? match[1] : null;
+                if(actionValue === 'planning') {
+                    const fulldate = convertDate(dayDiv.dataset.date)
+                    if(fulldate in values[0]) {
+                        const div = document.createElement('div');
+                        div.classList.add('day-rdv');
+                        div.innerHTML = values[0][fulldate] + "<br/>Rendez-vous...";
+                        dayDiv.append(div)
+                    }
                 }
 
                 row.appendChild(dayDiv);
