@@ -458,4 +458,14 @@
     align-items: center;
     text-align: center;
   }
+  &__flex{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    button{
+      padding: 0.5rem .85rem;
+
+    }
+  }
 }

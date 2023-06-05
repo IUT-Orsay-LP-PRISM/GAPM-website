@@ -44,7 +44,14 @@ $router->addAdminRoute('note-frais&id=<id>', 'PersonnelController', 'noteFraisOn
 $router->addAdminRoute('validate-notefrais', 'PersonnelController', 'notesFraisValidateSubmit');
 $router->addAdminRoute('refuse-notefrais', 'PersonnelController', 'notesFraisDeniedSubmit');
 
+/* Emprunts */
 $router->addAdminRoute('emprunts', 'PersonnelController', 'empruntsVehiculesView');
+$router->addAdminRoute('validate-emprunt', 'PersonnelController', 'empruntsVehiculesValidateSubmit');
+$router->addAdminRoute('denied-emprunt', 'PersonnelController', 'empruntsVehiculesDeniedSubmit');
+
+$router->addAdminRoute('cessation', 'PersonnelController', 'cessationView');
+$router->addAdminRoute('validate-cessation', 'PersonnelController', 'validateCessationSubmit');
+$router->addAdminRoute('demande', 'PersonnelController', 'demandeIntervenantView');
 
 $router->addAdminRoute('autocompleteSpecialite&query<query>', 'SpecialiteController', 'autocomplete');
 $router->addAdminRoute('autocompleteVille&query=<query>', 'VilleController', 'autocomplete');

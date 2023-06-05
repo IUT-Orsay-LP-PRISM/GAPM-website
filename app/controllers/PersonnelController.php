@@ -5,11 +5,15 @@ namespace App\controllers;
 use App\models\entity\Administration;
 use App\models\entity\Demandeur;
 use App\models\entity\Depense;
+use App\models\entity\Emprunt;
 use App\models\entity\Intervenant;
 use App\models\entity\NoteFrais;
+use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Ville;
 use App\models\repository\AdministrationRepository;
+use Cassandra\Date;
+use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 
@@ -495,10 +499,99 @@ class PersonnelController extends Template
             header('Location: ./?action=login');
         }
 
+        $emprunts = $this->entityManager->getRepository(Emprunt::class)->findBy([
+            'administration' => null,
+        ]);
         self::render('/personnel/emprunts.twig', [
             'title' => 'Gestion des emprunts de véhicules',
             'nav' => 'vehicles',
+            'emprunts' => $emprunts,
         ], true);
+    }
+
+    public function empruntsVehiculesValidateSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+
+        $emprunt = $this->entityManager->getRepository(Emprunt::class)->findOneBy([
+            'idEmprunt' => $id,
+        ]);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => Session::get('admin')->getIdAdministration(),
+        ]);
+
+        $emprunt->setAdministration($admin);
+        try {
+            $this->entityManager->persist($emprunt);
+            $this->entityManager->flush();
+            header('Location: ./?action=emprunts&message=Emprunt validé.&c=msg-success');
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=emprunts&message=Erreur lors de la validation de l\'emprunt.&c=msg-error');
+        }
+    }
+
+    public function empruntsVehiculesDeniedSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+
+        $emprunt = $this->entityManager->getRepository(Emprunt::class)->findOneBy([
+            'idEmprunt' => $id,
+        ]);
+
+        try {
+            $this->entityManager->remove($emprunt);
+            $this->entityManager->flush();
+            header('Location: ./?action=emprunts&message=Emprunt refusé.&c=msg-success');
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=emprunts&message=Erreur lors du refus de l\'emprunt.&c=msg-error');
+        }
+    }
+
+    public function cessationView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $cessations = $this->entityManager->getRepository(Intervenant::class)->findBy([
+            'demandeSupp' => 1,
+        ]);
+
+        self::render('/personnel/cessation.twig', [
+            'title' => 'Demande de cessation d\'activité',
+            'nav' => 'activity',
+            'intervenants' => $cessations,
+        ], true);
+
+    }
+
+    public function validateCessationSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        $rdvs = $this->entityManager->getRepository(RendezVous::class)->findBy([
+            'intervenant' => $intervenant,
+        ]);
+
+        $canDelete = true;
+        foreach ($rdvs as $rdv) {
+            if ($rdv->getDateRdv() > date('Y-m-d')) {
+                $canDelete = false;
+            }
+        }
+        if ($canDelete) {
+            try {
+                $this->entityManager->flush();
+                header('Location: ./?action=cessation&message=Demande de cessation d\'activité validée.&c=msg-success');
+            } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+                header('Location: ./?action=cessation&message=Erreur lors de la validation de la demande de cessation d\'activité.&c=msg-error');
+            }
+        } else {
+            header('Location: ./?action=cessation&message=Impossible de supprimer l\'intervenant car il a des rendez-vous à venir.&c=msg-error');
+        }
     }
 
 }

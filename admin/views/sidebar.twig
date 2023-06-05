@@ -35,18 +35,23 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">Cessation d'activité</a>
-                </li>
-                <li>
-                    <a href="#">Demande a être intervenant</a>
-                </li>
-                <li>
                     <a href="./?action=emprunts" {% if nav == 'vehicles' %}class="--active"{% endif %}>
                         <i class="icon-fi-rr-car"></i>
                         Emprunts de véhicules
                     </a>
                 </li>
-
+                <li>
+                    <a href="./?action=cessation" {% if nav == 'activity' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-trash"></i>
+                        Cessation d'activité
+                    </a>
+                </li>
+                <li>
+                    <a href="./?action=demande" {% if nav == 'beinter' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-apps"></i>
+                        Application d'intervenant
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
