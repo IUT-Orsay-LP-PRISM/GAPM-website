@@ -103,6 +103,11 @@
         &.--today {
           background-color : $primaryDark;
           color            : white;
+
+            .day-rdv {
+                color : black;
+            }
+
         }
 
         &.--disabled {
