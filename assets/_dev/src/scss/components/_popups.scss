@@ -53,12 +53,17 @@
   transition      : transform 0.3s ease-in-out;
 
   &.popup-inscription {
-    width  : 30%;
-    height : 40em;
-
+    width  : 40%;
+    height : 30em;
+    z-index: 11;
     .popup-container form div:nth-child(5) .input-container:first-child {
       overflow : visible;
     }
+  }
+
+  &.popup-connexion{
+    z-index: 11;
+    width: 35%;
   }
 
   &.popup-prendreRDV {
