@@ -4692,6 +4692,8 @@ body.intervenant {
           body.intervenant .js-calendar .container-dates .days .day.--today {
             background-color: #257466;
             color: white; }
+            body.intervenant .js-calendar .container-dates .days .day.--today .day-rdv {
+              color: black; }
           body.intervenant .js-calendar .container-dates .days .day.--disabled {
             background-color: #dee7e8;
             color: #144139;
@@ -7433,6 +7435,8 @@ body.demandeur {
           body.demandeur .js-calendar .container-dates .days .day.--today {
             background-color: #393BAA;
             color: white; }
+            body.demandeur .js-calendar .container-dates .days .day.--today .day-rdv {
+              color: black; }
           body.demandeur .js-calendar .container-dates .days .day.--disabled {
             background-color: #DCE6F2;
             color: #1E1E3D;
@@ -10174,6 +10178,8 @@ body.admin {
           body.admin .js-calendar .container-dates .days .day.--today {
             background-color: #4B0082;
             color: white; }
+            body.admin .js-calendar .container-dates .days .day.--today .day-rdv {
+              color: black; }
           body.admin .js-calendar .container-dates .days .day.--disabled {
             background-color: #F5F5F5;
             color: #302053;
