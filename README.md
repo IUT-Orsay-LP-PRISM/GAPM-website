@@ -8,7 +8,7 @@
 - Si WampServer (xampp, uwamp, ...) faire un **Virtual Host**
 
 ## Description
-Projet GAPM avancement : **50%**
+## Avancement : **85%**
 
 
 ## Installation
