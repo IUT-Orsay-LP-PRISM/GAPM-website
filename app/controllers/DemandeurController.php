@@ -15,6 +15,7 @@ use App\models\entity\Voiture;
 use App\models\repository\DemandeurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use App\models\entity\CustomMail;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -365,18 +366,9 @@ class  DemandeurController extends Template
                     exit();
                 }
 
-                $phpmailer = new PHPMailer();
-                $phpmailer->isSMTP();
-                $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
-                $phpmailer->SMTPAuth = true;
-                $phpmailer->Port = 2525;
-                $phpmailer->Username = '87aafa94a4e2c8';
-                $phpmailer->Password = '2b192b0e9179d3';
-                $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-                $phpmailer->addAddress($email, $demandeur->getNom() . ' ' . $demandeur->getPrenom());
-                $phpmailer->Subject = 'Mot de passe oublié';
-                $phpmailer->Body = 'Voici votre mot de passe temporaire : ' . $random_hex;
-                //send the message, check for errors
+                $phpmailer = new CustomMail();
+                $phpmailer->sendMdp($email,$demandeur,$random_hex);
+
                 if (!$phpmailer->send()) {
                     echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
                 } else {
