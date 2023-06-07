@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use App\models\entity\Administration;
+use App\models\entity\CustomMail;
 use App\models\entity\Demandeur;
 use App\models\entity\Depense;
 use App\models\entity\Emprunt;
@@ -16,6 +17,9 @@ use Cassandra\Date;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class PersonnelController extends Template
 {
@@ -461,7 +465,20 @@ class PersonnelController extends Template
         try {
             $this->entityManager->persist($noteFrais);
             $this->entityManager->flush();
-            header('Location: ./?action=notes-frais&message=Note de frais validée.&c=msg-success');
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=notes-de-frais';
+
+            $phpmailer = new CustomMail();
+            $phpmailer->sendFrais("validée",$noteFrais,$referer);
+
+            //send the message, check for errors
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: ./?action=notes-frais&message=Note de frais validée.&c=msg-success');
+            }
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=notes-frais&message=Erreur lors de la validation de la note de frais.&c=msg-error');
         }
@@ -485,11 +502,23 @@ class PersonnelController extends Template
         try {
             $this->entityManager->persist($noteFrais);
             $this->entityManager->flush();
-            header('Location: ./?action=notes-frais&message=Note de frais refusée.&c=msg-success');
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=notes-de-frais';
+
+            $phpmailer = new CustomMail();
+            $phpmailer->sendFrais("refusée",$noteFrais,$referer);
+
+            //send the message, check for errors
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: ./?action=notes-frais&message=Note de frais refusée.&c=msg-success');
+            }
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=notes-frais&message=Erreur lors du refus de la note de frais.&c=msg-error');
         }
-
     }
 
     // Emprunts de véhicules
@@ -524,7 +553,19 @@ class PersonnelController extends Template
         try {
             $this->entityManager->persist($emprunt);
             $this->entityManager->flush();
-            header('Location: ./?action=emprunts&message=Emprunt validé.&c=msg-success');
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=my-account';
+
+            $phpmailer = new CustomMail();
+            $phpmailer->sendVoiture("validé",$emprunt,$referer);
+
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: ./?action=emprunts&message=Emprunt validé.&c=msg-success');
+            }
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=emprunts&message=Erreur lors de la validation de l\'emprunt.&c=msg-error');
         }
@@ -541,7 +582,19 @@ class PersonnelController extends Template
         try {
             $this->entityManager->remove($emprunt);
             $this->entityManager->flush();
-            header('Location: ./?action=emprunts&message=Emprunt refusé.&c=msg-success');
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=my-account';
+
+            $phpmailer = new CustomMail();
+            $phpmailer->sendVoiture("refusé",$emprunt,$referer);
+
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: ./?action=emprunts&message=Emprunt refusé.&c=msg-success');
+            }
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=emprunts&message=Erreur lors du refus de l\'emprunt.&c=msg-error');
         }
