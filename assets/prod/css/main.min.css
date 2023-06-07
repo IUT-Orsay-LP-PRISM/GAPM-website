@@ -4367,10 +4367,14 @@ body.intervenant {
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
     body.intervenant .popup.popup-inscription {
-      width: 30%;
-      height: 40em; }
+      width: 40%;
+      height: 30em;
+      z-index: 11; }
       body.intervenant .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
+    body.intervenant .popup.popup-connexion {
+      z-index: 11;
+      width: 35%; }
     body.intervenant .popup.popup-prendreRDV {
       width: 35%;
       height: 37em; }
@@ -7110,10 +7114,14 @@ body.demandeur {
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
     body.demandeur .popup.popup-inscription {
-      width: 30%;
-      height: 40em; }
+      width: 40%;
+      height: 30em;
+      z-index: 11; }
       body.demandeur .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
+    body.demandeur .popup.popup-connexion {
+      z-index: 11;
+      width: 35%; }
     body.demandeur .popup.popup-prendreRDV {
       width: 35%;
       height: 37em; }
@@ -9853,10 +9861,14 @@ body.admin {
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
     body.admin .popup.popup-inscription {
-      width: 30%;
-      height: 40em; }
+      width: 40%;
+      height: 30em;
+      z-index: 11; }
       body.admin .popup.popup-inscription .popup-container form div:nth-child(5) .input-container:first-child {
         overflow: visible; }
+    body.admin .popup.popup-connexion {
+      z-index: 11;
+      width: 35%; }
     body.admin .popup.popup-prendreRDV {
       width: 35%;
       height: 37em; }

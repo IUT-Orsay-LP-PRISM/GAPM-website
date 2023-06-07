@@ -68,8 +68,15 @@ function creerCalendrier(annee, mois) {
     let day = 1 - jourSemaine;
     const hashTravailSamedi = document.querySelector('.container-dates').getAttribute('data-value');
     let travailSamedi = hashTravailSamedi === '03063e73002b4a89e44b283f0d8da951';
+    const URL = window.location.href;
+    const urlParams = new URLSearchParams(URL);
+    const queryString = URL.split('?')[1];
+    const regex = /action=([^&]+)/;
+    const match = queryString.match(regex);
+    const actionValue = match ? match[1] : null;
 
-    const jsonNumberOfRdvInDays = getNumberOfRdvInDay();
+
+    const jsonNumberOfRdvInDays = actionValue === 'planning' ? getNumberOfRdvInDay() : Promise.resolve(null);
     Promise.all([jsonNumberOfRdvInDays]).then((values) => {
         while (day <= nbJoursMois) {
             const row = document.createElement('div');
@@ -113,13 +120,6 @@ function creerCalendrier(annee, mois) {
                 }
                 dayDiv.appendChild(dayNumber);
 
-
-                const URL = window.location.href;
-                const urlParams = new URLSearchParams(URL);
-                const queryString = URL.split('?')[1];
-                const regex = /action=([^&]+)/;
-                const match = queryString.match(regex);
-                const actionValue = match ? match[1] : null;
                 if(actionValue === 'planning') {
                     const fulldate = convertDate(dayDiv.dataset.date)
                     if(fulldate in values[0]) {
