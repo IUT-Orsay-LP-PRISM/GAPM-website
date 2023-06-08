@@ -19,7 +19,7 @@
     },
     "require": {
       "ext-pdo": "*",
-        "twig/twig": "3.6.0",
+        "twig/twig": "3.6.1",
         "symfony/asset": "5.4.x-dev",
         "polarising/bcrypt": "dev-master",
         "symfony/dotenv": "5.4.x-dev",
