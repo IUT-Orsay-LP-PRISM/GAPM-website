@@ -108,6 +108,8 @@ CREATE TABLE `Empechement`
     `idEmpechement` int(11) NOT NULL,
     `dateDebut`     date NOT NULL,
     `dateFin`       date NOT NULL,
+    `heureDebut`    time DEFAULT '00:00:00',
+    `heureFin`      time DEFAULT '00:00:00',
     `idIntervenant` int(11) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -117,10 +119,10 @@ CREATE TABLE `Empechement`
 -- Déchargement des données de la table `Empechement`
 --
 
-INSERT INTO `Empechement` (`idEmpechement`, `dateDebut`, `dateFin`, `idIntervenant`)
-VALUES (1, '2022-01-01', '2022-01-05', 1),
-       (2, '2022-02-01', '2022-02-05', 2),
-       (3, '2022-03-01', '2022-03-05', 5);
+INSERT INTO `Empechement` (`idEmpechement`, `dateDebut`, `dateFin`, `heureDebut`, `heureFin`, `idIntervenant`)
+VALUES (1, '2022-01-01', '2022-01-05', '00:00:00', '00:00:00', 1),
+       (2, '2022-02-01', '2022-02-05', '00:00:00', '00:00:00', 2),
+       (3, '2022-03-01', '2022-03-05', '00:00:00', '00:00:00', 6);
 
 -- --------------------------------------------------------
 

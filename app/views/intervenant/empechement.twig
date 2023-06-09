@@ -9,29 +9,30 @@
         <h1>Ajouter un empêchement</h1>
         <div class="empechement__container">
             <div class="empechement__content">
+                <h2>Les heures sont facultatives</h2>
                 <form method="post" action="?action=add-empechement">
                     <div class="input-row">
                         <div class="input-container">
                             <i class="icon icon-fi-rr-calendar"></i>
-                            <input id="date-debut" class="input" type="date" name="dateDebut" required/>
+                            <input id="date-debut" class="input" type="date" name="dateDebut" min="{{ "now"|date('Y-m-d') }}" value="{{ "now"|date('Y-m-d') }}"  required/>
                             <label class="label" for="date-debut">Date de début</label>
                         </div>
                         <div class="input-container">
                             <i class="icon icon-fi-rr-time-quarter-past"></i>
-                            <input id="heure-debut" class="input" type="time" name="heureDebut" required/>
-                            <label class="label" for="namePopUp">Heure de début</label>
+                            <input id="heure-debut" class="input" type="time" name="heureDebut" />
+                            <label class="label" for="heure-debut">Heure de début</label>
                         </div>
                     </div>
                     <div class="input-row">
                         <div class="input-container">
                             <i class="icon icon-fi-rr-calendar"></i>
-                            <input id="date-fin" class="input" type="date" name="dateFin" required/>
+                            <input id="date-fin" class="input" type="date" name="dateFin"  min="{{ "now"|date('Y-m-d') }}" required/>
                             <label class="label" for="date-fin">Date de fin</label>
                         </div>
                         <div class="input-container">
                             <i class="icon icon-fi-rr-time-quarter-past"></i>
-                            <input id="heure-fin" class="input" type="time" name="heureFin" required/>
-                            <label class="label" for="namePopUp">Heure de fin</label>
+                            <input id="heure-fin" class="input" type="time" name="heureFin" />
+                            <label class="label" for="heure-fin">Heure de fin</label>
                         </div>
                     </div>
 

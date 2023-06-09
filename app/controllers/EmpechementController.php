@@ -34,7 +34,6 @@ class  EmpechementController extends Template
         $idIntervenant = Session::get('user')->getIdDemandeur();
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
 
-
         $empechement = new Empechement();
         $empechement->setDateDebut($_POST['dateDebut']);
         $empechement->setDateFin($_POST['dateFin']);

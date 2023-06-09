@@ -10,6 +10,11 @@
     background    : white;
     border-radius : 10px;
 
+    h2 {
+      text-align: end;
+      margin-bottom: 1.5rem;
+    }
+
     form {
       display : flex;
       flex-direction : column;
@@ -26,6 +31,10 @@
             max-width : 40em;
             margin-bottom : 1rem;
         }
+      }
+
+      button {
+        margin-top : 1rem;
       }
     }
   }

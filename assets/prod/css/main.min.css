@@ -3713,6 +3713,9 @@ body.intervenant {
     padding: 1.85rem 2.53rem;
     background: white;
     border-radius: 10px; }
+    body.intervenant .empechement__content h2 {
+      text-align: end;
+      margin-bottom: 1.5rem; }
     body.intervenant .empechement__content form {
       display: flex;
       flex-direction: column;
@@ -3726,6 +3729,8 @@ body.intervenant {
           width: 100%;
           max-width: 40em;
           margin-bottom: 1rem; }
+      body.intervenant .empechement__content form button {
+        margin-top: 1rem; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -6487,6 +6492,9 @@ body.demandeur {
     padding: 1.85rem 2.53rem;
     background: white;
     border-radius: 10px; }
+    body.demandeur .empechement__content h2 {
+      text-align: end;
+      margin-bottom: 1.5rem; }
     body.demandeur .empechement__content form {
       display: flex;
       flex-direction: column;
@@ -6500,6 +6508,8 @@ body.demandeur {
           width: 100%;
           max-width: 40em;
           margin-bottom: 1rem; }
+      body.demandeur .empechement__content form button {
+        margin-top: 1rem; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -9261,6 +9271,9 @@ body.admin {
     padding: 1.85rem 2.53rem;
     background: white;
     border-radius: 10px; }
+    body.admin .empechement__content h2 {
+      text-align: end;
+      margin-bottom: 1.5rem; }
     body.admin .empechement__content form {
       display: flex;
       flex-direction: column;
@@ -9274,6 +9287,8 @@ body.admin {
           width: 100%;
           max-width: 40em;
           margin-bottom: 1rem; }
+      body.admin .empechement__content form button {
+        margin-top: 1rem; }
   body.admin .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
