@@ -1,0 +1,51 @@
+{% extends "base.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="empechement wrapper">
+        <h1>Ajouter un empêchement</h1>
+        <div class="empechement__container">
+            <div class="empechement__content">
+                <form method="post" action="?action=add-empechement">
+                    <div class="input-row">
+                        <div class="input-container">
+                            <i class="icon icon-fi-rr-calendar"></i>
+                            <input id="date-debut" class="input" type="date" name="dateDebut" required/>
+                            <label class="label" for="date-debut">Date de début</label>
+                        </div>
+                        <div class="input-container">
+                            <i class="icon icon-fi-rr-time-quarter-past"></i>
+                            <input id="heure-debut" class="input" type="time" name="heureDebut" required/>
+                            <label class="label" for="namePopUp">Heure de début</label>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-container">
+                            <i class="icon icon-fi-rr-calendar"></i>
+                            <input id="date-fin" class="input" type="date" name="dateFin" required/>
+                            <label class="label" for="date-fin">Date de fin</label>
+                        </div>
+                        <div class="input-container">
+                            <i class="icon icon-fi-rr-time-quarter-past"></i>
+                            <input id="heure-fin" class="input" type="time" name="heureFin" required/>
+                            <label class="label" for="namePopUp">Heure de fin</label>
+                        </div>
+                    </div>
+
+                    {% if message is not empty and containerMessage is not empty and containerMessage == "inscription" %}
+                        <p class="error">{{ message }}</p>
+                    {% endif %}
+                    <button class="btn btn-primary-nb" type="submit">
+                        <i class="icon-w icon-fi-rr-check"></i>
+                        Valider l'ajout de l'empêchement
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

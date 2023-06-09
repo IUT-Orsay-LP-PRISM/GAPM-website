@@ -27,6 +27,8 @@ $router->addRoute('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
 $router->addRoute('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
 $router->addRoute('liste-rdv', 'RendezVousController', 'displayMyRdvIntervenant');
 $router->addRoute('planning', 'IntervenantController', 'displayPlanning');
+$router->addRoute('empechement', 'EmpechementController', 'dislayFormAddEmpechement');
+
 
 /*
  * Routes POST
@@ -49,6 +51,7 @@ $router->addRoute('oubli', 'HomeController', 'displayForgotten');
 $router->addRoute('forgotten', 'DemandeurController', 'forgottenMail');
 $router->addRoute('toggle-mode-intervenant', 'IntervenantController', 'toggleModeIntervenant');
 $router->addRoute('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
+$router->addRoute('add-empechement', 'EmpechementController', 'create');
 
 /*
  * Routes avec paramètres

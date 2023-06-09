@@ -3700,6 +3700,32 @@ body.intervenant {
     padding: 1.85rem 2.53rem;
     background: white;
     border-radius: 10px; }
+    body.intervenant .planning__content--title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem; }
+  body.intervenant .empechement__container {
+    padding: 2.5rem 0;
+    max-width: 65em;
+    margin: auto; }
+  body.intervenant .empechement__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+    body.intervenant .empechement__content form {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      body.intervenant .empechement__content form .input-row {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1rem; }
+        body.intervenant .empechement__content form .input-row .input-container {
+          width: 100%;
+          max-width: 40em;
+          margin-bottom: 1rem; }
   body.intervenant .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -3820,7 +3846,8 @@ body.intervenant {
       font-size: .8rem;
       top: -15px;
       pointer-events: none; }
-    body.intervenant .input-container input[type="date"]:not(:focus):not(:valid) {
+    body.intervenant .input-container input[type="date"]:not(:focus):not(:valid),
+    body.intervenant .input-container input[type="time"]:not(:focus):not(:valid) {
       color: transparent; }
     body.intervenant .input-container span.code_postal {
       color: #257466; }
@@ -6447,6 +6474,32 @@ body.demandeur {
     padding: 1.85rem 2.53rem;
     background: white;
     border-radius: 10px; }
+    body.demandeur .planning__content--title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem; }
+  body.demandeur .empechement__container {
+    padding: 2.5rem 0;
+    max-width: 65em;
+    margin: auto; }
+  body.demandeur .empechement__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+    body.demandeur .empechement__content form {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      body.demandeur .empechement__content form .input-row {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1rem; }
+        body.demandeur .empechement__content form .input-row .input-container {
+          width: 100%;
+          max-width: 40em;
+          margin-bottom: 1rem; }
   body.demandeur .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -6567,7 +6620,8 @@ body.demandeur {
       font-size: .8rem;
       top: -15px;
       pointer-events: none; }
-    body.demandeur .input-container input[type="date"]:not(:focus):not(:valid) {
+    body.demandeur .input-container input[type="date"]:not(:focus):not(:valid),
+    body.demandeur .input-container input[type="time"]:not(:focus):not(:valid) {
       color: transparent; }
     body.demandeur .input-container span.code_postal {
       color: #393BAA; }
@@ -9194,6 +9248,32 @@ body.admin {
     padding: 1.85rem 2.53rem;
     background: white;
     border-radius: 10px; }
+    body.admin .planning__content--title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem; }
+  body.admin .empechement__container {
+    padding: 2.5rem 0;
+    max-width: 65em;
+    margin: auto; }
+  body.admin .empechement__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+    body.admin .empechement__content form {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      body.admin .empechement__content form .input-row {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1rem; }
+        body.admin .empechement__content form .input-row .input-container {
+          width: 100%;
+          max-width: 40em;
+          margin-bottom: 1rem; }
   body.admin .btn {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -9314,7 +9394,8 @@ body.admin {
       font-size: .8rem;
       top: -15px;
       pointer-events: none; }
-    body.admin .input-container input[type="date"]:not(:focus):not(:valid) {
+    body.admin .input-container input[type="date"]:not(:focus):not(:valid),
+    body.admin .input-container input[type="time"]:not(:focus):not(:valid) {
       color: transparent; }
     body.admin .input-container span.code_postal {
       color: #4B0082; }
