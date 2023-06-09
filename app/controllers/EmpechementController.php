@@ -57,4 +57,43 @@ class  EmpechementController extends Template
             'title' => 'Ajouter un empechement',
         ]);
     }
+
+    public function getEmpechementsByIntervenant(): void
+    {
+
+        if (!Session::isLogged()) {
+            header('Location: /?message=Vous devez être connecté pour accéder à cette page?c=msg-error');
+            exit;
+        }
+
+        if (!isset($_GET['intervenant'])) {
+            header('Location: /?message=Une erreur est survenue lors de la récupération des empechements&c=msg-error');
+            exit;
+        }
+
+        $idIntervenant = $_GET['intervenant'];
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
+
+        $empechements = $this->entityManager->getRepository(Empechement::class)->findByIntervenant($intervenant);
+        $dateNow = date('Y-m-d');
+
+        $empechementsDay = [];
+        foreach ($empechements as $empechement) {
+            if($empechement->getDateFin() >= $dateNow) {
+                $empechementsDay[] = [
+                    'dateDebut' => $empechement->getDateDebut(),
+                    'dateFin' => $empechement->getDateFin(),
+                    'heureDebut' => $empechement->getHeureDebut(),
+                    'heureFin' => $empechement->getHeureFin()
+                ];
+            }
+        }
+
+        $empechements = [
+            'day' => $empechementsDay
+        ];
+
+        echo json_encode($empechements);
+    }
+
 }

@@ -86,6 +86,9 @@ $router->addRoute('getNumberOfRdvInDay', 'IntervenantController', 'getNumberOfRd
 
 $router->addRoute('liste-rdv&date=<date>', 'RendezVousController', 'displayMyRdvIntervenant');
 
+$router->addRoute('getEmpechements&intervenant=<id>', 'EmpechementController', 'getEmpechementsByIntervenant');
+
+
 
 $requestUrl = $_SERVER['REQUEST_URI'];
 $router->handleRequest($requestUrl);

@@ -1,6 +1,6 @@
 const btn_RDVS = document.querySelectorAll('.js-btn-RDV');
 const popUp_prendreRDV = document.querySelector('#popUp-prendre-RDV');
-import {getNumberOfRdvInDay} from './planning.js';
+import {getEmpechements, getNumberOfRdvInDay} from './planning.js';
 
 if (btn_RDVS) {
     btn_RDVS.forEach(btn => {
@@ -77,7 +77,9 @@ function creerCalendrier(annee, mois) {
 
 
     const jsonNumberOfRdvInDays = actionValue === 'planning' ? getNumberOfRdvInDay() : Promise.resolve(null);
-    Promise.all([jsonNumberOfRdvInDays]).then((values) => {
+    const empechements = actionValue !== 'planning' ? getEmpechements() : Promise.resolve(null);
+
+    Promise.all([jsonNumberOfRdvInDays, empechements]).then((values) => {
         while (day <= nbJoursMois) {
             const row = document.createElement('div');
             row.classList.add('row');
@@ -103,6 +105,23 @@ function creerCalendrier(annee, mois) {
                     const dateObj = new Date(annee, mois - 1, dayNumber.innerHTML);
                     const datasetDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
                     dayDiv.dataset.date = datasetDate;
+
+                    // Vérifier si la date est un jour avec un empechement
+                    if (values[1] && values[1].day) {
+                        const empechements = values[1].day;
+                        const isDisabled = empechements.some((empechement) => {
+                            const empechementDateDebut = new Date(empechement.dateDebut);
+                            const empechementDateFin = new Date(empechement.dateFin);
+                            const empechementHeureFin = empechement.heureFin;
+                            const formattedDateObj = `${dateObj.getFullYear()}-${(dateObj.getMonth() + 1).toString().padStart(2, '0')}-${dateObj.getDate().toString().padStart(2, '0')}`;
+                            const formattedEmpechementDateFin = `${empechementDateFin.getFullYear()}-${(empechementDateFin.getMonth() + 1).toString().padStart(2, '0')}-${empechementDateFin.getDate().toString().padStart(2, '0')}`;
+
+                            return dateObj >= empechementDateDebut && dateObj <= empechementDateFin && (formattedDateObj  != formattedEmpechementDateFin && empechementHeureFin <= "19:00:00")
+                        });
+                        if (isDisabled) {
+                            dayDiv.classList.add('--disabled');
+                        }
+                    }
                 }
 
                 if (annee < currentYear || (annee === currentYear && mois < currentMonth) || (annee === currentYear && mois === currentMonth && day + dayOfWeek < currentDay)) {
@@ -120,9 +139,9 @@ function creerCalendrier(annee, mois) {
                 }
                 dayDiv.appendChild(dayNumber);
 
-                if(actionValue === 'planning') {
+                if (actionValue === 'planning') {
                     const fulldate = convertDate(dayDiv.dataset.date)
-                    if(fulldate in values[0]) {
+                    if (fulldate in values[0]) {
                         const div = document.createElement('div');
                         div.classList.add('day-rdv');
                         div.innerHTML = values[0][fulldate] + "<br/>Rendez-vous...";
@@ -138,8 +157,9 @@ function creerCalendrier(annee, mois) {
         placeEventListenerInDays();
     });
 }
+
 function convertDate(dateString) {
-    if(dateString === undefined) return;
+    if (dateString === undefined) return;
     const parts = dateString.split('-');
     const year = parts[0];
     const month = parts[1].padStart(2, '0');
