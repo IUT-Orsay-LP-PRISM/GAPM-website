@@ -71,7 +71,15 @@ class  EmpechementController extends Template
             exit;
         }
 
-        $idIntervenant = $_GET['intervenant'];
+
+        $idIntervenant = "";
+        if(empty($_GET['intervenant']) || $_GET['intervenant'] == "null") {
+            $user = Session::get('user');
+            $idIntervenant = $user->isIntervenant() ? $user->getIdDemandeur() : $_GET['intervenant'];
+        } else {
+            $idIntervenant = $_GET['intervenant'];
+        }
+
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
 
         $empechements = $this->entityManager->getRepository(Empechement::class)->findByIntervenant($intervenant);

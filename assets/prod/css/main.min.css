@@ -4736,9 +4736,15 @@ body.intervenant {
             cursor: not-allowed; }
             body.intervenant .js-calendar .container-dates .days .day.--disabled .day-number {
               color: #b5b5b5; }
-          body.intervenant .js-calendar .container-dates .days .day:hover:not(.--disabled) {
+          body.intervenant .js-calendar .container-dates .days .day.--empechement {
+            background-color: #ffac9e;
+            color: #144139;
+            cursor: not-allowed; }
+            body.intervenant .js-calendar .container-dates .days .day.--empechement .day-number {
+              color: #144139; }
+          body.intervenant .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) {
             background-color: #86CABE; }
-            body.intervenant .js-calendar .container-dates .days .day:hover:not(.--disabled) .day-number {
+            body.intervenant .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) .day-number {
               color: white; }
   body.intervenant .icon {
     background: #36A793;
@@ -7515,9 +7521,15 @@ body.demandeur {
             cursor: not-allowed; }
             body.demandeur .js-calendar .container-dates .days .day.--disabled .day-number {
               color: #b5b5b5; }
-          body.demandeur .js-calendar .container-dates .days .day:hover:not(.--disabled) {
+          body.demandeur .js-calendar .container-dates .days .day.--empechement {
+            background-color: #ffac9e;
+            color: #1E1E3D;
+            cursor: not-allowed; }
+            body.demandeur .js-calendar .container-dates .days .day.--empechement .day-number {
+              color: #1E1E3D; }
+          body.demandeur .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) {
             background-color: #7EA6F4; }
-            body.demandeur .js-calendar .container-dates .days .day:hover:not(.--disabled) .day-number {
+            body.demandeur .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) .day-number {
               color: white; }
   body.demandeur .icon {
     background: #5154EC;
@@ -10294,9 +10306,15 @@ body.admin {
             cursor: not-allowed; }
             body.admin .js-calendar .container-dates .days .day.--disabled .day-number {
               color: #b5b5b5; }
-          body.admin .js-calendar .container-dates .days .day:hover:not(.--disabled) {
+          body.admin .js-calendar .container-dates .days .day.--empechement {
+            background-color: #ffac9e;
+            color: #302053;
+            cursor: not-allowed; }
+            body.admin .js-calendar .container-dates .days .day.--empechement .day-number {
+              color: #302053; }
+          body.admin .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) {
             background-color: #9370DB; }
-            body.admin .js-calendar .container-dates .days .day:hover:not(.--disabled) .day-number {
+            body.admin .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) .day-number {
               color: white; }
   body.admin .icon {
     background: #8A2BE2;

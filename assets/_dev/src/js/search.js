@@ -75,9 +75,8 @@ function creerCalendrier(annee, mois) {
     const match = queryString.match(regex);
     const actionValue = match ? match[1] : null;
 
-
     const jsonNumberOfRdvInDays = actionValue === 'planning' ? getNumberOfRdvInDay() : Promise.resolve(null);
-    const empechements = actionValue !== 'planning' ? getEmpechements() : Promise.resolve(null);
+    const empechements = getEmpechements();
 
     Promise.all([jsonNumberOfRdvInDays, empechements]).then((values) => {
         while (day <= nbJoursMois) {
@@ -105,7 +104,6 @@ function creerCalendrier(annee, mois) {
                     const dateObj = new Date(annee, mois - 1, dayNumber.innerHTML);
                     const datasetDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
                     dayDiv.dataset.date = datasetDate;
-
                     // Vérifier si la date est un jour avec un empechement
                     if (values[1] && values[1].day) {
                         const empechements = values[1].day;
@@ -118,9 +116,8 @@ function creerCalendrier(annee, mois) {
 
                             return dateObj >= empechementDateDebut && dateObj <= empechementDateFin && (formattedDateObj  != formattedEmpechementDateFin && empechementHeureFin <= "19:00:00")
                         });
-                        if (isDisabled) {
-                            dayDiv.classList.add('--disabled');
-                        }
+
+                        isDisabled ? actionValue !== 'planning' ? dayDiv.classList.add('--disabled') : !dayDiv.classList.contains('--disabled') ? dayDiv.classList.add('--empechement') : null : null;
                     }
                 }
 

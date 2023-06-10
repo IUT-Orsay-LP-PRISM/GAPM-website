@@ -120,7 +120,18 @@
           cursor           : not-allowed;
         }
 
-        &:hover:not(.--disabled) {
+        &.--empechement {
+          .day-number {
+            color : $black;
+          }
+
+          background-color : $redLight;
+          color            : $black;
+          cursor           : not-allowed;
+        }
+
+
+        &:hover:not(.--disabled):not(.--empechement) {
           background-color : $secondary;
             .day-number {
                 color : white;
