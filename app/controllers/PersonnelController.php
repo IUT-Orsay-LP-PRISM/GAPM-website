@@ -88,7 +88,7 @@ class PersonnelController extends Template
 
                     Session::set('admin', $admin);
 
-                    header('Location: ./?action=intervenants&message=Vous êtes connecté.&c=msg-success');
+                    header('Location: ./?action=demandeurs&message=Vous êtes connecté.&c=msg-success');
                 } else {
                     header("Location: ./?action=login&message=Adresse email ou mot de passe incorrect.&c=msg-error");
                 }
@@ -618,5 +618,40 @@ class PersonnelController extends Template
     }
 
 
+    public function applicationView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        // get all intervenant where application = waiting
+        $applications = $this->entityManager->getRepository(Intervenant::class)->findBy([
+            'application' => 'waiting',
+        ]);
 
+        self::render('/personnel/appli.twig', [
+            'title' => 'Demande d\'application',
+            'nav' => 'activity',
+            'intervenants' => $applications,
+        ], true);
+
+    }
+
+    public function applicationSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
+            'idDemandeur' => $id,
+        ]);
+
+        $intervenant->setApplication('passed');
+        try {
+            $this->entityManager->persist($intervenant);
+            $this->entityManager->flush();
+            header('Location: ./?action=demande&message=Demande d\'application acceptée.&c=msg-success');
+
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=demande&message=Erreur lors de l\'acceptation de la demande d\'application.&c=msg-error');
+        }
+
+    }
 }

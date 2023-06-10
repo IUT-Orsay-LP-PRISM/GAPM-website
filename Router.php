@@ -54,7 +54,7 @@ class Router {
         if ($this->type == 'admin') {
             // Si page admin, rediriger vers la page de login
             $controller = new PersonnelController($entityManager);
-            $controller->index();
+            $controller->demandeursView();
         } else {
             // Si page utilisateur, rediriger vers la page d'accueil
             $controller = new HomeController();

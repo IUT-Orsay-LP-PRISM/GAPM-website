@@ -213,7 +213,8 @@ CREATE TABLE `Intervenant`
     `imgUrl`      varchar(255) DEFAULT 'public/img/default.jpg',
     `idVillePro`  int(11) DEFAULT NULL,
     `travailSamedi` tinyint(1) DEFAULT 0,
-    `demandeSupp` tinyint(1) DEFAULT 0
+    `demandeSupp` tinyint(1) DEFAULT 0,
+    application text DEFAULT 'waiting'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -223,10 +224,10 @@ CREATE TABLE `Intervenant`
 -- Déchargement des données de la table `Intervenant`
 --
 
-INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`, `idVillePro`, `demandeSupp`)
-VALUES (1, '100 rue des Intervenants', 26, 0),
-       (2, '200 rue des Experts', 87, 0),
-       (5, '500 chemin des Professionnels', 85, 0);
+INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`, `idVillePro`, `demandeSupp`, `application`)
+VALUES (1, '100 rue des Intervenants', 26, 0, 'passed'),
+       (2, '200 rue des Experts', 87, 0, 'passed'),
+       (5, '500 chemin des Professionnels', 85, 0, 'passed');
 
 INSERT INTO `Intervenant` (`idDemandeur`, `adressePro`, `imgUrl`, `idVillePro`, `demandeSupp`)
 VALUES (6, '500 chemin des Professionnels', 'public/uploads/intervenants/imgs/6-dbd94cb6b271525ffa5d.jpeg', 256, 0);

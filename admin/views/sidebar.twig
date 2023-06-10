@@ -10,14 +10,14 @@
     <div class="admin__sidebar__content">
         <nav class="admin__nav">
             <ul>
-                <li>
+{#                <li>
                     <a href="./?action=home" {% if nav == 'home' %}class="--active"{% endif %}>
                         {% include 'svg/house.svg' %}
                         Accueil
                     </a>
-                </li>
+                </li>#}
                 <li>
-                    <a href="./?action=demandeurs"  {% if nav == 'demandeurs' %}class="--active"{% endif %}>
+                    <a href="./?action=demandeurs"  {% if nav == 'demandeurs' or nav == 'home' %}class="--active"{% endif %}>
                         <i class="icon-fi-rr-notebook"></i>
                         Gestion des demandeurs
                     </a>

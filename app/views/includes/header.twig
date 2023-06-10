@@ -33,7 +33,7 @@
                             <a href="?action=my-account" class="dropdown-item"><i
                                         class="icon icon-fi-rr-comment-user"></i>Mon compte</a>
                         </li>
-                        {% if user is defined and user.isIntervenant() %}
+                        {% if user is defined and user.isIntervenant() and user.isTrueIntervenant()  %}
                             {% if modeIntervenant is defined and modeIntervenant %}
                                 <li class="menu-item">
                                     <a href="/?action=toggle-mode-intervenant" class="dropdown-item"><i

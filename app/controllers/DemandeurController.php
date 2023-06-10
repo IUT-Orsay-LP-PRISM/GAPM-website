@@ -258,6 +258,7 @@ class  DemandeurController extends Template
                 $demandeur->setAdressePro($adressePro);
                 $demandeur->setImgUrl("public/img/default.jpg");
                 $demandeur->setVillePro($villePro);
+                $demandeur->setApplication('waiting');
             }
 
             try {
