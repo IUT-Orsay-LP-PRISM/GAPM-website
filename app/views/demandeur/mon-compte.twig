@@ -60,7 +60,7 @@
                             </a>
                         </li>
                     {% endif %}
-                    {% if not user.isTrueIntervenant() %}
+                    {% if not user.isTrueIntervenant() and user.isIntervenant() %}
                         <li>
                             <a href="#application" class="myaccount__content__nav-link js-account-nav">
                                 Application pour être intervenant
