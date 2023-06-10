@@ -214,7 +214,7 @@ function StartCalendar() {
 
 
 function placeEventListenerInDays() {
-    document.querySelectorAll('.day:not(.--disabled)').forEach(divDay => {
+    document.querySelectorAll('.day:not(.--disabled):not(.--empechement)').forEach(divDay => {
 
         const URL = window.location.href;
         const urlParams = new URLSearchParams(URL);
