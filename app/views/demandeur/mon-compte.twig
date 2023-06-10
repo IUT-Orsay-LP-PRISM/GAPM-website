@@ -60,6 +60,7 @@
                             </a>
                         </li>
                     {% endif %}
+                    {% if not modeIntervenant %}
                     <li>
                         <a id="options-nav" href="#options"
                            class="js-account-nav myaccount__content__nav-link">
@@ -67,6 +68,7 @@
                             <i class="icon icon-fi-rr-comment-user"></i>
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="myaccount__content__body">

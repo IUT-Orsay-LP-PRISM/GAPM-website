@@ -617,34 +617,6 @@ class PersonnelController extends Template
 
     }
 
-    public function validateCessationSubmit(): void
-    {
-        $id = htmlspecialchars($_POST['id']);
 
-        $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
-            'idDemandeur' => $id,
-        ]);
-
-        $rdvs = $this->entityManager->getRepository(RendezVous::class)->findBy([
-            'intervenant' => $intervenant,
-        ]);
-
-        $canDelete = true;
-        foreach ($rdvs as $rdv) {
-            if ($rdv->getDateRdv() > date('Y-m-d')) {
-                $canDelete = false;
-            }
-        }
-        if ($canDelete) {
-            try {
-                $this->entityManager->flush();
-                header('Location: ./?action=cessation&message=Demande de cessation d\'activité validée.&c=msg-success');
-            } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
-                header('Location: ./?action=cessation&message=Erreur lors de la validation de la demande de cessation d\'activité.&c=msg-error');
-            }
-        } else {
-            header('Location: ./?action=cessation&message=Impossible de supprimer l\'intervenant car il a des rendez-vous à venir.&c=msg-error');
-        }
-    }
 
 }

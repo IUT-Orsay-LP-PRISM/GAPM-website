@@ -49,8 +49,6 @@ $router->addAdminRoute('emprunts', 'PersonnelController', 'empruntsVehiculesView
 $router->addAdminRoute('validate-emprunt', 'PersonnelController', 'empruntsVehiculesValidateSubmit');
 $router->addAdminRoute('denied-emprunt', 'PersonnelController', 'empruntsVehiculesDeniedSubmit');
 
-$router->addAdminRoute('cessation', 'PersonnelController', 'cessationView');
-$router->addAdminRoute('validate-cessation', 'PersonnelController', 'validateCessationSubmit');
 $router->addAdminRoute('demande', 'PersonnelController', 'demandeIntervenantView');
 
 $router->addAdminRoute('autocompleteSpecialite&query<query>', 'SpecialiteController', 'autocomplete');
