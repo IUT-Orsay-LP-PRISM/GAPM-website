@@ -771,7 +771,7 @@ UPDATE CASCADE;
 -- Contraintes pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON UPDATE CASCADE,
     ADD CONSTRAINT `Intervenant_ibfk_2` FOREIGN KEY (`idVillePro`) REFERENCES `Ville` (`idVille`) ON
 DELETE
 CASCADE ON
