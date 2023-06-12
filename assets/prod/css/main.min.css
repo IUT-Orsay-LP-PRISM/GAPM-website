@@ -3021,7 +3021,7 @@ body.intervenant {
     line-height: 1.8rem;
     font-size: 1.1rem; }
   body.intervenant .faq ul {
-    list-style-type: decimal;
+    list-style-type: disc;
     padding-left: 1rem; }
     body.intervenant .faq ul li {
       margin-bottom: 0.5rem;
@@ -5835,7 +5835,7 @@ body.demandeur {
     line-height: 1.8rem;
     font-size: 1.1rem; }
   body.demandeur .faq ul {
-    list-style-type: decimal;
+    list-style-type: disc;
     padding-left: 1rem; }
     body.demandeur .faq ul li {
       margin-bottom: 0.5rem;
@@ -8649,7 +8649,7 @@ body.admin {
     line-height: 1.8rem;
     font-size: 1.1rem; }
   body.admin .faq ul {
-    list-style-type: decimal;
+    list-style-type: disc;
     padding-left: 1rem; }
     body.admin .faq ul li {
       margin-bottom: 0.5rem;
@@ -11463,7 +11463,7 @@ body.admin-pro {
     line-height: 1.8rem;
     font-size: 1.1rem; }
   body.admin-pro .faq ul {
-    list-style-type: decimal;
+    list-style-type: disc;
     padding-left: 1rem; }
     body.admin-pro .faq ul li {
       margin-bottom: 0.5rem;

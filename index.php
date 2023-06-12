@@ -47,6 +47,7 @@ $router->addRoute('intervenant-cancel-unsubscribe-request', 'IntervenantControll
 
 $router->addRoute('picture-edit', 'IntervenantController', 'updatePicture');
 $router->addRoute('faq', 'HomeController', 'displayFAQ');
+$router->addRoute('about', 'HomeController', 'displayAbout');
 $router->addRoute('oubli', 'HomeController', 'displayForgotten');
 $router->addRoute('forgotten', 'DemandeurController', 'forgottenMail');
 $router->addRoute('toggle-mode-intervenant', 'IntervenantController', 'toggleModeIntervenant');
