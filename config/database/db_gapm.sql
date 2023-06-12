@@ -214,7 +214,7 @@ CREATE TABLE `Intervenant`
     `idVillePro`  int(11) DEFAULT NULL,
     `travailSamedi` tinyint(1) DEFAULT 0,
     `demandeSupp` tinyint(1) DEFAULT 0,
-    `application` text DEFAULT 'waiting'
+    `application` varchar(255) DEFAULT 'waiting'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
