@@ -24,7 +24,7 @@ const TitleMapping = {
     'NbRdvBySpecialite': 'Nombre de rendez-vous par spécialité',
     'NbRdvByTrancheHorraire': 'Nombre de rendez-vous par tranche horaire',
     'TauxSatisfaction': 'Taux de satisfaction',
-    'TauxStatusRdv': 'Taux de rendez-vous par statut',
+    'TauxStatusRdv': 'Taux de rendez-vous par statut en %',
     'nbCommentaireByRdvEffectue': 'Nombre de commentaire par rendez-vous effectué',
 }
 
@@ -58,6 +58,13 @@ Promise.all([data]).then((values) => {
                     title: {
                         display: true,
                         text: title
+                    },
+                    legend: {
+                        position: 'right',
+                        align: 'center',
+                        labels: {
+                            boxWidth: 30, // adjust the width of the legend item boxes
+                        },
                     }
                 }
             }

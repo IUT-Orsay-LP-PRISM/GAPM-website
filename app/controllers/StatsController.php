@@ -29,6 +29,20 @@ class StatsController extends Template
         $nbCommentaireByRdvEffectue = $this->entityManager->getRepository(Administration::class)->findNbCommentaireByRdvEffectue();
 
 
+        $ordre = array(
+            "Lundi" => 1,
+            "Mardi" => 2,
+            "Mercredi" => 3,
+            "Jeudi" => 4,
+            "Vendredi" => 5,
+            "Samedi" => 6,
+            "Dimanche" => 7
+        );
+        // sort $NbRdvByDay by day
+        uksort($NbRdvByDay, function ($a, $b) use ($ordre) {
+            return $ordre[$a] - $ordre[$b];
+        });
+
         // Création du tableau associatif contenant les résultats
         $data = array(
             'NbRdvBySpecialite' => $NbRdvBySpecialite,

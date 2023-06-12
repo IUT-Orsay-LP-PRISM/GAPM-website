@@ -3012,6 +3012,12 @@ body.intervenant {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.intervenant .faq__container {
+    padding: 2.5rem 10.1rem; }
+  body.intervenant .faq__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
   body.intervenant .faq h2 {
     margin-top: 2rem;
     margin-bottom: 1rem; }
@@ -3024,6 +3030,26 @@ body.intervenant {
     list-style-type: disc;
     padding-left: 1rem; }
     body.intervenant .faq ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
+  body.intervenant .about__container {
+    padding: 2.5rem 10.1rem; }
+  body.intervenant .about__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+  body.intervenant .about h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.intervenant .about p, body.intervenant .about div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.intervenant .about ul {
+    list-style-type: disc;
+    padding-left: 1rem; }
+    body.intervenant .about ul li {
       margin-bottom: 0.5rem;
       font-weight: 400; }
   body.intervenant .notefrais--empty__content {
@@ -4427,6 +4453,12 @@ body.intervenant {
     z-index: 1;
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
+    body.intervenant .popup .js-avis-infos .title {
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      color: #257466;
+      font-weight: 500;
+      line-height: 2; }
     body.intervenant .popup.popup-inscription {
       width: 40%;
       height: 30em;
@@ -5826,6 +5858,12 @@ body.demandeur {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.demandeur .faq__container {
+    padding: 2.5rem 10.1rem; }
+  body.demandeur .faq__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
   body.demandeur .faq h2 {
     margin-top: 2rem;
     margin-bottom: 1rem; }
@@ -5838,6 +5876,26 @@ body.demandeur {
     list-style-type: disc;
     padding-left: 1rem; }
     body.demandeur .faq ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
+  body.demandeur .about__container {
+    padding: 2.5rem 10.1rem; }
+  body.demandeur .about__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+  body.demandeur .about h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.demandeur .about p, body.demandeur .about div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.demandeur .about ul {
+    list-style-type: disc;
+    padding-left: 1rem; }
+    body.demandeur .about ul li {
       margin-bottom: 0.5rem;
       font-weight: 400; }
   body.demandeur .notefrais--empty__content {
@@ -7241,6 +7299,12 @@ body.demandeur {
     z-index: 1;
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
+    body.demandeur .popup .js-avis-infos .title {
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      color: #393BAA;
+      font-weight: 500;
+      line-height: 2; }
     body.demandeur .popup.popup-inscription {
       width: 40%;
       height: 30em;
@@ -8640,6 +8704,12 @@ body.admin {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.admin .faq__container {
+    padding: 2.5rem 10.1rem; }
+  body.admin .faq__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
   body.admin .faq h2 {
     margin-top: 2rem;
     margin-bottom: 1rem; }
@@ -8652,6 +8722,26 @@ body.admin {
     list-style-type: disc;
     padding-left: 1rem; }
     body.admin .faq ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
+  body.admin .about__container {
+    padding: 2.5rem 10.1rem; }
+  body.admin .about__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+  body.admin .about h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.admin .about p, body.admin .about div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.admin .about ul {
+    list-style-type: disc;
+    padding-left: 1rem; }
+    body.admin .about ul li {
       margin-bottom: 0.5rem;
       font-weight: 400; }
   body.admin .notefrais--empty__content {
@@ -10055,6 +10145,12 @@ body.admin {
     z-index: 1;
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
+    body.admin .popup .js-avis-infos .title {
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      color: #4B0082;
+      font-weight: 500;
+      line-height: 2; }
     body.admin .popup.popup-inscription {
       width: 40%;
       height: 30em;
@@ -11454,6 +11550,12 @@ body.admin-pro {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.admin-pro .faq__container {
+    padding: 2.5rem 10.1rem; }
+  body.admin-pro .faq__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
   body.admin-pro .faq h2 {
     margin-top: 2rem;
     margin-bottom: 1rem; }
@@ -11466,6 +11568,26 @@ body.admin-pro {
     list-style-type: disc;
     padding-left: 1rem; }
     body.admin-pro .faq ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
+  body.admin-pro .about__container {
+    padding: 2.5rem 10.1rem; }
+  body.admin-pro .about__content {
+    padding: 1.85rem 2.53rem;
+    background: white;
+    border-radius: 10px; }
+  body.admin-pro .about h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.admin-pro .about p, body.admin-pro .about div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.admin-pro .about ul {
+    list-style-type: disc;
+    padding-left: 1rem; }
+    body.admin-pro .about ul li {
       margin-bottom: 0.5rem;
       font-weight: 400; }
   body.admin-pro .notefrais--empty__content {
@@ -12869,6 +12991,12 @@ body.admin-pro {
     z-index: 1;
     transform: translateY(-20px);
     transition: transform 0.3s ease-in-out; }
+    body.admin-pro .popup .js-avis-infos .title {
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      color: #820000;
+      font-weight: 500;
+      line-height: 2; }
     body.admin-pro .popup.popup-inscription {
       width: 40%;
       height: 30em;
