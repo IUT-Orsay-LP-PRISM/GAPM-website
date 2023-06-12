@@ -140,6 +140,10 @@
         align-items     : flex-start;
         padding         : 2rem 0;
 
+        .bold{
+          font-weight: bold;
+        }
+
         a {
           margin-top : 1.5rem;
         }
