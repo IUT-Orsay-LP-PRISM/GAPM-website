@@ -3012,6 +3012,20 @@ body.intervenant {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.intervenant .faq h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.intervenant .faq p, body.intervenant .faq div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.intervenant .faq ul {
+    list-style-type: disc;
+    padding-left: 1rem; }
+    body.intervenant .faq ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
   body.intervenant .notefrais--empty__content {
     display: flex;
     justify-content: center;
@@ -5808,6 +5822,20 @@ body.demandeur {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.demandeur .faq h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.demandeur .faq p, body.demandeur .faq div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.demandeur .faq ul {
+    list-style-type: disc;
+    padding-left: 1rem; }
+    body.demandeur .faq ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
   body.demandeur .notefrais--empty__content {
     display: flex;
     justify-content: center;
@@ -8604,6 +8632,20 @@ body.admin {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.admin .faq h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.admin .faq p, body.admin .faq div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.admin .faq ul {
+    list-style-type: disc;
+    padding-left: 1rem; }
+    body.admin .faq ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
   body.admin .notefrais--empty__content {
     display: flex;
     justify-content: center;
@@ -11400,6 +11442,20 @@ body.admin-pro {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.admin-pro .faq h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.admin-pro .faq p, body.admin-pro .faq div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.admin-pro .faq ul {
+    list-style-type: disc;
+    padding-left: 1rem; }
+    body.admin-pro .faq ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
   body.admin-pro .notefrais--empty__content {
     display: flex;
     justify-content: center;

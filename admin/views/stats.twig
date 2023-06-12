@@ -1,0 +1,20 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title">
+		<h1>{{ title }}</h1>
+		<p>
+			Les différentes statistiques du site.
+		</p>
+		<div class="admin__stats">
+			<div class="admin__stats__block --full"></div>
+			<div class="admin__stats__block --mid"></div>
+			<div class="admin__stats__block --mid"></div>
+			<div class="admin__stats__block"></div>
+			<div class="admin__stats__block"></div>
+			<div class="admin__stats__block"></div>
+		</div>
+	</div>
+{% endblock %}
