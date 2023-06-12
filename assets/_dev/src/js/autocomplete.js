@@ -114,7 +114,20 @@ export function ajaxPopupAvis(rdvId){
             let heureFin = data.heureFin;
             let specialite = data.specialite;
             let intervenant = data.intervenant;
-            popupContent.innerHTML = 'Date : ' + date + ' <br><br> Horaires : ' + heureDebut + ' - ' + heureFin + ' <br><br> Spécialité : ' + specialite + ' <br><br> Intervenant : ' + intervenant;
+
+            let dateContent = document.createElement('p');
+            dateContent.innerHTML = "<span class=\"title\">Date :</span> "+date+"<br>";
+            popupContent.appendChild(dateContent);
+            let timeContent = document.createElement('p');
+            timeContent.innerHTML = "<span class=\"title\">Horaires : </span> "+heureDebut + " - " + heureFin + "<br>";
+            popupContent.appendChild(timeContent);
+            let specialliteContent = document.createElement('p');
+            specialliteContent.innerHTML = "<span class=\"title\">Spécialité : </span> "+specialite+"<br>";
+            popupContent.appendChild(specialliteContent);
+            let intervenantContent = document.createElement('p');
+            intervenantContent.innerHTML = "<span class=\"title\">Intervenant :</span> "+intervenant+"<br>";
+            popupContent.appendChild(intervenantContent);
+
             let newInput = document.createElement('input');
             newInput.setAttribute('type', 'hidden');
             newInput.setAttribute('name', 'idRdv');
