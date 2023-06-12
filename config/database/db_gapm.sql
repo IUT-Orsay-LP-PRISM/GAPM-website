@@ -44,6 +44,37 @@ CREATE TABLE `Commentaire`
 --
 -- Déchargement des données de la table `Commentaire`
 --
+INSERT INTO `Commentaire` (`idCommentaire`, `description`, `note`, `idRdv`, `idDemandeur`)
+VALUES (1, 'Très bon rendez-vous, le médecin était compétent et attentif.', 4.5, 1, 1),
+       (2, 'Le rendez-vous s''est bien passé, le médecin a répondu à toutes mes questions.', 4.0, 2, 2),
+       (3, 'Le médecin était professionnel et le rendez-vous s''est déroulé sans problème.', 4.2, 3, 3),
+       (4, 'J''ai été satisfait du rendez-vous, le médecin a pris le temps de m''écouter.', 4.3, 6, 6),
+       (5, 'Le rendez-vous s''est bien passé, le médecin était aimable et compétent.', 4.4, 7, 7),
+       (6, 'Très bon rendez-vous, le médecin a été attentif à mes préoccupations.', 4.5, 9, 9),
+       (7, 'Le rendez-vous s''est bien déroulé, le médecin a répondu à toutes mes questions.', 4.0, 10, 10),
+       (8, 'Le rendez-vous était satisfaisant, le médecin a été à l''écoute de mes symptômes.', 4.2, 11, 1),
+       (9, 'J''ai été satisfait du rendez-vous, le médecin a pris le temps de m''expliquer.', 4.3, 13, 3),
+       (10, 'Le rendez-vous s''est bien déroulé, le médecin a été professionnel.', 4.0, 14, 4),
+       (11, 'Très bon rendez-vous, le médecin a été attentif à mes besoins.', 4.5, 15, 5),
+       (12, 'Le rendez-vous s''est bien passé, le médecin était compétent.', 4.4, 17, 7),
+       (13, 'Le médecin était professionnel et le rendez-vous s''est déroulé sans problème.', 4.2, 18, 8),
+       (14, 'J''ai été satisfait du rendez-vous, le médecin a pris le temps de m''écouter.', 4.3, 20, 10),
+       (15, 'Le rendez-vous s''est bien passé, le médecin était aimable et compétent.', 4.4, 21, 1),
+       (16, 'Très bon rendez-vous, le médecin a été attentif à mes préoccupations.', 4.5, 23, 3),
+       (17, 'Le rendez-vous s''est bien déroulé, le médecin a répondu à toutes mes questions.', 4.0, 24, 4),
+       (18, 'Le rendez-vous était satisfaisant, le médecin a été à l''écoute de mes symptômes.', 4.2, 26, 6),
+       (19, 'J''ai été satisfait du rendez-vous, le médecin a pris le temps de m''expliquer.', 4.3, 27, 7),
+       (20, 'Le rendez-vous s''est bien déroulé, le médecin a été professionnel.', 4.0, 28, 8),
+       (21, 'Très bon rendez-vous, le médecin a été attentif à mes besoins.', 4.5, 30, 10),
+       (22, 'Le rendez-vous s''est bien passé, le médecin était compétent.', 4.4, 31, 1),
+       (23, 'Le médecin était professionnel et le rendez-vous s''est déroulé sans problème.', 4.2, 33, 3),
+       (24, 'J''ai été satisfait du rendez-vous, le médecin a pris le temps de m''écouter.', 4.3, 34, 4),
+       (25, 'Le rendez-vous s''est bien passé, le médecin était aimable et compétent.', 4.4, 36, 6),
+       (26, 'Très bon rendez-vous, le médecin a été attentif à mes préoccupations.', 4.5, 37, 7),
+       (27, 'Le rendez-vous s''est bien déroulé, le médecin a répondu à toutes mes questions.', 4.0, 38, 8),
+       (28, 'Le rendez-vous était satisfaisant, le médecin a été à l''écoute de mes symptômes.', 4.2, 40, 10),
+       (29, 'J''ai été satisfait du rendez-vous, le médecin a pris le temps de m''expliquer.', 4.3, 41, 1);
+
 
 
 -- --------------------------------------------------------n
@@ -78,9 +109,9 @@ CREATE TABLE `Demandeur`
 INSERT INTO `Demandeur` (`idDemandeur`, `email`, `login`, `motDePasse`, `nom`, `prenom`, `dateNaissance`, `adresse`,
                          `telephone`, `sexe`, `idVille`, `type`)
 VALUES (1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '1990-01-01', '123 rue Principale',
-        '0105040708', 'M', 1, 'intervenant'),
+        '0105040708', 'M', 1, 'demandeur'),
        (2, 'jane.doe@example.com', 'jane.doe', 'seA/6v3hNAL1.', 'Doe', 'Jane', '1995-05-05', '456 rue Secondaire',
-        '555-5555', 'F', 2, 'intervenant'),
+        '555-5555', 'F', 2, 'demandeur'),
        (3, 'bob.smith@example.com', 'bob.smith', 'seA/6v3hNAL1.', 'Smith', 'Bob', '1985-02-10', '789 rue Tertiaire',
         '555-5555', 'M', 1, 'demandeur'),
        (4, 'alice.white@example.com', 'alice.white', 'seA/6v3hNAL1.', 'White', 'Alice', '1999-12-25',
@@ -96,7 +127,7 @@ VALUES (1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '
        (9, 'nicolas.robert@u-sa.com', 'nicolas.robert', 'seA/6v3hNAL1.', 'Nicolas', 'Robert', '1987-12-09',
         '23 boulevard Central', '0601020304', 'M', 1, 'intervenant'),
        (10, 'sandrine.leclerc@u-sa.com', 'sandrine.leclerc', 'seA/6v3hNAL1.', 'Sandrine', 'Leclerc', '1995-04-18',
-        '8 rue de l\'Église', '0678901234', 'F', 3, 'intervenant'),
+        '8 rue de l''Église', '0678901234', 'F', 3, 'intervenant'),
        (11, 'jean.dupuis@u-sa.com', 'jean.dupuis', 'seA/6v3hNAL1.', 'Jean', 'Dupuis', '1980-08-25', '12 avenue du Parc',
         '0622334455', 'M', 2, 'intervenant'),
        (12, 'marie.dumas@u-sa.com', 'marie.dumas', 'seA/6v3hNAL1.', 'Marie', 'Dumas', '1993-01-03', '5 rue des Roses',
@@ -162,8 +193,8 @@ DROP TABLE IF EXISTS `Emprunt`;
 CREATE TABLE `Emprunt`
 (
     `idEmprunt`        int(11) NOT NULL,
-    `dateFin`          date    NOT NULL,
-    `dateDebut`        date    NOT NULL,
+    `dateFin`          date NOT NULL,
+    `dateDebut`        date NOT NULL,
     `idIntervenant`    int(11) NOT NULL,
     `idAdministration` int(11) DEFAULT NULL,
     `idVoiture`        int(11) NOT NULL
@@ -198,9 +229,9 @@ CREATE TABLE `Intervenant`
     `idDemandeur`   int(11) NOT NULL,
     `adressePro`    varchar(255) DEFAULT NULL,
     `imgUrl`        varchar(255) DEFAULT 'public/img/default.jpg',
-    `idVillePro`    int(11)      DEFAULT NULL,
-    `travailSamedi` tinyint(1)   DEFAULT 0,
-    `demandeSupp`   tinyint(1)   DEFAULT 0,
+    `idVillePro`    int(11) DEFAULT NULL,
+    `travailSamedi` tinyint(1) DEFAULT 0,
+    `demandeSupp`   tinyint(1) DEFAULT 0,
     `application`   varchar(255) DEFAULT 'waiting'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
@@ -221,7 +252,7 @@ VALUES (5, '100 rue des Intervenants', 'public/uploads/intervenants/imgs/6-dbd94
        (8, '29 rue des Experts', 'public/uploads/intervenants/imgs/8-5508773a374b909eae8f.jpeg', 33, 0, 0, 'passed'),
        (9, '53 avenue des Spécialistes', 'public/uploads/intervenants/imgs/9-9e491fed649282e5a04c.jpeg', 14, 0, 0,
         'passed'),
-       (10, '88 rue de l\'Industrie', 'public/uploads/intervenants/imgs/10-df871b1ce4d82b4e0e81.jpeg', 27, 0, 0,
+       (10, '88 rue de l''Industrie', 'public/uploads/intervenants/imgs/10-df871b1ce4d82b4e0e81.jpeg', 27, 0, 0,
         'passed'),
        (11, '21 boulevard des Consultants', 'public/uploads/intervenants/imgs/11-ff540dac550069d720e9.jpeg', 10, 0, 0,
         'passed'),
@@ -238,7 +269,7 @@ VALUES (5, '100 rue des Intervenants', 'public/uploads/intervenants/imgs/6-dbd94
         'passed'),
        (18, '22 avenue des Ingénieurs', 'public/uploads/intervenants/imgs/18-131d84e673384b291f5d.jpeg', 28, 0, 0,
         'passed'),
-       (19, '55 rue de l\'Industrie', 'public/uploads/intervenants/imgs/19-83cfc336c53e26aec69c.jpeg', 8, 0, 0,
+       (19, '55 rue de l''Industrie', 'public/uploads/intervenants/imgs/19-83cfc336c53e26aec69c.jpeg', 8, 0, 0,
         'passed'),
        (20, '69 avenue de la République', 'public/uploads/intervenants/imgs/20-00c86fb8566e12286ea5.jpeg', 150, 1, 0,
         'passed');
@@ -254,8 +285,8 @@ DROP TABLE IF EXISTS `NoteFrais`;
 CREATE TABLE `NoteFrais`
 (
     `idNoteFrais`      int(11) NOT NULL,
-    `dateNote`         date        NOT NULL,
-    `status`           varchar(50) DEFAULT 'En attente',
+    `dateNote`         date NOT NULL,
+    `status`           varchar(50)  DEFAULT 'En attente',
     `idIntervenant`    int(11) NOT NULL,
     `idAdministration` int(11) DEFAULT NULL,
     `message`          varchar(255) DEFAULT NULL
@@ -356,7 +387,7 @@ CREATE TABLE `Administration`
 --
 
 INSERT INTO `Administration` (`idAdministration`, `nom`, `prenom`, `login`, `motDePasse`, `email`, `isAdmin`)
-VALUES (1, 'Dupont', 'Anne', 'admin', 'seA/6v3hNAL1.', 'anne.dupont@example.com', 0),
+VALUES (1, 'Dupont', 'Anne', 'admin', 'seA/6v3hNAL1.', 'anne.dupont@example.com', 1),
        (2, 'Doe', 'John', 'jdoe', 'seA/6v3hNAL1.', 'john.doe@example.com', 0),
        (3, 'Smith', 'Jane', 'jsmith', 'seA/6v3hNAL1.', 'jane.smith@example.com', 0),
        (4, 'Brown', 'Robert', 'rbrown', 'seA/6v3hNAL1.', 'robert.brown@example.com', 0),
@@ -388,28 +419,87 @@ CREATE TABLE `RDV`
 -- Déchargement des données de la table `RDV`
 --
 
-INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idSpecialite`,
-                   `idIntervenant`)
-VALUES (1, 'confirme', '2023-06-01', '10:00', '11:00', 6, 1, 9),
-       (2, 'confirme', '2023-06-02', '14:00', '15:00', 21, 2, 7),
-       (3, 'annule', '2023-06-03', '11:30', '12:30', 23, 3, 10),
-       (4, 'confirme', '2023-06-04', '09:00', '10:00', 8, 4, 16),
-       (5, 'attente', '2023-06-05', '15:30', '16:30', 25, 5, 13),
-       (6, 'confirme', '2023-06-06', '12:00', '13:00', 22, 6, 6),
-       (7, 'confirme', '2023-06-07', '16:00', '17:00', 9, 7, 12),
-       (8, 'annule', '2023-06-08', '13:30', '14:30', 10, 8, 15),
-       (9, 'attente', '2023-06-09', '10:30', '11:30', 12, 9, 11),
-       (10, 'confirme', '2023-06-10', '14:30', '15:30', 24, 10, 15);
 
-INSERT INTO RDV (idRdv, status, dateRDV, heureDebut, heureFin, idDemandeur, idSpecialite, idIntervenant)
-VALUES (11, 'confirme', '2023-06-13', '11:00', '12:00', 7, 11, 5),
-       (12, 'attente', '2023-06-14', '17:30', '18:30', 11, 1, 8),
-       (13, 'confirme', '2023-06-15', '12:30', '13:30', 13, 2, 9),
-       (14, 'confirme', '2023-06-17', '09:30', '10:30', 15, 3, 14),
-       (15, 'annule', '2023-06-19', '16:30', '17:30', 18, 4, 16),
-       (16, 'attente', '2023-06-21', '13:00', '14:00', 19, 5, 16),
-       (17, 'confirme', '2023-06-23', '10:00', '11:00', 20, 6, 5),
-       (18, 'confirme', '2023-06-25', '15:00', '16:00', 20, 7, 5);
+INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idSpecialite`,
+                   `idIntervenant`, `idCommentaire`)
+VALUES (1, 'effectue', DATE_SUB(CURDATE(), INTERVAL 49 DAY), '10:30', '11:00', 1, 1, 5, 1),
+       (2, 'effectue', DATE_SUB(CURDATE(), INTERVAL 48 DAY), '14:30', '15:00', 2, 2, 8, 2),
+       (3, 'effectue', DATE_SUB(CURDATE(), INTERVAL 47 DAY), '12:00', '12:30', 3, 3, 12, 3),
+       (4, 'annule', DATE_SUB(CURDATE(), INTERVAL 46 DAY), '09:30', '10:00', 4, 4, 7, NULL),
+       (5, 'annule', DATE_SUB(CURDATE(), INTERVAL 45 DAY), '16:00', '16:30', 5, 5, 14, NULL),
+       (6, 'effectue', DATE_SUB(CURDATE(), INTERVAL 44 DAY), '12:30', '13:00', 6, 6, 11, 4),
+       (7, 'effectue', DATE_SUB(CURDATE(), INTERVAL 43 DAY), '16:30', '17:00', 7, 7, 13, 5),
+       (8, 'annule', DATE_SUB(CURDATE(), INTERVAL 42 DAY), '14:00', '14:30', 8, 8, 10, NULL),
+       (9, 'effectue', DATE_SUB(CURDATE(), INTERVAL 41 DAY), '10:30', '11:00', 9, 9, 9, 6),
+       (10, 'effectue', DATE_SUB(CURDATE(), INTERVAL 40 DAY), '14:30', '15:00', 10, 10, 6, 7),
+       (11, 'effectue', DATE_SUB(CURDATE(), INTERVAL 39 DAY), '11:30', '12:00', 11, 1, 14, 8),
+       (12, 'annule', DATE_SUB(CURDATE(), INTERVAL 38 DAY), '17:30', '18:00', 12, 2, 10, NULL),
+       (13, 'effectue', DATE_SUB(CURDATE(), INTERVAL 37 DAY), '12:30', '13:00', 13, 3, 16, 9),
+       (14, 'effectue', DATE_SUB(CURDATE(), INTERVAL 36 DAY), '09:30', '10:00', 14, 4, 6, 10),
+       (15, 'effectue', DATE_SUB(CURDATE(), INTERVAL 35 DAY), '16:30', '17:00', 15, 5, 11, 11),
+       (16, 'annule', DATE_SUB(CURDATE(), INTERVAL 34 DAY), '13:30', '14:00', 16, 6, 8, NULL),
+       (17, 'effectue', DATE_SUB(CURDATE(), INTERVAL 33 DAY), '10:30', '11:00', 17, 7, 9, 12),
+       (18, 'annule', DATE_SUB(CURDATE(), INTERVAL 32 DAY), '15:30', '16:00', 18, 8, 11, NULL),
+       (19, 'annule', DATE_SUB(CURDATE(), INTERVAL 31 DAY), '11:00', '11:30', 19, 9, 13, NULL),
+       (20, 'effectue', DATE_SUB(CURDATE(), INTERVAL 30 DAY), '14:00', '14:30', 20, 10, 7, 13),
+       (21, 'annule', DATE_SUB(CURDATE(), INTERVAL 29 DAY), '16:00', '16:30', 21, 1, 5, NULL),
+       (22, 'effectue', DATE_SUB(CURDATE(), INTERVAL 28 DAY), '12:30', '13:00', 22, 2, 12, 14),
+       (23, 'effectue', DATE_SUB(CURDATE(), INTERVAL 27 DAY), '14:30', '15:00', 23, 3, 19, 15),
+       (24, 'annule', DATE_SUB(CURDATE(), INTERVAL 26 DAY), '09:30', '10:00', 24, 4, 6, NULL),
+       (25, 'effectue', DATE_SUB(CURDATE(), INTERVAL 25 DAY), '16:00', '16:30', 25, 5, 9, 16),
+       (26, 'annule', DATE_SUB(CURDATE(), INTERVAL 24 DAY), '12:00', '12:30', 1, 6, 16, NULL),
+       (27, 'annule', DATE_SUB(CURDATE(), INTERVAL 23 DAY), '14:30', '15:00', 2, 7, 13, NULL),
+       (28, 'effectue', DATE_SUB(CURDATE(), INTERVAL 22 DAY), '16:30', '17:00', 3, 8, 18, 17),
+       (29, 'annule', DATE_SUB(CURDATE(), INTERVAL 21 DAY), '10:00', '10:30', 4, 9, 11, NULL),
+       (30, 'annule', DATE_SUB(CURDATE(), INTERVAL 20 DAY), '13:30', '14:00', 5, 10, 10, NULL),
+       (31, 'effectue', DATE_SUB(CURDATE(), INTERVAL 19 DAY), '11:30', '12:00', 6, 1, 5, 18),
+       (32, 'effectue', DATE_SUB(CURDATE(), INTERVAL 18 DAY), '17:30', '18:00', 7, 2, 9, 19),
+       (33, 'annule', DATE_SUB(CURDATE(), INTERVAL 17 DAY), '12:30', '13:00', 8, 3, 12, NULL),
+       (34, 'annule', DATE_SUB(CURDATE(), INTERVAL 16 DAY), '14:30', '15:00', 9, 4, 17, NULL),
+       (35, 'effectue', DATE_SUB(CURDATE(), INTERVAL 15 DAY), '09:30', '10:00', 10, 5, 19, 20),
+       (36, 'effectue', DATE_SUB(CURDATE(), INTERVAL 14 DAY), '16:30', '17:00', 11, 6, 8, 21),
+       (37, 'annule', DATE_SUB(CURDATE(), INTERVAL 13 DAY), '13:30', '14:00', 12, 7, 10, NULL),
+       (38, 'effectue', DATE_SUB(CURDATE(), INTERVAL 12 DAY), '10:30', '11:00', 13, 8, 15, 22),
+       (39, 'effectue', DATE_SUB(CURDATE(), INTERVAL 11 DAY), '14:00', '14:30', 14, 9, 6, 23),
+       (40, 'effectue', DATE_SUB(CURDATE(), INTERVAL 10 DAY), '11:30', '12:00', 15, 10, 14, 24),
+       (41, 'effectue', DATE_SUB(CURDATE(), INTERVAL 9 DAY), '17:30', '18:00', 16, 1, 7, 25),
+       (42, 'annule', DATE_SUB(CURDATE(), INTERVAL 8 DAY), '12:30', '13:00', 17, 2, 16, NULL),
+       (43, 'effectue', DATE_SUB(CURDATE(), INTERVAL 7 DAY), '09:30', '10:00', 18, 3, 13, 26),
+       (44, 'annule', DATE_SUB(CURDATE(), INTERVAL 6 DAY), '16:00', '16:30', 19, 4, 9, NULL),
+       (45, 'annule', DATE_SUB(CURDATE(), INTERVAL 5 DAY), '12:00', '12:30', 20, 5, 14, NULL),
+       (46, 'effectue', DATE_SUB(CURDATE(), INTERVAL 4 DAY), '14:30', '15:00', 21, 6, 11, 27),
+       (47, 'effectue', DATE_SUB(CURDATE(), INTERVAL 3 DAY), '09:30', '10:00', 22, 7, 8, 28),
+       (48, 'annule', DATE_SUB(CURDATE(), INTERVAL 2 DAY), '16:00', '16:30', 23, 8, 17, NULL),
+       (49, 'annule', DATE_SUB(CURDATE(), INTERVAL 1 DAY), '12:30', '13:00', 24, 9, 10, NULL),
+       (50, 'effectue', CURDATE(), '10:30', '11:00', 25, 10, 6, 29);
+
+INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idSpecialite`,
+                   `idIntervenant`, `idCommentaire`)
+VALUES (51, 'confirmé', '2023-06-16', '10:30', '11:00', 2, 2, 8, NULL),
+       (52, 'confirmé', '2023-06-17', '12:00', '12:30', 3, 3, 12, NULL),
+       (53, 'confirmé', '2023-06-18', '09:30', '10:00', 4, 4, 7, NULL),
+       (54, 'annulé', '2023-06-19', '16:00', '16:30', 5, 5, 14, NULL),
+       (55, 'confirmé', '2023-06-20', '12:30', '13:00', 6, 6, 11, NULL),
+       (56, 'confirmé', '2023-06-21', '16:30', '17:00', 7, 7, 13, NULL),
+       (57, 'annulé', '2023-06-22', '14:00', '14:30', 8, 8, 10, NULL),
+       (58, 'confirmé', '2023-06-23', '10:30', '11:00', 9, 9, 9, NULL),
+       (59, 'confirmé', '2023-06-24', '14:30', '15:00', 10, 10, 6, NULL),
+       (60, 'confirmé', '2023-06-25', '11:30', '12:00', 11, 1, 14, NULL),
+       (61, 'annulé', '2023-06-26', '17:30', '18:00', 12, 2, 10, NULL),
+       (62, 'confirmé', '2023-06-27', '12:30', '13:00', 13, 3, 16, NULL),
+       (63, 'confirmé', '2023-06-28', '09:30', '10:00', 14, 4, 6, NULL),
+       (64, 'confirmé', '2023-06-29', '16:30', '17:00', 15, 5, 11, NULL),
+       (65, 'annulé', '2023-06-30', '13:30', '14:00', 16, 6, 8, NULL),
+       (66, 'confirmé', '2023-07-01', '10:30', '11:00', 17, 7, 9, NULL),
+       (67, 'annulé', '2023-07-02', '15:30', '16:00', 18, 8, 11, NULL),
+       (68, 'annulé', '2023-07-03', '11:00', '11:30', 19, 9, 13, NULL),
+       (69, 'confirmé', '2023-07-04', '09:30', '10:00', 20, 10, 7, NULL),
+       (70, 'confirmé', '2023-07-05', '14:30', '15:00', 21, 1, 15, NULL),
+       (71, 'confirmé', '2023-07-06', '10:00', '10:30', 22, 2, 9, NULL),
+       (72, 'confirmé', '2023-07-07', '15:00', '15:30', 23, 3, 11, NULL),
+       (73, 'annulé', '2023-07-08', '12:30', '13:00', 24, 4, 13, NULL),
+       (74, 'confirmé', '2023-07-09', '09:30', '10:00', 25, 5, 7, NULL),
+       (75, 'annulé', '2023-07-10', '16:00', '16:30', 25, 6, 15, NULL);
 
 -- --------------------------------------------------------
 
@@ -430,40 +520,44 @@ CREATE TABLE `Intervenant_Specialite`
 -- Déchargement des données de la table `Realiser`
 --
 
-INSERT INTO Intervenant_Specialite (idIntervenant, idSpecialite) VALUES
-                                                                     (5, 1),
-                                                                     (5, 2),
-                                                                     (5, 3),
-                                                                     (6, 4),
-                                                                     (7, 5),
-                                                                     (7, 6),
-                                                                     (8, 7),
-                                                                     (8, 8),
-                                                                     (8, 9),
-                                                                     (9, 10),
-                                                                     (9, 11),
-                                                                     (10, 1),
-                                                                     (10, 2),
-                                                                     (11, 3),
-                                                                     (12, 4),
-                                                                     (12, 5),
-                                                                     (13, 6),
-                                                                     (13, 7),
-                                                                     (13, 8),
-                                                                     (14, 9),
-                                                                     (14, 10),
-                                                                     (15, 11),
-                                                                     (15, 1),
-                                                                     (16, 2),
-                                                                     (16, 3),
-                                                                     (17, 4),
-                                                                     (17, 5),
-                                                                     (17, 6),
-                                                                     (18, 7),
-                                                                     (18, 8),
-                                                                     (19, 9),
-                                                                     (19, 10),
-                                                                     (19, 11);
+INSERT INTO Intervenant_Specialite (idIntervenant, idSpecialite)
+VALUES (5, 1),
+       (8, 2),
+       (12, 3),
+       (7, 4),
+       (14, 5),
+       (11, 6),
+       (13, 7),
+       (10, 8),
+       (9, 9),
+       (6, 10),
+       (17, 7),
+       (15, 5),
+       (18, 8),
+       (19, 9),
+       (8, 7),
+       (9, 7),
+       (11, 8),
+       (10, 9),
+       (5, 10),
+       (12, 2),
+       (19, 3),
+       (6, 4),
+       (9, 5),
+       (16, 6),
+       (9, 8),
+       (14, 9),
+       (11, 10),
+       (7, 1),
+       (9, 2),
+       (17, 4),
+       (19, 5),
+       (8, 6),
+       (11, 7),
+       (15, 9),
+       (15, 2),
+       (9, 3),
+       (10, 5);
 
 -- --------------------------------------------------------
 
@@ -812,7 +906,8 @@ ALTER TABLE `NoteFrais`
     ADD CONSTRAINT `NoteFrais_ibfk_1` FOREIGN KEY (`idIntervenant`) REFERENCES `Intervenant` (`idDemandeur`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `NoteFrais_ibfk_2` FOREIGN KEY (`idAdministration`) REFERENCES `Administration` (`idAdministration`) ON
 DELETE
-CASCADE ON UPDATE CASCADE;
+CASCADE ON
+UPDATE CASCADE;
 
 
 --
