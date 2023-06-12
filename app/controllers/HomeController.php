@@ -22,6 +22,13 @@ class HomeController extends Template
         ]);
     }
 
+    public function displayAbout(): void
+    {
+        self::render('about.twig', [
+            'title' => "A propos de nous ",
+        ]);
+    }
+
     public function displayForgotten()
     {
         self::render('forgotten.twig', [
