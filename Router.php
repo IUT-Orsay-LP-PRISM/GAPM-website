@@ -2,6 +2,8 @@
 
 namespace App\controllers;
 
+use App\models\entity\Session;
+
 class Router {
     private array $routes = [];
     private string $type = 'utilisateur';
@@ -54,7 +56,11 @@ class Router {
         if ($this->type == 'admin') {
             // Si page admin, rediriger vers la page de login
             $controller = new PersonnelController($entityManager);
-            $controller->demandeursView();
+            if (Session::get('admin')->isAdmin()){
+                $controller->statsView();
+            } else {
+                $controller->demandeursView();
+            }
         } else {
             // Si page utilisateur, rediriger vers la page d'accueil
             $controller = new HomeController();

@@ -79,14 +79,7 @@ class PersonnelController extends Template
                 $user = $personnel;
 
                 if ($user->getMotDePasse() == $saltedAndHashed) {
-                    $admin = new Administration();
-                    $admin->setIdAdministration($personnel->getIdAdministration());
-                    $admin->setLogin($id);
-                    $admin->setNom($personnel->getNom());
-                    $admin->setPrenom($personnel->getPrenom());
-                    $admin->setEmail($personnel->getEmail());
-
-                    Session::set('admin', $admin);
+                    Session::set('admin', $user);
 
                     header('Location: ./?action=demandeurs&message=Vous êtes connecté.&c=msg-success');
                 } else {
@@ -651,6 +644,143 @@ class PersonnelController extends Template
 
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=demande&message=Erreur lors de l\'acceptation de la demande d\'application.&c=msg-error');
+        }
+
+    }
+
+    public function statsView(): void
+    {
+        self::render('/stats.twig', [
+            'title' => 'Statistiques',
+            'nav' => 'stats',
+        ], true);
+    }
+
+    public function adminsView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $admins = $this->entityManager->getRepository(Administration::class)->findBy([
+            'isAdmin' => false,
+        ]);
+
+        self::render('/personnel/personnels/admins.twig', [
+            'title' => 'Gestion des membres du personnel',
+            'nav' => 'admins',
+            'admins' => $admins,
+        ], true);
+    }
+
+    public function deleteAdminView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => $id,
+        ]);
+
+        self::render('/personnel/personnels/delete-admin.twig', [
+            'title' => 'Supprimer un administrateur',
+            'nav' => 'admins',
+            'admine' => $admin,
+        ], true);
+    }
+
+    public function deleteAdminSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => $id,
+        ]);
+
+        try {
+            $this->entityManager->remove($admin);
+            $this->entityManager->flush();
+            header('Location: ./?action=admins&message=Administrateur supprimé.&c=msg-success');
+
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=admins&message=Erreur lors de la suppression de l\'administrateur.&c=msg-error');
+        }
+    }
+
+    public function editAdminView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => $id,
+        ]);
+
+        self::render('/personnel/personnels/edit-admin.twig', [
+            'title' => 'Modifier un membre du personnel',
+            'nav' => 'admins',
+            'admine' => $admin,
+        ], true);
+    }
+
+    public function updateAdminSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => $id,
+        ]);
+
+        $admin->setNom(htmlspecialchars($_POST['nom']));
+        $admin->setPrenom(htmlspecialchars($_POST['prenom']));
+        $admin->setEmail(htmlspecialchars($_POST['email']));
+
+        try {
+            $this->entityManager->persist($admin);
+            $this->entityManager->flush();
+            header('Location: ./?action=admins&message=Administrateur modifié.&c=msg-success');
+
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=admins&message=Erreur lors de la modification de l\'administrateur.&c=msg-error');
+        }
+    }
+
+    public function createAdminView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        self::render('/personnel/personnels/create-admin.twig', [
+            'title' => 'Créer un membre du personnel',
+            'nav' => 'admins',
+        ], true);
+    }
+
+    public function createAdminSubmit(): void
+    {
+        $admin = new Administration();
+        $admin->setNom(htmlspecialchars($_POST['nom']));
+        $admin->setPrenom(htmlspecialchars($_POST['prenom']));
+
+        $login = strtolower(substr($admin->getPrenom(), 0, 1) . $admin->getNom());
+        $adminLogin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'login' => $login,
+        ]);
+        if ($adminLogin) {
+            $login = $login . rand(0, 100);
+        }
+
+        $admin->setLogin($login);
+        $admin->setMotDePasse('seA/6v3hNAL1.');
+        $admin->setEmail(htmlspecialchars($_POST['email']));
+        $admin->setIsAdmin(false);
+
+        try {
+            $this->entityManager->persist($admin);
+            $this->entityManager->flush();
+            header('Location: ./?action=admins&message=Administrateur créé.&c=msg-success');
+
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=admins&message=Erreur lors de la création de l\'administrateur.&c=msg-error');
         }
 
     }

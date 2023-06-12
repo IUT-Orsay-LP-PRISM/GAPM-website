@@ -1,0 +1,49 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title">
+		<h1>Suppression d'un personnel</h1>
+	</div>
+	<div class="admin__page__content">
+		<h3 style="margin-bottom: 2rem">
+			Êtes-vous sûr de vouloir supprimer le personnel :
+			{{ admine.nom }} {{ admine.prenom }} ?
+		</h3>
+		<div class="admin__demandeur">
+			<div class="admin__inter__head admin__demandeur__head">
+				<div class="admin__inter__noms-head">
+					Nom (login)
+				</div>
+				<div class="admin__inter__spe-head">
+					Email
+				</div>
+				<div class="admin__inter__adresse-head">
+				</div>
+				<div class="admin__inter__adresse-head">
+				</div>
+			</div>
+			<div class="admin__inter__item admin__demandeur__item">
+				<div class="admin__inter__noms">
+					{{ admine.nom }} {{ admine.prenom }} <br><br> ({{ admine.login }})
+				</div>
+				<div class="admin__inter__spe">
+					{{ admine.email }}
+				</div>
+				<div class="admin__inter__adresse">
+				</div>
+				<div class="admin__inter__phone">
+				</div>
+				<form class="admin__inter__delete" action="?action=delete-admin" method="post">
+					<input type="hidden" name="id" value="{{ admine.idAdministration }}">
+					<button type="submit" class="btn btn-secondary-nb" style="margin: 1rem auto">
+						<i class="icon-fi-rr-trash"></i>
+						Supprimer
+					</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

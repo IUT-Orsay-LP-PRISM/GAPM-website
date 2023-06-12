@@ -1,21 +1,33 @@
 <section class="admin__sidebar">
-    <div class="admin__sidebar__head">
+    <div class="admin__sidebar__head {% if admin.isAdmin %}admin-pro{% endif %}">
         <div class="admin__sidebar__title">
             <h2>G.A.P.M</h2>
             <p>
-                Administration
+                {% if admin.isAdmin %}
+                    Administrateur
+                {% else %}
+                    Personnel
+                {% endif %}
             </p>
         </div>
     </div>
     <div class="admin__sidebar__content">
         <nav class="admin__nav">
             <ul>
-{#                <li>
-                    <a href="./?action=home" {% if nav == 'home' %}class="--active"{% endif %}>
-                        {% include 'svg/house.svg' %}
-                        Accueil
+                {% if admin.isAdmin %}
+                <li>
+                    <a href="./?action=stats" {% if nav == 'stats' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-stats"></i>
+                        Statistiques
                     </a>
-                </li>#}
+                </li>
+                <li>
+                    <a href="./?action=admins" {% if nav == 'admins' %}class="--active"{% endif %}>
+                        <i class="icon-fi-rr-address-book"></i>
+                        Gestion du personnel
+                    </a>
+                </li>
+                {% endif %}
                 <li>
                     <a href="./?action=demandeurs"  {% if nav == 'demandeurs' or nav == 'home' %}class="--active"{% endif %}>
                         <i class="icon-fi-rr-notebook"></i>
@@ -28,6 +40,7 @@
                         Gestion des praticiens
                     </a>
                 </li>
+                {% if not admin.isAdmin %}
                 <li>
                     <a href="./?action=notes-frais" {% if nav == 'notes' %}class="--active"{% endif %}>
                         <i class="icon-fi-rr-receipt"></i>
@@ -46,6 +59,7 @@
                         Application d'intervenant
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </nav>
     </div>
