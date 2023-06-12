@@ -1,5 +1,4 @@
 import Chart from 'chart.js/auto';
-import {getRelativePosition} from 'chart.js/helpers';
 
 function getData() {
     return new Promise((resolve, reject) => {
@@ -18,57 +17,55 @@ function getData() {
     });
 }
 
+const arrayCharts = Array.from(document.querySelectorAll('canvas.chartjs'));
 
-const TitleMapping = {
-    'NbRdvByDay': 'Nombre de rendez-vous par jour',
-    'NbRdvBySpecialite': 'Nombre de rendez-vous par spécialité',
-    'NbRdvByTrancheHorraire': 'Nombre de rendez-vous par tranche horaire',
-    'TauxSatisfaction': 'Taux de satisfaction',
-    'TauxStatusRdv': 'Taux de rendez-vous par statut en %',
-    'nbCommentaireByRdvEffectue': 'Nombre de commentaire par rendez-vous effectué',
-}
+if (arrayCharts.length > 0) {
+
+
+    const TitleMapping = {
+        'NbRdvByDay': 'Nombre de rendez-vous par jour',
+        'NbRdvBySpecialite': 'Nombre de rendez-vous par spécialité',
+        'NbRdvByTrancheHorraire': 'Nombre de rendez-vous par tranche horaire',
+        'TauxSatisfaction': 'Taux de satisfaction',
+        'TauxStatusRdv': 'Taux de rendez-vous par statut en %',
+        'nbCommentaireByRdvEffectue': 'Nombre de commentaire par rendez-vous effectué',
+    }
 
 // Générez un jeu d'essai pour les données
-const data = getData();
-Promise.all([data]).then((values) => {
+    const data = getData();
+    Promise.all([data]).then((values) => {
 // Obtenez la référence de l'élément canvas
-    const arrayCharts = Array.from(document.querySelectorAll('canvas.chartjs'));
-
-    console.log(values[0]);
 
 // Créez une instance de graphique pour chaque élément canvas
-    arrayCharts.map((chart, index) => {
+        arrayCharts.map((chart, index) => {
+            const ctx = chart.getContext('2d');
+            const title = TitleMapping[Object.keys(values[0])[index]];
 
-        console.log("KEYSSS",["NbRdvBySpecialite","TauxStatusRdv"].includes(Object.keys(values[0])[index]) ? Object.keys(values[0][Object.keys(values[0])[index]]) : "",)
-
-        const ctx = chart.getContext('2d');
-        const title = TitleMapping[Object.keys(values[0])[index]];
-
-        return new Chart(ctx, {
-            type: ["NbRdvBySpecialite","TauxStatusRdv"].includes(Object.keys(values[0])[index]) ? 'doughnut' : 'bar',
-            data: {
-                labels: Object.keys(values[0][Object.keys(values[0])[index]]),
-                datasets: [{
-                    label: "",
-                    data: ["NbRdvBySpecialite","TauxStatusRdv"].includes(Object.keys(values[0])[index]) ? Object.values(values[0][Object.keys(values[0])[index]]) : values[0][Object.keys(values[0])[index]]
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: title
-                    },
-                    legend: {
-                        position: 'right',
-                        align: 'center',
-                        labels: {
-                            boxWidth: 30, // adjust the width of the legend item boxes
+            return new Chart(ctx, {
+                type: ["NbRdvBySpecialite", "TauxStatusRdv"].includes(Object.keys(values[0])[index]) ? 'doughnut' : 'bar',
+                data: {
+                    labels: Object.keys(values[0][Object.keys(values[0])[index]]),
+                    datasets: [{
+                        label: "",
+                        data: ["NbRdvBySpecialite", "TauxStatusRdv"].includes(Object.keys(values[0])[index]) ? Object.values(values[0][Object.keys(values[0])[index]]) : values[0][Object.keys(values[0])[index]]
+                    }]
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: title
                         },
+                        legend: {
+                            position: 'right',
+                            align: 'center',
+                            labels: {
+                                boxWidth: 30, // adjust the width of the legend item boxes
+                            },
+                        }
                     }
                 }
-            }
+            });
         });
     });
-
-});
+}
