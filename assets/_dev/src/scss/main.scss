@@ -5,6 +5,7 @@
 body {
   $greenLight   : #AEDBD3;
   $redDark      : #B61414;
+  $redLight     : #ffac9e;
   $gradientRed  : linear-gradient(90.18deg, #B61414 0.16%, #e83e3e 99.85%);
   $white        : #FFFFFF;
   $greyDark     : #787878;
@@ -21,6 +22,8 @@ body {
 
     $secondary                : #86CABE;
     $secondaryLight           : #A0E4F1;
+
+    $g-head: #e6faf1;
 
     $black                    : #144139;
 
@@ -42,6 +45,8 @@ body {
 
     $secondary                : #7EA6F4;
     $secondaryLight           : #A0E4F1;
+
+    $g-head: #e6f4fa;
 
     $black                    : #1E1E3D;
 
@@ -65,6 +70,8 @@ body {
     $secondary: #9370DB;
     $secondaryLight: #E6E6FA;
 
+    $g-head: #E6E6FA;
+
     $black : #302053;
 
     $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
@@ -76,6 +83,31 @@ body {
 
     @import "variables";
   }
+
+  &.admin-pro{
+    $light : #F5F5F5;
+    $primaryDark : #820000;
+    $primaryLight : #E22B2B;
+    $primaryWhite : #DDA9A9;
+
+    $secondary: #DB7070;
+    $secondaryLight: #FAE6E6;
+
+    $g-head: #FAE6E6;
+
+    $black : #532020;
+
+    $gradientDarkToLight      : linear-gradient(90deg, $primaryDark 0%, $primaryLight 50%);
+    $gradientSecondaryToLight : linear-gradient(90deg, $white 0%, $primaryWhite 50%);
+    $gradientDarkToPrimary    : linear-gradient(90deg, $black 0%, $primaryDark 100%);
+    $gradientIcon             : linear-gradient(180deg, $primaryDark 0%, $primaryLight 100%);
+
+    $srcBackgroundBanner      : url("../../../img/banner_gradient.png");
+
+    @import "variables";
+  }
+
+
 }
 
 html {

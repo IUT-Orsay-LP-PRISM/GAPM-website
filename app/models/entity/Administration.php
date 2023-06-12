@@ -118,7 +118,7 @@ class Administration
      */
     public function isAdmin(): bool
     {
-        return $this->isAdmin;
+        return $this->isAdmin ?? false;
     }
 
     /**

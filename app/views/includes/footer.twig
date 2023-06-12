@@ -3,8 +3,6 @@
         <p>A propos de</p>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="#">Nous contacter</a></li>
-            <li><a href="#">Spécialités</a></li>
             <li><a href="/?action=search">Rechercher un praticien</a></li>
         </ul>
     </div>
@@ -12,9 +10,7 @@
         <p>Divers</p>
         <ul>
             <li><a href="/?action=faq">Besoin d'aide ?</a ></li >
-            <li ><a href="#">A propos </a ></li >
-            <li><a class="clickable" id="lien-connexion">Se connecter </a ></li >
-            <li><a class="clickable" id="lien-inscription">S'inscrire</a></li>
+            <li ><a href="/?action=about">A propos </a ></li >
         </ul>
     </div>
     <div class="footer__social">
@@ -31,10 +27,18 @@
         <ul>
             <li><a href="/?action=my-account">Mon compte</a></li>
             {% if userLogged %}
-					<li><a href="/?action=my-account&nav=intervenant">Devenir praticien</a></li>
-				{% else %}
-					<li><a href="/?action=inscription-intervenant">Devenir praticien</a></li>
-				{% endif %}
+                {% if user is defined and user.isIntervenant() and user.isTrueIntervenant()  %}
+                    {% if modeIntervenant is defined and modeIntervenant %}
+                    <li><a href="/?action=toggle-mode-intervenant">Mode demandeur</a></li>
+                    {% else %}
+                    <li><a href="/?action=toggle-mode-intervenant">Mode intervenant</a></li>
+                    {% endif %}
+                {% else %}
+                <li><a href="/?action=my-account&nav=intervenant">Devenir praticien</a></li>
+                {% endif %}
+            {% else %}
+                <li><a href="/?action=inscription-intervenant">Devenir praticien</a></li>
+            {% endif %}
             
             <li><a href="/admin">Personnel administratif</a></li>
             <li><a href="/admin">Administrateur</a></li>

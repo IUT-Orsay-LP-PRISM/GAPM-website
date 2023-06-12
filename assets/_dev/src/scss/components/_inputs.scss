@@ -59,7 +59,8 @@
   }
 
 
-  input[type="date"]:not(:focus):not(:valid) {
+  input[type="date"]:not(:focus):not(:valid),
+  input[type="time"]:not(:focus):not(:valid){
     color : transparent;
   }
 

@@ -44,10 +44,10 @@ class SearchController extends Template
             }
         }
 
-        // Si l'utilisateur est un intervenant, on supprime son profil de la liste & si il ne demande pasu ne cessation d'activité
+        // Si l'utilisateur est un intervenant, on supprime son profil de la liste & si il est pas en cours d'approbation
         foreach ($intervenants as $key => $intervenant) {
-            if ($idToDel != null || $intervenant->isDemandeSupp()) {
-                if ($intervenant->getIdDemandeur() == $idToDel || $intervenant->isDemandeSupp()) {
+            if ($idToDel != null || $intervenant->isDemandeSupp() || !$intervenant->isTrueIntervenant()) {
+                if ($intervenant->getIdDemandeur() == $idToDel || $intervenant->isDemandeSupp() || !$intervenant->isTrueIntervenant()) {
                     unset($intervenants[$key]);
                 }
             }

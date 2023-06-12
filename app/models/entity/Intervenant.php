@@ -33,6 +33,9 @@ class Intervenant extends Demandeur
     #[ORM\Column]
     private bool $demandeSupp;
 
+    #[ORM\Column]
+    private string $application;
+
     #[ORM\OneToMany(mappedBy: 'intervenant', targetEntity: RendezVous::class, fetch: 'LAZY')]
     private Collection $mesRendezVous;
 
@@ -143,7 +146,7 @@ class Intervenant extends Demandeur
      */
     public function isDemandeSupp(): bool
     {
-        return $this->demandeSupp;
+        return $this->demandeSupp ?? false;
     }
 
     /**
@@ -175,7 +178,13 @@ class Intervenant extends Demandeur
      */
     public function isTravailSamedi(): bool
     {
-        return $this->travailSamedi;
+
+        return $this->travailSamedi ?? false;
+    }
+
+    public function isTrueIntervenant(): bool
+    {
+        return $this->application == 'passed';
     }
 
     /**
@@ -184,6 +193,22 @@ class Intervenant extends Demandeur
     public function setTravailSamedi(bool $travailSamedi): void
     {
         $this->travailSamedi = $travailSamedi;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApplication(): string
+    {
+        return $this->application;
+    }
+
+    /**
+     * @param string $application
+     */
+    public function setApplication(string $application): void
+    {
+        $this->application = $application;
     }
 
 }

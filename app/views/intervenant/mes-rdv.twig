@@ -50,8 +50,7 @@
                     {% if mesRdv.today is not empty %}
                         <h3>Mes rendez-vous d'aujourd'hui :</h3>
                         <p class="text__small">
-                            Si le patient n'est pas venu lors du rendez-vous, attendez que l'heure soit passé et
-                            lors de la validation, sélectionnez "Le patient ne s'est pas présenté".
+                            Si le patient n'est pas venu lors du rendez-vous, annulez le.
                         </p>
                         {% include '/intervenant/rdv/rdv-today.twig' with {'rdv': mesRdv.today } %}
                     {% else %}

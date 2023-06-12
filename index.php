@@ -27,6 +27,8 @@ $router->addRoute('notes-de-frais', 'NoteFraisController', 'displayNoteFrais');
 $router->addRoute('mes-rendez-vous', 'RendezVousController', 'displayMyRdv');
 $router->addRoute('liste-rdv', 'RendezVousController', 'displayMyRdvIntervenant');
 $router->addRoute('planning', 'IntervenantController', 'displayPlanning');
+$router->addRoute('empechement', 'EmpechementController', 'dislayFormAddEmpechement');
+
 
 /*
  * Routes POST
@@ -45,10 +47,12 @@ $router->addRoute('intervenant-cancel-unsubscribe-request', 'IntervenantControll
 
 $router->addRoute('picture-edit', 'IntervenantController', 'updatePicture');
 $router->addRoute('faq', 'HomeController', 'displayFAQ');
+$router->addRoute('about', 'HomeController', 'displayAbout');
 $router->addRoute('oubli', 'HomeController', 'displayForgotten');
 $router->addRoute('forgotten', 'DemandeurController', 'forgottenMail');
 $router->addRoute('toggle-mode-intervenant', 'IntervenantController', 'toggleModeIntervenant');
 $router->addRoute('emprunter-vehicule', 'IntervenantController', 'emprunterVehicule');
+$router->addRoute('add-empechement', 'EmpechementController', 'create');
 
 /*
  * Routes avec paramètres
@@ -82,6 +86,9 @@ $router->addRoute('get-depense&idDepense=<id>', 'NoteFraisController', 'ajax');
 $router->addRoute('getNumberOfRdvInDay', 'IntervenantController', 'getNumberOfRdvInDays');
 
 $router->addRoute('liste-rdv&date=<date>', 'RendezVousController', 'displayMyRdvIntervenant');
+
+$router->addRoute('getEmpechements&intervenant=<id>', 'EmpechementController', 'getEmpechementsByIntervenant');
+
 
 
 $requestUrl = $_SERVER['REQUEST_URI'];

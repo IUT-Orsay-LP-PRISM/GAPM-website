@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use App\models\entity\Administration;
+use App\models\entity\CustomMail;
 use App\models\entity\Demandeur;
 use App\models\entity\Depense;
 use App\models\entity\Emprunt;
@@ -16,6 +17,9 @@ use Cassandra\Date;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class PersonnelController extends Template
 {
@@ -75,16 +79,9 @@ class PersonnelController extends Template
                 $user = $personnel;
 
                 if ($user->getMotDePasse() == $saltedAndHashed) {
-                    $admin = new Administration();
-                    $admin->setIdAdministration($personnel->getIdAdministration());
-                    $admin->setLogin($id);
-                    $admin->setNom($personnel->getNom());
-                    $admin->setPrenom($personnel->getPrenom());
-                    $admin->setEmail($personnel->getEmail());
+                    Session::set('admin', $user);
 
-                    Session::set('admin', $admin);
-
-                    header('Location: ./?action=intervenants&message=Vous êtes connecté.&c=msg-success');
+                    header('Location: ./?action=demandeurs&message=Vous êtes connecté.&c=msg-success');
                 } else {
                     header("Location: ./?action=login&message=Adresse email ou mot de passe incorrect.&c=msg-error");
                 }
@@ -461,7 +458,20 @@ class PersonnelController extends Template
         try {
             $this->entityManager->persist($noteFrais);
             $this->entityManager->flush();
-            header('Location: ./?action=notes-frais&message=Note de frais validée.&c=msg-success');
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=notes-de-frais';
+
+            $phpmailer = new CustomMail();
+            $phpmailer->sendFrais("validée",$noteFrais,$referer);
+
+            //send the message, check for errors
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: ./?action=notes-frais&message=Note de frais validée.&c=msg-success');
+            }
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=notes-frais&message=Erreur lors de la validation de la note de frais.&c=msg-error');
         }
@@ -485,11 +495,23 @@ class PersonnelController extends Template
         try {
             $this->entityManager->persist($noteFrais);
             $this->entityManager->flush();
-            header('Location: ./?action=notes-frais&message=Note de frais refusée.&c=msg-success');
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=notes-de-frais';
+
+            $phpmailer = new CustomMail();
+            $phpmailer->sendFrais("refusée",$noteFrais,$referer);
+
+            //send the message, check for errors
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: ./?action=notes-frais&message=Note de frais refusée.&c=msg-success');
+            }
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=notes-frais&message=Erreur lors du refus de la note de frais.&c=msg-error');
         }
-
     }
 
     // Emprunts de véhicules
@@ -524,7 +546,19 @@ class PersonnelController extends Template
         try {
             $this->entityManager->persist($emprunt);
             $this->entityManager->flush();
-            header('Location: ./?action=emprunts&message=Emprunt validé.&c=msg-success');
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=my-account';
+
+            $phpmailer = new CustomMail();
+            $phpmailer->sendVoiture("validé",$emprunt,$referer);
+
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: ./?action=emprunts&message=Emprunt validé.&c=msg-success');
+            }
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=emprunts&message=Erreur lors de la validation de l\'emprunt.&c=msg-error');
         }
@@ -541,7 +575,19 @@ class PersonnelController extends Template
         try {
             $this->entityManager->remove($emprunt);
             $this->entityManager->flush();
-            header('Location: ./?action=emprunts&message=Emprunt refusé.&c=msg-success');
+
+            $referer = $_SERVER['HTTP_REFERER'];
+            $referer_parts = parse_url($referer);
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=my-account';
+
+            $phpmailer = new CustomMail();
+            $phpmailer->sendVoiture("refusé",$emprunt,$referer);
+
+            if (!$phpmailer->send()) {
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            } else {
+                header('Location: ./?action=emprunts&message=Emprunt refusé.&c=msg-success');
+            }
         } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
             header('Location: ./?action=emprunts&message=Erreur lors du refus de l\'emprunt.&c=msg-error');
         }
@@ -564,34 +610,178 @@ class PersonnelController extends Template
 
     }
 
-    public function validateCessationSubmit(): void
+
+    public function applicationView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        // get all intervenant where application = waiting
+        $applications = $this->entityManager->getRepository(Intervenant::class)->findBy([
+            'application' => 'waiting',
+        ]);
+
+        self::render('/personnel/appli.twig', [
+            'title' => 'Demande d\'application',
+            'nav' => 'activity',
+            'intervenants' => $applications,
+        ], true);
+
+    }
+
+    public function applicationSubmit(): void
     {
         $id = htmlspecialchars($_POST['id']);
-
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->findOneBy([
             'idDemandeur' => $id,
         ]);
 
-        $rdvs = $this->entityManager->getRepository(RendezVous::class)->findBy([
-            'intervenant' => $intervenant,
+        $intervenant->setApplication('passed');
+        try {
+            $this->entityManager->persist($intervenant);
+            $this->entityManager->flush();
+            header('Location: ./?action=demande&message=Demande d\'application acceptée.&c=msg-success');
+
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=demande&message=Erreur lors de l\'acceptation de la demande d\'application.&c=msg-error');
+        }
+
+    }
+
+    public function statsView(): void
+    {
+        self::render('/stats.twig', [
+            'title' => 'Statistiques',
+            'nav' => 'stats',
+        ], true);
+    }
+
+    public function adminsView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $admins = $this->entityManager->getRepository(Administration::class)->findBy([
+            'isAdmin' => false,
         ]);
 
-        $canDelete = true;
-        foreach ($rdvs as $rdv) {
-            if ($rdv->getDateRdv() > date('Y-m-d')) {
-                $canDelete = false;
-            }
+        self::render('/personnel/personnels/admins.twig', [
+            'title' => 'Gestion des membres du personnel',
+            'nav' => 'admins',
+            'admins' => $admins,
+        ], true);
+    }
+
+    public function deleteAdminView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
         }
-        if ($canDelete) {
-            try {
-                $this->entityManager->flush();
-                header('Location: ./?action=cessation&message=Demande de cessation d\'activité validée.&c=msg-success');
-            } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
-                header('Location: ./?action=cessation&message=Erreur lors de la validation de la demande de cessation d\'activité.&c=msg-error');
-            }
-        } else {
-            header('Location: ./?action=cessation&message=Impossible de supprimer l\'intervenant car il a des rendez-vous à venir.&c=msg-error');
+        $id = htmlspecialchars($_GET['id']);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => $id,
+        ]);
+
+        self::render('/personnel/personnels/delete-admin.twig', [
+            'title' => 'Supprimer un administrateur',
+            'nav' => 'admins',
+            'admine' => $admin,
+        ], true);
+    }
+
+    public function deleteAdminSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => $id,
+        ]);
+
+        try {
+            $this->entityManager->remove($admin);
+            $this->entityManager->flush();
+            header('Location: ./?action=admins&message=Administrateur supprimé.&c=msg-success');
+
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=admins&message=Erreur lors de la suppression de l\'administrateur.&c=msg-error');
         }
     }
 
+    public function editAdminView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        $id = htmlspecialchars($_GET['id']);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => $id,
+        ]);
+
+        self::render('/personnel/personnels/edit-admin.twig', [
+            'title' => 'Modifier un membre du personnel',
+            'nav' => 'admins',
+            'admine' => $admin,
+        ], true);
+    }
+
+    public function updateAdminSubmit(): void
+    {
+        $id = htmlspecialchars($_POST['id']);
+        $admin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'idAdministration' => $id,
+        ]);
+
+        $admin->setNom(htmlspecialchars($_POST['nom']));
+        $admin->setPrenom(htmlspecialchars($_POST['prenom']));
+        $admin->setEmail(htmlspecialchars($_POST['email']));
+
+        try {
+            $this->entityManager->persist($admin);
+            $this->entityManager->flush();
+            header('Location: ./?action=admins&message=Administrateur modifié.&c=msg-success');
+
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=admins&message=Erreur lors de la modification de l\'administrateur.&c=msg-error');
+        }
+    }
+
+    public function createAdminView(): void
+    {
+        if (!Session::isLoggedAdmin()){
+            header('Location: ./?action=login');
+        }
+        self::render('/personnel/personnels/create-admin.twig', [
+            'title' => 'Créer un membre du personnel',
+            'nav' => 'admins',
+        ], true);
+    }
+
+    public function createAdminSubmit(): void
+    {
+        $admin = new Administration();
+        $admin->setNom(htmlspecialchars($_POST['nom']));
+        $admin->setPrenom(htmlspecialchars($_POST['prenom']));
+
+        $login = strtolower(substr($admin->getPrenom(), 0, 1) . $admin->getNom());
+        $adminLogin = $this->entityManager->getRepository(Administration::class)->findOneBy([
+            'login' => $login,
+        ]);
+        if ($adminLogin) {
+            $login = $login . rand(0, 100);
+        }
+
+        $admin->setLogin($login);
+        $admin->setMotDePasse('seA/6v3hNAL1.');
+        $admin->setEmail(htmlspecialchars($_POST['email']));
+        $admin->setIsAdmin(false);
+
+        try {
+            $this->entityManager->persist($admin);
+            $this->entityManager->flush();
+            header('Location: ./?action=admins&message=Administrateur créé.&c=msg-success');
+
+        } catch (OptimisticLockException|\Doctrine\ORM\Exception\ORMException $e) {
+            header('Location: ./?action=admins&message=Erreur lors de la création de l\'administrateur.&c=msg-error');
+        }
+
+    }
 }

@@ -3,12 +3,16 @@
 namespace App\controllers;
 
 use App\models\entity\Commentaire;
+use App\models\entity\CustomMail;
 use App\models\entity\Demandeur;
+use App\models\entity\Empechement;
 use App\models\entity\Intervenant;
 use App\models\entity\RendezVous;
 use App\models\entity\Session;
 use App\models\entity\Specialite;
 use App\models\repository\RendezVousRepository;
+use DateInterval;
+use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -66,25 +70,11 @@ class RendezVousController extends Template
 
         $referer = $_SERVER['HTTP_REFERER'];
         $referer_parts = parse_url($referer);
-        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . '/?action=mes-rendez-vous';
 
-        $phpmailer = new PHPMailer();
-        $phpmailer->isSMTP();
-        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
-        $phpmailer->CharSet = "UTF-8";
-        $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = 2525;
-        $phpmailer->Username = '87aafa94a4e2c8';
-        $phpmailer->Password = '2b192b0e9179d3';
-        $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
-        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
-        $phpmailer->Subject = 'Annulation du rendez-vous';
-        $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() . ' à ' . $rdv->getHeureFin() .
-        ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() . ' avec ' . $intervenant->getPrenom() . ' '
-        . $intervenant->getNom() . ', a été annulé par le demandeur<br>
+        $phpmailer = new CustomMail();
+        $phpmailer->sendCancelRdv("le demandeur", $demandeur, $intervenant, $rdv, $referer);
 
-Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rendez-vous</a>';
         //send the message, check for errors
         if (!$phpmailer->send()) {
             echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
@@ -93,6 +83,7 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
         }
         exit;
     }
+
     public function deleteRdvIntervenant(): void
     {
         if (!Session::isLogged()) {
@@ -100,7 +91,7 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
             exit;
         }
 
-        if (!Session::get('user')->isIntervenant()){
+        if (!Session::get('user')->isIntervenant()) {
             header('Location: /?action=mes-rendez-vous&message=Vous n\'êtes pas un intervenant&c=msg-error');
             exit;
         }
@@ -122,25 +113,11 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
 
             $referer = $_SERVER['HTTP_REFERER'];
             $referer_parts = parse_url($referer);
-            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . '/?action=mes-rendez-vous';
 
-            $phpmailer = new PHPMailer();
-            $phpmailer->isSMTP();
-            $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
-            $phpmailer->CharSet = "UTF-8";
-            $phpmailer->SMTPAuth = true;
-            $phpmailer->Port = 2525;
-            $phpmailer->Username = '87aafa94a4e2c8';
-            $phpmailer->Password = '2b192b0e9179d3';
-            $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
-            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
-            $phpmailer->Subject = 'Annulation du rendez-vous';
-            $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() . ' à ' . $rdv->getHeureFin() .
-            ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() . ' avec ' . $intervenant->getPrenom() . ' '
-            . $intervenant->getNom() . ', a été annulé par l\'intervenant<br>
+            $phpmailer = new CustomMail();
+            $phpmailer->sendCancelRdv("l'intervenant", $demandeur, $intervenant, $rdv, $referer);
 
-Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rendez-vous</a>';
             //send the message, check for errors
             if (!$phpmailer->send()) {
                 echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
@@ -161,7 +138,7 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
             exit;
         }
 
-        if (!Session::get('user')->isIntervenant()){
+        if (!Session::get('user')->isIntervenant()) {
             header('Location: /?action=mes-rendez-vous&message=Vous n\'êtes pas un intervenant&c=msg-error');
             exit;
         }
@@ -230,25 +207,11 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
 
         $referer = $_SERVER['HTTP_REFERER'];
         $referer_parts = parse_url($referer);
-        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+        $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . '/?action=mes-rendez-vous';
 
-        $phpmailer = new PHPMailer();
-        $phpmailer->isSMTP();
-        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
-        $phpmailer->CharSet = "UTF-8";
-        $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = 2525;
-        $phpmailer->Username = '87aafa94a4e2c8';
-        $phpmailer->Password = '2b192b0e9179d3';
-        $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-        $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
-        $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
-        $phpmailer->Subject = 'Confirmation d\'un rendez-vous';
-        $phpmailer->Body = 'Le rendez-vous du ' . $date . ' de ' . $horaireDebut .' à '. $horaireFin .
-        ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '
-        . $intervenant->getNom() .', a bien été pris en compte.<br>
+        $phpmailer = new CustomMail();
+        $phpmailer->sendRdv($demandeur, $intervenant, $rdv, $referer);
 
-Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rendez-vous</a>';
         //send the message, check for errors
         if (!$phpmailer->send()) {
             echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
@@ -280,6 +243,42 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
         $idIntervenant = $_GET['idIntervenant'];
         $intervenant = $this->entityManager->getRepository(Intervenant::class)->find($idIntervenant);
         $horaire = $this->rendezVousRepository->findHeureNonDispo($intervenant, $date);
+
+        $empechements = $this->entityManager->getRepository(Empechement::class)->findByIntervenant($intervenant);
+        $dateNow = date('Y-m-d');
+        $empechementsTime = [];
+        foreach ($empechements as $empechement) {
+            if($empechement->getDateFin() >= $dateNow && ($empechement->getHeureDebut() !== "00:00:00" || $empechement->getHeureFin() !== "00:00:00")) {
+                $empechementsTime[] = [
+                    'dateDebut' => $empechement->getDateDebut(),
+                    'dateFin' => $empechement->getDateFin(),
+                    'heureDebut' => $empechement->getHeureDebut(),
+                    'heureFin' => $empechement->getHeureFin()
+                ];
+            }
+        }
+
+        $trancheMinutes = 30;
+        $trancheHours = array();
+        foreach ($empechementsTime as $empechement) {
+            $empechementHeureDebut = $empechement['heureDebut'];
+            $empechementHeureFin = $empechement['heureFin'];
+
+            $heureDebut = new DateTime($empechementHeureDebut);
+            $heureFin = new DateTime($empechementHeureFin);
+
+            while ($heureDebut < $heureFin) {
+                $heureCourante = $heureDebut->format('H:i');
+
+                // Vérifier si l'heure courante est entre 8h et 19h
+                if ($heureCourante >= '08:00' && $heureCourante <= '19:00') {
+                    $horaire[] = array('heureDebut' => $heureCourante);
+                }
+
+                $heureDebut->add(new DateInterval("PT{$trancheMinutes}M"));
+            }
+        }
+
         echo json_encode($horaire);
     }
 
@@ -313,8 +312,8 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
                     $mesRdvAnnule[] = $rdv;
                     break;
             }
-            if (!$rdv->getCommentaire()->isNull()){
-                if($rdv->getStatus() == strtolower('Effectue')){
+            if (!$rdv->getCommentaire()->isNull()) {
+                if ($rdv->getStatus() == strtolower('Effectue')) {
                     $avisALaisser[] = $rdv;
                 }
             }
@@ -341,7 +340,7 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
             header('Location: /?action=search&message=Pour voir vos rendez vous, connectez vous!&c=connexion');
             exit;
         }
-        if (!Session::get('user')->isIntervenant()){
+        if (!Session::get('user')->isIntervenant()) {
             header('Location: /?action=search&message=Vous n\'êtes pas un intervenant!&c=connexion');
             exit;
         }
@@ -354,7 +353,7 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
         $mesRdvAVenir = [];
         $allRdvsAfter = [];
         $mesRdvFilter = [];
-        if(!empty($_GET['date'])){
+        if (!empty($_GET['date'])) {
             foreach ($rdvIntervenant as $rdv) {
                 if ($rdv->getDateRdv() == $_GET['date']) {
                     $mesRdvFilter[] = $rdv;
@@ -434,25 +433,12 @@ Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir mes rende
 
             $referer = $_SERVER['HTTP_REFERER'];
             $referer_parts = parse_url($referer);
-            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'].'/?action=mes-rendez-vous';
+            $referer = $referer_parts['scheme'] . '://' . $referer_parts['host'] . '/?action=mes-rendez-vous';
 
-            $phpmailer = new PHPMailer();
-            $phpmailer->isSMTP();
-            $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
-            $phpmailer->CharSet = "UTF-8";
-            $phpmailer->SMTPAuth = true;
-            $phpmailer->Port = 2525;
-            $phpmailer->Username = '87aafa94a4e2c8';
-            $phpmailer->Password = '2b192b0e9179d3';
-            $phpmailer->setFrom('no-reply@gapm.com', 'No-reply');
-            $phpmailer->addAddress($demandeur->getEmail(), $demandeur->getNom() . ' ' . $demandeur->getPrenom());
-            $phpmailer->addAddress($intervenant->getEmail(), $intervenant->getNom() . ' ' . $intervenant->getPrenom());
-            $phpmailer->Subject = 'Commentaire d\'un Rendez-vous';
-            $phpmailer->Body = 'Le rendez-vous du ' . $rdv->getDateRdv() . ' de ' . $rdv->getHeureDebut() .' à '. $rdv->getHeureFin() .
-            ', demandé par ' . $demandeur->getPrenom() . ' ' . $demandeur->getNom() .' avec ' .$intervenant->getPrenom() .' '
-            . $intervenant->getNom() .', à recu un commentaire.<br>
 
-Pour voir vos rendez-vous, cliquez ici : <a href="'. $referer .'">Voir les rendez-vous</a>';
+            $phpmailer = new CustomMail();
+            $phpmailer->sendCommentaire($demandeur, $intervenant, $rdv, $referer);
+
             //send the message, check for errors
             if (!$phpmailer->send()) {
                 echo 'Mailer Error: ' . $phpmailer->ErrorInfo;

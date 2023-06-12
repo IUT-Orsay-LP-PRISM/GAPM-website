@@ -26,15 +26,16 @@ class IntervenantRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('i');
         $qb->join('i.villePro', 'v')
+            ->leftJoin('i.specialites', 's') // Ajout de la jointure avec la table Specialite
             ->where($qb->expr()->orX(
                 $qb->expr()->like('i.nom', ':nom'),
-                $qb->expr()->like('i.prenom', ':nom')
+                $qb->expr()->like('i.prenom', ':nom'),
+                $qb->expr()->like('s.libelle', ':nom') // Ajout de la condition pour le champ libelle dans Specialite
             ))
             ->andWhere($qb->expr()->like('v.nom', ':city'))
             ->setParameter('nom', '%' . $nom . '%')
             ->setParameter('city', '%' . $city . '%')
-            ->orderBy('i.nom', 'ASC')
-            ->setMaxResults(10);
+            ->orderBy('i.nom', 'ASC');
         return $qb->distinct()->getQuery()->getResult();
     }
 

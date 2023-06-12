@@ -7,7 +7,7 @@
         <link rel="icon" href="{{ app.request.getSchemeAndHttpHost() }}/assets/img/logo.svg"/>
         <title>{% block title %}{% endblock %} • GAPM-Admin</title>
     </head>
-    <body class="admin">
+    <body class="admin{% if admin.isAdmin %}-pro{% endif %}">
         <div class="admin__wrapper">
             {% include 'sidebar.twig' %}
             <main class="main">

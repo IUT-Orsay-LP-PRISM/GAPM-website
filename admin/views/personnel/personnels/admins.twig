@@ -1,0 +1,65 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title admin__page__title--form">
+		<div>
+			<h1>{{ title }}</h1>
+			<p>
+				Liste de tous les membres du personnel.
+			</p>
+		</div>
+		<div class="admin__page__btn">
+			<a href="./?action=admin-ajout" class="btn btn-secondary-nb">
+				<i class="icon-fi-rr-plus-small"></i>
+				Ajouter un membre du personnel
+			</a>
+		</div>
+	</div>
+
+	<div class="admin__page__content">
+		<div class="admin__demandeur">
+			<div class="admin__inter__head admin__demandeur__head">
+				<div class="admin__inter__noms-head">
+					Nom (login)
+				</div>
+				<div class="admin__inter__spe-head">
+					Email
+				</div>
+				<div class="admin__inter__adresse-head">
+				</div>
+				<div class="admin__inter__adresse-head">
+				</div>
+				<div class="admin__inter__actions-head">
+					Actions
+				</div>
+			</div>
+			{% for ad in admins %}
+				<div class="admin__inter__item admin__demandeur__item">
+					<div class="admin__inter__noms">
+						{{ ad.nom }} {{ ad.prenom }}  ({{ ad.login }})
+					</div>
+					<div class="admin__inter__spe">
+						{{ ad.email }}
+ 					</div>
+					<div class="admin__inter__adresse">
+						{{ ad.adresse }}<br> {{ ad.ville.codePostal }} {{ ad.ville.nom }}
+					</div>
+					<div class="admin__inter__phone">
+						{{ ad.telephone }}
+					</div>
+					<div class="admin__inter__actions">
+
+						<a href="./?action=admin-edit&id={{ ad.idAdministration }}">
+							<i class="icon-fi-rr-edit"></i>
+						</a>
+						<a href="./?action=admin-delete&id={{ ad.idAdministration }}">
+							<i class="icon-fi-rr-trash"></i>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layouts/layout-admin.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+	<div class="admin__page__title">
+		<h1>{{ title }}</h1>
+	</div>
+	<div class="admin__page__content admin__inter__see">
+	<form class="admin__inter admin__inter__edit" method="post" action="./?action=add-admin">
+		<input type="hidden" name="id" value="{{ admine.idAdministration }}">
+		<div class="admin__inter__noms admin__input admin__input-edit">
+			<label for="editname">
+				Nom
+			</label>
+			<input type="text" id="editname" name="nom">
+		</div>
+		<div class="admin__input admin__input-edit">
+			<label for="editnamef">
+				Prénom
+			</label>
+			<input type="text" id="editnamef" name="prenom">
+		</div>
+		<br>&nbsp;<br>
+		<div class="admin__inter__noms admin__input admin__input-edit">
+			<label for="editemail">
+				E-mail
+			</label>
+			<input type="text" id="editemail" name="email">
+		</div>
+		<button type="submit" class="btn btn-secondary-nb">
+			<i class="icon-fi-rr-plus-small"></i>
+			Ajouter
+		</button>
+	</form>
+{% endblock %}

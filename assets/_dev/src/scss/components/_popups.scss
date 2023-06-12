@@ -52,13 +52,28 @@
   transform       : translateY(-20px);
   transition      : transform 0.3s ease-in-out;
 
-  &.popup-inscription {
-    width  : 30%;
-    height : 40em;
+  .js-avis-infos {
+    .title{
+      font-family : $titleFont;
+      font-size   : 1rem;
+      color       : $primaryDark;
+      font-weight : 500;
+      line-height : 2;
+    }
+  }
 
+  &.popup-inscription {
+    width  : 40%;
+    height : 30em;
+    z-index: 11;
     .popup-container form div:nth-child(5) .input-container:first-child {
       overflow : visible;
     }
+  }
+
+  &.popup-connexion{
+    z-index: 11;
+    width: 35%;
   }
 
   &.popup-prendreRDV {

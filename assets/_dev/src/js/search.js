@@ -1,6 +1,6 @@
 const btn_RDVS = document.querySelectorAll('.js-btn-RDV');
 const popUp_prendreRDV = document.querySelector('#popUp-prendre-RDV');
-import {getNumberOfRdvInDay} from './planning.js';
+import {getEmpechements, getNumberOfRdvInDay} from './planning.js';
 
 if (btn_RDVS) {
     btn_RDVS.forEach(btn => {
@@ -68,9 +68,17 @@ function creerCalendrier(annee, mois) {
     let day = 1 - jourSemaine;
     const hashTravailSamedi = document.querySelector('.container-dates').getAttribute('data-value');
     let travailSamedi = hashTravailSamedi === '03063e73002b4a89e44b283f0d8da951';
+    const URL = window.location.href;
+    const urlParams = new URLSearchParams(URL);
+    const queryString = URL.split('?')[1];
+    const regex = /action=([^&]+)/;
+    const match = queryString.match(regex);
+    const actionValue = match ? match[1] : null;
 
-    const jsonNumberOfRdvInDays = getNumberOfRdvInDay();
-    Promise.all([jsonNumberOfRdvInDays]).then((values) => {
+    const jsonNumberOfRdvInDays = actionValue === 'planning' ? getNumberOfRdvInDay() : Promise.resolve(null);
+    const empechements = getEmpechements();
+
+    Promise.all([jsonNumberOfRdvInDays, empechements]).then((values) => {
         while (day <= nbJoursMois) {
             const row = document.createElement('div');
             row.classList.add('row');
@@ -96,6 +104,21 @@ function creerCalendrier(annee, mois) {
                     const dateObj = new Date(annee, mois - 1, dayNumber.innerHTML);
                     const datasetDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
                     dayDiv.dataset.date = datasetDate;
+                    // Vérifier si la date est un jour avec un empechement
+                    if (values[1] && values[1].day) {
+                        const empechements = values[1].day;
+                        const isDisabled = empechements.some((empechement) => {
+                            const empechementDateDebut = new Date(empechement.dateDebut);
+                            const empechementDateFin = new Date(empechement.dateFin);
+                            const empechementHeureFin = empechement.heureFin;
+                            const formattedDateObj = `${dateObj.getFullYear()}-${(dateObj.getMonth() + 1).toString().padStart(2, '0')}-${dateObj.getDate().toString().padStart(2, '0')}`;
+                            const formattedEmpechementDateFin = `${empechementDateFin.getFullYear()}-${(empechementDateFin.getMonth() + 1).toString().padStart(2, '0')}-${empechementDateFin.getDate().toString().padStart(2, '0')}`;
+
+                            return dateObj >= empechementDateDebut && dateObj <= empechementDateFin && (formattedDateObj  != formattedEmpechementDateFin && empechementHeureFin <= "19:00:00")
+                        });
+
+                        isDisabled ? actionValue !== 'planning' ? dayDiv.classList.add('--disabled') : !dayDiv.classList.contains('--disabled') ? dayDiv.classList.add('--empechement') : null : null;
+                    }
                 }
 
                 if (annee < currentYear || (annee === currentYear && mois < currentMonth) || (annee === currentYear && mois === currentMonth && day + dayOfWeek < currentDay)) {
@@ -113,16 +136,9 @@ function creerCalendrier(annee, mois) {
                 }
                 dayDiv.appendChild(dayNumber);
 
-
-                const URL = window.location.href;
-                const urlParams = new URLSearchParams(URL);
-                const queryString = URL.split('?')[1];
-                const regex = /action=([^&]+)/;
-                const match = queryString.match(regex);
-                const actionValue = match ? match[1] : null;
-                if(actionValue === 'planning') {
+                if (actionValue === 'planning') {
                     const fulldate = convertDate(dayDiv.dataset.date)
-                    if(fulldate in values[0]) {
+                    if (fulldate in values[0]) {
                         const div = document.createElement('div');
                         div.classList.add('day-rdv');
                         div.innerHTML = values[0][fulldate] + "<br/>Rendez-vous...";
@@ -138,8 +154,9 @@ function creerCalendrier(annee, mois) {
         placeEventListenerInDays();
     });
 }
+
 function convertDate(dateString) {
-    if(dateString === undefined) return;
+    if (dateString === undefined) return;
     const parts = dateString.split('-');
     const year = parts[0];
     const month = parts[1].padStart(2, '0');
@@ -197,7 +214,7 @@ function StartCalendar() {
 
 
 function placeEventListenerInDays() {
-    document.querySelectorAll('.day:not(.--disabled)').forEach(divDay => {
+    document.querySelectorAll('.day:not(.--disabled):not(.--empechement)').forEach(divDay => {
 
         const URL = window.location.href;
         const urlParams = new URLSearchParams(URL);

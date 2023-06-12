@@ -54,7 +54,7 @@ class NoteFraisController extends Template
             $noteFraisForTotal->setMontantTotal($montantTotal);
         }
 
-        self::render('demandeur/notes-de-frais.twig', [
+        self::render('intervenant/notes-de-frais.twig', [
             'title' => 'Notes de frais',
             'depenses' => $depenses,
             'noteFrais' => $allNoteFrais,

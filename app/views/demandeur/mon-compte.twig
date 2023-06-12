@@ -60,6 +60,15 @@
                             </a>
                         </li>
                     {% endif %}
+                    {% if not user.isTrueIntervenant() and user.isIntervenant() %}
+                        <li>
+                            <a href="#application" class="myaccount__content__nav-link js-account-nav">
+                                Application pour être intervenant
+                                <i class="icon icon-fi-rr-redo"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if not modeIntervenant %}
                     <li>
                         <a id="options-nav" href="#options"
                            class="js-account-nav myaccount__content__nav-link">
@@ -67,6 +76,7 @@
                             <i class="icon icon-fi-rr-comment-user"></i>
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="myaccount__content__body">
@@ -76,6 +86,9 @@
                     </div>
                     <div id="intervenant" class="js-account-content {% if modeIntervenant %}--display{% endif %}">
                         {% include '/demandeur/compte/intervenant.twig' %}
+                    </div>
+                    <div id="application" class="js-account-content">
+                        {% include '/demandeur/compte/appli-intervenant.twig' %}
                     </div>
                     <div id="options" class="js-account-content">
                         {% include '/demandeur/compte/options.twig' %}
