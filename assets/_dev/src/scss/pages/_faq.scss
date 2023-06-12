@@ -1,18 +1,20 @@
-h2{
-  margin-top : 2rem;
-  margin-bottom : 1rem;
-}
-p, div{
-  margin-bottom : 1rem;
-  font-family: $mainFont;
-  line-height: 1.8rem;
-  font-size: 1.1rem;
-}
-ul{
-  list-style-type : decimal;
-  padding-left: 1rem;
-  li{
-    margin-bottom : 0.5rem;
-    font-weight: 400;
+.faq{
+  h2{
+    margin-top : 2rem;
+    margin-bottom : 1rem;
+  }
+  p, div{
+    margin-bottom : 1rem;
+    font-family: $mainFont;
+    line-height: 1.8rem;
+    font-size: 1.1rem;
+  }
+  ul{
+    list-style-type : decimal;
+    padding-left: 1rem;
+    li{
+      margin-bottom : 0.5rem;
+      font-weight: 400;
+    }
   }
 }

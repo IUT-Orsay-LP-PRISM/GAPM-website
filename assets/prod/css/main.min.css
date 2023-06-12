@@ -3012,18 +3012,18 @@ body.intervenant {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
-  body.intervenant h2 {
+  body.intervenant .faq h2 {
     margin-top: 2rem;
     margin-bottom: 1rem; }
-  body.intervenant p, body.intervenant div {
+  body.intervenant .faq p, body.intervenant .faq div {
     margin-bottom: 1rem;
     font-family: "Open Sans", sans-serif;
     line-height: 1.8rem;
     font-size: 1.1rem; }
-  body.intervenant ul {
+  body.intervenant .faq ul {
     list-style-type: decimal;
     padding-left: 1rem; }
-    body.intervenant ul li {
+    body.intervenant .faq ul li {
       margin-bottom: 0.5rem;
       font-weight: 400; }
   body.intervenant .notefrais--empty__content {
@@ -5822,18 +5822,18 @@ body.demandeur {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
-  body.demandeur h2 {
+  body.demandeur .faq h2 {
     margin-top: 2rem;
     margin-bottom: 1rem; }
-  body.demandeur p, body.demandeur div {
+  body.demandeur .faq p, body.demandeur .faq div {
     margin-bottom: 1rem;
     font-family: "Open Sans", sans-serif;
     line-height: 1.8rem;
     font-size: 1.1rem; }
-  body.demandeur ul {
+  body.demandeur .faq ul {
     list-style-type: decimal;
     padding-left: 1rem; }
-    body.demandeur ul li {
+    body.demandeur .faq ul li {
       margin-bottom: 0.5rem;
       font-weight: 400; }
   body.demandeur .notefrais--empty__content {
@@ -8632,18 +8632,18 @@ body.admin {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
-  body.admin h2 {
+  body.admin .faq h2 {
     margin-top: 2rem;
     margin-bottom: 1rem; }
-  body.admin p, body.admin div {
+  body.admin .faq p, body.admin .faq div {
     margin-bottom: 1rem;
     font-family: "Open Sans", sans-serif;
     line-height: 1.8rem;
     font-size: 1.1rem; }
-  body.admin ul {
+  body.admin .faq ul {
     list-style-type: decimal;
     padding-left: 1rem; }
-    body.admin ul li {
+    body.admin .faq ul li {
       margin-bottom: 0.5rem;
       font-weight: 400; }
   body.admin .notefrais--empty__content {
@@ -11442,18 +11442,18 @@ body.admin-pro {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
-  body.admin-pro h2 {
+  body.admin-pro .faq h2 {
     margin-top: 2rem;
     margin-bottom: 1rem; }
-  body.admin-pro p, body.admin-pro div {
+  body.admin-pro .faq p, body.admin-pro .faq div {
     margin-bottom: 1rem;
     font-family: "Open Sans", sans-serif;
     line-height: 1.8rem;
     font-size: 1.1rem; }
-  body.admin-pro ul {
+  body.admin-pro .faq ul {
     list-style-type: decimal;
     padding-left: 1rem; }
-    body.admin-pro ul li {
+    body.admin-pro .faq ul li {
       margin-bottom: 0.5rem;
       font-weight: 400; }
   body.admin-pro .notefrais--empty__content {
