@@ -2179,6 +2179,8 @@ body.intervenant {
         justify-content: center;
         align-items: flex-start;
         padding: 2rem 0; }
+        body.intervenant .hp__content_row-text .bold {
+          font-weight: bold; }
         body.intervenant .hp__content_row-text a {
           margin-top: 1.5rem; }
         body.intervenant .hp__content_row-text h1 {
@@ -4350,7 +4352,7 @@ body.intervenant {
   body.intervenant .footer {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     background-color: #144139;
     padding: 10rem 2rem;
     color: #FFFFFF;
@@ -5025,6 +5027,8 @@ body.demandeur {
         justify-content: center;
         align-items: flex-start;
         padding: 2rem 0; }
+        body.demandeur .hp__content_row-text .bold {
+          font-weight: bold; }
         body.demandeur .hp__content_row-text a {
           margin-top: 1.5rem; }
         body.demandeur .hp__content_row-text h1 {
@@ -7196,7 +7200,7 @@ body.demandeur {
   body.demandeur .footer {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     background-color: #1E1E3D;
     padding: 10rem 2rem;
     color: #FFFFFF;
@@ -7871,6 +7875,8 @@ body.admin {
         justify-content: center;
         align-items: flex-start;
         padding: 2rem 0; }
+        body.admin .hp__content_row-text .bold {
+          font-weight: bold; }
         body.admin .hp__content_row-text a {
           margin-top: 1.5rem; }
         body.admin .hp__content_row-text h1 {
@@ -10042,7 +10048,7 @@ body.admin {
   body.admin .footer {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     background-color: #302053;
     padding: 10rem 2rem;
     color: #FFFFFF;
@@ -10717,6 +10723,8 @@ body.admin-pro {
         justify-content: center;
         align-items: flex-start;
         padding: 2rem 0; }
+        body.admin-pro .hp__content_row-text .bold {
+          font-weight: bold; }
         body.admin-pro .hp__content_row-text a {
           margin-top: 1.5rem; }
         body.admin-pro .hp__content_row-text h1 {
@@ -12888,7 +12896,7 @@ body.admin-pro {
   body.admin-pro .footer {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     background-color: #532020;
     padding: 10rem 2rem;
     color: #FFFFFF;
