@@ -56,9 +56,11 @@ class Router {
         if ($this->type == 'admin') {
             // Si page admin, rediriger vers la page de login
             $controller = new PersonnelController($entityManager);
-            if (Session::get('admin')->isAdmin()){
-                $controller->statsView();
-            } else {
+            if (Session::isLoggedAdmin()){
+                if (Session::get('admin')->isAdmin()){
+                    $controller->statsView();
+                }
+            }  else {
                 $controller->demandeursView();
             }
         } else {

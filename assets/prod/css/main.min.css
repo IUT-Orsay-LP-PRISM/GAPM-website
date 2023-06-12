@@ -3012,6 +3012,20 @@ body.intervenant {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.intervenant h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.intervenant p, body.intervenant div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.intervenant ul {
+    list-style-type: decimal;
+    padding-left: 1rem; }
+    body.intervenant ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
   body.intervenant .notefrais--empty__content {
     display: flex;
     justify-content: center;
@@ -5808,6 +5822,20 @@ body.demandeur {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.demandeur h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.demandeur p, body.demandeur div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.demandeur ul {
+    list-style-type: decimal;
+    padding-left: 1rem; }
+    body.demandeur ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
   body.demandeur .notefrais--empty__content {
     display: flex;
     justify-content: center;
@@ -8604,6 +8632,20 @@ body.admin {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.admin h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.admin p, body.admin div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.admin ul {
+    list-style-type: decimal;
+    padding-left: 1rem; }
+    body.admin ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
   body.admin .notefrais--empty__content {
     display: flex;
     justify-content: center;
@@ -11400,6 +11442,20 @@ body.admin-pro {
       width: 25px;
       height: auto;
       margin-right: .35rem; }
+  body.admin-pro h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem; }
+  body.admin-pro p, body.admin-pro div {
+    margin-bottom: 1rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8rem;
+    font-size: 1.1rem; }
+  body.admin-pro ul {
+    list-style-type: decimal;
+    padding-left: 1rem; }
+    body.admin-pro ul li {
+      margin-bottom: 0.5rem;
+      font-weight: 400; }
   body.admin-pro .notefrais--empty__content {
     display: flex;
     justify-content: center;
