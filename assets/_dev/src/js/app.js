@@ -10,6 +10,7 @@ import './emprunt'
 import './note-frais'
 import './planning'
 import './profile'
+import './charts'
 
 window.addEventListener('load', function () {
     document.querySelector('#loader').classList.add('--hidden');

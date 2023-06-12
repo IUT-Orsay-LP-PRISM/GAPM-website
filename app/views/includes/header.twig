@@ -51,12 +51,6 @@
                                 <i class="icon icon-fi-rr-user-delete"></i>
                                 Se déconnecter</a>
                         </li>
-                        <li style="display: flex;justify-content: center;align-items: center;padding: .5rem 0">
-                            {% set now = "now"|date("Y-m-d") %}
-                            {% set targetDate = "2023-06-12" %}
-                            {% set countdown = date(targetDate).diff(date(now)).days %}
-                            <p> J - {{ countdown }} </p>
-                        </li>
                     </ul>
                 </li>
             {% else %}

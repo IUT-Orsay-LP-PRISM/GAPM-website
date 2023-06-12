@@ -334,7 +334,7 @@ CREATE TABLE `Administration`
 --
 
 INSERT INTO `Administration` (`idAdministration`, `nom`, `prenom`, `login`, `motDePasse`, `email`, `isAdmin`)
-VALUES (1, 'Dupont', 'Anne', 'admin', 'seA/6v3hNAL1.', 'anne.dupont@example.com', 0),
+VALUES (1, 'Dupont', 'Anne', 'admin', 'seA/6v3hNAL1.', 'anne.dupont@example.com', 1),
        (2, 'Doe', 'John', 'jdoe', 'seA/6v3hNAL1.', 'john.doe@example.com', 0),
        (3, 'Smith', 'Jane', 'jsmith', 'seA/6v3hNAL1.', 'jane.smith@example.com', 0),
        (4, 'Brown', 'Robert', 'rbrown', 'seA/6v3hNAL1.', 'robert.brown@example.com', 0),
@@ -368,9 +368,9 @@ CREATE TABLE `RDV`
 
 INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idSpecialite`,
                    `idIntervenant`)
-VALUES (1, 'confirme', '2023-02-01', '10:00', '11:00', 6, 1, 1),
-       (2, 'effectue', '2023-02-02', '09:00', '10:00', 6, 2, 2),
-       (3, 'annule', '2023-02-03', '08:00', '09:00', 6, 3, 5);
+VALUES (1, 'confirme', '2023-02-01', '10:00', '11:30', 6, 1, 1),
+       (2, 'effectue', '2023-02-02', '09:00', '09:30', 6, 2, 2),
+       (3, 'annule', '2023-02-03', '08:30', '09:00', 6, 3, 5);
 
 -- --------------------------------------------------------
 

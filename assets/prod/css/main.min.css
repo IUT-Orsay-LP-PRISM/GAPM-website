@@ -3716,7 +3716,11 @@ body.intervenant {
     body.intervenant .admin__stats__block {
       background-color: #e6faf1;
       border-radius: 10px;
-      padding: 10rem; }
+      padding: 1rem;
+      max-height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
   body.intervenant .planning__container {
     padding: 2.5rem 0;
     max-width: 65em;
@@ -6526,7 +6530,11 @@ body.demandeur {
     body.demandeur .admin__stats__block {
       background-color: #e6f4fa;
       border-radius: 10px;
-      padding: 10rem; }
+      padding: 1rem;
+      max-height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
   body.demandeur .planning__container {
     padding: 2.5rem 0;
     max-width: 65em;
@@ -9336,7 +9344,11 @@ body.admin {
     body.admin .admin__stats__block {
       background-color: #E6E6FA;
       border-radius: 10px;
-      padding: 10rem; }
+      padding: 1rem;
+      max-height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
   body.admin .planning__container {
     padding: 2.5rem 0;
     max-width: 65em;
@@ -12146,7 +12158,11 @@ body.admin-pro {
     body.admin-pro .admin__stats__block {
       background-color: #FAE6E6;
       border-radius: 10px;
-      padding: 10rem; }
+      padding: 1rem;
+      max-height: 10em;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
   body.admin-pro .planning__container {
     padding: 2.5rem 0;
     max-width: 65em;

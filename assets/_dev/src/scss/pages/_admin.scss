@@ -484,6 +484,10 @@
   &__block{
     background-color : $g-head;
     border-radius: 10px;
-    padding: 10rem;
+    padding: 1rem;
+    max-height: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
