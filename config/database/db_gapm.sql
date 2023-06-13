@@ -512,6 +512,12 @@ VALUES (51, 'confirme', '2023-06-16', '10:30', '11:00', 2, 2, 8, NULL),
        (78, 'annule', '2023-06-15', '09:00', '09:30', 26, 1, 27, NULL),
        (79, 'confirme', '2023-06-15', '16:00', '16:30', 26, 1, 27, NULL);
 
+insert into RDV values (81, 'effectue', '2023-06-13', '09:00', '09:30', 26, 1, 27, NULL);
+
+insert into RDV values (82, 'confirme', '2023-06-14', '10:00', '10:30', 24, 1, 27, NULL);
+insert into RDV values (83, 'confirme', '2023-06-14', '18:00', '18:30', 25, 1, 27, NULL);
+
+
 -- --------------------------------------------------------
 
 --
@@ -904,7 +910,7 @@ UPDATE CASCADE;
 -- Contraintes pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON UPDATE CASCADE,
+    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON UPDATE CASCADE ON DELETE CASCADE,
     ADD CONSTRAINT `Intervenant_ibfk_2` FOREIGN KEY (`idVillePro`) REFERENCES `Ville` (`idVille`) ON
 DELETE
 CASCADE ON

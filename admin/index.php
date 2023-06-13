@@ -65,6 +65,7 @@ $router->addAdminRoute('autocompleteSpecialite&query<query>', 'SpecialiteControl
 $router->addAdminRoute('autocompleteVille&query=<query>', 'VilleController', 'autocomplete');
 
 $router->addAdminRoute('chartsAjax', 'StatsController', 'ajax');
+$router->addAdminRoute('stats', 'PersonnelController', 'statsView');
 
 
 $requestUrl = $_SERVER['REQUEST_URI'];

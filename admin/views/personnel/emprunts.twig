@@ -36,7 +36,7 @@
 				{% for emp in emprunts %}
 					<div class="admin__inter__item admin__demandeur__item ">
 						<div class="admin__inter__noms">
-							du <span class="text__bold">{{ emp.dateDebut|date('d/m/Y') }}</span> <br><br>au <span class="text__bold">{{ emp.dateFin|date('d/m/Y') }}</span>
+							du <span class="text__bold">{{ emp.dateFin|date('d/m/Y') }}</span> <br><br>au <span class="text__bold">{{ emp.dateDebut|date('d/m/Y') }}</span>
 						</div>
 						<div class="admin__inter__montant">
 							{{ emp.intervenant.nom }} {{ emp.intervenant.prenom }}
