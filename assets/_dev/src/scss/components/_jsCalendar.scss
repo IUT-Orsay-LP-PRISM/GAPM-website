@@ -117,7 +117,13 @@
 
           background-color : $light;
           color            : $black;
-          cursor           : not-allowed;
+
+          &.--rdv {
+            cursor           : pointer;
+          }
+          &:not(.--rdv) {
+            cursor           : not-allowed;
+          }
         }
 
         &.--empechement {
@@ -127,7 +133,13 @@
 
           background-color : $redLight;
           color            : $black;
-          cursor           : not-allowed;
+
+          &.--rdv {
+            cursor           : pointer;
+          }
+          &:not(.--rdv) {
+            cursor           : not-allowed;
+          }
         }
 
 

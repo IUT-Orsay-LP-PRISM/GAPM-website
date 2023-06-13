@@ -211,7 +211,7 @@ CREATE TABLE `Emprunt`
 -- Déchargement des données de la table `Emprunt`
 --
 
-INSERT INTO `Emprunt` (`idEmprunt`, `dateFin`, `dateDebut`, `idIntervenant`, `idAdministration`, `idVoiture`)
+INSERT INTO `Emprunt` (`idEmprunt`, `dateDebut`, `dateFin`, `idIntervenant`, `idAdministration`, `idVoiture`)
 VALUES (1, '2023-06-10', '2023-06-15', 10, null, 1),
        (2, '2023-06-15', '2023-06-21', 8, null, 3),
        (3, '2023-06-20', '2023-06-25', 12, null, 2),
@@ -664,7 +664,19 @@ VALUES (1, 'EM-007-LX', 1),
        (3, 'RT-918-CD', 3),
        (4, 'QD-885-AZ', 4),
        (5, 'WC-478-BN', 5),
-       (6, 'WC-478-BN', 1);
+       (6, 'XZ-123-YT', 1),
+       (7, 'KG-987-ZP', 2),
+       (8, 'PL-456-NM', 3),
+       (9, 'FV-789-QR', 4),
+       (10, 'LW-654-HG', 5),
+       (11, 'AB-123-CD', 1),
+       (12, 'EF-456-GH', 2),
+       (13, 'IJ-789-KL', 3),
+       (14, 'MN-012-OP', 4),
+       (15, 'QR-345-ST', 5);
+
+
+
 
 --
 -- Index pour les tables déchargées

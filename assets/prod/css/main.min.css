@@ -4795,16 +4795,22 @@ body.intervenant {
               color: black; }
           body.intervenant .js-calendar .container-dates .days .day.--disabled {
             background-color: #dee7e8;
-            color: #144139;
-            cursor: not-allowed; }
+            color: #144139; }
             body.intervenant .js-calendar .container-dates .days .day.--disabled .day-number {
               color: #b5b5b5; }
+            body.intervenant .js-calendar .container-dates .days .day.--disabled.--rdv {
+              cursor: pointer; }
+            body.intervenant .js-calendar .container-dates .days .day.--disabled:not(.--rdv) {
+              cursor: not-allowed; }
           body.intervenant .js-calendar .container-dates .days .day.--empechement {
             background-color: #ffac9e;
-            color: #144139;
-            cursor: not-allowed; }
+            color: #144139; }
             body.intervenant .js-calendar .container-dates .days .day.--empechement .day-number {
               color: #144139; }
+            body.intervenant .js-calendar .container-dates .days .day.--empechement.--rdv {
+              cursor: pointer; }
+            body.intervenant .js-calendar .container-dates .days .day.--empechement:not(.--rdv) {
+              cursor: not-allowed; }
           body.intervenant .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) {
             background-color: #86CABE; }
             body.intervenant .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) .day-number {
@@ -7643,16 +7649,22 @@ body.demandeur {
               color: black; }
           body.demandeur .js-calendar .container-dates .days .day.--disabled {
             background-color: #DCE6F2;
-            color: #1E1E3D;
-            cursor: not-allowed; }
+            color: #1E1E3D; }
             body.demandeur .js-calendar .container-dates .days .day.--disabled .day-number {
               color: #b5b5b5; }
+            body.demandeur .js-calendar .container-dates .days .day.--disabled.--rdv {
+              cursor: pointer; }
+            body.demandeur .js-calendar .container-dates .days .day.--disabled:not(.--rdv) {
+              cursor: not-allowed; }
           body.demandeur .js-calendar .container-dates .days .day.--empechement {
             background-color: #ffac9e;
-            color: #1E1E3D;
-            cursor: not-allowed; }
+            color: #1E1E3D; }
             body.demandeur .js-calendar .container-dates .days .day.--empechement .day-number {
               color: #1E1E3D; }
+            body.demandeur .js-calendar .container-dates .days .day.--empechement.--rdv {
+              cursor: pointer; }
+            body.demandeur .js-calendar .container-dates .days .day.--empechement:not(.--rdv) {
+              cursor: not-allowed; }
           body.demandeur .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) {
             background-color: #7EA6F4; }
             body.demandeur .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) .day-number {
@@ -10491,16 +10503,22 @@ body.admin {
               color: black; }
           body.admin .js-calendar .container-dates .days .day.--disabled {
             background-color: #F5F5F5;
-            color: #302053;
-            cursor: not-allowed; }
+            color: #302053; }
             body.admin .js-calendar .container-dates .days .day.--disabled .day-number {
               color: #b5b5b5; }
+            body.admin .js-calendar .container-dates .days .day.--disabled.--rdv {
+              cursor: pointer; }
+            body.admin .js-calendar .container-dates .days .day.--disabled:not(.--rdv) {
+              cursor: not-allowed; }
           body.admin .js-calendar .container-dates .days .day.--empechement {
             background-color: #ffac9e;
-            color: #302053;
-            cursor: not-allowed; }
+            color: #302053; }
             body.admin .js-calendar .container-dates .days .day.--empechement .day-number {
               color: #302053; }
+            body.admin .js-calendar .container-dates .days .day.--empechement.--rdv {
+              cursor: pointer; }
+            body.admin .js-calendar .container-dates .days .day.--empechement:not(.--rdv) {
+              cursor: not-allowed; }
           body.admin .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) {
             background-color: #9370DB; }
             body.admin .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) .day-number {
@@ -13339,16 +13357,22 @@ body.admin-pro {
               color: black; }
           body.admin-pro .js-calendar .container-dates .days .day.--disabled {
             background-color: #F5F5F5;
-            color: #532020;
-            cursor: not-allowed; }
+            color: #532020; }
             body.admin-pro .js-calendar .container-dates .days .day.--disabled .day-number {
               color: #b5b5b5; }
+            body.admin-pro .js-calendar .container-dates .days .day.--disabled.--rdv {
+              cursor: pointer; }
+            body.admin-pro .js-calendar .container-dates .days .day.--disabled:not(.--rdv) {
+              cursor: not-allowed; }
           body.admin-pro .js-calendar .container-dates .days .day.--empechement {
             background-color: #ffac9e;
-            color: #532020;
-            cursor: not-allowed; }
+            color: #532020; }
             body.admin-pro .js-calendar .container-dates .days .day.--empechement .day-number {
               color: #532020; }
+            body.admin-pro .js-calendar .container-dates .days .day.--empechement.--rdv {
+              cursor: pointer; }
+            body.admin-pro .js-calendar .container-dates .days .day.--empechement:not(.--rdv) {
+              cursor: not-allowed; }
           body.admin-pro .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) {
             background-color: #DB7070; }
             body.admin-pro .js-calendar .container-dates .days .day:hover:not(.--disabled):not(.--empechement) .day-number {
