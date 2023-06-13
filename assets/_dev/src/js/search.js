@@ -221,7 +221,7 @@ function StartCalendar() {
 
 function placeEventListenerInDays() {
     document.querySelectorAll('.day').forEach(divDay => {
-        if ((divDay.classList.contains('--empechement') || divDay.classList.contains('--disabled')) && divDay.querySelector('.day-rdv')) {
+        if (divDay.classList.contains('--rdv')) {
             const URL = window.location.href;
             const urlParams = new URLSearchParams(URL);
             const queryString = URL.split('?')[1];
