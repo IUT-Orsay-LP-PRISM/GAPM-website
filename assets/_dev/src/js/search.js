@@ -62,6 +62,7 @@ function creerCalendrier(annee, mois) {
     const currentYear = now.getFullYear();
     const currentMonth = now.getMonth() + 1;
     const currentDay = now.getDate();
+    const currentHour = now.getHours();
     const days = calendar.querySelector('.days');
     days.innerHTML = '';
     const btnPreviousMonth = calendar.querySelector('.buttons .prev');
@@ -114,7 +115,7 @@ function creerCalendrier(annee, mois) {
                             const formattedDateObj = `${dateObj.getFullYear()}-${(dateObj.getMonth() + 1).toString().padStart(2, '0')}-${dateObj.getDate().toString().padStart(2, '0')}`;
                             const formattedEmpechementDateFin = `${empechementDateFin.getFullYear()}-${(empechementDateFin.getMonth() + 1).toString().padStart(2, '0')}-${empechementDateFin.getDate().toString().padStart(2, '0')}`;
 
-                            return dateObj >= empechementDateDebut && dateObj <= empechementDateFin && (formattedDateObj  != formattedEmpechementDateFin && empechementHeureFin <= "19:00:00")
+                            return dateObj >= empechementDateDebut && dateObj <= empechementDateFin && (formattedDateObj != formattedEmpechementDateFin && empechementHeureFin <= "19:00:00")
                         });
 
                         isDisabled ? actionValue !== 'planning' ? dayDiv.classList.add('--disabled') : !dayDiv.classList.contains('--disabled') ? dayDiv.classList.add('--empechement') : null : null;
@@ -122,6 +123,10 @@ function creerCalendrier(annee, mois) {
                 }
 
                 if (annee < currentYear || (annee === currentYear && mois < currentMonth) || (annee === currentYear && mois === currentMonth && day + dayOfWeek < currentDay)) {
+                    dayDiv.classList.add('--disabled');
+                }
+
+                if (currentHour >= 19 && annee === currentYear && mois === currentMonth && day + dayOfWeek === currentDay) {
                     dayDiv.classList.add('--disabled');
                 }
 
@@ -142,6 +147,7 @@ function creerCalendrier(annee, mois) {
                         const div = document.createElement('div');
                         div.classList.add('day-rdv');
                         div.innerHTML = values[0][fulldate] + "<br/>Rendez-vous...";
+                        dayDiv.classList.add('--rdv');
                         dayDiv.append(div)
                     }
                 }
@@ -214,35 +220,36 @@ function StartCalendar() {
 
 
 function placeEventListenerInDays() {
-    document.querySelectorAll('.day:not(.--disabled):not(.--empechement)').forEach(divDay => {
+    document.querySelectorAll('.day').forEach(divDay => {
+        if (divDay.classList.contains('--rdv')) {
+            const URL = window.location.href;
+            const urlParams = new URLSearchParams(URL);
+            const queryString = URL.split('?')[1];
+            const regex = /action=([^&]+)/;
+            const match = queryString.match(regex);
+            const actionValue = match ? match[1] : null;
+            if (actionValue === 'planning') {
+                divDay.addEventListener('click', () => {
+                    const date = convertDate(divDay.dataset.date)
+                    window.location.href = `?action=liste-rdv&date=${date}`;
+                });
 
-        const URL = window.location.href;
-        const urlParams = new URLSearchParams(URL);
-        const queryString = URL.split('?')[1];
-        const regex = /action=([^&]+)/;
-        const match = queryString.match(regex);
-        const actionValue = match ? match[1] : null;
-        if (actionValue === 'planning') {
-            divDay.addEventListener('click', () => {
-                const date = convertDate(divDay.dataset.date)
-                window.location.href = `?action=liste-rdv&date=${date}`;
-            });
+            } else {
+                divDay.addEventListener('click', () => {
+                    popUp_prendreRDV.classList.toggle('visible');
 
-        } else {
-            divDay.addEventListener('click', () => {
-                popUp_prendreRDV.classList.toggle('visible');
+                    const [year, month, day] = divDay.dataset.date.split('-');
+                    const options = {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
+                    const fullDate = new Date(year, month - 1, day).toLocaleDateString('fr-FR', options)
+                        .replace(/^\w|\s\w/g, (c) => c.toUpperCase());
 
-                const [year, month, day] = divDay.dataset.date.split('-');
-                const options = {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
-                const fullDate = new Date(year, month - 1, day).toLocaleDateString('fr-FR', options)
-                    .replace(/^\w|\s\w/g, (c) => c.toUpperCase());
+                    popUp_prendreRDV.querySelector('.popup-container-col__date').innerText = fullDate;
 
-                popUp_prendreRDV.querySelector('.popup-container-col__date').innerText = fullDate;
-
-                const newFullDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-                editDateInPopUp(newFullDate);
-                removeHeureNotAvailable(newFullDate);
-            });
+                    const newFullDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+                    editDateInPopUp(newFullDate);
+                    removeHeureNotAvailable(newFullDate);
+                });
+            }
         }
     });
 }
@@ -272,15 +279,34 @@ function removeHeureNotAvailable(date) {
         const selectHoraire = document.querySelector('#selectHoraire');
         selectHoraire.innerHTML = '<option value="" selected hidden> </option>';
         const notAvailable = data.map(horaire => horaire.heureDebut);
+
+        const currentDate = new Date(); // Obtenir la date d'aujourd'hui
+
         const heures = [];
         for (let h = 8; h < 20; h++) {
             for (let m = 0; m < 60; m += 30) {
                 if (h === 19 && m === 30) continue;
                 let heure = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+
+                if (dateIsToday(currentDate, date) && isPastTime(heure)) {
+                    continue; // Ignorer les heures passées
+                }
+
                 if (!notAvailable.includes(heure)) {
                     selectHoraire.appendChild(new Option(heure.replace(':', 'h'), heure));
                 }
             }
         }
     }
+
+    function dateIsToday(currentDate, date) {
+        const today = currentDate.toISOString().split('T')[0];
+        return date === today;
+    }
+
+    function isPastTime(time) {
+        const currentTime = new Date().toLocaleTimeString('en-US', {hour12: false});
+        return time < currentTime;
+    }
+
 }

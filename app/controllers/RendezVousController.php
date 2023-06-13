@@ -361,6 +361,7 @@ class RendezVousController extends Template
             }
         }
 
+        date_default_timezone_set('Europe/Paris');
         foreach ($rdvIntervenant as $rdv) {
             if ($rdv->getDateRdv() == date('Y-m-d') && $rdv->getStatus() == 'confirme') {
                 $mesRdvAjd[] = $rdv;

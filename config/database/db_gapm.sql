@@ -73,7 +73,8 @@ VALUES (1, 'Très bon rendez-vous, le médecin était compétent et attentif.', 
        (26, 'Très bon rendez-vous, le médecin a été attentif à mes préoccupations.', 4.5, 37, 7),
        (27, 'Le rendez-vous s''est bien déroulé, le médecin a répondu à toutes mes questions.', 4.0, 38, 8),
        (28, 'Le rendez-vous était satisfaisant, le médecin a été à l''écoute de mes symptômes.', 4.2, 40, 10),
-       (29, 'J''ai été satisfait du rendez-vous, le médecin a pris le temps de m''expliquer.', 4.3, 41, 1);
+       (29, 'J''ai été satisfait du rendez-vous, le médecin a pris le temps de m''expliquer.', 4.3, 41, 1),
+       (30, 'L''intervention s''est très bien passée, le médecin a été à l''écoute de mes symptômes.', 4, 76, 26);
 
 
 
@@ -157,7 +158,11 @@ VALUES (1, 'john.doe@example.com', 'john.doe', 'seA/6v3hNAL1.', 'Doe', 'John', '
        (24, 'marie.dumas@dm.com', 'marie.dumas', 'seA/6v3hNAL1.', 'Marie', 'Dumas', '1988-03-18',
         '15 boulevard Central', '0708091011', 'F', 1, 'demandeur'),
        (25, 'thomas.girard@dm.com', 'thomas.girard', 'seA/6v3hNAL1.', 'Thomas', 'Girard', '1993-07-09',
-        '12 avenue des Lilas', '0755554444', 'M', 2, 'demandeur');
+        '12 avenue des Lilas', '0755554444', 'M', 2, 'demandeur'),
+       (26, 'philipe.clairon@exemple.fr', 'philipe.clairon', 'seA/6v3hNAL1.', 'Philipe', 'Clairon', '1992-09-23',
+        '20 rue des libraires', '0766664444', 'M', 35801, 'demandeur'),
+       (27, 'maurice.lefebre@exemple.fr', 'maurice.lefebre', 'seA/6v3hNAL1.', 'Maurice', 'Lefebre', '1970-02-15',
+        '24 rue de la tourte', '0766665555', 'M', 35801, 'intervenant');
 
 -- --------------------------------------------------------
 
@@ -206,7 +211,7 @@ CREATE TABLE `Emprunt`
 -- Déchargement des données de la table `Emprunt`
 --
 
-INSERT INTO `Emprunt` (`idEmprunt`, `dateFin`, `dateDebut`, `idIntervenant`, `idAdministration`, `idVoiture`)
+INSERT INTO `Emprunt` (`idEmprunt`, `dateDebut`, `dateFin`, `idIntervenant`, `idAdministration`, `idVoiture`)
 VALUES (1, '2023-06-10', '2023-06-15', 10, null, 1),
        (2, '2023-06-15', '2023-06-21', 8, null, 3),
        (3, '2023-06-20', '2023-06-25', 12, null, 2),
@@ -272,6 +277,8 @@ VALUES (5, '100 rue des Intervenants', 'public/uploads/intervenants/imgs/6-dbd94
        (19, '55 rue de l''Industrie', 'public/uploads/intervenants/imgs/19-83cfc336c53e26aec69c.jpeg', 8, 0, 0,
         'passed'),
        (20, '69 avenue de la République', 'public/uploads/intervenants/imgs/20-00c86fb8566e12286ea5.jpeg', 150, 1, 0,
+        'passed'),
+       (27, '50 avenue du chou', 'public/img/default.jpg', 35801, 0, 0,
         'passed');
 
 
@@ -475,31 +482,41 @@ VALUES (1, 'effectue', DATE_SUB(CURDATE(), INTERVAL 49 DAY), '10:30', '11:00', 1
 
 INSERT INTO `RDV` (`idRdv`, `status`, `dateRDV`, `heureDebut`, `heureFin`, `idDemandeur`, `idSpecialite`,
                    `idIntervenant`, `idCommentaire`)
-VALUES (51, 'confirmé', '2023-06-16', '10:30', '11:00', 2, 2, 8, NULL),
-       (52, 'confirmé', '2023-06-17', '12:00', '12:30', 3, 3, 12, NULL),
-       (53, 'confirmé', '2023-06-18', '09:30', '10:00', 4, 4, 7, NULL),
-       (54, 'annulé', '2023-06-19', '16:00', '16:30', 5, 5, 14, NULL),
-       (55, 'confirmé', '2023-06-20', '12:30', '13:00', 6, 6, 11, NULL),
-       (56, 'confirmé', '2023-06-21', '16:30', '17:00', 7, 7, 13, NULL),
-       (57, 'annulé', '2023-06-22', '14:00', '14:30', 8, 8, 10, NULL),
-       (58, 'confirmé', '2023-06-23', '10:30', '11:00', 9, 9, 9, NULL),
-       (59, 'confirmé', '2023-06-24', '14:30', '15:00', 10, 10, 6, NULL),
-       (60, 'confirmé', '2023-06-25', '11:30', '12:00', 11, 1, 14, NULL),
-       (61, 'annulé', '2023-06-26', '17:30', '18:00', 12, 2, 10, NULL),
-       (62, 'confirmé', '2023-06-27', '12:30', '13:00', 13, 3, 16, NULL),
-       (63, 'confirmé', '2023-06-28', '09:30', '10:00', 14, 4, 6, NULL),
-       (64, 'confirmé', '2023-06-29', '16:30', '17:00', 15, 5, 11, NULL),
-       (65, 'annulé', '2023-06-30', '13:30', '14:00', 16, 6, 8, NULL),
-       (66, 'confirmé', '2023-07-01', '10:30', '11:00', 17, 7, 9, NULL),
-       (67, 'annulé', '2023-07-02', '15:30', '16:00', 18, 8, 11, NULL),
-       (68, 'annulé', '2023-07-03', '11:00', '11:30', 19, 9, 13, NULL),
-       (69, 'confirmé', '2023-07-04', '09:30', '10:00', 20, 10, 7, NULL),
-       (70, 'confirmé', '2023-07-05', '14:30', '15:00', 21, 1, 15, NULL),
-       (71, 'confirmé', '2023-07-06', '10:00', '10:30', 22, 2, 9, NULL),
-       (72, 'confirmé', '2023-07-07', '15:00', '15:30', 23, 3, 11, NULL),
-       (73, 'annulé', '2023-07-08', '12:30', '13:00', 24, 4, 13, NULL),
-       (74, 'confirmé', '2023-07-09', '09:30', '10:00', 25, 5, 7, NULL),
-       (75, 'annulé', '2023-07-10', '16:00', '16:30', 25, 6, 15, NULL);
+VALUES (51, 'confirme', '2023-06-16', '10:30', '11:00', 2, 2, 8, NULL),
+       (52, 'confirme', '2023-06-17', '12:00', '12:30', 3, 3, 12, NULL),
+       (53, 'confirme', '2023-06-18', '09:30', '10:00', 4, 4, 7, NULL),
+       (54, 'annule', '2023-06-19', '16:00', '16:30', 5, 5, 14, NULL),
+       (55, 'confirme', '2023-06-20', '12:30', '13:00', 6, 6, 11, NULL),
+       (56, 'confirme', '2023-06-21', '16:30', '17:00', 7, 7, 13, NULL),
+       (57, 'annule', '2023-06-22', '14:00', '14:30', 8, 8, 10, NULL),
+       (58, 'confirme', '2023-06-23', '10:30', '11:00', 9, 9, 9, NULL),
+       (59, 'confirme', '2023-06-24', '14:30', '15:00', 10, 10, 6, NULL),
+       (60, 'confirme', '2023-06-25', '11:30', '12:00', 11, 1, 14, NULL),
+       (61, 'annule', '2023-06-26', '17:30', '18:00', 12, 2, 10, NULL),
+       (62, 'confirme', '2023-06-27', '12:30', '13:00', 13, 3, 16, NULL),
+       (63, 'confirme', '2023-06-28', '09:30', '10:00', 14, 4, 6, NULL),
+       (64, 'confirme', '2023-06-29', '16:30', '17:00', 15, 5, 11, NULL),
+       (65, 'annule', '2023-06-30', '13:30', '14:00', 16, 6, 8, NULL),
+       (66, 'confirme', '2023-07-01', '10:30', '11:00', 17, 7, 9, NULL),
+       (67, 'annule', '2023-07-02', '15:30', '16:00', 18, 8, 11, NULL),
+       (68, 'annule', '2023-07-03', '11:00', '11:30', 19, 9, 13, NULL),
+       (69, 'confirme', '2023-07-04', '09:30', '10:00', 20, 10, 7, NULL),
+       (70, 'confirme', '2023-07-05', '14:30', '15:00', 21, 1, 15, NULL),
+       (71, 'confirme', '2023-07-06', '10:00', '10:30', 22, 2, 9, NULL),
+       (72, 'confirme', '2023-07-07', '15:00', '15:30', 23, 3, 11, NULL),
+       (73, 'annule', '2023-07-08', '12:30', '13:00', 24, 4, 13, NULL),
+       (74, 'confirme', '2023-07-09', '09:30', '10:00', 25, 5, 7, NULL),
+       (75, 'annule', '2023-07-10', '16:00', '16:30', 25, 6, 15, NULL),
+       (76, 'annule', '2023-06-10', '09:00', '09:30', 26, 1, 27, NULL),
+       (77, 'effectue', '2023-06-10', '16:00', '16:30', 26, 1, 27, 30),
+       (78, 'annule', '2023-06-15', '09:00', '09:30', 26, 1, 27, NULL),
+       (79, 'confirme', '2023-06-15', '16:00', '16:30', 26, 1, 27, NULL);
+
+insert into RDV values (81, 'effectue', '2023-06-13', '09:00', '09:30', 26, 1, 27, NULL);
+
+insert into RDV values (82, 'confirme', '2023-06-14', '10:00', '10:30', 24, 1, 27, NULL);
+insert into RDV values (83, 'confirme', '2023-06-14', '18:00', '18:30', 25, 1, 27, NULL);
+
 
 -- --------------------------------------------------------
 
@@ -557,7 +574,8 @@ VALUES (5, 1),
        (15, 9),
        (15, 2),
        (9, 3),
-       (10, 5);
+       (10, 5),
+       (27,1);
 
 -- --------------------------------------------------------
 
@@ -646,7 +664,19 @@ VALUES (1, 'EM-007-LX', 1),
        (3, 'RT-918-CD', 3),
        (4, 'QD-885-AZ', 4),
        (5, 'WC-478-BN', 5),
-       (6, 'WC-478-BN', 1);
+       (6, 'XZ-123-YT', 1),
+       (7, 'KG-987-ZP', 2),
+       (8, 'PL-456-NM', 3),
+       (9, 'FV-789-QR', 4),
+       (10, 'LW-654-HG', 5),
+       (11, 'AB-123-CD', 1),
+       (12, 'EF-456-GH', 2),
+       (13, 'IJ-789-KL', 3),
+       (14, 'MN-012-OP', 4),
+       (15, 'QR-345-ST', 5);
+
+
+
 
 --
 -- Index pour les tables déchargées
@@ -892,7 +922,7 @@ UPDATE CASCADE;
 -- Contraintes pour la table `Intervenant`
 --
 ALTER TABLE `Intervenant`
-    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON UPDATE CASCADE,
+    ADD CONSTRAINT `Intervenant_ibfk_1` FOREIGN KEY (`idDemandeur`) REFERENCES `Demandeur` (`idDemandeur`) ON UPDATE CASCADE ON DELETE CASCADE,
     ADD CONSTRAINT `Intervenant_ibfk_2` FOREIGN KEY (`idVillePro`) REFERENCES `Ville` (`idVille`) ON
 DELETE
 CASCADE ON

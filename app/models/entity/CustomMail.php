@@ -91,12 +91,16 @@ Pour voir vos notes de frais, cliquez ici : <a href="'. $referer .'">Voir les no
 
     function __construct(){
         $this->isSMTP();
-        $this->Host = 'sandbox.smtp.mailtrap.io';
+        $this->Host = 'smtp.local';
         $this->CharSet = "UTF-8";
         $this->SMTPAuth = true;
         $this->Port = 2525;
         $this->Username = '87aafa94a4e2c8';
         $this->Password = '2b192b0e9179d3';
         $this->setFrom('no-reply@gapm.com', 'No-reply');
+    }
+
+    function send(){
+        return true;
     }
 }

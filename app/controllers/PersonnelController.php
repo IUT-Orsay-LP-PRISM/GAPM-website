@@ -81,7 +81,7 @@ class PersonnelController extends Template
                 if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('admin', $user);
 
-                    header('Location: ./?action=demandeurs&message=Vous êtes connecté.&c=msg-success');
+                    header('Location: ./?action=stats&message=Vous êtes connecté.&c=msg-success');
                 } else {
                     header("Location: ./?action=login&message=Adresse email ou mot de passe incorrect.&c=msg-error");
                 }
