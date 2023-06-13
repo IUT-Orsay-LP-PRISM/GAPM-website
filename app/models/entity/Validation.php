@@ -64,7 +64,7 @@ class Validation{
     // Retourne booléen : true = pas d'erreur / false = erreur
     public static function verifierPrenom(){
         if(isset($_POST["firstname"]) && $_POST["firstname"] != ""){
-            return preg_match('/^[A-Za-z][A-Za-z ]{0,49}$/', $_POST['firstname']);
+            return preg_match('/^[\p{L}\p{M}][\p{L}\p{M} ]{0,49}$/u', $_POST['firstname']);
         }
         return false;
     }
@@ -77,7 +77,7 @@ class Validation{
     // Retourne booléen : true = pas d'erreur / false = erreur
     public static function verifierNom(){
         if(isset($_POST["lastname"]) && $_POST["lastname"] != ""){
-            return preg_match('/^[A-Za-z][A-Za-z ]{0,49}$/', $_POST['lastname']);
+            return preg_match('/^[\p{L}\p{M}][\p{L}\p{M} ]{0,49}$/u', $_POST['lastname']);
         }
         return false;
     }
