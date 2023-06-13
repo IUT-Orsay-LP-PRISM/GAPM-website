@@ -62,6 +62,7 @@ function creerCalendrier(annee, mois) {
     const currentYear = now.getFullYear();
     const currentMonth = now.getMonth() + 1;
     const currentDay = now.getDate();
+    const currentHour = now.getHours();
     const days = calendar.querySelector('.days');
     days.innerHTML = '';
     const btnPreviousMonth = calendar.querySelector('.buttons .prev');
@@ -122,6 +123,10 @@ function creerCalendrier(annee, mois) {
                 }
 
                 if (annee < currentYear || (annee === currentYear && mois < currentMonth) || (annee === currentYear && mois === currentMonth && day + dayOfWeek < currentDay)) {
+                    dayDiv.classList.add('--disabled');
+                }
+
+                if (currentHour >= 19 && annee === currentYear && mois === currentMonth && day + dayOfWeek === currentDay) {
                     dayDiv.classList.add('--disabled');
                 }
 
@@ -272,15 +277,34 @@ function removeHeureNotAvailable(date) {
         const selectHoraire = document.querySelector('#selectHoraire');
         selectHoraire.innerHTML = '<option value="" selected hidden> </option>';
         const notAvailable = data.map(horaire => horaire.heureDebut);
+
+        const currentDate = new Date(); // Obtenir la date d'aujourd'hui
+
         const heures = [];
         for (let h = 8; h < 20; h++) {
             for (let m = 0; m < 60; m += 30) {
                 if (h === 19 && m === 30) continue;
                 let heure = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+
+                if (dateIsToday(currentDate, date) && isPastTime(heure)) {
+                    continue; // Ignorer les heures passées
+                }
+
                 if (!notAvailable.includes(heure)) {
                     selectHoraire.appendChild(new Option(heure.replace(':', 'h'), heure));
                 }
             }
         }
     }
+
+    function dateIsToday(currentDate, date) {
+        const today = currentDate.toISOString().split('T')[0];
+        return date === today;
+    }
+
+    function isPastTime(time) {
+        const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false });
+        return time < currentTime;
+    }
+
 }
