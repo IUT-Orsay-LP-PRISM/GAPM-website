@@ -50,7 +50,7 @@
                     {% if mesRdv.today is not empty %}
                         <h3>Mes rendez-vous d'aujourd'hui :</h3>
                         <p class="text__small">
-                            Si le patient n'est pas venu lors du rendez-vous, annulez le.
+                           Vous pouvez valider ou annuler vos rendez-vous.
                         </p>
                         {% include '/intervenant/rdv/rdv-today.twig' with {'rdv': mesRdv.today } %}
                     {% else %}
