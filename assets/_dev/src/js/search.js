@@ -118,7 +118,11 @@ function creerCalendrier(annee, mois) {
                             return dateObj >= empechementDateDebut && dateObj <= empechementDateFin && (formattedDateObj != formattedEmpechementDateFin && empechementHeureFin <= "19:00:00")
                         });
 
-                        isDisabled ? actionValue !== 'planning' ? dayDiv.classList.add('--disabled') : !dayDiv.classList.contains('--disabled') ? dayDiv.classList.add('--empechement') : null : null;
+                        if(isDisabled) {
+                                if(actionValue === 'planning' && !dayDiv.classList.contains('--disabled')) {
+                                    dayDiv.classList.add('--empechement');
+                                }
+                        }
                     }
                 }
 
@@ -221,14 +225,13 @@ function StartCalendar() {
 
 function placeEventListenerInDays() {
     document.querySelectorAll('.day').forEach(divDay => {
-        if (divDay.classList.contains('--rdv')) {
-            const URL = window.location.href;
-            const urlParams = new URLSearchParams(URL);
-            const queryString = URL.split('?')[1];
-            const regex = /action=([^&]+)/;
-            const match = queryString.match(regex);
-            const actionValue = match ? match[1] : null;
-            if (actionValue === 'planning') {
+        const URL = window.location.href;
+        const urlParams = new URLSearchParams(URL);
+        const queryString = URL.split('?')[1];
+        const regex = /action=([^&]+)/;
+        const match = queryString.match(regex);
+        const actionValue = match ? match[1] : null;
+            if (actionValue === 'planning' && divDay.classList.contains('--rdv')) {
                 divDay.addEventListener('click', () => {
                     const date = convertDate(divDay.dataset.date)
                     window.location.href = `?action=liste-rdv&date=${date}`;
@@ -250,7 +253,6 @@ function placeEventListenerInDays() {
                     removeHeureNotAvailable(newFullDate);
                 });
             }
-        }
     });
 }
 
@@ -305,7 +307,7 @@ function removeHeureNotAvailable(date) {
     }
 
     function isPastTime(time) {
-        const currentTime = new Date().toLocaleTimeString('en-US', {hour12: false});
+        const currentTime = new Date().toLocaleTimeString('fr-fr', {hour12: false});
         return time < currentTime;
     }
 

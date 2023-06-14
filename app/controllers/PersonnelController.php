@@ -81,7 +81,13 @@ class PersonnelController extends Template
                 if ($user->getMotDePasse() == $saltedAndHashed) {
                     Session::set('admin', $user);
 
-                    header('Location: ./?action=stats&message=Vous êtes connecté.&c=msg-success');
+                    if ($user->isAdmin()){
+                        header('Location: ./?action=stats&message=Vous êtes connecté.&c=msg-success');
+                    } else {
+                        header('Location: ./?action=demandeurs&message=Vous êtes connecté.&c=msg-success');
+
+                    }
+
                 } else {
                     header("Location: ./?action=login&message=Adresse email ou mot de passe incorrect.&c=msg-error");
                 }
@@ -623,7 +629,7 @@ class PersonnelController extends Template
 
         self::render('/personnel/appli.twig', [
             'title' => 'Demande d\'application',
-            'nav' => 'activity',
+            'nav' => 'demande',
             'intervenants' => $applications,
         ], true);
 

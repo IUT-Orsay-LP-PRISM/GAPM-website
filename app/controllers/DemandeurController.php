@@ -37,6 +37,9 @@ class  DemandeurController extends Template
     {
         $rdvs = $this->entityManager->getRepository(RendezVous::class)->findAll();
 
+        dump($rdvs);
+        die();
+
         $this->render('demandeur/liste-demandeur.twig', [
             'lesDemandeurs' => $rdvs,
         ]);
