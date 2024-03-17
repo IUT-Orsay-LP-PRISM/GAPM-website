@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack --watch --progress",
     "watch": "webpack --watch --progress",
-    "build": "webpack"
+    "build": "webpack",
+    "test": "jest"
   },
   "keywords": [
     "webpack-starter-kit",
@@ -22,6 +23,8 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.7.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "mini-css-extract-plugin": "^2.7.3",
     "node-sass": "^8.0.0",
     "sass-loader": "^13.2.0",
@@ -29,7 +32,11 @@
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
+    "@jest/globals": "^29.7.0",
+    "@testing-library/jest-dom": "^6.4.2",
     "chart.js": "^4.3.0",
-    "swiper": "^9.3.2"
+    "jsdom": "^19.0.0",
+    "swiper": "^9.3.2",
+    "text-encoding": "^0.7.0"
   }
 }

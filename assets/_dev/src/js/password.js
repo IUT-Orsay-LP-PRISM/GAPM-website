@@ -7,7 +7,7 @@ eyes_icon.forEach((eye) => {
 
 function PassShowHide(eye){
     const input = eye.parentElement.querySelector('input');
-    if(input.type == 'password'){
+    if(input.type === 'password'){
         input.type = 'text';
         eye.classList.remove('icon-fi-rr-eye-crossed');
         eye.classList.add('icon-fi-rr-eye');
